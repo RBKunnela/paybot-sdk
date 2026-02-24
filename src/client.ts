@@ -8,7 +8,7 @@ import type { PayBotConfig, PaymentRequest, PaymentResponse } from './types.js';
  * import { PayBotClient } from '@paybot/sdk';
  *
  * const client = new PayBotClient({
- *   baseUrl: 'https://api.paybot.dev',
+ *   baseUrl: 'https://api.paybotcore.com',
  *   apiKey: 'your-api-key',
  * });
  *

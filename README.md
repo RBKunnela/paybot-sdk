@@ -1,6 +1,6 @@
 # @paybot/sdk
 
-TypeScript SDK for [PayBot](https://github.com/RBKunnela/paybot-sdk) — Let your AI agent pay for things.
+TypeScript SDK for [PayBot](https://paybotcore.com) — Let your AI agent pay for things.
 
 ## Installation
 
@@ -14,7 +14,7 @@ npm install @paybot/sdk
 import { PayBotClient } from '@paybot/sdk';
 
 const client = new PayBotClient({
-  baseUrl: 'https://api.paybot.dev',
+  baseUrl: 'https://api.paybotcore.com',
   apiKey: 'your-api-key',
 });
 
