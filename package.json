@@ -1,0 +1,64 @@
+{
+  "name": "@paybot/sdk",
+  "version": "0.1.0",
+  "description": "TypeScript SDK for PayBot — Let your AI agent pay for things",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write src",
+    "type-check": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "paybot",
+    "x402",
+    "ai-agent",
+    "payments",
+    "crypto",
+    "usdc",
+    "mcp",
+    "bot-payments"
+  ],
+  "author": "RBKunnela",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RBKunnela/paybot-sdk.git"
+  },
+  "homepage": "https://github.com/RBKunnela/paybot-sdk#readme",
+  "bugs": {
+    "url": "https://github.com/RBKunnela/paybot-sdk/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.56.0",
+    "prettier": "^3.1.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.0.0"
+  },
+  "dependencies": {
+    "zod": "^4.3.6"
+  }
+}
