@@ -1,66 +1,157 @@
-# @paybot/sdk
+# paybot-sdk
 
-TypeScript SDK for [PayBot](https://paybotcore.com) — Let your AI agent pay for things.
+USDC payments for bots via the [x402 protocol](https://www.x402.org/). One dependency (`viem`), 7 files, typed everything.
 
-## Installation
+## Install
 
 ```bash
-npm install @paybot/sdk
+npm install paybot-sdk
 ```
 
 ## Quick Start
 
 ```typescript
-import { PayBotClient } from '@paybot/sdk';
+import { PayBotClient } from 'paybot-sdk';
 
 const client = new PayBotClient({
-  baseUrl: 'https://api.paybotcore.com',
-  apiKey: 'your-api-key',
+  apiKey: 'pb_test_...',
+  botId: 'my-bot',
+  facilitatorUrl: 'https://facilitator.paybot.dev',
 });
 
-// Submit a payment
-const payment = await client.pay({
-  to: '0xRecipientAddress...',
-  amount: '10.00',
-  memo: 'Payment for API access',
+// Register your bot
+await client.register();
+
+// Make a payment
+const result = await client.pay({
+  resource: 'https://api.example.com/data',
+  amount: '0.01',
+  payTo: '0x1234...abcd',
 });
 
-console.log(payment.paymentId, payment.status);
-
-// Check payment status
-const status = await client.getPayment(payment.paymentId);
+console.log(result.success, result.txHash);
 ```
 
-## API Reference
+## x402 Auto-Handler
 
-### `PayBotClient`
-
-#### Constructor
+Automatically pay for HTTP 402 responses:
 
 ```typescript
-new PayBotClient({
-  baseUrl: string;   // PayBot API URL
-  apiKey: string;    // Your API key
-  timeout?: number;  // Request timeout in ms (default: 30000)
-})
+import { createX402Handler } from 'paybot-sdk';
+
+const handler = createX402Handler({
+  apiKey: 'pb_test_...',
+  botId: 'my-bot',
+  maxAutoPay: '1.00', // Max USD per auto-payment
+});
+
+// If the server returns 402, PayBot pays and retries automatically
+const response = await handler.fetch('https://api.example.com/paid-endpoint');
+const data = await response.json();
 ```
 
-#### Methods
+## Real Payments (EIP-3009)
+
+Pass a wallet private key to sign actual on-chain USDC transfers:
+
+```typescript
+const client = new PayBotClient({
+  apiKey: 'pb_...',
+  botId: 'my-bot',
+  walletPrivateKey: '0x...', // Signs EIP-3009 TransferWithAuthorization
+});
+```
+
+## Trust Levels
+
+PayBot enforces progressive trust levels that govern what your bot can do:
+
+| Level | Name | Per-Tx Limit | Daily Limit |
+|-------|------|-------------|-------------|
+| 0 | Suspended | $0 | $0 |
+| 1 | New | $1 | $10 |
+| 2 | Basic | $10 | $100 |
+| 3 | Verified | $100 | $1,000 |
+| 4 | Trusted | $1,000 | $10,000 |
+| 5 | Premium | $10,000 | $100,000 |
+
+## SDK Methods
 
 | Method | Description |
 |--------|-------------|
-| `pay(request)` | Submit a payment request |
-| `getPayment(id)` | Get status of an existing payment |
-| `listPayments(options?)` | List recent payments |
-| `health()` | Check server availability |
+| `client.pay(request)` | Execute a payment (verify + settle) |
+| `client.register(trustLevel?)` | Register bot with facilitator |
+| `client.balance()` | Get trust status and remaining budget |
+| `client.history(limit?)` | Get transaction history |
+| `client.setLimits(limits)` | Update spending limits |
+| `client.health()` | Check facilitator health |
 
-### Types
+## Error Handling
 
-- `PayBotConfig` — Client configuration
-- `PaymentRequest` — Payment submission payload
-- `PaymentResponse` — Payment result with status and tx hash
-- `PaymentStatus` — `'pending' | 'submitted' | 'confirmed' | 'failed' | 'expired'`
+Non-`pay()` methods throw `PayBotApiError` on failure:
+
+```typescript
+import { PayBotApiError } from 'paybot-sdk';
+
+try {
+  await client.balance();
+} catch (err) {
+  if (err instanceof PayBotApiError) {
+    console.log(err.code);       // 'NOT_FOUND'
+    console.log(err.statusCode); // 404
+    console.log(err.details);    // { botId: 'unknown-bot' }
+  }
+}
+```
+
+`pay()` returns `PaymentResult` with `success: false` instead of throwing:
+
+```typescript
+const result = await client.pay({ ... });
+if (!result.success) {
+  console.log(result.error);        // Human-readable message
+  console.log(result.errorCode);    // 'TRUST_VIOLATION'
+  console.log(result.errorDetails); // { gate: 'SPENDING_ENVELOPE', ... }
+}
+```
+
+## Network Configuration
+
+```typescript
+import { NETWORKS, getNetwork, getSupportedNetworks } from 'paybot-sdk';
+
+// Available networks
+console.log(getSupportedNetworks()); // ['eip155:8453', 'eip155:84532']
+
+// Get network details
+const baseSepolia = getNetwork('eip155:84532');
+console.log(baseSepolia?.name); // 'Base Sepolia'
+```
+
+## MCP Integration
+
+For AI agent frameworks, use [paybot-mcp](https://github.com/RBKunnela/paybot-mcp) which wraps this SDK as an MCP server.
+
+## Self-Hosting
+
+Run your own PayBot facilitator:
+
+```bash
+git clone https://github.com/RBKunnela/paybot-app.git
+cd paybot-app
+npm install && npm run build && npm start
+```
+
+Then point your SDK at it:
+
+```typescript
+const client = new PayBotClient({
+  apiKey: 'your-key',
+  botId: 'my-bot',
+  facilitatorUrl: 'http://localhost:3000',
+});
+```
 
 ## License
 
-MIT
+[MIT](LICENSE)
