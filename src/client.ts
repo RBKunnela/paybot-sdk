@@ -40,7 +40,7 @@ export class PayBotClient {
   constructor(config: PayBotConfig) {
     this.config = {
       apiKey: config.apiKey,
-      facilitatorUrl: config.facilitatorUrl ?? 'http://localhost:3000',
+      facilitatorUrl: config.facilitatorUrl ?? 'https://api.paybotcore.com',
       botId: config.botId,
       operatorId: config.operatorId ?? 'default-operator',
       walletPrivateKey: config.walletPrivateKey,
