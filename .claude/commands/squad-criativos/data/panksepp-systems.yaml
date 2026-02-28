@@ -1,0 +1,459 @@
+# Panksepp Affective Systems - 7 Sistemas Emocionais
+# Referência para narrative-designer, map-emotions
+
+source:
+  author: "Jaak Panksepp"
+  book: "Affective Neuroscience (1998)"
+  concept: "Sistemas afetivos básicos compartilhados por mamíferos"
+
+systems:
+
+  # 1. SEEKING - Curiosidade/Exploração
+  seeking:
+    name: "SEEKING"
+    translation: "Busca / Curiosidade"
+    neurotransmitter: "Dopamina"
+
+    description: |
+      Sistema de exploração e busca.
+      Ativa curiosidade, antecipação e motivação para descoberta.
+
+    triggers:
+      - Mistério e enigmas
+      - Promessa de recompensa
+      - Novidade
+      - Perguntas sem resposta
+      - Possibilidades
+
+    emotional_experience:
+      - Curiosidade
+      - Antecipação
+      - Interesse
+      - Entusiasmo
+      - Esperança
+
+    storytelling_applications:
+      - Criar mistério
+      - Ganchos de curiosidade
+      - Promessas de revelação
+      - Jornadas de descoberta
+      - Teasers
+
+    brand_applications:
+      - Lançamentos misteriosos
+      - Conteúdo que educa
+      - "Como funciona"
+      - Antes de revelar preço/produto
+      - Gamificação
+
+  # 2. RAGE - Raiva/Frustração
+  rage:
+    name: "RAGE"
+    translation: "Raiva"
+    neurotransmitter: "Norepinefrina + Testosterona"
+
+    description: |
+      Ativado por frustração, restrição ou injustiça.
+      Pode ser canalizado para motivação e ação.
+
+    triggers:
+      - Injustiça
+      - Frustração
+      - Obstáculos
+      - Restrição de liberdade
+      - Desrespeito
+
+    emotional_experience:
+      - Raiva
+      - Indignação
+      - Frustração
+      - Determinação
+      - Motivação para mudança
+
+    storytelling_applications:
+      - Vilão que representa injustiça
+      - Obstáculos que frustram
+      - Resolução satisfatória (catarse)
+      - Histórias de superação
+
+    brand_applications:
+      - Identificar "inimigo comum"
+      - Movimento contra status quo
+      - "Chega de X"
+      - Marcas disruptivas
+      - Resolver dor do cliente
+
+    caution: "Canalize para resolução positiva"
+
+  # 3. FEAR - Medo
+  fear:
+    name: "FEAR"
+    translation: "Medo"
+    neurotransmitter: "Cortisol + Adrenalina"
+
+    description: |
+      Sistema de proteção e sobrevivência.
+      Ativa atenção e preparação para ameaças.
+
+    triggers:
+      - Ameaças percebidas
+      - Incerteza
+      - Perda potencial
+      - Escuridão/desconhecido
+      - Isolamento
+
+    emotional_experience:
+      - Medo
+      - Ansiedade
+      - Tensão
+      - Alerta
+      - Preocupação
+
+    storytelling_applications:
+      - Criar tensão
+      - Stakes e consequências
+      - Ameaças que herói enfrenta
+      - Alívio após superação
+
+    brand_applications:
+      - FOMO (fear of missing out)
+      - Consequências de não agir
+      - Proteção e segurança
+      - Urgência
+      - "O que você pode perder"
+
+    caution: "Use com responsabilidade, sempre ofereça solução"
+
+  # 4. LUST - Desejo
+  lust:
+    name: "LUST"
+    translation: "Desejo / Atração"
+    neurotransmitter: "Testosterona + Estrogênio"
+
+    description: |
+      Atração, desejo e prazer sensorial.
+      Não apenas sexual - inclui desejo por experiências.
+
+    triggers:
+      - Beleza
+      - Prazer sensorial
+      - Exclusividade
+      - Aspiração
+      - Luxo
+
+    emotional_experience:
+      - Desejo
+      - Atração
+      - Anseio
+      - Prazer antecipado
+      - Fascínio
+
+    storytelling_applications:
+      - Objeto de desejo
+      - Tensão romântica
+      - Aspiração visual
+      - Experiências sensoriais
+
+    brand_applications:
+      - Lifestyle aspiracional
+      - Marcas de luxo
+      - Experiências sensoriais
+      - Product shots sedutores
+      - Desejo pelo produto/serviço
+
+  # 5. CARE - Cuidado
+  care:
+    name: "CARE"
+    translation: "Cuidado / Nurturing"
+    neurotransmitter: "Oxitocina + Prolactina"
+
+    description: |
+      Sistema de vínculo, proteção e cuidado.
+      Ativa compaixão e desejo de ajudar.
+
+    triggers:
+      - Vulnerabilidade
+      - Crianças/animais
+      - Pessoas em necessidade
+      - Relacionamentos
+      - Comunidade
+
+    emotional_experience:
+      - Ternura
+      - Compaixão
+      - Proteção
+      - Amor
+      - Conexão
+
+    storytelling_applications:
+      - Personagens vulneráveis
+      - Relacionamentos significativos
+      - Sacrifício por outros
+      - Comunidade e pertencimento
+
+    brand_applications:
+      - Propósito social
+      - Marcas que cuidam
+      - Comunidade de marca
+      - Histórias de impacto
+      - "Fazemos isso por você"
+
+  # 6. PANIC/GRIEF - Pânico/Luto
+  panic_grief:
+    name: "PANIC/GRIEF"
+    translation: "Pânico / Luto"
+    neurotransmitter: "Corticotropina"
+
+    description: |
+      Ativado por separação e perda.
+      Cria desejo de reconexão.
+
+    triggers:
+      - Separação
+      - Perda
+      - Solidão
+      - Abandono
+      - Saudade
+
+    emotional_experience:
+      - Tristeza
+      - Saudade
+      - Solidão
+      - Anseio por reconexão
+      - Luto
+
+    storytelling_applications:
+      - Perda como catalisador
+      - Reencontros emocionantes
+      - Saudade e nostalgia
+      - Busca por pertencimento
+
+    brand_applications:
+      - Nostalgia de marca
+      - Reconexão com valores
+      - "Voltar para casa"
+      - Campanhas de fim de ano
+      - Pertencimento a comunidade
+
+    caution: "Sempre ofereça resolução/reconexão"
+
+  # 7. PLAY - Brincar
+  play:
+    name: "PLAY"
+    translation: "Brincar / Alegria"
+    neurotransmitter: "Endorfinas + Dopamina"
+
+    description: |
+      Sistema de diversão, leveza e conexão social.
+      Ativa alegria e criatividade.
+
+    triggers:
+      - Humor
+      - Jogos
+      - Surpresa positiva
+      - Interação social
+      - Desafios divertidos
+
+    emotional_experience:
+      - Alegria
+      - Diversão
+      - Leveza
+      - Conexão
+      - Entusiasmo
+
+    storytelling_applications:
+      - Momentos de alívio cômico
+      - Interações divertidas
+      - Surpresinhas positivas
+      - Celebrações
+
+    brand_applications:
+      - Humor em campanhas
+      - Gamificação
+      - Experiências interativas
+      - Momentos de leveza
+      - Marcas "divertidas"
+
+# Guia de Combinações para Storytelling
+combinations:
+
+  tension_release:
+    systems: ["FEAR", "PLAY"]
+    effect: "Tensão seguida de alívio"
+    example: "Thriller com momentos de humor"
+
+  hero_journey:
+    systems: ["SEEKING", "FEAR", "RAGE", "CARE"]
+    effect: "Jornada completa do herói"
+    example: "Busca, enfrenta medos, supera obstáculos, conecta"
+
+  emotional_connection:
+    systems: ["CARE", "PANIC_GRIEF", "SEEKING"]
+    effect: "Conexão emocional profunda"
+    example: "Vulnerabilidade, perda, reencontro"
+
+  aspirational:
+    systems: ["SEEKING", "LUST"]
+    effect: "Desejo e busca"
+    example: "Marcas de luxo, lifestyle"
+
+  community:
+    systems: ["CARE", "PLAY"]
+    effect: "Pertencimento alegre"
+    example: "Comunidades de marca"
+
+# ═══════════════════════════════════════════════════════════════════
+# APLICAÇÃO EM RH E EMPLOYER BRANDING
+# ═══════════════════════════════════════════════════════════════════
+# Baseado em pesquisas de neurociência afetiva aplicada ao ambiente corporativo
+
+aplicacao_rh:
+
+  descricao: |
+    Os 7 sistemas afetivos de Panksepp têm aplicações diretas em clima
+    organizacional, engajamento e employer branding. Empresas que
+    ativam os sistemas certos criam culturas de alto desempenho.
+
+  dados_impacto:
+    - metrica: "Retenção"
+      impacto: "+35% com ativação intencional de CARE e SEEKING"
+      fonte: "Estudos de neurociência afetiva aplicada (2023)"
+
+    - metrica: "Burnout"
+      impacto: "-28% com liderança que ativa CARE"
+      fonte: "Arquétipos de liderança - pesquisa 2024"
+
+    - metrica: "Engajamento"
+      impacto: "+42% em ambientes que ativam PLAY regularmente"
+      fonte: "Gallup + estudos de psicologia positiva"
+
+  sistemas_por_contexto_rh:
+
+    seeking_no_trabalho:
+      sistema: "SEEKING"
+      contexto_rh: "Desenvolvimento e crescimento"
+      aplicacoes:
+        - "Programas de aprendizado contínuo"
+        - "Desafios e projetos novos"
+        - "Carreira com oportunidades de exploração"
+        - "Gamificação de metas"
+      indicadores:
+        - "Participação em treinamentos"
+        - "Mobilidade interna"
+        - "Engajamento com novos projetos"
+
+    care_no_trabalho:
+      sistema: "CARE"
+      contexto_rh: "Cultura de cuidado e pertencimento"
+      aplicacoes:
+        - "Liderança empática e acessível"
+        - "Programas de bem-estar holístico"
+        - "Rituais de reconhecimento"
+        - "Mentoria e suporte"
+        - "Políticas de saúde mental"
+      indicadores:
+        - "eNPS"
+        - "Sensação de pertencimento"
+        - "Percepção de cuidado da liderança"
+      arquetipo_lideranca: "Cuidador"
+
+    play_no_trabalho:
+      sistema: "PLAY"
+      contexto_rh: "Cultura de leveza e inovação"
+      aplicacoes:
+        - "Momentos de descontração no trabalho"
+        - "Celebrações de conquistas"
+        - "Espaços para criatividade"
+        - "Eventos sociais"
+        - "Humor apropriado na comunicação"
+      indicadores:
+        - "Clima organizacional"
+        - "Colaboração entre áreas"
+        - "Inovação e sugestões"
+
+    fear_no_trabalho:
+      sistema: "FEAR"
+      contexto_rh: "Segurança psicológica"
+      aplicacoes:
+        - "Minimizar medo de errar"
+        - "Comunicação transparente em mudanças"
+        - "Processos claros"
+        - "Estabilidade onde possível"
+      sinais_de_alerta:
+        - "Medo de dar feedback"
+        - "Evitar riscos"
+        - "Baixa participação em reuniões"
+      antidoto: "Criar segurança psicológica (Amy Edmondson)"
+
+    panic_grief_no_trabalho:
+      sistema: "PANIC/GRIEF"
+      contexto_rh: "Transições e mudanças"
+      aplicacoes:
+        - "Suporte em desligamentos"
+        - "Acompanhamento em mudanças organizacionais"
+        - "Rituais de despedida saudáveis"
+        - "Alumni programs"
+      quando_ativar:
+        - "Reestruturações"
+        - "Demissões"
+        - "Mudanças de liderança"
+
+  combinacoes_rh:
+
+    onboarding_ideal:
+      sistemas: ["SEEKING", "CARE", "PLAY"]
+      descricao: "Curiosidade + acolhimento + leveza"
+      praticas:
+        - "Buddy system (CARE)"
+        - "Gamificação de aprendizado (SEEKING + PLAY)"
+        - "Celebração de 90 dias (PLAY)"
+
+    cultura_inovacao:
+      sistemas: ["SEEKING", "PLAY"]
+      descricao: "Exploração com segurança para errar"
+      praticas:
+        - "Hackathons (SEEKING + PLAY)"
+        - "Falha celebrada como aprendizado"
+        - "Tempo para projetos pessoais"
+
+    retencao_talentos:
+      sistemas: ["CARE", "SEEKING"]
+      descricao: "Cuidado + oportunidades de crescimento"
+      praticas:
+        - "Plano de desenvolvimento individual"
+        - "Mentoria contínua"
+        - "Reconhecimento genuíno"
+
+    lideranca_humanizada:
+      sistemas: ["CARE", "PLAY", "SEEKING"]
+      descricao: "Líder que cuida, celebra e desafia"
+      arquetipos:
+        - "Cuidador (CARE)"
+        - "Criador (SEEKING)"
+        - "Mediador (PLAY + CARE)"
+
+  pulse_survey_panksepp:
+    descricao: |
+      Perguntas de pesquisa de clima mapeadas para sistemas afetivos.
+      Permite diagnóstico de qual sistema precisa de atenção.
+
+    perguntas:
+      seeking:
+        - "Sinto que estou aprendendo e crescendo aqui"
+        - "Tenho oportunidades de explorar novos desafios"
+
+      care:
+        - "Sinto que minha liderança se importa comigo como pessoa"
+        - "Tenho relações de confiança no trabalho"
+
+      play:
+        - "Há momentos de leveza e celebração no trabalho"
+        - "Posso ser eu mesmo(a) aqui"
+
+      fear:
+        - "Sinto-me seguro(a) para expressar opiniões"
+        - "Não tenho medo de errar"
+
+      panic_grief:
+        - "Mudanças são comunicadas de forma que me sinto informado(a)"
+        - "Sinto-me parte desta comunidade"

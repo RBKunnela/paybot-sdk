@@ -1,0 +1,75 @@
+# Task: Audit Brand
+# Squad: squAId-criaTTivados / unniko
+# Responsável: brand-auditor
+
+metadata:
+  name: "audit-brand"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "unniko"
+  responsavel: "brand-auditor"
+  tipo: task
+
+descricao: |
+  Diagnóstico completo da marca atual nos 3 Domínios da Taxonomia.
+  Inclui gap analysis versus concorrência e oportunidades.
+
+entrada:
+  - campo: brand_strategy_document
+    tipo: string
+    origem: "build-brand-essence"
+    obrigatorio: true
+    descricao: "Estratégia de marca definida"
+  - campo: competitive_analysis_matrix
+    tipo: string
+    origem: "analyze-competition"
+    obrigatorio: true
+    descricao: "Análise competitiva por domínio"
+  - campo: assets_existentes
+    tipo: string
+    origem: "briefing campo 11"
+    obrigatorio: false
+    descricao: "Assets atuais da marca"
+
+saida:
+  - campo: brand_audit_report
+    tipo: string
+    destino: "map-differentiators"
+    persistido: true
+    descricao: "Diagnóstico por domínio + gaps + oportunidades"
+
+passos:
+  1:
+    nome: "Auditar Domínio I"
+    descricao: "Avaliar Diferenciação Substantiva (produto, preço, distribuição, experiência)"
+    agente: "brand-auditor"
+  2:
+    nome: "Auditar Domínio II"
+    descricao: "Avaliar Diferenciação Simbólica (narrativa, valores, personalidade, cultura)"
+    agente: "brand-auditor"
+  3:
+    nome: "Auditar Domínio III"
+    descricao: "Avaliar Distintividade (visual, verbal, sensorial, reconhecimento)"
+    agente: "brand-auditor"
+  4:
+    nome: "Comparar com concorrência"
+    descricao: "Posicionar marca versus concorrentes em cada domínio"
+    agente: "competitive-analyst"
+  5:
+    nome: "Identificar gaps"
+    descricao: "Mapear lacunas prioritárias por domínio"
+    agente: "brand-auditor"
+  6:
+    nome: "Mapear oportunidades"
+    descricao: "Identificar onde a marca pode liderar"
+    agente: "brand-auditor"
+
+checklist:
+  - "[ ] 3 Domínios auditados"
+  - "[ ] Gaps identificados por domínio"
+  - "[ ] Comparação competitiva feita"
+  - "[ ] Oportunidades priorizadas"
+
+criterios_aceitacao:
+  - "Diagnóstico factual com evidências"
+  - "Gaps priorizados por impacto"

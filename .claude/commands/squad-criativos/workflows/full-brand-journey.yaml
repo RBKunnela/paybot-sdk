@@ -1,0 +1,505 @@
+# Full Brand Journey - Workflow Completo
+# Conecta todas as squads com checkpoints e CBO gates
+
+name: full-brand-journey
+description: |
+  Workflow completo que orquestra a jornada de uma marca
+  através de todas as squads, com checkpoints de validação
+  e gates do CBO em pontos críticos.
+
+version: "1.0"
+author: "@squad-creator (Craft)"
+
+stages:
+
+  # STAGE 1: ATENDIMENTO
+  - stage: 1
+    name: "Briefing & Onboarding"
+    squad: atendimento
+    director: account-director
+
+    tasks:
+      - task: run-unniko-session
+        agent: briefing-collector
+        description: "Sessão de lapidação com cliente"
+        output: "Respostas lapidadas"
+
+      - task: collect-briefing
+        agent: briefing-collector
+        description: "Preencher 16 campos BranDesire"
+        output: "Briefing completo"
+
+      - task: analyze-client
+        agent: client-analyst
+        description: "Análise de contexto e histórico"
+        output: "Client Analysis Report"
+
+      - task: organize-assets
+        agent: asset-manager
+        description: "Organizar materiais recebidos"
+        output: "Asset Library"
+
+      - task: validate-checkpoint
+        agent: checkpoint-validator
+        description: "Validar completude"
+        output: "Gap Analysis + Routing"
+
+    checkpoint:
+      question: "Briefing completo e validado?"
+      criteria:
+        - "Todos os 16 campos preenchidos"
+        - "Respostas lapidadas (não superficiais)"
+        - "Assets organizados"
+        - "Gaps identificados e resolvidos"
+
+    on_pass: "Search & Insights"
+    on_fail: "Retorno ao briefing-collector"
+
+  # STAGE 2: SEARCH & INSIGHTS
+  - stage: 2
+    name: "Pesquisa & Dados"
+    squad: search-insights
+    director: research-director
+
+    tasks:
+      - task: mine-market-data
+        agent: data-miner
+        parallel: true
+
+      - task: extract-nielsen-data
+        agent: data-miner
+        parallel: true
+
+      - task: extract-lca-data
+        agent: data-miner
+        parallel: true
+
+      - task: analyze-trends
+        agent: trend-analyst
+        depends_on: [mine-market-data]
+
+      - task: consult-euromonitor
+        agent: trend-analyst
+        parallel: true
+
+      - task: consult-mintel
+        agent: trend-analyst
+        parallel: true
+
+      - task: consult-wgsn
+        agent: trend-analyst
+        parallel: true
+
+      - task: synthesize-insights
+        agent: insight-synthesizer
+        depends_on: [analyze-trends, consult-euromonitor, consult-mintel, consult-wgsn]
+        output: "Insights Document"
+
+    checkpoint:
+      question: "Dados suficientes para decisão estratégica?"
+      criteria:
+        - "Dados de mercado coletados"
+        - "Tendências identificadas"
+        - "Insights acionáveis gerados"
+        - "Concorrência mapeada"
+
+    on_pass: "DEENEA"
+    on_fail: "Voltar para coleta adicional"
+
+  # STAGE 3: DEENEA (Posicionamento)
+  - stage: 3
+    name: "Posicionamento Estratégico"
+    squad: deenea
+    director: strategy-director
+
+    # Modelo oficial: 5 fases sequenciais (alinhado com strategy-director e wf-brand-essence)
+    tasks:
+      # Fase 1: Audiência (primeiro — alimenta todos os demais)
+      - task: map-audience
+        agent: audience-mapper
+        output: "Audience Deep Dive (Personas, JTBD, Empathy Maps, Tensions)"
+
+      # Fase 2: Narrativa (depende da audiência)
+      - task: build-ikigai
+        agent: narrative-identity-architect
+        depends_on: [map-audience]
+        output: "Ikigai Diagram"
+
+      - task: define-purpose-mission
+        agent: narrative-identity-architect
+        depends_on: [build-ikigai]
+        output: "Purpose & Mission + Origin Story + Brand POV"
+
+      # Fase 3: Personalidade (depende da narrativa)
+      - task: map-archetypes
+        agent: brand-personality-architect
+        depends_on: [define-purpose-mission]
+        output: "Archetype Profile + Voice Personality + Relational Posture"
+
+      # Fase 4: Cultura (depende da personalidade)
+      - task: define-values-culture
+        agent: culture-community-architect
+        depends_on: [map-archetypes]
+        output: "Values & Culture Code + Community Blueprint + Cultural Position"
+
+      # Fase 5: Síntese (depende de tudo)
+      - task: build-positioning
+        agent: strategic-synthesizer
+        depends_on: [define-values-culture]
+        output: "Positioning Statement"
+
+      - task: validate-positioning
+        agent: strategic-synthesizer
+        depends_on: [build-positioning]
+        output: "Brand Strategy Document (validado)"
+
+    checkpoint:
+      question: "Posicionamento sólido e diferenciado?"
+      criteria:
+        - "Propósito autêntico"
+        - "Personas bem definidas (JTBD)"
+        - "Arquétipos consistentes"
+        - "Posicionamento único"
+
+    output: "Brand Strategy Document"
+    on_pass: "CBO Gate 1"
+
+  # STAGE 4: CBO GATE 1 - Estratégia
+  - stage: 4
+    name: "CBO Gate - Estratégia"
+    type: cbo_gate
+    agent: cbo
+
+    task: validate-strategy
+    input: "Brand Strategy Document"
+
+    validation:
+      criteria:
+        - "Propósito claro e inspirador"
+        - "Posicionamento diferenciado"
+        - "Arquétipos consistentes com valores"
+        - "Personas bem definidas"
+
+    on_approve: "UNNIKO"
+    on_reject: "Retorno a DEENEA com feedback"
+
+  # STAGE 5: UNNIKO (Diferenciação)
+  - stage: 5
+    name: "Diferenciação & Design System"
+    squad: unniko
+    director: brand-director
+
+    tasks:
+      - task: analyze-competitive-gaps
+        agent: competitive-analyst
+        output: "Competitive Gap Analysis"
+
+      - task: design-promise
+        agent: differentiation-strategist
+        depends_on: [analyze-competitive-gaps]
+        output: "Brand Promise"
+
+      - task: define-differentiators
+        agent: differentiation-strategist
+        depends_on: [design-promise]
+        output: "Differentiators Document"
+
+      - task: build-design-system
+        agent: design-system-architect
+        parallel: true
+        output: "Design System Guidelines"
+
+      - task: create-brand-concept
+        agent: identity-architect
+        depends_on: [design-promise]
+        output: "Brand Concept"
+
+      - task: define-sensory-artifacts
+        agent: identity-architect
+        depends_on: [create-brand-concept]
+        output: "Sensory Artifacts"
+
+      - task: compile-identity
+        agent: identity-architect
+        depends_on: [define-differentiators, build-design-system, define-sensory-artifacts]
+        output: "Brand Identity Document"
+
+    checkpoint:
+      question: "Diferenciação clara e aplicável?"
+      criteria:
+        - "Promessa cumprível"
+        - "Diferenciais tangíveis"
+        - "Design System coerente"
+        - "Identidade memorável"
+
+    output: "Brand Identity Document"
+    on_pass: "CBO Gate 2"
+
+  # STAGE 6: CBO GATE 2 - Identidade
+  - stage: 6
+    name: "CBO Gate - Identidade"
+    type: cbo_gate
+    agent: cbo
+
+    task: validate-identity
+    input: "Brand Identity Document"
+
+    validation:
+      criteria:
+        - "Promessa cumprível"
+        - "Diferenciais tangíveis"
+        - "Design System coerente"
+        - "Identidade memorável"
+
+    on_approve: "storYOURtelling"
+    on_reject: "Retorno a UNNIKO com feedback"
+
+  # STAGE 7: storYOURtelling (Criação)
+  - stage: 7
+    name: "Criação & Narrativa"
+    squad: storytelling
+    director: creative-director
+
+    tasks:
+      - task: develop-big-idea
+        agent: big-idea-architect
+        output: "Big Idea Candidates"
+
+      - task: select-big-idea
+        agent: big-idea-architect
+        depends_on: [develop-big-idea]
+        output: "Big Idea Aprovada"
+
+      - task: create-core-concept
+        agent: concept-writer
+        depends_on: [select-big-idea]
+        output: "Core Creative Idea"
+
+      - task: define-tone-of-voice
+        agent: concept-writer
+        depends_on: [create-core-concept]
+        output: "Tone of Voice Guidelines"
+
+      - task: map-emotions
+        agent: narrative-designer
+        parallel: true
+        output: "Emotion Map"
+
+      - task: select-storytelling-framework
+        agent: narrative-designer
+        depends_on: [map-emotions]
+        output: "Framework Selection"
+
+      - task: design-narrative
+        agent: narrative-designer
+        depends_on: [select-storytelling-framework]
+        output: "Narrative Framework"
+
+      - task: write-copy
+        agent: copywriter
+        depends_on: [define-tone-of-voice, design-narrative]
+        output: "Copy em formatos"
+
+      - task: direct-visual
+        agent: art-director
+        depends_on: [create-core-concept]
+        output: "Visual Direction"
+
+      - task: compile-creative-brief
+        agent: creative-director
+        depends_on: [write-copy, direct-visual]
+        output: "Creative Brief"
+
+    checkpoint:
+      question: "Big Idea poderosa e executável?"
+      criteria:
+        - "Big Idea simples e memorável"
+        - "Narrativa conecta mentes e corações"
+        - "Tom de voz consistente"
+        - "Execução premiável"
+
+    output: "Creative Brief"
+    on_pass: "CBO Gate 3"
+
+  # STAGE 8: CBO GATE 3 - Criativo
+  - stage: 8
+    name: "CBO Gate - Criativo"
+    type: cbo_gate
+    agent: cbo
+
+    task: validate-creative
+    input: "Creative Brief"
+
+    validation:
+      criteria:
+        - "Big Idea poderosa"
+        - "Narrativa emocional"
+        - "Tom de voz consistente"
+        - "Execução de qualidade"
+
+    on_approve: "Operations (Content + Growth)"
+    on_reject: "Retorno a storYOURtelling com feedback"
+
+  # STAGE 9: OPERATIONS (Paralelo)
+  - stage: 9
+    name: "Operações de Conteúdo e Growth"
+    parallel_squads:
+      - content-ops
+      - growth-ops
+
+    content_ops_tasks:
+      - define-platform-strategy
+      - plan-content-calendar
+      - produce-copy-content
+      - create-visual-content
+      - repurpose-content
+      - review-content-quality
+      - schedule-posts
+      - analyze-content-performance
+
+    growth_ops_tasks:
+      - design-funnel
+      - setup-campaigns
+      - manage-traffic
+      - run-ab-tests
+      - optimize-campaigns
+      - analyze-metrics
+      - generate-insights
+      - report-to-director
+
+    sync_point: "Entregáveis prontos para revisão final"
+    on_complete: "CBO Gate 4"
+
+  # STAGE 10: CBO GATE 4 - Entrega Final
+  - stage: 10
+    name: "CBO Gate - Entrega Final"
+    type: cbo_gate
+    agent: cbo
+
+    task: approve-delivery
+    input: "Todos os entregáveis"
+
+    validation:
+      criteria:
+        - "Alinhamento estratégico total"
+        - "Qualidade de execução"
+        - "Consistência entre peças"
+        - "Pronto para cliente"
+
+    on_approve: "ENTREGA AO CLIENTE"
+    on_reject: "Revisão específica com squad responsável"
+
+  # FINAL: ENTREGA
+  - stage: "final"
+    name: "Entrega ao Cliente"
+    type: delivery
+
+    deliverables:
+      strategy:
+        - "Brand Strategy Document"
+        - "Positioning Statement"
+        - "Archetype Profile"
+
+      identity:
+        - "Brand Identity Document"
+        - "Design System Guidelines"
+        - "Sensory Artifacts"
+
+      creative:
+        - "Creative Brief"
+        - "Big Idea"
+        - "Tone of Voice Guidelines"
+        - "Visual Direction"
+
+      content:
+        - "Platform Strategy"
+        - "Content Calendar"
+        - "Peças de conteúdo"
+
+      growth:
+        - "Funnel Blueprint"
+        - "Campaign Structure"
+        - "Optimization Roadmap"
+
+# Métricas do Workflow
+metrics:
+  quality_gates: 4
+  total_stages: 10
+  squads_involved: 7
+  estimated_duration: "7-14 horas (full brand journey)"
+  stage_estimates:
+    briefing: "30-60 min"
+    search_insights: "60-120 min"
+    deenea: "90-180 min"
+    unniko: "60-120 min"
+    storytelling: "90-180 min"
+    content_growth_ops: "60-120 min"
+    cbo_gates: "15-30 min cada"
+
+# Notas de Implementação
+notes:
+  - "Cada CBO gate é bloqueante"
+  - "Stages podem ter tarefas paralelas"
+  - "Feedback loops são permitidos"
+  - "Métricas de cada stage devem ser registradas"
+
+# Fallback e Escalation
+fallback:
+  cbo_gate_rejection:
+    max_retries: 3
+    process: |
+      1. CBO gera feedback específico (quais critérios falharam)
+      2. Documento volta para a sub-squad responsável
+      3. Sub-squad corrige APENAS os pontos indicados
+      4. Resubmete ao CBO Gate
+      5. Se falhar 3x: escalation para revisão humana
+  task_failures:
+    briefing_incompleto:
+      trigger: "Menos de 16 campos preenchidos"
+      action: "Checkpoint-validator identifica gaps, retorna ao briefing-collector"
+    dados_insuficientes:
+      trigger: "Research-director avalia que dados são insuficientes para decisão"
+      action: "Solicita coleta adicional ao data-miner com direcionamento específico"
+    posicionamento_generico:
+      trigger: "CBO Gate 1 rejeita por falta de diferenciação"
+      action: "Strategic-synthesizer refaz com feedback do strategy-director"
+    big_idea_fraca:
+      trigger: "CBO Gate 3 rejeita por falta de impacto"
+      action: "Creative-director pede novas alternativas ao big-idea-architect"
+    conteudo_fora_do_tom:
+      trigger: "Brand-voice-director identifica inconsistência"
+      action: "Rejeita peça e indica correções específicas ao copywriter"
+
+# ═══════════════════════════════════════════════════════════════════
+# FRAMEWORKS CURADOS INTEGRADOS (2026-02)
+# ═══════════════════════════════════════════════════════════════════
+frameworks_curados:
+  atendimento:
+    - jtbd-framework.yaml
+    - culture-values-framework.yaml
+  search_insights:
+    - kahneman-dual-systems.yaml
+    - jtbd-framework.yaml
+  deenea:
+    - kahneman-dual-systems.yaml
+    - brand-mythology-harari.yaml
+    - jtbd-framework.yaml
+    - culture-values-framework.yaml
+  unniko:
+    - wheeler-brand-process.yaml
+    - sensory-branding.yaml
+    - behavioral-economics-branding.yaml
+  storytelling:
+    - virality-frameworks.yaml
+    - hook-model-eyal.yaml
+    - marketing-journey-kotler.yaml
+    - behavioral-economics-branding.yaml
+  content_ops:
+    - virality-frameworks.yaml
+    - hook-model-eyal.yaml
+    - marketing-journey-kotler.yaml
+  growth_ops:
+    - marketing-journey-kotler.yaml
+    - hook-model-eyal.yaml
+    - behavioral-economics-branding.yaml
+    - kahneman-dual-systems.yaml

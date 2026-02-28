@@ -1,0 +1,41 @@
+# Knowledge Base Chunk Template
+# Usage: Copy and fill for each content chunk
+
+chunk_metadata:
+  id: ""          # domain-prefix + number (e.g., "ia-001")
+  domain: ""      # ia-expertise | philosophy-consciousness | business-strategy | frameworks-mental-models | personal-development | case-studies-examples
+  sub_domain: ""  # Specific sub-topic
+  title: ""       # Descriptive title
+  persona: ""     # ia-expert | vida-legendaria | overlap | both
+
+  source:
+    file: ""      # Path to source file
+    section: ""   # Section/location within file
+    lines: ""     # Line range (e.g., "145-189")
+    tier: 0       # Source quality tier (1/2/3)
+    confidence: 0 # 0-100
+
+  temporal_relevance: ""  # current | foundational | transitional | historical
+  fidelity_importance: "" # high | medium | low
+
+  chunk_info:
+    chunk_number: 0
+    word_count: 0       # Target: 300-500
+    overlap_with_next: false
+
+  cross_references:
+    related_chunks: []
+    similar_concepts: []
+
+  tags: []
+
+  retrieval_hints:
+    keywords: []
+    questions_answered: []
+
+# CHUNK CONTENT
+content: |
+  [300-500 words of semantic content here]
+  Preserve complete thoughts. Do not cut mid-sentence.
+  Include full framework definitions.
+  Keep examples complete with context.

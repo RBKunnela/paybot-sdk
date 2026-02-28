@@ -1,0 +1,331 @@
+# Brand Personality Framework (Aaker)
+# Dimensões de Personalidade de Marca
+# Usado por: Brand Personality Architect
+
+metadata:
+  name: "Framework de Personalidade de Marca (Aaker)"
+  version: "1.0"
+  source: "Jennifer Aaker - Brand Personality Scale (1997)"
+
+conceito:
+  definicao: |
+    Jennifer Aaker identificou 5 dimensões de personalidade de marca
+    que os consumidores usam para descrever marcas, similar a como
+    descrevemos personalidades humanas (Big Five).
+
+  principio: |
+    Marcas com personalidade clara e consistente criam conexões
+    emocionais mais fortes com seus consumidores.
+
+  mapeamento_taxonomia:
+    dominio: "II - Diferenciação Simbólica"
+    classe: 5
+    ordem: "5.1"
+
+# ═══════════════════════════════════════════════════════════════════
+# AS 5 DIMENSÕES
+# ═══════════════════════════════════════════════════════════════════
+dimensoes:
+
+  sincerity:
+    nome_pt: "Sinceridade"
+    descricao: "Marcas honestas, saudáveis, alegres e autênticas"
+
+    facetas:
+      down_to_earth:
+        nome_pt: "Pé no chão"
+        tracos: ["Familiar", "Humilde", "Acessível"]
+
+      honest:
+        nome_pt: "Honesta"
+        tracos: ["Sincera", "Autêntica", "Ética"]
+
+      wholesome:
+        nome_pt: "Saudável"
+        tracos: ["Original", "Genuína", "Íntegra"]
+
+      cheerful:
+        nome_pt: "Alegre"
+        tracos: ["Sentimental", "Amigável", "Calorosa"]
+
+    arquetipos_relacionados: ["Innocent", "Caregiver", "Everyman"]
+
+    setores_tipicos:
+      - Alimentos tradicionais
+      - Varejo familiar
+      - Saúde e bem-estar
+      - ONGs
+
+    marcas_exemplo:
+      - nome: "Dove"
+        manifestacao: "Beleza real, autenticidade"
+      - nome: "Hallmark"
+        manifestacao: "Sentimentos genuínos"
+      - nome: "Campbell's"
+        manifestacao: "Conforto familiar"
+
+    perguntas_diagnostico:
+      - "A marca parece genuína?"
+      - "É vista como honesta?"
+      - "Transmite calor humano?"
+      - "É acessível a todos?"
+
+  excitement:
+    nome_pt: "Entusiasmo"
+    descricao: "Marcas ousadas, animadas, imaginativas e contemporâneas"
+
+    facetas:
+      daring:
+        nome_pt: "Ousada"
+        tracos: ["Corajosa", "Na moda", "Excitante"]
+
+      spirited:
+        nome_pt: "Animada"
+        tracos: ["Jovem", "Vibrante", "Energética"]
+
+      imaginative:
+        nome_pt: "Imaginativa"
+        tracos: ["Única", "Surpreendente", "Artística"]
+
+      up_to_date:
+        nome_pt: "Contemporânea"
+        tracos: ["Moderna", "Independente", "Inovadora"]
+
+    arquetipos_relacionados: ["Explorer", "Outlaw", "Jester"]
+
+    setores_tipicos:
+      - Tecnologia
+      - Esportes
+      - Entretenimento
+      - Moda jovem
+
+    marcas_exemplo:
+      - nome: "Red Bull"
+        manifestacao: "Extremo, aventura"
+      - nome: "Virgin"
+        manifestacao: "Rebelde, inovador"
+      - nome: "MTV"
+        manifestacao: "Jovem, cultural"
+
+    perguntas_diagnostico:
+      - "A marca surpreende?"
+      - "É vista como inovadora?"
+      - "Transmite energia?"
+      - "É contemporânea?"
+
+  competence:
+    nome_pt: "Competência"
+    descricao: "Marcas confiáveis, inteligentes e bem-sucedidas"
+
+    facetas:
+      reliable:
+        nome_pt: "Confiável"
+        tracos: ["Segura", "Trabalhadora", "Eficiente"]
+
+      intelligent:
+        nome_pt: "Inteligente"
+        tracos: ["Técnica", "Corporativa", "Séria"]
+
+      successful:
+        nome_pt: "Bem-sucedida"
+        tracos: ["Líder", "Confiante", "Influente"]
+
+    arquetipos_relacionados: ["Sage", "Ruler", "Hero"]
+
+    setores_tipicos:
+      - Finanças
+      - Consultoria
+      - Tecnologia B2B
+      - Automotivo premium
+
+    marcas_exemplo:
+      - nome: "IBM"
+        manifestacao: "Expertise técnica"
+      - nome: "Microsoft"
+        manifestacao: "Produtividade corporativa"
+      - nome: "Mercedes-Benz"
+        manifestacao: "Engenharia de excelência"
+
+    perguntas_diagnostico:
+      - "A marca é vista como expert?"
+      - "Transmite confiabilidade?"
+      - "É respeitada no mercado?"
+      - "Demonstra inteligência?"
+
+  sophistication:
+    nome_pt: "Sofisticação"
+    descricao: "Marcas de classe alta, charmosas e elegantes"
+
+    facetas:
+      upper_class:
+        nome_pt: "Classe alta"
+        tracos: ["Glamourosa", "Elegante", "Refinada"]
+
+      charming:
+        nome_pt: "Charmosa"
+        tracos: ["Feminina", "Suave", "Sedutora"]
+
+    arquetipos_relacionados: ["Lover", "Ruler", "Magician"]
+
+    setores_tipicos:
+      - Luxo
+      - Moda alta
+      - Joalheria
+      - Hospitalidade premium
+
+    marcas_exemplo:
+      - nome: "Chanel"
+        manifestacao: "Elegância atemporal"
+      - nome: "Rolex"
+        manifestacao: "Prestígio e status"
+      - nome: "Four Seasons"
+        manifestacao: "Serviço refinado"
+
+    perguntas_diagnostico:
+      - "A marca é aspiracional?"
+      - "Transmite elegância?"
+      - "É associada a status?"
+      - "Tem refinamento?"
+
+  ruggedness:
+    nome_pt: "Robustez"
+    descricao: "Marcas resistentes, fortes e ao ar livre"
+
+    facetas:
+      outdoorsy:
+        nome_pt: "Ao ar livre"
+        tracos: ["Aventureira", "Ocidental", "Ativa"]
+
+      tough:
+        nome_pt: "Resistente"
+        tracos: ["Robusta", "Forte", "Durável"]
+
+    arquetipos_relacionados: ["Explorer", "Hero", "Outlaw"]
+
+    setores_tipicos:
+      - Outdoor/Aventura
+      - Automotivo (trucks, SUVs)
+      - Ferramentas
+      - Esportes de natureza
+
+    marcas_exemplo:
+      - nome: "Jeep"
+        manifestacao: "Aventura, capacidade"
+      - nome: "Harley-Davidson"
+        manifestacao: "Liberdade, força"
+      - nome: "Patagonia"
+        manifestacao: "Outdoor, resistência"
+
+    perguntas_diagnostico:
+      - "A marca é vista como durável?"
+      - "Transmite força?"
+      - "É associada a natureza/aventura?"
+      - "É masculina/robusta?"
+
+# ═══════════════════════════════════════════════════════════════════
+# APLICAÇÃO
+# ═══════════════════════════════════════════════════════════════════
+aplicacao:
+
+  metodologia:
+    passo_1:
+      nome: "Diagnóstico atual"
+      acao: "Avaliar como a marca é percebida em cada dimensão (1-5)"
+
+    passo_2:
+      nome: "Definição aspiracional"
+      acao: "Determinar onde a marca QUER estar (máx 2 dimensões fortes)"
+
+    passo_3:
+      nome: "Gap analysis"
+      acao: "Identificar diferenças entre atual e aspiracional"
+
+    passo_4:
+      nome: "Plano de ação"
+      acao: "Definir como mover de atual para aspiracional"
+
+  principios:
+    foco:
+      descricao: "Máximo 2 dimensões dominantes"
+      razao: "Marcas que tentam ser tudo não são nada"
+
+    consistencia:
+      descricao: "Manter personalidade ao longo do tempo"
+      razao: "Mudanças frequentes confundem"
+
+    autenticidade:
+      descricao: "Personalidade deve refletir verdade"
+      razao: "Inautenticidade é percebida"
+
+# ═══════════════════════════════════════════════════════════════════
+# TEMPLATE DE AUDITORIA
+# ═══════════════════════════════════════════════════════════════════
+template:
+  auditoria:
+    sincerity:
+      score_atual: null  # 1-5
+      score_aspiracional: null
+      facetas_fortes: []
+      facetas_fracas: []
+
+    excitement:
+      score_atual: null
+      score_aspiracional: null
+      facetas_fortes: []
+      facetas_fracas: []
+
+    competence:
+      score_atual: null
+      score_aspiracional: null
+      facetas_fortes: []
+      facetas_fracas: []
+
+    sophistication:
+      score_atual: null
+      score_aspiracional: null
+      facetas_fortes: []
+      facetas_fracas: []
+
+    ruggedness:
+      score_atual: null
+      score_aspiracional: null
+      facetas_fortes: []
+      facetas_fracas: []
+
+  dimensoes_dominantes:
+    primaria: null
+    secundaria: null
+
+  gaps_identificados: []
+
+  plano_acao: []
+
+# ═══════════════════════════════════════════════════════════════════
+# INTEGRAÇÃO COM JUNG
+# ═══════════════════════════════════════════════════════════════════
+integracao_jung:
+  mapeamento:
+    sincerity:
+      arquetipos: ["Innocent", "Caregiver", "Everyman"]
+      nota: "Foco em genuinidade e conexão"
+
+    excitement:
+      arquetipos: ["Explorer", "Outlaw", "Jester", "Magician"]
+      nota: "Foco em energia e novidade"
+
+    competence:
+      arquetipos: ["Sage", "Ruler", "Hero"]
+      nota: "Foco em domínio e liderança"
+
+    sophistication:
+      arquetipos: ["Lover", "Ruler"]
+      nota: "Foco em elegância e aspiração"
+
+    ruggedness:
+      arquetipos: ["Explorer", "Hero", "Outlaw"]
+      nota: "Foco em força e natureza"
+
+referencias:
+  - "Aaker, J.L. - Dimensions of Brand Personality (1997)"
+  - "Aaker, D.A. - Building Strong Brands (1996)"
+  - "Malär, L. et al. - Emotional Brand Attachment (2011)"

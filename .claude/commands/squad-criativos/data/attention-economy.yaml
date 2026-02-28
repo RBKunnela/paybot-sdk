@@ -1,0 +1,569 @@
+# Economia da Atenção Framework
+# Framework criaTTivados para adaptação de narrativas por canal/formato
+# Respeitar o tempo e contexto de atenção do público
+
+metadata:
+  name: "Economia da Atenção Framework"
+  version: "1.0"
+  origem: "criaTTivados / storYOURtelling"
+  aplicacao: "Adaptação de narrativas para diferentes canais e formatos"
+  principio_central: "Respeitar o tempo e contexto de atenção do público"
+
+# ═══════════════════════════════════════════════════════════════════
+# CONCEITO CENTRAL
+# ═══════════════════════════════════════════════════════════════════
+definicao:
+  conceito: |
+    A Economia da Atenção reconhece que a atenção humana é um recurso
+    escasso e precioso. Cada formato e canal tem seu próprio "orçamento
+    de atenção" que deve ser respeitado para que a mensagem seja
+    efetivamente recebida.
+
+  principio: |
+    Não é sobre comprimir a mensagem. É sobre adaptar a narrativa para
+    o contexto de consumo. Uma história de 1 minuto no Reels não é uma
+    palestra de 1 hora "cortada" - é uma narrativa desenhada para 1 minuto.
+
+  regra_de_ouro: |
+    "O formato não deve comprimir a história. O formato deve inspirar
+    uma história que caiba naturalmente nele."
+
+  pilares:
+    - nome: "Contexto de Consumo"
+      descricao: "Onde e como a pessoa está consumindo o conteúdo"
+
+    - nome: "Curva de Atenção"
+      descricao: "Como a atenção flui no tempo dentro daquele formato"
+
+    - nome: "Expectativa de Valor"
+      descricao: "O que a pessoa espera receber em troca de sua atenção"
+
+    - nome: "Custo de Abandono"
+      descricao: "Quão fácil é para a pessoa parar de consumir"
+
+# ═══════════════════════════════════════════════════════════════════
+# MAPAS DE ATENÇÃO POR CANAL
+# ═══════════════════════════════════════════════════════════════════
+canais:
+
+  # ─────────────────────────────────────────────────────────────────
+  # VÍDEOS CURTOS (Vertical)
+  # ─────────────────────────────────────────────────────────────────
+  reels_tiktok_shorts:
+    nome: "Reels / TikTok / Shorts"
+    icone: "📱"
+    formato: "Vídeo vertical curto"
+
+    parametros_atencao:
+      duracao_tipica: "15-90 segundos"
+      duracao_ideal: "30-45 segundos"
+      tempo_decisao: "0.5-2 segundos"
+      taxa_abandono: "Alta (scroll infinito)"
+      contexto_consumo: "Passivo, entretenimento, descoberta"
+
+    curva_atencao:
+      pico_inicial: "0-3 segundos (decisão de ficar)"
+      sustentacao: "3-15 segundos (engajamento)"
+      queda: "15-30 segundos (interesse diminui)"
+      recuperacao: "Só com novos picos de interesse"
+
+    regras_narrativas:
+      - "Gancho nos primeiros 1-3 segundos (TRIGGER do 5BEATS)"
+      - "Não faça introduções longas"
+      - "Cada frase deve justificar a próxima"
+      - "Movimento visual constante"
+      - "Cortes a cada 2-3 segundos para manter atenção"
+      - "Feche com CTA ou loop (para rewatch)"
+
+    framework_recomendado: "5BEATS (ordem vídeo curto)"
+
+    anti_padroes:
+      - "Começar com 'Olá pessoal, tudo bem?'"
+      - "Pedir para seguir antes de entregar valor"
+      - "Introdução longa explicando o que vai falar"
+      - "Falar devagar demais"
+
+    metricas_sucesso:
+      - "Taxa de retenção nos primeiros 3 segundos"
+      - "Watch-through rate (assistiu até o fim)"
+      - "Taxa de rewatch"
+
+  # ─────────────────────────────────────────────────────────────────
+  # STORIES
+  # ─────────────────────────────────────────────────────────────────
+  stories:
+    nome: "Stories (Instagram/Facebook)"
+    icone: "⏱️"
+    formato: "Sequência de cards/vídeos curtos"
+
+    parametros_atencao:
+      duracao_tipica: "15 segundos por card"
+      duracao_ideal: "Sequência de 3-7 cards"
+      tempo_decisao: "Imediato (tap para próximo)"
+      taxa_abandono: "Média-Alta"
+      contexto_consumo: "Conexão, bastidores, real-time"
+
+    curva_atencao:
+      pico_inicial: "Primeiro card define tudo"
+      sustentacao: "Cada card é um novo pico"
+      queda: "Acumulativa - menos gente a cada card"
+      recuperacao: "Possível se houver curiosidade"
+
+    regras_narrativas:
+      - "Cada card deve ter valor próprio"
+      - "Sequência deve ter arco narrativo"
+      - "Use enquetes/perguntas para interação"
+      - "Texto legível em 3 segundos"
+      - "Menos texto, mais visual"
+      - "Autenticidade > Produção"
+
+    estrutura_sugerida:
+      card_1: "Gancho - problema ou pergunta"
+      card_2_3: "Desenvolvimento"
+      card_4_5: "Virada ou insight"
+      card_6_7: "CTA ou conclusão"
+
+    anti_padroes:
+      - "Cards somente com texto longo"
+      - "Sequências longas demais (10+ cards)"
+      - "Sem coerência entre cards"
+
+  # ─────────────────────────────────────────────────────────────────
+  # YOUTUBE (Formato Longo)
+  # ─────────────────────────────────────────────────────────────────
+  youtube:
+    nome: "YouTube"
+    icone: "▶️"
+    formato: "Vídeo horizontal (curto a longo)"
+
+    parametros_atencao:
+      duracao_tipica: "8-20 minutos (média)"
+      duracao_ideal: "Depende do conteúdo"
+      tempo_decisao: "30 segundos"
+      taxa_abandono: "Gradual"
+      contexto_consumo: "Intencional, busca, aprendizado"
+
+    curva_atencao:
+      pico_inicial: "0-30 segundos (hook)"
+      sustentacao: "Depende de estrutura"
+      queda: "Aos 30%, 50% e 70% do vídeo"
+      recuperacao: "Com pattern interrupts"
+
+    regras_narrativas:
+      - "Hook nos primeiros 15-30 segundos"
+      - "Estrutura clara (chapitulos)"
+      - "Pattern interrupt a cada 2-3 minutos"
+      - "Open loops (promessas de valor futuro)"
+      - "Payoff das promessas"
+      - "Thumbnail e título são parte da narrativa"
+
+    estrutura_sugerida:
+      hook: "0-30s - Promessa de valor"
+      intro: "30s-1min - Credibilidade rápida"
+      corpo: "Blocos de conteúdo com padrão"
+      cliffhangers: "Antes de cada transição"
+      conclusao: "Resumo + CTA"
+
+    anti_padroes:
+      - "Introdução longa demais"
+      - "Monotonia de ritmo"
+      - "Pedir like/subscribe no início"
+      - "Não cumprir promessa do título"
+
+  # ─────────────────────────────────────────────────────────────────
+  # PODCASTS
+  # ─────────────────────────────────────────────────────────────────
+  podcast:
+    nome: "Podcast"
+    icone: "🎙️"
+    formato: "Áudio longo"
+
+    parametros_atencao:
+      duracao_tipica: "30-90 minutos"
+      duracao_ideal: "45-60 minutos"
+      tempo_decisao: "2-5 minutos"
+      taxa_abandono: "Baixa (após comprometimento)"
+      contexto_consumo: "Multitarefa, commute, exercício"
+
+    curva_atencao:
+      pico_inicial: "Primeiros 5 minutos"
+      sustentacao: "Alta se houver conexão"
+      queda: "Meio do episódio"
+      recuperacao: "Com histórias e mudanças de tom"
+
+    regras_narrativas:
+      - "Primeiros 5 minutos definem o episódio"
+      - "Conversa > Monólogo"
+      - "Histórias são essenciais (Story Circle)"
+      - "Variação de energia e tom"
+      - "Ganchos para próximo episódio"
+      - "Formato consistente gera hábito"
+
+    estrutura_sugerida:
+      teaser: "Preview do melhor momento"
+      intro: "Abertura padrão (branding sonoro)"
+      contexto: "Do que vamos falar e por quê"
+      desenvolvimento: "Blocos com histórias"
+      conclusao: "Resumo e próximos passos"
+
+    anti_padroes:
+      - "Começar falando de patrocinadores"
+      - "Papo sem estrutura"
+      - "Energia monótona"
+      - "Episódios sem identidade sonora"
+
+  # ─────────────────────────────────────────────────────────────────
+  # CARROSSEL
+  # ─────────────────────────────────────────────────────────────────
+  carrossel:
+    nome: "Carrossel (Instagram/LinkedIn)"
+    icone: "📸"
+    formato: "Sequência de imagens/slides"
+
+    parametros_atencao:
+      duracao_tipica: "3-10 slides"
+      duracao_ideal: "5-7 slides"
+      tempo_decisao: "2-3 segundos no primeiro slide"
+      taxa_abandono: "Média"
+      contexto_consumo: "Aprendizado rápido, salvável"
+
+    curva_atencao:
+      pico_inicial: "Primeiro slide (hook visual)"
+      sustentacao: "Cada slide é micro-decisão"
+      queda: "Após 5º slide"
+      recuperacao: "Com promessa de valor no final"
+
+    regras_narrativas:
+      - "Primeiro slide é a manchete"
+      - "Um conceito por slide"
+      - "Progressão lógica clara"
+      - "Penúltimo slide = clímax"
+      - "Último slide = CTA + salvar"
+      - "Design consistente"
+
+    estrutura_sugerida:
+      slide_1: "Manchete provocativa (Trigger)"
+      slide_2: "Contexto ou problema"
+      slide_3_5: "Desenvolvimento/lista"
+      slide_6: "Virada ou insight principal"
+      slide_7: "CTA (salvar, seguir, comentar)"
+
+    anti_padroes:
+      - "Muito texto por slide"
+      - "Design inconsistente"
+      - "Sem progressão clara"
+      - "CTA no primeiro slide"
+
+  # ─────────────────────────────────────────────────────────────────
+  # POST DE TEXTO
+  # ─────────────────────────────────────────────────────────────────
+  post_texto:
+    nome: "Post de Texto (LinkedIn/Twitter/Threads)"
+    icone: "📝"
+    formato: "Texto puro ou com imagem"
+
+    parametros_atencao:
+      duracao_tipica: "10-60 segundos de leitura"
+      duracao_ideal: "LinkedIn: 1200-1500 chars / Twitter: 280 chars"
+      tempo_decisao: "Primeira linha"
+      taxa_abandono: "Alta"
+      contexto_consumo: "Scroll rápido, profissional (LinkedIn)"
+
+    curva_atencao:
+      pico_inicial: "Primeira linha"
+      sustentacao: "Depende de white space e estrutura"
+      queda: "Após 'ver mais'"
+      recuperacao: "Com quebras visuais e ganchos"
+
+    regras_narrativas:
+      - "Primeira linha = gancho forte"
+      - "Linhas curtas (1-2 frases)"
+      - "White space é seu aliado"
+      - "Uma ideia central"
+      - "Estrutura visual clara"
+      - "CTA no final"
+
+    estrutura_sugerida:
+      linha_1: "Hook impossível de ignorar"
+      linha_2_3: "Contexto rápido"
+      corpo: "Desenvolvimento com quebras"
+      fechamento: "Insight + CTA"
+
+    anti_padroes:
+      - "Parágrafos longos"
+      - "Múltiplos temas"
+      - "Sem estrutura visual"
+      - "Começo fraco"
+
+  # ─────────────────────────────────────────────────────────────────
+  # EMAIL MARKETING
+  # ─────────────────────────────────────────────────────────────────
+  email:
+    nome: "Email Marketing / Newsletter"
+    icone: "📧"
+    formato: "Texto longo com estrutura"
+
+    parametros_atencao:
+      duracao_tipica: "2-5 minutos de leitura"
+      duracao_ideal: "300-600 palavras"
+      tempo_decisao: "Assunto + primeiras 2 linhas"
+      taxa_abandono: "Média (já optou por abrir)"
+      contexto_consumo: "Intencional, inbox"
+
+    curva_atencao:
+      pico_inicial: "Primeiras 2-3 linhas"
+      sustentacao: "Boa se houver valor"
+      queda: "Meio do email"
+      recuperacao: "Com PS e CTA final"
+
+    regras_narrativas:
+      - "Assunto é 80% do sucesso"
+      - "Primeira linha continua a promessa"
+      - "Escreva como conversa"
+      - "Um objetivo por email"
+      - "PS sempre é lido"
+      - "CTA claro e único"
+
+    estrutura_sugerida:
+      assunto: "Curiosidade ou benefício"
+      preview: "Complementa o assunto"
+      abertura: "Hook pessoal ou história"
+      corpo: "Valor + transição"
+      cta: "Um único pedido claro"
+      ps: "Reforço ou segundo gancho"
+
+    anti_padroes:
+      - "Assunto genérico"
+      - "Email muito longo"
+      - "Múltiplos CTAs"
+      - "Tom corporativo/frio"
+
+  # ─────────────────────────────────────────────────────────────────
+  # ANÚNCIO
+  # ─────────────────────────────────────────────────────────────────
+  anuncio:
+    nome: "Anúncio (Meta/Google/YouTube)"
+    icone: "💰"
+    formato: "Vídeo curto ou estático"
+
+    parametros_atencao:
+      duracao_tipica: "5-30 segundos (vídeo)"
+      duracao_ideal: "15 segundos (Meta) / 6 segundos (bumper)"
+      tempo_decisao: "1-2 segundos"
+      taxa_abandono: "Altíssima (interrupção)"
+      contexto_consumo: "Interruptivo, não solicitado"
+
+    curva_atencao:
+      pico_inicial: "Primeiro segundo"
+      sustentacao: "Muito baixa"
+      queda: "Imediata"
+      recuperacao: "Só com relevância extrema"
+
+    regras_narrativas:
+      - "Identidade visual nos primeiros frames"
+      - "Problema > Solução em segundos"
+      - "CTA claro e urgente"
+      - "Repetição é sua amiga"
+      - "Teste múltiplos hooks"
+      - "5BEATS ultra-comprimido"
+
+    estrutura_sugerida:
+      segundo_1_2: "Hook visual/verbal"
+      segundo_3_10: "Problema + Solução"
+      segundo_11_15: "Prova + CTA"
+
+    anti_padroes:
+      - "Começar com logo"
+      - "Texto demais"
+      - "CTA fraco"
+      - "Não testar variações"
+
+  # ─────────────────────────────────────────────────────────────────
+  # APRESENTAÇÃO / PALESTRA
+  # ─────────────────────────────────────────────────────────────────
+  apresentacao:
+    nome: "Apresentação / Palestra"
+    icone: "🎤"
+    formato: "Ao vivo ou gravado (longo)"
+
+    parametros_atencao:
+      duracao_tipica: "15-60 minutos"
+      duracao_ideal: "18-22 minutos (TED)"
+      tempo_decisao: "Primeiros 90 segundos"
+      taxa_abandono: "Baixa (presença física)"
+      contexto_consumo: "Focado, evento"
+
+    curva_atencao:
+      pico_inicial: "Primeiros 2-3 minutos"
+      sustentacao: "Ciclos de 10-12 minutos"
+      queda: "Após 15-20 minutos sem mudança"
+      recuperacao: "Histórias, humor, interação"
+
+    regras_narrativas:
+      - "Comece com história, não com 'obrigado'"
+      - "Uma ideia central (Big Idea)"
+      - "3-5 pontos principais máximo"
+      - "História a cada 10 minutos"
+      - "Mudança de ritmo constante"
+      - "Feche com chamada à ação"
+
+    estrutura_sugerida:
+      abertura: "História que ilustra o tema"
+      promessa: "O que vamos explorar juntos"
+      desenvolvimento: "3-5 blocos com histórias"
+      climax: "Insight principal"
+      fechamento: "Call to action + história final"
+
+    anti_padroes:
+      - "Começar com 'é um prazer estar aqui'"
+      - "Muitos slides de texto"
+      - "Ler slides"
+      - "Terminar com 'obrigado'"
+
+# ═══════════════════════════════════════════════════════════════════
+# MATRIZ DE ADAPTAÇÃO
+# ═══════════════════════════════════════════════════════════════════
+matriz_adaptacao:
+  descricao: |
+    Como adaptar uma mesma narrativa para diferentes canais.
+    A história é a mesma, a execução muda.
+
+  exemplo_pratico:
+    tema: "A importância de contar sua história"
+
+    palestra_45min:
+      estrutura: "Story Circle completo"
+      elementos:
+        - "3 histórias pessoais desenvolvidas"
+        - "Dados e pesquisas"
+        - "Exercícios com plateia"
+        - "Q&A"
+
+    youtube_15min:
+      estrutura: "Story Circle condensado"
+      elementos:
+        - "1 história principal + 2 mini-histórias"
+        - "Dados visuais (gráficos)"
+        - "Chapters para navegação"
+        - "CTA para material complementar"
+
+    carrossel_7slides:
+      estrutura: "Extração de insights"
+      elementos:
+        - "1 insight por slide"
+        - "Estatística impactante"
+        - "Lista de benefícios"
+        - "CTA: salvar + seguir"
+
+    reels_30seg:
+      estrutura: "5BEATS"
+      elementos:
+        - "1 frase gancho"
+        - "1 história de 10 segundos"
+        - "1 insight rápido"
+        - "CTA de 3 segundos"
+
+    post_linkedin:
+      estrutura: "Texto hook"
+      elementos:
+        - "1 linha impossível de ignorar"
+        - "Mini-história"
+        - "3 bullet points"
+        - "Pergunta para engajamento"
+
+  principio: |
+    Pense em "atomizar" seu conteúdo: quebre em partes menores que
+    funcionam independentemente, mas que juntas contam uma história maior.
+
+# ═══════════════════════════════════════════════════════════════════
+# REGRAS UNIVERSAIS
+# ═══════════════════════════════════════════════════════════════════
+regras_universais:
+
+  - nome: "Lei do Primeiro Segundo"
+    regra: "A decisão de continuar acontece antes de você perceber"
+    aplicacao: "Invista desproporcional energia no início"
+
+  - nome: "Lei da Especificidade"
+    regra: "Quanto mais específico, mais universal ressoa"
+    aplicacao: "'Eu perdi R$50 mil' > 'Eu perdi dinheiro'"
+
+  - nome: "Lei do Open Loop"
+    regra: "O cérebro precisa fechar ciclos abertos"
+    aplicacao: "Crie curiosidade que só fecha no final"
+
+  - nome: "Lei da Emoção Primeiro"
+    regra: "Emoção é processada antes de lógica"
+    aplicacao: "Conecte emocionalmente, depois argumente"
+
+  - nome: "Lei do Menos é Mais"
+    regra: "Uma mensagem clara > múltiplas mensagens"
+    aplicacao: "O que posso cortar sem perder essência?"
+
+  - nome: "Lei do Pattern Interrupt"
+    regra: "Previsibilidade mata atenção"
+    aplicacao: "Mude ritmo, tom ou formato periodicamente"
+
+  - nome: "Lei da Promessa Cumprida"
+    regra: "Clickbait funciona uma vez, valor funciona sempre"
+    aplicacao: "Entregue mais do que promete"
+
+# ═══════════════════════════════════════════════════════════════════
+# CONEXÕES COM OUTROS FRAMEWORKS
+# ═══════════════════════════════════════════════════════════════════
+conexoes:
+
+  5beats:
+    relacao: "5BEATS é o framework para formatos curtos"
+    como_usar: "Aplique 5BEATS em Reels, Stories, anúncios"
+
+  story_circle:
+    relacao: "Story Circle é para formatos longos"
+    como_usar: "Aplique em palestras, podcasts, YouTube longo"
+
+  golden_sentence:
+    relacao: "Golden Sentence adapta para qualquer formato"
+    como_usar: "A essência permanece, a forma muda"
+
+  maslow:
+    relacao: "Pirâmide de Maslow define que nível de necessidade abordar"
+    como_usar: "Formatos curtos = níveis básicos / Longos = níveis superiores"
+
+  neuroafetividade:
+    relacao: "Cada formato ativa camadas diferentes"
+    como_usar: "Vídeo = sensorial+emocional / Texto = cognitivo"
+
+# ═══════════════════════════════════════════════════════════════════
+# CHECKLIST DE ADAPTAÇÃO
+# ═══════════════════════════════════════════════════════════════════
+checklist_adaptacao:
+  perguntas:
+    - "Qual é o contexto de consumo deste canal?"
+    - "Quanto tempo tenho para capturar atenção?"
+    - "Qual é a única mensagem que precisa ficar?"
+    - "O que posso cortar sem perder a essência?"
+    - "Como mantenho a atenção neste formato específico?"
+    - "Qual é o CTA natural para este canal?"
+    - "Esta versão funciona independentemente?"
+
+# ═══════════════════════════════════════════════════════════════════
+# REFERÊNCIAS
+# ═══════════════════════════════════════════════════════════════════
+referencias:
+  - autor: "criaTTivados"
+    obra: "storYOURtelling - Módulo Distribuição"
+    contribuicao: "Adaptação narrativa por canal"
+
+  - autor: "Herbert Simon"
+    obra: "Designing Organizations for an Information-Rich World"
+    contribuicao: "Conceito original de 'economia da atenção'"
+
+  - autor: "Carmine Gallo"
+    obra: "Talk Like TED"
+    contribuicao: "Regras de atenção em apresentações"
+
+uso_pelos_agentes:
+  - "Content Director (escolher formato ideal)"
+  - "Copywriter (adaptar narrativa por canal)"
+  - "Creative Director (garantir coerência entre formatos)"
+  - "Concept Writer (atomizar conceitos)"

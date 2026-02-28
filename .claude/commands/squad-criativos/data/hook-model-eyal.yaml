@@ -1,0 +1,400 @@
+# Hook Model - Criando Hábitos e Engajamento
+# Baseado em: Hooked (Nir Eyal, 2014)
+# Squad: storYOURtelling (Narrativa/Criação)
+# Usado por: creative-director, social-media-strategist, funnel-architect
+
+metadata:
+  name: "Hook Model - Framework de Formação de Hábitos"
+  version: "1.0"
+  source: "Hooked: How to Build Habit-Forming Products (Nir Eyal, 2014)"
+  aplicacao: "Criar produtos, conteúdos e experiências que formam hábitos"
+
+# ═══════════════════════════════════════════════════════════════════
+# O MODELO HOOK - 4 FASES
+# ═══════════════════════════════════════════════════════════════════
+
+hook_model:
+
+  descricao: |
+    Ciclo de 4 fases que, quando repetido, cria hábitos.
+    Hábitos são comportamentos automáticos acionados com pouco ou nenhum pensamento consciente.
+
+  objetivo: |
+    Criar associações na mente do usuário que levam a comportamento espontâneo.
+    Produtos que formam hábito criam engajamento recorrente sem marketing constante.
+
+  # ═════════════════════════════════════════════════════════════════
+  # FASE 1: TRIGGER (Gatilho)
+  # ═════════════════════════════════════════════════════════════════
+
+  fase_1_trigger:
+    nome: "Trigger (Gatilho)"
+    funcao: "Iniciar o comportamento"
+    metafora: "O start button do ciclo"
+
+    tipos:
+
+      gatilhos_externos:
+        descricao: "Estímulos do ambiente que dizem o que fazer"
+
+        tipos:
+          pago:
+            descricao: "Mídia paga para chamar atenção"
+            exemplos:
+              - "Anúncios"
+              - "Google Ads"
+              - "Social Ads"
+            nota: "Não escala bem, caro a longo prazo"
+
+          conquistado:
+            descricao: "Exposição por mérito/PR"
+            exemplos:
+              - "Menção em mídia"
+              - "Reviews positivos"
+              - "App store features"
+            nota: "Difícil de controlar, efêmero"
+
+          relacional:
+            descricao: "Recomendações de outras pessoas"
+            exemplos:
+              - "Boca a boca"
+              - "Convites de amigos"
+              - "Compartilhamentos"
+            nota: "Mais poderoso, difícil de fabricar"
+
+          proprio:
+            descricao: "Gatilhos que usuário autoriza"
+            exemplos:
+              - "Notificações push"
+              - "Emails"
+              - "Ícone no home screen"
+            nota: "Controle da empresa, precisa permissão"
+
+      gatilhos_internos:
+        descricao: "Estados emocionais que disparam comportamento"
+        importancia: "OBJETIVO FINAL - gatilho interno = hábito formado"
+
+        emocoes_gatilho:
+          negativas:
+            - "Tédio → abre redes sociais"
+            - "Solidão → abre WhatsApp"
+            - "Incerteza → abre Google"
+            - "FOMO → abre Instagram"
+            - "Ansiedade → abre email"
+
+          positivas:
+            - "Curiosidade → YouTube"
+            - "Gratidão → enviar mensagem"
+            - "Realização → compartilhar"
+
+        estrategia: |
+          Identifique que emoção/estado seu produto resolve.
+          Associe repetidamente produto + alívio da emoção.
+          Com repetição, emoção dispara produto automaticamente.
+
+    aplicacao_branding:
+      perguntas:
+        - "Qual emoção/estado nosso produto alivia?"
+        - "Quando e onde esse estado ocorre?"
+        - "Como criar associação produto-alívio?"
+
+      exercicio_5_porques:
+        descricao: "Pergunte 'por quê?' 5x para chegar ao gatilho interno"
+        exemplo:
+          superficie: "Uso Instagram"
+          porque_1: "Estou entediado"
+          porque_2: "Não tenho nada para fazer"
+          porque_3: "Sinto que estou perdendo algo"
+          porque_4: "Quero me sentir conectado"
+          porque_5: "Tenho medo de ficar sozinho/irrelevante"
+          gatilho_interno: "Medo de exclusão/solidão"
+
+  # ═════════════════════════════════════════════════════════════════
+  # FASE 2: ACTION (Ação)
+  # ═════════════════════════════════════════════════════════════════
+
+  fase_2_action:
+    nome: "Action (Ação)"
+    funcao: "Comportamento mais simples em antecipação de recompensa"
+    principio: "Máxima simplicidade"
+
+    modelo_fogg:
+      descricao: "B = MAT (Behavior = Motivation × Ability × Trigger)"
+
+      motivacao:
+        tipos:
+          - buscar_prazer_evitar_dor: "Mais básico"
+          - buscar_esperanca_evitar_medo: "Antecipação"
+          - buscar_aceitacao_evitar_rejeicao: "Social"
+
+      habilidade:
+        descricao: "Quão fácil é executar a ação"
+        fatores_simplicidade:
+          - tempo: "Quanto tempo leva?"
+          - dinheiro: "Quanto custa?"
+          - esforco_fisico: "Quanto esforço físico?"
+          - ciclos_cerebrais: "Quanto tem que pensar?"
+          - desvio_social: "Vai contra normas?"
+          - rotina: "Quão diferente do habitual?"
+
+        principio: "REDUZA a fricção ao máximo possível"
+
+    exemplos_acoes_simples:
+      instagram: "Scroll down (um polegar)"
+      google: "Digitar busca"
+      twitter: "Ver tweet (já carregado)"
+      tiktok: "Assistir vídeo (auto-play)"
+      whatsapp: "Abrir notificação"
+
+    heuristicas_facilitadoras:
+      escassez: "Parece mais valioso se escasso"
+      enquadramento: "Contexto altera percepção"
+      ancoragem: "Primeiro número define referência"
+      progresso: "Proximidade da meta aumenta esforço"
+
+    aplicacao_branding:
+      perguntas:
+        - "Qual a MENOR ação que inicia engajamento?"
+        - "Onde está a fricção? Como eliminar?"
+        - "Usuário consegue fazer em 3 segundos?"
+
+      checklist_simplicidade:
+        - "[ ] Menos de 3 cliques/taps?"
+        - "[ ] Sem login necessário inicialmente?"
+        - "[ ] Instruções desnecessárias?"
+        - "[ ] Carrega instantaneamente?"
+        - "[ ] Familiar (não precisa aprender)?"
+
+  # ═════════════════════════════════════════════════════════════════
+  # FASE 3: VARIABLE REWARD (Recompensa Variável)
+  # ═════════════════════════════════════════════════════════════════
+
+  fase_3_variable_reward:
+    nome: "Variable Reward (Recompensa Variável)"
+    funcao: "Satisfazer necessidade deixando desejo por mais"
+    principio_chave: "VARIABILIDADE é o segredo"
+
+    ciencia:
+      descricao: |
+        Estudos de Skinner: ratos que recebiam recompensa VARIÁVEL
+        pressionavam alavanca muito mais que ratos com recompensa fixa.
+        Variabilidade mantém engajamento alto.
+
+      neurociencia: |
+        Dopamina aumenta com ANTECIPAÇÃO de recompensa incerta,
+        não com a recompensa em si. Incerteza = mais dopamina.
+
+    tipos_recompensas:
+
+      tribe_recompensas_sociais:
+        descricao: "Recompensas que vêm de outras pessoas"
+        necessidade: "Conexão, aceitação, pertencimento"
+        exemplos:
+          likes: "Validação social (variável quem/quantos)"
+          comentarios: "Feedback de outros"
+          seguidores: "Crescimento de audiência"
+          matches: "Conexões (Tinder)"
+          rankings: "Comparação social"
+
+      hunt_recompensas_de_busca:
+        descricao: "Recompensas de recursos/informação"
+        necessidade: "Busca por coisas, informação, recursos"
+        exemplos:
+          feed_scroll: "Próximo post pode ser incrível"
+          slot_machine: "Próxima jogada pode ganhar"
+          email: "Próximo email pode ser importante"
+          pesquisa: "Próximo resultado pode resolver"
+          compras: "Próximo item pode ser perfeito"
+
+      self_recompensas_pessoais:
+        descricao: "Recompensas intrínsecas, maestria, completude"
+        necessidade: "Competência, consistência, controle"
+        exemplos:
+          progresso: "Barra de progresso enchendo"
+          conquistas: "Badges, níveis, achievements"
+          inbox_zero: "Limpar todos emails"
+          streaks: "Manter sequência"
+          customizacao: "Deixar do seu jeito"
+
+    variabilidade_essencial:
+      porque: "Recompensa previsível perde força rapidamente"
+      como_criar:
+        feed_social: "Nunca sabe o que vai aparecer"
+        email: "Pode ser spam ou oportunidade"
+        jogo: "Não sabe se vai ganhar"
+
+    aplicacao_branding:
+      perguntas:
+        - "Que tipo de recompensa oferecemos? (Tribe/Hunt/Self)"
+        - "Há variabilidade suficiente?"
+        - "Satisfaz E deixa querendo mais?"
+
+      exemplos_por_canal:
+        newsletter: "Conteúdo diferente a cada edição"
+        social: "Mix de formatos e temas"
+        produto: "Features desbloqueáveis"
+        comunidade: "Interações imprevisíveis"
+
+  # ═════════════════════════════════════════════════════════════════
+  # FASE 4: INVESTMENT (Investimento)
+  # ═════════════════════════════════════════════════════════════════
+
+  fase_4_investment:
+    nome: "Investment (Investimento)"
+    funcao: "Aumentar probabilidade de retorno"
+    timing: "APÓS a recompensa (quando motivação está alta)"
+
+    principios:
+
+      valor_armazenado:
+        descricao: "Quanto mais investe, mais valioso fica"
+        tipos:
+          conteudo: "Fotos, posts, arquivos criados"
+          dados: "Preferências, histórico, configurações"
+          seguidores: "Audiência construída"
+          reputacao: "Reviews, karma, rating"
+          habilidade: "Aprendizado da ferramenta"
+
+      compromisso_consistencia:
+        descricao: "Pequenos comprometimentos levam a grandes"
+        exemplo: "Seguir 10 pessoas → mais provável de voltar"
+
+      preparacao_proximo_trigger:
+        descricao: "Investimento carrega próximo gatilho"
+        exemplos:
+          - "Postar foto → amigos vão curtir → notificação"
+          - "Enviar mensagem → pessoa vai responder → notificação"
+          - "Fazer pedido → item vai chegar → tracking"
+
+    tipos_investimento:
+      tempo: "Configurar perfil, criar conteúdo"
+      esforco: "Aprender a usar, personalizar"
+      dados: "Preferências, informações pessoais"
+      capital_social: "Convidar amigos, construir rede"
+      dinheiro: "Assinaturas, compras in-app"
+      emocional: "Identificação com comunidade"
+
+    aplicacao_branding:
+      perguntas:
+        - "O que usuário pode investir após recompensa?"
+        - "Como esse investimento melhora experiência futura?"
+        - "Como prepara o próximo trigger?"
+
+      exemplos:
+        pos_leitura: "Salvar artigo, comentar, compartilhar"
+        pos_compra: "Review, unboxing, foto usando"
+        pos_video: "Se inscrever, ativar sino"
+        pos_curso: "Certificado, aplicar conhecimento"
+
+# ═══════════════════════════════════════════════════════════════════
+# MANIPULATION MATRIX - ÉTICA
+# ═══════════════════════════════════════════════════════════════════
+
+manipulation_matrix:
+
+  descricao: |
+    Framework para avaliar ética de produtos que formam hábito.
+    Cruza: "Você usaria?" × "Melhora a vida do usuário?"
+
+  quadrantes:
+
+    facilitador:
+      criterio: "Usa + Melhora vida"
+      descricao: "Cria algo que você mesmo usaria e melhora vida"
+      exemplos: "Duolingo, Headspace, Evernote"
+      posicao: "IDEAL - prossiga"
+
+    mascate:
+      criterio: "Não usa + Melhora vida"
+      descricao: "Vende algo que você não precisa mas outros sim"
+      exemplos: "App de gravidez (se você for homem)"
+      posicao: "OK se genuinamente ajuda"
+
+    entertainer:
+      criterio: "Usa + Não melhora vida"
+      descricao: "Diversão que você também consome"
+      exemplos: "Jogos, entretenimento"
+      posicao: "Ético se transparente sobre propósito"
+
+    dealer:
+      criterio: "Não usa + Não melhora vida"
+      descricao: "Explora vulnerabilidades sem benefício"
+      exemplos: "Jogos de azar predatórios"
+      posicao: "EVITAR - antiético"
+
+  checklist_etico:
+    - "[ ] Você usaria seu próprio produto?"
+    - "[ ] Melhora genuinamente a vida do usuário?"
+    - "[ ] Usuário estaria satisfeito se soubesse como funciona?"
+    - "[ ] Construindo facilitador ou dealer?"
+
+# ═══════════════════════════════════════════════════════════════════
+# APLICAÇÃO PRÁTICA POR CONTEXTO
+# ═══════════════════════════════════════════════════════════════════
+
+aplicacao_por_contexto:
+
+  conteudo_social:
+    trigger_externo: "Notificação, post no feed"
+    trigger_interno: "Tédio, FOMO, solidão"
+    action: "Scroll, tap, view"
+    variable_reward:
+      tribe: "Likes, comentários"
+      hunt: "Conteúdo interessante"
+    investment: "Like, comentário, compartilhamento, follow"
+
+  newsletter:
+    trigger_externo: "Email na inbox"
+    trigger_interno: "Curiosidade, desenvolvimento"
+    action: "Abrir email, ler"
+    variable_reward:
+      hunt: "Conteúdo valioso (varia a cada edição)"
+      self: "Aprendizado, insights"
+    investment: "Responder, encaminhar, aplicar"
+
+  comunidade:
+    trigger_externo: "Notificação de atividade"
+    trigger_interno: "Solidão, querer pertencer"
+    action: "Entrar, ler, participar"
+    variable_reward:
+      tribe: "Interações, reconhecimento"
+      self: "Ajudar outros, reputação"
+    investment: "Postar, ajudar, convidar"
+
+  curso_online:
+    trigger_externo: "Lembrete, nova aula"
+    trigger_interno: "Querer crescer, medo de ficar para trás"
+    action: "Assistir aula, fazer exercício"
+    variable_reward:
+      self: "Progresso, certificação"
+      hunt: "Próxima aula pode ser transformadora"
+    investment: "Anotações, aplicação, compartilhar resultado"
+
+checklist_hook_design:
+  trigger:
+    - "[ ] Qual gatilho externo traz usuário primeiro?"
+    - "[ ] Qual emoção interna queremos associar?"
+    - "[ ] Onde/quando essa emoção ocorre?"
+
+  action:
+    - "[ ] Qual a ação mais simples possível?"
+    - "[ ] Removemos toda fricção?"
+    - "[ ] Consegue fazer em segundos?"
+
+  variable_reward:
+    - "[ ] Que tipo de recompensa? (Tribe/Hunt/Self)"
+    - "[ ] Há variabilidade suficiente?"
+    - "[ ] Satisfaz E deixa querendo mais?"
+
+  investment:
+    - "[ ] O que usuário pode investir após recompensa?"
+    - "[ ] Como esse investimento melhora experiência?"
+    - "[ ] Como carrega próximo trigger?"
+
+  etica:
+    - "[ ] Somos facilitadores? (Usamos + Melhora vida)"
+
+referencias:
+  - "Eyal, N. - Hooked: How to Build Habit-Forming Products (2014)"
+  - "Eyal, N. - Indistractable (2019)"
+  - "Fogg, B.J. - Tiny Habits (2020)"

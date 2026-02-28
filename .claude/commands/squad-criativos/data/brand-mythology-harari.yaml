@@ -1,0 +1,381 @@
+# Brand Mythology - Marcas como Ficções Intersubjetivas
+# Baseado em: Sapiens (Yuval Noah Harari)
+# Squad: DEENEA (Essência/Estratégia)
+# Usado por: strategy-director, narrative-identity-architect, brand-personality-architect
+
+metadata:
+  name: "Mitologia de Marca - Framework de Ficções Compartilhadas"
+  version: "1.0"
+  source: "Sapiens: A Brief History of Humankind (Yuval Noah Harari, 2011)"
+  aplicacao: "Criar marcas com significado profundo e poder de adesão tribal"
+
+# ═══════════════════════════════════════════════════════════════════
+# O CONCEITO CENTRAL DE HARARI
+# ═══════════════════════════════════════════════════════════════════
+
+conceito_central:
+
+  tese_harari: |
+    A capacidade única do Homo sapiens é criar e acreditar
+    em FICÇÕES COMPARTILHADAS (ficções intersubjetivas).
+    Isso permitiu cooperação em larga escala.
+
+  ficoes_intersubjetivas:
+    definicao: |
+      Coisas que só existem porque muitas pessoas acreditam nelas.
+      Não são objetivas (pedras) nem subjetivas (dor individual).
+      São INTERSUBJETIVAS - existem na imaginação coletiva.
+
+    exemplos_harari:
+      - "Dinheiro (papel = valor porque todos acreditam)"
+      - "Nações (fronteiras imaginadas)"
+      - "Corporações (entidades legais fictícias)"
+      - "Direitos humanos (não existem na natureza)"
+      - "Religiões"
+      - "MARCAS"
+
+  poder_das_ficcoes: |
+    Ficções permitem que milhões de estranhos cooperem.
+    Quanto mais pessoas acreditam, mais "real" a ficção se torna.
+    Marcas são algumas das ficções mais poderosas da era moderna.
+
+# ═══════════════════════════════════════════════════════════════════
+# MARCAS COMO FICÇÕES INTERSUBJETIVAS
+# ═══════════════════════════════════════════════════════════════════
+
+marcas_como_ficcoes:
+
+  analogia: |
+    Uma marca só existe na imaginação coletiva.
+    O logo é tinta em papel.
+    O produto é matéria física.
+    A MARCA é a história que todos contamos sobre ela.
+
+  o_que_uma_marca_realmente_e:
+    nao_e:
+      - "Não é o logo (isso é representação)"
+      - "Não é o produto (isso é tangível)"
+      - "Não é a empresa (isso é estrutura legal)"
+
+    e:
+      - "É a história compartilhada sobre o que significa"
+      - "É a crença coletiva no que representa"
+      - "É a promessa que existe na mente de milhões"
+
+  exemplos:
+    apple:
+      produto: "Dispositivos eletrônicos"
+      ficcao: "Criatividade, inovação, pensar diferente, status"
+      poder: "Pessoas pagam premium pela FICÇÃO, não pelo hardware"
+
+    nike:
+      produto: "Tênis e roupas"
+      ficcao: "Superação, atleta interior, Just Do It"
+      poder: "Pessoas se sentem atletas ao vestir"
+
+    coca_cola:
+      produto: "Água com açúcar e aromatizantes"
+      ficcao: "Felicidade, união, celebração, América"
+      poder: "É a bebida de momentos felizes"
+
+# ═══════════════════════════════════════════════════════════════════
+# AS TRÊS REVOLUÇÕES DE HARARI
+# ═══════════════════════════════════════════════════════════════════
+
+tres_revolucoes:
+
+  cognitiva:
+    quando: "~70.000 anos atrás"
+    o_que: "Capacidade de criar ficções"
+    implicacao_branding: |
+      A mente humana é FEITA para histórias.
+      Narrativas são nossa forma de entender o mundo.
+      Marcas sem história são apenas commodities.
+
+  agricola:
+    quando: "~12.000 anos atrás"
+    o_que: "Sedentarismo, propriedade, acúmulo"
+    implicacao_branding: |
+      Possuir coisas ganhou significado.
+      Status ligado a posses.
+      Marcas = símbolos de status e pertencimento.
+
+  cientifica:
+    quando: "~500 anos atrás"
+    o_que: "Progresso, capitalismo, consumo"
+    implicacao_branding: |
+      Consumo como estilo de vida.
+      Marcas como identidade.
+      Comprar = expressar quem você é.
+
+  leitura_integrada: |
+    Marcas exploram as três revoluções:
+    1. Contam histórias (Cognitiva)
+    2. Oferecem status/pertencimento (Agrícola)
+    3. Prometem progresso/evolução (Científica)
+
+# ═══════════════════════════════════════════════════════════════════
+# ORDENS IMAGINADAS E MARCAS
+# ═══════════════════════════════════════════════════════════════════
+
+ordens_imaginadas:
+
+  conceito: |
+    Harari chama de "ordens imaginadas" os sistemas de crenças
+    que organizam sociedades. Elas parecem naturais mas são
+    construídas socialmente.
+
+  caracteristicas:
+    parecem_naturais: "Nunca questionamos que existam"
+    intersubjetivas: "Só existem na crença compartilhada"
+    moldam_desejo: "Determinam o que queremos"
+    auto_reforçantes: "Quanto mais acreditam, mais real parece"
+
+  marcas_como_ordens: |
+    Grandes marcas operam como mini-ordens imaginadas.
+    Criam sistemas de crenças sobre o que significa:
+    - Ser bem-sucedido
+    - Ter bom gosto
+    - Pertencer a um grupo
+    - Ter certos valores
+
+  exemplos:
+    luxo:
+      ordem: "Preço alto = qualidade/status"
+      construcao: "Inteiramente imaginada (diamantes, bolsas)"
+      poder: "Pessoas pagam 10x por logo"
+
+    sustentabilidade:
+      ordem: "Consumo consciente = pessoa melhor"
+      construcao: "Relativamente nova (últimas décadas)"
+      poder: "Premium para produtos 'verdes'"
+
+    tech:
+      ordem: "Inovação = progresso = bom"
+      construcao: "Pós revolução científica"
+      poder: "Trocar iPhone todo ano é 'normal'"
+
+# ═══════════════════════════════════════════════════════════════════
+# FRAMEWORK: CRIANDO MITOLOGIA DE MARCA
+# ═══════════════════════════════════════════════════════════════════
+
+framework_mitologia:
+
+  descricao: |
+    Aplicação prática das ideias de Harari para criar
+    marcas com poder mitológico.
+
+  elementos_de_uma_mitologia:
+
+    historia_de_origem:
+      pergunta: "De onde viemos?"
+      funcao: "Estabelece legitimidade e propósito"
+      exemplos:
+        apple: "Dois amigos numa garagem em 1976"
+        airbnb: "Três amigos que não podiam pagar aluguel"
+        amazon: "Jeff Bezos deixando Wall Street para vender livros"
+
+      checklist:
+        - "Há momento de fundação significativo?"
+        - "Há heróis/fundadores com jornada?"
+        - "Há obstáculos superados?"
+        - "A origem conecta ao propósito atual?"
+
+    proposito_transcendente:
+      pergunta: "Por que existimos além de lucrar?"
+      funcao: "Cria significado que transcende produto"
+      exemplos:
+        patagonia: "Estamos no negócio para salvar o planeta"
+        tesla: "Acelerar a transição para energia sustentável"
+        disney: "Criar felicidade"
+
+      checklist:
+        - "O propósito é maior que a empresa?"
+        - "Inspira funcionários e clientes?"
+        - "Seria estranho se concorrente dissesse?"
+
+    inimigo_comum:
+      pergunta: "Contra o quê lutamos?"
+      funcao: "Une a tribo, cria pertencimento por oposição"
+      exemplos:
+        apple: "Conformismo, mediocridade (vs IBM, depois vs PC)"
+        dove: "Padrões de beleza irreais"
+        innocent: "Ingredientes artificiais e processados"
+
+      checklist:
+        - "Há força antagônica clara?"
+        - "O inimigo é abstrato (não concorrente específico)?"
+        - "Clientes se identificam com a luta?"
+
+    rituais:
+      pergunta: "Que comportamentos repetimos?"
+      funcao: "Reforça pertencimento, cria memória"
+      exemplos:
+        apple: "Unboxing cerimonial"
+        starbucks: "Ritual do café personalizado"
+        harley: "Encontros de riders"
+
+      checklist:
+        - "Há rituais de iniciação?"
+        - "Há rituais de uso?"
+        - "Há rituais de comunidade?"
+
+    simbolos_sagrados:
+      pergunta: "Que símbolos carregam significado?"
+      funcao: "Representação visual/tátil da ficção"
+      exemplos:
+        apple: "Maçã mordida"
+        nike: "Swoosh"
+        harley: "Águia, caveira, bar & shield"
+
+      checklist:
+        - "Símbolos são reconhecíveis?"
+        - "Carregam significado além do estético?"
+        - "Pessoas querem exibir?"
+
+    linguagem_propria:
+      pergunta: "Como falamos diferente?"
+      funcao: "Cria insider language, senso de comunidade"
+      exemplos:
+        starbucks: "Tall, Grande, Venti (não P, M, G)"
+        disney: "Cast members (não funcionários)"
+        apple: "Genius Bar"
+
+      checklist:
+        - "Há termos que só a marca usa?"
+        - "Fãs usam essa linguagem entre si?"
+        - "Outsiders não entendem (isso é bom)?"
+
+    herois_e_viloes:
+      pergunta: "Quem são as figuras da narrativa?"
+      funcao: "Humaniza a marca, cria identificação"
+      exemplos:
+        apple: "Steve Jobs (herói visionário)"
+        tesla: "Elon Musk (anti-herói disruptivo)"
+        patagonia: "Yvon Chouinard (fundador anticapitalista)"
+
+      checklist:
+        - "Há figura fundadora admirável?"
+        - "Clientes podem se ver como heróis?"
+        - "Há vilões (abstratos) a vencer?"
+
+# ═══════════════════════════════════════════════════════════════════
+# APLICAÇÃO PARA DEENEA
+# ═══════════════════════════════════════════════════════════════════
+
+aplicacao_deenea:
+
+  no_processo:
+    quando: "Fase de definição de essência e posicionamento"
+    como: |
+      Use o framework para ir além de declarações funcionais.
+      Construa a mitologia que dará poder à marca.
+
+  workshop_mitologia:
+    objetivo: "Descobrir/criar elementos mitológicos da marca"
+
+    perguntas_historia_origem:
+      - "Qual foi o momento de fundação? O que aconteceu?"
+      - "Quem são os fundadores? Qual era a motivação?"
+      - "Que obstáculos foram superados no começo?"
+      - "Há momento de 'quase morte' que foi superado?"
+
+    perguntas_proposito:
+      - "Se a marca sumisse amanhã, quem sentiria falta? Por quê?"
+      - "Qual mudança no mundo a marca quer ver?"
+      - "Qual é a crença fundamental que guia decisões?"
+
+    perguntas_inimigo:
+      - "Contra o quê estamos lutando?"
+      - "O que está errado no status quo?"
+      - "O que queremos eliminar do mundo?"
+
+    perguntas_comunidade:
+      - "Quem são nossos fiéis? Como se comportam?"
+      - "O que fariam para defender a marca?"
+      - "Como se reconhecem entre si?"
+
+  entregavel:
+    nome: "Brand Mythology Document"
+    conteudo:
+      - "História de Origem (narrativa)"
+      - "Propósito Transcendente"
+      - "Inimigo Comum"
+      - "Rituais Proprietários"
+      - "Símbolos Sagrados"
+      - "Linguagem da Tribo"
+      - "Heróis da Marca"
+
+# ═══════════════════════════════════════════════════════════════════
+# NÍVEIS DE FICÇÃO (Força da Marca)
+# ═══════════════════════════════════════════════════════════════════
+
+niveis_ficcao:
+
+  nivel_1_commodity:
+    descricao: "Sem ficção - só produto"
+    exemplo: "Marca genérica de arroz"
+    poder: "Zero - compete só por preço"
+
+  nivel_2_atributo:
+    descricao: "Ficção funcional - atributos"
+    exemplo: "Arroz que não gruda"
+    poder: "Baixo - fácil de copiar"
+
+  nivel_3_beneficio:
+    descricao: "Ficção emocional - benefício"
+    exemplo: "Arroz que faz você parecer bom cozinheiro"
+    poder: "Médio - começa diferenciação"
+
+  nivel_4_identidade:
+    descricao: "Ficção de identidade - quem você é"
+    exemplo: "Arroz para famílias que valorizam tradição"
+    poder: "Alto - conexão emocional"
+
+  nivel_5_mitologia:
+    descricao: "Ficção completa - sistema de crenças"
+    exemplo: "Arroz com história de família, propósito, comunidade"
+    poder: "Máximo - lealdade irracional"
+
+  diagnostico:
+    pergunta: "Em qual nível está a ficção da sua marca?"
+    meta: "Construir em direção ao nível 5"
+
+# ═══════════════════════════════════════════════════════════════════
+# ÉTICA DA CONSTRUÇÃO DE FICÇÕES
+# ═══════════════════════════════════════════════════════════════════
+
+etica:
+
+  reflexao_harari: |
+    Harari não julga ficções como boas ou ruins.
+    Elas são neutras - o que importa é o efeito.
+    Ficções podem unir (nações) ou dividir (guerras).
+
+  aplicacao_marcas:
+    pergunta_central: "A ficção que construímos melhora vidas?"
+
+    ficoes_eticas:
+      - "Inspiram melhores versões de si"
+      - "Criam comunidade genuína"
+      - "Entregam o que prometem"
+      - "São transparentes sobre serem construções"
+
+    ficoes_problemáticas:
+      - "Exploram vulnerabilidades"
+      - "Criam necessidades artificiais destrutivas"
+      - "Prometem o que não podem entregar"
+      - "Dividem para manipular"
+
+  checklist_etico:
+    - "[ ] A ficção inspira ou manipula?"
+    - "[ ] O produto/serviço entrega a promessa?"
+    - "[ ] A comunidade criada é genuína?"
+    - "[ ] Ficaríamos confortáveis explicando a construção?"
+
+referencias:
+  - "Harari, Y.N. - Sapiens: A Brief History of Humankind (2011)"
+  - "Harari, Y.N. - Homo Deus (2016)"
+  - "Harari, Y.N. - 21 Lessons for the 21st Century (2018)"
+  - "Campbell, J. - The Hero with a Thousand Faces"
+  - "Holt, D. - How Brands Become Icons (2004)"

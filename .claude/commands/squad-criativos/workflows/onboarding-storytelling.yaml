@@ -1,0 +1,193 @@
+# Workflow: Onboarding storYOURtelling
+# Processo estruturado para novos funcionários entenderem o storYOURtelling
+
+name: onboarding-storytelling
+description: |
+  Processo de onboarding para novos membros da squad storYOURtelling.
+  Capacita o funcionário a entender a squad e seu papel nela.
+
+metadata:
+  name: "Onboarding storYOURtelling"
+  version: "1.0"
+  duracao_estimada: "1.5-2 horas"
+  objetivo: "Capacitar novo funcionário a entender o storYOURtelling e seu papel na squad"
+
+# ═══════════════════════════════════════════════════════════════════
+# PRÉ-REQUISITOS
+# ═══════════════════════════════════════════════════════════════════
+prerequisitos:
+  - "Acesso ao repositório AIOS"
+  - "Ter feito o onboarding do UNNIKO (recomendado)"
+  - "Conhecimento básico de comunicação/publicidade (desejável)"
+
+# ═══════════════════════════════════════════════════════════════════
+# ETAPAS DO ONBOARDING
+# ═══════════════════════════════════════════════════════════════════
+etapas:
+
+  etapa_1:
+    nome: "Visão Geral e Tríade"
+    duracao: "20 min"
+    objetivo: "Entender o que é o storYOURtelling e seu papel na tríade"
+
+    atividades:
+      - acao: "Ler seção 'O que é o storYOURtelling?'"
+        arquivo: "docs/onboarding-storytelling.md"
+
+      - acao: "Ler seção 'A Tríade de uma Marca Forte'"
+        arquivo: "docs/onboarding-storytelling.md"
+        foco: "Entender storYOURtelling como terceiro eixo"
+
+      - acao: "Ler seção 'Onde o storYOURtelling se encaixa?'"
+        arquivo: "docs/onboarding-storytelling.md"
+
+    checklist:
+      - "Consigo explicar o que o storYOURtelling faz em uma frase"
+      - "Entendo a relação DEENEA → UNNIKO → storYOURtelling"
+      - "Sei o papel do storYOURtelling na tríade de marca forte"
+
+  etapa_2:
+    nome: "O Conceito de Big Idea"
+    duracao: "25 min"
+    objetivo: "Entender o coração do trabalho do storYOURtelling"
+
+    atividades:
+      - acao: "Ler seção 'O Conceito Central: Big Idea'"
+        arquivo: "docs/onboarding-storytelling.md"
+
+      - acao: "Ler seção 'A Validação Taxonômica'"
+        arquivo: "docs/onboarding-storytelling.md"
+        foco: "Entender como Big Idea se conecta aos 3 domínios"
+
+      - acao: "Explorar o agente Big Idea Architect"
+        arquivo: "agents/storytelling/big-idea-architect.yaml"
+        foco: "Processo de divergência e convergência"
+
+    checklist:
+      - "Sei o que é uma Big Idea e seus 5 critérios"
+      - "Entendo a diferença entre Big Idea e Tagline"
+      - "Sei como validar Big Idea contra a taxonomia"
+      - "Conheço os red flags de uma Big Idea fraca"
+
+  etapa_3:
+    nome: "Os 6 Agentes"
+    duracao: "25 min"
+    objetivo: "Conhecer cada agente e seu papel"
+
+    atividades:
+      - acao: "Ler seção 'Os 6 Agentes do storYOURtelling'"
+        arquivo: "docs/onboarding-storytelling.md"
+
+      - acao: "Explorar 3 agentes em detalhe"
+        arquivos:
+          - "agents/storytelling/creative-director.yaml"
+          - "agents/storytelling/narrative-designer.yaml"
+          - "agents/storytelling/concept-writer.yaml"
+
+    checklist:
+      - "Sei o papel de cada agente"
+      - "Entendo a diferença entre Narrative Designer e Big Idea Architect"
+      - "Sei qual agente procurar para cada tipo de dúvida"
+      - "Entendo o papel do Creative Director como supervisor"
+
+  etapa_4:
+    nome: "Fluxo de Trabalho"
+    duracao: "15 min"
+    objetivo: "Entender como o trabalho flui no storYOURtelling"
+
+    atividades:
+      - acao: "Ler seção 'Fluxo de Trabalho do storYOURtelling'"
+        arquivo: "docs/onboarding-storytelling.md"
+
+      - acao: "Visualizar as dependências entre squads"
+        arquivo: "docs/onboarding-storytelling.md"
+        secao: "Dependências Importantes"
+
+    checklist:
+      - "Entendo as 4 fases do fluxo"
+      - "Sei o que cada fase entrega"
+      - "Entendo as dependências com DEENEA e UNNIKO"
+
+  etapa_5:
+    nome: "Frameworks e Emotion Mapping"
+    duracao: "25 min"
+    objetivo: "Conhecer as ferramentas conceituais do storYOURtelling"
+
+    atividades:
+      - acao: "Ler seção 'Frameworks de Storytelling'"
+        arquivo: "docs/onboarding-storytelling.md"
+        foco: "Conhecer os principais frameworks"
+
+      - acao: "Ler seção 'Emotion Mapping'"
+        arquivo: "docs/onboarding-storytelling.md"
+        foco: "Panksepp e Plutchik"
+
+      - acao: "Explorar o arquivo de frameworks"
+        arquivo: "data/storytelling-frameworks.yaml"
+        instrucao: "Não precisa decorar, apenas saber que existem"
+
+    checklist:
+      - "Conheço pelo menos 3 frameworks de storytelling"
+      - "Sei o que é Hero's Journey e Story Circle"
+      - "Entendo o conceito de Emotion Mapping"
+      - "Sei onde encontrar os data files de referência"
+
+  etapa_6:
+    nome: "Verificação Final"
+    duracao: "10 min"
+    objetivo: "Confirmar aprendizado"
+
+    atividades:
+      - acao: "Completar o checklist de onboarding"
+        arquivo: "docs/onboarding-storytelling.md"
+        secao: "Checklist de Onboarding"
+
+      - acao: "Responder mentalmente"
+        perguntas:
+          - "O que o storYOURtelling faz?"
+          - "O que é uma Big Idea e quais seus critérios?"
+          - "Como validar uma Big Idea contra a taxonomia?"
+          - "Qual a diferença entre Narrative Designer e Concept Writer?"
+          - "O que o storYOURtelling recebe do UNNIKO?"
+
+    resultado_esperado: "Funcionário capaz de explicar o storYOURtelling e o conceito de Big Idea"
+
+# ═══════════════════════════════════════════════════════════════════
+# RECURSOS ADICIONAIS
+# ═══════════════════════════════════════════════════════════════════
+recursos_adicionais:
+  para_aprofundar:
+    - nome: "Todos os agentes"
+      pasta: "agents/storytelling/"
+
+    - nome: "Frameworks de storytelling"
+      arquivo: "data/storytelling-frameworks.yaml"
+
+    - nome: "Emotion mapping"
+      arquivos:
+        - "data/panksepp-systems.yaml"
+        - "data/plutchik-emotions.yaml"
+
+    - nome: "Narrativa de origem"
+      arquivo: "data/origin-story-framework.yaml"
+
+  leitura_recomendada:
+    - "Story - Robert McKee"
+    - "The Hero with a Thousand Faces - Joseph Campbell"
+    - "Hey Whipple, Squeeze This - Luke Sullivan"
+    - "Ogilvy on Advertising - David Ogilvy"
+
+# ═══════════════════════════════════════════════════════════════════
+# SUPORTE
+# ═══════════════════════════════════════════════════════════════════
+suporte:
+  duvidas: "Procure o Creative Director"
+  feedback: "Sugestões de melhoria são bem-vindas"
+
+# ═══════════════════════════════════════════════════════════════════
+# FRAMEWORKS CURADOS (2026-02)
+# ═══════════════════════════════════════════════════════════════════
+frameworks_curados:
+  - virality-frameworks.yaml         # STEPPS, SPEACC para viralidade
+  - hook-model-eyal.yaml             # 4 fases de formação de hábito
+  - marketing-journey-kotler.yaml    # Jornada 5As do Marketing

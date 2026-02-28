@@ -1,0 +1,499 @@
+# 5 Caminhos Criativos Framework
+# Framework criaTTivados para modos de expressão narrativa
+# Branding, Design, Advertising, Presentation, Cinema
+
+metadata:
+  name: "5 Caminhos Criativos"
+  version: "1.0"
+  origem: "criaTTivados / storYOURtelling"
+  aplicacao: "Escolha do modo de expressão para narrativas de marca"
+  principio_central: "Cada história pode ser contada por diferentes caminhos"
+
+# ═══════════════════════════════════════════════════════════════════
+# CONCEITO CENTRAL
+# ═══════════════════════════════════════════════════════════════════
+definicao:
+  conceito: |
+    Os 5 Caminhos Criativos são modos de expressão que uma narrativa
+    pode assumir. Cada caminho tem sua linguagem, ferramentas e
+    especialistas próprios. Uma mesma história pode ser contada
+    por qualquer caminho - ou pela combinação deles.
+
+  principio: |
+    A história vem primeiro. O caminho criativo é o COMO contar.
+    Não existe caminho superior - existe o caminho mais adequado
+    para o objetivo, público e contexto.
+
+  analogia: |
+    Pense nos caminhos como instrumentos musicais. A mesma melodia
+    pode ser tocada no piano, violino ou guitarra. Cada instrumento
+    traz uma cor diferente para a mesma música.
+
+# ═══════════════════════════════════════════════════════════════════
+# OS 5 CAMINHOS CRIATIVOS
+# ═══════════════════════════════════════════════════════════════════
+caminhos:
+
+  # ─────────────────────────────────────────────────────────────────
+  # CAMINHO 1: BRANDING
+  # ─────────────────────────────────────────────────────────────────
+  branding:
+    nome: "Branding"
+    icone: "🎨"
+    essencia: "A narrativa como identidade visual e verbal"
+
+    definicao: |
+      O caminho do Branding transforma a história em elementos de identidade
+      que identificam, diferenciam e comunicam a marca em todos os pontos
+      de contato. É a narrativa cristalizada em forma.
+
+    elementos_principais:
+      - nome: "Identidade Visual"
+        exemplos: ["Logo", "Cores", "Tipografia", "Iconografia", "Patterns"]
+
+      - nome: "Identidade Verbal"
+        exemplos: ["Tom de voz", "Vocabulário", "Tagline", "Naming"]
+
+      - nome: "Arquétipos"
+        exemplos: ["Personalidade de marca", "Comportamentos", "Valores visuais"]
+
+      - nome: "Brand Guidelines"
+        exemplos: ["Manual de marca", "Aplicações", "Do's and Don'ts"]
+
+    quando_usar:
+      ideal_para:
+        - "Definir ou redefinir identidade de marca"
+        - "Criar consistência em todos os touchpoints"
+        - "Diferenciar visualmente no mercado"
+        - "Traduzir essência em elementos tangíveis"
+
+      menos_adequado_para:
+        - "Campanhas pontuais"
+        - "Comunicação imediata de produto"
+        - "Quando já existe identidade consolidada"
+
+    profissionais_envolvidos:
+      - "Brand Designer"
+      - "Brand Strategist"
+      - "Naming Specialist"
+      - "Visual Identity Designer"
+
+    entregaveis_tipicos:
+      - "Manual de identidade visual"
+      - "Guia de tom de voz"
+      - "Sistema de cores e tipografia"
+      - "Biblioteca de assets"
+      - "Aplicações de marca"
+
+    conexao_taxonomia:
+      dominios_relacionados: ["SIGNIFICADO", "CONSISTÊNCIA"]
+      classes_frequentes: ["Essência", "Posicionamento", "Experiência"]
+
+    frameworks_aplicaveis:
+      - "Golden Sentence (para posicionamento verbal)"
+      - "Arquétipos de marca"
+      - "Eixos de marca (especialmente Institucional)"
+
+  # ─────────────────────────────────────────────────────────────────
+  # CAMINHO 2: DESIGN
+  # ─────────────────────────────────────────────────────────────────
+  design:
+    nome: "Design"
+    icone: "✏️"
+    essencia: "A narrativa como experiência visual e funcional"
+
+    definicao: |
+      O caminho do Design transforma a história em peças visuais que
+      comunicam, engajam e facilitam a interação. Do digital ao físico,
+      design é como a narrativa ganha forma no dia a dia.
+
+    elementos_principais:
+      - nome: "Design Digital"
+        exemplos: ["UI/UX", "Landing pages", "Apps", "Social media templates"]
+
+      - nome: "Design Gráfico"
+        exemplos: ["Posts", "Banners", "Materiais impressos", "Embalagens"]
+
+      - nome: "Motion Design"
+        exemplos: ["Animações", "Vinhetas", "GIFs", "Transições"]
+
+      - nome: "Design Editorial"
+        exemplos: ["E-books", "Catálogos", "Relatórios", "Apresentações"]
+
+    quando_usar:
+      ideal_para:
+        - "Criar peças de comunicação específicas"
+        - "Melhorar experiência de usuário"
+        - "Traduzir conceitos em visual"
+        - "Aumentar percepção de valor"
+
+      menos_adequado_para:
+        - "Quando não há identidade visual definida"
+        - "Peças muito conceituais sem briefing claro"
+
+    profissionais_envolvidos:
+      - "Graphic Designer"
+      - "UI/UX Designer"
+      - "Motion Designer"
+      - "Art Director"
+
+    entregaveis_tipicos:
+      - "Templates de social media"
+      - "Design de landing page"
+      - "E-book ou material rico"
+      - "Kit de lançamento visual"
+      - "Motion assets"
+
+    conexao_taxonomia:
+      dominios_relacionados: ["EVIDÊNCIA", "EXPERIÊNCIA"]
+      classes_frequentes: ["Atributos", "Canal", "Inovação"]
+
+    frameworks_aplicaveis:
+      - "Economia da Atenção (para peças digitais)"
+      - "Neuroafetividade (camada sensorial)"
+      - "Pirâmide de Maslow (níveis de necessidade)"
+
+  # ─────────────────────────────────────────────────────────────────
+  # CAMINHO 3: ADVERTISING
+  # ─────────────────────────────────────────────────────────────────
+  advertising:
+    nome: "Advertising"
+    icone: "📢"
+    essencia: "A narrativa como persuasão e conversão"
+
+    definicao: |
+      O caminho do Advertising transforma a história em mensagens que
+      vendem, convencem e movem à ação. É a narrativa com objetivo
+      comercial direto - seja awareness, consideração ou conversão.
+
+    elementos_principais:
+      - nome: "Copy"
+        exemplos: ["Headlines", "Body copy", "CTAs", "Scripts"]
+
+      - nome: "Conceito de Campanha"
+        exemplos: ["Big Idea", "Conceito criativo", "Mote"]
+
+      - nome: "Peças Publicitárias"
+        exemplos: ["Anúncios", "Comerciais", "Outdoors", "Digital ads"]
+
+      - nome: "Estratégia de Mídia"
+        exemplos: ["Plano de mídia", "Mix de canais", "Segmentação"]
+
+    quando_usar:
+      ideal_para:
+        - "Lançamentos de produto/serviço"
+        - "Campanhas sazonais"
+        - "Geração de leads"
+        - "Conversão direta"
+        - "Construção de awareness"
+
+      menos_adequado_para:
+        - "Comunicação puramente institucional"
+        - "Quando não há budget para mídia"
+
+    profissionais_envolvidos:
+      - "Copywriter"
+      - "Art Director"
+      - "Planner"
+      - "Media Buyer"
+      - "Creative Director"
+
+    entregaveis_tipicos:
+      - "Roteiro de comercial"
+      - "Key visual de campanha"
+      - "Conjunto de anúncios (ads)"
+      - "Landing page de conversão"
+      - "Sequência de emails"
+
+    conexao_taxonomia:
+      dominios_relacionados: ["EVIDÊNCIA", "SIGNIFICADO"]
+      classes_frequentes: ["Atributos", "Performance", "Experiência"]
+
+    frameworks_aplicaveis:
+      - "5BEATS (para vídeos curtos)"
+      - "PAS (Problem-Agitation-Solution)"
+      - "AIDA (Attention-Interest-Desire-Action)"
+      - "4C (Copy framework)"
+
+  # ─────────────────────────────────────────────────────────────────
+  # CAMINHO 4: PRESENTATION
+  # ─────────────────────────────────────────────────────────────────
+  presentation:
+    nome: "Presentation"
+    icone: "🎤"
+    essencia: "A narrativa como performance e conexão ao vivo"
+
+    definicao: |
+      O caminho da Presentation transforma a história em experiências
+      ao vivo ou semi-ao-vivo. Palestras, pitches, webinars - onde a
+      narrativa encontra a presença humana e o timing do momento.
+
+    elementos_principais:
+      - nome: "Roteiro/Script"
+        exemplos: ["Estrutura da fala", "Pontos-chave", "Transições"]
+
+      - nome: "Deck/Slides"
+        exemplos: ["Apresentação visual", "Keynote", "Pitch deck"]
+
+      - nome: "Performance"
+        exemplos: ["Delivery", "Timing", "Linguagem corporal"]
+
+      - nome: "Materiais de Apoio"
+        exemplos: ["Handouts", "Infográficos", "QR codes"]
+
+    quando_usar:
+      ideal_para:
+        - "Pitch para investidores"
+        - "Palestras e workshops"
+        - "Apresentações de vendas"
+        - "Treinamentos"
+        - "Webinars e lives"
+
+      menos_adequado_para:
+        - "Comunicação assíncrona"
+        - "Quando não há momento de apresentação"
+
+    profissionais_envolvidos:
+      - "Speaker/Palestrante"
+      - "Presentation Designer"
+      - "Speechwriter"
+      - "Coach de oratória"
+
+    entregaveis_tipicos:
+      - "Pitch deck"
+      - "Roteiro de palestra"
+      - "Material de apoio"
+      - "Template de apresentação"
+      - "Vídeo de treinamento"
+
+    conexao_taxonomia:
+      dominios_relacionados: ["SIGNIFICADO", "EVIDÊNCIA"]
+      classes_frequentes: ["Essência", "Prova Social", "Experiência"]
+
+    frameworks_aplicaveis:
+      - "Story Circle (para estrutura narrativa)"
+      - "Big Idea (para mensagem central)"
+      - "Pirâmide de Maslow (conexão emocional)"
+
+  # ─────────────────────────────────────────────────────────────────
+  # CAMINHO 5: CINEMA
+  # ─────────────────────────────────────────────────────────────────
+  cinema:
+    nome: "Cinema"
+    icone: "🎬"
+    essencia: "A narrativa como arte audiovisual imersiva"
+
+    definicao: |
+      O caminho do Cinema transforma a história em experiência audiovisual
+      completa. De curtas institucionais a documentários de marca, é onde
+      a narrativa ganha profundidade cinematográfica.
+
+    elementos_principais:
+      - nome: "Roteiro"
+        exemplos: ["Estrutura dramática", "Diálogos", "Storyboard"]
+
+      - nome: "Direção"
+        exemplos: ["Visão artística", "Tratamento", "Mood"]
+
+      - nome: "Produção"
+        exemplos: ["Casting", "Locações", "Direção de arte"]
+
+      - nome: "Pós-produção"
+        exemplos: ["Edição", "Color grading", "Sound design", "VFX"]
+
+    quando_usar:
+      ideal_para:
+        - "Filmes institucionais"
+        - "Documentários de marca"
+        - "Comerciais cinematográficos"
+        - "Séries de conteúdo"
+        - "Branded content premium"
+
+      menos_adequado_para:
+        - "Conteúdo rápido de social media"
+        - "Quando budget é limitado"
+        - "Peças que precisam de agilidade"
+
+    profissionais_envolvidos:
+      - "Diretor"
+      - "Roteirista"
+      - "Produtor"
+      - "Diretor de Fotografia"
+      - "Editor"
+      - "Sound Designer"
+
+    entregaveis_tipicos:
+      - "Filme institucional"
+      - "Documentário de marca"
+      - "Comercial de alto padrão"
+      - "Série de conteúdo"
+      - "Vídeo manifesto"
+
+    conexao_taxonomia:
+      dominios_relacionados: ["SIGNIFICADO", "EXPERIÊNCIA"]
+      classes_frequentes: ["Essência", "Experiência", "Inovação"]
+
+    frameworks_aplicaveis:
+      - "Story Circle (estrutura narrativa completa)"
+      - "Jornada do Herói (para documentários)"
+      - "Neuroafetividade (imersão sensorial)"
+      - "5BEATS (para formatos curtos)"
+
+# ═══════════════════════════════════════════════════════════════════
+# MATRIZ DE DECISÃO
+# ═══════════════════════════════════════════════════════════════════
+matriz_decisao:
+  descricao: |
+    Como escolher o caminho criativo adequado para cada situação.
+
+  criterios:
+    - criterio: "Objetivo"
+      branding: "Identidade e consistência"
+      design: "Comunicação visual"
+      advertising: "Conversão e vendas"
+      presentation: "Conexão ao vivo"
+      cinema: "Imersão e emoção"
+
+    - criterio: "Prazo"
+      branding: "Médio-longo"
+      design: "Curto-médio"
+      advertising: "Curto-médio"
+      presentation: "Curto"
+      cinema: "Longo"
+
+    - criterio: "Budget"
+      branding: "Médio-alto"
+      design: "Variável"
+      advertising: "Variável + mídia"
+      presentation: "Baixo-médio"
+      cinema: "Alto"
+
+    - criterio: "Durabilidade"
+      branding: "Anos"
+      design: "Meses"
+      advertising: "Semanas-meses"
+      presentation: "Momentâneo"
+      cinema: "Anos"
+
+    - criterio: "Complexidade"
+      branding: "Alta (estratégico)"
+      design: "Média"
+      advertising: "Média-alta"
+      presentation: "Média"
+      cinema: "Alta"
+
+# ═══════════════════════════════════════════════════════════════════
+# COMBINAÇÕES DE CAMINHOS
+# ═══════════════════════════════════════════════════════════════════
+combinacoes:
+  descricao: |
+    Na prática, projetos frequentemente combinam múltiplos caminhos.
+    A chave é ter clareza sobre o caminho primário e os secundários.
+
+  exemplos:
+
+    lancamento_marca:
+      nome: "Lançamento de Marca"
+      caminho_primario: "Branding"
+      caminhos_secundarios: ["Design", "Advertising"]
+      fluxo: "Branding define identidade → Design aplica em peças → Advertising comunica"
+
+    campanha_awareness:
+      nome: "Campanha de Awareness"
+      caminho_primario: "Cinema"
+      caminhos_secundarios: ["Advertising", "Design"]
+      fluxo: "Cinema cria filme manifesto → Advertising desdobra → Design cria assets"
+
+    evento_lancamento:
+      nome: "Evento de Lançamento"
+      caminho_primario: "Presentation"
+      caminhos_secundarios: ["Design", "Cinema"]
+      fluxo: "Presentation estrutura keynote → Cinema cria teaser → Design produz materiais"
+
+    conteudo_ongoing:
+      nome: "Estratégia de Conteúdo Contínuo"
+      caminho_primario: "Design"
+      caminhos_secundarios: ["Advertising"]
+      fluxo: "Design cria sistema visual → Advertising converte em ads"
+
+# ═══════════════════════════════════════════════════════════════════
+# CONEXÃO COM EIXOS DE MARCA
+# ═══════════════════════════════════════════════════════════════════
+conexao_eixos:
+  descricao: |
+    Cada eixo de marca tende a usar caminhos criativos diferentes.
+
+  mapeamento:
+    marca_institucional:
+      caminhos_primarios: ["Branding", "Cinema"]
+      justificativa: "Identidade e narrativa de propósito"
+
+    marca_mercadologica:
+      caminhos_primarios: ["Advertising", "Design"]
+      justificativa: "Conversão e comunicação de produto"
+
+    marca_empregadora:
+      caminhos_primarios: ["Cinema", "Presentation"]
+      justificativa: "Cultura e depoimentos"
+
+    marca_pessoal:
+      caminhos_primarios: ["Presentation", "Design"]
+      justificativa: "Presença e conteúdo pessoal"
+
+    marca_sintetica:
+      caminhos_primarios: ["Cinema", "Design"]
+      justificativa: "Construção de persona e presença digital"
+
+# ═══════════════════════════════════════════════════════════════════
+# WORKFLOW DE ESCOLHA
+# ═══════════════════════════════════════════════════════════════════
+workflow_escolha:
+  passos:
+    - passo: 1
+      nome: "Definir objetivo primário"
+      pergunta: "O que queremos alcançar?"
+      opcoes:
+        - "Criar/renovar identidade → Branding"
+        - "Comunicar/vender → Advertising"
+        - "Apresentar/conectar → Presentation"
+        - "Emocionar/imergir → Cinema"
+        - "Materializar/aplicar → Design"
+
+    - passo: 2
+      nome: "Mapear recursos"
+      pergunta: "O que temos disponível?"
+      fatores: ["Budget", "Prazo", "Equipe", "Infraestrutura"]
+
+    - passo: 3
+      nome: "Escolher caminho primário"
+      criterio: "Interseção entre objetivo e recursos"
+
+    - passo: 4
+      nome: "Definir caminhos secundários"
+      criterio: "O que complementa e desdobra o primário?"
+
+    - passo: 5
+      nome: "Criar briefing integrado"
+      resultado: "Briefing que conecta todos os caminhos"
+
+# ═══════════════════════════════════════════════════════════════════
+# REFERÊNCIAS
+# ═══════════════════════════════════════════════════════════════════
+referencias:
+  - autor: "criaTTivados"
+    obra: "storYOURtelling - Caminhos de Expressão"
+    contribuicao: "Framework original"
+
+  - autor: "Marty Neumeier"
+    obra: "The Brand Gap"
+    contribuicao: "Conexão entre branding e design"
+
+  - autor: "TED"
+    obra: "TED Talks: The Official Guide"
+    contribuicao: "Excelência em Presentation"
+
+uso_pelos_agentes:
+  - "Creative Director (escolher caminho primário)"
+  - "Content Director (definir mix de caminhos)"
+  - "Narrative Designer (adaptar história ao caminho)"
+  - "Brand Voice Director (garantir coerência)"

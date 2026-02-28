@@ -1,0 +1,274 @@
+# Plutchik's Wheel of Emotions
+# Referência para narrative-designer, map-emotions
+
+source:
+  author: "Robert Plutchik"
+  work: "Wheel of Emotions (1980)"
+  concept: "8 emoções primárias que se combinam como cores"
+
+primary_emotions:
+
+  joy:
+    name: "Alegria"
+    opposite: "Sadness"
+    intensity_scale:
+      low: "Serenidade"
+      medium: "Alegria"
+      high: "Êxtase"
+
+    triggers:
+      - Conquistas
+      - Surpresas positivas
+      - Conexões humanas
+      - Sucesso
+
+    brand_applications:
+      - Celebrações
+      - Resultados positivos
+      - Momentos de vitória
+      - Campanhas festivas
+
+  trust:
+    name: "Confiança"
+    opposite: "Disgust"
+    intensity_scale:
+      low: "Aceitação"
+      medium: "Confiança"
+      high: "Admiração"
+
+    triggers:
+      - Consistência
+      - Transparência
+      - Competência demonstrada
+      - Valores compartilhados
+
+    brand_applications:
+      - Depoimentos
+      - Garantias
+      - Histórico de marca
+      - Social proof
+
+  fear:
+    name: "Medo"
+    opposite: "Anger"
+    intensity_scale:
+      low: "Apreensão"
+      medium: "Medo"
+      high: "Terror"
+
+    triggers:
+      - Ameaças
+      - Incerteza
+      - Perda potencial
+      - Desconhecido
+
+    brand_applications:
+      - Urgência
+      - FOMO
+      - Proteção
+      - Consequências de inação
+
+  surprise:
+    name: "Surpresa"
+    opposite: "Anticipation"
+    intensity_scale:
+      low: "Distração"
+      medium: "Surpresa"
+      high: "Espanto"
+
+    triggers:
+      - Inesperado
+      - Revelações
+      - Plot twists
+      - Novidades
+
+    brand_applications:
+      - Lançamentos
+      - Reveals
+      - Easter eggs
+      - Campanhas disruptivas
+
+  sadness:
+    name: "Tristeza"
+    opposite: "Joy"
+    intensity_scale:
+      low: "Pensatividade"
+      medium: "Tristeza"
+      high: "Luto"
+
+    triggers:
+      - Perda
+      - Separação
+      - Fracasso
+      - Nostalgia
+
+    brand_applications:
+      - Storytelling emocional
+      - Causas sociais
+      - Empatia
+      - Campanhas de fim de ano
+
+  disgust:
+    name: "Nojo/Aversão"
+    opposite: "Trust"
+    intensity_scale:
+      low: "Tédio"
+      medium: "Aversão"
+      high: "Nojo"
+
+    triggers:
+      - Injustiça
+      - Comportamento antiético
+      - Status quo inaceitável
+      - Práticas ruins
+
+    brand_applications:
+      - Posicionamento contra concorrência
+      - Disrupção de mercado
+      - Marcas éticas
+      - "Chega de X"
+
+  anger:
+    name: "Raiva"
+    opposite: "Fear"
+    intensity_scale:
+      low: "Aborrecimento"
+      medium: "Raiva"
+      high: "Fúria"
+
+    triggers:
+      - Injustiça
+      - Frustração
+      - Obstáculos
+      - Desrespeito
+
+    brand_applications:
+      - Inimigo comum
+      - Movimentos
+      - Marcas revolucionárias
+      - Resolver frustrações
+
+  anticipation:
+    name: "Antecipação"
+    opposite: "Surprise"
+    intensity_scale:
+      low: "Interesse"
+      medium: "Antecipação"
+      high: "Vigilância"
+
+    triggers:
+      - Expectativa
+      - Contagem regressiva
+      - Promessas
+      - Teasers
+
+    brand_applications:
+      - Pré-lançamentos
+      - Teasers
+      - Coming soon
+      - Campanhas de expectativa
+
+# Emoções Compostas (Dyads)
+dyads:
+
+  primary_dyads:
+    love:
+      components: ["Joy", "Trust"]
+      description: "Alegria + Confiança"
+      application: "Conexão profunda com marca"
+
+    submission:
+      components: ["Trust", "Fear"]
+      description: "Confiança + Medo"
+      application: "Autoridade respeitada"
+
+    awe:
+      components: ["Fear", "Surprise"]
+      description: "Medo + Surpresa"
+      application: "Impacto grandioso"
+
+    disapproval:
+      components: ["Surprise", "Sadness"]
+      description: "Surpresa + Tristeza"
+      application: "Decepção revelada"
+
+    remorse:
+      components: ["Sadness", "Disgust"]
+      description: "Tristeza + Aversão"
+      application: "Arrependimento"
+
+    contempt:
+      components: ["Disgust", "Anger"]
+      description: "Aversão + Raiva"
+      application: "Posicionamento contra vilão"
+
+    aggressiveness:
+      components: ["Anger", "Anticipation"]
+      description: "Raiva + Antecipação"
+      application: "Determinação combativa"
+
+    optimism:
+      components: ["Anticipation", "Joy"]
+      description: "Antecipação + Alegria"
+      application: "Esperança e entusiasmo"
+
+  secondary_dyads:
+    guilt:
+      components: ["Joy", "Fear"]
+      description: "Alegria + Medo"
+      application: "Prazer proibido"
+
+    curiosity:
+      components: ["Trust", "Surprise"]
+      description: "Confiança + Surpresa"
+      application: "Descoberta segura"
+
+    despair:
+      components: ["Fear", "Sadness"]
+      description: "Medo + Tristeza"
+      application: "Ponto mais baixo da jornada"
+
+    envy:
+      components: ["Sadness", "Anger"]
+      description: "Tristeza + Raiva"
+      application: "Desejo frustrado"
+
+    cynicism:
+      components: ["Disgust", "Anticipation"]
+      description: "Aversão + Antecipação"
+      application: "Descrença crítica"
+
+    pride:
+      components: ["Anger", "Joy"]
+      description: "Raiva + Alegria"
+      application: "Conquista após luta"
+
+    hope:
+      components: ["Anticipation", "Trust"]
+      description: "Antecipação + Confiança"
+      application: "Otimismo fundamentado"
+
+# Guia de Uso em Storytelling
+storytelling_guide:
+
+  emotional_arc:
+    description: "Planejar jornada emocional da audiência"
+    example:
+      - start: "Curiosity (engajar)"
+      - build: "Fear + Anticipation (tensão)"
+      - climax: "Anger → Pride (superação)"
+      - resolution: "Joy + Trust (satisfação)"
+
+  contrast_principle:
+    description: "Emoções opostas criam impacto"
+    examples:
+      - ["Sadness → Joy", "Catarse"]
+      - ["Fear → Trust", "Alívio"]
+      - ["Anger → Love", "Reconciliação"]
+
+  intensity_management:
+    description: "Modular intensidade conforme objetivo"
+    rules:
+      - "Não comece no máximo - deixe espaço para crescer"
+      - "Varie intensidade para evitar fadiga"
+      - "Climax deve ser a maior intensidade"

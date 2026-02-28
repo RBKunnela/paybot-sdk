@@ -1,0 +1,415 @@
+# Comunicação Não-Violenta (CNV) Framework
+# Marshall Rosenberg - Aplicação em branding, cultura e narrativas
+# Referência para: DEENEA (cultura), storYOURtelling (narrativas empáticas)
+
+metadata:
+  name: "Comunicação Não-Violenta (CNV)"
+  version: "1.0"
+  origem: "Marshall Rosenberg"
+  obra: "Nonviolent Communication: A Language of Life (1999)"
+  aplicacao: "Cultura organizacional, feedback, narrativas empáticas, resolução de conflitos"
+
+# ═══════════════════════════════════════════════════════════════════
+# CONCEITO CENTRAL
+# ═══════════════════════════════════════════════════════════════════
+definicao:
+  conceito: |
+    A CNV é uma abordagem de comunicação que foca em conexão genuína
+    e empatia, substituindo julgamentos por expressões claras de
+    sentimentos e necessidades.
+
+  principio_central: |
+    Por trás de cada comportamento existe uma necessidade humana universal
+    tentando ser atendida. A CNV ajuda a identificar e expressar essas
+    necessidades de forma que crie conexão, não separação.
+
+  aplicacao_branding: |
+    Marcas que comunicam com CNV criam conexões mais profundas porque
+    falam com as necessidades reais do público, não com julgamentos
+    ou manipulações.
+
+# ═══════════════════════════════════════════════════════════════════
+# OS 4 PILARES DA CNV
+# ═══════════════════════════════════════════════════════════════════
+pilares:
+
+  # 1. OBSERVAÇÃO
+  observacao:
+    nome: "Observação"
+    icone: "👁️"
+    numero: 1
+
+    definicao: |
+      Descrever o que aconteceu de forma objetiva, sem julgamentos,
+      avaliações ou interpretações.
+
+    distincao:
+      julgamento: "Você é irresponsável"
+      observacao: "Nas últimas 3 reuniões, você chegou 15 minutos após o horário combinado"
+
+    perguntas_guia:
+      - "O que exatamente aconteceu?"
+      - "O que eu vi/ouvi/percebi?"
+      - "Se uma câmera filmasse, o que mostraria?"
+
+    aplicacao_branding:
+      - "Mostrar dados e fatos, não acusações"
+      - "Descrever a situação do cliente sem julgar"
+      - "Case studies baseados em evidências"
+
+    exemplo_narrativa:
+      antes: "Empresas não se importam com funcionários"
+      depois: "Pesquisa Gallup mostra que 67% dos colaboradores não se sentem engajados"
+
+    armadilhas:
+      - "Confundir observação com interpretação"
+      - "Usar palavras como 'sempre', 'nunca', 'demais'"
+      - "Incluir julgamentos disfarçados"
+
+  # 2. SENTIMENTOS
+  sentimentos:
+    nome: "Sentimentos"
+    icone: "💚"
+    numero: 2
+
+    definicao: |
+      Expressar como você se sente em relação ao que observou.
+      Sentimentos são estados internos, não avaliações do outro.
+
+    distincao:
+      pseudo_sentimento: "Sinto-me ignorado"
+      sentimento_real: "Sinto-me triste e frustrado"
+
+    nota: |
+      "Ignorado" não é sentimento - é interpretação do comportamento
+      do outro. Sentimentos reais são: triste, frustrado, ansioso, alegre...
+
+    vocabulario_sentimentos:
+      necessidades_atendidas:
+        - Alegre
+        - Grato
+        - Esperançoso
+        - Confiante
+        - Animado
+        - Tranquilo
+        - Realizado
+        - Conectado
+
+      necessidades_nao_atendidas:
+        - Triste
+        - Frustrado
+        - Ansioso
+        - Desapontado
+        - Cansado
+        - Confuso
+        - Desconectado
+        - Vulnerável
+
+    aplicacao_branding:
+      - "Validar sentimentos do cliente antes de oferecer solução"
+      - "Humanizar a marca expressando vulnerabilidade"
+      - "Criar conexão emocional genuína"
+
+    exemplo_narrativa:
+      antes: "Você merece mais"
+      depois: "Sabemos como é frustrante quando você se dedica e não é reconhecido"
+
+    armadilhas:
+      - "Confundir sentimentos com pensamentos ('sinto que...')"
+      - "Usar pseudo-sentimentos (rejeitado, manipulado, traído)"
+      - "Responsabilizar o outro pelos seus sentimentos"
+
+  # 3. NECESSIDADES
+  necessidades:
+    nome: "Necessidades"
+    icone: "🌱"
+    numero: 3
+
+    definicao: |
+      Identificar qual necessidade humana universal está por trás
+      do sentimento. Todos compartilhamos as mesmas necessidades,
+      apenas usamos estratégias diferentes para atendê-las.
+
+    categorias_necessidades:
+      sobrevivencia:
+        - Segurança
+        - Sustento
+        - Saúde
+        - Descanso
+
+      conexao:
+        - Pertencimento
+        - Aceitação
+        - Intimidade
+        - Consideração
+        - Respeito
+
+      autonomia:
+        - Liberdade
+        - Escolha
+        - Independência
+        - Autenticidade
+
+      significado:
+        - Propósito
+        - Contribuição
+        - Crescimento
+        - Celebração
+
+      prazer:
+        - Alegria
+        - Diversão
+        - Beleza
+        - Inspiração
+
+    conexao_maslow: |
+      As necessidades da CNV se conectam com a Pirâmide de Maslow,
+      mas sem hierarquia rígida. Use ambos frameworks em conjunto.
+
+    aplicacao_branding:
+      - "Identificar qual necessidade o produto/serviço realmente atende"
+      - "Falar com a necessidade, não com a solução"
+      - "EVP baseado em necessidades reais dos colaboradores"
+
+    exemplo_narrativa:
+      superficial: "Nosso app economiza tempo"
+      profundo: "Porque seu tempo com a família importa"
+      necessidade_atendida: "Conexão, presença"
+
+    armadilhas:
+      - "Confundir necessidade com estratégia"
+      - "Listar o que quer que o outro faça"
+      - "Usar necessidades como manipulação"
+
+  # 4. PEDIDO
+  pedido:
+    nome: "Pedido"
+    icone: "🤝"
+    numero: 4
+
+    definicao: |
+      Fazer um pedido claro, específico, factível e no presente,
+      deixando espaço para o outro dizer não.
+
+    caracteristicas_pedido_cnv:
+      - "Positivo (o que você quer, não o que não quer)"
+      - "Específico (ação concreta)"
+      - "Factível (possível de realizar)"
+      - "Presente (agora ou próxima ação)"
+      - "Livre (o outro pode recusar)"
+
+    distincao:
+      exigencia: "Você precisa chegar no horário"
+      pedido: "Você estaria disposto a me avisar se for atrasar mais de 5 minutos?"
+
+    aplicacao_branding:
+      - "CTAs que respeitam a escolha do público"
+      - "Convites em vez de ordens"
+      - "Feedbacks construtivos para equipes"
+
+    exemplo_cta:
+      tradicional: "Compre agora!"
+      cnv: "Se isso faz sentido para você, adoraríamos ter você com a gente"
+
+    armadilhas:
+      - "Fazer exigência disfarçada de pedido"
+      - "Pedir vagamente ('me trate melhor')"
+      - "Não aceitar 'não' como resposta"
+
+# ═══════════════════════════════════════════════════════════════════
+# ESTRUTURA COMPLETA DA CNV
+# ═══════════════════════════════════════════════════════════════════
+estrutura_completa:
+  formula: |
+    Quando [OBSERVAÇÃO], eu me sinto [SENTIMENTO], porque preciso de
+    [NECESSIDADE]. Você estaria disposto(a) a [PEDIDO]?
+
+  exemplo_pessoal:
+    contexto: "Feedback para colega"
+    observacao: "Quando você interrompe minhas apresentações"
+    sentimento: "eu me sinto frustrado"
+    necessidade: "porque preciso de respeito e espaço para completar meu raciocínio"
+    pedido: "Você estaria disposto a anotar suas perguntas e fazê-las ao final?"
+
+  exemplo_marca:
+    contexto: "Comunicação de Employer Branding"
+    observacao: "Sabemos que no mercado atual, muitos profissionais trabalham sem reconhecimento"
+    sentimento: "Isso nos preocupa"
+    necessidade: "porque acreditamos que todos merecem ser vistos pelo que contribuem"
+    pedido: "Venha conhecer uma empresa onde seu trabalho importa"
+
+# ═══════════════════════════════════════════════════════════════════
+# CNV APLICADA A EMPLOYER BRANDING
+# ═══════════════════════════════════════════════════════════════════
+aplicacao_employer_branding:
+
+  evp_com_cnv:
+    descricao: |
+      EVP tradicional foca em "o que oferecemos". EVP com CNV foca em
+      "quais necessidades humanas atendemos".
+
+    transformacao:
+      antes: "Salário competitivo + benefícios"
+      depois: "Segurança financeira para que você possa focar no que ama fazer"
+
+    pilares_evp_cnv:
+      seguranca: "Estabilidade para planejar sua vida"
+      crescimento: "Espaço para evoluir no seu ritmo"
+      conexao: "Comunidade que se apoia"
+      proposito: "Trabalho que faz diferença"
+      autonomia: "Liberdade para ser você"
+
+  feedback_humanizado:
+    estrutura:
+      - "Observar comportamento específico"
+      - "Expressar impacto (sentimento)"
+      - "Conectar com necessidade da equipe/empresa"
+      - "Fazer pedido ou convite"
+
+    exemplo:
+      situacao: "Colaborador entregando fora do prazo"
+      tradicional: "Você precisa melhorar sua pontualidade"
+      cnv: |
+        "Nos últimos dois projetos, as entregas vieram após o deadline.
+        Fico preocupado porque a equipe depende desses materiais para continuar.
+        O que você precisa para conseguir entregar no prazo combinado?"
+
+  clima_organizacional:
+    pulse_surveys_cnv:
+      - "Como você se sentiu esta semana no trabalho?"
+      - "Quais necessidades suas estão sendo bem atendidas?"
+      - "Quais necessidades você gostaria que fossem mais atendidas?"
+      - "O que podemos fazer concretamente para melhorar sua experiência?"
+
+# ═══════════════════════════════════════════════════════════════════
+# CNV APLICADA A STORYTELLING
+# ═══════════════════════════════════════════════════════════════════
+aplicacao_storytelling:
+
+  narrativas_empaticas:
+    principio: |
+      Histórias que conectam mostram personagens com necessidades
+      universais, não vilões unidimensionais.
+
+    transformacao_vilao:
+      antes: "O chefe malvado que não dava aumento"
+      depois: "O gestor pressionado por metas que perdeu de vista as pessoas"
+      insight: "Mesmo 'vilões' têm necessidades. Isso cria histórias mais humanas."
+
+  jornada_do_cliente:
+    estrutura_cnv:
+      - "Observar a situação do cliente sem julgar"
+      - "Validar os sentimentos que essa situação gera"
+      - "Conectar com a necessidade profunda"
+      - "Apresentar sua solução como pedido/convite"
+
+    exemplo:
+      observacao: "Você trabalha 12 horas por dia e ainda sente que não deu conta"
+      validacao: "É exaustivo, a gente sabe"
+      necessidade: "Você quer tempo para o que realmente importa"
+      convite: "Veja como podemos ajudar"
+
+  tom_de_voz_cnv:
+    caracteristicas:
+      - "Empático sem ser piegas"
+      - "Direto sem ser agressivo"
+      - "Vulnerável sem ser vitimista"
+      - "Assertivo sem ser arrogante"
+
+# ═══════════════════════════════════════════════════════════════════
+# DADOS E EVIDÊNCIAS
+# ═══════════════════════════════════════════════════════════════════
+evidencias:
+
+  estudos:
+    - fonte: "Qulture.Rocks & Feedz (2023-2025)"
+      achado: "CNV aplicada reduz conflitos e fortalece empatia em times remotos"
+
+    - fonte: "ResearchGate - Setor Público"
+      achado: "CNV melhora qualidade de vida e reduz ambientes autoritários"
+
+    - fonte: "Gartner Human Deal Framework"
+      achado: "Conexão emocional é pilar central de EVP efetivo"
+
+  metricas_esperadas:
+    - "Redução de conflitos interpessoais"
+    - "Melhoria em clima organizacional (eNPS)"
+    - "Aumento de engajamento em pesquisas de feedback"
+    - "Retenção de talentos por sensação de 'ser ouvido'"
+
+# ═══════════════════════════════════════════════════════════════════
+# CONEXÕES COM OUTROS FRAMEWORKS
+# ═══════════════════════════════════════════════════════════════════
+conexoes:
+
+  maslow:
+    relacao: "Necessidades CNV = camadas Maslow"
+    como_usar: "Use Maslow para categorizar, CNV para expressar"
+
+  panksepp:
+    relacao: "Sentimentos CNV ativam sistemas Panksepp"
+    como_usar: "CARE e PANIC/GRIEF são centrais para CNV"
+
+  plutchik:
+    relacao: "Vocabulário emocional complementar"
+    como_usar: "Plutchik expande o léxico de sentimentos"
+
+  employer_branding_evp:
+    relacao: "EVP baseado em necessidades, não benefícios"
+    como_usar: "Comunique o 'porquê' do que oferece"
+
+# ═══════════════════════════════════════════════════════════════════
+# USO PELOS AGENTES
+# ═══════════════════════════════════════════════════════════════════
+uso_pelos_agentes:
+  - agente: "Culture-Community-Architect (DEENEA)"
+    aplicacao: "Clima organizacional, valores vividos"
+
+  - agente: "Brand-Voice-Director (storYOURtelling)"
+    aplicacao: "Tom de voz empático"
+
+  - agente: "Narrative-Designer (storYOURtelling)"
+    aplicacao: "Narrativas com personagens humanos"
+
+  - agente: "Copywriter (storYOURtelling)"
+    aplicacao: "Copy que valida sentimentos"
+
+  - agente: "Brand-Director (UNNIKO)"
+    aplicacao: "EVP humanizado"
+
+# ═══════════════════════════════════════════════════════════════════
+# WORKSHOP CNV - ESTRUTURA SUGERIDA
+# ═══════════════════════════════════════════════════════════════════
+workshop_sugerido:
+  duracao: "4 horas"
+
+  modulos:
+    modulo_1:
+      nome: "Observar vs Julgar"
+      duracao: "45 min"
+      exercicio: "Reescrever julgamentos como observações"
+
+    modulo_2:
+      nome: "Sentimentos Reais"
+      duracao: "45 min"
+      exercicio: "Identificar pseudo-sentimentos em conversas"
+
+    modulo_3:
+      nome: "Necessidades Universais"
+      duracao: "45 min"
+      exercicio: "Mapear necessidades por trás de conflitos"
+
+    modulo_4:
+      nome: "Pedidos que Conectam"
+      duracao: "45 min"
+      exercicio: "Transformar exigências em pedidos"
+
+    pratica_integradora:
+      nome: "Diálogo CNV"
+      duracao: "60 min"
+      exercicio: "Role play de situações reais do trabalho"
+
+  indicadores_pos_workshop:
+    - "Frequência de conflitos resolvidos sem escalada"
+    - "Qualidade do feedback entre pares"
+    - "Satisfação com comunicação interna"

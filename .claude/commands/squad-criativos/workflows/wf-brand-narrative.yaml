@@ -1,0 +1,496 @@
+# Workflow: Brand Narrative (storYOURtelling)
+# Construção de Narrativa com Frameworks Curados
+# Tríade: DEENEA → UNNIKO → storYOURtelling (Narrativa)
+
+name: wf-brand-narrative
+description: |
+  Workflow completo para construção da narrativa e criação de marca.
+  Utiliza frameworks curados de viralidade, formação de hábito e jornada
+  de marketing para criar campanhas que conectam e convertem.
+
+version: "2.0"
+squad: storytelling
+command: "*develop-big-idea"
+duracao_estimada: "5-8 dias úteis"
+formato_final: "Creative Brief + Campaign Assets"
+
+# ═══════════════════════════════════════════════════════════════════
+# FRAMEWORKS CURADOS UTILIZADOS
+# ═══════════════════════════════════════════════════════════════════
+frameworks_curados:
+  virality_frameworks:
+    arquivo: "virality-frameworks.yaml"
+    aplicacao: "Criar conteúdo que se espalha naturalmente"
+    frameworks:
+      stepps:
+        nome: "STEPPS (Jonah Berger)"
+        elementos:
+          - "Social Currency (status)"
+          - "Triggers (gatilhos mentais)"
+          - "Emotion (emoção intensa)"
+          - "Public (visibilidade)"
+          - "Practical Value (utilidade)"
+          - "Stories (histórias)"
+      speacc:
+        nome: "SPEACC Framework"
+        elementos:
+          - "Simple (simplicidade)"
+          - "Personal (pessoal)"
+          - "Emotional (emocional)"
+          - "Actionable (acionável)"
+          - "Credible (credível)"
+          - "Concrete (concreto)"
+      reduce:
+        nome: "REDUCE Framework"
+        elementos:
+          - "Reduce uncertainty"
+          - "Enhance identity"
+          - "Drive discovery"
+          - "Utility"
+          - "Connection"
+          - "Entertainment"
+    usado_por:
+      - creative-director
+      - big-idea-architect
+      - copywriter
+
+  hook_model_eyal:
+    arquivo: "hook-model-eyal.yaml"
+    aplicacao: "Criar narrativas que formam hábito"
+    fases:
+      trigger: "Gatilho (externo → interno)"
+      action: "Ação (mínimo esforço)"
+      variable_reward: "Recompensa variável"
+      investment: "Investimento (próximo loop)"
+    usado_por:
+      - creative-director
+      - narrative-designer
+
+  marketing_journey_kotler:
+    arquivo: "marketing-journey-kotler.yaml"
+    aplicacao: "Jornada 5As do Marketing 4.0"
+    fases:
+      aware: "Eu sei que existe"
+      appeal: "Eu gosto"
+      ask: "Estou convencido"
+      act: "Estou comprando"
+      advocate: "Eu recomendo"
+    usado_por:
+      - narrative-designer
+      - creative-brief-analyst
+
+  behavioral_economics:
+    arquivo: "behavioral-economics-branding.yaml"
+    aplicacao: "Textos persuasivos com vieses"
+    usado_por:
+      - copywriter
+
+# ═══════════════════════════════════════════════════════════════════
+# PRÉ-REQUISITOS
+# ═══════════════════════════════════════════════════════════════════
+prerequisites:
+  obrigatorios:
+    - "Brand Strategy Document (DEENEA)"
+    - "Brand Identity Document (UNNIKO)"
+    - "Design System Guidelines"
+    - "Verbal Identity Guidelines"
+
+  recomendados:
+    - "Competitive Analysis"
+    - "Audience Insights"
+    - "Channel Strategy"
+
+# ═══════════════════════════════════════════════════════════════════
+# FASES DO WORKFLOW
+# ═══════════════════════════════════════════════════════════════════
+phases:
+
+  # FASE 0: ANÁLISE DE BRIEFING
+  - phase: 0
+    name: "Brief Analysis"
+    duracao: "0.5 dia"
+    agente_principal: creative-brief-analyst
+
+    frameworks_aplicados:
+      - marketing-journey-kotler.yaml
+      - jtbd-framework.yaml
+
+    tasks:
+      - task: analyze-brief
+        description: "Analisar briefing e mapear para taxonomia"
+        output: "Briefing Enriquecido"
+
+      - task: define-connector
+        description: "Definir Conector de Marca (Eixo)"
+        opcoes:
+          - "Marca Institucional (propósito)"
+          - "Marca Mercadológica (produto)"
+          - "Marca Empregadora (cultura)"
+          - "Marca Pessoal (líder)"
+          - "Marca Sintética (avatar)"
+        output: "Brand Connector"
+
+      - task: map-5as-objective
+        description: "Mapear objetivo para fase da jornada 5As"
+        framework: "Kotler - Marketing 5.0"
+        pergunta: "Em qual fase queremos impactar?"
+        output: "5As Objective"
+
+    checkpoint:
+      question: "Briefing claro e mapeado?"
+      criteria:
+        - "Objetivo único e claro"
+        - "Eixo de marca definido"
+        - "Fase 5As identificada"
+
+  # FASE 1: COMUNICAÇÃO (Conceito)
+  - phase: 1
+    name: "Communication Strategy"
+    duracao: "1 dia"
+    agente_principal: big-idea-architect
+    depende_de: [phase_0]
+
+    frameworks_aplicados:
+      - virality-frameworks.yaml
+      - hook-model-eyal.yaml
+
+    tasks:
+      - task: generate-big-idea-candidates
+        description: "Gerar candidatos de Big Idea"
+        framework: "STEPPS + Hook Model"
+        criterios:
+          stepps: "Qual elemento STEPPS é o core?"
+          hook: "Qual gatilho ativa o loop?"
+        quantidade: "3-5 candidatos"
+        output: "Big Idea Candidates"
+
+      - task: validate-virality-potential
+        description: "Validar potencial de viralidade"
+        framework: "STEPPS Scorecard"
+        score_por_elemento:
+          social_currency: "1-5"
+          triggers: "1-5"
+          emotion: "1-5"
+          public: "1-5"
+          practical_value: "1-5"
+          stories: "1-5"
+        output: "Virality Scorecard"
+
+      - task: select-big-idea
+        description: "Selecionar Big Idea final"
+        criterios:
+          - "Score STEPPS mais alto"
+          - "Alinhamento com marca"
+          - "Executabilidade"
+        output: "Big Idea Aprovada"
+
+    checkpoint:
+      question: "Big Idea viral e alinhada?"
+      criteria:
+        - "Score STEPPS >= 20/30"
+        - "Alinhada com estratégia"
+        - "Executável no budget"
+
+  # FASE 2: NARRATIVA (Estrutura)
+  - phase: 2
+    name: "Narrative Design"
+    duracao: "1-2 dias"
+    agente_principal: narrative-designer
+    depende_de: [phase_1]
+
+    frameworks_aplicados:
+      - hook-model-eyal.yaml
+      - marketing-journey-kotler.yaml
+      - virality-frameworks.yaml
+
+    tasks:
+      - task: design-hook-loop
+        description: "Desenhar loop de engajamento"
+        framework: "Nir Eyal - Hook Model"
+        componentes:
+          trigger_externo: "O que inicia (ad, post, email)"
+          trigger_interno: "O que mantém (emoção, hábito)"
+          action: "Ação mínima desejada"
+          variable_reward: "Recompensa que surpreende"
+          investment: "O que leva ao próximo loop"
+        output: "Hook Loop Design"
+
+      - task: map-5as-narrative
+        description: "Mapear narrativa para jornada 5As"
+        framework: "Kotler - 5As Journey"
+        por_fase:
+          aware: "Como vão nos conhecer?"
+          appeal: "Por que vão gostar?"
+          ask: "O que vão pesquisar?"
+          act: "Como vão converter?"
+          advocate: "Por que vão recomendar?"
+        output: "5As Narrative Map"
+
+      - task: select-storytelling-framework
+        description: "Selecionar estrutura narrativa"
+        opcoes:
+          - "5 Beats (Tensão → Resolução)"
+          - "Hero's Journey"
+          - "Before/After/Bridge"
+          - "Problem/Agitation/Solution"
+          - "AIDA"
+        output: "Framework Selection"
+
+      - task: map-emotions
+        description: "Mapear arco emocional"
+        framework: "Emotion Map"
+        pontos:
+          abertura: "Emoção inicial"
+          tensao: "Pico de tensão"
+          resolucao: "Emoção de fechamento"
+        output: "Emotion Map"
+
+    checkpoint:
+      question: "Narrativa estruturada?"
+      criteria:
+        - "Hook Loop desenhado"
+        - "Jornada 5As mapeada"
+        - "Framework selecionado"
+        - "Arco emocional definido"
+
+  # FASE 3: CONCEITO (Execução)
+  - phase: 3
+    name: "Concept Development"
+    duracao: "1 dia"
+    agente_principal: concept-writer
+    validador: brand-voice-director
+    depende_de: [phase_2]
+
+    frameworks_aplicados:
+      - virality-frameworks.yaml
+      - hook-model-eyal.yaml
+
+    tasks:
+      - task: create-core-concept
+        description: "Desenvolver Core Creative Idea"
+        derivado_de: "Big Idea"
+        output: "Core Creative Idea"
+
+      - task: develop-tagline
+        description: "Criar tagline da campanha"
+        framework: "SPEACC (simples, pessoal, emocional)"
+        criterios:
+          - "Memorável (<=7 palavras)"
+          - "Conecta com Big Idea"
+          - "Alinhada com tom de marca"
+        output: "Campaign Tagline"
+
+      - task: define-campaign-tone
+        description: "Definir tom específico da campanha"
+        base: "Verbal Identity (UNNIKO)"
+        adaptacao: "Intensidade para contexto"
+        output: "Campaign Tone Guidelines"
+
+      - task: create-key-messages
+        description: "Criar mensagens-chave"
+        estrutura:
+          primaria: "Mensagem principal"
+          suporte: "3-5 mensagens de suporte"
+          proof_points: "Evidências/provas"
+        output: "Key Messages"
+
+      - task: validate-voice
+        description: "Validar voz com Brand Voice Director"
+        agente: brand-voice-director
+        checklist:
+          - "Soa como a marca?"
+          - "Tom adequado ao contexto?"
+          - "Vocabulário permitido?"
+        output: "Voice Validation"
+
+    checkpoint:
+      question: "Conceito sólido e validado?"
+      criteria:
+        - "Core Concept aprovado"
+        - "Tagline memorável"
+        - "Tom validado"
+        - "Mensagens claras"
+
+  # FASE 4: CRIAÇÃO (Assets)
+  - phase: 4
+    name: "Creative Production"
+    duracao: "2-3 dias"
+    agentes:
+      - copywriter
+      - art-director
+    validador: brand-voice-director
+    depende_de: [phase_3]
+
+    frameworks_aplicados:
+      - virality-frameworks.yaml
+      - behavioral-economics-branding.yaml
+      - sensory-branding.yaml
+
+    tasks:
+      - task: write-copy
+        description: "Escrever textos para todos os formatos"
+        agente: copywriter
+        framework: "STEPPS + Behavioral Economics"
+        formatos:
+          - "Headlines"
+          - "Body copy"
+          - "CTAs"
+          - "Social posts"
+          - "Scripts"
+        vieses_aplicados:
+          - "Scarcity (escassez)"
+          - "Social Proof (prova social)"
+          - "Loss Aversion (aversão à perda)"
+        output: "Copy Package"
+
+      - task: direct-visual
+        description: "Criar direção visual"
+        agente: art-director
+        framework: "Sensory Branding"
+        elementos:
+          - "Key visuals"
+          - "Estilo fotográfico"
+          - "Tratamento de cor"
+          - "Composição"
+        output: "Visual Direction"
+
+      - task: create-assets
+        description: "Produzir assets por formato"
+        formatos:
+          social:
+            - "Feed posts"
+            - "Stories"
+            - "Reels/TikTok"
+            - "Carousels"
+          digital:
+            - "Banners"
+            - "Email"
+            - "Landing page"
+          video:
+            - "Storyboard"
+            - "Script"
+            - "Motion graphics"
+        output: "Campaign Assets"
+
+      - task: final-voice-validation
+        description: "Validação final de voz"
+        agente: brand-voice-director
+        output: "Final Approval"
+
+    checkpoint:
+      question: "Assets prontos para produção?"
+      criteria:
+        - "Copy aprovado"
+        - "Visual direction aprovada"
+        - "Assets em todos os formatos"
+        - "Voz validada"
+
+  # FASE 5: BRIEFING DE CRIAÇÃO
+  - phase: 5
+    name: "Creative Brief Compilation"
+    duracao: "0.5 dia"
+    agente_principal: creative-brief-analyst
+    depende_de: [phase_4]
+
+    tasks:
+      - task: compile-creative-brief
+        description: "Compilar Briefing de Criação para Content Ops"
+        estrutura:
+          contexto:
+            - "Cliente/Marca"
+            - "Objetivo"
+            - "Público-alvo"
+            - "Eixo de marca"
+          estrategia:
+            - "Big Idea"
+            - "Core Creative Idea"
+            - "Key Messages"
+            - "Tom de campanha"
+          execucao:
+            - "Caminho criativo"
+            - "Framework narrativo"
+            - "Emotion Map"
+          artefatos:
+            - "Copy Package"
+            - "Visual Direction"
+            - "Assets por formato"
+          producao:
+            - "Canais"
+            - "Formatos"
+            - "Especificações"
+        output: "Creative Brief (Final)"
+
+      - task: handoff-content-ops
+        description: "Preparar handoff para Content Ops"
+        output: "Content Ops Handoff Package"
+
+    checkpoint:
+      question: "Briefing completo para produção?"
+      criteria:
+        - "Todas as seções preenchidas"
+        - "Assets anexados"
+        - "Especificações claras"
+
+# ═══════════════════════════════════════════════════════════════════
+# ENTREGÁVEIS
+# ═══════════════════════════════════════════════════════════════════
+deliverables:
+  principal:
+    - "Creative Brief"
+    - "Campaign Assets"
+
+  componentes:
+    strategy:
+      - "Briefing Enriquecido"
+      - "Brand Connector"
+      - "5As Objective"
+
+    concept:
+      - "Big Idea (com STEPPS score)"
+      - "Hook Loop Design"
+      - "5As Narrative Map"
+      - "Emotion Map"
+
+    creative:
+      - "Core Creative Idea"
+      - "Campaign Tagline"
+      - "Campaign Tone Guidelines"
+      - "Key Messages"
+
+    production:
+      - "Copy Package"
+      - "Visual Direction"
+      - "Campaign Assets (todos os formatos)"
+
+    handoff:
+      - "Creative Brief (Final)"
+      - "Content Ops Handoff Package"
+
+# ═══════════════════════════════════════════════════════════════════
+# HANDOFF
+# ═══════════════════════════════════════════════════════════════════
+handoff:
+  destino: "Content Ops (Content Director) + Growth Ops (Growth Director)"
+  entrega: "Creative Brief + Assets + Handoff Package"
+  checkpoint: 6
+  proximos_workflows:
+    - "wf-content-production (Content Ops)"
+    - "wf-growth-campaign (Growth Ops)"
+
+# ═══════════════════════════════════════════════════════════════════
+# DATA FILES REFERENCIADOS
+# ═══════════════════════════════════════════════════════════════════
+data_files:
+  # Frameworks curados (2026-02)
+  - virality-frameworks.yaml
+  - hook-model-eyal.yaml
+  - marketing-journey-kotler.yaml
+  - behavioral-economics-branding.yaml
+  - sensory-branding.yaml
+  # Frameworks existentes
+  - storytelling-frameworks.yaml
+  - 5beats-framework.yaml
+  - creative-paths.yaml
+  - attention-economy.yaml
+  - golden-sentence.yaml
+  - brand-axes.yaml

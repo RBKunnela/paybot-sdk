@@ -1,0 +1,288 @@
+# Typography & Brand Personality
+# Relação entre tipografia e personalidade de marca
+# Usado por: Design System Architect
+
+metadata:
+  name: "Tipografia e Personalidade de Marca"
+  version: "1.0"
+
+principios:
+  tipografia_como_voz: |
+    A tipografia é a voz visual da marca.
+    Ela comunica personalidade antes mesmo de ler o conteúdo.
+
+  consistencia: |
+    Uso consistente de tipografia cria reconhecimento.
+    Limitar a 2-3 famílias tipográficas.
+
+  legibilidade_first: |
+    Personalidade não pode comprometer legibilidade.
+    Funcionalidade vem antes de expressão.
+
+categorias_tipograficas:
+
+  serif:
+    descricao: "Fontes com serifas (traços nas extremidades)"
+    personalidade:
+      - Tradição
+      - Confiança
+      - Autoridade
+      - Sofisticação
+      - Elegância
+    arquetipos_alinhados:
+      - Sábio
+      - Governante
+      - Cuidador
+    setores_comuns:
+      - Finanças
+      - Advocacia
+      - Editorial
+      - Luxo tradicional
+    exemplos:
+      classicas:
+        - "Times New Roman"
+        - "Garamond"
+        - "Baskerville"
+      modernas:
+        - "Playfair Display"
+        - "Merriweather"
+        - "Lora"
+    uso_recomendado:
+      - Headlines de impacto
+      - Textos longos (alta legibilidade)
+      - Contextos premium/formais
+
+  sans_serif:
+    descricao: "Fontes sem serifas"
+    personalidade:
+      - Modernidade
+      - Limpeza
+      - Acessibilidade
+      - Tecnologia
+      - Simplicidade
+    arquetipos_alinhados:
+      - Criador
+      - Explorador
+      - Inocente
+      - Cara Comum
+    setores_comuns:
+      - Tecnologia
+      - Startups
+      - Varejo
+      - Digital-first
+    exemplos:
+      geometricas:
+        - "Futura"
+        - "Montserrat"
+        - "Poppins"
+      humanistas:
+        - "Open Sans"
+        - "Lato"
+        - "Source Sans Pro"
+      grotescas:
+        - "Helvetica"
+        - "Arial"
+        - "Inter"
+    uso_recomendado:
+      - Interfaces digitais
+      - Comunicação moderna
+      - Textos em telas
+
+  slab_serif:
+    descricao: "Serifas grossas e blocadas"
+    personalidade:
+      - Força
+      - Confiança
+      - Solidez
+      - Robustez
+      - Masculinidade
+    arquetipos_alinhados:
+      - Herói
+      - Fora da Lei
+      - Explorador
+    setores_comuns:
+      - Construção
+      - Automotivo
+      - Startups (statement)
+      - Jornalismo
+    exemplos:
+      - "Rockwell"
+      - "Clarendon"
+      - "Roboto Slab"
+      - "Zilla Slab"
+    uso_recomendado:
+      - Headlines de impacto
+      - Comunicação bold
+      - Marcas statement
+
+  script:
+    descricao: "Fontes cursivas/manuscritas"
+    personalidade:
+      - Elegância
+      - Pessoalidade
+      - Criatividade
+      - Feminilidade (algumas)
+      - Tradição artesanal
+    arquetipos_alinhados:
+      - Amante
+      - Criador
+      - Mago
+    setores_comuns:
+      - Beleza
+      - Casamentos
+      - Alimentação artesanal
+      - Luxo
+    exemplos:
+      formais:
+        - "Edwardian Script"
+        - "Snell Roundhand"
+      casuais:
+        - "Pacifico"
+        - "Dancing Script"
+        - "Satisfy"
+    uso_recomendado:
+      - Acentos e destaques
+      - Assinaturas
+      - Elementos decorativos
+    cautela:
+      - "Legibilidade comprometida em textos longos"
+      - "Usar com moderação"
+
+  display:
+    descricao: "Fontes decorativas para destaque"
+    personalidade:
+      - Expressão única
+      - Criatividade
+      - Impacto
+      - Personalidade forte
+    arquetipos_alinhados:
+      - Fora da Lei
+      - Bobo da Corte
+      - Criador
+    uso_recomendado:
+      - Logos
+      - Headlines grandes
+      - Materiais promocionais
+    cautela:
+      - "Nunca para corpo de texto"
+      - "Pode datar rapidamente"
+
+  monospace:
+    descricao: "Largura fixa para cada caractere"
+    personalidade:
+      - Técnico
+      - Código
+      - Precisão
+      - Digital
+      - Retro-tech
+    arquetipos_alinhados:
+      - Sábio (técnico)
+      - Criador (developer)
+    setores_comuns:
+      - Tecnologia
+      - Developer tools
+      - Fintech
+    exemplos:
+      - "Roboto Mono"
+      - "Source Code Pro"
+      - "JetBrains Mono"
+      - "IBM Plex Mono"
+    uso_recomendado:
+      - Código
+      - Dados técnicos
+      - Estética tech
+
+caracteristicas_tipograficas:
+
+  peso:
+    light:
+      personalidade: ["Delicado", "Elegante", "Moderno"]
+    regular:
+      personalidade: ["Neutro", "Legível", "Acessível"]
+    bold:
+      personalidade: ["Forte", "Confiante", "Impactante"]
+    black:
+      personalidade: ["Poderoso", "Statement", "Dramático"]
+
+  largura:
+    condensed:
+      personalidade: ["Dinâmico", "Urgente", "Esportivo"]
+    regular:
+      personalidade: ["Equilibrado", "Clássico"]
+    extended:
+      personalidade: ["Luxuoso", "Imponente", "Moderno"]
+
+  contraste:
+    alto_contraste:
+      descricao: "Grande diferença entre traços grossos e finos"
+      personalidade: ["Elegante", "Clássico", "Sofisticado"]
+      exemplos: ["Didot", "Bodoni"]
+
+    baixo_contraste:
+      descricao: "Traços mais uniformes"
+      personalidade: ["Moderno", "Acessível", "Funcional"]
+      exemplos: ["Helvetica", "Futura"]
+
+hierarquia_tipografica:
+  estrutura:
+    display: "Títulos grandes, impacto visual"
+    h1: "Título principal da página"
+    h2: "Seções principais"
+    h3: "Sub-seções"
+    body: "Texto corrido"
+    small: "Legendas, notas"
+    micro: "Legal, metadados"
+
+  escala:
+    tipo: "Escala modular recomendada"
+    razoes_comuns:
+      - 1.125  # Major Second
+      - 1.200  # Minor Third
+      - 1.250  # Major Third
+      - 1.333  # Perfect Fourth
+      - 1.414  # Augmented Fourth
+      - 1.500  # Perfect Fifth
+
+combinacoes_recomendadas:
+  serif_sans:
+    uso: "Serif para headlines, sans para body (ou vice-versa)"
+    exemplos:
+      - ["Playfair Display", "Source Sans Pro"]
+      - ["Merriweather", "Open Sans"]
+
+  sans_sans:
+    uso: "Diferentes pesos da mesma família ou famílias complementares"
+    exemplos:
+      - ["Montserrat Bold", "Open Sans Regular"]
+      - ["Poppins", "Inter"]
+
+  display_sans:
+    uso: "Display para logo/headlines, sans para tudo mais"
+    exemplos:
+      - ["Bebas Neue", "Roboto"]
+
+processo_selecao:
+  1_definir_personalidade:
+    - "Quais adjetivos descrevem a marca?"
+    - "Qual arquétipo dominante?"
+    - "Formal ou casual? Moderno ou clássico?"
+
+  2_considerar_funcionalidade:
+    - "Onde será usada (digital, impresso, ambos)?"
+    - "Precisa de múltiplos pesos?"
+    - "Suporta caracteres especiais necessários?"
+
+  3_testar_legibilidade:
+    - "Testar em diferentes tamanhos"
+    - "Testar em diferentes dispositivos"
+    - "Verificar contraste"
+
+  4_verificar_licenciamento:
+    - "Licença permite uso comercial?"
+    - "Web fonts disponíveis?"
+    - "Custo viável?"
+
+referencias:
+  - "Lupton, E. - Thinking with Type"
+  - "Spiekermann, E. - Stop Stealing Sheep"
+  - "Butterick, M. - Practical Typography"

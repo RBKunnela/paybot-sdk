@@ -1,0 +1,115 @@
+name: write-paper
+description: Write complete research paper following IMRaD structure and academic standards
+category: writing
+agent: academic-writer
+priority: high
+estimated_duration: 10-15 days
+
+inputs:
+  - research_data:
+      type: file
+      description: Results, analysis, findings from research
+      required: true
+  - literature_review:
+      type: file
+      description: Completed literature review section
+      required: true
+  - methodology:
+      type: file
+      description: Detailed methodology section
+      required: true
+  - target_journal:
+      type: string
+      description: Target journal for submission
+      required: true
+  - word_limit:
+      type: integer
+      description: Journal word limit (if any)
+      required: false
+
+outputs:
+  - manuscript:
+      type: file
+      format: docx, latex
+      description: Complete manuscript ready for submission
+  - figures_tables:
+      type: files
+      description: All figures and tables with captions
+
+steps:
+  - step: 1
+    name: write_introduction
+    description: Write introduction with background, gap, RQs
+    agent: academic-writer
+    estimated_duration: 2-3 days
+
+  - step: 2
+    name: write_methods
+    description: Write detailed, replicable methodology section
+    agent: academic-writer
+    estimated_duration: 2 days
+
+  - step: 3
+    name: write_results
+    description: Write results section with tables, figures, statistics
+    agent: academic-writer
+    estimated_duration: 2-3 days
+
+  - step: 4
+    name: write_discussion
+    description: Write discussion with interpretation, implications, limitations
+    agent: academic-writer
+    estimated_duration: 3-4 days
+
+  - step: 5
+    name: format_citations
+    description: Ensure all citations are correctly formatted
+    agent: citation-manager
+    estimated_duration: 1 day
+
+  - step: 6
+    name: internal_peer_review
+    description: Conduct internal peer review before submission
+    agent: peer-reviewer
+    estimated_duration: 2 days
+
+success_criteria:
+  - Follows IMRaD structure
+  - Clear, concise academic writing style
+  - All citations formatted correctly
+  - Figures/tables properly labeled and referenced
+  - Within word limit (if applicable)
+  - No plagiarism detected
+  - Passes internal peer review
+
+deliverables:
+  - Complete manuscript (Word/LaTeX)
+  - Separate figure files (high-resolution)
+  - Separate table files
+  - Supplementary materials (if any)
+  - Cover letter draft
+
+best_practices:
+  - Write methods section first (clearest to write)
+  - Use past tense for methods and results
+  - Use present tense for general facts in introduction/discussion
+  - One idea per paragraph with clear topic sentences
+  - Use active voice when possible
+  - Create tables for complex data instead of text
+  - Cite as you write (don't wait until the end)
+  - Follow journal-specific guidelines
+
+common_pitfalls:
+  - Overclaiming ("proves" instead of "suggests")
+  - Results interpretation in results section (keep objective)
+  - Missing methodological details (can't replicate)
+  - Inconsistent terminology
+  - Poor figure/table design
+  - Plagiarism (always paraphrase + cite)
+
+tags:
+  - writing
+  - imrad
+  - manuscript
+  - publication
+  - academic-writing

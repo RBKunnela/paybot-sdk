@@ -1,0 +1,73 @@
+# Task: Mine Market Data
+# Squad: squAId-criaTTivados / search-insights
+# Responsável: data-miner
+
+metadata:
+  name: "mine-market-data"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "search-insights"
+  responsavel: "data-miner"
+  tipo: task
+
+descricao: |
+  Coleta estruturada de dados de mercado: market share, distribuição,
+  dados comportamentais, tendências. Organizada pelos 3 Domínios da Taxonomia.
+
+entrada:
+  - campo: handoff_package
+    tipo: string
+    origem: "prepare-handoff"
+    obrigatorio: true
+    descricao: "Handoff Package do Atendimento"
+  - campo: segmento
+    tipo: string
+    origem: "briefing"
+    obrigatorio: true
+    descricao: "Segmento de atuação para direcionar pesquisa"
+
+saida:
+  - campo: raw_market_data
+    tipo: string
+    destino: "analyze-competition / synthesize-insights"
+    persistido: true
+    descricao: "Dados brutos organizados por domínio"
+
+passos:
+  1:
+    nome: "Definir escopo de pesquisa"
+    descricao: "Delimitar mercado, geografia, período e queries de pesquisa"
+    agente: "data-miner"
+  2:
+    nome: "Pesquisa web via EXA"
+    descricao: "Buscar relatórios públicos, artigos setoriais, dados de mercado"
+    agente: "data-miner"
+    ferramenta: "mcp__docker-gateway__web_search_exa"
+  3:
+    nome: "Scraping de concorrentes via Apify"
+    descricao: "Extrair dados de sites, redes sociais e reviews dos concorrentes"
+    agente: "data-miner"
+    ferramenta: "mcp__docker-gateway__call-actor"
+  4:
+    nome: "Social Listening"
+    descricao: "Monitorar redes sociais para sentimento, SOV e tendências"
+    agente: "social-listener"
+  5:
+    nome: "Coletar tendências"
+    descricao: "STEEP scan, trend scoring, convenções de categoria"
+    agente: "trend-analyst"
+  6:
+    nome: "Organizar por Domínio"
+    descricao: "Classificar dados coletados por Domínio I, II e III"
+    agente: "data-miner"
+
+checklist:
+  - "[ ] Dados de mercado coletados"
+  - "[ ] Dados competitivos mapeados"
+  - "[ ] Comportamento do consumidor documentado"
+  - "[ ] Tendências identificadas"
+  - "[ ] Dados organizados por domínio"
+
+criterios_aceitacao:
+  - "Dados factuais com fontes citadas"
+  - "Cobertura dos 3 domínios"

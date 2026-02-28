@@ -1,0 +1,363 @@
+# Workflow: Branding / Identidade Visual
+# Caminho Criativo: BRANDING
+# Framework Central: Brand Axes + Taxonomia
+
+name: wf-branding
+description: |
+  Workflow para projetos de branding que envolvem criação ou
+  evolução de identidade visual e verbal. Conecta UNNIKO + storYOURtelling.
+
+version: "1.0"
+caminho_criativo: "Branding"
+duracao_estimada: "10-20 dias úteis"
+formato_final: "Brand Book + Guidelines"
+
+# ═══════════════════════════════════════════════════════════════════
+# PRÉ-REQUISITOS
+# ═══════════════════════════════════════════════════════════════════
+prerequisites:
+  obrigatorios:
+    - "Brand Foundation (DEENEA)"
+    - "Differentiation Strategy (UNNIKO)"
+    - "Escopo definido (criação vs evolução)"
+
+  recomendados:
+    - "Análise competitiva"
+    - "Pesquisa de percepção"
+    - "Referências visuais"
+
+# ═══════════════════════════════════════════════════════════════════
+# TIPOS DE PROJETO
+# ═══════════════════════════════════════════════════════════════════
+tipos:
+  criacao_completa:
+    descricao: "Nova marca do zero"
+    inclui: "Naming + Logo + Sistema completo"
+    duracao: "15-20 dias"
+
+  evolucao:
+    descricao: "Evolução de marca existente"
+    inclui: "Refresh visual + Verbal identity"
+    duracao: "10-15 dias"
+
+  extensao:
+    descricao: "Nova linha ou sub-marca"
+    inclui: "Arquitetura + Sistema derivado"
+    duracao: "8-12 dias"
+
+# ═══════════════════════════════════════════════════════════════════
+# FASES DO WORKFLOW
+# ═══════════════════════════════════════════════════════════════════
+phases:
+
+  # FASE 1: IMERSÃO E ANÁLISE
+  - phase: 1
+    name: "Imersão e Análise"
+    duracao: "1-2 dias"
+    squad_principal: unniko
+    agente_principal: brand-auditor
+
+    tasks:
+      - task: brand-audit
+        description: "Auditoria de marca existente (se houver)"
+        output: "Audit Report"
+
+      - task: competitive-analysis
+        description: "Análise de concorrência visual"
+        output: "Visual Landscape"
+
+      - task: stakeholder-interviews
+        description: "Entrevistas com stakeholders"
+        output: "Insights"
+
+    checkpoint:
+      question: "Diagnóstico completo?"
+      criteria:
+        - "Entendimento do contexto"
+        - "Gaps identificados"
+        - "Oportunidades mapeadas"
+
+  # FASE 2: ESTRATÉGIA DE MARCA
+  - phase: 2
+    name: "Estratégia de Marca"
+    duracao: "2-3 dias"
+    squad_principal: unniko
+    agente_principal: differentiation-strategist
+
+    tasks:
+      - task: define-positioning
+        description: "Definir/validar posicionamento"
+        input: "Brand Foundation (DEENEA)"
+        output: "Positioning Statement"
+
+      - task: define-differentiators
+        description: "Mapear diferenciais"
+        framework: "Taxonomia de Diferenciais"
+        output: "Differentiation Map"
+
+      - task: define-brand-axis
+        description: "Definir eixo de marca primário"
+        framework: "5 Eixos de Marca"
+        output: "Brand Axis"
+
+      - task: define-personality
+        description: "Definir personalidade"
+        frameworks:
+          - "Arquétipos"
+          - "Brand Personality Aaker"
+        output: "Personality Profile"
+
+    checkpoint:
+      question: "Estratégia sólida?"
+      criteria:
+        - "Posicionamento claro"
+        - "Diferenciais mapeados"
+        - "Personalidade definida"
+
+  # FASE 3: NARRATIVA DE MARCA
+  - phase: 3
+    name: "Narrativa de Marca"
+    duracao: "2-3 dias"
+    squad_principal: storytelling
+    agente_principal: narrative-designer
+
+    tasks:
+      - task: create-origin-story
+        description: "Criar/refinar Origin Story"
+        output: "Origin Story"
+
+      - task: create-manifesto
+        description: "Criar manifesto de marca"
+        output: "Brand Manifesto"
+
+      - task: define-golden-sentence
+        description: "Criar Golden Sentence"
+        framework: "Eu ajudo X a conquistar Y através de Z"
+        output: "Golden Sentence"
+
+      - task: create-tagline
+        description: "Criar tagline"
+        output: "Tagline options"
+
+    checkpoint:
+      question: "Narrativa poderosa?"
+      criteria:
+        - "Origin Story autêntica"
+        - "Manifesto inspirador"
+        - "Tagline memorável"
+
+  # FASE 4: IDENTIDADE VERBAL
+  - phase: 4
+    name: "Identidade Verbal"
+    duracao: "2-3 dias"
+    squad_principal: unniko
+    agente_principal: verbal-identity-specialist
+    validador: brand-voice-director
+
+    tasks:
+      - task: define-tone-of-voice
+        description: "Definir tom de voz"
+        dimensoes:
+          - "Formalidade"
+          - "Energia"
+          - "Humor"
+          - "Proximidade"
+        output: "Tone of Voice"
+
+      - task: define-vocabulary
+        description: "Definir vocabulário"
+        conteudo:
+          - "Palavras assinatura"
+          - "Palavras proibidas"
+          - "Jargões permitidos"
+        output: "Vocabulary Guidelines"
+
+      - task: create-examples
+        description: "Criar exemplos de aplicação"
+        contextos:
+          - "Formal"
+          - "Informal"
+          - "Crise"
+          - "Celebração"
+        output: "Voice Examples"
+
+    checkpoint:
+      question: "Voz definida?"
+      criteria:
+        - "Tom claro"
+        - "Vocabulário listado"
+        - "Exemplos úteis"
+
+  # FASE 5: IDENTIDADE VISUAL
+  - phase: 5
+    name: "Identidade Visual"
+    duracao: "3-5 dias"
+    squad_principal: unniko
+    agente_principal: design-system-architect
+
+    tasks:
+      - task: logo-design
+        description: "Design de logo (se aplicável)"
+        entregas:
+          - "Logo principal"
+          - "Variações"
+          - "Versões monocromáticas"
+        output: "Logo"
+
+      - task: color-palette
+        description: "Definir paleta de cores"
+        framework: "Color Psychology"
+        entregas:
+          - "Cores primárias"
+          - "Cores secundárias"
+          - "Cores de apoio"
+          - "Códigos (HEX, RGB, CMYK)"
+        output: "Color Palette"
+
+      - task: typography
+        description: "Definir tipografia"
+        framework: "Typography Personality"
+        entregas:
+          - "Fonte de títulos"
+          - "Fonte de corpo"
+          - "Hierarquia tipográfica"
+        output: "Typography System"
+
+      - task: visual-elements
+        description: "Elementos visuais"
+        entregas:
+          - "Patterns"
+          - "Iconografia"
+          - "Fotografia (direção)"
+          - "Ilustração (estilo)"
+        output: "Visual Elements"
+
+      - task: applications
+        description: "Aplicações de marca"
+        entregas:
+          - "Papelaria"
+          - "Digital (social, web)"
+          - "Ambientação"
+        output: "Applications"
+
+    checkpoint:
+      question: "Sistema visual completo?"
+      criteria:
+        - "Logo aprovado"
+        - "Cores definidas"
+        - "Tipografia definida"
+        - "Aplicações demonstradas"
+
+  # FASE 6: VALIDAÇÃO E REFINAMENTO
+  - phase: 6
+    name: "Validação"
+    duracao: "1-2 dias"
+    agente_principal: brand-voice-director
+
+    tasks:
+      - task: validate-consistency
+        description: "Validar consistência visual/verbal"
+        output: "Consistency Report"
+
+      - task: stress-test
+        description: "Testar em diferentes contextos"
+        contextos:
+          - "Digital"
+          - "Impresso"
+          - "Redução"
+          - "P&B"
+        output: "Stress Test Results"
+
+      - task: refinements
+        description: "Ajustes finais"
+        output: "Final Refinements"
+
+  # FASE 7: DOCUMENTAÇÃO
+  - phase: 7
+    name: "Documentação"
+    duracao: "2-3 dias"
+    agente_principal: creative-brief-analyst
+
+    tasks:
+      - task: create-brand-book
+        description: "Criar Brand Book"
+        estrutura:
+          - "Introdução e manifesto"
+          - "Estratégia e posicionamento"
+          - "Identidade verbal"
+          - "Identidade visual"
+          - "Aplicações"
+          - "Do's and Don'ts"
+        output: "Brand Book"
+
+      - task: create-guidelines
+        description: "Criar guidelines de uso"
+        output: "Brand Guidelines"
+
+      - task: create-assets
+        description: "Organizar assets"
+        formatos:
+          - "AI/EPS/SVG (vetores)"
+          - "PNG/JPG (raster)"
+          - "Fontes"
+          - "Templates"
+        output: "Asset Library"
+
+    handoff:
+      destino: "Cliente + Squads internos"
+      entregaveis:
+        - "Brand Book (PDF)"
+        - "Brand Guidelines"
+        - "Asset Library"
+        - "Templates"
+
+# ═══════════════════════════════════════════════════════════════════
+# ENTREGÁVEIS
+# ═══════════════════════════════════════════════════════════════════
+deliverables:
+  estrategia:
+    - "Positioning Statement"
+    - "Differentiation Map"
+    - "Personality Profile"
+
+  narrativa:
+    - "Origin Story"
+    - "Brand Manifesto"
+    - "Golden Sentence"
+    - "Tagline"
+
+  verbal:
+    - "Tone of Voice Guidelines"
+    - "Vocabulary List"
+    - "Voice Examples"
+
+  visual:
+    - "Logo + Variações"
+    - "Color Palette"
+    - "Typography System"
+    - "Visual Elements"
+    - "Applications"
+
+  documentacao:
+    - "Brand Book"
+    - "Brand Guidelines"
+    - "Asset Library"
+    - "Templates"
+
+# ═══════════════════════════════════════════════════════════════════
+# DATA FILES
+# ═══════════════════════════════════════════════════════════════════
+data_files:
+  - data/brand-axes.yaml
+  - data/taxonomia-diferenciais.yaml
+  - data/archetypes.yaml
+  - data/brand-personality-aaker.yaml
+  - data/color-psychology.yaml
+  - data/typography-personality.yaml
+  - data/sensory-branding.yaml
+  - data/golden-sentence.yaml
+  - data/origin-story-framework.yaml
+  # Frameworks curados (2026-02)
+  - data/wheeler-brand-process.yaml       # 5 fases de processo de identidade
+  - data/behavioral-economics-branding.yaml  # Vieses para branding
+  - data/kahneman-dual-systems.yaml       # Sistema 1/2 para decisões

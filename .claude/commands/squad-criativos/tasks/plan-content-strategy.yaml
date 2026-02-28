@@ -1,0 +1,130 @@
+# Task: Plan Content Strategy
+# Squad: squAId-criaTTivados / content-ops
+# Responsável: content-director
+
+metadata:
+  name: "plan-content-strategy"
+  version: "2.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "content-ops"
+  responsavel: "content-director"
+  tipo: task
+  depends_on:
+    - produce-creative-brief
+    - build-brand-essence
+  estimated_duration: "60-90 min"
+
+descricao: |
+  Planejamento estratégico de conteúdo baseado no Creative Brief.
+  Mapeia jornada 5As (Kotler) e define estratégia por plataforma.
+
+entrada:
+  - campo: creative_brief
+    tipo: string
+    origem: "produce-creative-brief"
+    obrigatorio: true
+    descricao: "Creative Brief aprovado pelo CBO Gate 3"
+  - campo: brand_strategy_document
+    tipo: string
+    origem: "build-brand-essence"
+    obrigatorio: true
+    descricao: "Estratégia de marca aprovada pelo CBO Gate 1"
+
+saida:
+  - campo: content_strategy_document
+    tipo: string
+    destino: "produce-content"
+    persistido: true
+    descricao: "Jornada 5As + estratégia por plataforma + calendário"
+
+passos:
+  1:
+    nome: "Analisar Creative Brief"
+    descricao: "Extrair Big Idea, Tom, Key Messages, Direção Visual"
+    agente: "content-director"
+    sla: "10 min"
+    on_fail: "Solicitar revisão do Creative Brief ao creative-director"
+  2:
+    nome: "Mapear jornada 5As"
+    descricao: "Aware, Appeal, Ask, Act, Advocate — definir conteúdo para cada fase"
+    agente: "social-media-strategist"
+    sla: "15 min"
+    on_fail: "Retornar ao passo 1 para revalidar inputs"
+  3:
+    nome: "Definir estratégia por plataforma"
+    descricao: "Instagram, LinkedIn, TikTok, YouTube, Twitter/X — formato e objetivo por canal"
+    agente: "social-media-strategist"
+    sla: "10 min"
+    on_fail: "Reduzir escopo para plataformas prioritárias (máx 3)"
+  4:
+    nome: "Definir formatos nativos"
+    descricao: "Feed, Stories, Reels, Carrossel, Article, Short, etc — respeitando linguagem de cada plataforma"
+    agente: "social-media-strategist"
+    sla: "10 min"
+    on_fail: "Usar formatos padrão da plataforma como fallback"
+  5:
+    nome: "Estabelecer cadência"
+    descricao: "Frequência de publicação por plataforma, balanceando qualidade e consistência"
+    agente: "content-director"
+    sla: "5 min"
+    on_fail: "Adotar cadência mínima (3x/semana por plataforma)"
+  6:
+    nome: "Criar calendário editorial"
+    descricao: "Datas, temas, formatos por semana/mês — mínimo 4 semanas"
+    agente: "scheduler"
+    sla: "15 min"
+    on_fail: "Criar calendário parcial (2 semanas) e iterar"
+  7:
+    nome: "Definir métricas"
+    descricao: "KPIs por fase da jornada 5As — pelo menos 2 métricas por fase"
+    agente: "content-director"
+    sla: "5 min"
+    on_fail: "Usar métricas padrão por plataforma (engagement, reach, conversion)"
+
+checklist:
+  - "[ ] Jornada 5As mapeada com conteúdo para cada fase"
+  - "[ ] Estratégia específica por plataforma (não genérica)"
+  - "[ ] Formatos nativos identificados e justificados"
+  - "[ ] Calendário editorial criado (mínimo 4 semanas)"
+  - "[ ] Métricas definidas por fase (mínimo 2 por fase)"
+  - "[ ] Cadência realista e sustentável"
+
+criterios_aceitacao:
+  - "Cobertura das 5 fases da jornada (Aware, Appeal, Ask, Act, Advocate)"
+  - "Cada plataforma com estratégia específica (não genérica)"
+  - "Calendário editorial com pelo menos 4 semanas completas"
+  - "KPIs mensuráveis e conectados aos objetivos de negócio"
+
+output_examples:
+  content_strategy_excerpt: |
+    ## Jornada 5As — RAWA
+
+    ### 1. Aware (Conhecimento)
+    - Plataforma: Instagram Reels + TikTok
+    - Formato: Vídeos curtos (15-30s) mostrando a fazenda
+    - Frequência: 4x/semana
+    - KPI: Reach, Impressions
+
+    ### 2. Appeal (Atração)
+    - Plataforma: Instagram Feed + LinkedIn
+    - Formato: Carrossel com história do produtor
+    - Frequência: 3x/semana
+    - KPI: Engagement Rate, Saves
+
+    ### 3. Ask (Consideração)
+    - Plataforma: YouTube Shorts + Blog
+    - Formato: "De onde vem seu café?" — mini-documentários
+    - Frequência: 1x/semana
+    - KPI: Watch Time, Click-through
+
+    ### 4. Act (Ação)
+    - Plataforma: Instagram Stories + WhatsApp
+    - Formato: Ofertas com QR code, unboxing
+    - Frequência: 2x/semana
+    - KPI: Conversion Rate, Revenue
+
+    ### 5. Advocate (Advocacia)
+    - Plataforma: Instagram + TikTok
+    - Formato: UGC (User Generated Content), depoimentos
+    - Frequência: 2x/semana
+    - KPI: Share Rate, NPS, Referrals

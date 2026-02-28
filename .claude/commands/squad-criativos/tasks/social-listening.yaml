@@ -1,0 +1,145 @@
+# Task: Social Listening
+# Squad: squAId-criaTTivados / search-insights
+# Responsável: social-listener
+
+metadata:
+  name: "social-listening"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "search-insights"
+  responsavel: "social-listener"
+  tipo: task
+
+descricao: |
+  Monitoramento e análise de redes sociais para capturar percepções
+  reais do público sobre a marca e concorrentes. Usa Apify para
+  coleta automatizada e organiza por Domínios da Taxonomia.
+
+entrada:
+  - campo: marca
+    tipo: string
+    origem: "briefing"
+    obrigatorio: true
+    descricao: "Nome da marca a monitorar"
+  - campo: concorrentes
+    tipo: list
+    origem: "briefing / analyze-competition"
+    obrigatorio: true
+    descricao: "Lista de concorrentes para comparação"
+  - campo: categoria
+    tipo: string
+    origem: "briefing"
+    obrigatorio: true
+    descricao: "Categoria/segmento para contexto"
+  - campo: plataformas
+    tipo: list
+    origem: "definição de escopo"
+    obrigatorio: false
+    descricao: "Plataformas prioritárias (default: Instagram, LinkedIn, Twitter)"
+
+saida:
+  - campo: social_listening_report
+    tipo: string
+    destino: "synthesize-insights"
+    persistido: true
+    descricao: "Relatório completo de social listening"
+
+ferramentas:
+  - nome: "Apify Instagram Scraper"
+    acesso: "mcp__docker-gateway__call-actor"
+    actor: "apify/instagram-scraper"
+  - nome: "Apify TikTok Scraper"
+    acesso: "mcp__docker-gateway__call-actor"
+    actor: "apify/tiktok-scraper"
+  - nome: "Apify LinkedIn Scraper"
+    acesso: "mcp__docker-gateway__call-actor"
+    actor: "apify/linkedin-company-scraper"
+  - nome: "Apify Twitter Scraper"
+    acesso: "mcp__docker-gateway__call-actor"
+    actor: "apify/twitter-scraper"
+  - nome: "EXA Web Search"
+    acesso: "mcp__docker-gateway__web_search_exa"
+
+passos:
+  1:
+    nome: "Definir escopo de monitoramento"
+    descricao: |
+      Definir:
+      - Marcas a monitorar (cliente + concorrentes)
+      - Plataformas prioritárias
+      - Período de análise
+      - Hashtags e palavras-chave relevantes
+    agente: "social-listener"
+  2:
+    nome: "Coletar dados do Instagram"
+    descricao: |
+      Usando Apify:
+      - Posts recentes dos perfis (últimos 30-90 dias)
+      - Comentários nos posts principais
+      - Hashtags da categoria
+      - Métricas de engajamento
+    agente: "social-listener"
+    ferramenta: "apify_instagram"
+  3:
+    nome: "Coletar dados de outras plataformas"
+    descricao: |
+      Conforme relevância do segmento:
+      - LinkedIn (B2B): posts, artigos, interações
+      - TikTok (B2C jovem): vídeos, trends, hashtags
+      - Twitter/X: conversas, menções, threads
+    agente: "social-listener"
+    ferramenta: "apify_multi"
+  4:
+    nome: "Buscar menções na web"
+    descricao: |
+      Usar EXA para encontrar:
+      - Menções em blogs e portais
+      - Reviews e avaliações
+      - Artigos de opinião sobre as marcas
+    agente: "social-listener"
+    ferramenta: "exa_web_search"
+  5:
+    nome: "Análise de sentimento"
+    descricao: |
+      Para cada marca monitorada:
+      - Classificar menções (positivo/neutro/negativo)
+      - Identificar drivers de sentimento
+      - Comparar sentimento entre marcas
+    agente: "social-listener"
+  6:
+    nome: "Calcular Share of Voice"
+    descricao: |
+      - Volume de menções por marca
+      - % de participação na conversa
+      - Qualidade das menções (engajamento)
+      - Breakdown por plataforma
+    agente: "social-listener"
+  7:
+    nome: "Mapear por Domínio da Taxonomia"
+    descricao: |
+      Organizar insights por:
+      - Domínio I: percepções sobre produto/serviço/evidências
+      - Domínio II: associações de marca, personalidade percebida
+      - Domínio III: reconhecimento de assets, rituais
+    agente: "social-listener"
+  8:
+    nome: "Consolidar relatório"
+    descricao: "Montar Social Listening Report com todos os dados e análises"
+    agente: "social-listener"
+
+checklist:
+  - "[ ] Escopo definido (marcas, plataformas, período)"
+  - "[ ] Dados do Instagram coletados"
+  - "[ ] Dados de plataformas secundárias coletados"
+  - "[ ] Menções na web buscadas"
+  - "[ ] Análise de sentimento completa"
+  - "[ ] Share of Voice calculado"
+  - "[ ] Dados organizados por domínio"
+  - "[ ] Relatório consolidado"
+
+criterios_aceitacao:
+  - "Mínimo 2 plataformas monitoradas"
+  - "Sentimento classificado para marca e concorrentes"
+  - "Share of Voice calculado com breakdown"
+  - "Insights organizados pelos 3 domínios"
+  - "Fontes e datas de coleta documentadas"

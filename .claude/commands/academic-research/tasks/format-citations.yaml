@@ -1,0 +1,109 @@
+name: format-citations
+description: Format all citations and references to specified citation style
+category: citations
+agent: citation-manager
+priority: medium
+estimated_duration: 1-2 days
+
+inputs:
+  - manuscript:
+      type: file
+      description: Manuscript with in-text citations
+      required: true
+  - citation_style:
+      type: enum
+      options: [APA7, MLA9, Chicago, Harvard, Vancouver, IEEE]
+      description: Target citation style
+      required: true
+  - reference_library:
+      type: file
+      description: Zotero/Mendeley/EndNote library file
+      required: false
+
+outputs:
+  - formatted_manuscript:
+      type: file
+      format: docx, latex
+      description: Manuscript with correctly formatted citations
+  - reference_list:
+      type: file
+      description: Formatted reference list
+
+steps:
+  - step: 1
+    name: import_references
+    description: Import references into reference manager
+    agent: citation-manager
+    estimated_duration: 0.5 days
+
+  - step: 2
+    name: format_in_text_citations
+    description: Format all in-text citations to style
+    agent: citation-manager
+    estimated_duration: 0.5 days
+
+  - step: 3
+    name: format_reference_list
+    description: Generate and format reference list
+    agent: citation-manager
+    estimated_duration: 0.5 days
+
+  - step: 4
+    name: verify_completeness
+    description: Verify all citations have matching references
+    agent: citation-manager
+    estimated_duration: 0.5 days
+
+success_criteria:
+  - All citations formatted correctly
+  - Reference list complete and formatted
+  - No missing references
+  - No orphan references (in list but not cited)
+  - DOIs included when available
+
+deliverables:
+  - Formatted manuscript
+  - Reference list (separate file)
+  - Reference library file (Zotero/Mendeley)
+
+citation_style_examples:
+  APA7:
+    in_text: "Smith (2024) found that..."
+    reference: "Smith, J. A. (2024). Title of article. Journal Name, 15(3), 123-145. https://doi.org/10.1234/example"
+
+  MLA9:
+    in_text: "(Smith 123)"
+    reference: "Smith, John A. \"Title of Article.\" Journal Name, vol. 15, no. 3, 2024, pp. 123-145."
+
+  Chicago:
+    in_text: "¹ John A. Smith, \"Title,\" Journal Name 15, no. 3 (2024): 123."
+    reference: "Smith, John A. \"Title of Article.\" Journal Name 15, no. 3 (2024): 123-145."
+
+  Vancouver:
+    in_text: "[1]"
+    reference: "1. Smith JA. Title of article. Journal Name. 2024;15(3):123-45."
+
+best_practices:
+  - Use reference manager (don't format manually)
+  - Add references as you write (don't wait until end)
+  - Always include DOI when available
+  - Check citation style guide for edge cases
+  - Use citation plugin in Word/Google Docs
+  - Keep reference library backed up
+  - Verify journal-specific citation requirements
+
+common_pitfalls:
+  - Inconsistent formatting (mixing styles)
+  - Missing information (incomplete citations)
+  - Incorrect DOI or broken links
+  - Orphan references (not cited in text)
+  - Missing citations (cited but not in reference list)
+  - Manual formatting errors
+
+tags:
+  - citations
+  - references
+  - apa
+  - mla
+  - chicago
+  - formatting

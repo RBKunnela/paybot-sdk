@@ -1,0 +1,166 @@
+name: internal-peer-review
+description: Conduct thorough internal peer review before submission
+category: quality-assurance
+agent: peer-reviewer
+priority: high
+estimated_duration: 2-3 days
+
+inputs:
+  - manuscript:
+      type: file
+      description: Complete manuscript to review
+      required: true
+  - target_journal:
+      type: string
+      description: Target journal for context
+      required: false
+
+outputs:
+  - peer_review_report:
+      type: file
+      format: markdown
+      description: Comprehensive peer review report
+  - recommendations:
+      type: enum
+      options: [accept_as_is, minor_revisions, major_revisions, reject]
+      description: Overall recommendation
+
+steps:
+  - step: 1
+    name: review_originality
+    description: Assess novelty and contribution to field
+    agent: peer-reviewer
+    estimated_duration: 0.5 days
+
+  - step: 2
+    name: review_methodology
+    description: Evaluate research design and rigor
+    agent: peer-reviewer
+    estimated_duration: 1 day
+
+  - step: 3
+    name: review_analysis
+    description: Check statistical analysis and interpretation
+    agent: peer-reviewer
+    estimated_duration: 0.5 days
+
+  - step: 4
+    name: review_writing
+    description: Assess clarity, structure, and writing quality
+    agent: peer-reviewer
+    estimated_duration: 0.5 days
+
+  - step: 5
+    name: provide_feedback
+    description: Write detailed review report with suggestions
+    agent: peer-reviewer
+    estimated_duration: 0.5 days
+
+success_criteria:
+  - Comprehensive review covering all sections
+  - Specific, actionable feedback
+  - Both strengths and weaknesses identified
+  - Constructive tone (not just criticism)
+
+deliverables:
+  - Peer review report (3-5 pages)
+  - Line-by-line comments (if applicable)
+  - Recommendation with justification
+
+review_criteria:
+  originality:
+    - Is this novel research?
+    - Does it advance the field?
+    - Is the contribution significant?
+
+  rigor:
+    - Is methodology sound?
+    - Is sample size adequate?
+    - Are controls appropriate?
+    - Is analysis valid?
+
+  clarity:
+    - Is writing clear and concise?
+    - Is structure logical?
+    - Are figures/tables well-designed?
+
+  significance:
+    - Are findings important?
+    - Are implications clear?
+    - Is it practical/theoretical value?
+
+common_issues_to_check:
+  methodological:
+    - Sampling bias
+    - Confounding variables not controlled
+    - Small sample size (underpowered)
+    - Inappropriate statistical tests
+
+  statistical:
+    - p-hacking (selective reporting)
+    - Multiple testing without correction
+    - Effect sizes not reported
+    - Incorrect test assumptions
+
+  logical:
+    - Correlation claimed as causation
+    - Overgeneralization from limited data
+    - Circular reasoning
+    - Unsupported claims
+
+  writing:
+    - Unclear or verbose
+    - Inconsistent terminology
+    - Grammatical errors
+    - Poor figure/table design
+
+review_report_template: |
+  # Peer Review Report
+
+  ## Summary
+  [1-2 paragraphs: main contribution, key findings]
+
+  ## Strengths
+  - Strength 1
+  - Strength 2
+  - Strength 3
+
+  ## Major Issues (Must fix before acceptance)
+  1. **Methodology:** [Issue + suggestion]
+  2. **Analysis:** [Issue + suggestion]
+  3. **Writing:** [Issue + suggestion]
+
+  ## Minor Issues (Optional improvements)
+  1. **Clarity:** [Specific location + suggestion]
+  2. **Formatting:** [Issue]
+
+  ## Recommendation
+  [Accept as is / Minor revisions / Major revisions / Reject]
+
+  ## Detailed Comments
+  ### Introduction
+  - Line 23: Unclear sentence...
+
+  ### Methods
+  - Page 5: Sample size justification missing...
+
+best_practices:
+  - Be constructive (suggest improvements, not just criticize)
+  - Be specific (cite line numbers, not vague "writing is bad")
+  - Be fair (acknowledge strengths, not just weaknesses)
+  - Be consistent (same standards throughout)
+  - Check your own biases (review on merit, not personal preference)
+
+common_pitfalls:
+  - Being overly harsh or dismissive
+  - Vague feedback ("improve writing")
+  - Missing obvious errors
+  - Personal bias against methodology or topic
+  - Not distinguishing major vs. minor issues
+
+tags:
+  - peer-review
+  - quality-assurance
+  - methodology
+  - feedback
+  - revision

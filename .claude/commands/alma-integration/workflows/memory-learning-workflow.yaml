@@ -1,0 +1,205 @@
+name: memory-learning-workflow
+version: 1.0.0
+description: |
+  Cross-agent learning workflow via ALMA memory scopes.
+  Agents learn from each other based on configured scope rules.
+
+state_file: .aios/state/memory-learning.json
+artifacts_dir: .aios/alma
+
+# Memory Flow Diagram
+# ╔═══════════════════════════════════════════════════════════════════╗
+# ║                           ALMA Memory System                           ║
+# ╠═══════════════════════════════════════════════════════════════════╣
+# ║  @pm                 @architect           @dev                @qa    ║
+# ║  [All]    ────────>  [Design]  ────────>  [All]   ────────>  [Test] ║
+# ║   │                     │                   │                   │       ║
+# ║   │ Shares             │ Inherits          │ Inherits          │       ║
+# ║   │ All               │ from pm           │ from architect    │       ║
+# ║   ▼                   ▼                   ▼                   ▼       ║
+# ║  ═════════════════════════════════════════════════════════════════ ║
+# ║                    Memory Scope Manager                             ║
+# ║  ═════════════════════════════════════════════════════════════════ ║
+# ╚═══════════════════════════════════════════════════════════════════════╝
+
+# Agent Scope Configuration
+agent_scopes:
+  pm:
+    can_learn: [all]
+    share_with: [all]
+    inherit_from: []
+    trust_threshold: 0.5
+    description: "Can learn everything, shares with everyone"
+
+  architect:
+    can_learn: [domain_knowledge, heuristics, user_preferences]
+    share_with: [dev, pm, po]
+    inherit_from: [pm, analyst, po]
+    trust_threshold: 0.6
+    description: "Learns design patterns, shares with implementation"
+
+  dev:
+    can_learn: [all]
+    share_with: [qa, devops, architect, pm]
+    inherit_from: [architect, analyst, pm, qa]
+    trust_threshold: 0.7
+    description: "Learns from implementation, shares with QA"
+
+  qa:
+    can_learn: [anti_patterns, heuristics, outcomes]
+    share_with: [dev, devops]
+    inherit_from: [dev, architect, pm]
+    trust_threshold: 0.6
+    description: "Learns from testing, shares back issues"
+
+# Learning Flow
+learning_flow:
+  - step: task_completion
+    agent: dev
+    action:
+      - Store outcome (success/failure, learnings)
+      - If successful, extract pattern as heuristic
+      - Store anti-pattern if errors encountered
+    evidence_required:
+      - test_results
+      - task_artifacts
+
+  - step: pattern_extraction
+    agent: alma
+    action:
+      - Analyze outcomes for patterns
+      - Promote verified patterns to heuristics
+      - Flag recurring issues as anti-patterns
+    confidence_threshold: 0.8
+
+  - step: memory_sharing
+    agent: scope_manager
+    action:
+      - Apply scope rules to memories
+      - Distribute to share_with agents
+      - Collect from inherit_from agents
+    validation:
+      - Check can_learn permissions
+      - Verify trust thresholds
+
+  - step: context_injection
+    agent: context_injector
+    action:
+      - Query relevant memories for current task
+      - Build memory slice within token budget
+      - Prioritize by: relevance, confidence, recency
+    token_budget: 2000
+
+# Memory Type Lifecycles
+memory_lifecycles:
+  heuristics:
+    created: "When task succeeds with pattern"
+    updated: "Each time pattern is verified"
+    expires: "Never (unless confidence drops)"
+    priority: "High"
+
+  outcomes:
+    created: "On task completion"
+    updated: "Never (immutable)"
+    expires: "Never"
+    priority: "Medium"
+
+  user_preferences:
+    created: "When user explicitly sets preference"
+    updated: "When user changes preference"
+    expires: "Never (until changed)"
+    priority: "High"
+
+  domain_knowledge:
+    created: "When fact is learned/inferred"
+    updated: "When fact is re-verified"
+    expires: "Configurable TTL"
+    priority: "Medium"
+
+  anti_patterns:
+    created: "When gotcha is identified"
+    updated: "Each occurrence"
+    expires: "When resolved=true"
+    priority: "High"
+
+# Cross-Agent Example Scenarios
+scenarios:
+  scenario_1_arch_to_dev:
+    description: "Architect shares design pattern with Dev"
+    flow:
+      1. "@architect stores heuristic: 'Use repository pattern for data access'"
+      2. Scope check: architect.share_with includes dev ✓
+      3. @dev retrieves memories for "data access"
+      4. Heuristic included in context with high score
+      5. @dev applies pattern in implementation
+
+  scenario_2_qa_to_dev:
+    description: "QA shares anti-pattern with Dev"
+    flow:
+      1. "@qa stores anti-pattern: 'N+1 queries in user list'"
+      2. Scope check: qa.share_with includes dev ✓
+      3. @dev retrieves memories for "user list"
+      4. Anti-pattern included with workaround
+      5. @dev applies workaround in implementation
+
+  scenario_3_dev_inherits:
+    description: "Dev inherits from Architect"
+    flow:
+      1. "@dev activates for feature implementation"
+      2. Scope check: dev.inherit_from includes architect ✓
+      3. Query includes memories from @architect
+      4. Dev memories marked with inheritedFrom: architect
+      5. Context includes inherited memories
+
+# Learning Triggers
+triggers:
+  on_task_start:
+    - Retrieve relevant memories from inherit_from agents
+    - Include in initial context
+
+  on_task_complete:
+    - Store outcome with success/failure
+    - Extract and store heuristic if successful
+    - Store anti-pattern if errors occurred
+
+  on_pattern_verified:
+    - Update heuristic confidence score
+    - Add verifier to verifiedBy list
+    - Mark as trustVerified
+
+  on_anti_pattern_resolved:
+    - Set resolved=true
+    - Record resolvedAt timestamp
+    - Stop showing in context retrieval
+
+# Gates
+gates:
+  memory_permissions:
+    - check: "Agent can_learn this memory type?"
+    - block: "If memory type not in can_learn list"
+
+  trust_threshold:
+    - check: "Source agent trust >= threshold?"
+    - block: "If source trust below threshold"
+
+  token_budget:
+    - check: "Memory slice within token limit?"
+    - truncate: "If budget exceeded, by priority"
+
+  scope_validation:
+    - check: "Share_with and inherit_from valid?"
+    - warn: "If circular dependencies detected"
+
+# Rollback
+rollback:
+  memory_export:
+    path: .aios/alma/export
+    format: json
+    includes: [heuristics, outcomes, preferences, domain_knowledge, anti_patterns]
+
+  disable_learning:
+    method: "Set can_learn to [] for agent"
+    config: .aios-core/core/memory/scope-config.js
+
+  restore_gotchas:
+    script: .aios-core/core/memory/migrate-to-alma.js --rollback

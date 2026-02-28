@@ -1,0 +1,148 @@
+name: write-systematic-review
+description: Write complete systematic review paper following PRISMA guidelines
+category: writing
+agent: literature-reviewer
+priority: high
+estimated_duration: 10-15 days
+
+inputs:
+  - search_results:
+      type: file
+      description: Complete literature search results
+      required: true
+  - data_extraction_table:
+      type: file
+      description: Extracted data from all included papers
+      required: true
+  - synthesis_document:
+      type: file
+      description: Synthesized findings and themes
+      required: true
+  - target_journal:
+      type: string
+      description: Target journal for submission
+      required: true
+
+outputs:
+  - systematic_review_manuscript:
+      type: file
+      format: docx, latex
+      description: Complete systematic review manuscript
+  - prisma_checklist:
+      type: file
+      format: pdf
+      description: Completed PRISMA 2020 checklist
+  - prisma_flowchart:
+      type: file
+      format: png, pdf
+      description: PRISMA flow diagram
+
+steps:
+  - step: 1
+    name: write_protocol
+    description: Write review protocol (objectives, methods, selection criteria)
+    agent: literature-reviewer
+    estimated_duration: 2 days
+
+  - step: 2
+    name: write_methods
+    description: Write detailed methods section (search strategy, screening, extraction)
+    agent: literature-reviewer
+    estimated_duration: 2 days
+
+  - step: 3
+    name: write_results
+    description: Write results section with PRISMA flowchart and synthesis
+    agent: literature-reviewer
+    estimated_duration: 3-4 days
+
+  - step: 4
+    name: write_discussion
+    description: Write discussion with interpretation, implications, limitations
+    agent: academic-writer
+    estimated_duration: 2-3 days
+
+  - step: 5
+    name: complete_prisma_checklist
+    description: Fill out PRISMA 2020 27-item checklist
+    agent: literature-reviewer
+    estimated_duration: 0.5 days
+
+  - step: 6
+    name: internal_review
+    description: Internal peer review before submission
+    agent: peer-reviewer
+    estimated_duration: 2 days
+
+success_criteria:
+  - Follows PRISMA 2020 guidelines (27-item checklist)
+  - Clear protocol with pre-defined criteria
+  - Transparent reporting of search and screening
+  - Quality assessment of included studies
+  - PRISMA flow diagram included
+  - Synthesis is balanced and evidence-based
+
+deliverables:
+  - Systematic review manuscript
+  - PRISMA flow diagram
+  - PRISMA checklist (completed)
+  - Supplementary materials (search strings, extraction form, quality assessment)
+
+prisma_structure:
+  title:
+    - Identify as systematic review in title
+
+  abstract:
+    - Structured abstract (objectives, methods, results, conclusions)
+
+  introduction:
+    - Rationale and objectives
+
+  methods:
+    - Protocol and registration (PROSPERO)
+    - Eligibility criteria
+    - Information sources (databases)
+    - Search strategy (full search strings in appendix)
+    - Selection process (screening levels)
+    - Data collection process (extraction variables)
+    - Data items (what was extracted)
+    - Study risk of bias assessment
+    - Synthesis methods
+
+  results:
+    - Study selection (PRISMA flow diagram)
+    - Study characteristics (table)
+    - Risk of bias assessment results
+    - Results of syntheses (narrative or meta-analysis)
+
+  discussion:
+    - Summary of findings
+    - Limitations
+    - Implications
+
+  funding:
+    - Funding sources and conflicts of interest
+
+best_practices:
+  - Pre-register protocol on PROSPERO before starting
+  - Use PRISMA 2020 checklist throughout writing
+  - Report all steps transparently (can be replicated)
+  - Include full search strings in appendix
+  - Report reasons for exclusion at full-text stage
+  - Use ROBIS tool for assessing risk of bias
+  - Upload protocol and data extraction form as supplementary materials
+
+common_pitfalls:
+  - Not pre-registering protocol (can appear like p-hacking)
+  - Missing items from PRISMA checklist
+  - Not reporting search strategy in enough detail
+  - Cherry-picking studies
+  - Not assessing study quality/risk of bias
+  - Incomplete PRISMA flow diagram
+
+tags:
+  - systematic-review
+  - prisma
+  - methodology
+  - evidence-synthesis
+  - meta-analysis

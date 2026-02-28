@@ -1,0 +1,70 @@
+# Task: Schedule & Publish
+# Squad: squAId-criaTTivados / content-ops
+# Responsável: scheduler
+
+metadata:
+  name: "schedule-publish"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "content-ops"
+  responsavel: "scheduler"
+  tipo: task
+
+descricao: |
+  Agendamento de publicações, protocolo de engajamento
+  e monitoramento inicial de performance.
+
+entrada:
+  - campo: content_package
+    tipo: string
+    origem: "produce-content"
+    obrigatorio: true
+    descricao: "Conteúdo aprovado pronto para publicar"
+  - campo: calendario_editorial
+    tipo: string
+    origem: "plan-content-strategy"
+    obrigatorio: true
+    descricao: "Calendário com datas e horários"
+
+saida:
+  - campo: publish_report
+    tipo: string
+    destino: "report-metrics"
+    persistido: true
+    descricao: "Posts agendados + protocolo + métricas iniciais"
+
+passos:
+  1:
+    nome: "Planejar horários"
+    descricao: "Definir horários de pico por plataforma"
+    agente: "scheduler"
+  2:
+    nome: "Agendar posts"
+    descricao: "Agendar via ferramenta de publicação"
+    agente: "scheduler"
+  3:
+    nome: "Definir protocolo de engajamento"
+    descricao: "Ações nos primeiros 30min + primeiro dia"
+    agente: "scheduler"
+  4:
+    nome: "Monitorar métricas iniciais"
+    descricao: "Impressões, alcance, engagement, CTR"
+    agente: "scheduler"
+  5:
+    nome: "Análise retrospectiva"
+    descricao: "Qual STEPPS funcionou? Qual hook? Qual plataforma?"
+    agente: "content-director"
+  6:
+    nome: "Documentar insights"
+    descricao: "Learnings para próximas campanhas"
+    agente: "content-director"
+
+checklist:
+  - "[ ] Posts agendados em horários otimizados"
+  - "[ ] Protocolo de engajamento definido"
+  - "[ ] Métricas monitoradas"
+  - "[ ] Análise retrospectiva gerada"
+
+criterios_aceitacao:
+  - "Posts publicados nos horários de pico"
+  - "Protocolo executado nos primeiros 30min"

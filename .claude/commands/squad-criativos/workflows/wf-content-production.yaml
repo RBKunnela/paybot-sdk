@@ -1,0 +1,438 @@
+# Workflow: Content Production (Content-Ops)
+# Produção e Distribuição de Conteúdo
+# Recebe handoff de storYOURtelling → Publica em canais
+
+name: wf-content-production
+description: |
+  Workflow para produção e distribuição de conteúdo em múltiplos canais.
+  Transforma o Creative Brief em peças publicadas, otimizadas para cada
+  plataforma com foco em viralidade e engajamento.
+
+version: "1.0"
+squad: content-ops
+command: "*produce-content"
+duracao_estimada: "3-7 dias úteis"
+formato_final: "Conteúdo publicado + Relatório de performance"
+
+# ═══════════════════════════════════════════════════════════════════
+# FRAMEWORKS CURADOS UTILIZADOS
+# ═══════════════════════════════════════════════════════════════════
+frameworks_curados:
+  virality_frameworks:
+    arquivo: "virality-frameworks.yaml"
+    aplicacao: "Otimizar conteúdo para compartilhamento"
+    elementos:
+      stepps: "Social Currency, Triggers, Emotion, Public, Practical, Stories"
+      speacc: "Simple, Personal, Emotional, Actionable, Credible, Concrete"
+    usado_por:
+      - content-director
+      - content-producer
+      - social-media-strategist
+
+  hook_model_eyal:
+    arquivo: "hook-model-eyal.yaml"
+    aplicacao: "Criar loops de engajamento"
+    fases:
+      trigger: "Gatilho que inicia interação"
+      action: "Ação mínima do usuário"
+      variable_reward: "Recompensa variável"
+      investment: "Investimento para próximo loop"
+    usado_por:
+      - content-director
+      - social-media-strategist
+      - scheduler
+
+  marketing_journey_kotler:
+    arquivo: "marketing-journey-kotler.yaml"
+    aplicacao: "Conteúdo para cada fase da jornada 5As"
+    fases:
+      aware: "Conteúdo de descoberta"
+      appeal: "Conteúdo de interesse"
+      ask: "Conteúdo educativo/comparativo"
+      act: "Conteúdo de conversão"
+      advocate: "Conteúdo de comunidade"
+    usado_por:
+      - content-director
+      - social-media-strategist
+
+# ═══════════════════════════════════════════════════════════════════
+# PRÉ-REQUISITOS
+# ═══════════════════════════════════════════════════════════════════
+prerequisites:
+  obrigatorios:
+    - "Creative Brief (storYOURtelling)"
+    - "Copy Package aprovado"
+    - "Visual Direction aprovada"
+    - "Brand Guidelines (UNNIKO)"
+
+  recomendados:
+    - "Calendário editorial existente"
+    - "Histórico de performance"
+    - "Benchmark de concorrentes"
+
+# ═══════════════════════════════════════════════════════════════════
+# FASES DO WORKFLOW
+# ═══════════════════════════════════════════════════════════════════
+phases:
+
+  # FASE 1: PLANEJAMENTO DE CANAIS
+  - phase: 1
+    name: "Channel Planning"
+    duracao: "0.5 dia"
+    agente_principal: content-director
+
+    frameworks_aplicados:
+      - marketing-journey-kotler.yaml
+      - hook-model-eyal.yaml
+
+    tasks:
+      - task: analyze-creative-brief
+        description: "Analisar Creative Brief recebido"
+        input: "Creative Brief (storYOURtelling)"
+        output: "Content Strategy Brief"
+
+      - task: map-5as-content
+        description: "Mapear conteúdo para jornada 5As"
+        framework: "Kotler - Marketing Journey"
+        por_fase:
+          aware: "Que conteúdo gera descoberta?"
+          appeal: "Que conteúdo gera interesse?"
+          ask: "Que conteúdo educa/convence?"
+          act: "Que conteúdo converte?"
+          advocate: "Que conteúdo gera comunidade?"
+        output: "5As Content Map"
+
+      - task: define-platform-strategy
+        description: "Definir estratégia por plataforma"
+        agente: social-media-strategist
+        plataformas:
+          instagram:
+            formatos: ["Feed", "Stories", "Reels", "Carrossel"]
+            objetivo: "Awareness + Appeal"
+          linkedin:
+            formatos: ["Post", "Artigo", "Newsletter", "Documento"]
+            objetivo: "Authority + Ask"
+          tiktok:
+            formatos: ["Vídeo curto", "Dueto", "Stitch"]
+            objetivo: "Awareness + Viralidade"
+          youtube:
+            formatos: ["Shorts", "Vídeo longo"]
+            objetivo: "Ask + Educação"
+        output: "Platform Strategy"
+
+    checkpoint:
+      question: "Estratégia de canais definida?"
+      criteria:
+        - "Canais priorizados"
+        - "Formatos por canal"
+        - "Jornada 5As mapeada"
+
+  # FASE 2: PRODUÇÃO DE CONTEÚDO
+  - phase: 2
+    name: "Content Production"
+    duracao: "1-2 dias"
+    paralelo: true
+
+    frameworks_aplicados:
+      - virality-frameworks.yaml
+      - hook-model-eyal.yaml
+
+    track_copy:
+      agente: content-producer
+      tasks:
+        - task: adapt-copy-per-platform
+          description: "Adaptar copy para cada plataforma"
+          framework: "STEPPS + Hook Model"
+          consideracoes:
+            - "Limites de caracteres"
+            - "Tom específico da plataforma"
+            - "CTAs nativos"
+            - "Hashtags relevantes"
+          output: "Copy adaptado por plataforma"
+
+        - task: write-captions
+          description: "Escrever legendas"
+          estrutura:
+            hook: "Primeira linha que para scroll"
+            body: "Desenvolvimento (emojis estratégicos)"
+            cta: "Call to action claro"
+            hashtags: "Mix de alcance e nicho"
+          output: "Captions Package"
+
+        - task: create-content-variations
+          description: "Criar variações para teste A/B"
+          variacoes:
+            - "3 variações de hook"
+            - "2 variações de CTA"
+          output: "Content Variations"
+
+    track_visual:
+      agente: visual-creator
+      tasks:
+        - task: create-platform-assets
+          description: "Criar assets por plataforma"
+          formatos:
+            instagram_feed: "1:1 (1080x1080)"
+            instagram_stories: "9:16 (1080x1920)"
+            instagram_reels: "9:16 (1080x1920)"
+            linkedin_post: "1.91:1 (1200x628)"
+            tiktok: "9:16 (1080x1920)"
+            youtube_shorts: "9:16 (1080x1920)"
+            youtube_thumbnail: "16:9 (1280x720)"
+          output: "Platform Assets"
+
+        - task: create-motion-graphics
+          description: "Criar motion graphics (se aplicável)"
+          tipos:
+            - "Animações de texto"
+            - "Transições"
+            - "Lower thirds"
+          output: "Motion Graphics"
+
+    checkpoint:
+      question: "Conteúdo produzido para todos os canais?"
+      criteria:
+        - "Copy adaptado por plataforma"
+        - "Assets visuais em todos os formatos"
+        - "Variações para teste"
+
+  # FASE 3: OTIMIZAÇÃO PARA VIRALIDADE
+  - phase: 3
+    name: "Virality Optimization"
+    duracao: "0.5 dia"
+    agente_principal: social-media-strategist
+    depende_de: [phase_2]
+
+    frameworks_aplicados:
+      - virality-frameworks.yaml
+
+    tasks:
+      - task: apply-stepps-checklist
+        description: "Validar conteúdo contra STEPPS"
+        framework: "Jonah Berger - Contagious"
+        checklist:
+          social_currency: "Compartilhar isso faz a pessoa parecer bem?"
+          triggers: "Há gatilhos que lembram do conteúdo?"
+          emotion: "Provoca emoção intensa (positiva ou negativa)?"
+          public: "É visível quando alguém consome/compartilha?"
+          practical_value: "Oferece utilidade clara?"
+          stories: "Está embalado em uma história?"
+        output: "STEPPS Score"
+
+      - task: optimize-hooks
+        description: "Otimizar hooks para parar scroll"
+        tecnicas:
+          - "Curiosity gap"
+          - "Contrarian take"
+          - "Specific number"
+          - "Direct address"
+          - "Shocking statement"
+        output: "Optimized Hooks"
+
+      - task: define-engagement-triggers
+        description: "Definir gatilhos de engajamento"
+        framework: "Hook Model - Triggers"
+        triggers:
+          externos:
+            - "CTA para comentar"
+            - "Pergunta aberta"
+            - "Poll/Quiz"
+          internos:
+            - "FOMO (medo de perder)"
+            - "Curiosidade"
+            - "Identificação"
+        output: "Engagement Triggers"
+
+    checkpoint:
+      question: "Conteúdo otimizado para viralidade?"
+      criteria:
+        - "Score STEPPS >= 4/6"
+        - "Hooks otimizados"
+        - "Triggers definidos"
+
+  # FASE 4: REVISÃO E APROVAÇÃO
+  - phase: 4
+    name: "Review & Approval"
+    duracao: "0.5 dia"
+    agente_principal: content-director
+    depende_de: [phase_3]
+
+    tasks:
+      - task: quality-review
+        description: "Revisão de qualidade"
+        checklist:
+          - "Ortografia e gramática"
+          - "Consistência de marca"
+          - "Links funcionando"
+          - "Menções corretas"
+          - "Hashtags relevantes"
+        output: "Quality Report"
+
+      - task: brand-alignment-check
+        description: "Verificar alinhamento com marca"
+        criterios:
+          - "Tom de voz consistente"
+          - "Visual alinhado com Design System"
+          - "Mensagem alinhada com Big Idea"
+        output: "Brand Alignment OK"
+
+      - task: final-approval
+        description: "Aprovação final para publicação"
+        output: "Content Approved"
+
+    checkpoint:
+      question: "Conteúdo aprovado para publicação?"
+      criteria:
+        - "Qualidade revisada"
+        - "Marca alinhada"
+        - "Aprovação formal"
+
+  # FASE 5: AGENDAMENTO E PUBLICAÇÃO
+  - phase: 5
+    name: "Scheduling & Publishing"
+    duracao: "0.5 dia"
+    agente_principal: scheduler
+    depende_de: [phase_4]
+
+    frameworks_aplicados:
+      - kahneman-dual-systems.yaml
+      - hook-model-eyal.yaml
+
+    tasks:
+      - task: plan-content-calendar
+        description: "Planejar calendário de publicação"
+        framework: "Kahneman - melhores momentos para Sistema 1"
+        consideracoes:
+          - "Horários de pico por plataforma"
+          - "Frequência ideal"
+          - "Espaçamento entre posts"
+          - "Datas relevantes"
+        output: "Content Calendar"
+
+      - task: schedule-posts
+        description: "Agendar publicações"
+        ferramentas:
+          - "Native scheduling"
+          - "Hootsuite/Buffer/Later"
+        output: "Scheduled Posts"
+
+      - task: prepare-engagement-protocol
+        description: "Preparar protocolo de engajamento"
+        acoes:
+          primeiros_30min:
+            - "Responder comentários"
+            - "Engajar com público"
+          primeiro_dia:
+            - "Monitorar performance"
+            - "Boost se necessário"
+        output: "Engagement Protocol"
+
+    checkpoint:
+      question: "Conteúdo agendado?"
+      criteria:
+        - "Calendário definido"
+        - "Posts agendados"
+        - "Protocolo de engajamento pronto"
+
+  # FASE 6: ANÁLISE DE PERFORMANCE
+  - phase: 6
+    name: "Performance Analysis"
+    duracao: "Contínuo (1 semana após publicação)"
+    agente_principal: content-director
+    depende_de: [phase_5]
+
+    tasks:
+      - task: monitor-metrics
+        description: "Monitorar métricas de performance"
+        metricas:
+          alcance:
+            - "Impressões"
+            - "Alcance"
+            - "Views"
+          engajamento:
+            - "Likes"
+            - "Comentários"
+            - "Compartilhamentos"
+            - "Saves"
+          conversao:
+            - "Cliques"
+            - "CTR"
+            - "Conversões"
+        output: "Performance Data"
+
+      - task: analyze-results
+        description: "Analisar resultados vs. benchmarks"
+        framework: "STEPPS retrospective"
+        analise:
+          - "Quais STEPPS funcionaram?"
+          - "Qual hook performou melhor?"
+          - "Qual plataforma teve melhor resultado?"
+        output: "Performance Analysis"
+
+      - task: generate-insights
+        description: "Gerar insights para próximas campanhas"
+        output: "Content Insights Report"
+
+    checkpoint:
+      question: "Performance analisada?"
+      criteria:
+        - "Métricas coletadas"
+        - "Análise completa"
+        - "Insights documentados"
+
+# ═══════════════════════════════════════════════════════════════════
+# ENTREGÁVEIS
+# ═══════════════════════════════════════════════════════════════════
+deliverables:
+  planejamento:
+    - "Content Strategy Brief"
+    - "5As Content Map"
+    - "Platform Strategy"
+
+  producao:
+    - "Copy adaptado por plataforma"
+    - "Captions Package"
+    - "Content Variations (A/B)"
+    - "Platform Assets"
+    - "Motion Graphics"
+
+  otimizacao:
+    - "STEPPS Score"
+    - "Optimized Hooks"
+    - "Engagement Triggers"
+
+  publicacao:
+    - "Content Calendar"
+    - "Scheduled Posts"
+    - "Engagement Protocol"
+
+  analise:
+    - "Performance Data"
+    - "Performance Analysis"
+    - "Content Insights Report"
+
+# ═══════════════════════════════════════════════════════════════════
+# HANDOFF
+# ═══════════════════════════════════════════════════════════════════
+handoff:
+  origem: "storYOURtelling (Creative Director)"
+  recebe: "Creative Brief + Copy Package + Visual Direction"
+
+  destino_paralelo: "Growth-Ops (Growth Director)"
+  envia: "Performance Data + Insights para otimização de campanhas"
+
+  proximo_workflow: "wf-growth-campaign"
+
+# ═══════════════════════════════════════════════════════════════════
+# DATA FILES REFERENCIADOS
+# ═══════════════════════════════════════════════════════════════════
+data_files:
+  # Frameworks curados (2026-02)
+  - virality-frameworks.yaml
+  - hook-model-eyal.yaml
+  - marketing-journey-kotler.yaml
+  - kahneman-dual-systems.yaml
+  # Frameworks existentes
+  - attention-economy.yaml
+  - 5beats-framework.yaml
+  - storytelling-frameworks.yaml

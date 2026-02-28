@@ -1,0 +1,341 @@
+# Differentiation Audit Matrix
+# Template de auditoria baseado na Taxonomia de Diferenciais
+# Usado por: Brand Auditor, Competitive Analyst
+
+metadata:
+  name: "Matriz de Auditoria de Diferenciação"
+  version: "1.0"
+  usage: "Avaliar marca atual nos 3 domínios / 27 ordens"
+
+scoring_scale:
+  1: "Inexistente ou muito fraco"
+  2: "Presente mas inconsistente"
+  3: "Adequado, sem diferenciação"
+  4: "Forte, diferenciado"
+  5: "Excepcional, referência de mercado"
+  NA: "Não aplicável ao negócio"
+
+audit_template:
+
+  # ═══════════════════════════════════════════════════════════════════
+  # DOMÍNIO I — DIFERENCIAÇÃO SUBSTANTIVA
+  # ═══════════════════════════════════════════════════════════════════
+  dominio_I:
+    nome: "Diferenciação Substantiva"
+    peso: 0.35  # 35% do score total
+
+    classe_1_produto:
+      ordem_1_1:
+        nome: "Funcionalidade"
+        score: null  # 1-5
+        evidencias: ""
+        gap_vs_concorrencia: ""
+        oportunidade: ""
+
+      ordem_1_2:
+        nome: "Qualidade percebida"
+        score: null
+        evidencias: ""
+        gap_vs_concorrencia: ""
+        oportunidade: ""
+
+      ordem_1_3:
+        nome: "Customização"
+        score: null
+        evidencias: ""
+        gap_vs_concorrencia: ""
+        oportunidade: ""
+
+      ordem_1_4:
+        nome: "Escopo"
+        score: null
+        evidencias: ""
+        gap_vs_concorrencia: ""
+        oportunidade: ""
+
+      ordem_1_5:
+        nome: "Design"
+        score: null
+        evidencias: ""
+        gap_vs_concorrencia: ""
+        oportunidade: ""
+
+    classe_2_modelo:
+      ordem_2_1:
+        nome: "Modelo de negócio"
+        score: null
+        evidencias: ""
+        gap_vs_concorrencia: ""
+        oportunidade: ""
+
+      ordem_2_2:
+        nome: "Canal/Distribuição"
+        score: null
+        evidencias: ""
+        gap_vs_concorrencia: ""
+        oportunidade: ""
+
+      ordem_2_3:
+        nome: "Processo"
+        score: null
+        evidencias: ""
+        gap_vs_concorrencia: ""
+        oportunidade: ""
+
+      ordem_2_4:
+        nome: "Velocidade"
+        score: null
+        evidencias: ""
+        gap_vs_concorrencia: ""
+        oportunidade: ""
+
+    classe_3_evidencia:
+      ordem_3_1:
+        nome: "Track record"
+        score: null
+        evidencias: ""
+        gap_vs_concorrencia: ""
+        oportunidade: ""
+
+      ordem_3_2:
+        nome: "Propriedade intelectual"
+        score: null
+        evidencias: ""
+        gap_vs_concorrencia: ""
+        oportunidade: ""
+
+      ordem_3_3:
+        nome: "Credenciais"
+        score: null
+        evidencias: ""
+        gap_vs_concorrencia: ""
+        oportunidade: ""
+
+      ordem_3_4:
+        nome: "Social proof"
+        score: null
+        evidencias: ""
+        gap_vs_concorrencia: ""
+        oportunidade: ""
+
+  # ═══════════════════════════════════════════════════════════════════
+  # DOMÍNIO II — DIFERENCIAÇÃO SIMBÓLICA
+  # ═══════════════════════════════════════════════════════════════════
+  dominio_II:
+    nome: "Diferenciação Simbólica"
+    peso: 0.35  # 35% do score total
+
+    classe_4_narrativa:
+      ordem_4_1:
+        nome: "Propósito/Tese central"
+        score: null
+        evidencias: ""
+        coerencia_interna: ""
+        oportunidade: ""
+
+      ordem_4_2:
+        nome: "Narrativa de origem"
+        score: null
+        evidencias: ""
+        coerencia_interna: ""
+        oportunidade: ""
+
+      ordem_4_3:
+        nome: "Ponto de vista"
+        score: null
+        evidencias: ""
+        coerencia_interna: ""
+        oportunidade: ""
+
+      ordem_4_4:
+        nome: "Linguagem/Vocabulário"
+        score: null
+        evidencias: ""
+        coerencia_interna: ""
+        oportunidade: ""
+
+    classe_5_personalidade:
+      ordem_5_1:
+        nome: "Tom de voz"
+        score: null
+        evidencias: ""
+        coerencia_interna: ""
+        oportunidade: ""
+
+      ordem_5_2:
+        nome: "Arquétipo dominante"
+        score: null
+        evidencias: ""
+        coerencia_interna: ""
+        oportunidade: ""
+
+      ordem_5_3:
+        nome: "Postura relacional"
+        score: null
+        evidencias: ""
+        coerencia_interna: ""
+        oportunidade: ""
+
+    classe_6_cultura:
+      ordem_6_1:
+        nome: "Valores declarados e praticados"
+        score: null
+        evidencias: ""
+        coerencia_interna: ""
+        oportunidade: ""
+
+      ordem_6_2:
+        nome: "Comunidade e pertencimento"
+        score: null
+        evidencias: ""
+        coerencia_interna: ""
+        oportunidade: ""
+
+      ordem_6_3:
+        nome: "Posicionamento cultural"
+        score: null
+        evidencias: ""
+        coerencia_interna: ""
+        oportunidade: ""
+
+  # ═══════════════════════════════════════════════════════════════════
+  # DOMÍNIO III — DISTINTIVIDADE
+  # ═══════════════════════════════════════════════════════════════════
+  dominio_III:
+    nome: "Distintividade"
+    peso: 0.30  # 30% do score total
+
+    classe_7_visuais:
+      ordem_7_1:
+        nome: "Marca gráfica"
+        score: null
+        reconhecimento_sem_nome: ""  # Sim/Não
+        unicidade_mercado: ""
+        consistencia: ""
+
+      ordem_7_2:
+        nome: "Sistema cromático"
+        score: null
+        cor_ownable: ""
+        reconhecimento_sem_nome: ""
+        consistencia: ""
+
+      ordem_7_3:
+        nome: "Tipografia"
+        score: null
+        reconhecimento_sem_nome: ""
+        consistencia: ""
+
+      ordem_7_4:
+        nome: "Estilo visual"
+        score: null
+        reconhecimento_sem_nome: ""
+        consistencia: ""
+
+      ordem_7_5:
+        nome: "Personagem/Mascote"
+        score: null
+        reconhecimento_sem_nome: ""
+        consistencia: ""
+
+    classe_8_sensoriais:
+      ordem_8_1:
+        nome: "Sonoro/Musical"
+        score: null
+        existe: ""
+        reconhecimento: ""
+        consistencia: ""
+
+      ordem_8_2:
+        nome: "Verbal/Linguístico"
+        score: null
+        tagline: ""
+        reconhecimento: ""
+        consistencia: ""
+
+      ordem_8_3:
+        nome: "Tátil/Material"
+        score: null
+        aplicavel: ""
+        distintivo: ""
+
+      ordem_8_4:
+        nome: "Formato/Shape"
+        score: null
+        aplicavel: ""
+        distintivo: ""
+
+    classe_9_comportamentais:
+      ordem_9_1:
+        nome: "Rituais de marca"
+        score: null
+        rituais_existentes: []
+        previsibilidade: ""
+
+      ordem_9_2:
+        nome: "Estilo de interação"
+        score: null
+        padrao_definido: ""
+        consistencia: ""
+
+      ordem_9_3:
+        nome: "Cadência"
+        score: null
+        frequencia: ""
+        previsibilidade: ""
+
+# ═══════════════════════════════════════════════════════════════════
+# ANÁLISE E RECOMENDAÇÕES
+# ═══════════════════════════════════════════════════════════════════
+analise:
+  score_por_dominio:
+    dominio_I: null
+    dominio_II: null
+    dominio_III: null
+    total_ponderado: null
+
+  top_3_forcas:
+    - ordem: ""
+      score: null
+      justificativa: ""
+    - ordem: ""
+      score: null
+      justificativa: ""
+    - ordem: ""
+      score: null
+      justificativa: ""
+
+  top_3_fraquezas:
+    - ordem: ""
+      score: null
+      justificativa: ""
+    - ordem: ""
+      score: null
+      justificativa: ""
+    - ordem: ""
+      score: null
+      justificativa: ""
+
+  gaps_criticos:
+    - gap: ""
+      impacto: ""
+      urgencia: ""
+
+  oportunidades_prioritarias:
+    - oportunidade: ""
+      dominio: ""
+      esforco: ""
+      impacto: ""
+
+recomendacoes:
+  dominio_I:
+    ordens_foco: []
+    acoes: []
+
+  dominio_II:
+    ordens_foco: []
+    acoes: []
+
+  dominio_III:
+    ordens_foco: []
+    acoes: []

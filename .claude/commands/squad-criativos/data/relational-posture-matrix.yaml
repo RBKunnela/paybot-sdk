@@ -1,0 +1,367 @@
+# Relational Posture Matrix
+# Matriz de Posturas Relacionais Marca-Público
+# Usado por: Brand Personality Architect
+
+metadata:
+  name: "Matriz de Posturas Relacionais"
+  version: "1.0"
+  source: "Kapferer, Fournier, Mark & Pearson"
+
+conceito:
+  definicao: |
+    A postura relacional define COMO a marca se relaciona com seu público.
+    É a dinâmica de poder, proximidade e interação entre marca e consumidor.
+
+  importancia:
+    - Define o tipo de comunicação
+    - Orienta tom de atendimento
+    - Guia experiência do cliente
+    - Diferencia de concorrentes
+
+  mapeamento_taxonomia:
+    dominio: "II - Diferenciação Simbólica"
+    classe: 5
+    ordem: "5.3"
+
+# ═══════════════════════════════════════════════════════════════════
+# DIMENSÕES RELACIONAIS
+# ═══════════════════════════════════════════════════════════════════
+dimensoes:
+  poder:
+    descricao: "Quem tem mais autoridade na relação"
+    espectro:
+      marca_acima: "Marca sabe mais, lidera"
+      equilibrio: "Parceria, mesmo nível"
+      cliente_acima: "Cliente é protagonista"
+
+  proximidade:
+    descricao: "Nível de intimidade na relação"
+    espectro:
+      formal: "Distância profissional"
+      amigavel: "Calor, mas com limites"
+      intimo: "Como amigo próximo"
+
+  dinamica:
+    descricao: "Tipo de troca predominante"
+    espectro:
+      transacional: "Foco na troca"
+      educacional: "Foco no ensino"
+      comunitaria: "Foco na pertença"
+
+# ═══════════════════════════════════════════════════════════════════
+# POSTURAS RELACIONAIS
+# ═══════════════════════════════════════════════════════════════════
+posturas:
+
+  guru:
+    nome: "Guru"
+    dinamica: "Marca sabe mais e ensina"
+    poder: "Marca acima"
+    proximidade: "Respeitosa distância"
+
+    caracteristicas:
+      - Marca é autoridade incontestável
+      - Cliente busca iluminação
+      - Comunicação top-down
+      - Mistério e exclusividade
+
+    comportamentos:
+      - Ensina, não pede opinião
+      - Fala pouco, cada palavra tem peso
+      - Cria expectativa
+      - Estabelece padrões
+
+    arquetipos_alinhados: ["Sage", "Magician", "Ruler"]
+
+    exemplos:
+      - marca: "Apple"
+        manifestacao: "Não pesquisa, inova. Não pergunta, apresenta."
+      - marca: "McKinsey"
+        manifestacao: "Expert indiscutível"
+
+    quando_usar:
+      - Marca é referência absoluta
+      - Público busca direcionamento
+      - Inovação é core
+      - Categoria técnica/complexa
+
+    riscos:
+      - Parecer arrogante
+      - Alienar se errar
+      - Distância excessiva
+
+  mentor:
+    nome: "Mentor"
+    dinamica: "Marca guia a jornada do cliente"
+    poder: "Marca acima (mas acessível)"
+    proximidade: "Próxima, mas com hierarquia"
+
+    caracteristicas:
+      - Marca é guia experiente
+      - Cliente está em jornada de crescimento
+      - Comunicação educacional
+      - Suporte ativo
+
+    comportamentos:
+      - Ensina passo a passo
+      - Celebra conquistas do cliente
+      - Oferece frameworks e ferramentas
+      - Está disponível para dúvidas
+
+    arquetipos_alinhados: ["Sage", "Caregiver", "Hero"]
+
+    exemplos:
+      - marca: "HubSpot"
+        manifestacao: "Academia, certificações, conteúdo educacional"
+      - marca: "MasterClass"
+        manifestacao: "Experts ensinando"
+
+    quando_usar:
+      - Produto requer aprendizado
+      - Público quer evoluir
+      - Educação é diferencial
+      - B2B com ciclo longo
+
+    riscos:
+      - Parecer condescendente
+      - Infantilizar cliente
+
+  facilitador:
+    nome: "Facilitador"
+    dinamica: "Marca capacita, cliente faz"
+    poder: "Equilibrado"
+    proximidade: "Profissional-amigável"
+
+    caracteristicas:
+      - Marca fornece ferramentas
+      - Cliente é o protagonista
+      - Comunicação empowerment
+      - Foco na autonomia
+
+    comportamentos:
+      - Oferece recursos
+      - Celebra o que cliente cria
+      - Mostra possibilidades
+      - Sai do caminho
+
+    arquetipos_alinhados: ["Creator", "Explorer", "Magician"]
+
+    exemplos:
+      - marca: "Shopify"
+        manifestacao: "Você vende, a gente facilita"
+      - marca: "Canva"
+        manifestacao: "Todos podem ser designers"
+
+    quando_usar:
+      - Produto é ferramenta
+      - Público quer autonomia
+      - Empowerment é valor
+      - Criatividade do cliente importa
+
+    riscos:
+      - Parecer distante
+      - Falta de suporte percebida
+
+  companheiro:
+    nome: "Companheiro"
+    dinamica: "Marca e cliente juntos, no mesmo nível"
+    poder: "Equilibrado"
+    proximidade: "Próxima, informal"
+
+    caracteristicas:
+      - Marca está junto
+      - Parceria horizontal
+      - Comunicação conversacional
+      - Empatia e entendimento
+
+    comportamentos:
+      - Usa "nós"
+      - Pede opinião
+      - Admite erros
+      - Compartilha bastidores
+
+    arquetipos_alinhados: ["Everyman", "Jester", "Lover"]
+
+    exemplos:
+      - marca: "Starbucks"
+        manifestacao: "Seu terceiro lugar"
+      - marca: "Slack"
+        manifestacao: "Trabalhamos junto com você"
+
+    quando_usar:
+      - Público valoriza proximidade
+      - Categoria é commodity
+      - Experiência é diferencial
+      - B2C de frequência alta
+
+    riscos:
+      - Perder autoridade
+      - Parecer não-profissional
+
+  amigo:
+    nome: "Amigo"
+    dinamica: "Marca é como um amigo próximo"
+    poder: "Cliente acima (marca a serviço)"
+    proximidade: "Íntima"
+
+    caracteristicas:
+      - Marca é confidente
+      - Intimidade e confiança
+      - Comunicação informal
+      - Humor e leveza
+
+    comportamentos:
+      - Fala como amigo falaria
+      - Usa humor
+      - É informal
+      - Lembra de detalhes pessoais
+
+    arquetipos_alinhados: ["Jester", "Everyman", "Lover"]
+
+    exemplos:
+      - marca: "Mailchimp"
+        manifestacao: "Tom amigável, high-five"
+      - marca: "Nubank"
+        manifestacao: "Roxinho, linguagem próxima"
+
+    quando_usar:
+      - Público jovem
+      - Categoria tradicionalmente fria
+      - Diferenciação por experiência
+      - Digital-first
+
+    riscos:
+      - Parecer juvenil demais
+      - Perder credibilidade
+
+  provocador:
+    nome: "Provocador"
+    dinamica: "Marca desafia e questiona"
+    poder: "Marca acima (moralmente)"
+    proximidade: "Distância crítica"
+
+    caracteristicas:
+      - Marca tem ponto de vista forte
+      - Questiona status quo
+      - Comunicação provocativa
+      - Não tenta agradar todos
+
+    comportamentos:
+      - Posiciona-se claramente
+      - Não tem medo de polarizar
+      - Critica alternativas
+      - Desafia o cliente a repensar
+
+    arquetipos_alinhados: ["Outlaw", "Hero", "Magician"]
+
+    exemplos:
+      - marca: "Basecamp"
+        manifestacao: "Anti-complexidade, crítica ao hustle"
+      - marca: "Cards Against Humanity"
+        manifestacao: "Politicamente incorreta"
+
+    quando_usar:
+      - Marca tem POV forte
+      - Público busca autenticidade
+      - Categoria precisa de disrupção
+      - Nicho tolerante
+
+    riscos:
+      - Alienar públicos
+      - Polêmicas
+      - Parecer arrogante
+
+  servidor:
+    nome: "Servidor"
+    dinamica: "Marca a serviço do cliente"
+    poder: "Cliente acima"
+    proximidade: "Profissional-calorosa"
+
+    caracteristicas:
+      - Cliente é prioridade absoluta
+      - Marca existe para servir
+      - Comunicação atenciosa
+      - Excelência em atendimento
+
+    comportamentos:
+      - Antecipa necessidades
+      - Vai além do esperado
+      - Trata como VIP
+      - Disponibilidade total
+
+    arquetipos_alinhados: ["Caregiver", "Innocent"]
+
+    exemplos:
+      - marca: "Zappos"
+        manifestacao: "Atendimento lendário"
+      - marca: "Ritz-Carlton"
+        manifestacao: "Senhoras e senhores servindo senhoras e senhores"
+
+    quando_usar:
+      - Serviço é o produto
+      - Premium/luxo
+      - Atendimento é diferencial
+      - Alta competição
+
+    riscos:
+      - Subserviência excessiva
+      - Custo alto de manter
+
+# ═══════════════════════════════════════════════════════════════════
+# TEMPLATE DE DEFINIÇÃO
+# ═══════════════════════════════════════════════════════════════════
+template:
+  definicao:
+    postura_primaria: null
+    postura_secundaria: null
+
+    justificativa:
+      por_que_esta_postura: null
+      como_alinha_com_proposito: null
+      como_ressoa_com_publico: null
+
+    manifestacoes:
+      tom_de_voz: null
+      estilo_atendimento: null
+      tipo_conteudo: null
+      rituais_interacao: []
+
+    limites:
+      o_que_marca_faz: []
+      o_que_marca_nao_faz: []
+      taboos: []
+
+  auditoria:
+    postura_atual_percebida: null
+    postura_desejada: null
+    gap: null
+    acoes_alinhamento: []
+
+# ═══════════════════════════════════════════════════════════════════
+# INTEGRAÇÃO
+# ═══════════════════════════════════════════════════════════════════
+integracao:
+  com_arquetipo:
+    nota: "Postura deve ser coerente com arquétipo"
+    exemplos:
+      - arquetipo: "Sage"
+        posturas_coerentes: ["Guru", "Mentor"]
+      - arquetipo: "Jester"
+        posturas_coerentes: ["Amigo", "Companheiro"]
+      - arquetipo: "Caregiver"
+        posturas_coerentes: ["Servidor", "Mentor"]
+
+  com_tom_voz:
+    nota: "Tom deve refletir postura"
+    exemplos:
+      - postura: "Guru"
+        tom: "Confiante, econômico em palavras"
+      - postura: "Amigo"
+        tom: "Informal, bem-humorado"
+      - postura: "Servidor"
+        tom: "Atencioso, solícito"
+
+referencias:
+  - "Fournier, S. - Consumers and Their Brands (1998)"
+  - "Kapferer, J.N. - Brand Identity Prism"
+  - "Mark, M. & Pearson, C. - The Hero and the Outlaw"

@@ -1,0 +1,86 @@
+# Task: Build Design System
+# Squad: squAId-criaTTivados / unniko
+# Responsável: design-system-architect
+
+metadata:
+  name: "build-design-system"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "unniko"
+  responsavel: "design-system-architect"
+  tipo: task
+
+descricao: |
+  Construção do Design System completo: logo, paleta de cores, tipografia,
+  elementos visuais e aplicações. Inclui identidade verbal.
+
+entrada:
+  - campo: brand_strategy_document
+    tipo: string
+    origem: "build-brand-essence"
+    obrigatorio: true
+    descricao: "Estratégia de marca (arquétipos, personalidade)"
+  - campo: differentiation_strategy
+    tipo: string
+    origem: "map-differentiators"
+    obrigatorio: true
+    descricao: "Diferenciais e Brand Promise"
+
+saida:
+  - campo: brand_identity_document
+    tipo: string
+    destino: "validate-identity-gate"
+    persistido: true
+    descricao: "Design System + Verbal Identity + aplicações"
+
+passos:
+  1:
+    nome: "Definir conceito visual"
+    descricao: "Conceito baseado em arquétipo + personalidade"
+    agente: "design-system-architect"
+  2:
+    nome: "Criar Logo"
+    descricao: "Logo + variações (principal, reduzido, mono, negativo)"
+    agente: "design-system-architect"
+  3:
+    nome: "Definir paleta de cores"
+    descricao: "Primárias, secundárias, neutras com justificativa psicológica"
+    agente: "design-system-architect"
+  4:
+    nome: "Selecionar tipografia"
+    descricao: "Título, corpo e destaque"
+    agente: "design-system-architect"
+  5:
+    nome: "Criar elementos gráficos"
+    descricao: "Ícones, patterns, texturas complementares"
+    agente: "design-system-architect"
+  6:
+    nome: "Definir Tom de Voz"
+    descricao: "4 dimensões: formal/casual, sério/engraçado, respeitoso/irreverente, entusiasta/objetivo"
+    agente: "verbal-identity-specialist"
+  7:
+    nome: "Codificar Vocabulário"
+    descricao: "Palavras assinatura + palavras proibidas"
+    agente: "verbal-identity-specialist"
+  8:
+    nome: "Criar aplicações"
+    descricao: "Papelaria, digital, ambientação"
+    agente: "design-system-architect"
+  9:
+    nome: "Compilar Brand Identity Document"
+    descricao: "Documento final com todos os componentes"
+    agente: "identity-architect"
+
+checklist:
+  - "[ ] Logo criado + variações"
+  - "[ ] Paleta de cores definida"
+  - "[ ] Tipografia selecionada"
+  - "[ ] Tom de voz codificado (4 dimensões)"
+  - "[ ] Vocabulário mapeado"
+  - "[ ] Aplicações demonstradas"
+  - "[ ] Brand Identity Document compilado"
+
+criterios_aceitacao:
+  - "Identidade memorável e diferenciada"
+  - "Coerência entre visual e verbal"
+  - "Design System aplicável em múltiplos contextos"

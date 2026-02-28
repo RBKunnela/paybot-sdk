@@ -1,0 +1,249 @@
+# Jobs To Be Done Framework
+# Baseado em: Clayton Christensen - Competing Against Luck
+# Squad: DEENEA (Essência/Estratégia)
+# Usado por: audience-mapper
+
+metadata:
+  name: "Jobs To Be Done Framework"
+  version: "1.0"
+  source: "Clayton Christensen - Competing Against Luck (2016)"
+  aplicacao: "Entender o 'trabalho' que o cliente quer realizar"
+
+# ═══════════════════════════════════════════════════════════════════
+# CONCEITO CENTRAL
+# ═══════════════════════════════════════════════════════════════════
+
+conceito_central:
+  definicao: |
+    Pessoas não compram produtos - elas "contratam" produtos
+    para fazer um trabalho específico em suas vidas.
+
+  principio: |
+    Entender o JOB revela a verdadeira competição
+    (que frequentemente não é quem você pensa).
+
+  exemplo_classico:
+    produto: "Milkshake McDonald's"
+    job_descoberto: "Tornar commute matinal menos entediante"
+    competidores_reais: ["Banana", "Donut", "Bagel", "Café"]
+
+# ═══════════════════════════════════════════════════════════════════
+# ESTRUTURA DO JOB STATEMENT
+# ═══════════════════════════════════════════════════════════════════
+
+job_statement:
+  estrutura: |
+    "Quando [situação], eu quero [motivação],
+    para que eu possa [resultado esperado]"
+
+  componentes:
+    situacao:
+      descricao: "O contexto que dispara a necessidade"
+      exemplos:
+        - "Quando estou esperando o ônibus sozinho..."
+        - "Quando preciso impressionar um cliente..."
+        - "Quando me sinto sobrecarregado no trabalho..."
+
+    motivacao:
+      descricao: "O que a pessoa quer fazer/ter/sentir"
+      exemplos:
+        - "...quero algo para me entreter..."
+        - "...quero parecer profissional..."
+        - "...quero recuperar o controle..."
+
+    resultado:
+      descricao: "O benefício final desejado"
+      exemplos:
+        - "...para que o tempo passe mais rápido"
+        - "...para que fechem negócio comigo"
+        - "...para que eu consiga entregar no prazo"
+
+# ═══════════════════════════════════════════════════════════════════
+# TRÊS DIMENSÕES DO JOB
+# ═══════════════════════════════════════════════════════════════════
+
+dimensoes:
+  functional:
+    descricao: "O que precisa fazer (tarefa prática)"
+    peso: "Base necessária, mas raramente diferenciadora"
+    exemplos:
+      - "Enviar email"
+      - "Organizar finanças"
+      - "Transportar-me ao trabalho"
+    pergunta: "Qual tarefa precisa ser realizada?"
+
+  emotional:
+    descricao: "Como quer se sentir"
+    peso: "Frequentemente o verdadeiro driver de decisão"
+    exemplos:
+      - "Seguro"
+      - "Competente"
+      - "Tranquilo"
+      - "Em controle"
+    pergunta: "Como quer se sentir durante e após?"
+
+  social:
+    descricao: "Como quer ser percebido pelos outros"
+    peso: "Forte influenciador, especialmente em B2C"
+    exemplos:
+      - "Bem-sucedido"
+      - "Consciente"
+      - "Inovador"
+      - "Bom pai/mãe"
+    pergunta: "Como quer que outros te vejam?"
+
+# ═══════════════════════════════════════════════════════════════════
+# NÍVEIS DE JOBS (Hierarquia)
+# ═══════════════════════════════════════════════════════════════════
+
+niveis:
+  big_job:
+    descricao: "Transformação de vida/identidade"
+    horizonte: "Anos"
+    exemplo: "Ser visto como expert no mercado"
+    pergunta: "Quem essa pessoa quer se tornar?"
+
+  medium_job:
+    descricao: "Objetivo específico/projeto"
+    horizonte: "Meses"
+    exemplo: "Construir autoridade online"
+    pergunta: "O que está tentando alcançar?"
+
+  small_job:
+    descricao: "Tarefa específica/imediata"
+    horizonte: "Dias/horas"
+    exemplo: "Criar um post no LinkedIn"
+    pergunta: "O que precisa fazer agora?"
+
+  conexao: |
+    Small jobs servem medium jobs que servem big jobs.
+    Marcas fortes conectam-se ao big job enquanto
+    entregam small jobs excepcionalmente.
+
+# ═══════════════════════════════════════════════════════════════════
+# FORÇAS DO PROGRESSO (Switch Model)
+# ═══════════════════════════════════════════════════════════════════
+
+forcas_progresso:
+  descricao: |
+    4 forças que influenciam a decisão de "contratar" um novo produto.
+    2 empurram para mudança, 2 resistem.
+
+  forcas_promotoras:
+    push:
+      nome: "Push of the situation"
+      descricao: "Insatisfação com situação atual"
+      pergunta: "O que está errado hoje?"
+
+    pull:
+      nome: "Pull of the new solution"
+      descricao: "Atração pela nova solução"
+      pergunta: "O que é atraente na alternativa?"
+
+  forcas_resistentes:
+    anxiety:
+      nome: "Anxiety of the new"
+      descricao: "Medo de mudar, incerteza"
+      pergunta: "O que pode dar errado?"
+
+    habit:
+      nome: "Habit of the present"
+      descricao: "Inércia, conforto do familiar"
+      pergunta: "Por que continuar como está?"
+
+  implicacao: |
+    Para gerar mudança:
+    (Push + Pull) > (Anxiety + Habit)
+
+    Marcas podem trabalhar as 4 forças:
+    - Amplificar push (mostrar problema)
+    - Amplificar pull (benefícios claros)
+    - Reduzir anxiety (garantias, trials)
+    - Reduzir habit (facilitar transição)
+
+# ═══════════════════════════════════════════════════════════════════
+# APLICAÇÃO PARA BRANDING (DEENEA)
+# ═══════════════════════════════════════════════════════════════════
+
+aplicacao_branding:
+
+  descoberta_de_jobs:
+    metodos:
+      - "Entrevistas de Switch (quando trocou de marca)"
+      - "Observação contextual"
+      - "Análise de situações de uso"
+      - "Mapeamento de 'hiring' e 'firing'"
+
+    perguntas_chave:
+      - "Quando você decidiu procurar [categoria]?"
+      - "O que estava acontecendo na sua vida?"
+      - "O que você tentou antes?"
+      - "Por que não funcionou?"
+      - "Como você se sentiu quando encontrou [solução]?"
+
+  conexao_com_posicionamento:
+    principio: |
+      O propósito da marca deve conectar com o BIG JOB.
+      A promessa deve resolver o MEDIUM JOB.
+      O produto deve executar o SMALL JOB excepcionalmente.
+
+    exemplo:
+      marca: "Nike"
+      big_job: "Ser a melhor versão de mim mesmo"
+      medium_job: "Melhorar minha performance atlética"
+      small_job: "Ter equipamento confortável para treinar"
+
+  competidores_verdadeiros:
+    insight: |
+      JTBD revela competidores que você não considerava.
+      Compete quem resolve o mesmo job, não quem vende
+      o mesmo produto.
+
+    exemplo:
+      job: "Relaxar após dia estressante"
+      competidores:
+        - "Netflix"
+        - "Vinho"
+        - "Academia"
+        - "Meditação app"
+        - "Banho quente"
+
+# ═══════════════════════════════════════════════════════════════════
+# TEMPLATE: JOB MAP
+# ═══════════════════════════════════════════════════════════════════
+
+job_map_template:
+  descricao: "Estrutura para documentar jobs descobertos"
+
+  campos:
+    job_statement: "[situação] + [motivação] + [resultado]"
+
+    dimensoes:
+      funcional: "Tarefa prática"
+      emocional: "Sentimento desejado"
+      social: "Percepção desejada"
+
+    nivel: "Big / Medium / Small"
+
+    situacoes_gatilho:
+      - "Quando..."
+      - "Quando..."
+
+    solucoes_atuais:
+      - solucao: "O que usam hoje"
+        limitacoes: "Por que não é ideal"
+
+    criterios_sucesso:
+      - "Como sabem que o job foi bem feito"
+
+    forcas:
+      push: "Insatisfação atual"
+      pull: "Atração da solução"
+      anxiety: "Medos sobre mudança"
+      habit: "Inércia"
+
+referencias:
+  - "Christensen, C. - Competing Against Luck (2016)"
+  - "Christensen, C. - The Innovator's Dilemma (1997)"
+  - "Ulwick, A. - What Customers Want (2005)"
+  - "Klement, A. - When Coffee and Kale Compete (2018)"

@@ -1,0 +1,249 @@
+# BranDesire Briefing Fields - 16 Campos
+# Referência para briefing-collector
+
+methodology:
+  name: "BranDesire"
+  description: |
+    Framework de briefing em 16 campos para captura profunda
+    da essência de marca. Cada campo deve ser "lapidado"
+    usando o método unniko (Feynman + 5 Whys).
+
+  unniko_method:
+    feynman: "Simplifique até uma criança entender"
+    five_whys: "Pergunte 'por quê?' até chegar à raiz"
+    purpose: "Respostas lapidadas, não superficiais"
+
+fields:
+
+  # BLOCO 1: IDENTIFICAÇÃO
+  field_1:
+    number: 1
+    name: "Nome da marca/empresa"
+    category: "Identificação"
+    question: "Qual é o nome da marca ou empresa?"
+    depth_questions:
+      - "O nome tem algum significado especial?"
+      - "Como surgiu esse nome?"
+      - "Existe alguma história por trás?"
+    output: "Nome + contexto/história do nome"
+
+  field_2:
+    number: 2
+    name: "Segmento de atuação"
+    category: "Identificação"
+    question: "Em qual segmento/mercado a marca atua?"
+    depth_questions:
+      - "Como você descreveria o mercado em uma frase?"
+      - "É um mercado em crescimento, estável ou em declínio?"
+      - "Quais são as principais características desse segmento?"
+    output: "Segmento + características do mercado"
+
+  # BLOCO 2: CONTEXTO
+  field_3:
+    number: 3
+    name: "Contexto/Situação atual"
+    category: "Contexto"
+    question: "Qual é a situação atual da marca?"
+    depth_questions:
+      - "A marca já existe ou está nascendo?"
+      - "Se existe, qual é a percepção atual no mercado?"
+      - "O que motivou buscar este trabalho agora?"
+      - "Há alguma crise ou oportunidade específica?"
+    output: "Snapshot da situação atual + motivação"
+
+  field_4:
+    number: 4
+    name: "Objetivo principal"
+    category: "Contexto"
+    question: "Qual é o principal objetivo deste projeto?"
+    depth_questions:
+      - "O que seria um resultado de sucesso?"
+      - "Por que esse objetivo é importante agora?"
+      - "Como você vai medir se conseguimos?"
+      - "Em quanto tempo espera ver resultados?"
+    output: "Objetivo + métricas de sucesso + timeline"
+
+  # BLOCO 3: PÚBLICO
+  field_5:
+    number: 5
+    name: "Público-alvo"
+    category: "Público"
+    question: "Quem é o público-alvo da marca?"
+    depth_questions:
+      - "Quem compra? Quem usa? São os mesmos?"
+      - "Descreva seu cliente ideal em detalhes"
+      - "O que essa pessoa quer da vida?"
+      - "Qual é a maior dor/frustração dela?"
+      - "Por que ela escolheria você?"
+    output: "Perfil detalhado + JTBD + dores"
+
+  field_6:
+    number: 6
+    name: "Diferenciais percebidos"
+    category: "Público"
+    question: "O que os clientes atuais dizem que é diferente na marca?"
+    depth_questions:
+      - "O que seus clientes mais elogiam?"
+      - "Por que eles escolheram você e não a concorrência?"
+      - "O que eles contam para amigos sobre você?"
+      - "Tem algum depoimento marcante?"
+    output: "Diferenciais na percepção do cliente"
+
+  # BLOCO 4: COMPETIÇÃO
+  field_7:
+    number: 7
+    name: "Concorrentes diretos"
+    category: "Competição"
+    question: "Quem são os principais concorrentes?"
+    depth_questions:
+      - "Quem você considera seu maior concorrente? Por quê?"
+      - "O que eles fazem bem?"
+      - "O que eles fazem mal?"
+      - "Por que alguém escolheria eles em vez de você?"
+      - "Há algum concorrente que você admira?"
+    output: "Lista de concorrentes + análise"
+
+  # BLOCO 5: ESSÊNCIA
+  field_8:
+    number: 8
+    name: "Valores da marca"
+    category: "Essência"
+    question: "Quais são os valores fundamentais da marca?"
+    depth_questions:
+      - "Quais valores são inegociáveis?"
+      - "Como esses valores aparecem no dia a dia?"
+      - "Que comportamento seria inaceitável mesmo se lucrativo?"
+      - "Do que você nunca abriria mão?"
+    output: "Valores + evidências comportamentais"
+
+  field_9:
+    number: 9
+    name: "Personalidade desejada"
+    category: "Essência"
+    question: "Se a marca fosse uma pessoa, como ela seria?"
+    depth_questions:
+      - "Qual seria a idade dessa pessoa?"
+      - "Como ela se vestiria?"
+      - "Como ela falaria?"
+      - "Que tipo de música ela ouviria?"
+      - "Quem seriam os amigos dela?"
+    output: "Persona da marca detalhada"
+
+  field_10:
+    number: 10
+    name: "Tom de voz atual"
+    category: "Essência"
+    question: "Como a marca se comunica hoje?"
+    depth_questions:
+      - "A comunicação atual reflete quem vocês são?"
+      - "O que funciona bem na comunicação atual?"
+      - "O que não funciona ou incomoda?"
+      - "Quer manter, evoluir ou mudar completamente?"
+    output: "Diagnóstico do tom atual + direção"
+
+  # BLOCO 6: RECURSOS
+  field_11:
+    number: 11
+    name: "Assets existentes"
+    category: "Recursos"
+    question: "Quais materiais/assets a marca já possui?"
+    depth_questions:
+      - "Tem manual de marca? Logo em alta?"
+      - "Quais materiais de comunicação existem?"
+      - "Há pesquisas anteriores disponíveis?"
+      - "Existem fotos, vídeos, depoimentos?"
+    output: "Inventário de assets disponíveis"
+
+  field_12:
+    number: 12
+    name: "Restrições/Limitações"
+    category: "Recursos"
+    question: "Existem restrições que devemos respeitar?"
+    depth_questions:
+      - "Há elementos que não podem mudar?"
+      - "Existem restrições legais ou regulatórias?"
+      - "Há limitações técnicas?"
+      - "Existe algum 'sagrado' que não pode ser tocado?"
+    output: "Lista de restrições + motivos"
+
+  # BLOCO 7: EXECUÇÃO
+  field_13:
+    number: 13
+    name: "Timeline"
+    category: "Execução"
+    question: "Qual é o prazo esperado?"
+    depth_questions:
+      - "Há alguma data limite importante?"
+      - "Existe algum evento ou lançamento vinculado?"
+      - "Qual seria um prazo ideal? E um prazo aceitável?"
+      - "O que acontece se atrasar?"
+    output: "Cronograma + datas críticas"
+
+  field_14:
+    number: 14
+    name: "Budget disponível"
+    category: "Execução"
+    question: "Qual é o investimento previsto?"
+    depth_questions:
+      - "Existe um budget definido?"
+      - "É flexível dependendo do escopo?"
+      - "Há fases ou parcelas?"
+      - "Existem outros investimentos relacionados (mídia, etc.)?"
+    output: "Budget + flexibilidade + fases"
+
+  # BLOCO 8: VISÃO
+  field_15:
+    number: 15
+    name: "Métricas de sucesso"
+    category: "Visão"
+    question: "Como vamos medir se o projeto foi bem-sucedido?"
+    depth_questions:
+      - "Quais KPIs são mais importantes?"
+      - "Existem métricas já sendo acompanhadas?"
+      - "O que seria um resultado 'wow'?"
+      - "O que seria um resultado aceitável?"
+    output: "KPIs + targets + como medir"
+
+  field_16:
+    number: 16
+    name: "Visão de futuro"
+    category: "Visão"
+    question: "Onde a marca quer estar daqui a 5 anos?"
+    depth_questions:
+      - "Qual é o sonho grande para a marca?"
+      - "O que precisa acontecer para chegar lá?"
+      - "O que vai mudar no mundo com o sucesso da marca?"
+      - "O que você quer deixar como legado?"
+    output: "Visão + ambição + propósito maior"
+
+# Checklist de Validação
+validation:
+
+  completeness:
+    - "Todos os 16 campos preenchidos?"
+    - "Respostas são profundas (não superficiais)?"
+    - "Método unniko foi aplicado?"
+
+  quality:
+    - "Respostas podem ser explicadas de forma simples (Feynman)?"
+    - "Chegamos à raiz das questões (5 Whys)?"
+    - "Não há contradições entre campos?"
+
+  actionability:
+    - "Temos informação suficiente para estratégia?"
+    - "Sabemos o que medir?"
+    - "Entendemos as restrições?"
+
+# Template de Output
+output_template:
+  format: "brandesire-briefing-{cliente}-{data}.md"
+  sections:
+    - Identificação (campos 1-2)
+    - Contexto (campos 3-4)
+    - Público (campos 5-6)
+    - Competição (campo 7)
+    - Essência (campos 8-10)
+    - Recursos (campos 11-12)
+    - Execução (campos 13-14)
+    - Visão (campos 15-16)
+    - Checklist de Validação

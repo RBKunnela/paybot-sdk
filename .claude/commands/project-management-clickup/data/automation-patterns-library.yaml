@@ -1,0 +1,183 @@
+# Automation Patterns Library - Project Management ClickUp
+# Canonical reference for all ClickUp automation patterns
+# Used by: automation-engineer
+
+version: 1.0.0
+last_updated: "2026-02-10"
+
+categories:
+
+  status_notifications:
+    name: "Notificacao por Mudanca de Status"
+    trigger: "Status changes"
+    patterns:
+      - id: notify-reviewer
+        name: "Notificar aprovador"
+        logic: |
+          WHEN status changes TO "Review"
+          THEN notify @approver
+          AND add comment "Aguardando sua revisao"
+
+      - id: notify-done
+        name: "Notificar equipe de conclusao"
+        logic: |
+          WHEN status changes TO "Done"
+          THEN notify @team
+          AND add comment "Tarefa concluida por {assignee}"
+
+      - id: alert-blocked
+        name: "Alerta de bloqueio"
+        logic: |
+          WHEN status changes TO "Blocked"
+          THEN notify @pm-orchestrator
+          AND set priority TO "Urgent"
+          AND add comment "Tarefa bloqueada - requer atencao"
+
+  status_cascades:
+    name: "Cascata de Status"
+    patterns:
+      - id: subtasks-done-parent-review
+        name: "Mover para proxima fase"
+        logic: |
+          WHEN all subtasks status = "Done"
+          THEN change parent status TO "Review"
+
+      - id: subtask-reopen-parent
+        name: "Reabrir se subtask reaberta"
+        logic: |
+          WHEN any subtask status changes FROM "Done" TO any
+          THEN change parent status TO "In Progress"
+
+  auto_assignment:
+    name: "Atribuicao Automatica"
+    patterns:
+      - id: assign-by-type
+        name: "Por tipo de tarefa"
+        logic: |
+          WHEN task created
+          AND custom field "Tipo" = "Bug"
+          THEN assign TO @dev-lead
+
+      - id: round-robin
+        name: "Round-robin"
+        logic: |
+          WHEN task created in List "Suporte"
+          THEN assign TO next person in rotation
+
+  deadline_management:
+    name: "Gestao de Prazos"
+    patterns:
+      - id: deadline-warning
+        name: "Alerta de prazo proximo"
+        logic: |
+          WHEN due date is 2 days away
+          AND status != "Done"
+          THEN notify @assignee
+          AND add comment "Prazo em 2 dias!"
+
+      - id: overdue-escalation
+        name: "Escalar atraso"
+        logic: |
+          WHEN due date is overdue
+          AND status != "Done"
+          THEN notify @manager
+          AND set priority TO "Urgent"
+
+  dependency_management:
+    name: "Gestao de Dependencias"
+    patterns:
+      - id: unblock-dependent
+        name: "Desbloquear dependente"
+        logic: |
+          WHEN task status changes TO "Done"
+          AND task has waiting tasks
+          THEN notify waiting task assignees
+          AND add comment "Dependencia concluida, pode prosseguir"
+
+      - id: dependency-risk
+        name: "Alerta de bloqueio por dependencia"
+        logic: |
+          WHEN task due date is tomorrow
+          AND blocking task status != "Done"
+          THEN notify both assignees
+
+  time_tracking:
+    name: "Time Tracking Automatico"
+    patterns:
+      - id: auto-start-timer
+        name: "Iniciar timer ao comecar"
+        logic: |
+          WHEN status changes TO "In Progress"
+          THEN start time tracking
+
+      - id: auto-stop-timer
+        name: "Parar timer ao concluir"
+        logic: |
+          WHEN status changes TO "Done" OR "Review"
+          THEN stop time tracking
+
+      - id: time-overrun-alert
+        name: "Alerta de tempo excedido"
+        logic: |
+          WHEN time tracked > time estimate x 1.5
+          THEN notify @pm-orchestrator
+
+  crm_automations:
+    name: "Automacoes de CRM"
+    patterns:
+      - id: followup-reminder
+        name: "Follow-up reminder"
+        logic: |
+          WHEN custom field "Proximo Follow-up" = today
+          THEN notify @assignee
+
+      - id: lead-aging
+        name: "Lead aging alert"
+        logic: |
+          WHEN task in "Leads" list
+          AND no activity for 7 days
+          AND status != "Fechado" AND status != "Perdido"
+          THEN notify @sales-manager
+
+      - id: deal-won
+        name: "Deal won celebration"
+        logic: |
+          WHEN status changes TO "Fechado"
+          THEN notify @team
+
+  content_automations:
+    name: "Automacoes de Conteudo"
+    patterns:
+      - id: request-approval
+        name: "Solicitar aprovacao"
+        logic: |
+          WHEN status changes TO "Rascunho Pronto"
+          THEN assign TO @natalia
+          AND change status TO "Aguardando Aprovacao"
+
+      - id: auto-schedule
+        name: "Agendar publicacao"
+        logic: |
+          WHEN status changes TO "Aprovado"
+          THEN move TO List "Calendario"
+
+      - id: post-publish-tracking
+        name: "Tracking pos-publicacao"
+        logic: |
+          WHEN status changes TO "Publicado"
+          THEN create subtask "Analisar metricas em 7 dias"
+
+  launch_automations:
+    name: "Automacoes de Lancamento"
+    patterns:
+      - id: phase-transition
+        name: "Transicao de fase"
+        logic: |
+          WHEN all tasks in current phase list = "Done"
+          THEN notify @pm-orchestrator "Fase completa"
+
+      - id: launch-countdown
+        name: "Countdown de lancamento"
+        logic: |
+          WHEN custom field "Data Carrinho" is 7 days away
+          THEN notify @team "Carrinho abre em 7 dias!"

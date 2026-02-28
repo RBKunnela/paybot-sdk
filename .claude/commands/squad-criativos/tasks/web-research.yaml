@@ -1,0 +1,108 @@
+# Task: Web Research
+# Squad: squAId-criaTTivados / search-insights
+# Responsável: data-miner
+
+metadata:
+  name: "web-research"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "search-insights"
+  responsavel: "data-miner"
+  tipo: task
+
+descricao: |
+  Pesquisa web estruturada usando EXA para coleta de dados de mercado,
+  relatórios públicos, artigos setoriais e informações competitivas.
+  Organizada pelos 3 Domínios da Taxonomia de Diferenciais.
+
+entrada:
+  - campo: handoff_package
+    tipo: string
+    origem: "prepare-handoff"
+    obrigatorio: true
+    descricao: "Handoff Package do Atendimento"
+  - campo: segmento
+    tipo: string
+    origem: "briefing"
+    obrigatorio: true
+    descricao: "Segmento/categoria para direcionar pesquisa"
+  - campo: concorrentes
+    tipo: list
+    origem: "briefing"
+    obrigatorio: false
+    descricao: "Lista de concorrentes conhecidos (se disponível)"
+
+saida:
+  - campo: web_research_data
+    tipo: string
+    destino: "analyze-competition / synthesize-insights"
+    persistido: true
+    descricao: "Dados coletados da web organizados por domínio"
+
+ferramentas:
+  primaria:
+    nome: "EXA Web Search"
+    acesso: "mcp__docker-gateway__web_search_exa"
+    uso: "Pesquisa semântica de alta qualidade"
+  secundaria:
+    nome: "Apify Web Scraping"
+    acesso: "mcp__docker-gateway__call-actor"
+    uso: "Extração de dados estruturados de sites específicos"
+
+passos:
+  1:
+    nome: "Definir queries de pesquisa"
+    descricao: |
+      Criar lista de queries baseada no briefing e segmento:
+      - Queries para Domínio I (produto, modelo, evidências)
+      - Queries para Domínio II (propósito, narrativa, cultura)
+      - Queries para Domínio III (identidade visual, assets, rituais)
+    agente: "data-miner"
+  2:
+    nome: "Pesquisa de mercado via EXA"
+    descricao: |
+      Usar EXA para buscar:
+      - Relatórios de mercado públicos (market size, growth)
+      - Artigos setoriais e análises
+      - Dados de associações e institutos
+    agente: "data-miner"
+    ferramenta: "exa_web_search"
+  3:
+    nome: "Pesquisa competitiva via EXA"
+    descricao: |
+      Para cada concorrente identificado:
+      - Site institucional (propósito, valores, manifesto)
+      - Comunicação (tom de voz, narrativa)
+      - Produtos/serviços (features, pricing)
+    agente: "data-miner"
+    ferramenta: "exa_web_search"
+  4:
+    nome: "Scraping de dados estruturados"
+    descricao: |
+      Usar Apify para extrair dados de:
+      - Sites de concorrentes (textos, imagens, estrutura)
+      - Portais de review (avaliações, percepções)
+      - Diretórios e marketplaces do setor
+    agente: "data-miner"
+    ferramenta: "apify_scraping"
+  5:
+    nome: "Organizar por Domínio"
+    descricao: "Classificar todos os dados coletados por Domínio I, II e III"
+    agente: "data-miner"
+  6:
+    nome: "Validar e documentar fontes"
+    descricao: "Registrar URL, data de acesso e confiabilidade de cada fonte"
+    agente: "data-miner"
+
+checklist:
+  - "[ ] Queries definidas para os 3 domínios"
+  - "[ ] Pesquisa de mercado via EXA concluída"
+  - "[ ] Pesquisa competitiva via EXA concluída"
+  - "[ ] Scraping de dados concluído (se aplicável)"
+  - "[ ] Dados organizados por domínio"
+  - "[ ] Fontes documentadas com URLs"
+
+criterios_aceitacao:
+  - "Dados factuais com fontes citadas e URLs"
+  - "Cobertura dos 3 domínios da Taxonomia"
+  - "Mínimo 5 fontes independentes consultadas"

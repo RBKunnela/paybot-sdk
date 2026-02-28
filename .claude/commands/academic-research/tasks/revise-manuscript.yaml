@@ -1,0 +1,120 @@
+name: revise-manuscript
+description: Revise manuscript based on peer review or advisor feedback
+category: revision
+agent: academic-writer
+priority: high
+estimated_duration: 3-5 days
+
+inputs:
+  - manuscript:
+      type: file
+      description: Current version of manuscript
+      required: true
+  - feedback:
+      type: file
+      description: Peer review or advisor feedback
+      required: true
+  - revision_level:
+      type: enum
+      options: [minor, major, complete_rewrite]
+      description: Extent of revision needed
+      required: true
+
+outputs:
+  - revised_manuscript:
+      type: file
+      description: Revised manuscript
+  - revision_notes:
+      type: file
+      description: Summary of changes made
+
+steps:
+  - step: 1
+    name: analyze_feedback
+    description: Read and categorize all feedback
+    agent: academic-writer
+    estimated_duration: 0.5 days
+
+  - step: 2
+    name: create_revision_plan
+    description: Plan revision strategy and priorities
+    agent: academic-writer
+    estimated_duration: 0.5 days
+
+  - step: 3
+    name: make_revisions
+    description: Implement all revisions
+    agent: academic-writer
+    estimated_duration: 2-4 days
+
+  - step: 4
+    name: verify_completeness
+    description: Verify all feedback addressed
+    agent: peer-reviewer
+    estimated_duration: 0.5 days
+
+success_criteria:
+  - All feedback addressed
+  - Quality improved from original
+  - No new errors introduced
+  - Revision notes document changes
+
+deliverables:
+  - Revised manuscript
+  - Revision notes/summary
+
+revision_priorities:
+  critical:
+    - Methodological flaws
+    - Statistical errors
+    - Logical fallacies
+    - Missing ethical considerations
+
+  important:
+    - Unclear writing
+    - Weak arguments
+    - Missing citations
+    - Poor organization
+
+  nice_to_have:
+    - Minor grammar/style
+    - Figure/table improvements
+    - Additional references
+
+revision_strategies:
+  major_revisions:
+    - May require new data collection or analysis
+    - Significant rewriting of sections
+    - Timeline: 1-3 months
+
+  minor_revisions:
+    - Clarifications, additions, corrections
+    - No new data needed
+    - Timeline: 1-2 weeks
+
+  complete_rewrite:
+    - Fundamental issues with approach
+    - Consider starting from scratch
+    - Timeline: 3-6 months
+
+best_practices:
+  - Address critical issues first
+  - Track changes for transparency
+  - Don't ignore "minor" comments
+  - Improve beyond what was requested
+  - Get second opinion on major changes
+  - Proofread carefully after revisions
+
+common_pitfalls:
+  - Defensive attitude (dismissing valid criticism)
+  - Surface-level fixes (not addressing root issues)
+  - Introducing new errors during revision
+  - Not seeking clarification on unclear feedback
+  - Rushing revisions without careful thought
+
+tags:
+  - revision
+  - peer-review
+  - feedback
+  - improvement
+  - rewriting

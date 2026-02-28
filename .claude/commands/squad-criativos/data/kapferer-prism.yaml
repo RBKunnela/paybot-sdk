@@ -1,0 +1,300 @@
+# Kapferer Brand Identity Prism
+# Framework de Identidade de Marca
+# Usado por: Strategy Director, Strategic Synthesizer
+
+metadata:
+  name: "Prisma de Identidade de Marca (Kapferer)"
+  version: "1.0"
+  source: "Strategic Brand Management (Jean-Noël Kapferer)"
+
+conceito:
+  definicao: |
+    O Prisma de Identidade de Marca é um modelo hexagonal que representa
+    as 6 facetas da identidade de marca, organizadas em duas dimensões:
+    - Internalização ↔ Externalização
+    - Emissão (marca) ↔ Recepção (público)
+
+  principio: |
+    Uma marca forte tem uma identidade clara e consistente
+    em todas as 6 facetas, que se reforçam mutuamente.
+
+estrutura:
+  lado_emissor: "Construído pela marca"
+  lado_receptor: "Percebido pelo público"
+  lado_externo: "Visível, social"
+  lado_interno: "Incorporado, espiritual"
+
+# ═══════════════════════════════════════════════════════════════════
+# AS 6 FACETAS
+# ═══════════════════════════════════════════════════════════════════
+facetas:
+
+  physique:
+    posicao: "Externo + Emissor"
+    descricao: |
+      O corpo físico da marca - suas características tangíveis
+      e visuais. A base concreta da marca.
+
+    pergunta: "Qual a aparência física da marca?"
+
+    elementos:
+      - Logo e identidade visual
+      - Cores e tipografia
+      - Embalagem e produto
+      - Arquitetura de marca
+      - Elementos sensoriais
+
+    mapeamento_taxonomia:
+      dominio: "III - Distintividade"
+      classes: [7, 8]
+
+    exemplos:
+      coca_cola:
+        - Garrafa contour
+        - Vermelho característico
+        - Tipografia Spencerian
+
+      apple:
+        - Minimalismo
+        - Branco/prata
+        - Design clean
+
+  personality:
+    posicao: "Externo + Emissor"
+    descricao: |
+      O caráter da marca - se fosse uma pessoa, como seria?
+      Como a marca se comunica e se expressa.
+
+    pergunta: "Se a marca fosse uma pessoa, quem seria?"
+
+    elementos:
+      - Arquétipo dominante
+      - Tom de voz
+      - Estilo de comunicação
+      - Atitude
+      - Humor
+
+    mapeamento_taxonomia:
+      dominio: "II - Simbólica"
+      classe: 5
+      ordens: ["5.1", "5.2", "5.3"]
+
+    exemplos:
+      red_bull:
+        - Aventureira
+        - Ousada
+        - Extrema
+
+      dove:
+        - Gentil
+        - Autêntica
+        - Cuidadora
+
+  culture:
+    posicao: "Interno + Emissor"
+    descricao: |
+      O sistema de valores da marca - as crenças e princípios
+      que guiam suas ações. O coração da marca.
+
+    pergunta: "Quais valores guiam a marca?"
+
+    elementos:
+      - Valores fundamentais
+      - Crenças
+      - Princípios
+      - País/região de origem
+      - Heritage
+
+    mapeamento_taxonomia:
+      dominio: "II - Simbólica"
+      classe: 6
+      ordens: ["6.1", "6.3"]
+
+    exemplos:
+      patagonia:
+        - Ativismo ambiental
+        - Qualidade duradoura
+        - Transparência radical
+
+      toyota:
+        - Kaizen (melhoria contínua)
+        - Qualidade
+        - Eficiência
+
+  relationship:
+    posicao: "Centro (ponte)"
+    descricao: |
+      O tipo de relacionamento que a marca estabelece
+      com seu público. Como trata e interage.
+
+    pergunta: "Qual a natureza do relacionamento marca-cliente?"
+
+    elementos:
+      - Postura relacional
+      - Tipo de troca
+      - Dinâmica
+      - Rituais de interação
+      - Estilo de atendimento
+
+    mapeamento_taxonomia:
+      dominio: "II - Simbólica"
+      classe: 5
+      ordem: "5.3"
+      complemento:
+        dominio: "III"
+        classe: 9
+
+    exemplos:
+      apple:
+        - Guru-discípulo
+        - Exclusividade
+        - Iniciação
+
+      harley_davidson:
+        - Irmandade
+        - Pertencimento
+        - Cumplicidade
+
+  reflection:
+    posicao: "Externo + Receptor"
+    descricao: |
+      A imagem do consumidor-tipo da marca - quem o público
+      pensa que usa a marca. O "espelho externo".
+
+    pergunta: "Quem parece ser o consumidor típico?"
+
+    elementos:
+      - Perfil estereotipado
+      - Status
+      - Estilo de vida
+      - Aspirações visíveis
+      - Imagem projetada
+
+    nota: |
+      Reflection NÃO é o target real, mas a imagem idealizada
+      que a marca projeta de seu consumidor.
+
+    exemplos:
+      porsche:
+        - Bem-sucedido
+        - Sofisticado
+        - Entusiasta
+
+      nike:
+        - Atleta
+        - Determinado
+        - Vencedor
+
+  self_image:
+    posicao: "Interno + Receptor"
+    descricao: |
+      Como o consumidor se vê quando usa a marca.
+      A transformação interna que a marca proporciona.
+
+    pergunta: "Como o cliente se sente/vê usando a marca?"
+
+    elementos:
+      - Identidade interna
+      - Auto-percepção
+      - Sentimento
+      - Transformação
+      - Aspiração pessoal
+
+    mapeamento_taxonomia:
+      dominio: "II - Simbólica"
+      classe: 6
+      ordem: "6.2"
+
+    exemplos:
+      apple:
+        - "Sou criativo"
+        - "Penso diferente"
+
+      gym_shark:
+        - "Sou dedicado"
+        - "Estou evoluindo"
+
+# ═══════════════════════════════════════════════════════════════════
+# TEMPLATE DE APLICAÇÃO
+# ═══════════════════════════════════════════════════════════════════
+template:
+  instrucoes: |
+    Para cada faceta, responda às perguntas e defina os elementos.
+    Garanta que todas as 6 facetas estejam coerentes entre si.
+
+  auditoria:
+    physique:
+      elementos_atuais: []
+      gaps: []
+      score: null  # 1-5
+
+    personality:
+      descricao: null
+      arquetipos: []
+      tom: null
+      score: null
+
+    culture:
+      valores: []
+      crencas: []
+      heritage: null
+      score: null
+
+    relationship:
+      tipo: null
+      dinamica: null
+      rituais: []
+      score: null
+
+    reflection:
+      perfil: null
+      status: null
+      estilo_vida: null
+      score: null
+
+    self_image:
+      transformacao: null
+      sentimento: null
+      aspiracao: null
+      score: null
+
+  coerencia:
+    physique_personality: null  # 1-5
+    personality_culture: null
+    culture_relationship: null
+    relationship_reflection: null
+    reflection_self_image: null
+    total: null
+
+# ═══════════════════════════════════════════════════════════════════
+# INTEGRACAO COM TAXONOMIA
+# ═══════════════════════════════════════════════════════════════════
+integracao_taxonomia:
+  mapeamento:
+    physique:
+      dominio: "III - Distintividade"
+      contribuicao: "Elementos visuais e sensoriais"
+
+    personality:
+      dominio: "II - Simbólica (Classe 5)"
+      contribuicao: "Arquétipo, tom, postura"
+
+    culture:
+      dominio: "II - Simbólica (Classe 6)"
+      contribuicao: "Valores, crenças, cultura"
+
+    relationship:
+      dominio: "II + III"
+      contribuicao: "Postura + Comportamentos"
+
+    reflection:
+      dominio: "Marketing/Comunicação"
+      contribuicao: "Targeting e messaging"
+
+    self_image:
+      dominio: "II - Simbólica (Classe 6.2)"
+      contribuicao: "Pertencimento e identidade"
+
+referencias:
+  - "Kapferer, J.N. - Strategic Brand Management (1986/1996)"
+  - "Kapferer, J.N. - The New Strategic Brand Management (2012)"

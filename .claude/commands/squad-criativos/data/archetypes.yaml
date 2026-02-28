@@ -1,0 +1,480 @@
+# Brand Archetypes - Jung + Aaker
+# Referência para archetype-mapper, narrative-designer
+
+source:
+  jung:
+    author: "Carl Jung"
+    concept: "12 Arquétipos do Inconsciente Coletivo"
+
+  aaker:
+    author: "Jennifer Aaker"
+    work: "Dimensions of Brand Personality (1997)"
+
+archetypes:
+
+  # 1. O Inocente
+  innocent:
+    name: "O Inocente"
+    also_known_as: ["Utópico", "Romântico", "Sonhador"]
+
+    core:
+      desire: "Experimentar o paraíso"
+      goal: "Ser feliz"
+      fear: "Fazer algo errado e ser punido"
+      strategy: "Fazer as coisas certas"
+
+    personality:
+      traits:
+        - Otimista
+        - Honesto
+        - Puro
+        - Simples
+        - Confiável
+
+      tone_of_voice:
+        - Positivo
+        - Sincero
+        - Direto
+        - Acolhedor
+
+    brand_examples:
+      - Dove
+      - Coca-Cola
+      - McDonald's (Happy Meal)
+      - Innocent Drinks
+
+    best_for:
+      - Produtos que prometem simplicidade
+      - Marcas familiares
+      - Experiências nostálgicas
+      - Marcas de bem-estar
+
+  # 2. O Sábio
+  sage:
+    name: "O Sábio"
+    also_known_as: ["Expert", "Filósofo", "Mentor"]
+
+    core:
+      desire: "Encontrar a verdade"
+      goal: "Usar inteligência para entender o mundo"
+      fear: "Ser ignorante ou enganado"
+      strategy: "Buscar informação e conhecimento"
+
+    personality:
+      traits:
+        - Inteligente
+        - Analítico
+        - Sábio
+        - Reflexivo
+        - Confiável
+
+      tone_of_voice:
+        - Educativo
+        - Informativo
+        - Ponderado
+        - Autoritativo (sem ser arrogante)
+
+    brand_examples:
+      - Google
+      - BBC
+      - Harvard
+      - The Economist
+
+    best_for:
+      - Educação
+      - Consultoria
+      - Tecnologia
+      - Mídia/Jornalismo
+
+  # 3. O Explorador
+  explorer:
+    name: "O Explorador"
+    also_known_as: ["Aventureiro", "Pioneiro", "Individualista"]
+
+    core:
+      desire: "Liberdade para descobrir a si mesmo"
+      goal: "Experimentar uma vida melhor e autêntica"
+      fear: "Ficar preso, conformismo"
+      strategy: "Viajar, buscar, experimentar"
+
+    personality:
+      traits:
+        - Aventureiro
+        - Independente
+        - Ambicioso
+        - Autêntico
+        - Curioso
+
+      tone_of_voice:
+        - Inspirador
+        - Desafiador
+        - Autêntico
+        - Informal
+
+    brand_examples:
+      - Jeep
+      - Patagonia
+      - REI
+      - The North Face
+
+    best_for:
+      - Viagens/Turismo
+      - Outdoor
+      - Startups
+      - Marcas de lifestyle
+
+  # 4. O Governante
+  ruler:
+    name: "O Governante"
+    also_known_as: ["Líder", "Chefe", "Aristocrata"]
+
+    core:
+      desire: "Controle"
+      goal: "Criar comunidade ou família próspera"
+      fear: "Caos, ser derrubado"
+      strategy: "Exercer poder e liderança"
+
+    personality:
+      traits:
+        - Poderoso
+        - Responsável
+        - Organizado
+        - Confiante
+        - Autoritário
+
+      tone_of_voice:
+        - Sofisticado
+        - Comandante
+        - Assertivo
+        - Formal
+
+    brand_examples:
+      - Rolex
+      - Mercedes-Benz
+      - American Express
+      - Microsoft
+
+    best_for:
+      - Luxo
+      - Finanças
+      - Tecnologia enterprise
+      - Liderança de mercado
+
+  # 5. O Criador
+  creator:
+    name: "O Criador"
+    also_known_as: ["Artista", "Inventor", "Inovador"]
+
+    core:
+      desire: "Criar algo de valor duradouro"
+      goal: "Realizar uma visão"
+      fear: "Visão medíocre ou execução"
+      strategy: "Desenvolver habilidade artística"
+
+    personality:
+      traits:
+        - Criativo
+        - Imaginativo
+        - Artístico
+        - Visionário
+        - Expressivo
+
+      tone_of_voice:
+        - Inspirador
+        - Inovador
+        - Expressivo
+        - Original
+
+    brand_examples:
+      - Apple
+      - Lego
+      - Adobe
+      - Pinterest
+
+    best_for:
+      - Design
+      - Tecnologia
+      - Artes
+      - Ferramentas criativas
+
+  # 6. O Cuidador
+  caregiver:
+    name: "O Cuidador"
+    also_known_as: ["Protetor", "Pai/Mãe", "Ajudante"]
+
+    core:
+      desire: "Proteger e cuidar dos outros"
+      goal: "Ajudar os outros"
+      fear: "Egoísmo, ingratidão"
+      strategy: "Fazer por outros"
+
+    personality:
+      traits:
+        - Generoso
+        - Compassivo
+        - Protetor
+        - Acolhedor
+        - Altruísta
+
+      tone_of_voice:
+        - Caloroso
+        - Reconfortante
+        - Empático
+        - Gentil
+
+    brand_examples:
+      - Johnson & Johnson
+      - UNICEF
+      - Volvo (segurança)
+      - Pampers
+
+    best_for:
+      - Saúde
+      - ONGs
+      - Educação
+      - Produtos familiares
+
+  # 7. O Mago
+  magician:
+    name: "O Mago"
+    also_known_as: ["Visionário", "Catalisador", "Transformador"]
+
+    core:
+      desire: "Compreender as leis fundamentais do universo"
+      goal: "Fazer sonhos virarem realidade"
+      fear: "Consequências negativas não intencionais"
+      strategy: "Desenvolver visão e vivê-la"
+
+    personality:
+      traits:
+        - Visionário
+        - Transformador
+        - Carismático
+        - Inspirador
+        - Misterioso
+
+      tone_of_voice:
+        - Misterioso
+        - Inspirador
+        - Transformador
+        - Visionário
+
+    brand_examples:
+      - Disney
+      - TED
+      - Tesla
+      - Polaroid
+
+    best_for:
+      - Entretenimento
+      - Tecnologia transformadora
+      - Experiências
+      - Bem-estar/Espiritualidade
+
+  # 8. O Herói
+  hero:
+    name: "O Herói"
+    also_known_as: ["Guerreiro", "Atleta", "Vencedor"]
+
+    core:
+      desire: "Provar seu valor através de ação corajosa"
+      goal: "Maestria que melhora o mundo"
+      fear: "Fraqueza, vulnerabilidade"
+      strategy: "Ser forte e competente"
+
+    personality:
+      traits:
+        - Corajoso
+        - Determinado
+        - Forte
+        - Competitivo
+        - Inspirador
+
+      tone_of_voice:
+        - Motivacional
+        - Direto
+        - Confiante
+        - Energético
+
+    brand_examples:
+      - Nike
+      - FedEx
+      - Duracell
+      - Under Armour
+
+    best_for:
+      - Esportes
+      - Equipamentos
+      - Serviços que "resolvem"
+      - Performance
+
+  # 9. O Fora da Lei
+  outlaw:
+    name: "O Fora da Lei"
+    also_known_as: ["Rebelde", "Revolucionário", "Vilão"]
+
+    core:
+      desire: "Vingança ou revolução"
+      goal: "Destruir o que não funciona"
+      fear: "Ser impotente ou ineficaz"
+      strategy: "Romper, destruir, chocar"
+
+    personality:
+      traits:
+        - Rebelde
+        - Disruptivo
+        - Iconoclasta
+        - Ousado
+        - Autêntico
+
+      tone_of_voice:
+        - Provocativo
+        - Desafiador
+        - Irreverente
+        - Direto
+
+    brand_examples:
+      - Harley-Davidson
+      - Virgin
+      - Diesel
+      - MTV
+
+    best_for:
+      - Disrupção de mercado
+      - Público jovem
+      - Estilo de vida alternativo
+      - Marcas que quebram regras
+
+  # 10. O Amante
+  lover:
+    name: "O Amante"
+    also_known_as: ["Parceiro", "Sensualista", "Apreciador"]
+
+    core:
+      desire: "Intimidade e experiência"
+      goal: "Relacionamento com pessoas e experiências amadas"
+      fear: "Ficar sozinho, não ser amado"
+      strategy: "Tornar-se atraente física e emocionalmente"
+
+    personality:
+      traits:
+        - Apaixonado
+        - Sensual
+        - Íntimo
+        - Apreciador
+        - Comprometido
+
+      tone_of_voice:
+        - Sensual
+        - Íntimo
+        - Apreciativo
+        - Elegante
+
+    brand_examples:
+      - Chanel
+      - Häagen-Dazs
+      - Victoria's Secret
+      - Godiva
+
+    best_for:
+      - Moda/Beleza
+      - Gastronomia gourmet
+      - Joias
+      - Experiências sensuais
+
+  # 11. O Bobo da Corte
+  jester:
+    name: "O Bobo da Corte"
+    also_known_as: ["Comediante", "Provocador", "Trapaceiro"]
+
+    core:
+      desire: "Viver no momento com alegria"
+      goal: "Se divertir e alegrar o mundo"
+      fear: "Ser chato ou entediar"
+      strategy: "Brincar, fazer piadas, ser engraçado"
+
+    personality:
+      traits:
+        - Divertido
+        - Brincalhão
+        - Otimista
+        - Irreverente
+        - Espontâneo
+
+      tone_of_voice:
+        - Humorístico
+        - Irreverente
+        - Leve
+        - Surpreendente
+
+    brand_examples:
+      - M&M's
+      - Old Spice
+      - Skittles
+      - Pringles
+
+    best_for:
+      - Snacks/Alimentos
+      - Entretenimento
+      - Bebidas
+      - Público jovem
+
+  # 12. O Cara Comum
+  everyman:
+    name: "O Cara Comum"
+    also_known_as: ["Bom Vizinho", "Realista", "Trabalhador"]
+
+    core:
+      desire: "Conexão com os outros"
+      goal: "Pertencer"
+      fear: "Ficar de fora, ser rejeitado"
+      strategy: "Desenvolver virtudes comuns, misturar-se"
+
+    personality:
+      traits:
+        - Autêntico
+        - Acessível
+        - Empático
+        - Realista
+        - Honesto
+
+      tone_of_voice:
+        - Amigável
+        - Simples
+        - Autêntico
+        - Acolhedor
+
+    brand_examples:
+      - IKEA
+      - Target
+      - eBay
+      - Budweiser
+
+    best_for:
+      - Varejo
+      - Produtos do dia a dia
+      - Comunidade
+      - Marcas democráticas
+
+# Jennifer Aaker - Dimensões de Personalidade
+aaker_dimensions:
+
+  sincerity:
+    traits: ["Honesta", "Genuína", "Amigável", "Alegre"]
+    archetypes_aligned: ["innocent", "caregiver", "everyman"]
+
+  excitement:
+    traits: ["Ousada", "Animada", "Imaginativa", "Atual"]
+    archetypes_aligned: ["explorer", "creator", "jester"]
+
+  competence:
+    traits: ["Confiável", "Inteligente", "Bem-sucedida"]
+    archetypes_aligned: ["sage", "ruler", "hero"]
+
+  sophistication:
+    traits: ["Classe alta", "Charmosa", "Elegante"]
+    archetypes_aligned: ["ruler", "lover", "magician"]
+
+  ruggedness:
+    traits: ["Resistente", "Forte", "Ao ar livre"]
+    archetypes_aligned: ["hero", "explorer", "outlaw"]

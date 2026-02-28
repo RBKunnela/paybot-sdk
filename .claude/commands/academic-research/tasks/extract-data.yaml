@@ -1,0 +1,110 @@
+name: extract-data
+description: Extract key information from included papers into structured format
+category: research
+agent: literature-reviewer
+priority: medium
+estimated_duration: 3-5 days
+
+inputs:
+  - included_papers:
+      type: file
+      description: Papers that passed screening
+      required: true
+  - extraction_variables:
+      type: array
+      description: Variables to extract from each paper
+      required: true
+
+outputs:
+  - data_extraction_table:
+      type: file
+      format: csv, xlsx
+      description: Structured data extracted from all papers
+  - extraction_notes:
+      type: file
+      format: markdown
+      description: Notes and observations during extraction
+
+steps:
+  - step: 1
+    name: create_extraction_form
+    description: Design data extraction form/template
+    agent: literature-reviewer
+    estimated_duration: 0.5 days
+
+  - step: 2
+    name: pilot_extraction
+    description: Test extraction form on 3-5 papers
+    agent: literature-reviewer
+    estimated_duration: 0.5 days
+
+  - step: 3
+    name: extract_data
+    description: Extract data from all included papers
+    agent: literature-reviewer
+    estimated_duration: 2-4 days
+
+  - step: 4
+    name: verify_accuracy
+    description: Verify accuracy of extracted data (sample check)
+    agent: peer-reviewer
+    estimated_duration: 0.5 days
+
+success_criteria:
+  - All variables extracted for all papers
+  - Data in structured, analyzable format
+  - Missing data documented
+  - For systematic reviews: dual extraction completed
+
+deliverables:
+  - Data extraction spreadsheet (CSV/Excel)
+  - Extraction form/template
+  - Notes on any issues or missing data
+
+extraction_variables_example:
+  study_characteristics:
+    - Author(s)
+    - Year
+    - Country
+    - Study design (RCT, survey, case study, etc.)
+    - Sample size (N)
+    - Participant demographics (age, education level)
+
+  methodology:
+    - Data collection method (interviews, surveys, observations)
+    - Analysis method (thematic analysis, regression, etc.)
+    - Duration of study
+
+  findings:
+    - Main findings (key results)
+    - Effect size (if quantitative)
+    - Statistical significance (p-values)
+    - Themes (if qualitative)
+
+  quality:
+    - Limitations reported
+    - Conflicts of interest
+    - Funding source
+
+best_practices:
+  - Pilot test extraction form on 3-5 papers before full extraction
+  - Use dual extraction for systematic reviews (two independent extractors)
+  - Create clear definitions for each variable
+  - Use standardized coding schemes when possible
+  - Contact authors if key data is missing
+  - Document missing data (don't leave blank without notes)
+  - Calculate inter-rater agreement for dual extraction
+
+common_pitfalls:
+  - Extraction form too complex (takes too long)
+  - Not pilot testing (discover issues too late)
+  - Single extractor only (error risk)
+  - Not standardizing variable definitions
+  - Losing track of which papers have been extracted
+
+tags:
+  - data-extraction
+  - systematic-review
+  - coding
+  - synthesis
+  - meta-analysis

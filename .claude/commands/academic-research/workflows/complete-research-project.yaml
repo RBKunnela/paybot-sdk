@@ -1,0 +1,288 @@
+name: complete-research-project
+description: End-to-end research project from design to publication (9-12 months)
+category: comprehensive
+priority: high
+estimated_duration: 9-12 months
+
+overview: |
+  Complete research project workflow covering all phases from initial design to publication.
+  Suitable for dissertation chapters, journal articles, or independent research projects.
+
+inputs:
+  - research_topic:
+      type: string
+      description: Research topic or domain
+      required: true
+  - research_type:
+      type: enum
+      options: [qualitative, quantitative, mixed_methods]
+      description: Research methodology approach
+      required: true
+  - target_journal:
+      type: string
+      description: Target publication venue
+      required: true
+
+outputs:
+  - published_paper:
+      type: file
+      description: Published research paper
+  - research_data:
+      type: files
+      description: Complete research dataset
+  - supplementary_materials:
+      type: files
+      description: All supplementary documents
+
+phases:
+  phase_1_planning:
+    name: Research Design & Ethics Approval
+    duration: 1-2 months
+    steps:
+      - step: 1
+        task: research-design
+        inputs:
+          research_topic: $research_topic
+          research_type: $research_type
+          target_journal: $target_journal
+        agent: research-chief
+        estimated_duration: 5-7 days
+
+      - step: 2
+        task: conduct-literature-search
+        inputs:
+          research_topic: $research_topic
+          search_scope: narrative
+        agent: literature-reviewer
+        estimated_duration: 2-3 days
+
+      - step: 3
+        task: ethics-approval
+        inputs:
+          research_design: $phase_1_planning.step_1.output
+        agent: research-chief
+        estimated_duration: 3-5 days
+        notes: Submit to IRB and wait for approval (2-8 weeks)
+
+  phase_2_data_collection:
+    name: Data Collection
+    duration: 2-4 months
+    depends_on: [phase_1_planning]
+    steps:
+      - step: 1
+        name: collect_data
+        description: Collect data according to approved protocol
+        agent: research-chief
+        estimated_duration: 2-4 months
+        notes: Manual data collection - not automated by AIOS
+
+      - step: 2
+        name: organize_data
+        description: Organize and prepare data for analysis
+        agent: research-chief
+        estimated_duration: 1 week
+
+  phase_3_literature_review:
+    name: Comprehensive Literature Review
+    duration: 1-2 months
+    depends_on: [phase_1_planning]
+    parallel_with: [phase_2_data_collection]
+    steps:
+      - step: 1
+        task: conduct-literature-search
+        inputs:
+          research_topic: $research_topic
+          search_scope: systematic
+        agent: literature-reviewer
+        estimated_duration: 2-3 days
+
+      - step: 2
+        task: screen-papers
+        inputs:
+          search_results: $phase_3_literature_review.step_1.output
+          screening_level: full_text
+        agent: literature-reviewer
+        estimated_duration: 1-2 days
+
+      - step: 3
+        task: extract-data
+        inputs:
+          included_papers: $phase_3_literature_review.step_2.output
+        agent: literature-reviewer
+        estimated_duration: 3-5 days
+
+      - step: 4
+        task: synthesize-findings
+        inputs:
+          data_extraction_table: $phase_3_literature_review.step_3.output
+          synthesis_type: thematic
+        agent: literature-reviewer
+        estimated_duration: 2-3 days
+
+      - step: 5
+        task: write-literature-review
+        inputs:
+          synthesis_document: $phase_3_literature_review.step_4.output
+        agent: academic-writer
+        estimated_duration: 5-7 days
+
+  phase_4_analysis:
+    name: Data Analysis
+    duration: 1-2 months
+    depends_on: [phase_2_data_collection]
+    steps:
+      - step: 1
+        name: analyze_data
+        description: Conduct statistical or qualitative analysis
+        agent: research-chief
+        estimated_duration: 2-4 weeks
+        notes: Analysis conducted by researcher - AIOS provides guidance
+
+  phase_5_writing:
+    name: Manuscript Writing
+    duration: 2-3 months
+    depends_on: [phase_3_literature_review, phase_4_analysis]
+    steps:
+      - step: 1
+        task: write-methodology
+        inputs:
+          research_design: $phase_1_planning.step_1.output
+        agent: academic-writer
+        estimated_duration: 2-3 days
+
+      - step: 2
+        task: write-paper
+        inputs:
+          literature_review: $phase_3_literature_review.step_5.output
+          methodology: $phase_5_writing.step_1.output
+        agent: academic-writer
+        estimated_duration: 10-15 days
+
+      - step: 3
+        task: format-citations
+        inputs:
+          manuscript: $phase_5_writing.step_2.output
+          citation_style: APA7
+        agent: citation-manager
+        estimated_duration: 1-2 days
+
+      - step: 4
+        task: check-plagiarism
+        inputs:
+          manuscript: $phase_5_writing.step_3.output
+        agent: citation-manager
+        estimated_duration: 1 day
+
+  phase_6_review:
+    name: Internal Review & Revision
+    duration: 2-3 weeks
+    depends_on: [phase_5_writing]
+    steps:
+      - step: 1
+        task: internal-peer-review
+        inputs:
+          manuscript: $phase_5_writing.step_4.output
+        agent: peer-reviewer
+        estimated_duration: 2-3 days
+
+      - step: 2
+        task: revise-manuscript
+        inputs:
+          manuscript: $phase_5_writing.step_4.output
+          feedback: $phase_6_review.step_1.output
+          revision_level: minor
+        agent: academic-writer
+        estimated_duration: 3-5 days
+
+      - step: 3
+        task: review-manuscript
+        inputs:
+          manuscript: $phase_6_review.step_2.output
+        agent: research-chief
+        estimated_duration: 1-2 days
+
+  phase_7_submission:
+    name: Submission & Publication
+    duration: 1-2 weeks (plus journal review time)
+    depends_on: [phase_6_review]
+    steps:
+      - step: 1
+        task: coordinate-publication
+        inputs:
+          manuscript: $phase_6_review.step_3.output
+          target_journals: [$target_journal]
+        agent: research-chief
+        estimated_duration: 2-3 days
+
+      - step: 2
+        name: await_peer_review
+        description: Wait for external peer review (2-6 months)
+        agent: research-chief
+        estimated_duration: 2-6 months
+
+      - step: 3
+        task: address-reviewer-comments
+        inputs:
+          reviewer_comments: $phase_7_submission.step_2.output
+          original_manuscript: $phase_6_review.step_3.output
+        agent: peer-reviewer
+        estimated_duration: 1-2 days
+        condition: decision == revisions_required
+
+      - step: 4
+        name: resubmit
+        description: Resubmit revised manuscript with response letter
+        agent: research-chief
+        estimated_duration: 1 day
+        condition: decision == revisions_required
+
+timeline_summary:
+  phase_1: "Month 1-2: Planning & Ethics"
+  phase_2: "Month 2-6: Data Collection"
+  phase_3: "Month 2-4: Literature Review (parallel)"
+  phase_4: "Month 6-8: Analysis"
+  phase_5: "Month 8-11: Writing"
+  phase_6: "Month 11-12: Review & Revision"
+  phase_7: "Month 12+: Submission & Publication (plus journal review time)"
+
+success_criteria:
+  - Ethics approval obtained before data collection
+  - Comprehensive literature review completed
+  - Rigorous methodology and analysis
+  - High-quality manuscript written
+  - Internal peer review conducted
+  - Manuscript submitted to journal
+  - Accepted for publication (eventually)
+
+deliverables:
+  - Research design document
+  - Ethics approval certificate
+  - Complete dataset
+  - Literature review document
+  - Analysis outputs
+  - Complete manuscript
+  - Peer review reports
+  - Published paper
+
+best_practices:
+  - Pre-register study protocol before data collection
+  - Conduct literature review early (parallel with data collection)
+  - Get internal peer review before submission
+  - Choose appropriate journal (fit, impact factor, acceptance rate)
+  - Respond professionally to reviewer comments
+  - Be patient (publication process takes time)
+
+common_pitfalls:
+  - Starting data collection before ethics approval
+  - Weak literature review (missing key papers)
+  - Methodological flaws discovered too late
+  - Poor writing quality slowing publication
+  - Submitting to wrong journal (desk rejection)
+  - Defensive responses to reviewers
+
+tags:
+  - complete-workflow
+  - research-project
+  - publication
+  - end-to-end
+  - dissertation

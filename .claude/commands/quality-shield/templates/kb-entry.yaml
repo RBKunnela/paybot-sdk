@@ -1,0 +1,53 @@
+# Template: Knowledge Base Entry
+# Usado por: Chief (via task kb-record)
+# Preenchido apos: Bug resolvido e verificado
+# Referencia: squads/quality-shield/tasks/kb-record.md
+#
+# Instrucoes:
+# 1. Copie este template
+# 2. Preencha todos os campos (nenhum e opcional)
+# 3. Append no final de knowledge-base.yaml dentro de bugs:[]
+# 4. Atualize regression-patterns.md se padrao novo identificado
+
+- id: "BUG-YYYY-MM-DD-NNN"        # Formato: BUG-{data}-{sequencia do dia}
+  date: "YYYY-MM-DD"
+  severity: "CRITICO|ALTO|MEDIO|BAIXO"
+
+  symptom: "O que o usuario reportou - descricao objetiva do problema visivel"
+  root_cause: "Causa raiz tecnica - uma frase precisa"
+  what_caused_it: |
+    Explicacao detalhada do por que o bug acontece.
+    Deve ser clara o suficiente para alguem que nunca viu o codigo entender.
+    Incluir: sequencia de eventos, condicoes necessarias, por que nao era obvio.
+
+  files:
+    - path: "src/path/to/file.ts"
+      role: "O que esse arquivo faz no contexto do bug"
+    # Adicionar todos os arquivos envolvidos na CAUSA (nao no fix)
+
+  flows_affected:
+    - "nome-do-fluxo-1"
+    - "nome-do-fluxo-2"
+    # Usar nomes de squads/quality-shield/data/feature-flows.md
+
+  fix_applied: |
+    Descricao do que foi feito para resolver.
+    Incluir: abordagem escolhida, por que essa abordagem, alternativas descartadas.
+
+  fix_files:
+    - "src/path/to/fixed-file.ts"
+    # Listar TODOS os arquivos modificados pelo fix
+
+  environment:
+    worked_in_localhost: true       # true | false
+    prod_difference: |
+      Diferenca especifica de producao que causa ou contribui para o bug.
+      Se nao aplicavel: "Comportamento identico em ambos ambientes."
+
+  pattern: "nome-do-padrao"         # kebab-case, referencia regression-patterns.md
+  related_bugs: []                  # IDs de bugs relacionados: ["BUG-YYYY-MM-DD-NNN"]
+
+  regression:
+    tested_levels: [1, 2, 3, 4]    # Quais niveis foram executados
+    result: "APROVADO"              # APROVADO | REPROVADO
+    production_verified: true       # true | false (Sentinel verificou producao?)

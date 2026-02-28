@@ -1,0 +1,85 @@
+# Task: Produce Creative Brief
+# Squad: squAId-criaTTivados / storytelling
+# Responsável: creative-director
+
+metadata:
+  name: "produce-creative-brief"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "storytelling"
+  responsavel: "creative-director"
+  tipo: task
+
+descricao: |
+  Compilação do Creative Brief completo para handoff a Content-Ops.
+  Consolida Big Idea, Tom de Voz, Framework Narrativo, Direção Visual e Key Messages.
+
+entrada:
+  - campo: big_idea
+    tipo: string
+    origem: "develop-big-idea"
+    obrigatorio: true
+    descricao: "Big Idea aprovada"
+  - campo: narrative_framework
+    tipo: string
+    origem: "select-narrative-framework"
+    obrigatorio: true
+    descricao: "Framework narrativo selecionado"
+  - campo: brand_strategy_document
+    tipo: string
+    origem: "build-brand-essence"
+    obrigatorio: true
+    descricao: "Estratégia de marca"
+
+saida:
+  - campo: creative_brief
+    tipo: string
+    destino: "validate-creative-gate / plan-content-strategy"
+    persistido: true
+    descricao: "Creative Brief completo para produção"
+
+passos:
+  1:
+    nome: "Consolidar Big Idea"
+    descricao: "Big Idea + Core Creative Concept (2-3 frases)"
+    agente: "concept-writer"
+  2:
+    nome: "Definir Tom de Voz"
+    descricao: "Guidelines de tom específicas para esta campanha"
+    agente: "brand-voice-director"
+  3:
+    nome: "Mapear Key Messages"
+    descricao: "3-5 mensagens-chave priorizadas"
+    agente: "concept-writer"
+  4:
+    nome: "Definir Direção Visual"
+    descricao: "Mood board + referências visuais"
+    agente: "art-director"
+  5:
+    nome: "Criar Copy Examples"
+    descricao: "Headlines, tagline, manifesto"
+    agente: "copywriter"
+  6:
+    nome: "Listar Deliverables"
+    descricao: "Entregas por caminho criativo selecionado"
+    agente: "creative-director"
+  7:
+    nome: "Documentar Do's e Don'ts"
+    descricao: "O que fazer e não fazer na execução"
+    agente: "creative-director"
+  8:
+    nome: "Validar alinhamento"
+    descricao: "Conferir alinhamento com Brand Strategy"
+    agente: "creative-director"
+
+checklist:
+  - "[ ] Big Idea clara"
+  - "[ ] Tom de voz definido"
+  - "[ ] Key Messages listadas (3-5)"
+  - "[ ] Direção visual definida"
+  - "[ ] Copy examples criados"
+  - "[ ] Do's/Don'ts documentados"
+
+criterios_aceitacao:
+  - "Creative Brief auto-suficiente para produção"
+  - "Alinhamento com Brand Strategy validado"

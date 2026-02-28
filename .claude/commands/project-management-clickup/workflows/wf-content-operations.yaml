@@ -1,0 +1,636 @@
+# ============================================================================
+# WORKFLOW: CONTENT OPERATIONS
+# ============================================================================
+# Workflow para estruturar operações de produção de conteúdo no ClickUp
+# Squad: project-management-clickup
+# Created by: squad-creator
+# ============================================================================
+
+name: wf-content-operations
+version: 1.0.0
+description: >
+  Workflow completo para estruturar e gerenciar operações de produção
+  de conteúdo no ClickUp. Inclui pipeline de produção, calendário editorial,
+  workflows de aprovação e integração com squads de conteúdo.
+
+orchestrator: "@pm-orchestrator"
+primary_executor: "@content-operations-manager"
+
+# ============================================================================
+# METADATA
+# ============================================================================
+
+metadata:
+  created: "2026-02-03"
+  framework: "AIOS Squad Creator v3.0"
+  story_id: "PM-CONTENT-001"
+  primary_use_case: "Gestão de produção de conteúdo"
+  key_difference: |
+    Operações de conteúdo integradas com:
+    - Squad youtube-content
+    - Squad youtube-lives
+    - Squad copywriting
+    - Pipeline de produção completo
+
+# ============================================================================
+# CONTENT TYPES
+# ============================================================================
+
+content_types:
+  video:
+    - name: "YouTube Long-form"
+      pipeline: "Ideia → Roteiro → Gravação → Edição → Thumbnail → Publicação"
+      stakeholders: ["creator", "editor", "designer"]
+    - name: "YouTube Shorts"
+      pipeline: "Ideia → Gravação → Edição → Publicação"
+      stakeholders: ["creator", "editor"]
+    - name: "Lives"
+      pipeline: "Pauta → Preparação → Live → Cortes"
+      stakeholders: ["creator", "moderador"]
+
+  written:
+    - name: "Blog Posts"
+      pipeline: "Pauta → Outline → Escrita → Review → SEO → Publicação"
+      stakeholders: ["writer", "editor", "seo"]
+    - name: "Newsletter"
+      pipeline: "Tema → Escrita → Review → Envio"
+      stakeholders: ["writer", "copywriter"]
+
+  social:
+    - name: "Instagram Posts"
+      pipeline: "Ideia → Copy → Design → Aprovação → Agendamento"
+      stakeholders: ["social media", "designer"]
+    - name: "Stories"
+      pipeline: "Tema → Produção → Publicação"
+      stakeholders: ["social media"]
+
+# ============================================================================
+# PHASES
+# ============================================================================
+
+phases:
+  # --------------------------------------------------------------------------
+  # PHASE 1: STRATEGY & PLANNING
+  # --------------------------------------------------------------------------
+  phase_1:
+    id: "PHASE-1"
+    name: "Strategy & Planning"
+    description: "Definir estratégia e estrutura de conteúdo"
+    duration: "2-3 hours"
+    tier: 0
+    executor: "@content-operations-manager"
+
+    objectives:
+      - "Definir pilares de conteúdo"
+      - "Estabelecer frequência de publicação"
+      - "Mapear recursos necessários"
+      - "Definir métricas de sucesso"
+
+    inputs:
+      required:
+        - name: "brand_voice"
+          description: "Tom de voz da marca"
+        - name: "target_audience"
+          description: "Audiência-alvo"
+        - name: "platforms"
+          description: "Plataformas de publicação"
+      optional:
+        - name: "existing_content"
+          description: "Conteúdo existente"
+        - name: "competitor_analysis"
+          description: "Análise de concorrentes"
+
+    activities:
+      - step: 1
+        action: "Definir pilares de conteúdo"
+        template: |
+          ## Pilares de Conteúdo
+
+          ### Pilar 1: {nome}
+          - **Objetivo:** {objetivo}
+          - **Temas:** {lista de temas}
+          - **Formato principal:** {formato}
+          - **Frequência:** {frequência}
+
+          ### Pilar 2: {nome}
+          ...
+
+          ### Pilar 3: {nome}
+          ...
+
+      - step: 2
+        action: "Definir calendário editorial"
+        template: |
+          ## Calendário Editorial
+
+          | Dia | YouTube | Instagram | Newsletter | Blog |
+          |-----|---------|-----------|------------|------|
+          | Seg | - | Post | - | - |
+          | Ter | Vídeo | Stories | - | - |
+          | Qua | - | Post | Newsletter | - |
+          | Qui | Vídeo | Stories | - | Blog |
+          | Sex | - | Post | - | - |
+          | Sáb | - | Stories | - | - |
+          | Dom | - | - | - | - |
+
+      - step: 3
+        action: "Definir métricas"
+        metrics:
+          youtube:
+            - "Views por vídeo"
+            - "Watch time"
+            - "CTR thumbnail"
+            - "Inscritos/vídeo"
+          instagram:
+            - "Alcance"
+            - "Engajamento"
+            - "Saves"
+            - "Shares"
+          newsletter:
+            - "Open rate"
+            - "Click rate"
+            - "Unsubscribes"
+
+    checkpoint:
+      id: "CONTENT_STR_001"
+      name: "Strategy Defined"
+      criteria:
+        - "Pilares definidos"
+        - "Calendário estabelecido"
+        - "Métricas definidas"
+        - "Recursos mapeados"
+      human_review: true
+      message: "Validar estratégia de conteúdo"
+
+    outputs:
+      - "content_pillars"
+      - "editorial_calendar"
+      - "metrics_framework"
+
+  # --------------------------------------------------------------------------
+  # PHASE 2: STRUCTURE SETUP
+  # --------------------------------------------------------------------------
+  phase_2:
+    id: "PHASE-2"
+    name: "Structure Setup"
+    description: "Criar estrutura de gestão no ClickUp"
+    duration: "2-3 hours"
+    tier: 1
+    executor: "@clickup-architect"
+
+    objectives:
+      - "Criar estrutura de folders/lists"
+      - "Configurar pipeline de produção"
+      - "Definir custom fields"
+      - "Criar views necessárias"
+
+    activities:
+      - step: 1
+        action: "Criar estrutura ClickUp"
+        template: |
+          ## Estrutura de Conteúdo - ClickUp
+
+          ```
+          📁 SPACE: Conteúdo
+          │
+          ├── 📂 FOLDER: 📺 YouTube
+          │   ├── 📋 LIST: Ideias & Backlog
+          │   ├── 📋 LIST: Em Produção
+          │   ├── 📋 LIST: Edição
+          │   ├── 📋 LIST: Review & Aprovação
+          │   ├── 📋 LIST: Agendados
+          │   └── 📋 LIST: Publicados
+          │
+          ├── 📂 FOLDER: 📱 Instagram
+          │   ├── 📋 LIST: Feed Posts
+          │   ├── 📋 LIST: Stories
+          │   ├── 📋 LIST: Reels
+          │   └── 📋 LIST: Agendados
+          │
+          ├── 📂 FOLDER: 📧 Newsletter
+          │   ├── 📋 LIST: Pautas
+          │   ├── 📋 LIST: Em Escrita
+          │   ├── 📋 LIST: Review
+          │   └── 📋 LIST: Enviadas
+          │
+          ├── 📂 FOLDER: 📝 Blog
+          │   ├── 📋 LIST: Ideias
+          │   ├── 📋 LIST: Em Produção
+          │   ├── 📋 LIST: SEO Review
+          │   └── 📋 LIST: Publicados
+          │
+          ├── 📋 LIST: 📅 Calendário Editorial
+          │
+          └── 📋 LIST: 📊 Dashboard & Métricas
+          ```
+
+      - step: 2
+        action: "Configurar Custom Fields"
+        fields:
+          content_info:
+            - name: "Content Type"
+              type: "Dropdown"
+              options: ["YouTube Long", "YouTube Short", "Live", "Post", "Story", "Reel", "Newsletter", "Blog"]
+            - name: "Pilar"
+              type: "Dropdown"
+              options: ["{pilar1}", "{pilar2}", "{pilar3}"]
+            - name: "Status de Produção"
+              type: "Status"
+              options: ["Ideia", "Briefed", "In Progress", "Review", "Approved", "Scheduled", "Published"]
+
+          scheduling:
+            - name: "Data de Publicação"
+              type: "Date"
+            - name: "Horário"
+              type: "Dropdown"
+              options: ["06:00", "09:00", "12:00", "15:00", "18:00", "21:00"]
+            - name: "Plataforma"
+              type: "Dropdown"
+              options: ["YouTube", "Instagram", "TikTok", "Newsletter", "Blog"]
+
+          production:
+            - name: "Roteirista"
+              type: "People"
+            - name: "Editor"
+              type: "People"
+            - name: "Designer"
+              type: "People"
+            - name: "Aprovador"
+              type: "People"
+
+          performance:
+            - name: "Views"
+              type: "Number"
+            - name: "Engajamento"
+              type: "Number"
+            - name: "Conversões"
+              type: "Number"
+
+      - step: 3
+        action: "Criar Views"
+        views:
+          - name: "Pipeline Board"
+            type: "Board"
+            group_by: "Status de Produção"
+            filter: "Content Type = {type}"
+
+          - name: "Calendário Editorial"
+            type: "Calendar"
+            date_field: "Data de Publicação"
+            color_by: "Plataforma"
+
+          - name: "Por Responsável"
+            type: "List"
+            group_by: "Assignee"
+            sort: "Due Date ASC"
+
+          - name: "Dashboard de Performance"
+            type: "Dashboard"
+            widgets:
+              - "Conteúdos publicados (semana)"
+              - "Views totais"
+              - "Engajamento médio"
+              - "Pipeline por status"
+
+      - step: 4
+        action: "Criar Templates"
+        templates:
+          - name: "YouTube Video"
+            fields:
+              - "Título"
+              - "Hook"
+              - "Roteiro link"
+              - "Thumbnail link"
+              - "Tags"
+              - "Descrição"
+
+          - name: "Instagram Post"
+            fields:
+              - "Tema"
+              - "Copy"
+              - "Imagem link"
+              - "Hashtags"
+              - "CTA"
+
+          - name: "Newsletter"
+            fields:
+              - "Subject"
+              - "Preview text"
+              - "Conteúdo"
+              - "CTA"
+              - "Segmento"
+
+    checkpoint:
+      id: "CONTENT_STR_002"
+      name: "Structure Complete"
+      criteria:
+        - "Folders/lists criados"
+        - "Custom fields configurados"
+        - "Views funcionando"
+        - "Templates prontos"
+      human_review: true
+      message: "Validar estrutura no ClickUp"
+
+    outputs:
+      - "clickup_structure"
+      - "custom_fields"
+      - "views"
+      - "templates"
+
+  # --------------------------------------------------------------------------
+  # PHASE 3: WORKFLOW AUTOMATIONS
+  # --------------------------------------------------------------------------
+  phase_3:
+    id: "PHASE-3"
+    name: "Workflow Automations"
+    description: "Configurar automações de produção"
+    duration: "2-3 hours"
+    tier: 2
+    executor: "@automation-engineer"
+
+    objectives:
+      - "Criar automações de pipeline"
+      - "Configurar notificações"
+      - "Integrar com squads"
+      - "Automatizar métricas"
+
+    activities:
+      - step: 1
+        action: "Automações de Pipeline"
+        automations:
+          - name: "Ideia → Briefed"
+            trigger: "Status changed to Briefed"
+            actions:
+              - "Assign to roteirista"
+              - "Set due date: +3 days"
+              - "Notify roteirista"
+
+          - name: "Briefed → In Progress"
+            trigger: "Status changed to In Progress"
+            actions:
+              - "Create subtasks from template"
+              - "Notify stakeholders"
+
+          - name: "In Progress → Review"
+            trigger: "All subtasks complete"
+            actions:
+              - "Change status to Review"
+              - "Assign to aprovador"
+              - "Notify aprovador"
+
+          - name: "Review → Approved"
+            trigger: "Aprovador marks approved"
+            actions:
+              - "Change status to Approved"
+              - "Notify team"
+              - "Move to Agendados list"
+
+          - name: "Scheduled → Published"
+            trigger: "Data de Publicação passed"
+            actions:
+              - "Change status to Published"
+              - "Move to Publicados list"
+              - "Create performance tracking task"
+
+      - step: 2
+        action: "Automações de Notificação"
+        notifications:
+          - name: "Deadline Alert"
+            trigger: "Due date in 24h"
+            action: "Notify assignee"
+
+          - name: "Overdue Alert"
+            trigger: "Task overdue"
+            action: "Notify assignee + manager"
+
+          - name: "Weekly Summary"
+            trigger: "Every Monday 9am"
+            action: "Send week's content schedule"
+
+      - step: 3
+        action: "Integrações com Squads"
+        integrations:
+          youtube_content:
+            trigger: "New YouTube video task"
+            actions:
+              - "Create linked task in youtube-content squad"
+              - "Sync status bidirectionally"
+
+          copywriting:
+            trigger: "Content needs copy"
+            actions:
+              - "Create brief in copywriting squad"
+              - "Link deliverables"
+
+          design_system:
+            trigger: "Content needs design"
+            actions:
+              - "Create request in design-system squad"
+              - "Link assets"
+
+    checkpoint:
+      id: "CONTENT_AUT_001"
+      name: "Automations Live"
+      criteria:
+        - "Pipeline automations working"
+        - "Notifications configured"
+        - "Squad integrations connected"
+      human_review: true
+      message: "Testar automações com conteúdo real"
+
+    outputs:
+      - "pipeline_automations"
+      - "notification_rules"
+      - "squad_integrations"
+
+  # --------------------------------------------------------------------------
+  # PHASE 4: TRAINING & HANDOFF
+  # --------------------------------------------------------------------------
+  phase_4:
+    id: "PHASE-4"
+    name: "Training & Handoff"
+    description: "Treinar equipe e entregar sistema operacional"
+    duration: "1-2 hours"
+    tier: 3
+    executor: "@pm-orchestrator"
+
+    objectives:
+      - "Documentar processos"
+      - "Treinar equipe de conteúdo"
+      - "Definir rotinas operacionais"
+      - "Entregar sistema funcional"
+
+    activities:
+      - step: 1
+        action: "Criar documentação"
+        documents:
+          - "Guia de uso do sistema"
+          - "Fluxo de produção por tipo de conteúdo"
+          - "FAQ e troubleshooting"
+          - "Vídeo walkthrough"
+
+      - step: 2
+        action: "Treinar equipe"
+        training_modules:
+          - "Como criar nova ideia"
+          - "Como mover pelo pipeline"
+          - "Como usar o calendário"
+          - "Como acompanhar métricas"
+          - "Como solicitar recursos"
+
+      - step: 3
+        action: "Definir rotinas"
+        routines:
+          daily:
+            - "Check tasks do dia"
+            - "Atualizar status de produção"
+          weekly:
+            - "Planning meeting (segunda)"
+            - "Review de performance (sexta)"
+            - "Planejamento próxima semana"
+          monthly:
+            - "Análise de métricas"
+            - "Ajuste de calendário"
+            - "Retrospectiva"
+
+      - step: 4
+        action: "Handoff"
+        checklist:
+          - "Documentação entregue"
+          - "Equipe treinada"
+          - "Rotinas definidas"
+          - "Primeiro ciclo acompanhado"
+
+    checkpoint:
+      id: "CONTENT_HND_001"
+      name: "Content Ops Live"
+      criteria:
+        - "Documentação completa"
+        - "Equipe treinada"
+        - "Rotinas funcionando"
+        - "Sistema em uso"
+      human_review: true
+      message: "Confirmar que operações estão rodando"
+
+    outputs:
+      - "documentation"
+      - "training_complete"
+      - "routines_defined"
+      - "system_operational"
+
+# ============================================================================
+# ERROR HANDLING
+# ============================================================================
+
+error_handling:
+  on_phase_failure:
+    - log_error: true
+    - notify_stakeholders: true
+    - create_remediation_task: true
+    - halt_workflow: false
+
+  on_checkpoint_failure:
+    - log_failure_reason: true
+    - return_to_previous_phase: true
+    - max_retries: 2
+
+# ============================================================================
+# COMPLETION SIGNALS
+# ============================================================================
+
+completion_signal: "<promise>COMPLETE:CONTENT-OPERATIONS</promise>"
+checkpoint_signal: "<promise>CHECKPOINT:PHASE-X</promise>"
+blocked_signal: "<promise>BLOCKED:CONTENT-X</promise>"
+
+# ============================================================================
+# AGENT ASSIGNMENTS
+# ============================================================================
+
+agents_by_phase:
+  PHASE-1:
+    primary:
+      - "content-operations-manager"
+    secondary:
+      - "pm-orchestrator"
+
+  PHASE-2:
+    primary:
+      - "clickup-architect"
+    secondary:
+      - "content-operations-manager"
+
+  PHASE-3:
+    primary:
+      - "automation-engineer"
+    secondary:
+      - "clickup-architect"
+
+  PHASE-4:
+    primary:
+      - "pm-orchestrator"
+    secondary:
+      - "content-operations-manager"
+
+# ============================================================================
+# QUALITY CHECKLIST
+# ============================================================================
+
+quality_checklist:
+  strategy:
+    - "[ ] Pilares de conteúdo definidos"
+    - "[ ] Calendário editorial criado"
+    - "[ ] Métricas de sucesso definidas"
+    - "[ ] Recursos mapeados"
+
+  structure:
+    - "[ ] Folders/lists criados"
+    - "[ ] Custom fields configurados"
+    - "[ ] Views funcionando"
+    - "[ ] Templates prontos"
+
+  automations:
+    - "[ ] Pipeline automations testadas"
+    - "[ ] Notificações configuradas"
+    - "[ ] Integrações com squads ativas"
+
+  handoff:
+    - "[ ] Documentação completa"
+    - "[ ] Equipe treinada"
+    - "[ ] Rotinas definidas"
+    - "[ ] Sistema em uso"
+
+# ============================================================================
+# SQUAD INTEGRATIONS
+# ============================================================================
+
+squad_integrations:
+  youtube-content:
+    description: "Produção de vídeos YouTube"
+    touchpoints:
+      - "Roteiros de vídeo"
+      - "Edição"
+      - "Thumbnails"
+      - "SEO YouTube"
+
+  youtube-lives:
+    description: "Gestão de lives"
+    touchpoints:
+      - "Pautas de live"
+      - "Preparação técnica"
+      - "Cortes pós-live"
+
+  copywriting:
+    description: "Copy para conteúdo"
+    touchpoints:
+      - "Titles e hooks"
+      - "Descrições"
+      - "CTAs"
+      - "Newsletter copy"
+
+  design-system:
+    description: "Assets visuais"
+    touchpoints:
+      - "Thumbnails"
+      - "Posts Instagram"
+      - "Stories"
+      - "Capas"

@@ -1,0 +1,117 @@
+# Lead Scoring Rules - Project Management ClickUp
+# Canonical lead scoring configuration for CRM
+# Used by: crm-builder
+
+version: 1.0.0
+last_updated: "2026-02-10"
+
+scoring_model:
+  name: "Lead Scoring Natalia Tanaka"
+  max_score: 100
+  qualification_threshold: 60
+  hot_threshold: 80
+
+categories:
+
+  demographic:
+    weight: 30
+    criteria:
+      - name: "Profissao"
+        rules:
+          - condition: "Fisioterapeuta / Profissional de saude"
+            points: 15
+          - condition: "Estudante de fisioterapia"
+            points: 10
+          - condition: "Outro profissional de saude"
+            points: 8
+          - condition: "Desconhecido"
+            points: 0
+
+      - name: "Experiencia"
+        rules:
+          - condition: "Atende pacientes (clinica propria)"
+            points: 15
+          - condition: "Atende pacientes (empregado)"
+            points: 10
+          - condition: "Recem-formado"
+            points: 5
+
+  behavioral:
+    weight: 40
+    criteria:
+      - name: "Engajamento com conteudo"
+        rules:
+          - condition: "Assistiu live completa"
+            points: 10
+          - condition: "Comentou em live/post"
+            points: 8
+          - condition: "Baixou material gratuito"
+            points: 5
+          - condition: "Abriu email (3+ vezes)"
+            points: 3
+
+      - name: "Interacao comercial"
+        rules:
+          - condition: "Clicou em link de venda"
+            points: 15
+          - condition: "Visitou pagina de vendas"
+            points: 10
+          - condition: "Iniciou checkout"
+            points: 20
+          - condition: "Abandonou carrinho"
+            points: 12
+
+      - name: "Frequencia"
+        rules:
+          - condition: "Ativo nos ultimos 7 dias"
+            points: 5
+          - condition: "Ativo nos ultimos 30 dias"
+            points: 3
+          - condition: "Inativo 30+ dias"
+            points: -5
+
+  product_fit:
+    weight: 30
+    criteria:
+      - name: "Produto de interesse"
+        rules:
+          - condition: "MAV Mentoria (premium)"
+            points: 15
+          - condition: "Metodo Cura Pelas Maos"
+            points: 12
+          - condition: "Metodo Agenda Magica"
+            points: 10
+          - condition: "Manual dos Pontos / Guia GPO"
+            points: 5
+
+      - name: "Historico de compra"
+        rules:
+          - condition: "Ja comprou produto high ticket"
+            points: 15
+          - condition: "Ja comprou produto mid ticket"
+            points: 10
+          - condition: "Ja comprou produto low ticket"
+            points: 5
+          - condition: "Nunca comprou"
+            points: 0
+
+stages:
+  cold:
+    range: "0-29"
+    action: "Nurturing via email + conteudo"
+    cadence: "Semanal"
+
+  warm:
+    range: "30-59"
+    action: "Engajamento ativo + convites para eventos"
+    cadence: "2-3x por semana"
+
+  qualified:
+    range: "60-79"
+    action: "Oferta direta + follow-up comercial"
+    cadence: "Diario durante lancamento"
+
+  hot:
+    range: "80-100"
+    action: "Contato direto + oferta personalizada"
+    cadence: "Imediato"

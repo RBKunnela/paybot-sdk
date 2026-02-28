@@ -1,0 +1,85 @@
+# Checklist: CBO Gate - Identity
+# Squad: squAId-criaTTivados / directors
+
+metadata:
+  name: "cbo-gate-identity"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  tipo: cbo-gate
+  responsavel: "cbo"
+
+descricao: |
+  Gate CBO pós-UNNIKO. Validação executiva do Brand Identity Document
+  antes de prosseguir para criação (storYOURtelling).
+
+entregavel: "Brand Identity Document aprovado"
+
+itens:
+  promessa:
+    nome: "Promessa"
+    items:
+      - id: 1
+        descricao: "Brand Promise cumprível e verificável"
+        obrigatorio: true
+        criterio: "Cliente pode confirmar que a promessa é entregue"
+      - id: 2
+        descricao: "Proof Points concretos"
+        obrigatorio: true
+        criterio: "Evidências tangíveis, não genéricas"
+      - id: 3
+        descricao: "Diferencial tangível"
+        obrigatorio: true
+        criterio: "Não é apenas 'qualidade' ou 'inovação'"
+
+  sistema_visual:
+    nome: "Sistema Visual"
+    items:
+      - id: 4
+        descricao: "Logo memorável e versátil"
+        obrigatorio: true
+        criterio: "Funciona em diferentes tamanhos e contextos"
+      - id: 5
+        descricao: "Paleta de cores com propósito"
+        obrigatorio: true
+        criterio: "Cores justificadas (psicologia, estratégia)"
+      - id: 6
+        descricao: "Sistema coeso e aplicável"
+        obrigatorio: true
+        criterio: "Todos os elementos funcionam juntos"
+
+  sistema_verbal:
+    nome: "Sistema Verbal"
+    items:
+      - id: 7
+        descricao: "Tom de Voz proprietário"
+        obrigatorio: true
+        criterio: "Não é genérico, é reconhecível como da marca"
+      - id: 8
+        descricao: "Vocabulário estratégico"
+        obrigatorio: true
+        criterio: "Palavras que só essa marca usaria"
+      - id: 9
+        descricao: "Exemplos demonstram personalidade"
+        obrigatorio: true
+        criterio: "Ao ler, sente-se a personalidade da marca"
+
+  coerencia:
+    nome: "Coerência"
+    items:
+      - id: 10
+        descricao: "Visual + Verbal se complementam"
+        obrigatorio: true
+        criterio: "Mesma personalidade em ambos"
+      - id: 11
+        descricao: "Identidade reflete a estratégia"
+        obrigatorio: true
+        criterio: "Brand Strategy é visível na identidade"
+      - id: 12
+        descricao: "Assets são defensáveis"
+        obrigatorio: true
+        criterio: "Não facilmente copiados por concorrentes"
+
+aprovacao:
+  score_minimo: 100
+  criterio: "Todos os itens obrigatórios aprovados"
+  acao_rejeicao: "Feedback detalhado ao brand-director + referências de ajuste"

@@ -1,0 +1,159 @@
+name: address-reviewer-comments
+description: Respond to external peer reviewer feedback with revisions and rebuttal
+category: revision
+agent: peer-reviewer
+priority: high
+estimated_duration: 1-2 days
+
+inputs:
+  - reviewer_comments:
+      type: file
+      description: Feedback from journal peer reviewers
+      required: true
+  - original_manuscript:
+      type: file
+      description: Original submitted manuscript
+      required: true
+  - decision:
+      type: enum
+      options: [minor_revisions, major_revisions]
+      description: Editor decision
+      required: true
+
+outputs:
+  - revised_manuscript:
+      type: file
+      description: Manuscript with revisions made
+  - response_letter:
+      type: file
+      format: docx
+      description: Point-by-point response to reviewers
+  - tracked_changes:
+      type: file
+      description: Manuscript with track changes showing edits
+
+steps:
+  - step: 1
+    name: categorize_comments
+    description: Organize reviewer comments by severity and feasibility
+    agent: peer-reviewer
+    estimated_duration: 0.5 days
+
+  - step: 2
+    name: make_revisions
+    description: Address all reviewer comments in manuscript
+    agent: academic-writer
+    estimated_duration: 1-2 days
+
+  - step: 3
+    name: write_response_letter
+    description: Write point-by-point response letter
+    agent: peer-reviewer
+    estimated_duration: 1 day
+
+  - step: 4
+    name: quality_check
+    description: Verify all comments addressed
+    agent: research-chief
+    estimated_duration: 0.5 days
+
+success_criteria:
+  - All reviewer comments addressed
+  - Response letter is respectful and professional
+  - Revisions improve manuscript quality
+  - Track changes document shows edits
+  - Addressed even minor comments
+
+deliverables:
+  - Revised manuscript
+  - Response letter (point-by-point)
+  - Manuscript with track changes
+  - Summary of changes document
+
+response_letter_structure:
+  header:
+    - Date
+    - Journal name
+    - Manuscript ID
+    - Manuscript title
+
+  introduction:
+    - Thank reviewers and editor
+    - Summary of major changes
+
+  point_by_point_responses:
+    reviewer_1:
+      - comment_1:
+          reviewer_comment: "[Quote exact comment]"
+          response: "[Your response]"
+          action: "[What you did: revised, added, clarified]"
+          location: "[Page/line number in revised manuscript]"
+
+      - comment_2:
+          reviewer_comment: "[Quote exact comment]"
+          response: "[Your response]"
+          action: "[What you did]"
+          location: "[Page/line]"
+
+  conclusion:
+    - Thank reviewers again
+    - Express confidence manuscript is now improved
+
+how_to_respond:
+  agree_and_revise:
+    response: "We thank the reviewer for this insightful comment. We have revised..."
+    action: "Make the change, cite location"
+
+  partially_agree:
+    response: "We appreciate this suggestion. However, we believe that..."
+    action: "Explain why you can't fully comply, offer compromise"
+
+  disagree_respectfully:
+    response: "We respectfully disagree with this comment because..."
+    action: "Provide evidence/reasoning, don't be defensive"
+
+  clarify:
+    response: "We thank the reviewer for pointing out this lack of clarity. We have clarified..."
+    action: "Add clarification to manuscript"
+
+tone_guidelines:
+  - Be respectful and professional (never defensive or hostile)
+  - Thank reviewers for their time and feedback
+  - Acknowledge when they're right
+  - Explain clearly when you disagree
+  - Show you took comments seriously
+  - Use phrases like "We appreciate..." "We thank..." "We agree..."
+
+best_practices:
+  - Address EVERY comment (even minor ones)
+  - Quote exact reviewer comment before responding
+  - Cite exact location of changes in manuscript
+  - Use track changes to show edits
+  - Be specific about what you changed
+  - If you can't comply, explain why clearly
+  - Proofread response letter carefully
+
+common_pitfalls:
+  - Being defensive or hostile
+  - Ignoring "minor" comments
+  - Not citing location of changes
+  - Vague responses ("we revised the manuscript")
+  - Arguing without evidence
+  - Not thanking reviewers
+
+example_responses:
+  good:
+    comment: "The sample size is too small for generalization."
+    response: "We thank the reviewer for this important comment. We have added a limitation section (page 12, lines 234-238) acknowledging that our sample size (N=50) limits generalizability. We have also revised our conclusion to be more cautious about claiming broad applicability."
+
+  bad:
+    comment: "The sample size is too small for generalization."
+    response: "We disagree. Our sample size is adequate."
+    # Why bad: defensive, no evidence, no compromise
+
+tags:
+  - revision
+  - peer-review
+  - response-letter
+  - rebuttal
+  - manuscript-revision

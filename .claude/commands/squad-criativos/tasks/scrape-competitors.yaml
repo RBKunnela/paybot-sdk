@@ -1,0 +1,104 @@
+# Task: Scrape Competitors
+# Squad: squAId-criaTTivados / search-insights
+# Responsável: data-miner
+
+metadata:
+  name: "scrape-competitors"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "search-insights"
+  responsavel: "data-miner"
+  tipo: task
+
+descricao: |
+  Extração automatizada de dados de concorrentes usando Apify.
+  Coleta presença digital, comunicação, assets visuais e dados
+  públicos organizados pela Taxonomia de Diferenciais.
+
+entrada:
+  - campo: lista_concorrentes
+    tipo: list
+    origem: "analyze-competition"
+    obrigatorio: true
+    descricao: "Lista de concorrentes para scraping (mín. 3)"
+  - campo: segmento
+    tipo: string
+    origem: "briefing"
+    obrigatorio: true
+    descricao: "Segmento para contextualizar coleta"
+
+saida:
+  - campo: competitor_scrape_data
+    tipo: string
+    destino: "analyze-competition / synthesize-insights"
+    persistido: true
+    descricao: "Dados extraídos de cada concorrente por domínio"
+
+ferramentas:
+  primaria:
+    nome: "Apify Actors"
+    acesso: "mcp__docker-gateway__call-actor"
+    uso: "Executar scrapers especializados"
+  auxiliar:
+    nome: "Apify RAG Browser"
+    acesso: "mcp__docker-gateway__apify-slash-rag-web-browser"
+    uso: "Navegação inteligente para extração contextual"
+
+passos:
+  1:
+    nome: "Mapear URLs dos concorrentes"
+    descricao: |
+      Para cada concorrente, identificar:
+      - Site institucional
+      - Redes sociais (Instagram, LinkedIn, etc.)
+      - E-commerce ou marketplace (se aplicável)
+      - Páginas de review (Reclame Aqui, Google Reviews)
+    agente: "data-miner"
+  2:
+    nome: "Scraping de sites institucionais"
+    descricao: |
+      Extrair de cada site:
+      - Textos de "Sobre", "Missão", "Valores" (Domínio II)
+      - Lista de produtos/serviços e features (Domínio I)
+      - Assets visuais: cores, tipografia, estilo (Domínio III)
+    agente: "data-miner"
+    ferramenta: "apify_rag_browser"
+  3:
+    nome: "Scraping de redes sociais"
+    descricao: |
+      Extrair dados de perfis sociais:
+      - Bio, tom de voz, frequência de posts (Domínio II/III)
+      - Engajamento médio (Domínio I — evidência)
+      - Estilo visual de conteúdo (Domínio III)
+    agente: "data-miner"
+    ferramenta: "apify_actors"
+  4:
+    nome: "Coletar dados de reputação"
+    descricao: |
+      Buscar avaliações e percepções públicas:
+      - Reviews de consumidores
+      - Notas e classificações
+      - Reclamações frequentes
+    agente: "data-miner"
+    ferramenta: "apify_actors"
+  5:
+    nome: "Organizar por Competitive Matrix"
+    descricao: |
+      Preencher Competitive Data Matrix para cada concorrente:
+      - Domínio I: produto, modelo, evidências
+      - Domínio II: propósito, personalidade, cultura
+      - Domínio III: visuais, sensoriais, comportamentais
+    agente: "data-miner"
+
+checklist:
+  - "[ ] URLs de todos os concorrentes mapeadas"
+  - "[ ] Sites institucionais extraídos"
+  - "[ ] Redes sociais extraídas"
+  - "[ ] Dados de reputação coletados"
+  - "[ ] Competitive Matrix preenchida por concorrente"
+
+criterios_aceitacao:
+  - "Mínimo 3 concorrentes analisados"
+  - "Dados dos 3 domínios para cada concorrente"
+  - "URLs e datas de coleta documentadas"
+  - "Competitive Data Matrix completa"

@@ -1,0 +1,484 @@
+# Framework de Marca Sintética
+# 4 Níveis de Sintetização da Marca
+# Baseado em pesquisa Perplexity 2025-2026
+
+metadata:
+  name: "Synthetic Brand Framework"
+  version: "1.0"
+  origem: "Pesquisa Perplexity + criaTTivados"
+  aplicacao: "Criar, desenvolver e validar marcas/personas sintéticas"
+
+# ═══════════════════════════════════════════════════════════════════
+# O QUE É MARCA SINTÉTICA
+# ═══════════════════════════════════════════════════════════════════
+definicao:
+  conceito: |
+    Marca Sintética refere-se a marcas e personas de marca criadas ou
+    operadas majoritariamente por inteligência artificial, CGI e automação.
+    Vai desde identidade visual até conteúdo e relacionamento em escala.
+
+  espectro: |
+    A sintetização da marca existe em um espectro, do mais superficial
+    (estético) ao mais profundo (relacional e operacional).
+
+  principio_fundamental: |
+    A oportunidade está em combinar eficiência sintética (produção,
+    personalização, agentes) com um posicionamento explicitamente
+    humano e transparente - isso é diferencial competitivo.
+
+# ═══════════════════════════════════════════════════════════════════
+# OS 4 NÍVEIS DE SINTETIZAÇÃO
+# ═══════════════════════════════════════════════════════════════════
+niveis:
+
+  # ─────────────────────────────────────────────────────────────────
+  # NÍVEL 1: ESTÉTICA SINTÉTICA
+  # ─────────────────────────────────────────────────────────────────
+  nivel_1:
+    nome: "Estética Sintética"
+    nome_en: "Synthetic Aesthetics"
+    icone: "🎨"
+
+    foco: "Como a IA aparece na forma/visual da marca"
+    pergunta_guia: "Como a IA aparece na forma/visual da marca?"
+    papel: "Explorar linguagem e estilo"
+
+    o_que_e: |
+      Uso de IA apenas na camada de forma – identidade visual, imagens,
+      elementos gráficos, voz sintética pontual – sem alterar a autoria
+      central da marca (você/empresa continua claramente como sujeito).
+
+    aplicacoes:
+      identidade_visual:
+        - "Variações de logo"
+        - "Paleta de cores"
+        - "Cenários e ambientes"
+        - "Mundos visuais da marca"
+
+      estetica_conteudo:
+        - "Capas e thumbnails"
+        - "Cenários para Reels"
+        - "Templates de carrossel"
+        - "Mockups de produto"
+
+      audio_sintetico:
+        - "Vinhetas"
+        - "Narrações"
+        - "Trilhas geradas por IA"
+        - "Intros de curso/podcast"
+
+    escala_maturidade:
+      0: "Nada sintético"
+      1: "Uso pontual (algumas imagens ou logos)"
+      2: "Linguagem visual sintética consistente em alguns canais"
+      3: "Mundo visual sintético claramente reconhecível"
+
+    quando_faz_sentido:
+      - "Sinalizar inovação"
+      - "Criar um 'universo' próprio"
+      - "Ganhar velocidade estética"
+      - "Sem mexer ainda em persona ou relacionamento"
+
+    cuidados:
+      - "Manter consistência visual"
+      - "Transparência quando apropriado"
+      - "Não substituir direção criativa humana"
+
+  # ─────────────────────────────────────────────────────────────────
+  # NÍVEL 2: CONTEÚDO SINTÉTICO
+  # ─────────────────────────────────────────────────────────────────
+  nivel_2:
+    nome: "Conteúdo Sintético"
+    nome_en: "Synthetic Content"
+    icone: "📝"
+
+    foco: "O que é produzido por IA em nome da marca"
+    pergunta_guia: "O que é produzido por IA em seu nome?"
+    papel: "Ganhar escala e consistência"
+
+    o_que_e: |
+      IA passa a produzir parte relevante do conteúdo (textos, roteiros,
+      posts, e-mails, aulas-rascunho), em sua voz ou na voz de uma
+      marca/persona, com você atuando como editor-curador.
+
+    aplicacoes:
+      conteudo_escala:
+        - "Newsletters"
+        - "Posts de redes sociais"
+        - "Roteiros de aula/palestra"
+        - "Scripts de vídeo"
+        - "FAQs e playbooks"
+
+      personalizacao:
+        - "Variações para segmentos diferentes"
+        - "Mensagens para leads frios vs. clientes"
+        - "Adaptações por canal"
+
+      laboratorio_narrativa:
+        - "Testar ângulos de storytelling"
+        - "Headlines e hooks"
+        - "Metáforas e frameworks explicativos"
+
+    escala_maturidade:
+      0: "Conteúdo totalmente humano"
+      1: "IA como rascunho pontual"
+      2: "IA como co-autora sistemática (com edição humana)"
+      3: "IA produz linhas editoriais inteiras sob curadoria"
+
+    modelo_operacional:
+      pareto: "80% IA + 20% curadoria humana"
+      papel_humano: "Editor-curador, não escritor de tudo"
+      papel_ia: "Writer's room, não substituto de autoria"
+
+    quando_faz_sentido:
+      - "Aumentar output sem perder coerência"
+      - "Manter calendário editorial consistente"
+      - "Testar múltiplas abordagens rapidamente"
+      - "Liberar tempo para trabalho estratégico"
+
+    cuidados:
+      - "Manter voz e tom consistentes"
+      - "Revisar sempre antes de publicar"
+      - "Não perder a essência humana"
+
+  # ─────────────────────────────────────────────────────────────────
+  # NÍVEL 3: PERSONA SINTÉTICA
+  # ─────────────────────────────────────────────────────────────────
+  nivel_3:
+    nome: "Persona Sintética"
+    nome_en: "Synthetic Persona"
+    icone: "🎭"
+
+    foco: "Quem é a entidade que representa a marca"
+    pergunta_guia: "Quem é a entidade que 'representa' a marca?"
+    papel: "Criar avatar/alter ego"
+
+    o_que_e: |
+      Criação de uma entidade própria (persona/alter ego/personagem-marca)
+      que existe como se fosse "alguém", com nome, voz, biografia, valores
+      e campo de expertise.
+
+    anatomia_persona:
+      identidade:
+        - "Nome da persona"
+        - "Idade/contexto (se aplicável)"
+        - "Arquétipo predominante"
+
+      narrativa:
+        - "História de origem (simbólica, não precisa ser realista)"
+        - "Missão e propósito"
+        - "Campos de expertise"
+
+      personalidade:
+        - "Voz e tom (como fala)"
+        - "Ritmo e vocabulário"
+        - "Humor e estilo"
+
+      valores:
+        - "Princípios inegociáveis"
+        - "O que ela nunca faz/fala"
+        - "Crenças fundamentais"
+
+      limites:
+        - "O que essa persona FAZ"
+        - "O que essa persona NÃO FAZ"
+        - "Fronteira com a pessoa/marca física"
+
+    tipos_persona:
+      avatar_especialista:
+        descricao: "Perfil focado em um nicho específico"
+        exemplos: ["GPT próprio", "Chatbot especializado", "Perfil temático"]
+
+      multiplas_faces:
+        descricao: "Divisão de papéis com humano"
+        humano: "Autoridade, bastidores, vulnerabilidade"
+        sintetica: "Didática, documentação, operação, FAQs"
+
+      laboratorio_narrativo:
+        descricao: "Experimentar o que o humano não quer atrelar a si"
+        exemplos: ["Linguagem ousada", "Posicionamento radical", "Formatos novos"]
+
+    escala_maturidade:
+      0: "Não há persona sintética"
+      1: "Persona esboçada, mas informal"
+      2: "Persona definida e atuando em alguns pontos"
+      3: "Persona com papel estratégico claro no ecossistema"
+
+    quando_faz_sentido:
+      - "Escalar presença da marca"
+      - "Testar narrativas sem risco pessoal"
+      - "Atender comunidade 24/7"
+      - "Criar múltiplas vozes complementares"
+
+    cuidados_autenticidade:
+      - "Transparência: deixar claro que é personagem sintético"
+      - "Alinhamento: valores coerentes com marca institucional"
+      - "Consistência: manter voz e tom estáveis"
+      - "Supervisão: humano como curador final"
+
+  # ─────────────────────────────────────────────────────────────────
+  # NÍVEL 4: AGENTE SINTÉTICO (OPERACIONAL)
+  # ─────────────────────────────────────────────────────────────────
+  nivel_4:
+    nome: "Agente Sintético"
+    nome_en: "Synthetic Agent"
+    icone: "⚙️"
+
+    foco: "O que a marca sintética faz sozinha no mundo"
+    pergunta_guia: "O que a marca sintética faz sozinha no mundo?"
+    papel: "Automatizar entrega/serviço"
+
+    o_que_e: |
+      Quando a persona sintética deixa de ser só "imagem/voz" e passa
+      a agir como agente – executa tarefas, responde clientes, faz
+      pesquisas, prepara documentos e entrega valor de forma autônoma.
+
+    aplicacoes:
+      atendente_mentor:
+        descricao: "Agente 24/7 conectado às bases de conhecimento"
+        funcoes:
+          - "Responder dúvidas de alunos/clientes"
+          - "Recomendar produtos/serviços"
+          - "Guiar jornadas"
+        fronteiras: "Dentro dos limites definidos pelo humano"
+
+      operador_processos:
+        descricao: "Agente que executa tarefas operacionais"
+        funcoes:
+          - "Criar pautas"
+          - "Rascunhar landing pages"
+          - "Organizar backlog de conteúdo"
+          - "Qualificar leads"
+          - "Encaminhar só o que importa"
+
+      co_executor_servicos:
+        descricao: "Agente que co-executa entregas"
+        funcoes:
+          - "Gerar análises iniciais"
+          - "Criar relatórios"
+          - "Preparar planos de ação"
+          - "Rascunhar workshops"
+        revisao: "Humano revisa e aprofunda"
+
+    escala_maturidade:
+      0: "Nenhum agente"
+      1: "Chatbot básico, reativo"
+      2: "Agente que executa tarefas definidas com supervisão"
+      3: "Agente integrado ao fluxo de entrega do serviço/produto"
+
+    quando_faz_sentido:
+      - "Escalar entrega sem contratar time"
+      - "Atendimento 24/7 com qualidade"
+      - "Automatizar tarefas repetitivas"
+      - "Liberar humano para trabalho estratégico"
+
+    cuidados:
+      - "Definir fronteiras claras de autonomia"
+      - "Monitorar e corrigir constantemente"
+      - "Ter escalação para humano quando necessário"
+      - "Transparência sobre o que é automatizado"
+
+# ═══════════════════════════════════════════════════════════════════
+# CANVAS DE DIAGNÓSTICO
+# ═══════════════════════════════════════════════════════════════════
+canvas_diagnostico:
+  descricao: |
+    Use este canvas para mapear o estado atual e planejamento
+    da sintetização da marca.
+
+  bloco_1_base:
+    nome: "Negócio humano de base"
+    campos:
+      - "Proposta central de valor (1 frase)"
+      - "Público principal"
+      - "Produtos/serviços chave"
+      - "Ativos de marca já existentes"
+
+  bloco_2_objetivo:
+    nome: "Objetivo da síntese"
+    perguntas:
+      - "O que você quer GANHAR com a marca sintética?"
+      - "O que você NÃO QUER PERDER?"
+
+  matriz_rapida:
+    colunas:
+      - "Nível"
+      - "Maturidade (0-3)"
+      - "Riscos percebidos"
+      - "Ganhos desejados"
+      - "Próximo experimento (30 dias)"
+    linhas:
+      - "Estética sintética"
+      - "Conteúdo sintético"
+      - "Persona sintética"
+      - "Agente sintético"
+
+# ═══════════════════════════════════════════════════════════════════
+# CRIAR PERSONA SINTÉTICA - PASSO A PASSO
+# ═══════════════════════════════════════════════════════════════════
+criar_persona:
+
+  fase_1_fundamento:
+    nome: "Objetivo e Insumo"
+    passos:
+      - passo: "Definir objetivo"
+        perguntas:
+          - "Para que usar: testar, simular, ensinar, atender, ser avatar?"
+          - "Que tipo de decisão essa persona deve ajudar a tomar?"
+          - "Que cenário ela precisa simular bem?"
+
+      - passo: "Coletar dados reais"
+        acoes:
+          - "Puxar dados de clientes/usuários reais"
+          - "Agrupar em padrões (por dor, uso, maturidade)"
+          - "Se não tiver dados, criar 'melhor palpite' como hipótese"
+
+      - passo: "Escolher tipo de persona"
+        tipos:
+          - "Persona-cliente (pesquisa/marketing)"
+          - "Persona-usuário (UX, teste de produto)"
+          - "Persona-marca/alter ego (conteúdo e relacionamento)"
+
+  fase_2_modelagem:
+    nome: "Estrutura e Geração"
+    passos:
+      - passo: "Definir estrutura da ficha"
+        campos:
+          identidade: "Nome, contexto, arquétipo"
+          narrativa: "História de origem, missão"
+          personalidade: "Voz, tom, vocabulário"
+          valores: "Princípios, crenças"
+          limites: "O que faz / não faz"
+
+      - passo: "Gerar primeiro rascunho com IA"
+        instrucao: "Prompt com objetivo + dados + estrutura"
+
+      - passo: "Aprofundar com entrevistas simuladas"
+        acoes:
+          - "Conduzir diálogos com a persona"
+          - "Perguntar rotinas, decisões, objeções"
+          - "Ajustar ficha com o que emergir"
+
+  fase_3_validacao:
+    nome: "Validação e Ativação"
+    passos:
+      - passo: "Validar contra realidade"
+        acoes:
+          - "Comparar com clientes reais"
+          - "Testar em contexto (avaliar campanha, landing page)"
+          - "Ajustar para não virar estereótipo"
+
+      - passo: "Definir limites e transparência"
+        acoes:
+          - "Especificar o que pode/não pode fazer"
+          - "Se visível ao público, deixar claro que é sintética"
+
+      - passo: "Ativar no fluxo"
+        aplicacoes:
+          - "Marketing: público-teste para mensagens"
+          - "Produto: simular jornadas de uso"
+          - "Conteúdo: escrever para persona específica"
+
+      - passo: "Iterar continuamente"
+        acoes:
+          - "Revisar a cada ciclo de dados"
+          - "Matar personas inúteis"
+          - "Aprofundar 2-3 que geram decisões melhores"
+
+# ═══════════════════════════════════════════════════════════════════
+# VALIDAÇÃO DE PERSONAS SINTÉTICAS
+# ═══════════════════════════════════════════════════════════════════
+validacao:
+  principio: |
+    Persona sintética não substitui pesquisa com gente de verdade.
+    Ela complementa e antecipa insights.
+    Trate como HIPÓTESE, nunca como verdade final.
+
+  tipos_realismo:
+    comportamental: "O comportamento simulado parece humano?"
+    preferencia: "As preferências batem com segmentos reais?"
+    preditivo: "As previsões aproximam resultados reais?"
+
+  metodos:
+    com_dados_existentes:
+      - "Conectar persona a cluster de clientes reais"
+      - "Comparar padrões (objetivos, dores, comportamentos)"
+      - "Check de coerência com métricas reais"
+
+    com_pesquisa_qualitativa:
+      - "Entrevistas com usuários 'iguais' à persona"
+      - "Teste de reconhecimento ('você se vê aqui?')"
+      - "Ajustar onde pessoa real discordar"
+
+    testes_comportamentais:
+      - "Cenários de decisão em paralelo (persona vs. humanos)"
+      - "Comparar padrões de escolha"
+      - "Se divergir muito, corrigir premissas"
+
+  regras_ouro:
+    - "Tratar tudo como hipótese"
+    - "Usar para explorar, não para decidir sozinho"
+    - "Atualizar com cada nova rodada de dados"
+
+# ═══════════════════════════════════════════════════════════════════
+# TEMAS QUENTES DO DEBATE
+# ═══════════════════════════════════════════════════════════════════
+debate_atual:
+  autenticidade_confianca:
+    preocupacao: "Transparência sobre uso de IA"
+    insight: "Consumidores aceitam IA, mas querem clareza"
+
+  humanizacao_vs_automacao:
+    movimento: "Marcas humanas como antídoto ao excesso sintético"
+    defesa: "Empatia, comunidade e propósito"
+
+  eficiencia_controle:
+    vantagens:
+      - "Escalabilidade"
+      - "Controle total sobre a persona"
+      - "Menor risco de crises vs. influenciadores humanos"
+
+  tendencias:
+    - "Branding sendo redesenhado para integrar IA"
+    - "IA no centro da proposta de valor, não só no marketing"
+    - "Experiências híbridas (digital + físico)"
+
+# ═══════════════════════════════════════════════════════════════════
+# CONEXÃO COM STORYTELLING
+# ═══════════════════════════════════════════════════════════════════
+conexao_storytelling:
+  principio: |
+    Sem storytelling, uma persona sintética é só um chatbot.
+    COM storytelling, ela é uma entidade com alma.
+
+  o_que_storytelling_fornece:
+    - "História de origem que dá profundidade"
+    - "Voz e tom que criam reconhecimento"
+    - "Valores que geram consistência"
+    - "Limites que definem identidade"
+    - "Narrativa que conecta emocionalmente"
+
+  agentes_que_usam:
+    - "Brand Voice Director (definir se usar persona sintética)"
+    - "Narrative Designer (criar história de origem)"
+    - "Concept Writer (definir voz e tom)"
+    - "Creative Director (validar coerência)"
+
+# ═══════════════════════════════════════════════════════════════════
+# REFERÊNCIAS
+# ═══════════════════════════════════════════════════════════════════
+referencias:
+  - fonte: "LinkedIn - Synthetic Influencers & AI Brand Ambassadors"
+    url: "linkedin.com/pulse/synthetic-influencers-ai-brand-ambassadors"
+
+  - fonte: "Ana Couto - Tendências de Branding na Era da IA"
+    url: "anacouto.com.br/artigos/2024/08/06/tendencias-de-branding"
+
+  - fonte: "VML - AI Generated Content for Brands"
+    url: "vml.com/insight/ai-generated-content-for-brands"
+
+  - fonte: "Kantar - 10 Tendências de Marketing 2025"
+    url: "kantar.com/brazil/inspiration/marcas/10-tendencias"
+
+  - fonte: "NNGroup - Synthetic Users"
+    url: "nngroup.com/articles/synthetic-users"

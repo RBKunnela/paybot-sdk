@@ -1,0 +1,67 @@
+# Task: Validate Identity Gate
+# Squad: squAId-criaTTivados / directors (CBO)
+# Responsável: cbo
+
+metadata:
+  name: "validate-identity-gate"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "directors"
+  responsavel: "cbo"
+  tipo: task
+
+descricao: |
+  Gate CBO pós-UNNIKO. Valida Brand Identity Document
+  antes de prosseguir para storYOURtelling.
+
+entrada:
+  - campo: brand_identity_document
+    tipo: string
+    origem: "build-design-system"
+    obrigatorio: true
+    descricao: "Brand Identity Document para aprovação"
+
+saida:
+  - campo: gate_decision
+    tipo: string
+    destino: "develop-big-idea (se aprovado) / build-design-system (se rejeitado)"
+    persistido: true
+    descricao: "Aprovado/rejeitado + feedback detalhado"
+
+passos:
+  1:
+    nome: "Revisar Brand Promise"
+    descricao: "Cumprível e verificável?"
+    agente: "cbo"
+  2:
+    nome: "Revisar Diferenciais"
+    descricao: "Tangíveis e passam no VURS?"
+    agente: "cbo"
+  3:
+    nome: "Revisar Design System"
+    descricao: "Coerente e aplicável?"
+    agente: "cbo"
+  4:
+    nome: "Revisar Identidade"
+    descricao: "Memorável e diferenciada?"
+    agente: "cbo"
+  5:
+    nome: "Avaliar aplicabilidade"
+    descricao: "Funciona em digital, físico, social?"
+    agente: "cbo"
+  6:
+    nome: "Decidir"
+    descricao: "Aprovar ou rejeitar com feedback detalhado"
+    agente: "cbo"
+
+checklist:
+  - "[ ] Brand Promise revisada"
+  - "[ ] Diferenciais revisados"
+  - "[ ] Design System revisado"
+  - "[ ] Identidade revisada"
+  - "[ ] Aplicabilidade avaliada"
+  - "[ ] Decisão documentada"
+
+criterios_aceitacao:
+  - "Identidade memorável e diferenciada"
+  - "Design System aplicável em múltiplos contextos"

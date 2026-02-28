@@ -1,0 +1,114 @@
+name: conduct-literature-search
+description: Comprehensive literature search across academic databases with documentation
+category: research
+agent: literature-reviewer
+priority: high
+estimated_duration: 2-3 days
+
+inputs:
+  - research_topic:
+      type: string
+      description: Research topic or domain
+      required: true
+  - search_scope:
+      type: enum
+      options: [narrative, scoping, systematic]
+      description: Type of literature review
+      required: true
+  - databases:
+      type: array
+      description: Databases to search (PubMed, Scopus, Web of Science, etc.)
+      required: false
+      default: [PubMed, Scopus, Google Scholar]
+  - date_range:
+      type: object
+      description: Publication date range (e.g., 2015-2025)
+      required: false
+
+outputs:
+  - search_results:
+      type: file
+      format: csv, xlsx
+      description: Complete list of papers found with metadata
+  - search_strategy:
+      type: file
+      format: markdown
+      description: Documented search strings and strategy
+  - prisma_flowchart:
+      type: file
+      format: image
+      description: PRISMA flow diagram (for systematic reviews)
+
+steps:
+  - step: 1
+    name: develop_search_strategy
+    description: Create search terms with Boolean operators
+    agent: literature-reviewer
+    estimated_duration: 0.5 days
+
+  - step: 2
+    name: search_databases
+    description: Execute searches across all specified databases
+    agent: literature-reviewer
+    estimated_duration: 1 day
+
+  - step: 3
+    name: remove_duplicates
+    description: Remove duplicate papers across databases
+    agent: literature-reviewer
+    estimated_duration: 0.5 days
+
+  - step: 4
+    name: document_process
+    description: Document search strings, results, and process
+    agent: literature-reviewer
+    estimated_duration: 0.5 days
+
+success_criteria:
+  - Comprehensive search across relevant databases
+  - Search strategy documented with exact strings
+  - Duplicates removed
+  - Results exported in usable format
+  - For systematic reviews: PRISMA guidelines followed
+
+deliverables:
+  - CSV/Excel file with all papers (Title, Authors, Year, Abstract, DOI)
+  - Search strategy document with all search strings
+  - PRISMA flow diagram (if systematic review)
+  - Reference library file (Zotero/Mendeley/EndNote)
+
+best_practices:
+  - Use broad search initially, then screen (better than narrow search)
+  - Combine multiple search terms with Boolean operators (AND, OR, NOT)
+  - Use wildcards for word variations (educat* → education, educational)
+  - Use MeSH terms in PubMed for medical topics
+  - Search title, abstract, and keywords (not just title)
+  - Include grey literature (theses, reports, preprints)
+  - Use forward/backward citation snowballing
+  - Document date of search and database versions
+
+search_strategy_example:
+  query: |
+    (artificial intelligence OR machine learning OR deep learning)
+    AND
+    (education OR learning OR teaching)
+    AND
+    (personalized learning OR adaptive learning)
+  databases:
+    - PubMed: "AI[Title/Abstract] AND education[Title/Abstract]"
+    - Scopus: "TITLE-ABS-KEY(artificial AND intelligence AND education)"
+    - Web of Science: "TS=(artificial intelligence AND education)"
+
+common_pitfalls:
+  - Search too narrow (miss relevant papers)
+  - Search too broad (thousands of irrelevant papers)
+  - Not documenting search process (can't replicate)
+  - Ignoring grey literature (publication bias)
+  - Not checking reference lists of key papers
+
+tags:
+  - literature-review
+  - search
+  - prisma
+  - databases
+  - systematic-review

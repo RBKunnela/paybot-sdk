@@ -1,0 +1,312 @@
+# Storytelling Complementary - 9 Metodologias Complementares
+# Referência para narrative-designer
+
+frameworks:
+
+  # 1. Robert McKee - Story
+  robert_mckee:
+    name: "Story Principles"
+    author: "Robert McKee"
+    source: "Story: Substance, Structure, Style (1997)"
+
+    controlling_idea:
+      definition: "Significado último + carga de valor"
+      structure: "[Valor] porque [causa]"
+      example: "Justiça triunfa porque protagonistas estão dispostos a sacrificar"
+
+    story_values:
+      description: "Valores binários que mudam durante a história"
+      examples:
+        - "Vida/Morte"
+        - "Amor/Ódio"
+        - "Verdade/Mentira"
+        - "Liberdade/Escravidão"
+
+    gap:
+      definition: "Distância entre expectativa e resultado"
+      importance: "Cria surpresa e engajamento"
+
+    best_for:
+      - Histórias com profundidade temática
+      - Brand films
+      - Documentários
+
+  # 2. Aristóteles - Poética
+  aristotle:
+    name: "6 Elementos da Tragédia"
+    author: "Aristóteles"
+    source: "Poética (335 a.C.)"
+
+    elements:
+      mythos:
+        name: "Enredo"
+        description: "Estrutura dos eventos"
+        priority: 1
+
+      ethos:
+        name: "Caráter"
+        description: "Qualidades dos personagens"
+        priority: 2
+
+      dianoia:
+        name: "Pensamento"
+        description: "Temas e argumentos"
+        priority: 3
+
+      lexis:
+        name: "Dicção"
+        description: "Linguagem e expressão"
+        priority: 4
+
+      melos:
+        name: "Melodia"
+        description: "Elementos musicais/sonoros"
+        priority: 5
+
+      opsis:
+        name: "Espetáculo"
+        description: "Elementos visuais"
+        priority: 6
+
+    concepts:
+      catharsis: "Purificação emocional através da arte"
+      hamartia: "Falha trágica do herói"
+      anagnorisis: "Momento de reconhecimento"
+      peripeteia: "Reviravolta de fortuna"
+
+    best_for:
+      - Histórias dramáticas
+      - Brand films emocionais
+      - Teatro corporativo
+
+  # 3. Nancy Duarte - Sparkline
+  nancy_duarte:
+    name: "Sparkline / Resonate"
+    author: "Nancy Duarte"
+    source: "Resonate (2010)"
+
+    sparkline:
+      definition: "Contraste entre 'o que é' e 'o que poderia ser'"
+      structure:
+        - beginning: "O que é (estado atual)"
+        - contrast_1: "O que poderia ser (visão)"
+        - what_is_2: "Volta ao presente"
+        - contrast_2: "Possibilidade ampliada"
+        - call_to_action: "Novo bliss (estado desejado)"
+
+    visual: |
+      O que poderia ser --------
+                     /    \    /\
+                    /      \  /  \
+      O que é -----/        \/    \----- Novo Bliss
+
+    best_for:
+      - Apresentações de vendas
+      - Pitch decks
+      - Keynotes
+      - TED Talks
+
+  # 4. Linda Seger - Character Development
+  linda_seger:
+    name: "Creating Unforgettable Characters"
+    author: "Linda Seger"
+    source: "Creating Unforgettable Characters (1990)"
+
+    character_dimensions:
+      consistency: "Comportamento coerente"
+      contradiction: "Complexidade e paradoxos"
+      values: "O que acredita e defende"
+      attitudes: "Como vê o mundo"
+      emotions: "Range emocional"
+
+    backstory:
+      importance: "Define quem o personagem é"
+      elements:
+        - Infância
+        - Eventos formativos
+        - Relacionamentos chave
+        - Traumas e triunfos
+
+    best_for:
+      - Desenvolvimento de personas
+      - Brand characters
+      - Mascotes de marca
+
+  # 5. Shawn Coyne - Story Grid
+  shawn_coyne:
+    name: "Story Grid"
+    author: "Shawn Coyne"
+    source: "The Story Grid (2015)"
+
+    five_commandments:
+      - inciting_incident: "Evento que desequilibra"
+      - progressive_complications: "Obstáculos crescentes"
+      - crisis: "Escolha difícil (best bad choice ou irreconcilable goods)"
+      - climax: "Ação resultante da escolha"
+      - resolution: "Novo equilíbrio"
+
+    genres:
+      external:
+        - Action
+        - Horror
+        - Crime
+        - Thriller
+        - War
+        - Western
+
+      internal:
+        - Status
+        - Worldview
+        - Morality
+
+    best_for:
+      - Análise de gênero
+      - Estruturação por tipo de história
+      - Edição e revisão
+
+  # 6. Michael Hauge - Six Stage Plot
+  michael_hauge:
+    name: "Six Stage Plot Structure"
+    author: "Michael Hauge"
+    source: "Writing Screenplays That Sell (1988)"
+
+    stages:
+      stage_1_setup:
+        percentage: "0-10%"
+        description: "Vida cotidiana do herói"
+
+      stage_2_new_situation:
+        percentage: "10-25%"
+        description: "Novo mundo ou desafio"
+
+      stage_3_progress:
+        percentage: "25-50%"
+        description: "Sucesso aparente"
+
+      stage_4_complications:
+        percentage: "50-75%"
+        description: "Obstáculos maiores"
+
+      stage_5_final_push:
+        percentage: "75-90%"
+        description: "Tudo ou nada"
+
+      stage_6_aftermath:
+        percentage: "90-100%"
+        description: "Consequências"
+
+    identity_journey:
+      identity: "Quem o personagem PARECE ser"
+      essence: "Quem o personagem REALMENTE é"
+      arc: "Jornada de identidade para essência"
+
+    best_for:
+      - Roteiros de vídeo
+      - Histórias de transformação
+      - Comerciais longos
+
+  # 7. Lajos Egri - Premise
+  lajos_egri:
+    name: "Premise-Driven Drama"
+    author: "Lajos Egri"
+    source: "The Art of Dramatic Writing (1942)"
+
+    premise:
+      definition: "Argumento que a história prova"
+      structure: "[Característica] leva a [resultado]"
+      examples:
+        - "Ambição cega leva à destruição"
+        - "Amor verdadeiro supera todos os obstáculos"
+        - "Ganância leva à autodestruição"
+
+    three_dimensional_character:
+      physiological: "Corpo, aparência, saúde"
+      sociological: "Classe, educação, trabalho"
+      psychological: "Temperamento, atitudes, complexos"
+
+    best_for:
+      - Definir mensagem central
+      - Histórias com "moral"
+      - Validar coerência temática
+
+  # 8. Donald Miller - StoryBrand SB7
+  donald_miller:
+    name: "StoryBrand Framework (SB7)"
+    author: "Donald Miller"
+    source: "Building a StoryBrand (2017)"
+
+    framework:
+      character:
+        description: "O cliente é o herói, não a marca"
+        application: "Posicione cliente como protagonista"
+
+      problem:
+        levels:
+          external: "Problema tangível"
+          internal: "Frustração emocional"
+          philosophical: "Por que isso é errado"
+        villain: "Personifique o problema"
+
+      guide:
+        description: "A marca é o mentor"
+        elements:
+          - empathy: "Entende a dor"
+          - authority: "Tem competência para ajudar"
+
+      plan:
+        description: "Passos claros para sucesso"
+        types:
+          - process_plan: "Como funciona"
+          - agreement_plan: "Compromissos"
+
+      call_to_action:
+        direct: "Compre agora"
+        transitional: "Baixe o guia"
+
+      failure:
+        description: "O que acontece se não agir"
+        stakes: "Consequências negativas"
+
+      success:
+        description: "Transformação do cliente"
+        result: "Como a vida melhora"
+
+    best_for:
+      - Copywriting
+      - Landing pages
+      - Messaging de marca
+      - Sales pages
+
+  # 9. Simon Sinek - Golden Circle
+  simon_sinek:
+    name: "Golden Circle"
+    author: "Simon Sinek"
+    source: "Start With Why (2009)"
+
+    circles:
+      why:
+        position: "Centro"
+        description: "Propósito, causa, crença"
+        question: "Por que existimos?"
+
+      how:
+        position: "Meio"
+        description: "Processo, diferenciais"
+        question: "Como fazemos?"
+
+      what:
+        position: "Exterior"
+        description: "Produtos, serviços"
+        question: "O que oferecemos?"
+
+    principle: "Comunique de dentro para fora: WHY → HOW → WHAT"
+
+    biology:
+      limbic_brain: "Responde ao WHY (emoções, decisões)"
+      neocortex: "Responde ao WHAT (lógica, linguagem)"
+
+    best_for:
+      - Definição de propósito
+      - Pitch de marca
+      - Apresentações inspiracionais
+      - Comunicação de valores

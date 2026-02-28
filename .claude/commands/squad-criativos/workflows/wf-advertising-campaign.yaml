@@ -1,0 +1,326 @@
+# Workflow: Campanha de Advertising
+# Caminho Criativo: ADVERTISING
+# Foco: Conversão, vendas, lançamentos
+
+name: wf-advertising-campaign
+description: |
+  Workflow para criação de campanhas publicitárias focadas em
+  conversão e vendas. Inclui anúncios, landing pages, emails.
+
+version: "1.0"
+caminho_criativo: "Advertising"
+duracao_estimada: "5-10 dias úteis"
+
+# ═══════════════════════════════════════════════════════════════════
+# PRÉ-REQUISITOS
+# ═══════════════════════════════════════════════════════════════════
+prerequisites:
+  obrigatorios:
+    - "Brand Guidelines (UNNIKO)"
+    - "Verbal Identity"
+    - "Objetivo de campanha definido"
+    - "Budget e canais definidos"
+
+  recomendados:
+    - "Brand Foundation (DEENEA)"
+    - "Personas/Público-alvo"
+    - "Histórico de campanhas anteriores"
+
+# ═══════════════════════════════════════════════════════════════════
+# FASES DO WORKFLOW
+# ═══════════════════════════════════════════════════════════════════
+phases:
+
+  # FASE 1: BRIEFING E ANÁLISE
+  - phase: 1
+    name: "Briefing e Análise"
+    duracao: "1 dia"
+    agente_principal: creative-brief-analyst
+
+    tasks:
+      - task: analyze-campaign-brief
+        description: "Analisar briefing da campanha"
+        output: "Briefing Enriquecido"
+
+      - task: map-taxonomy
+        description: "Mapear para Taxonomia de Diferenciais"
+        output: "Mapeamento taxonômico"
+
+      - task: define-connector
+        description: "Definir Conector de Marca"
+        decision: "Geralmente Marca Mercadológica"
+        output: "Eixo definido"
+
+    checkpoint:
+      question: "Briefing completo para campanha?"
+      criteria:
+        - "Objetivo claro (awareness/consideração/conversão)"
+        - "Público-alvo definido"
+        - "Canais e formatos definidos"
+        - "KPIs estabelecidos"
+
+  # FASE 2: ESTRUTURA NARRATIVA
+  - phase: 2
+    name: "Estrutura Narrativa"
+    duracao: "1 dia"
+    agente_principal: narrative-designer
+
+    tasks:
+      - task: map-emotions
+        description: "Mapear emoções para campanha"
+        frameworks:
+          - "Panksepp (SEEKING, RAGE → resolution)"
+          - "Plutchik (Anticipation, Joy)"
+        output: "Emotion Map"
+
+      - task: select-framework
+        description: "Selecionar framework narrativo"
+        recomendados:
+          - "5BEATS (para vídeos curtos)"
+          - "PAS (Problem-Agitation-Solution)"
+          - "AIDA"
+        output: "Framework selecionado"
+
+    checkpoint:
+      question: "Estrutura emocional definida?"
+      criteria:
+        - "Emoções primárias identificadas"
+        - "Framework adequado ao formato"
+
+  # FASE 3: BIG IDEA
+  - phase: 3
+    name: "Big Idea"
+    duracao: "1-2 dias"
+    agente_principal: big-idea-architect
+
+    tasks:
+      - task: ideate
+        description: "Brainstorm de Big Ideas"
+        tecnicas:
+          - "Conexões inesperadas"
+          - "What if..."
+          - "Reverse thinking"
+        output: "3-5 Big Idea candidates"
+
+      - task: validate-taxonomy
+        description: "Validar contra taxonomia"
+        criterios:
+          - "Dramatiza diferencial?"
+          - "Expressa significado?"
+          - "Cria distintividade?"
+        output: "Big Idea validada"
+
+    checkpoint:
+      question: "Big Idea aprovada?"
+      criteria:
+        - "Simples (cabe em uma frase)"
+        - "Surpreendente"
+        - "Conecta com diferencial"
+        - "Escalável para múltiplos formatos"
+
+  # FASE 4: CORE CREATIVE IDEA
+  - phase: 4
+    name: "Core Creative Idea"
+    duracao: "1 dia"
+    agente_principal: concept-writer
+    validador: brand-voice-director
+
+    tasks:
+      - task: develop-concept
+        description: "Desenvolver conceito criativo"
+        output: "Core Creative Idea"
+
+      - task: create-headlines
+        description: "Criar headlines principais"
+        formatos:
+          - "Headline principal"
+          - "Sub-headlines"
+          - "CTAs"
+        output: "Headlines"
+
+      - task: define-campaign-tone
+        description: "Definir tom específico"
+        base: "Tom de marca (UNNIKO)"
+        ajuste: "Mais urgente/persuasivo para ads"
+        output: "Campaign Tone"
+
+      - task: validate-voice
+        agente: brand-voice-director
+        description: "Validar voz e tom"
+        output: "Aprovação de direção"
+
+    checkpoint:
+      question: "Conceito pronto para execução?"
+      criteria:
+        - "Conceito claro e executável"
+        - "Headlines impactantes"
+        - "Tom aprovado"
+
+  # FASE 5: ARTEFATOS
+  - phase: 5
+    name: "Produção de Artefatos"
+    duracao: "2-3 dias"
+    paralelo: true
+
+    track_copy:
+      agente: copywriter
+      tasks:
+        - task: write-ad-copy
+          formatos:
+            - "Headlines de anúncio"
+            - "Body copy"
+            - "CTAs"
+            - "Roteiros de vídeo (se aplicável)"
+          consideracoes:
+            - "Economia da Atenção por canal"
+            - "Limites de caracteres"
+            - "5BEATS para vídeos curtos"
+          output: "Copy completo"
+
+        - task: write-landing-page
+          estrutura:
+            - "Headline + Sub"
+            - "Benefícios"
+            - "Prova social"
+            - "CTA"
+          output: "Copy de LP"
+
+        - task: write-email-sequence
+          se_aplicavel: true
+          output: "Sequência de emails"
+
+    track_visual:
+      agente: art-director
+      tasks:
+        - task: create-key-visual
+          description: "Key visual da campanha"
+          output: "Key Visual"
+
+        - task: create-ad-formats
+          formatos:
+            - "Feed (1:1, 4:5)"
+            - "Stories (9:16)"
+            - "Banner"
+            - "Video thumbnails"
+          output: "Peças visuais"
+
+        - task: create-landing-page-design
+          se_aplicavel: true
+          output: "Design de LP"
+
+    checkpoint:
+      question: "Artefatos completos?"
+      criteria:
+        - "Todos os formatos produzidos"
+        - "Consistência visual"
+        - "Copy adaptado por canal"
+
+  # FASE 6: VALIDAÇÃO FINAL
+  - phase: 6
+    name: "Validação Final"
+    duracao: "0.5 dia"
+    agente_principal: brand-voice-director
+
+    tasks:
+      - task: validate-all-copy
+        description: "Validar todo copy"
+        criterios:
+          - "Voz consistente"
+          - "Tom adequado"
+          - "Sem erros"
+        output: "Copy aprovado"
+
+      - task: validate-visual-brand
+        description: "Validar visual vs brand"
+        criterios:
+          - "Alinhamento com Design System"
+          - "Uso correto de assets"
+        output: "Visual aprovado"
+
+    checkpoint:
+      question: "Campanha pronta para lançamento?"
+      criteria:
+        - "Todos os materiais aprovados"
+        - "Consistência total"
+
+  # FASE 7: BRIEFING DE CRIAÇÃO
+  - phase: 7
+    name: "Entrega"
+    duracao: "0.5 dia"
+    agente_principal: creative-brief-analyst
+
+    tasks:
+      - task: compile-creation-brief
+        description: "Compilar Briefing de Criação"
+        conteudo:
+          - "Big Idea"
+          - "Core Concept"
+          - "Todos os artefatos"
+          - "Especificações por canal"
+          - "Orientações de mídia"
+        output: "Briefing de Criação"
+
+    handoff:
+      destino: "Growth Ops / Traffic Manager"
+      entregaveis:
+        - "Briefing de Criação"
+        - "Artefatos organizados"
+        - "Especificações técnicas"
+
+# ═══════════════════════════════════════════════════════════════════
+# ENTREGÁVEIS FINAIS
+# ═══════════════════════════════════════════════════════════════════
+deliverables:
+  estrategia:
+    - "Big Idea"
+    - "Core Creative Idea"
+    - "Campaign Tone"
+
+  copy:
+    - "Headlines e CTAs"
+    - "Copy de anúncios"
+    - "Copy de landing page"
+    - "Roteiros de vídeo"
+    - "Emails (se aplicável)"
+
+  visual:
+    - "Key Visual"
+    - "Peças para todos os formatos"
+    - "Design de LP"
+    - "Thumbnails"
+
+  documentacao:
+    - "Briefing de Criação"
+    - "Especificações por canal"
+
+# ═══════════════════════════════════════════════════════════════════
+# FRAMEWORKS UTILIZADOS
+# ═══════════════════════════════════════════════════════════════════
+frameworks:
+  narrativa:
+    - "5BEATS (vídeos curtos)"
+    - "PAS"
+    - "AIDA"
+
+  emocional:
+    - "Panksepp (SEEKING, RAGE)"
+    - "Plutchik"
+
+  adaptacao:
+    - "Economia da Atenção"
+    - "Golden Sentence"
+
+# ═══════════════════════════════════════════════════════════════════
+# DATA FILES
+# ═══════════════════════════════════════════════════════════════════
+data_files:
+  - data/5beats-framework.yaml
+  - data/attention-economy.yaml
+  - data/golden-sentence.yaml
+  - data/taxonomia-diferenciais.yaml
+  - data/panksepp-systems.yaml
+  # Frameworks curados (2026-02)
+  - data/virality-frameworks.yaml       # STEPPS para campanhas virais
+  - data/hook-model-eyal.yaml           # Loops de engajamento
+  - data/behavioral-economics-branding.yaml  # Vieses para conversão
+  - data/marketing-journey-kotler.yaml  # Jornada 5As

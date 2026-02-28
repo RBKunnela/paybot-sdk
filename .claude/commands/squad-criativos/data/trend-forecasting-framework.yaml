@@ -1,0 +1,248 @@
+# Trend Forecasting Framework - Search & Insights
+# Framework proprietário para previsão e avaliação de tendências
+# Combina STEEP Analysis com Trend Scoring adaptado à Taxonomia de Diferenciais
+
+id: trend-forecasting-framework
+name: "Trend Forecasting Framework"
+version: "1.0"
+autor: "squAId criaTTivados"
+
+descricao: |
+  Framework proprietário que combina análise STEEP (macro-ambiente)
+  com um sistema de scoring para priorização de tendências.
+  Adaptado à Taxonomia de Diferenciais para gerar insights acionáveis
+  sobre onde e como uma marca pode se diferenciar.
+
+# ═══════════════════════════════════════════════════════════════════
+# PARTE 1: STEEP ANALYSIS (Identificação)
+# ═══════════════════════════════════════════════════════════════════
+steep_analysis:
+  descricao: |
+    STEEP é um framework para analisar forças do macro-ambiente
+    que afetam mercados, categorias e comportamento do consumidor.
+    Cada dimensão é analisada com lente de branding.
+
+  dimensoes:
+    social:
+      nome: "Social & Cultural"
+      descricao: "Mudanças em valores, comportamentos e estrutura social"
+      perguntas_guia:
+        - "Como os valores da sociedade estão mudando?"
+        - "Que novos comportamentos de consumo estão emergindo?"
+        - "Que causas e movimentos culturais ganham força?"
+        - "Como as gerações diferem em expectativas?"
+      impacto_branding:
+        dominio_I: "Novos padrões de qualidade e expectativas de serviço"
+        dominio_II: "Novos propósitos e valores relevantes para marcas"
+        dominio_III: "Novas estéticas e linguagens visuais"
+
+    technological:
+      nome: "Technological"
+      descricao: "Inovações tecnológicas que afetam o setor"
+      perguntas_guia:
+        - "Que tecnologias estão mudando a categoria?"
+        - "Como a IA está afetando a experiência do consumidor?"
+        - "Que canais digitais estão emergindo?"
+        - "Que tecnologias mudam a forma de produzir/entregar?"
+      impacto_branding:
+        dominio_I: "Novas possibilidades de produto e modelo de negócio"
+        dominio_II: "Novos formatos de storytelling e conexão"
+        dominio_III: "Novos touchpoints e experiências sensoriais"
+
+    economic:
+      nome: "Economic"
+      descricao: "Forças econômicas que impactam o mercado"
+      perguntas_guia:
+        - "Como está o poder de compra do público-alvo?"
+        - "Que movimentos de premiumização ou massificação existem?"
+        - "Como novos modelos de negócio alteram a dinâmica?"
+        - "Que barreiras econômicas afetam a categoria?"
+      impacto_branding:
+        dominio_I: "Pressão sobre pricing e percepção de valor"
+        dominio_II: "Narrativas de acessibilidade vs exclusividade"
+        dominio_III: "Simplificação ou sofisticação visual"
+
+    environmental:
+      nome: "Environmental & Sustainability"
+      descricao: "Consciência ambiental e sustentabilidade"
+      perguntas_guia:
+        - "Que expectativas de sustentabilidade o público tem?"
+        - "Como a regulação ambiental afeta a categoria?"
+        - "Que práticas sustentáveis são diferenciadores reais?"
+        - "Greenwashing é um risco na categoria?"
+      impacto_branding:
+        dominio_I: "Processos sustentáveis como diferencial substantivo"
+        dominio_II: "Propósito ambiental como narrativa"
+        dominio_III: "Estética sustentável (cores, materiais, packaging)"
+
+    political:
+      nome: "Political & Regulatory"
+      descricao: "Regulação, políticas e ambiente institucional"
+      perguntas_guia:
+        - "Que regulações afetam a categoria?"
+        - "Que posicionamentos políticos são esperados/arriscados?"
+        - "Como políticas públicas afetam o mercado?"
+        - "Que questões de compliance importam?"
+      impacto_branding:
+        dominio_I: "Compliance como barreira ou diferencial"
+        dominio_II: "Posicionamento político como valor de marca"
+        dominio_III: "Restrições legais em comunicação visual"
+
+# ═══════════════════════════════════════════════════════════════════
+# PARTE 2: TREND SCORING MODEL (Priorização)
+# ═══════════════════════════════════════════════════════════════════
+trend_scoring:
+  descricao: |
+    Sistema de scoring para avaliar e priorizar tendências identificadas.
+    Cada tendência recebe notas em 4 critérios, gerando um score final
+    que indica prioridade de ação.
+
+  criterios:
+    relevancia:
+      descricao: "Quão relevante é para esta marca/categoria específica?"
+      escala: "1-5"
+      niveis:
+        1: "Irrelevante para a categoria"
+        2: "Tangencialmente relevante"
+        3: "Relevante para o setor"
+        4: "Muito relevante para a marca"
+        5: "Crítico — ignorar é risco"
+
+    impacto:
+      descricao: "Qual o potencial de impacto se a marca agir?"
+      escala: "1-5"
+      niveis:
+        1: "Impacto mínimo"
+        2: "Impacto incremental"
+        3: "Impacto moderado"
+        4: "Impacto significativo"
+        5: "Impacto transformador"
+
+    timing:
+      descricao: "Qual a janela de oportunidade?"
+      escala: "1-5"
+      niveis:
+        1: "Tarde demais — mainstream saturado"
+        2: "Mainstream — todos já fazem"
+        3: "Early majority — janela se fechando"
+        4: "Early adopters — momento ideal"
+        5: "Emergente — risco alto, recompensa alta"
+
+    fit_taxonomico:
+      descricao: "Em qual domínio esta tendência cria oportunidade?"
+      mapeamento:
+        dominio_I: "Oportunidade de diferenciação substantiva"
+        dominio_II: "Oportunidade de diferenciação simbólica"
+        dominio_III: "Oportunidade de distintividade"
+        multi_dominio: "Impacta 2+ domínios (mais valioso)"
+
+  calculo:
+    formula: "Score = (Relevância x 0.3) + (Impacto x 0.3) + (Timing x 0.25) + (Fit x 0.15)"
+    classificacao:
+      alta_prioridade: "Score >= 4.0 — Agir agora"
+      media_prioridade: "Score 2.5-3.9 — Monitorar e planejar"
+      baixa_prioridade: "Score < 2.5 — Anotar e revisar depois"
+
+  template:
+    tendencia: null
+    nivel: null  # macro/meso/micro
+    steep_dimensao: null
+    relevancia: null
+    impacto: null
+    timing: null
+    fit_taxonomico: null
+    score_final: null
+    recomendacao: null
+
+# ═══════════════════════════════════════════════════════════════════
+# PARTE 3: CONVENTION DISRUPTION INDEX (Diferenciação)
+# ═══════════════════════════════════════════════════════════════════
+convention_disruption_index:
+  descricao: |
+    Mede o potencial de diferenciação ao quebrar uma convenção de categoria.
+    Nem toda convenção merece ser quebrada — este índice ajuda a decidir.
+
+  criterios:
+    visibilidade:
+      descricao: "Quão visível é esta convenção para o público?"
+      escala: "1-5"
+      logica: "Quanto mais visível, maior o impacto de quebrar"
+
+    expectativa:
+      descricao: "Quanto o público espera/depende desta convenção?"
+      escala: "1-5"
+      logica: "Alta expectativa = risco de rejeição ao quebrar"
+
+    saturacao:
+      descricao: "Quantos players seguem esta convenção?"
+      escala: "1-5"
+      logica: "Quanto mais saturada, maior o potencial de se destacar"
+
+    viabilidade:
+      descricao: "A marca tem capacidade de quebrar esta convenção?"
+      escala: "1-5"
+      logica: "Precisa de recursos, permissão e competência"
+
+  matriz_decisao:
+    quebrar: "Alta visibilidade + Alta saturação + Baixa expectativa + Alta viabilidade"
+    subverter: "Alta visibilidade + Alta expectativa + Alta saturação — fazer de forma inesperada"
+    manter: "Alta expectativa + Baixa saturação — é um diferencial que poucos têm"
+    ignorar: "Baixa visibilidade + Baixa saturação — não vale o esforço"
+
+# ═══════════════════════════════════════════════════════════════════
+# PROCESSO INTEGRADO
+# ═══════════════════════════════════════════════════════════════════
+processo_integrado:
+  passo_1:
+    nome: "STEEP Scan"
+    descricao: "Analisar cada dimensão STEEP para a categoria"
+    output: "Lista de forças e tendências por dimensão"
+
+  passo_2:
+    nome: "Trend Classification"
+    descricao: "Classificar tendências em macro/meso/micro"
+    output: "Tendências categorizadas por nível e horizonte"
+
+  passo_3:
+    nome: "Trend Scoring"
+    descricao: "Aplicar scoring model a cada tendência"
+    output: "Ranking de tendências priorizadas"
+
+  passo_4:
+    nome: "Convention Mapping"
+    descricao: "Mapear convenções de categoria por domínio"
+    output: "Mapa de convenções com CDI (Convention Disruption Index)"
+
+  passo_5:
+    nome: "Opportunity Synthesis"
+    descricao: |
+      Cruzar tendências de alta prioridade com convenções quebraveis:
+      - Onde tendências criam janelas para quebrar convenções?
+      - Que domínios têm mais oportunidade?
+    output: "Mapa de oportunidades de diferenciação"
+
+  passo_6:
+    nome: "Strategic Recommendations"
+    descricao: "Traduzir análise em recomendações acionáveis por domínio"
+    output: "Recomendações priorizadas"
+
+# ═══════════════════════════════════════════════════════════════════
+# FONTES DE DADOS REAIS
+# ═══════════════════════════════════════════════════════════════════
+fontes_reais:
+  descricao: "Fontes acessíveis para alimentar o framework"
+  primarias:
+    - nome: "EXA Web Search"
+      tipo: "Pesquisa web semântica"
+      uso: "Relatórios de tendências, artigos, análises setoriais"
+    - nome: "Apify Scraping"
+      tipo: "Extração de dados"
+      uso: "Dados de redes sociais, trending topics, hashtags"
+    - nome: "Social Listener"
+      tipo: "Monitoramento social"
+      uso: "Tendências emergentes em tempo real"
+  secundarias:
+    - "Google Trends (acesso público)"
+    - "Relatórios anuais de consultorias (McKinsey, Deloitte, Accenture)"
+    - "Publicações setoriais e trade magazines"
+    - "Conferências e eventos da categoria (cobertura online)"

@@ -1,0 +1,131 @@
+name: write-methodology
+description: Write detailed, replicable methodology section
+category: writing
+agent: academic-writer
+priority: high
+estimated_duration: 2-3 days
+
+inputs:
+  - research_design:
+      type: file
+      description: Research design document
+      required: true
+  - data_collection_details:
+      type: file
+      description: Details of data collection procedures
+      required: true
+
+outputs:
+  - methodology_section:
+      type: file
+      format: docx
+      description: Complete methodology section
+
+steps:
+  - step: 1
+    name: describe_study_design
+    description: Describe overall study design and approach
+    agent: academic-writer
+    estimated_duration: 0.5 days
+
+  - step: 2
+    name: describe_participants
+    description: Describe participants, sampling, and recruitment
+    agent: academic-writer
+    estimated_duration: 0.5 days
+
+  - step: 3
+    name: describe_procedures
+    description: Write step-by-step procedures
+    agent: academic-writer
+    estimated_duration: 1 day
+
+  - step: 4
+    name: describe_analysis
+    description: Describe data analysis methods
+    agent: academic-writer
+    estimated_duration: 0.5 days
+
+  - step: 5
+    name: add_ethics
+    description: Add ethical considerations section
+    agent: academic-writer
+    estimated_duration: 0.25 days
+
+success_criteria:
+  - Replicable (another researcher could follow your methods)
+  - Complete (all necessary details included)
+  - Clear justification for methodological choices
+  - Ethical considerations addressed
+
+deliverables:
+  - Methodology section (1,500-3,000 words)
+
+methodology_structure: |
+  # Methods
+
+  ## Study Design
+  [Experimental, survey, case study, ethnography, etc.]
+  [Justification for choice]
+
+  ## Participants
+  [N, demographics, inclusion/exclusion criteria]
+  [Sampling method, recruitment procedures]
+  [Response rate, attrition]
+
+  ## Materials/Instruments
+  [Surveys, equipment, software used]
+  [Validity, reliability of instruments]
+  [Pilot testing results]
+
+  ## Procedures
+  [Step-by-step what you did]
+  [Timing, duration, conditions]
+  [Any randomization or counterbalancing]
+
+  ## Data Analysis
+  [Statistical tests or qualitative coding methods]
+  [Software used (SPSS, R, NVivo, etc.)]
+  [How missing data was handled]
+
+  ## Ethical Considerations
+  [IRB approval number]
+  [Informed consent procedures]
+  [Data privacy and storage]
+
+quantitative_specifics:
+  - Sample size calculation (power analysis)
+  - Randomization procedures
+  - Control conditions
+  - Statistical tests used
+  - Alpha level (e.g., p < .05)
+  - Effect size measures
+
+qualitative_specifics:
+  - Sampling rationale (purposive, theoretical)
+  - Data saturation
+  - Coding procedures (open, axial, selective)
+  - Inter-coder reliability
+  - Reflexivity/positionality statement
+
+best_practices:
+  - Use past tense ("Participants completed...")
+  - Be specific (exact timing, N, procedures)
+  - Justify methodological choices
+  - Describe what you ACTUALLY did (not what you planned)
+  - Include enough detail for replication
+  - Cite instruments/procedures from literature
+
+common_pitfalls:
+  - Vague descriptions ("data was collected")
+  - Missing details (can't replicate)
+  - Not justifying methodological choices
+  - Mixing methods and results sections
+  - No mention of ethics approval
+
+tags:
+  - methodology
+  - methods
+  - research-design
+  - procedures
+  - replication

@@ -1,0 +1,456 @@
+# Behavioral Economics para Branding
+# Baseado em: Dan Ariely (Predictably Irrational) + Kahneman
+# Squad: UNNIKO + storYOURtelling
+# Usado por: differentiation-strategist, funnel-architect, copywriter
+
+metadata:
+  name: "Economia Comportamental Aplicada a Branding"
+  version: "1.0"
+  sources:
+    - "Predictably Irrational (Dan Ariely, 2008)"
+    - "Thinking Fast and Slow (Daniel Kahneman)"
+  aplicacao: "Precificação, posicionamento, comunicação persuasiva"
+
+# ═══════════════════════════════════════════════════════════════════
+# PRINCÍPIO CENTRAL
+# ═══════════════════════════════════════════════════════════════════
+
+principio:
+
+  conceito: |
+    Humanos são PREVISIVELMENTE irracionais.
+    Cometemos os mesmos erros sistemáticos repetidamente.
+    Entender esses padrões permite design mais eficaz.
+
+  implicacao_branding: |
+    Não assuma decisões racionais do consumidor.
+    Design de preço, oferta e comunicação deve
+    considerar como pessoas REALMENTE decidem.
+
+# ═══════════════════════════════════════════════════════════════════
+# RELATIVIDADE E CONTEXTO
+# ═══════════════════════════════════════════════════════════════════
+
+relatividade:
+
+  principio: |
+    Avaliamos tudo por COMPARAÇÃO, não em absoluto.
+    O contexto determina a percepção de valor.
+
+  efeito_decoy:
+    nome: "Efeito Decoy (Isca)"
+    definicao: |
+      Uma opção inferior (decoy) faz outra parecer melhor.
+      Adicionar opção que ninguém quer muda escolhas.
+
+    mecanismo:
+      sem_decoy:
+        opcao_a: "R$5 - Pequeno"
+        opcao_b: "R$10 - Grande"
+        resultado: "Escolhas divididas"
+
+      com_decoy:
+        opcao_a: "R$5 - Pequeno"
+        opcao_decoy: "R$9,50 - Médio (tamanho do pequeno)"
+        opcao_b: "R$10 - Grande"
+        resultado: "Maioria escolhe Grande"
+
+    caso_the_economist:
+      opcao_1: "Digital only: $59"
+      opcao_2: "Print only: $125 (DECOY)"
+      opcao_3: "Print + Digital: $125"
+      resultado: "84% escolheram Print + Digital"
+      sem_decoy: "68% escolheriam Digital only"
+
+    aplicacao_branding:
+      precificacao:
+        - "Crie 3 opções: Basic, Plus, Premium"
+        - "Plus deve ser claramente inferior ao Premium"
+        - "Premium deve parecer o melhor negócio"
+
+      posicionamento:
+        - "Compare com alternativa inferior"
+        - "Mostre concorrente caro primeiro"
+
+  comparacao_facil:
+    principio: "Preferimos comparações fáceis"
+    implicacao: |
+      Quando comparação é difícil (A vs B muito diferentes),
+      buscamos algo comparável.
+
+    exemplo:
+      dificil: "Viagem a Roma vs Viagem a Paris"
+      facil: "Roma com café da manhã vs Roma sem café da manhã"
+      resultado: "Roma com café ganha"
+
+    aplicacao:
+      - "Facilite comparação favorável"
+      - "Se seu produto é único, crie ponto de comparação"
+      - "Destaque dimensão onde você ganha"
+
+# ═══════════════════════════════════════════════════════════════════
+# ANCORAGEM
+# ═══════════════════════════════════════════════════════════════════
+
+ancoragem:
+
+  principio: |
+    Primeiro número visto (âncora) influencia
+    todos os julgamentos subsequentes.
+
+  funcionamento:
+    1: "Cérebro usa âncora como referência"
+    2: "Ajusta a partir dela (insuficientemente)"
+    3: "Mesmo âncoras irrelevantes funcionam"
+
+  experimento_ariely:
+    descricao: "Últimos 2 dígitos do SSN como âncora"
+    resultado: "SSN alto = lances maiores em leilão"
+    conclusao: "Número completamente irrelevante ancorou"
+
+  aplicacao_branding:
+
+    precificacao:
+      preco_de_x_por:
+        antes: "Por apenas R$99"
+        depois: "De R$199 por R$99"
+        efeito: "Economia parece maior"
+
+      premium_primeiro:
+        estrategia: "Mostre opção premium antes"
+        exemplo: "Carro de R$200k antes do de R$80k"
+        efeito: "R$80k parece acessível"
+
+      preco_sugerido:
+        estrategia: "Preço de lista alto, desconto grande"
+        exemplo: "MSRP $40 | Nosso preço $25"
+
+    posicionamento:
+      comparacao_alta:
+        estrategia: "Compare com alternativa mais cara"
+        exemplo: "Fração do custo de um MBA"
+
+      primeiro_impacto:
+        estrategia: "Primeiro número que cliente vê importa"
+        aplicacao: "Se for mostrar range, comece do alto"
+
+    comunicacao:
+      numeros_grandes_primeiro:
+        - "50.000 clientes atendidos... incluindo você"
+        - "R$10 milhões economizados para clientes"
+        - "100+ anos de experiência combinada"
+
+# ═══════════════════════════════════════════════════════════════════
+# O PODER DO GRÁTIS (ZERO PRICE EFFECT)
+# ═══════════════════════════════════════════════════════════════════
+
+efeito_gratis:
+
+  principio: |
+    GRÁTIS não é apenas um preço - é gatilho emocional.
+    A diferença entre R$1 e grátis é muito maior que
+    a diferença entre R$2 e R$1.
+
+  experimento_trufa:
+    cenario_1:
+      trufa_lindt: "R$0,15 (61% escolheram)"
+      trufa_hershey: "R$0,01 (39% escolheram)"
+
+    cenario_2:
+      trufa_lindt: "R$0,14 (31% escolheram)"
+      trufa_hershey: "GRÁTIS (69% escolheram)"
+
+    analise: |
+      Ambos cenários: diferença de R$0,14.
+      Mas GRÁTIS inverte completamente a escolha.
+      Zero tem poder desproporcional.
+
+  psicologia:
+    medo_de_perda: "GRÁTIS elimina risco de perder algo"
+    certeza: "Grátis = ganho certo, qualquer preço = incerteza"
+    emocao: "Grátis ativa área de recompensa diferente"
+
+  aplicacao_branding:
+
+    frete_gratis:
+      errado: "Produto R$25 + Frete R$5"
+      certo: "Produto R$30 com FRETE GRÁTIS"
+      resultado: "Aumenta conversão significativamente"
+
+    buy_one_get_one:
+      poder: "BOGO > 50% off (mesmo valor)"
+      motivo: "Um item GRÁTIS é irresistível"
+
+    freemium:
+      estrategia: "Versão grátis como porta de entrada"
+      cuidado: "Grátis muito bom = não converte"
+
+    amostras:
+      estrategia: "Dê algo grátis para criar reciprocidade"
+      exemplos:
+        - "Amostra grátis na compra"
+        - "Trial gratuito"
+        - "Consulta grátis"
+
+  armadilhas_do_gratis:
+    custos_ocultos: "Grátis ainda tem custo de tempo/esforço"
+    desvalorização: "Grátis pode parecer sem valor"
+    expectativa: "Acostuma cliente a não pagar"
+
+# ═══════════════════════════════════════════════════════════════════
+# NORMAS SOCIAIS VS NORMAS DE MERCADO
+# ═══════════════════════════════════════════════════════════════════
+
+normas:
+
+  principio: |
+    Existem duas esferas de interação:
+    SOCIAL (favores, relacionamentos, comunidade) e
+    MERCADO (transações, pagamentos, contratos).
+    Não misture as duas.
+
+  diferenca:
+    social:
+      motivacao: "Relacionamento, pertencimento, reciprocidade"
+      linguagem: "Favor, ajudar, juntos"
+      expectativa: "Não imediata, flexível"
+      exemplo: "Amigo ajuda com mudança"
+
+    mercado:
+      motivacao: "Compensação, troca justa"
+      linguagem: "Pagar, preço, contrato"
+      expectativa: "Imediata, específica"
+      exemplo: "Contratar empresa de mudança"
+
+  experimento_creche:
+    antes: "Pais se atrasavam pouco (norma social - vergonha)"
+    intervenção: "Multa por atraso introduzida"
+    depois: "Atrasos AUMENTARAM (virou transação)"
+    pior: "Remover multa não restaurou comportamento"
+
+  aplicacao_branding:
+
+    nao_misture:
+      errado: |
+        "Somos uma família... agora pague R$99/mês"
+        Mistura relacional com transacional.
+
+      certo: |
+        Escolha uma esfera e seja consistente.
+
+    quando_usar_social:
+      contexto: "Comunidades, colaboração, embaixadores"
+      linguagem:
+        evitar: "Ganhe R$10 por indicação"
+        preferir: "Ajude amigos a descobrir"
+      poder: "Normas sociais são mais poderosas que dinheiro"
+
+    quando_usar_mercado:
+      contexto: "Transações claras, B2B, prestação de serviços"
+      linguagem:
+        claro: "Investimento de R$X para resultado Y"
+      cuidado: "Uma vez mercado, difícil voltar ao social"
+
+    hibrido_perigoso:
+      exemplo: "Banco que fala de 'família' mas cobra tarifas altas"
+      resultado: "Desconfiança - sentimento de traição"
+
+# ═══════════════════════════════════════════════════════════════════
+# EFEITO DOTAÇÃO (ENDOWMENT EFFECT)
+# ═══════════════════════════════════════════════════════════════════
+
+efeito_dotacao:
+
+  principio: |
+    Valorizamos mais o que possuímos.
+    Vender exige mais do que comprar custaria.
+
+  experimento_caneca:
+    vendedores: "Exigiam ~$7 para vender caneca"
+    compradores: "Ofereciam ~$3 para comprar"
+    diferenca: "2-3x mais para se desfazer"
+
+  tres_componentes:
+    1: "Apego natural ao que é 'nosso'"
+    2: "Foco no que perdemos (não no que ganhamos)"
+    3: "Assumimos que outros valorizam igual"
+
+  aplicacao_branding:
+
+    trials_e_demos:
+      estrategia: "Deixe usar antes de comprar"
+      mecanismo: "Cria posse psicológica"
+      exemplos:
+        - "Test drive estendido"
+        - "30 dias grátis (com acesso completo)"
+        - "Levar para casa antes de decidir"
+
+    customizacao:
+      estrategia: "Deixe personalizar"
+      mecanismo: "Esforço + escolha = mais apego"
+      exemplos:
+        - "Monte seu próprio X"
+        - "Escolha suas features"
+        - "Configure do seu jeito"
+
+    linguagem_de_posse:
+      antes:
+        - "O produto"
+        - "Nosso serviço"
+      depois:
+        - "Seu produto"
+        - "Sua conta"
+        - "Seu espaço"
+      efeito: "Cria senso de propriedade"
+
+    garantia_risco_zero:
+      estrategia: "Devolução total, sem perguntas"
+      paradoxo: "Menos pessoas devolvem (efeito dotação)"
+      exemplo: "Zappos: 365 dias de devolução"
+
+# ═══════════════════════════════════════════════════════════════════
+# ESTADOS QUENTE VS FRIO (HOT/COLD)
+# ═══════════════════════════════════════════════════════════════════
+
+estados_emocionais:
+
+  principio: |
+    Decisões mudam drasticamente dependendo do estado emocional.
+    No "frio" (calmo), planejamos racionalmente.
+    No "quente" (excitado), agimos diferente.
+
+  lacuna_empatia:
+    descricao: "Subestimamos impacto de estados quentes"
+    exemplo: |
+      Frio: "Nunca comeria fast food"
+      Quente (com fome): Come Big Mac
+
+  experimento_ariely:
+    contexto: "Estudantes responderam sobre decisões sexuais"
+    frio: "Afirmaram que sempre usariam proteção"
+    quente: "Respostas muito diferentes"
+    conclusao: "Não prevemos comportamento em estados alterados"
+
+  aplicacao_branding:
+
+    timing_de_comunicacao:
+      estrategia: "Comunique quando audiência está no estado certo"
+      exemplos:
+        - "Ads de comida na hora do almoço"
+        - "Ofertas de viagem na sexta-feira"
+        - "Seguro após notícia de acidente"
+
+    criar_estados_quentes:
+      taticas:
+        urgencia:
+          - "Últimas unidades"
+          - "Termina hoje"
+        escassez: "Só 3 disponíveis"
+        exclusividade: "Apenas para membros"
+        fomo: "X pessoas comprando agora"
+
+      cuidado: "Use com ética - não manipule destrutivamente"
+
+    proteger_de_estados_quentes:
+      aplicacao: "Se seu produto é 'bom no frio'"
+      exemplos:
+        - "Poupança: 'Guarde antes de sentir vontade de gastar'"
+        - "Saúde: 'Decida o cardápio da semana no domingo'"
+        - "Cancelamento: Cooling-off period"
+
+    pre_commitment:
+      conceito: "Comprometer no frio para executar no quente"
+      exemplos:
+        - "Assinatura de academia (compromisso frio)"
+        - "Agendamento automático de poupança"
+        - "Meal prep no domingo"
+
+# ═══════════════════════════════════════════════════════════════════
+# EXPECTATIVAS MOLDAM REALIDADE
+# ═══════════════════════════════════════════════════════════════════
+
+expectativas:
+
+  principio: |
+    Expectativas influenciam experiência real.
+    Se esperamos que algo seja bom, experimentamos como bom.
+    Efeito placebo em branding.
+
+  experimento_cerveja:
+    cenario_1: "Cerveja com vinagre sem avisar"
+    resultado_1: "Maioria gostou"
+    cenario_2: "Cerveja com vinagre avisando antes"
+    resultado_2: "Maioria não gostou"
+    cenario_3: "Avisar depois de provar"
+    resultado_3: "Maioria ainda gostou"
+
+  experimento_vinho:
+    descricao: "Mesmo vinho rotulado como caro vs barato"
+    resultado: "Rótulo caro foi avaliado como melhor"
+    neurociencia: "Área de prazer do cérebro mais ativa"
+
+  aplicacao_branding:
+
+    premium_positioning:
+      principio: "Preço alto cria expectativa de qualidade"
+      cuidado: "Produto precisa entregar minimamente"
+      tatica: "Justifique o premium com história/contexto"
+
+    framing_da_experiencia:
+      antes: "Este é nosso produto básico"
+      depois: "Esta é nossa versão essencial, refinada ao essencial"
+      efeito: "Mesma coisa, expectativa diferente"
+
+    storytelling_de_origem:
+      poder: "História de origem aumenta apreciação"
+      exemplos:
+        - "Café de fazenda específica"
+        - "Feito à mão por artesão"
+        - "Receita de família"
+
+    priming:
+      descricao: "Preparar mente antes da experiência"
+      exemplos:
+        - "Este é nosso produto mais premiado"
+        - "Clientes dizem que é o melhor X que já experimentaram"
+        - "Vencedor de 5 prêmios"
+
+  ética:
+    principio: |
+      Use expectativas para ELEVAR experiência genuína.
+      Não crie expectativas que produto não pode entregar.
+      Dissonância destrói confiança.
+
+# ═══════════════════════════════════════════════════════════════════
+# CHECKLIST DE APLICAÇÃO
+# ═══════════════════════════════════════════════════════════════════
+
+checklist:
+
+  precificacao:
+    - "[ ] Há opção decoy que direciona para preferida?"
+    - "[ ] Âncora de preço estabelecida (de/por)?"
+    - "[ ] Elementos GRÁTIS incluídos (frete, bonus)?"
+    - "[ ] Preço justifica expectativa de qualidade?"
+
+  posicionamento:
+    - "[ ] Comparação é favorável e fácil?"
+    - "[ ] Contexto de comparação está controlado?"
+    - "[ ] Expectativas criadas são entregáveis?"
+
+  conversao:
+    - "[ ] Trial/demo cria efeito dotação?"
+    - "[ ] Timing considera estado emocional?"
+    - "[ ] Risco removido (garantia, devolução)?"
+
+  comunicacao:
+    - "[ ] Esfera (social/mercado) está clara?"
+    - "[ ] Linguagem de posse ('seu', 'sua')?"
+    - "[ ] Storytelling eleva expectativas?"
+
+referencias:
+  - "Ariely, D. - Predictably Irrational (2008)"
+  - "Ariely, D. - The Upside of Irrationality (2010)"
+  - "Ariely, D. - The (Honest) Truth About Dishonesty (2012)"
+  - "Kahneman, D. - Thinking, Fast and Slow (2011)"
+  - "Thaler, R. & Sunstein, C. - Nudge (2008)"

@@ -1,0 +1,288 @@
+# Distinctive Brand Assets Framework
+# Baseado em Byron Sharp e Jenni Romaniuk (Ehrenberg-Bass Institute)
+# Usado por: Design System Architect, Identity Architect, Brand Experience Designer
+
+metadata:
+  name: "Framework de Distinctive Brand Assets"
+  version: "1.0"
+  source: "How Brands Grow (Sharp), Building Distinctive Brand Assets (Romaniuk)"
+
+conceito:
+  definicao: |
+    Distinctive Brand Assets são elementos não-marca (além do nome e logo)
+    que evocam a marca na mente do consumidor sem necessidade de
+    menção explícita.
+
+  principio_sharp: |
+    "Marcas crescem por disponibilidade mental (salience) e física,
+    não por razões racionais de compra."
+
+  objetivo: |
+    Criar assets que permitam reconhecimento instantâneo e inequívoco
+    mesmo em exposição parcial ou rápida.
+
+criterios_avaliacao:
+  fame:
+    descricao: "Quantos % do público reconhece o asset como da marca"
+    escala:
+      baixo: "< 30%"
+      medio: "30-60%"
+      alto: "> 60%"
+
+  uniqueness:
+    descricao: "O asset é associado APENAS a esta marca?"
+    escala:
+      baixo: "Associado a múltiplas marcas"
+      medio: "Principalmente a esta marca"
+      alto: "Exclusivo desta marca"
+
+  strategic_fit:
+    descricao: "O asset reforça o posicionamento da marca?"
+    escala:
+      baixo: "Desalinhado"
+      medio: "Neutro"
+      alto: "Reforça fortemente"
+
+matriz_fame_uniqueness:
+  quadrantes:
+    invest:
+      fame: "Alto"
+      uniqueness: "Alto"
+      acao: "Proteger e amplificar"
+
+    maintain:
+      fame: "Alto"
+      uniqueness: "Baixo"
+      acao: "Diferenciar ou substituir"
+
+    build:
+      fame: "Baixo"
+      uniqueness: "Alto"
+      acao: "Investir em exposição"
+
+    avoid:
+      fame: "Baixo"
+      uniqueness: "Baixo"
+      acao: "Descontinuar ou reinventar"
+
+tipos_de_assets:
+
+  # VISUAIS (Classe 7)
+  visuais:
+    cores:
+      principio: "Cores são o asset mais rapidamente processado"
+      guidelines:
+        - "Escolha 1-2 cores ownable no setor"
+        - "Use consistentemente em TODOS os touchpoints"
+        - "Evite cores saturadas no setor"
+      exemplos:
+        - marca: "Coca-Cola"
+          asset: "Vermelho específico"
+          fame: 95
+          uniqueness: 90
+
+        - marca: "Tiffany"
+          asset: "Azul Tiffany (Pantone 1837)"
+          fame: 80
+          uniqueness: 95
+
+        - marca: "Nubank"
+          asset: "Roxo"
+          fame: 85
+          uniqueness: 85
+
+    formas:
+      principio: "Silhuetas reconhecíveis funcionam mesmo borradas"
+      guidelines:
+        - "Desenvolva shape ownable se possível"
+        - "Consistência de forma em embalagens"
+        - "Forme reconhecível em 3 segundos"
+      exemplos:
+        - marca: "Apple"
+          asset: "Maçã mordida"
+          fame: 98
+          uniqueness: 99
+
+        - marca: "Nike"
+          asset: "Swoosh"
+          fame: 97
+          uniqueness: 99
+
+        - marca: "McDonald's"
+          asset: "Arcos dourados"
+          fame: 99
+          uniqueness: 99
+
+    personagens:
+      principio: "Personagens criam conexão emocional e recognizability"
+      guidelines:
+        - "Personagem deve ser único e ownable"
+        - "Manter consistência visual ao longo do tempo"
+        - "Personagem deve refletir personalidade da marca"
+      exemplos:
+        - marca: "Michelin"
+          asset: "Bibendum (Michelin Man)"
+          fame: 75
+          uniqueness: 95
+
+        - marca: "Duracell"
+          asset: "Coelho Duracell"
+          fame: 80
+          uniqueness: 85
+
+    tipografia:
+      principio: "Fontes customizadas ou uso consistente criam reconhecimento"
+      guidelines:
+        - "Considere desenvolver fonte proprietária"
+        - "Se usar fonte existente, seja 100% consistente"
+        - "A tipografia deve refletir personalidade"
+
+    estilo_visual:
+      principio: "Direção de arte consistente cria reconhecimento"
+      elements:
+        - Estilo fotográfico
+        - Tratamento de cor
+        - Composição
+        - Filtros/efeitos
+        - Grid e layouts
+
+  # SONOROS (Classe 8.1)
+  sonoros:
+    sonic_logo:
+      principio: "3-5 segundos que identificam instantaneamente"
+      guidelines:
+        - "Curto e memorável"
+        - "Distintivo do setor"
+        - "Testado para reconhecimento"
+      exemplos:
+        - marca: "Intel"
+          asset: "Intel bong (5 notas)"
+          fame: 90
+          uniqueness: 95
+
+        - marca: "Netflix"
+          asset: "Ta-dum"
+          fame: 85
+          uniqueness: 92
+
+        - marca: "McDonald's"
+          asset: "I'm Lovin' It (melodia)"
+          fame: 88
+          uniqueness: 90
+
+    jingles:
+      principio: "Melodias cantaroláveis que ficam na mente"
+      guidelines:
+        - "Simples o suficiente para lembrar"
+        - "Conectado ao benefício ou promessa"
+        - "Consistente ao longo do tempo"
+
+    voz:
+      principio: "Voz institucional reconhecível"
+      guidelines:
+        - "Tom e timbre consistentes"
+        - "Pode ser celebridade ou voz própria"
+
+  # VERBAIS (Classe 8.2)
+  verbais:
+    tagline:
+      principio: "Frase que captura a essência e é reconhecível"
+      guidelines:
+        - "Curta (3-5 palavras ideal)"
+        - "Memorável"
+        - "Conectada ao posicionamento"
+        - "Defensável (trademark)"
+      exemplos:
+        - marca: "Nike"
+          asset: "Just Do It"
+          fame: 95
+          uniqueness: 99
+
+        - marca: "Apple"
+          asset: "Think Different"
+          fame: 85
+          uniqueness: 95
+
+        - marca: "L'Oréal"
+          asset: "Because You're Worth It"
+          fame: 80
+          uniqueness: 90
+
+    catchphrases:
+      principio: "Bordões recorrentes que audiência associa"
+      guidelines:
+        - "Uso consistente"
+        - "Autêntico à personalidade"
+        - "Pode evoluir organicamente"
+
+  # COMPORTAMENTAIS (Classe 9)
+  comportamentais:
+    rituais:
+      principio: "Ações previsíveis que criam expectativa"
+      guidelines:
+        - "Criar tradições de marca"
+        - "Ser consistente na cadência"
+        - "Rituais devem reforçar posicionamento"
+      exemplos:
+        - marca: "Apple"
+          asset: "Keynote anual de setembro"
+          fame: 85
+          uniqueness: 90
+
+        - marca: "Spotify"
+          asset: "Wrapped (fim de ano)"
+          fame: 80
+          uniqueness: 95
+
+    interacao:
+      principio: "Estilo de resposta e engajamento reconhecível"
+      exemplos:
+        - marca: "Wendy's"
+          asset: "Respostas sarcásticas no Twitter"
+          fame: 70
+          uniqueness: 85
+
+        - marca: "Zappos"
+          asset: "Atendimento excepcional"
+          fame: 75
+          uniqueness: 80
+
+processo_desenvolvimento:
+  fase_1_audit:
+    - "Identificar assets existentes"
+    - "Medir fame e uniqueness atuais"
+    - "Mapear assets dos concorrentes"
+
+  fase_2_strategy:
+    - "Definir quais assets desenvolver"
+    - "Priorizar por impacto e viabilidade"
+    - "Garantir alinhamento com posicionamento"
+
+  fase_3_development:
+    - "Criar assets com unicidade"
+    - "Testar reconhecimento"
+    - "Proteger legalmente (trademark)"
+
+  fase_4_deployment:
+    - "Implementar em TODOS os touchpoints"
+    - "Treinar equipe sobre uso"
+    - "Monitorar consistência"
+
+  fase_5_measurement:
+    - "Medir fame periodicamente"
+    - "Medir uniqueness vs concorrência"
+    - "Ajustar estratégia conforme dados"
+
+checklist_validacao:
+  perguntas:
+    - "O asset é reconhecível SEM o nome da marca?"
+    - "O asset é ÚNICO no mercado/categoria?"
+    - "O asset é CONSISTENTE em todos os touchpoints?"
+    - "O asset é DEFENSÁVEL legalmente?"
+    - "O asset REFORÇA o posicionamento?"
+    - "O asset é MEMORÁVEL após uma exposição?"
+
+referencias:
+  - "Sharp, B. - How Brands Grow (2010)"
+  - "Romaniuk, J. - Building Distinctive Brand Assets (2018)"
+  - "Ehrenberg-Bass Institute - Research papers"

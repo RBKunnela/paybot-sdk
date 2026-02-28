@@ -1,0 +1,358 @@
+# Storytelling Frameworks - 10 Metodologias Principais
+# Referência para narrative-designer e big-idea-architect
+
+frameworks:
+
+  # 1. Joseph Campbell - Jornada do Herói
+  joseph_campbell:
+    name: "Jornada do Herói (Hero's Journey)"
+    author: "Joseph Campbell"
+    source: "O Herói de Mil Faces (1949)"
+    stages: 17
+    structure:
+      departure:
+        - call_to_adventure: "O herói recebe um chamado"
+        - refusal_of_call: "Inicialmente recusa"
+        - supernatural_aid: "Recebe ajuda sobrenatural"
+        - crossing_threshold: "Cruza o primeiro limiar"
+        - belly_of_whale: "Internalização do desafio"
+
+      initiation:
+        - road_of_trials: "Enfrenta testes e provações"
+        - meeting_goddess: "Encontra uma figura feminina poderosa"
+        - woman_as_temptress: "Tentação que pode desviá-lo"
+        - atonement_with_father: "Reconciliação com figura de autoridade"
+        - apotheosis: "Momento de iluminação"
+        - ultimate_boon: "Conquista o prêmio final"
+
+      return:
+        - refusal_of_return: "Relutância em voltar"
+        - magic_flight: "Fuga ou retorno dramático"
+        - rescue_from_without: "Resgate externo"
+        - crossing_return_threshold: "Retorno ao mundo comum"
+        - master_of_two_worlds: "Domínio entre mundos"
+        - freedom_to_live: "Liberdade plena"
+
+    best_for:
+      - Filmes épicos de marca
+      - Histórias de fundador
+      - Campanhas de transformação
+      - Brand documentaries
+
+  # 2. Christopher Vogler - Jornada do Escritor
+  christopher_vogler:
+    name: "A Jornada do Escritor"
+    author: "Christopher Vogler"
+    source: "The Writer's Journey (1992)"
+    stages: 12
+    structure:
+      act_1:
+        - ordinary_world: "Mundo comum do herói"
+        - call_to_adventure: "Desafio ou oportunidade"
+        - refusal_of_call: "Hesitação inicial"
+        - meeting_mentor: "Encontro com mentor"
+        - crossing_threshold: "Decisão de agir"
+
+      act_2:
+        - tests_allies_enemies: "Testes, aliados e inimigos"
+        - approach_innermost_cave: "Aproximação do desafio central"
+        - ordeal: "Provação suprema"
+        - reward: "Conquista inicial"
+
+      act_3:
+        - road_back: "Caminho de volta"
+        - resurrection: "Transformação final"
+        - return_with_elixir: "Retorno com aprendizado"
+
+    character_archetypes:
+      - Hero
+      - Mentor
+      - Threshold Guardian
+      - Herald
+      - Shapeshifter
+      - Shadow
+      - Trickster
+      - Ally
+
+    best_for:
+      - Filmes publicitários
+      - Histórias de cliente
+      - Case studies narrativos
+
+  # 3. Dan Harmon - Story Circle
+  dan_harmon:
+    name: "Story Circle"
+    author: "Dan Harmon"
+    source: "Channel 101 (2005)"
+    stages: 8
+    structure:
+      - you: "Personagem na zona de conforto"
+      - need: "Deseja algo"
+      - go: "Entra em situação desconhecida"
+      - search: "Adapta-se, busca"
+      - find: "Encontra o que buscava"
+      - take: "Paga um preço"
+      - return: "Volta à situação familiar"
+      - change: "Transformado pela experiência"
+
+    simplicity: "Versão simplificada da Jornada do Herói"
+
+    best_for:
+      - Séries de conteúdo
+      - Episódios de podcast
+      - Campanhas com múltiplas peças
+      - Social media storytelling
+
+  # 4. Blake Snyder - Save the Cat!
+  blake_snyder:
+    name: "Save the Cat! Beat Sheet"
+    author: "Blake Snyder"
+    source: "Save the Cat! (2005)"
+    stages: 15
+    structure:
+      - opening_image: "Imagem que define o tom (1%)"
+      - theme_stated: "Tema declarado sutilmente (5%)"
+      - setup: "Apresentação do mundo (1-10%)"
+      - catalyst: "Evento que muda tudo (10%)"
+      - debate: "Dilema do protagonista (10-25%)"
+      - break_into_two: "Decisão de agir (25%)"
+      - b_story: "História secundária/romance (30%)"
+      - fun_and_games: "Promessa da premissa (30-50%)"
+      - midpoint: "Virada central (50%)"
+      - bad_guys_close_in: "Antagonistas avançam (50-75%)"
+      - all_is_lost: "Momento mais baixo (75%)"
+      - dark_night_of_soul: "Reflexão profunda (75-80%)"
+      - break_into_three: "Solução emerge (80%)"
+      - finale: "Confronto final (80-99%)"
+      - final_image: "Imagem de contraste (99-100%)"
+
+    best_for:
+      - Vídeos de 2-3 minutos
+      - Comerciais de TV
+      - Curtas-metragens de marca
+
+  # 5. Pixar - 22 Rules + Story Spine
+  pixar:
+    name: "Pixar Storytelling"
+    author: "Pixar Animation Studios / Emma Coats"
+    source: "22 Rules of Storytelling"
+
+    story_spine:
+      structure:
+        - "Era uma vez..."
+        - "Todo dia..."
+        - "Um dia..."
+        - "Por causa disso..."
+        - "Por causa disso..."
+        - "Até que finalmente..."
+        - "E desde aquele dia..."
+
+    key_rules:
+      - "Admire personagem pelo esforço, não pelo sucesso"
+      - "O que é interessante para VOCÊ pode não ser para audiência"
+      - "Simplifique. Foque. Combine personagens"
+      - "Desafios são oportunidades para revelar caráter"
+
+    best_for:
+      - Storytelling emocional
+      - Histórias de produto
+      - Conteúdo de marca inspiracional
+      - Animações
+
+  # 6. Gustav Freytag - Pirâmide
+  gustav_freytag:
+    name: "Pirâmide de Freytag"
+    author: "Gustav Freytag"
+    source: "Die Technik des Dramas (1863)"
+    stages: 5
+    structure:
+      - exposition: "Introdução (personagens, cenário)"
+      - rising_action: "Ação ascendente (complicações)"
+      - climax: "Clímax (ponto de virada)"
+      - falling_action: "Ação descendente (consequências)"
+      - denouement: "Desfecho (resolução)"
+
+    visual: |
+      CLÍMAX
+       /\
+      /  \
+      /    \
+      /      \
+      /________\
+      EXPO    DESF
+
+    best_for:
+      - Apresentações
+      - Pitch decks
+      - Estrutura básica de qualquer história
+
+  # 7. Kurt Vonnegut - Story Shapes
+  kurt_vonnegut:
+    name: "Formas de História"
+    author: "Kurt Vonnegut"
+    source: "Palm Sunday (1981)"
+    shapes: 8
+    structure:
+      man_in_hole:
+        description: "Alguém tem problemas, sai deles"
+        arc: "↘️ ↗️"
+        examples: ["Die Hard", "Rocky", "maioria das histórias de sucesso"]
+
+      boy_meets_girl:
+        description: "Encontra algo incrível, perde, reconquista"
+        arc: "↗️ ↘️ ↗️"
+        examples: ["Romances", "Histórias de amor com marca"]
+
+      from_bad_to_worse:
+        description: "Começa mal, piora ainda mais"
+        arc: "↘️ ↘️"
+        examples: ["Tragédias", "Histórias de alerta"]
+
+      which_way_is_up:
+        description: "Ambiguidade, não sabemos se é bom ou ruim"
+        arc: "↔️"
+        examples: ["Hamlet", "Histórias complexas"]
+
+      creation_story:
+        description: "Do nada, algo maravilhoso é criado"
+        arc: "↗️"
+        examples: ["Histórias de origem", "Gênesis"]
+
+      old_testament:
+        description: "Recebe bênção, perde por orgulho"
+        arc: "↗️ ↘️"
+        examples: ["Contos de advertência"]
+
+      new_testament:
+        description: "Cinderela - do fundo ao topo"
+        arc: "↗️ ↘️ ↗️ ↗️"
+        examples: ["Cinderella", "Rags to riches"]
+
+      kafka:
+        description: "Começa mal, vai para pior, sem esperança"
+        arc: "↘️"
+        examples: ["A Metamorfose", "Distopias"]
+
+    best_for:
+      - Escolher arco emocional
+      - Planejar journey do consumidor
+      - Validar impacto emocional
+
+  # 8. Henry Jenkins - Transmedia
+  henry_jenkins:
+    name: "Transmedia Storytelling"
+    author: "Henry Jenkins"
+    source: "Convergence Culture (2006)"
+    principles: 7
+    structure:
+      spreadability:
+        description: "Conteúdo que se espalha organicamente"
+        application: "Shareability, memes, virais"
+
+      drillability:
+        description: "Profundidade para quem quer mais"
+        application: "Easter eggs, lore, universo expandido"
+
+      continuity:
+        description: "Coerência entre plataformas"
+        application: "Canon, consistência de marca"
+
+      multiplicity:
+        description: "Versões alternativas válidas"
+        application: "What-ifs, universos paralelos"
+
+      immersion:
+        description: "Experiências imersivas"
+        application: "VR, AR, experiências físicas"
+
+      extractability:
+        description: "Elementos para fãs usarem"
+        application: "Merchandise, templates, quotes"
+
+      worldbuilding:
+        description: "Universo maior que qualquer história"
+        application: "Bíblia de marca, design de mundo"
+
+    best_for:
+      - Campanhas multi-plataforma
+      - Universos de marca
+      - Franquias de conteúdo
+      - Comunidades de fãs
+
+  # 9. John Truby - 22 Building Blocks
+  john_truby:
+    name: "22 Building Blocks of Story"
+    author: "John Truby"
+    source: "The Anatomy of Story (2007)"
+    blocks: 22
+    key_elements:
+      weakness_need:
+        description: "Fraqueza psicológica e moral"
+        importance: "Motor da transformação"
+
+      desire:
+        description: "Objetivo externo específico"
+        importance: "Drive da ação"
+
+      opponent:
+        description: "Oponente com desejo conflitante"
+        importance: "Força que impulsiona growth"
+
+      plan:
+        description: "Estratégia para alcançar desejo"
+        importance: "Estrutura da jornada"
+
+      battle:
+        description: "Confronto final"
+        importance: "Clímax"
+
+      self_revelation:
+        description: "Momento de verdade sobre si mesmo"
+        importance: "Transformação"
+
+      new_equilibrium:
+        description: "Novo estado após transformação"
+        importance: "Fechamento"
+
+    best_for:
+      - Histórias de personagem
+      - Brand documentaries profundos
+      - Séries de conteúdo longo
+
+  # 10. Syd Field - Three-Act Paradigm
+  syd_field:
+    name: "Three-Act Paradigm"
+    author: "Syd Field"
+    source: "Screenplay (1979)"
+    structure:
+      act_1_setup:
+        duration: "25% da história"
+        elements:
+          - Apresentação do protagonista
+          - Estabelecimento do mundo
+          - Plot Point 1 (fim do ato)
+
+      act_2_confrontation:
+        duration: "50% da história"
+        elements:
+          - Confronto com obstáculos
+          - Midpoint (virada central)
+          - Aumento de stakes
+          - Plot Point 2 (fim do ato)
+
+      act_3_resolution:
+        duration: "25% da história"
+        elements:
+          - Clímax
+          - Resolução
+          - Novo equilíbrio
+
+    plot_points:
+      pp1: "Evento que empurra história para Ato 2"
+      midpoint: "Virada que redefine a jornada"
+      pp2: "Evento que empurra para resolução"
+
+    best_for:
+      - Estrutura básica de roteiro
+      - Comerciais de 30-60 segundos
+      - Apresentações corporativas

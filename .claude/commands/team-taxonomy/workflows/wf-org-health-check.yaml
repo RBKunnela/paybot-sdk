@@ -1,0 +1,494 @@
+## ═══════════════════════════════════════════════════════════════════════════════
+## WORKFLOW: Organizational Structure Health Check
+## Purpose: Diagnose issues with current organization structure
+## Duration: 2-3 hours
+## Specialists: ruth-malan, matthew-skelton (conditional), manuel-pais (conditional)
+## ═══════════════════════════════════════════════════════════════════════════════
+
+workflow:
+  id: org-health-check
+  name: "Organizational Structure Health Check"
+  description: "Diagnose issues with current organization structure and recommend fixes"
+
+  when_to_use:
+    - "Organization feels dysfunctional but you're not sure why"
+    - "Team communication is broken"
+    - "Teams keep stepping on each other's toes"
+    - "Cognitive load seems unsustainable"
+    - "Decision making is slow or unclear"
+    - "Preparing for restructure (baseline first)"
+    - "Quarterly health assessment"
+
+  duration:
+    estimated: "2-3 hours"
+    minimum: "1.5 hours"
+    detailed:
+      phase_1: "45-60 min (diagnosis)"
+      phase_2a_or_2b: "45-60 min (conditional analysis)"
+      phase_3: "30 min (recommendation synthesis)"
+
+  critical_principle: |
+    DIAGNOSE FIRST, RESTRUCTURE SECOND
+    Don't assume restructuring is the answer. Many organizational problems
+    are actually interaction problems (fixable without restructuring).
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # PRE-WORKFLOW: Inputs & Preparation
+  # ───────────────────────────────────────────────────────────────────────────
+
+  inputs:
+    required:
+      - name: "current_problems"
+        description: "What's broken in the organization?"
+        examples:
+          - "Teams constantly blocking each other"
+          - "Communication is a disaster"
+          - "Decisions take forever"
+          - "People don't know who owns what"
+          - "Too many meetings"
+          - "Knowledge is siloed"
+
+      - name: "current_structure"
+        description: "How is the organization currently organized?"
+        example: |
+          Backend Team (8 people)
+          Frontend Team (6 people)
+          Data Team (4 people)
+          DevOps (2 people)
+          Product (2 people)
+
+      - name: "business_goal"
+        description: "What is the organization trying to accomplish?"
+        example: "Deliver patient diagnostic AI in regulated healthcare market"
+
+    optional:
+      - name: "team_feedback"
+        description: "What do team members say about problems?"
+
+      - name: "timeline_constraints"
+        description: "How urgent is this? Can we spend 6 months restructuring or need quick fix?"
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # PHASE 1: DIAGNOSTIC ASSESSMENT (Ruth Malan)
+  # ───────────────────────────────────────────────────────────────────────────
+
+  phase_1:
+    name: "Root Cause Diagnosis"
+    agent: ruth-malan
+    task: tasks/diagnose-org-health.md
+    duration: "45-60 minutes"
+
+    description: |
+      Ruth performs deep diagnostic analysis to identify ROOT CAUSE, not symptoms.
+      Many organizations treat symptoms (restructure) without fixing root causes.
+
+      Common errors:
+      ❌ "Teams are siloed" → Restructure
+      ✓ "Teams are siloed BECAUSE" → Lack of shared values? Wrong interaction mode?
+         Information architecture? Then fix the real problem.
+
+    inputs:
+      - current_problems
+      - current_structure
+      - business_goal
+
+    actions:
+      - "Map current organizational structure"
+      - "Analyze communication patterns"
+      - "Assess decision-making authority"
+      - "Evaluate cognitive load per team"
+      - "Identify value streams (what business outcomes?)"
+      - "Check socio-technical alignment"
+      - "Root cause analysis (5 whys)"
+      - "Classify problem type"
+
+    problem_classification:
+      type_1: "STRUCTURE PROBLEM (teams are wrong)"
+        indicators:
+          - "Teams don't map to value streams"
+          - "Cognitive load is unsustainable"
+          - "Critical dependencies between teams"
+        fix_approach: "Restructuring needed"
+
+      type_2: "INTERACTION PROBLEM (teams are right, they interact wrong)"
+        indicators:
+          - "Teams exist but interactions are chaos"
+          - "Too much synchronous collaboration"
+          - "No clear contracts between teams"
+        fix_approach: "Fix interaction modes + team contracts"
+
+      type_3: "GOVERNANCE PROBLEM (unclear authority)"
+        indicators:
+          - "Decisions are slow"
+          - "Unclear who decides what"
+          - "No escalation paths"
+        fix_approach: "Clarify decision authority + escalation"
+
+      type_4: "TOOLS/PROCESS PROBLEM (infrastructure)"
+        indicators:
+          - "Communication channels are broken"
+          - "Too many tools, no coherent workflow"
+          - "Information is hard to find"
+        fix_approach: "Fix processes + tooling (not org)"
+
+      type_5: "CULTURAL PROBLEM (values/norms)"
+        indicators:
+          - "People don't trust each other"
+          - "Knowledge is hoarded"
+          - "Blame culture instead of learning"
+        fix_approach: "Address culture + establish norms"
+
+    outputs:
+      - "Organization diagnostic report"
+      - "Root cause identification"
+      - "Problem type classification"
+      - "Current vs ideal comparison"
+      - "Recommended fix approach"
+
+    template_output: |
+      ```
+      ORGANIZATION HEALTH CHECK REPORT
+
+      Current Structure:
+      Backend (8) | Frontend (6) | Data (4) | DevOps (2) | Product (2)
+
+      Reported Problems:
+      1. "Teams keep blocking each other"
+      2. "Data team says backend needs their data"
+      3. "Frontend can't start until backend gives them API"
+      4. "Decisions take 3+ weeks"
+
+      Root Cause Analysis:
+
+      Problem 1: "Teams blocking each other"
+      └─ Why? → No clear team contracts/APIs
+      └─ Why? → No interaction design
+      └─ Why? → Teams were added ad-hoc, no topology design
+      └─ Why? → Organization grew without planning
+
+      Problem 2: "No clear decision authority"
+      └─ Why? → Decisions go to multiple people
+      └─ Why? → No clear escalation path
+      └─ Why? → No governance structure
+
+      ROOT CAUSE CLASSIFICATION: MIXED
+      ├─ 60% INTERACTION PROBLEM (can be fixed without restructuring)
+      ├─ 30% GOVERNANCE PROBLEM (needs clear authority)
+      └─ 10% STRUCTURE PROBLEM (minor team boundaries off)
+
+      Recommendation: Fix interactions + governance first
+      → Can achieve 80% improvement without restructuring
+      → Reassess if restructuring needed after fixes
+
+      Recommended Path:
+      Phase 1: Clarify decision authority (2 weeks)
+      Phase 2: Design interaction modes + team contracts (1 week)
+      Phase 3: Execute and measure (ongoing)
+      Phase 4: Reassess if more restructuring needed (1 month)
+
+      Success Metrics:
+      - Decision time reduced from 3 weeks → 3 days
+      - Team handoff time reduced from 2 days → 2 hours
+      - Team autonomy increased (fewer blockers)
+      ```
+
+    checkpoints:
+      - checkpoint_1:
+          name: "Is root cause clear?"
+          validation: "Can articulate the WHY behind problems"
+          veto_condition: "Unclear root cause. Spend more time diagnosing."
+
+      - checkpoint_2:
+          name: "Is problem type correctly classified?"
+          validation: "Classification matches problems (structure vs interaction vs governance)"
+          veto_condition: "Wrong classification → wrong fix. Reclassify."
+
+      - checkpoint_3:
+          name: "Are stakeholders aligned on diagnosis?"
+          validation: "Leadership agrees with root cause assessment"
+          veto_condition: "Stakeholder disagreement. Dig deeper, build consensus."
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # PHASE 2A: STRUCTURE ANALYSIS (Matthew Skelton) - CONDITIONAL
+  # ───────────────────────────────────────────────────────────────────────────
+
+  phase_2a:
+    condition: "if_problem_type == STRUCTURE_PROBLEM"
+    name: "Team Structure Analysis & Redesign"
+    agent: matthew-skelton
+    task: tasks/analyze-team-structure.md
+    duration: "45-60 minutes"
+
+    description: |
+      IF diagnosis identified STRUCTURE PROBLEM:
+      Matthew analyzes current team topology and recommends redesign.
+
+    inputs:
+      - ruth_malan_diagnosis
+      - current_structure
+      - business_goal
+
+    actions:
+      - "Analyze current team topology"
+      - "Identify misalignments with value streams"
+      - "Apply Team Topologies model"
+      - "Recommend new structure"
+      - "Assess transition effort"
+
+    outputs:
+      - "Current topology analysis"
+      - "Recommended new topology"
+      - "Transition plan"
+      - "Effort estimate (weeks/months)"
+
+    handoff_to:
+      agent: manuel-pais
+      when: "Structure change requires interaction redesign too"
+      with_context: "New team topology, dependencies, handoffs"
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # PHASE 2B: INTERACTION ANALYSIS (Manuel Pais) - CONDITIONAL
+  # ───────────────────────────────────────────────────────────────────────────
+
+  phase_2b:
+    condition: "if_problem_type == INTERACTION_PROBLEM or GOVERNANCE_PROBLEM"
+    name: "Team Interaction & Governance Redesign"
+    agent: manuel-pais
+    task: tasks/redesign-team-interactions.md
+    duration: "45-60 minutes"
+
+    description: |
+      IF diagnosis identified INTERACTION or GOVERNANCE PROBLEM:
+      Manuel designs better interaction patterns + governance structure.
+
+      Note: This is often cheaper than restructuring and fixes most problems.
+
+    inputs:
+      - ruth_malan_diagnosis
+      - current_structure
+      - decision_authority_gaps
+
+    actions:
+      - "Analyze current interaction patterns"
+      - "Identify unnecessary coupling"
+      - "Design interaction modes"
+      - "Create team contracts/APIs"
+      - "Establish governance + escalation"
+      - "Define decision authority matrix"
+
+    outputs:
+      - "Interaction pattern analysis"
+      - "Recommended interaction modes"
+      - "Team contracts/APIs"
+      - "Decision authority matrix"
+      - "Governance structure"
+
+    template_output: |
+      ```
+      INTERACTION REDESIGN:
+
+      Current State Problems:
+      - Backend ↔ Frontend: No async API, always sync meetings → Coupling
+      - Frontend ↔ Data: Data team too busy, blocking Frontend → Bottleneck
+      - All teams ↔ Product: Product in every decision → Bottleneck
+
+      Recommended Changes:
+
+      1. Backend → Frontend: Move to X-as-a-Service
+         ├─ Backend publishes API contract
+         ├─ Frontend consumes async (not meetings)
+         ├─ Reduces sync meetings from 5/week → 1/week
+         └─ Time saved: ~10 hours/week per team
+
+      2. Frontend ↔ Data: Create shared data contracts
+         ├─ Data publishes data dictionary + APIs
+         ├─ Frontend self-serves from data API
+         ├─ Eliminates blocking dependencies
+         └─ Time saved: ~5 hours/week
+
+      3. Product decision authority:
+         ├─ Product makes roadmap decisions (Strategy)
+         ├─ Teams make implementation decisions (Execution)
+         ├─ Reduces escalations to Product
+         └─ Decision time: 3 weeks → 3 days
+
+      Expected Impact:
+      ├─ 15+ hours/week freed up from meetings
+      ├─ Decision time: 3 weeks → 3 days
+      ├─ Team autonomy: ↑30%
+      └─ Implementation effort: 2-3 weeks (NOT 6 months)
+      ```
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # PHASE 3: SYNTHESIS & RECOMMENDATION
+  # ───────────────────────────────────────────────────────────────────────────
+
+  phase_3:
+    name: "Synthesized Recommendation & Action Plan"
+    task: tasks/synthesize-report.md
+    checklist: checklists/org-health-checklist.md
+    duration: "30 minutes"
+
+    description: |
+      Consolidate all analyses into clear recommendation + implementation plan.
+
+    inputs:
+      - ruth_malan_diagnosis
+      - matthew_skelton_analysis (if structure problem)
+      - manuel_pais_analysis (if interaction problem)
+
+    actions:
+      - "Synthesize findings"
+      - "Prioritize recommended changes"
+      - "Create action plan (phases + timeline)"
+      - "Estimate effort + resource needs"
+      - "Define success metrics"
+
+    outputs:
+      - "Executive summary + recommendation"
+      - "Detailed action plan"
+      - "Effort estimate"
+      - "Success metrics"
+      - "Risks and mitigations"
+
+    template_output: |
+      ```
+      RECOMMENDATION & ACTION PLAN
+
+      DIAGNOSIS SUMMARY:
+      Main Issue: Interaction problems (not structure)
+      Secondary: Governance gaps (unclear decision authority)
+      Structure: Generally OK (minor tweaks)
+
+      PRIMARY RECOMMENDATION:
+      FIX INTERACTIONS + GOVERNANCE (2-3 weeks)
+      → Can achieve 70-80% improvement without restructuring
+      → Minimal disruption to current teams
+      → Can defer structure changes to later if needed
+
+      Detailed Action Plan:
+
+      WEEK 1: Clarify Decision Authority
+      ├─ Product owns: Strategy, roadmap, prioritization
+      ├─ Backend leads: Architecture, API contracts
+      ├─ Frontend leads: UI/UX decisions
+      ├─ Data owns: Data modeling, data governance
+      ├─ Escalation: Team lead → Product (only unresolved conflicts)
+      └─ Owner: Ruth Malan provides guidance
+
+      WEEK 2: Redesign Interactions
+      ├─ Backend publishes API contracts
+      ├─ Frontend consumes async (+ weekly sync for questions)
+      ├─ Data publishes data dictionary
+      ├─ All teams: No more than 2 cross-team syncs/week
+      └─ Owner: Manuel Pais implements + monitors
+
+      WEEK 3: Monitor & Iterate
+      ├─ Measure decision time (target: 3 days vs 3 weeks)
+      ├─ Measure meeting load (target: -30%)
+      ├─ Measure team autonomy (target: teams feel empowered)
+      ├─ Iterate on contracts that don't work
+      └─ Owner: Ruth Malan + team leads
+
+      MONTH 1: Reassess
+      └─ Is structure still an issue after interaction fixes?
+          ├─ If NO: We're done (saved 6 months!)
+          └─ If YES: Then do full restructure with Matthew
+
+      SUCCESS METRICS:
+      ├─ Decision time: 3 weeks → 3 days (5x improvement)
+      ├─ Meeting load: ↓30% (more maker time)
+      ├─ Team autonomy: ↑40% (fewer blockers)
+      ├─ Team satisfaction: ↑25% (NPS survey)
+      └─ Delivery velocity: ↑20% (less overhead)
+
+      EFFORT ESTIMATE:
+      ├─ Planning: 5 hours
+      ├─ Implementation: 15-20 hours
+      ├─ Monitoring: 5 hours/week for 4 weeks
+      └─ Total: ~30-40 hours (vs 200+ for full restructure)
+
+      RISKS:
+      ├─ Teams resist new authority structure
+      │  └─ Mitigation: Make decision authority explicit + understandable
+      ├─ API contracts too rigid
+      │  └─ Mitigation: Version APIs, allow evolution
+      └─ Decision authority still unclear
+         └─ Mitigation: Weekly check-ins first month
+
+      RECOMMENDATION: START IMMEDIATELY
+      └─ 2-3 weeks to 70% improvement, no restructuring needed
+      ```
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # POST-WORKFLOW: Implementation & Monitoring
+  # ───────────────────────────────────────────────────────────────────────────
+
+  outcomes:
+    deliverables:
+      - "Organization health check report"
+      - "Root cause diagnosis"
+      - "Problem type classification"
+      - "Recommended fixes (prioritized)"
+      - "Action plan (phases, timeline, owners)"
+      - "Effort estimate"
+      - "Success metrics + measurement plan"
+      - "Risk assessment + mitigations"
+
+  implementation_timeline:
+    option_a: "Quick fix (interaction/governance only) → 2-3 weeks"
+    option_b: "Full restructure (if needed) → 2-6 months"
+    recommendation: "Try option A first, reassess for option B after"
+
+  next_steps:
+    - step_1: "Share report with leadership + team leads"
+    - step_2: "Get buy-in on recommended approach"
+    - step_3: "Assign owners for each action item"
+    - step_4: "Execute action plan"
+    - step_5: "Monitor metrics + iterate"
+    - step_6: "Reassess at 1 month (was fix sufficient?)"
+
+  monitoring_cadence:
+    week_1: "Daily check-ins (are changes happening?)"
+    week_2_to_4: "Weekly check-ins + metric tracking"
+    month_1: "Full reassessment (how much improved?)"
+    month_3: "Long-term health check (sustained?)"
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # SUCCESS CRITERIA
+  # ───────────────────────────────────────────────────────────────────────────
+
+  success_criteria:
+    - "Root cause clearly identified (not just symptoms)"
+    - "Problem type correctly classified"
+    - "Recommended fix is clear + actionable"
+    - "Timeline estimate is realistic"
+    - "Success metrics are measurable"
+    - "Leadership is aligned on recommendation"
+    - "Implementation plan is clear"
+    - "Metrics show improvement (within 2-3 weeks)"
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # ANTI-PATTERNS: WHAT NOT TO DO
+  # ───────────────────────────────────────────────────────────────────────────
+
+  anti_patterns:
+    never_do:
+      - "Restructure without diagnosis (you'll just move the problem)"
+      - "Assume structure is the problem (usually it's interactions)"
+      - "Fix only symptoms, not root cause (problems return)"
+      - "Redesign based on individual complaints (get full picture)"
+      - "Ignore impact on ongoing work (transition planning matters)"
+
+    always_do:
+      - "Diagnose first, act second"
+      - "Classify problem type (structure vs interaction vs governance vs culture)"
+      - "Try cheap fixes before expensive ones (interaction first)"
+      - "Measure before and after (prove impact)"
+      - "Involve teams in diagnosis (they know what's broken)"
+
+---
+
+# END WORKFLOW: Org Health Check
+# This workflow is validated and ready for use
+# Last updated: 2025-02-05

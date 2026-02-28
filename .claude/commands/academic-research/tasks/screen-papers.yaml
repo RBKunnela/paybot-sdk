@@ -1,0 +1,109 @@
+name: screen-papers
+description: Screen papers for inclusion using defined criteria
+category: research
+agent: literature-reviewer
+priority: medium
+estimated_duration: 1-2 days
+
+inputs:
+  - search_results:
+      type: file
+      description: Papers from literature search
+      required: true
+  - inclusion_criteria:
+      type: array
+      description: Criteria for including papers
+      required: true
+  - exclusion_criteria:
+      type: array
+      description: Criteria for excluding papers
+      required: true
+  - screening_level:
+      type: enum
+      options: [title_abstract, full_text]
+      description: Level of screening
+      required: true
+
+outputs:
+  - included_papers:
+      type: file
+      format: csv
+      description: Papers that meet inclusion criteria
+  - excluded_papers:
+      type: file
+      format: csv
+      description: Papers excluded with reasons
+  - screening_log:
+      type: file
+      format: markdown
+      description: Documentation of screening decisions
+
+steps:
+  - step: 1
+    name: title_abstract_screening
+    description: Screen titles and abstracts against criteria
+    agent: literature-reviewer
+    estimated_duration: 1 day
+
+  - step: 2
+    name: full_text_screening
+    description: Read full text of remaining papers
+    agent: literature-reviewer
+    estimated_duration: 1-2 days
+    condition: screening_level == full_text
+
+  - step: 3
+    name: resolve_conflicts
+    description: Resolve any screening conflicts (if dual screening)
+    agent: research-chief
+    estimated_duration: 0.5 days
+    condition: dual_screening == true
+
+success_criteria:
+  - All papers screened against criteria
+  - Exclusion reasons documented
+  - For systematic reviews: dual screening completed
+  - Inter-rater agreement calculated (if dual screening)
+
+deliverables:
+  - List of included papers
+  - List of excluded papers with reasons
+  - Screening log with decisions
+  - PRISMA flow diagram updated
+
+best_practices:
+  - Define clear inclusion/exclusion criteria upfront
+  - Screen conservatively at title/abstract (when in doubt, include)
+  - Use dual screening for systematic reviews (two independent reviewers)
+  - Document reasons for exclusion
+  - Calculate inter-rater agreement (Cohen's kappa)
+  - Resolve conflicts through discussion or third reviewer
+
+inclusion_criteria_example:
+  - Published in peer-reviewed journal
+  - Published between 2015-2025
+  - Primary research (not reviews or editorials)
+  - Focus on AI in K-12 or higher education
+  - Quantitative or qualitative methodology
+  - English language
+
+exclusion_criteria_example:
+  - Conference abstracts (not full papers)
+  - Opinion pieces or editorials
+  - Non-empirical studies
+  - Focus on non-educational AI applications
+  - Animal studies or non-human subjects
+
+common_pitfalls:
+  - Criteria too vague (leads to inconsistent screening)
+  - Cherry-picking papers that support your hypothesis
+  - Single reviewer screening (bias risk)
+  - Not documenting exclusion reasons
+  - Screening too strictly at title/abstract (miss relevant papers)
+
+tags:
+  - screening
+  - inclusion-criteria
+  - systematic-review
+  - prisma
+  - quality-assessment

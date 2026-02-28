@@ -1,0 +1,70 @@
+# Task: Analyze Competition
+# Squad: squAId-criaTTivados / search-insights
+# Responsável: data-miner
+
+metadata:
+  name: "analyze-competition"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "search-insights"
+  responsavel: "data-miner"
+  tipo: task
+
+descricao: |
+  Análise competitiva detalhada mapeando posição de cada concorrente
+  nos 3 Domínios. Identifica espaços em branco e oportunidades.
+
+entrada:
+  - campo: raw_market_data
+    tipo: string
+    origem: "mine-market-data"
+    obrigatorio: true
+    descricao: "Dados brutos de mercado coletados"
+  - campo: concorrentes
+    tipo: array
+    origem: "briefing campo 7"
+    obrigatorio: true
+    descricao: "Lista de concorrentes do briefing"
+
+saida:
+  - campo: competitive_analysis_matrix
+    tipo: string
+    destino: "synthesize-insights"
+    persistido: true
+    descricao: "Matriz de análise competitiva por domínio + gaps"
+
+passos:
+  1:
+    nome: "Listar concorrentes"
+    descricao: "Mapear concorrentes diretos e indiretos"
+    agente: "data-miner"
+  2:
+    nome: "Analisar Domínio I"
+    descricao: "Features, preço, distribuição de cada concorrente"
+    agente: "data-miner"
+  3:
+    nome: "Analisar Domínio II"
+    descricao: "Narrativa, valores, personalidade de cada concorrente"
+    agente: "data-miner"
+  4:
+    nome: "Analisar Domínio III"
+    descricao: "Identidade visual, assets, reconhecimento"
+    agente: "data-miner"
+  5:
+    nome: "Identificar espaços em branco"
+    descricao: "Mapear onde nenhum concorrente domina"
+    agente: "insight-synthesizer"
+  6:
+    nome: "Mapear oportunidades"
+    descricao: "Identificar onde a marca pode se diferenciar"
+    agente: "insight-synthesizer"
+
+checklist:
+  - "[ ] Mínimo 3 concorrentes analisados"
+  - "[ ] 3 domínios analisados por concorrente"
+  - "[ ] Espaços em branco identificados"
+  - "[ ] Oportunidades documentadas"
+
+criterios_aceitacao:
+  - "Mínimo 3 concorrentes com análise completa"
+  - "Gaps identificados com evidências"

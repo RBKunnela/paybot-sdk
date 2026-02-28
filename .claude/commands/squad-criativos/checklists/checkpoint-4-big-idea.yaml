@@ -1,0 +1,105 @@
+# Checklist: Checkpoint 4 - Big Idea
+# Squad: squAId-criaTTivados / storytelling
+
+metadata:
+  name: "checkpoint-4-big-idea"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  tipo: checkpoint
+  responsavel: "creative-director"
+
+descricao: |
+  Valida qualidade criativa da Big Idea e do Creative Brief
+  antes da produção de conteúdo.
+
+entregavel: "Creative Brief"
+
+itens:
+  big_idea:
+    nome: "Big Idea"
+    items:
+      - id: 1
+        descricao: "Articulada em uma frase poderosa"
+        obrigatorio: true
+        criterio: "Uma frase, memorável, sem jargões"
+      - id: 2
+        descricao: "Dramatiza diferencial (Domínio I)"
+        obrigatorio: true
+        criterio: "O diferencial substantivo é visível na ideia"
+      - id: 3
+        descricao: "Expressa significado (Domínio II)"
+        obrigatorio: true
+        criterio: "A essência simbólica está presente"
+      - id: 4
+        descricao: "Gera assets reconhecíveis (Domínio III)"
+        obrigatorio: true
+        criterio: "A ideia pode gerar elementos visuais/verbais únicos"
+      - id: 5
+        descricao: "Expansível para múltiplos formatos"
+        obrigatorio: true
+        criterio: "Funciona em vídeo, post, apresentação, etc"
+
+  narrativa:
+    nome: "Narrativa"
+    items:
+      - id: 6
+        descricao: "Framework narrativo selecionado e justificado"
+        obrigatorio: true
+        criterio: "Framework com razão clara da escolha"
+      - id: 7
+        descricao: "Emoções-alvo mapeadas"
+        obrigatorio: true
+        criterio: "Primárias e secundárias com referência (Panksepp/Plutchik)"
+      - id: 8
+        descricao: "Narrativa conecta mentes e corações"
+        obrigatorio: true
+        criterio: "Tem componente racional E emocional"
+
+  tom_e_voz:
+    nome: "Tom e Voz"
+    items:
+      - id: 9
+        descricao: "Tom de Voz da campanha definido"
+        obrigatorio: true
+        criterio: "Guidelines específicas para esta campanha"
+      - id: 10
+        descricao: "Consistente com Tom da marca"
+        obrigatorio: true
+        criterio: "Não contradiz guidelines de marca"
+      - id: 11
+        descricao: "Key Messages claras (3-5)"
+        obrigatorio: true
+        criterio: "Mensagens priorizadas e acionáveis"
+
+  direcao_visual:
+    nome: "Direção Visual"
+    items:
+      - id: 12
+        descricao: "Mood board / referências definidas"
+        obrigatorio: true
+        criterio: "Referências visuais claras e inspiradoras"
+      - id: 13
+        descricao: "Alinhamento com Design System"
+        obrigatorio: true
+        criterio: "Respeita identidade visual da marca"
+
+  execucao:
+    nome: "Execução"
+    items:
+      - id: 14
+        descricao: "Copy examples criados"
+        obrigatorio: true
+        criterio: "Headlines, tagline, manifesto"
+      - id: 15
+        descricao: "Do's e Don'ts documentados"
+        obrigatorio: true
+        criterio: "Limites claros de execução"
+      - id: 16
+        descricao: "Creative Brief auto-suficiente"
+        obrigatorio: true
+        criterio: "Content-Ops consegue produzir sem dúvidas"
+
+aprovacao:
+  score_minimo: 85
+  criterio: "85% dos itens obrigatórios aprovados"
+  acao_rejeicao: "Retornar para storYOURtelling com feedback específico"

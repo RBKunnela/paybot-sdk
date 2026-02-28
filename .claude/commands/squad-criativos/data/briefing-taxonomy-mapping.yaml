@@ -1,0 +1,333 @@
+# Briefing-Taxonomy Mapping
+# Mapeamento entre campos BranDesire e Taxonomia de Diferenciais
+# Usado por: Atendimento (Briefing Collector, Client Analyst, Checkpoint Validator)
+
+metadata:
+  name: "Mapeamento Briefing-Taxonomia"
+  version: "1.0"
+  purpose: |
+    Conectar os 16 campos do briefing BranDesire aos 3 Domínios
+    da Taxonomia de Diferenciais, permitindo pré-identificação
+    de sinais durante a fase de coleta.
+
+# ═══════════════════════════════════════════════════════════════════
+# MAPEAMENTO CAMPOS → DOMÍNIOS
+# ═══════════════════════════════════════════════════════════════════
+mapeamento_campos:
+
+  # CONTEXTO BÁSICO
+  campo_1_nome:
+    brandesire: "Nome da marca/empresa"
+    taxonomia:
+      dominio: "III - Distintividade"
+      relevancia: "Nome como asset verbal (8.2)"
+    perguntas_derivadas:
+      - "O nome é único e memorável?"
+      - "É fácil de pronunciar e escrever?"
+      - "Comunica algo sobre a marca?"
+
+  campo_2_segmento:
+    brandesire: "Segmento de atuação"
+    taxonomia:
+      dominio: "Contexto"
+      relevancia: "Define categoria de referência para posicionamento"
+    perguntas_derivadas:
+      - "Quem são os players principais?"
+      - "Há espaço para diferenciação?"
+
+  campo_3_contexto:
+    brandesire: "Contexto/Situação atual"
+    taxonomia:
+      dominio: "Diagnóstico"
+      relevancia: "Baseline para análise de gaps"
+    perguntas_derivadas:
+      - "Qual o momento da marca?"
+      - "O que motivou buscar ajuda agora?"
+
+  campo_4_objetivo:
+    brandesire: "Objetivo principal"
+    taxonomia:
+      dominio: "Norte estratégico"
+      relevancia: "Define prioridades entre domínios"
+    perguntas_derivadas:
+      - "O objetivo é sobre SER MELHOR (I) ou SER DIFERENTE (II) ou SER LEMBRADO (III)?"
+
+  # PÚBLICO E MERCADO
+  campo_5_publico:
+    brandesire: "Público-alvo"
+    taxonomia:
+      dominio: "II - Simbólica"
+      classes: ["5.3 Postura relacional", "6.2 Comunidade"]
+      relevancia: "Define Self-Image e Reflection (Kapferer)"
+    perguntas_derivadas:
+      - "Como esse público quer se sentir?"
+      - "O que os une como grupo?"
+      - "Que dinâmica relacional preferem?"
+
+  campo_6_diferenciais:
+    brandesire: "Diferenciais percebidos"
+    taxonomia:
+      dominio: "I - Substantiva"
+      classes: ["1, 2, 3"]
+      relevancia: "CORE - Captura diferenciação substantiva"
+    perguntas_derivadas:
+      - "É diferencial de PRODUTO (Classe 1)?"
+      - "É diferencial de MODELO (Classe 2)?"
+      - "É diferencial de EVIDÊNCIA (Classe 3)?"
+    sinal_forte: true
+
+  campo_7_concorrentes:
+    brandesire: "Concorrentes diretos"
+    taxonomia:
+      dominio: "Todos"
+      relevancia: "Referência para distintividade relativa"
+    perguntas_derivadas:
+      - "Em que eles são fortes em cada domínio?"
+      - "Onde há espaço em branco?"
+
+  # IDENTIDADE
+  campo_8_valores:
+    brandesire: "Valores da marca"
+    taxonomia:
+      dominio: "II - Simbólica"
+      classe: "6 - Cultura e Valores"
+      relevancia: "CORE - Captura diferenciação simbólica"
+    perguntas_derivadas:
+      - "São valores praticados ou aspiracionais?"
+      - "São únicos ou genéricos?"
+      - "Guiam decisões reais?"
+    sinal_forte: true
+
+  campo_9_personalidade:
+    brandesire: "Personalidade desejada"
+    taxonomia:
+      dominio: "II - Simbólica"
+      classe: "5 - Personalidade"
+      relevancia: "CORE - Arquétipo, tom, postura"
+    perguntas_derivadas:
+      - "Qual arquétipo mais se aproxima?"
+      - "Se fosse pessoa, quem seria?"
+    sinal_forte: true
+
+  campo_10_tom:
+    brandesire: "Tom de voz atual"
+    taxonomia:
+      dominio: "II - Simbólica"
+      ordem: "5.1 - Tom de voz"
+      relevancia: "Personalidade em ação"
+    perguntas_derivadas:
+      - "É consistente em todos os canais?"
+      - "Reflete a personalidade desejada?"
+
+  # ASSETS E RECURSOS
+  campo_11_assets:
+    brandesire: "Assets existentes"
+    taxonomia:
+      dominio: "III - Distintividade"
+      classes: ["7, 8, 9"]
+      relevancia: "CORE - Inventário de distintividade"
+    perguntas_derivadas:
+      - "Quais assets visuais existem? (Classe 7)"
+      - "Há assets sensoriais não-visuais? (Classe 8)"
+      - "Há rituais ou comportamentos reconhecíveis? (Classe 9)"
+    sinal_forte: true
+
+  campo_12_restricoes:
+    brandesire: "Restrições/Limitações"
+    taxonomia:
+      dominio: "Constraints"
+      relevancia: "Define o que NÃO pode mudar"
+    perguntas_derivadas:
+      - "Há elementos legados intocáveis?"
+      - "Existem limitações legais ou regulatórias?"
+
+  # PROJETO
+  campo_13_timeline:
+    brandesire: "Timeline"
+    taxonomia:
+      dominio: "Escopo"
+      relevancia: "Define profundidade possível"
+    perguntas_derivadas: []
+
+  campo_14_budget:
+    brandesire: "Budget disponível"
+    taxonomia:
+      dominio: "Escopo"
+      relevancia: "Define escopo de entregáveis"
+    perguntas_derivadas: []
+
+  campo_15_metricas:
+    brandesire: "Métricas de sucesso"
+    taxonomia:
+      dominio: "Validação"
+      relevancia: "KPIs para medir sucesso"
+    perguntas_derivadas:
+      - "As métricas são sobre awareness (III)?"
+      - "São sobre preferência (II)?"
+      - "São sobre performance (I)?"
+
+  campo_16_visao:
+    brandesire: "Visão de futuro"
+    taxonomia:
+      dominio: "II - Simbólica"
+      ordem: "4.1 - Propósito/Tese central"
+      relevancia: "CORE - Propósito em longo prazo"
+    perguntas_derivadas:
+      - "Qual transformação quer causar no mundo?"
+      - "Por que isso importa além do lucro?"
+    sinal_forte: true
+
+# ═══════════════════════════════════════════════════════════════════
+# PERGUNTAS ADICIONAIS POR DOMÍNIO
+# ═══════════════════════════════════════════════════════════════════
+perguntas_taxonomicas:
+  intro: |
+    Além dos 16 campos BranDesire, fazer estas perguntas específicas
+    para cada domínio garante captura completa de sinais.
+
+  dominio_I:
+    nome: "Diferenciação Substantiva"
+    pergunta_principal: "O que sua marca FAZ de diferente?"
+    perguntas:
+      classe_1:
+        - "Qual feature ou característica só você tem?"
+        - "Que qualidade você entrega melhor que outros?"
+        - "Você oferece customização que outros não oferecem?"
+
+      classe_2:
+        - "Seu modelo de negócio é diferente? Como?"
+        - "Você chega ao cliente de forma diferente?"
+        - "Seu processo de entrega é único?"
+
+      classe_3:
+        - "Que resultados você pode PROVAR?"
+        - "Que certificações ou prêmios você tem?"
+        - "Quantos clientes satisfeitos pode citar?"
+
+  dominio_II:
+    nome: "Diferenciação Simbólica"
+    pergunta_principal: "O que sua marca SIGNIFICA?"
+    perguntas:
+      classe_4:
+        - "Por que sua marca existe além de vender?"
+        - "Qual é a história de como tudo começou?"
+        - "Em que você ACREDITA que outros não acreditam?"
+
+      classe_5:
+        - "Se sua marca fosse uma pessoa, quem seria?"
+        - "Como sua marca trata quem interage com ela?"
+        - "Que emoção você quer provocar?"
+
+      classe_6:
+        - "Que valores guiam suas decisões difíceis?"
+        - "Existe uma comunidade ao redor da sua marca?"
+        - "Que causas ou movimentos você apoia?"
+
+  dominio_III:
+    nome: "Distintividade"
+    pergunta_principal: "Como as pessoas RECONHECEM sua marca?"
+    perguntas:
+      classe_7:
+        - "Seu logo é reconhecido sem o nome?"
+        - "Você tem uma cor que é 'sua'?"
+        - "Há um estilo visual consistente?"
+
+      classe_8:
+        - "Existe um som ou música associado?"
+        - "Você tem uma frase que as pessoas repetem?"
+        - "Há algo tátil ou físico que identifica?"
+
+      classe_9:
+        - "Você faz algo regularmente que as pessoas esperam?"
+        - "Há um 'jeito' de atender que é seu?"
+        - "Qual a frequência com que se comunica?"
+
+# ═══════════════════════════════════════════════════════════════════
+# SINAIS A IDENTIFICAR
+# ═══════════════════════════════════════════════════════════════════
+sinais_por_dominio:
+  dominio_I:
+    classe_1:
+      - "Feature exclusiva"
+      - "Qualidade superior"
+      - "Customização"
+      - "Design diferenciado"
+
+    classe_2:
+      - "Modelo de receita diferente"
+      - "Canal exclusivo"
+      - "Metodologia proprietária"
+      - "Velocidade superior"
+
+    classe_3:
+      - "Cases com resultados"
+      - "Patentes ou IP"
+      - "Certificações"
+      - "Testemunhos verificáveis"
+
+  dominio_II:
+    classe_4:
+      - "Propósito claro"
+      - "História de origem"
+      - "Ponto de vista forte"
+      - "Linguagem própria"
+
+    classe_5:
+      - "Arquétipo identificável"
+      - "Tom de voz consistente"
+      - "Postura relacional clara"
+
+    classe_6:
+      - "Valores praticados"
+      - "Comunidade ativa"
+      - "Posição cultural definida"
+
+  dominio_III:
+    classe_7:
+      - "Logo reconhecível"
+      - "Cor proprietária"
+      - "Tipografia consistente"
+      - "Estilo visual único"
+
+    classe_8:
+      - "Som/jingle"
+      - "Tagline memorável"
+      - "Textura/material"
+      - "Formato único"
+
+    classe_9:
+      - "Ritual recorrente"
+      - "Estilo de interação"
+      - "Cadência previsível"
+
+# ═══════════════════════════════════════════════════════════════════
+# TEMPLATE DE COLETA
+# ═══════════════════════════════════════════════════════════════════
+template_coleta:
+  instrucoes: |
+    Usar este template durante a coleta de briefing para
+    registrar sinais taxonômicos identificados.
+
+  registro:
+    dominio_I:
+      sinais_identificados: []
+      classe_mais_forte: null
+      classe_mais_fraca: null
+      notas: null
+
+    dominio_II:
+      sinais_identificados: []
+      classe_mais_forte: null
+      classe_mais_fraca: null
+      notas: null
+
+    dominio_III:
+      sinais_identificados: []
+      classe_mais_forte: null
+      classe_mais_fraca: null
+      notas: null
+
+    hipotese_inicial:
+      dominio_prioritario: null
+      gaps_aparentes: []
+      perguntas_para_deenea: []

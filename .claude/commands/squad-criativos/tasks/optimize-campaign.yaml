@@ -1,0 +1,75 @@
+# Task: Optimize Campaign
+# Squad: squAId-criaTTivados / growth-ops
+# Responsável: campaign-optimizer
+
+metadata:
+  name: "optimize-campaign"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "growth-ops"
+  responsavel: "campaign-optimizer"
+  tipo: task
+
+descricao: |
+  Otimização contínua de campanhas com testes A/B,
+  ajustes de targeting e iteração baseada em dados.
+
+entrada:
+  - campo: campanhas_ativas
+    tipo: string
+    origem: "schedule-publish"
+    obrigatorio: true
+    descricao: "Campanhas em execução"
+  - campo: funnel_architecture
+    tipo: string
+    origem: "design-funnel"
+    obrigatorio: true
+    descricao: "Funil AARRR com targets"
+
+saida:
+  - campo: optimization_report
+    tipo: string
+    destino: "report-metrics"
+    persistido: true
+    descricao: "Resultados dos testes + ajustes + próximos testes"
+
+passos:
+  1:
+    nome: "Definir hipóteses"
+    descricao: "Hipóteses de teste (copy, visual, targeting, bid)"
+    agente: "campaign-optimizer"
+  2:
+    nome: "Configurar testes A/B"
+    descricao: "Setup de variações com controle"
+    agente: "campaign-optimizer"
+  3:
+    nome: "Coletar dados"
+    descricao: "Performance por variação"
+    agente: "analytics-reader"
+  4:
+    nome: "Analisar resultados"
+    descricao: "Resultados vs hipóteses, significância"
+    agente: "campaign-optimizer"
+  5:
+    nome: "Implementar ajustes"
+    descricao: "Bid, targeting, mensagem, creative"
+    agente: "campaign-optimizer"
+  6:
+    nome: "Escalar vencedores"
+    descricao: "Aumentar budget nos que funcionam"
+    agente: "traffic-manager"
+  7:
+    nome: "Documentar learnings"
+    descricao: "O que funcionou e por quê"
+    agente: "campaign-optimizer"
+
+checklist:
+  - "[ ] Hipóteses documentadas"
+  - "[ ] Testes configurados"
+  - "[ ] Resultados analisados"
+  - "[ ] Ajustes implementados"
+  - "[ ] Learnings documentados"
+
+criterios_aceitacao:
+  - "Decisões baseadas em dados"
+  - "Melhoria mensurável em KPIs"

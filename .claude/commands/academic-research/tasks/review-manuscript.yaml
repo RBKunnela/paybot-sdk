@@ -1,0 +1,145 @@
+name: review-manuscript
+description: Final review before submission to catch any issues
+category: quality-assurance
+agent: research-chief
+priority: high
+estimated_duration: 1-2 days
+
+inputs:
+  - manuscript:
+      type: file
+      description: Near-final manuscript
+      required: true
+  - target_journal:
+      type: string
+      description: Target journal for submission
+      required: true
+
+outputs:
+  - review_report:
+      type: file
+      description: Final review report with checklist
+  - approved_manuscript:
+      type: file
+      description: Manuscript approved for submission
+
+steps:
+  - step: 1
+    name: check_completeness
+    description: Verify all sections complete and present
+    agent: research-chief
+    estimated_duration: 0.5 days
+
+  - step: 2
+    name: check_quality
+    description: Check methodology, analysis, and argumentation
+    agent: research-chief
+    estimated_duration: 0.5 days
+
+  - step: 3
+    name: check_formatting
+    description: Verify journal formatting requirements met
+    agent: research-chief
+    estimated_duration: 0.25 days
+
+  - step: 4
+    name: check_ethics
+    description: Verify ethical considerations addressed
+    agent: research-chief
+    estimated_duration: 0.25 days
+
+success_criteria:
+  - All sections complete and high quality
+  - Formatting matches journal requirements
+  - Citations complete and correct
+  - Ethics approval documented
+  - Ready for submission
+
+deliverables:
+  - Final review report
+  - Approved manuscript with chief signature
+
+final_review_checklist:
+  completeness:
+    - [ ] Title and abstract
+    - [ ] Introduction with clear RQs
+    - [ ] Complete methodology
+    - [ ] Results with tables/figures
+    - [ ] Discussion with implications and limitations
+    - [ ] Conclusion
+    - [ ] References
+    - [ ] Acknowledgments (funding, contributors)
+
+  quality:
+    - [ ] Research questions clearly stated
+    - [ ] Methodology sound and replicable
+    - [ ] Analysis appropriate and valid
+    - [ ] Results clearly presented
+    - [ ] Discussion interprets findings appropriately
+    - [ ] Limitations acknowledged
+    - [ ] No overclaiming
+
+  formatting:
+    - [ ] Word count within journal limits
+    - [ ] Font, margins, spacing per guidelines
+    - [ ] Headings formatted correctly
+    - [ ] Figures/tables properly labeled
+    - [ ] Citations in correct style
+    - [ ] References complete and formatted
+
+  citations:
+    - [ ] All citations have matching references
+    - [ ] No orphan references (not cited in text)
+    - [ ] DOIs included when available
+    - [ ] Consistent citation style throughout
+
+  ethics:
+    - [ ] IRB approval number stated
+    - [ ] Informed consent described
+    - [ ] Conflicts of interest disclosed
+    - [ ] Funding sources acknowledged
+    - [ ] Data availability statement included
+
+  figures_tables:
+    - [ ] High resolution (300+ dpi)
+    - [ ] Clear labels and legends
+    - [ ] Referenced in text
+    - [ ] Titles/captions complete
+    - [ ] Source attribution (if applicable)
+
+go_no_go_decision:
+  go_criteria:
+    - All checklist items complete
+    - Quality meets journal standards
+    - No major methodological flaws
+    - Formatting correct
+    - Ethics approval in place
+
+  no_go_criteria:
+    - Major methodological issues
+    - Incomplete sections
+    - Missing ethics approval
+    - Poor writing quality (needs editing)
+    - Formatting far from requirements
+
+best_practices:
+  - Use checklist systematically
+  - Read manuscript fresh (take break before review)
+  - Check journal guidelines one more time
+  - Have second set of eyes review
+  - Don't rush final review
+
+common_issues_caught:
+  - Missing references
+  - Inconsistent terminology
+  - Figures/tables not referenced in text
+  - Missing ethical statements
+  - Formatting errors
+  - Overclaiming in discussion
+
+tags:
+  - quality-assurance
+  - final-review
+  - checklist
+  - pre-submission
+  - approval

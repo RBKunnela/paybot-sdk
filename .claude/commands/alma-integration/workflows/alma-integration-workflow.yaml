@@ -1,0 +1,235 @@
+name: alma-integration-workflow
+version: 1.0.0
+description: |
+  Task-first workflow for ALMA + Veritas integration.
+  Each task has clear inputs, outputs, and verification gates.
+
+state_file: .aios/state/alma-integration.json
+artifacts_dir: .aios-core/core
+
+# Agents participating in this workflow
+agents:
+  architect-alma:
+    role: architecture
+    specializes: ALMA memory architecture, scope configuration
+    prompt_path: squads/alma-integration/agents/architect-alma.md
+
+  dev-alma:
+    role: implementation
+    specializes: ALMA adapter, Veritas hook, CLI commands
+    prompt_path: squads/alma-integration/agents/dev-alma.md
+
+  qa-veritas:
+    role: verification
+    specializes: Trust behavior verification, evidence validation
+    prompt_path: squads/alma-integration/agents/qa-veritas.md
+
+# Task-first phases
+phases:
+  # Phase 1: Foundation (INT-001, INT-002)
+  - id: mcp-layer
+    name: MCP Integration Layer
+    agent: architect-alma
+    inputs: [.aios-core/core/mcp/index.js]
+    output: .aios-core/core/mcp/mcp-registry.js
+    gates:
+      must_export:
+        - registerMCPServer
+        - getServerTemplate
+      must_handle:
+        - ALMA
+        - Veritas
+    evidence_required:
+      - unit_tests
+      - type_check
+
+  - id: alma-adapter
+    name: ALMA Memory Adapter
+    agent: dev-alma
+    inputs:
+      - squads/alma-integration/tasks/alma-adapter-create.md
+      - .aios-core/core/mcp/mcp-registry.js
+    output: .aios-core/core/memory/alma-adapter.js
+    gates:
+      must_implement:
+        - storeHeuristic
+        - storeOutcome
+        - storePreference
+        - storeDomainKnowledge
+        - storeAntiPattern
+        - retrieveForContext
+      must_support:
+        - local_storage_fallback
+        - mcp_client
+    evidence_required:
+      - unit_tests
+      - memory_tests
+
+  # Phase 2: Trust Framework (INT-003, INT-004)
+  - id: veritas-hook
+    name: Veritas Trust Hook
+    agent: dev-alma
+    inputs:
+      - squads/alma-integration/tasks/veritas-hook-create.md
+      - squads/alma-integration/tasks/veritas-behaviors.md
+    output: .aios-core/core/hooks/veritas-trust-hook.js
+    gates:
+      must_implement:
+        - beforeAgentInvocation
+        - afterAgentInvocation
+        - collectEvidence
+      behaviors:
+        - verification_before_claim
+        - loud_failure
+        - honest_uncertainty
+        - paper_trail
+        - diligent_execution
+    evidence_required:
+      - unit_tests
+      - behavior_tests
+
+  - id: context-injector
+    name: Enhanced Context Injection
+    agent: dev-alma
+    inputs:
+      - .aios-core/core/execution/context-injector.js
+      - .aios-core/core/memory/alma-adapter.js
+      - .aios-core/core/hooks/veritas-trust-hook.js
+    output: .aios-core/core/execution/context-injector.js
+    gates:
+      must_add:
+        - getAlmaMemory
+        - getTrustContext
+      must_format:
+        - memory_slice
+        - trust_guidance
+    evidence_required:
+      - integration_tests
+      - injection_tests
+
+  # Phase 3: Cross-Agent Learning (INT-005)
+  - id: scope-config
+    name: Memory Scope Configuration
+    agent: architect-alma
+    inputs: [.aios-core/development/agents/dev.md]
+    output: .aios-core/core/memory/scope-config.js
+    gates:
+      must_configure:
+        - can_learn
+        - share_with
+        - inherit_from
+      agents_required:
+        - architect
+        - dev
+        - qa
+        - pm
+        - po
+    evidence_required:
+      - config_validation
+      - scope_tests
+
+  # Phase 4: Agent Integration (INT-006, INT-007)
+  - id: agent-integration
+    name: Agent Integration
+    agent: dev-alma
+    inputs:
+      - .aios-core/core/orchestration/agent-invoker.js
+      - .aios-core/core/hooks/veritas-trust-hook.js
+    output: .aios-core/core/orchestration/agent-invoker.js
+    gates:
+      must_add:
+        - veritas_pre_hook
+        - veritas_post_hook
+        - evidence_collection
+    evidence_required:
+      - integration_tests
+      - agent_tests
+
+  - id: cli-commands
+    name: CLI Commands
+    agent: dev-alma
+    inputs:
+      - .aios-core/cli/
+    outputs:
+      - .aios-core/cli/commands/memory/alma.js
+      - .aios-core/cli/commands/memory/index.js
+      - .aios-core/cli/commands/trust/veritas.js
+      - .aios-core/cli/commands/trust/index.js
+    gates:
+      commands_required:
+        - alma heuristic
+        - alma outcome
+        - alma query
+        - trust report
+        - trust guidance
+    evidence_required:
+      - cli_tests
+      - command_tests
+
+  # Phase 5: Verification (INT-008)
+  - id: integration-tests
+    name: Integration Testing
+    agent: qa-veritas
+    inputs:
+      - .aios-core/core/memory/alma-adapter.js
+      - .aios-core/core/hooks/veritas-trust-hook.js
+      - .aios-core/core/execution/context-injector.js
+      - .aios-core/core/memory/scope-config.js
+    output: tests/integration/alma-veritas.test.js
+    gates:
+      test_coverage_min: 80
+      must_test:
+        - memory_storage
+        - memory_retrieval
+        - trust_behaviors
+        - scope_rules
+        - evidence_collection
+    evidence_required:
+      - test_results
+      - coverage_report
+
+  - id: final-verification
+    name: Final Verification
+    agent: qa-veritas
+    inputs:
+      - tests/integration/alma-veritas.test.js
+      - .aios-core/
+    output: .aios-core/core/INTEGRATION_SUMMARY.md
+    gates:
+      checklist_required:
+        - mcp_registry_created
+        - alma_adapter_implements_5_types
+        - veritas_hook_implements_5_behaviors
+        - context_injector_includes_alma_veritas
+        - memory_scope_configured
+        - cli_commands_functional
+        - integration_tests_passing
+      all_phases: complete
+    evidence_required:
+      - verification_report
+      - checklist_completed
+
+# Workflow Gates
+gates:
+  preconditions:
+    - Node.js 18+ installed
+    - AIOS Core initialized
+    - MCP SDK available
+
+  postconditions:
+    - All 5 ALMA memory types operational
+    - All 5 Veritas trust behaviors enforced
+    - Cross-agent memory sharing configured
+    - CLI commands functional
+    - Integration tests passing
+
+# Rollback Plan
+rollback:
+  backup_files:
+    - .aios/gotchas.json
+    - .aios-core/core/orchestration/agent-invoker.js
+  disable_mcp:
+    - ~/.aios/mcp/global-config.json (set disabled: true)
+  revert_commands:
+    - git checkout squads/alma-integration
+    - node .aios-core/core/memory/migrate-to-alma.js --rollback

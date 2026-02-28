@@ -1,0 +1,51 @@
+# DNA Mental Layer Template
+# Usage: Copy and fill for each layer extraction
+
+layer_info:
+  number: 0  # 1-8
+  name: ""   # e.g., "Values Hierarchy"
+  category: ""  # Observable | Cognitive | Deep Identity
+  description: ""
+  extraction_date: ""
+  source_primary: ""
+  cross_validation: ""
+  extraction_difficulty: ""  # Easy | Medium | Hard
+  coverage: 0  # 0-100
+  confidence: 0  # 0-100
+
+# EXTRACTION DATA
+# (Structure varies by layer — examples below)
+
+# For Layer 1 (Behavioral Patterns):
+# behavioral_patterns:
+#   work_patterns: {}
+#   learning_patterns: {}
+#   decision_making: {}
+#   social_patterns: {}
+
+# For Layer 5 (Mental Models):
+# mental_models:
+#   model_1:
+#     name: ""
+#     origin: ""
+#     definition: ""
+#     application_domains: []
+#     manifestations: []
+
+# For Layer 6 (Values Hierarchy):
+# values_hierarchy:
+#   tier_1_existential_drivers:
+#     values:
+#       - rank: 1
+#         value: ""
+#         score: 0.0
+#         description: ""
+#         behavioral_evidence: []
+
+# TRIANGULATION (Required for layers 5-8)
+triangulation:
+  sources_used: []
+  evidence_strength: ""  # Alta | Media | Baixa
+  cross_references: []
+  gaps_identified: []
+  human_checkpoint: false

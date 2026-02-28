@@ -1,0 +1,423 @@
+# Golden Sentence Framework
+# Framework criaTTivados para síntese narrativa de marca/pessoa
+# "Eu ajudo X a conquistar Y através de Z"
+
+metadata:
+  name: "Golden Sentence Framework"
+  version: "1.0"
+  origem: "criaTTivados / storYOURtelling"
+  aplicacao: "Síntese narrativa de posicionamento"
+  tempo_construcao: "15-30 minutos (com reflexão profunda)"
+
+# ═══════════════════════════════════════════════════════════════════
+# O QUE É A GOLDEN SENTENCE
+# ═══════════════════════════════════════════════════════════════════
+definicao:
+  conceito: |
+    A Golden Sentence é uma frase-síntese que captura a essência do que
+    você faz, para quem faz e como faz. É a tradução narrativa do seu
+    posicionamento em uma única sentença poderosa.
+
+  formula:
+    estrutura: "Eu ajudo [X] a conquistar [Y] através de [Z]"
+    elementos:
+      X: "Quem você ajuda (seu público específico)"
+      Y: "O que eles conquistam (a transformação)"
+      Z: "Como você faz isso (seu método/diferencial)"
+
+  principio: |
+    Toda marca, pessoa ou projeto precisa saber responder em uma frase:
+    "O que você faz?" A Golden Sentence transforma essa resposta de uma
+    descrição funcional em uma promessa narrativa de transformação.
+
+  diferencial: |
+    Diferente de um slogan ou tagline, a Golden Sentence é uma ferramenta
+    estratégica interna. Ela guia decisões, conteúdos e comunicações.
+    Pode gerar múltiplos slogans, mas é mais profunda que qualquer um deles.
+
+# ═══════════════════════════════════════════════════════════════════
+# OS 3 ELEMENTOS DA GOLDEN SENTENCE
+# ═══════════════════════════════════════════════════════════════════
+elementos:
+
+  elemento_X:
+    nome: "O Público (X)"
+    pergunta_central: "Quem você ajuda?"
+    icone: "👥"
+
+    niveis_de_especificidade:
+      nivel_1_generico:
+        descricao: "Categoria ampla"
+        exemplo: "pessoas"
+        problema: "Muito vago, não diferencia"
+
+      nivel_2_demografico:
+        descricao: "Características demográficas"
+        exemplo: "empreendedores"
+        problema: "Ainda amplo demais"
+
+      nivel_3_psicografico:
+        descricao: "Comportamentos e dores específicas"
+        exemplo: "empreendedores que têm dificuldade de se posicionar"
+        qualidade: "Ideal - específico o suficiente para ressoar"
+
+      nivel_4_ultra_especifico:
+        descricao: "Nicho muito fechado"
+        exemplo: "empreendedoras mães de primeira viagem no setor de alimentação"
+        cuidado: "Pode limitar demais - usar quando estratégico"
+
+    erros_comuns:
+      - erro: "Dizer 'todo mundo'"
+        problema: "Quem fala para todos não fala para ninguém"
+      - erro: "Ser genérico demais"
+        problema: "A pessoa não se reconhece"
+      - erro: "Mudar o público constantemente"
+        problema: "Perde consistência narrativa"
+
+    perguntas_para_refinar:
+      - "Quem são as pessoas que você mais gosta de ajudar?"
+      - "Quem são seus melhores clientes?"
+      - "Quem você entende profundamente?"
+      - "Com quem você tem mais resultados?"
+      - "Quem você era antes de aprender o que sabe hoje?"
+
+  elemento_Y:
+    nome: "A Transformação (Y)"
+    pergunta_central: "O que eles conquistam?"
+    icone: "🎯"
+
+    niveis_de_transformacao:
+      nivel_funcional:
+        descricao: "O que eles conseguem fazer"
+        exemplo: "criar conteúdo para redes sociais"
+        caracteristica: "Prático, tangível, mensurável"
+
+      nivel_emocional:
+        descricao: "Como eles se sentem"
+        exemplo: "ter confiança para se expressar"
+        caracteristica: "Conecta com desejos profundos"
+
+      nivel_identitario:
+        descricao: "Quem eles se tornam"
+        exemplo: "se tornar uma referência no mercado"
+        caracteristica: "Transformação de identidade"
+
+    ordem_de_impacto:
+      - "Funcional < Emocional < Identitário"
+      - "Quanto mais profundo, mais ressonância"
+      - "Mas o funcional dá concretude"
+
+    combinacao_ideal: |
+      A melhor Golden Sentence combina elementos funcionais com emocionais
+      ou identitários. "Conquistar clientes" é funcional. "Conquistar clientes
+      que valorizam seu trabalho" adiciona camada emocional.
+
+    erros_comuns:
+      - erro: "Focar só no produto/serviço"
+        problema: "Não mostra a transformação"
+      - erro: "Ser vago demais"
+        problema: "'Ter sucesso' não diz nada específico"
+      - erro: "Prometer demais"
+        problema: "Perde credibilidade"
+
+    perguntas_para_refinar:
+      - "O que muda na vida da pessoa depois de trabalhar com você?"
+      - "O que ela consegue fazer que não conseguia antes?"
+      - "Como ela se sente diferente?"
+      - "O que ela para de sofrer?"
+      - "O que os outros percebem de diferente nela?"
+
+  elemento_Z:
+    nome: "O Método (Z)"
+    pergunta_central: "Como você faz isso?"
+    icone: "⚡"
+
+    tipos_de_metodo:
+      metodologia:
+        descricao: "Um sistema ou framework próprio"
+        exemplo: "através do método 5BEATS de storytelling"
+        forca: "Diferenciação clara, transmite expertise"
+
+      abordagem:
+        descricao: "Uma forma única de trabalhar"
+        exemplo: "através de narrativas que conectam emoção e estratégia"
+        forca: "Mais flexível, mostra filosofia"
+
+      ferramenta:
+        descricao: "Um recurso ou tecnologia"
+        exemplo: "através de workshops práticos e intensivos"
+        forca: "Tangível, fácil de entender"
+
+      principio:
+        descricao: "Um valor ou crença central"
+        exemplo: "através da crença de que toda história merece ser contada"
+        forca: "Conecta em nível mais profundo"
+
+    elementos_de_diferenciacao:
+      - "O que você faz que outros não fazem?"
+      - "Qual é sua abordagem única?"
+      - "O que torna seu processo especial?"
+      - "Qual é sua 'receita secreta'?"
+
+    erros_comuns:
+      - erro: "Ser técnico demais"
+        problema: "A pessoa não entende"
+      - erro: "Não ter diferencial claro"
+        problema: "Parece igual a todos"
+      - erro: "Listar muitas coisas"
+        problema: "Confunde em vez de clarificar"
+
+    perguntas_para_refinar:
+      - "O que faz seu método funcionar?"
+      - "Por que sua abordagem é diferente?"
+      - "O que você descobriu que outros não sabem?"
+      - "Qual é o ingrediente secreto do seu trabalho?"
+
+# ═══════════════════════════════════════════════════════════════════
+# PROCESSO DE CONSTRUÇÃO
+# ═══════════════════════════════════════════════════════════════════
+processo_construcao:
+
+  fase_1:
+    nome: "Coleta"
+    duracao: "10 minutos"
+    instrucoes:
+      - "Escreva 5 versões diferentes de cada elemento (X, Y, Z)"
+      - "Não julgue, apenas escreva"
+      - "Varie entre específico e amplo"
+      - "Inclua opções que você descartaria"
+
+  fase_2:
+    nome: "Combinação"
+    duracao: "10 minutos"
+    instrucoes:
+      - "Monte 5 versões da Golden Sentence completa"
+      - "Combine diferentes Xs, Ys e Zs"
+      - "Leia cada uma em voz alta"
+      - "Observe qual soa mais natural"
+
+  fase_3:
+    nome: "Refinamento"
+    duracao: "10 minutos"
+    instrucoes:
+      - "Escolha a melhor versão"
+      - "Ajuste palavras para fluidez"
+      - "Teste: uma criança entenderia?"
+      - "Teste: isso me representa de verdade?"
+
+  fase_4:
+    nome: "Validação"
+    duracao: "Depois"
+    instrucoes:
+      - "Conte para 3 pessoas próximas"
+      - "Observe a reação delas"
+      - "Elas entendem imediatamente?"
+      - "Elas reconhecem você nessa frase?"
+
+# ═══════════════════════════════════════════════════════════════════
+# EXEMPLOS DE GOLDEN SENTENCES
+# ═══════════════════════════════════════════════════════════════════
+exemplos:
+
+  exemplo_1:
+    contexto: "Consultor de storytelling para marcas"
+    golden_sentence: "Eu ajudo marcas que querem se diferenciar a criar narrativas memoráveis através de estruturas de storytelling estratégico."
+    analise:
+      X: "marcas que querem se diferenciar"
+      Y: "criar narrativas memoráveis"
+      Z: "estruturas de storytelling estratégico"
+
+  exemplo_2:
+    contexto: "Coach de carreira para profissionais em transição"
+    golden_sentence: "Eu ajudo profissionais em transição de carreira a encontrar seu próximo passo com clareza através de um processo de autoconhecimento narrativo."
+    analise:
+      X: "profissionais em transição de carreira"
+      Y: "encontrar seu próximo passo com clareza"
+      Z: "processo de autoconhecimento narrativo"
+
+  exemplo_3:
+    contexto: "Designer de apresentações executivas"
+    golden_sentence: "Eu ajudo executivos que precisam apresentar ideias complexas a conquistar a atenção do board através de apresentações visuais que contam histórias."
+    analise:
+      X: "executivos que precisam apresentar ideias complexas"
+      Y: "conquistar a atenção do board"
+      Z: "apresentações visuais que contam histórias"
+
+  exemplo_4:
+    contexto: "Mentor de empreendedores criativos"
+    golden_sentence: "Eu ajudo criativos que querem viver de seu talento a construir negócios sustentáveis através de estratégias que respeitam seu processo artístico."
+    analise:
+      X: "criativos que querem viver de seu talento"
+      Y: "construir negócios sustentáveis"
+      Z: "estratégias que respeitam seu processo artístico"
+
+  exemplo_5:
+    contexto: "Especialista em marca pessoal para influenciadores"
+    golden_sentence: "Eu ajudo influenciadores que perderam sua essência a reconectar com sua autenticidade através de um processo de redescoberta narrativa."
+    analise:
+      X: "influenciadores que perderam sua essência"
+      Y: "reconectar com sua autenticidade"
+      Z: "processo de redescoberta narrativa"
+
+# ═══════════════════════════════════════════════════════════════════
+# VARIAÇÕES DA ESTRUTURA
+# ═══════════════════════════════════════════════════════════════════
+variacoes:
+
+  variacao_padrao:
+    estrutura: "Eu ajudo [X] a conquistar [Y] através de [Z]"
+    uso: "Formato principal, mais completo"
+
+  variacao_curta:
+    estrutura: "Ajudo [X] a [Y] com [Z]"
+    uso: "Para bio de redes sociais"
+    exemplo: "Ajudo marcas a contar histórias que vendem"
+
+  variacao_beneficio:
+    estrutura: "[Y] para [X]"
+    uso: "Headlines, títulos"
+    exemplo: "Narrativas memoráveis para marcas que querem se destacar"
+
+  variacao_problema:
+    estrutura: "Se você é [X] e sofre com [problema], eu [solução] através de [Z]"
+    uso: "Copy de vendas"
+    exemplo: "Se você é empreendedor e não sabe contar sua história, eu te ajudo a criar narrativas que conectam através de estruturas de storytelling."
+
+  variacao_resultado:
+    estrutura: "[X] que trabalham comigo conquistam [Y]"
+    uso: "Prova social, depoimentos"
+    exemplo: "Marcas que trabalham comigo conquistam narrativas que seus clientes não esquecem"
+
+# ═══════════════════════════════════════════════════════════════════
+# USOS DA GOLDEN SENTENCE
+# ═══════════════════════════════════════════════════════════════════
+usos:
+
+  internos:
+    - nome: "Bússola de decisões"
+      como: "Toda decisão pode ser testada: isso está alinhado com minha Golden Sentence?"
+
+    - nome: "Filtro de oportunidades"
+      como: "Essa oportunidade me aproxima ou afasta do meu X, Y, Z?"
+
+    - nome: "Clareza de comunicação"
+      como: "Toda comunicação deve derivar ou conectar com a Golden Sentence"
+
+  externos:
+    - nome: "Bio de redes sociais"
+      como: "Usar variação curta"
+
+    - nome: "Apresentação em eventos"
+      como: "Usar variação completa como base do 'elevator pitch'"
+
+    - nome: "Página 'Sobre'"
+      como: "Expandir cada elemento em parágrafos"
+
+    - nome: "Proposta comercial"
+      como: "Usar como abertura ou fechamento"
+
+# ═══════════════════════════════════════════════════════════════════
+# CONEXÕES COM OUTROS FRAMEWORKS
+# ═══════════════════════════════════════════════════════════════════
+conexoes:
+
+  taxonomia_diferenciais:
+    relacao: "O elemento Z pode vir da Taxonomia de Diferenciais"
+    como_usar: "Seu diferencial validado taxonomicamente se torna o Z"
+
+  marca_sintetica:
+    relacao: "A Golden Sentence pode ser criada para personas sintéticas"
+    como_usar: "Cada avatar de marca pode ter sua própria Golden Sentence"
+
+  5beats:
+    relacao: "A Golden Sentence pode ser o TRIGGER ou RESOLUTION do 5BEATS"
+    como_usar: "Use como gancho ou fechamento de micro-narrativas"
+
+  story_circle:
+    relacao: "A Golden Sentence resume toda a jornada do cliente"
+    como_usar: "X é o herói, Y é o retorno transformado, Z é o caminho"
+
+  eixos_de_marca:
+    relacao: "Cada eixo pode ter sua Golden Sentence específica"
+    como_usar: |
+      - Marca Institucional: Golden Sentence do propósito
+      - Marca Mercadológica: Golden Sentence comercial
+      - Marca Empregadora: Golden Sentence de cultura
+      - Marca Pessoal: Golden Sentence individual
+      - Marca Sintética: Golden Sentence do avatar
+
+# ═══════════════════════════════════════════════════════════════════
+# ANTI-PADRÕES (O QUE EVITAR)
+# ═══════════════════════════════════════════════════════════════════
+anti_padroes:
+
+  - nome: "A Golden Sentence Genérica"
+    exemplo: "Eu ajudo pessoas a terem sucesso através do meu trabalho"
+    problema: "Não diz nada específico"
+    solucao: "Especifique cada elemento"
+
+  - nome: "A Golden Sentence Técnica"
+    exemplo: "Eu ajudo empresas a otimizarem seus KPIs através de metodologias ágeis de growth hacking"
+    problema: "Jargões afastam"
+    solucao: "Use linguagem humana"
+
+  - nome: "A Golden Sentence Pretensiosa"
+    exemplo: "Eu ajudo empreendedores a se tornarem milionários através do meu método revolucionário"
+    problema: "Promessa exagerada"
+    solucao: "Seja ambicioso mas crível"
+
+  - nome: "A Golden Sentence Modesta Demais"
+    exemplo: "Eu tento ajudar algumas pessoas com algumas coisas usando algumas técnicas"
+    problema: "Não transmite confiança"
+    solucao: "Seja específico e afirmativo"
+
+  - nome: "A Golden Sentence Múltipla"
+    exemplo: "Eu ajudo empreendedores, artistas e profissionais liberais a vender mais, se posicionar e criar conteúdo através de coaching, consultoria e cursos"
+    problema: "Muita coisa, nenhuma clareza"
+    solucao: "Escolha UM foco principal"
+
+# ═══════════════════════════════════════════════════════════════════
+# CHECKLIST DE VALIDAÇÃO
+# ═══════════════════════════════════════════════════════════════════
+validacao:
+  perguntas_teste:
+    - pergunta: "Uma pessoa de 12 anos entenderia?"
+      criterio: "Se não, simplifique"
+
+    - pergunta: "Você pode dizer isso olhando nos olhos de alguém?"
+      criterio: "Se dá vergonha, ajuste"
+
+    - pergunta: "Isso é verdade hoje ou é aspiração?"
+      criterio: "Deve ser verdade atual"
+
+    - pergunta: "Isso te diferencia de concorrentes?"
+      criterio: "Se muitos podem dizer o mesmo, refine o Z"
+
+    - pergunta: "Você pode provar o Y com exemplos?"
+      criterio: "Se não há cases, ajuste a promessa"
+
+    - pergunta: "O X se reconhece?"
+      criterio: "Teste com pessoas reais do público"
+
+# ═══════════════════════════════════════════════════════════════════
+# REFERÊNCIAS
+# ═══════════════════════════════════════════════════════════════════
+referencias:
+  - autor: "criaTTivados"
+    obra: "storYOURtelling - Framework de Narrativa de Marca"
+    contribuicao: "Estrutura base da Golden Sentence"
+
+  - autor: "Donald Miller"
+    obra: "Building a StoryBrand"
+    contribuicao: "Conceito de clareza de mensagem"
+
+  - autor: "Simon Sinek"
+    obra: "Start With Why"
+    contribuicao: "Importância do 'porquê' na comunicação"
+
+uso_pelos_agentes:
+  - "Creative Director (definir direção narrativa)"
+  - "Narrative Designer (construir Golden Sentence com cliente)"
+  - "Concept Writer (derivar conceitos da Golden Sentence)"
+  - "Big Idea Architect (validar Big Idea contra Golden Sentence)"
+  - "Brand Voice Director (garantir consistência com Golden Sentence)"

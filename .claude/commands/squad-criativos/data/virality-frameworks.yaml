@@ -1,0 +1,603 @@
+# Virality Frameworks - STEPPS e SPEACC
+# Baseado em: Contagious e Magic Words (Jonah Berger)
+# Squad: storYOURtelling (Narrativa/Criação)
+# Usado por: creative-director, big-idea-architect, concept-writer, copywriter
+
+metadata:
+  name: "Frameworks de Viralidade e Palavras Mágicas"
+  version: "1.0"
+  source: "Contagious (2013) e Magic Words (2023) - Jonah Berger"
+  aplicacao: "Criar conteúdo compartilhável e persuasivo"
+
+# ═══════════════════════════════════════════════════════════════════
+# STEPPS - 6 PRINCÍPIOS DE CONTEÚDO VIRAL
+# ═══════════════════════════════════════════════════════════════════
+
+stepps:
+
+  descricao: |
+    Framework para criar ideias, produtos e mensagens que se espalham.
+    Cada letra representa um princípio que aumenta compartilhamento.
+
+  principios:
+
+    # 1. SOCIAL CURRENCY (Moeda Social)
+    social_currency:
+      letra: "S"
+      nome: "Social Currency (Moeda Social)"
+      principio: "Compartilhamos o que nos faz parecer bem"
+
+      mecanismo: |
+        Pessoas compartilham conteúdo que as faz parecer:
+        - Inteligentes
+        - Bem informadas
+        - Por dentro
+        - Interessantes
+        - Bem-sucedidas
+
+      taticas:
+
+        remarkabilidade:
+          descricao: "Seja notável, digno de comentário"
+          exemplos:
+            - "Blender que tritura iPhones (Will It Blend?)"
+            - "Hotel de gelo"
+            - "Menor livro do mundo"
+
+        exclusividade:
+          descricao: "Crie sensação de insider/VIP"
+          exemplos:
+            - "Lista de espera"
+            - "Convite apenas"
+            - "Acesso antecipado"
+            - "Grupo exclusivo"
+
+        gamificacao:
+          descricao: "Status, pontos, rankings"
+          exemplos:
+            - "Check-ins Foursquare"
+            - "Badges LinkedIn"
+            - "Níveis de cliente"
+
+      perguntas_criativas:
+        - "Compartilhar isso faz a pessoa parecer bem?"
+        - "É insider information?"
+        - "Tem algo surpreendente/notável?"
+        - "Dá status compartilhar?"
+
+    # 2. TRIGGERS (Gatilhos)
+    triggers:
+      letra: "T"
+      nome: "Triggers (Gatilhos)"
+      principio: "Top of mind = tip of tongue"
+
+      mecanismo: |
+        Associar marca/ideia a gatilhos do cotidiano
+        faz pessoas lembrarem no momento certo.
+
+      tipos:
+
+        gatilhos_temporais:
+          exemplos:
+            - "Sexta-feira → Rebecca Black (Friday)"
+            - "Segunda-feira → café"
+            - "Natal → Coca-Cola"
+
+        gatilhos_contextuais:
+          exemplos:
+            - "Aeroporto → Toblerone"
+            - "Bar → KitKat (Kit Kat break)"
+            - "Manhã → cereal"
+
+        gatilhos_emocionais:
+          exemplos:
+            - "Cansaço → Red Bull"
+            - "Nostalgia → Havaianas"
+
+      estrategia:
+        criar_associacao: "Vincule marca a momento/contexto frequente"
+        frequencia_importa: "Gatilho frequente > gatilho forte mas raro"
+        habitat_natural: "Onde/quando seu cliente pensa em você?"
+
+      perguntas_criativas:
+        - "O que no ambiente lembra nossa marca?"
+        - "Qual momento do dia é nosso?"
+        - "Que objeto/situação pode ser nosso gatilho?"
+
+    # 3. EMOTION (Emoção)
+    emotion:
+      letra: "E"
+      nome: "Emotion (Emoção)"
+      principio: "Quando nos importamos, compartilhamos"
+
+      mecanismo: |
+        Conteúdo emocional é mais compartilhado.
+        Mas nem todas as emoções são iguais.
+
+      emocoes_que_viralizam:
+        alta_excitacao_positiva:
+          emocoes:
+            - "Admiração (awe)"
+            - "Empolgação"
+            - "Humor/diversão"
+            - "Surpresa positiva"
+          nota: "Mais compartilhadas"
+
+        alta_excitacao_negativa:
+          emocoes:
+            - "Ansiedade"
+            - "Raiva"
+            - "Indignação"
+          nota: "Também compartilhadas (mas cuidado)"
+
+      emocoes_que_NAO_viralizam:
+        baixa_excitacao:
+          emocoes:
+            - "Tristeza"
+            - "Contentamento"
+            - "Relaxamento"
+          nota: "Pouco compartilhadas (não ativam ação)"
+
+      estrategia:
+        foco_em_excitacao: "Emoções de alta excitação ativam compartilhamento"
+        awe_é_poderoso: "Admiração é a emoção mais viral positiva"
+        raiva_controlada: "Indignação mobiliza, mas pode voltar contra"
+
+      perguntas_criativas:
+        - "Isso gera admiração, empolgação ou surpresa?"
+        - "É emocionalmente ativador (vs passivo)?"
+        - "Faz a pessoa querer contar para alguém?"
+
+    # 4. PUBLIC (Público/Visível)
+    public:
+      letra: "P"
+      nome: "Public (Público)"
+      principio: "Feito para mostrar, feito para crescer"
+
+      mecanismo: |
+        Comportamentos visíveis são copiados.
+        Se não pode ver, não pode imitar.
+
+      conceitos:
+
+        observabilidade:
+          principio: "Torne o privado público"
+          exemplos:
+            - "Fone branco da Apple (visível)"
+            - "Sacola de compra com logo"
+            - "Adesivo de corrida no carro"
+            - "Camiseta com marca"
+
+        residuo_comportamental:
+          principio: "Deixe rastro visível após uso"
+          exemplos:
+            - "Hotmail: 'Enviado do Hotmail'"
+            - "iPhone: 'Enviado do meu iPhone'"
+            - "Badge de participante de evento"
+
+        prova_social_visivel:
+          principio: "Mostre que outros estão usando"
+          exemplos:
+            - "Fila na porta (mostra demanda)"
+            - "Contador de clientes"
+            - "Reviews visíveis"
+
+      estrategia:
+        torne_visivel: "Uso deve deixar evidência"
+        built_to_show: "Design que pessoas QUEREM exibir"
+        residuo: "O que fica depois da interação?"
+
+      perguntas_criativas:
+        - "O uso da marca é visível publicamente?"
+        - "Deixa residuo comportamental?"
+        - "As pessoas têm orgulho de mostrar?"
+
+    # 5. PRACTICAL VALUE (Valor Prático)
+    practical_value:
+      letra: "P"
+      nome: "Practical Value (Valor Prático)"
+      principio: "Compartilhamos coisas úteis"
+
+      mecanismo: |
+        Pessoas querem ajudar outras.
+        Informação útil é compartilhada como forma de cuidado.
+
+      tipos_valor:
+
+        economia:
+          exemplos:
+            - "Cupons e descontos"
+            - "Hacks que economizam dinheiro"
+            - "Comparativos de preço"
+
+        eficiencia:
+          exemplos:
+            - "Dicas que economizam tempo"
+            - "Atalhos e truques"
+            - "Tutoriais práticos"
+
+        conhecimento:
+          exemplos:
+            - "Informação que resolve problema"
+            - "How-to guides"
+            - "Listas práticas"
+
+      formato_ideal:
+        listas: "10 maneiras de..., 5 dicas para..."
+        how_to: "Como fazer X"
+        antes_depois: "Transformação visível"
+
+      regra_dos_100:
+        descricao: "Como apresentar descontos"
+        abaixo_100: "Use % (50% off em item de R$50)"
+        acima_100: "Use valor absoluto (R$50 off em item de R$200)"
+
+      perguntas_criativas:
+        - "Isso ajuda alguém a resolver um problema?"
+        - "É útil o suficiente para encaminhar?"
+        - "Está no formato mais prático possível?"
+
+    # 6. STORIES (Histórias)
+    stories:
+      letra: "S"
+      nome: "Stories (Histórias)"
+      principio: "Informação viaja embutida em narrativa"
+
+      mecanismo: |
+        Histórias são o cavalo de Tróia.
+        A mensagem da marca vai embutida na narrativa.
+
+      conceito_chave:
+
+        cavalo_troia:
+          descricao: "Marca embutida na história"
+          requisito: "Não pode contar a história SEM mencionar a marca"
+
+        exemplo_ruim:
+          historia: "Cara pula de balão na estratosfera"
+          problema: "Pode contar sem mencionar Red Bull"
+          resultado: "Marca esquecida"
+
+        exemplo_bom:
+          historia: "Blendtec tritura iPhone"
+          porque_funciona: "Não pode contar sem o blender"
+          resultado: "Marca é parte essencial"
+
+      tipos_historias_virais:
+        origem: "Como começamos"
+        cliente: "Transformação de cliente"
+        bastidores: "Como fazemos"
+        erro: "Falha que viramos aprendizado"
+
+      perguntas_criativas:
+        - "A marca é essencial para contar a história?"
+        - "Tirando a marca, a história ainda funciona?" # Se sim, ruim
+        - "O benefício está embutido na narrativa?"
+
+  checklist_stepps:
+    antes_de_publicar:
+      - "[ ] Social Currency: Faz quem compartilha parecer bem?"
+      - "[ ] Triggers: Associado a algo do cotidiano?"
+      - "[ ] Emotion: Ativa emoção de alta excitação?"
+      - "[ ] Public: Uso/compartilhamento é visível?"
+      - "[ ] Practical Value: Útil o suficiente para encaminhar?"
+      - "[ ] Stories: Marca é essencial para a narrativa?"
+
+    minimo_para_viral: "Pelo menos 2-3 princípios fortes"
+
+# ═══════════════════════════════════════════════════════════════════
+# SPEACC - 6 TIPOS DE PALAVRAS MÁGICAS (Magic Words)
+# ═══════════════════════════════════════════════════════════════════
+
+speacc:
+
+  descricao: |
+    Framework de Jonah Berger sobre palavras que influenciam.
+    Linguagem específica que aumenta persuasão e conexão.
+
+  categorias:
+
+    # 1. SIMILARITY (Similaridade)
+    similarity:
+      letra: "S"
+      nome: "Similarity (Similaridade)"
+      principio: "Palavras que criam conexão e semelhança"
+
+      mecanismo: |
+        Linguagem que cria senso de pertencimento,
+        'nós' vs 'eu', inclusão e comunidade.
+
+      taticas:
+
+        pronomes_inclusivos:
+          evitar:
+            - "Eu"
+            - "Vocês"
+            - "Eles"
+          usar:
+            - "Nós"
+            - "Nosso"
+            - "Juntos"
+          exemplo_antes: "Eu criei este produto para vocês"
+          exemplo_depois: "Criamos isso juntos"
+
+        linguagem_tribal:
+          descricao: "Termos que só o grupo entende"
+          exemplos:
+            - "Jargões de comunidade"
+            - "Insider terms"
+            - "Referências que só fãs pegam"
+
+        espelhamento:
+          descricao: "Usar linguagem do interlocutor"
+          exemplo: "Cliente fala 'solução', você fala 'solução'"
+
+      aplicacao_branding:
+        - "Construir comunidade com linguagem compartilhada"
+        - "Tom de voz que soa como o cliente"
+        - "Pronomes inclusivos em copy"
+
+    # 2. POSE QUESTIONS (Faça Perguntas)
+    pose_questions:
+      letra: "P"
+      nome: "Pose Questions (Faça Perguntas)"
+      principio: "Perguntas engajam mais que afirmações"
+
+      mecanismo: |
+        Perguntas ativam participação mental.
+        Cérebro não consegue não responder.
+
+      tipos:
+
+        perguntas_retoricas:
+          uso: "Criar reflexão sem esperar resposta"
+          exemplo: "E se você pudesse ter mais tempo livre?"
+
+        perguntas_abertas:
+          uso: "Gerar conversa e engajamento"
+          exemplo: "O que te impede de começar?"
+
+        perguntas_de_confirmacao:
+          uso: "Criar concordância"
+          exemplo: "Faz sentido, não faz?"
+
+      aplicacao_branding:
+        headlines: "Você está cansado de...?"
+        ctas: "Pronto para começar?"
+        social: "O que vocês acham?"
+        emails: "Posso te fazer uma pergunta?"
+
+    # 3. EMOTION (Emoção)
+    emotion_words:
+      letra: "E"
+      nome: "Emotion (Palavras Emocionais)"
+      principio: "Palavras carregadas emocionalmente têm mais impacto"
+
+      mecanismo: |
+        Linguagem sensorial e emocional cria vivência.
+        Abstrações não conectam.
+
+      categorias:
+
+        palavras_sensoriais:
+          descricao: "Ativam sentidos"
+          exemplos:
+            - "'Crocante' vs 'textura agradável'"
+            - "'Veludo' vs 'macio'"
+            - "'Brilhante' vs 'bonito'"
+
+        palavras_de_acao:
+          descricao: "Verbos vividos"
+          exemplos:
+            - "'Esmagar' vs 'vencer'"
+            - "'Transformar' vs 'mudar'"
+            - "'Libertar' vs 'ajudar'"
+
+        palavras_de_alta_ativacao:
+          descricao: "Criam urgência/empolgação"
+          exemplos:
+            - "Agora, Imediatamente, Urgente"
+            - "Revolucionário, Explosivo"
+            - "Exclusivo, Limitado"
+
+      aplicacao_branding:
+        - "Substitua abstrações por concreto"
+        - "Use verbos de ação fortes"
+        - "Linguagem sensorial em descrições"
+
+    # 4. AGENCY (Agência/Controle)
+    agency:
+      letra: "A"
+      nome: "Agency (Agência)"
+      principio: "Palavras que dão senso de controle"
+
+      mecanismo: |
+        Pessoas querem sentir autonomia.
+        Linguagem que remove coerção aumenta adesão.
+
+      taticas:
+
+        evitar_imperativo_direto:
+          evitar: "Você TEM que fazer X"
+          usar: "Você PODE fazer X"
+          motivo: "Coerção gera reatância"
+
+        linguagem_de_escolha:
+          exemplos:
+            - "Você decide"
+            - "É sua escolha"
+            - "Quando estiver pronto"
+            - "Se fizer sentido para você"
+
+        empoderamento:
+          exemplos:
+            - "Você está no controle"
+            - "Do seu jeito"
+            - "Personalize como quiser"
+
+      aplicacao_branding:
+        vendas: "Sem pressão - decida quando estiver pronto"
+        ctas: "Experimente grátis (sem compromisso)"
+        objecoes: "Totalmente compreensível querer pensar"
+
+    # 5. CONCRETENESS (Concretude)
+    concreteness:
+      letra: "C"
+      nome: "Concreteness (Concretude)"
+      principio: "Concreto > Abstrato"
+
+      mecanismo: |
+        Cérebro processa melhor o concreto.
+        Abstrações são esquecidas.
+
+      transformacoes:
+
+        abstrato_para_concreto:
+          exemplos:
+            - antes: "Aumenta produtividade"
+              depois: "Economiza 2 horas por dia"
+            - antes: "Melhora relacionamento"
+              depois: "3 brigas a menos por mês"
+            - antes: "Alta qualidade"
+              depois: "Dura 10 anos"
+
+        numeros_especificos:
+          exemplos:
+            - fraco: "Muito rápido"
+              forte: "37% mais rápido"
+            - fraco: "Milhares de clientes"
+              forte: "12.847 clientes"
+
+      aplicacao_branding:
+        - "Traduza benefícios em números/exemplos"
+        - "Use casos específicos vs genéricos"
+        - "Números quebrados > números redondos"
+
+    # 6. CONFIDENCE (Confiança)
+    confidence:
+      letra: "C"
+      nome: "Confidence (Confiança)"
+      principio: "Linguagem confiante persuade mais"
+
+      mecanismo: |
+        Hesitação sinaliza incerteza.
+        Confiança gera credibilidade.
+
+      eliminadores_de_confianca:
+        hesitacoes:
+          - "Eu acho que..."
+          - "Talvez..."
+          - "Meio que..."
+          - "De certa forma..."
+
+        qualificadores_excessivos:
+          - "Um pouco"
+          - "Mais ou menos"
+          - "Provavelmente"
+
+      marcadores_de_confianca:
+        certeza:
+          - "Definitivamente"
+          - "Claramente"
+          - "Sem dúvida"
+
+        especificidade:
+          - Números precisos
+          - Exemplos concretos
+          - Detalhes específicos
+
+      equilibrio:
+        nota: |
+          Confiança demais parece arrogância.
+          Use confiança em fatos, humildade em opiniões.
+
+      aplicacao_branding:
+        - "Remova hesitações de copy"
+        - "Seja específico, não vago"
+        - "Dados concretos > qualificadores"
+
+  checklist_speacc:
+    revisao_de_copy:
+      - "[ ] Similarity: Usa 'nós' e linguagem inclusiva?"
+      - "[ ] Pose Questions: Há perguntas que engajam?"
+      - "[ ] Emotion: Palavras sensoriais e emocionais?"
+      - "[ ] Agency: Dá senso de controle ao leitor?"
+      - "[ ] Concreteness: Benefícios em números/exemplos?"
+      - "[ ] Confidence: Remove hesitações e vaguidão?"
+
+# ═══════════════════════════════════════════════════════════════════
+# CATALYST - REMOVENDO BARREIRAS (REDUCE)
+# ═══════════════════════════════════════════════════════════════════
+
+catalyst:
+
+  descricao: |
+    Framework do livro The Catalyst para remover barreiras à mudança.
+    Não empurre mais - remova obstáculos.
+
+  principio_central: |
+    Catalisadores não adicionam mais pressão.
+    Catalisadores REMOVEM barreiras.
+
+  reduce:
+
+    reactance:
+      nome: "Reatância"
+      barreira: "Pessoas resistem quando sentem pressão"
+      remocao:
+        - "Dê autonomia e escolha"
+        - "Faça perguntas em vez de afirmar"
+        - "Deixe pessoa chegar à conclusão"
+        - "Mostre gap (onde está vs onde quer)"
+
+    endowment:
+      nome: "Efeito Dotação"
+      barreira: "Pessoas supervalorizam status quo"
+      remocao:
+        - "Mostre custo de não mudar"
+        - "Burn the ships - torne status quo impossível"
+        - "Free trials (criar nova posse)"
+
+    distance:
+      nome: "Distância"
+      barreira: "Ideia muito diferente é rejeitada"
+      remocao:
+        - "Comece na zona de aceitação"
+        - "Mudança incremental"
+        - "Encontre ponto em comum primeiro"
+        - "Construa pontes do familiar ao novo"
+
+    uncertainty:
+      nome: "Incerteza"
+      barreira: "Medo do desconhecido paralisa"
+      remocao:
+        - "Trials e amostras grátis"
+        - "Garantias e devolução"
+        - "Testemunhos e provas sociais"
+        - "Freemium (reduza risco)"
+
+    corroborating_evidence:
+      nome: "Evidência Corroboradora"
+      barreira: "Uma fonte não é suficiente"
+      remocao:
+        - "Múltiplas fontes dizendo o mesmo"
+        - "Concentre provas (não espalhe)"
+        - "Faça fontes confiáveis validarem"
+
+aplicacao_integrada:
+
+  sequencia_criativa:
+    1: "Use STEPPS para desenhar conteúdo compartilhável"
+    2: "Aplique SPEACC para refinar linguagem"
+    3: "Use REDUCE (Catalyst) para remover objeções"
+
+  por_formato:
+    post_social: "STEPPS (especialmente Social Currency + Emotion)"
+    copy_venda: "SPEACC (Agency + Concreteness + Confidence)"
+    landing_page: "REDUCE (Uncertainty + Corroborating Evidence)"
+    campanha: "STEPPS completo + SPEACC"
+
+referencias:
+  - "Berger, J. - Contagious: Why Things Catch On (2013)"
+  - "Berger, J. - Magic Words: What to Say to Get Your Way (2023)"
+  - "Berger, J. - The Catalyst: How to Change Anyone's Mind (2020)"

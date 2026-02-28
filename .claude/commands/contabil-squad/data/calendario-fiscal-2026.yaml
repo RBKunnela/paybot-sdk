@@ -1,0 +1,71 @@
+# Calendario Fiscal 2026 - MEI e Simples Nacional
+# Fonte: Receita Federal, CGSN, legislacao vigente
+# Atualizado: 2026-01
+
+calendario:
+  mensal:
+    - obrigacao: "DAS MEI / Simples Nacional"
+      vencimento: "Dia 20 do mes seguinte"
+      responsavel: "@tributarista"
+      descricao: "Pagamento do DAS mensal"
+
+    - obrigacao: "PGDAS-D"
+      vencimento: "Dia 20 do mes seguinte"
+      responsavel: "@tributarista"
+      descricao: "Transmissao do Programa Gerador do DAS"
+
+  anual:
+    - obrigacao: "DASN-SIMEI (Declaracao Anual MEI)"
+      vencimento: "31/05/2026"
+      responsavel: "@tributarista"
+      descricao: "Declaracao anual do faturamento MEI (ano-base 2025)"
+
+    - obrigacao: "DEFIS (Declaracao Simples Nacional)"
+      vencimento: "28/03/2026"
+      responsavel: "@tributarista"
+      descricao: "Declaracao de informacoes socioeconomicas (ano-base 2025)"
+
+    - obrigacao: "Opcao pelo Simples Nacional"
+      vencimento: "31/01/2026"
+      responsavel: "@compliance"
+      descricao: "Prazo para opcao ou alteracao de regime"
+
+    - obrigacao: "Regularizacao de debitos para manter Simples"
+      vencimento: "31/01/2026"
+      responsavel: "@compliance"
+      descricao: "Prazo para quitar debitos e evitar exclusao"
+
+  trimestral:
+    - obrigacao: "Revisao de enquadramento e faturamento"
+      vencimento: "Ultimo dia do trimestre"
+      responsavel: "@compliance"
+      descricao: "Verificar limites de faturamento e enquadramento"
+
+  semestral:
+    - obrigacao: "Analise de desempenho e projecao"
+      vencimento: "Jun e Dez"
+      responsavel: "@gerencial"
+      descricao: "Relatorio gerencial semestral com projecoes"
+
+valores_referencia_2026:
+  salario_minimo: 1621.00
+  das_mei:
+    inss_5pct: 81.05
+    icms: 1.00
+    iss: 5.00
+    comercio: 82.05
+    servico: 86.05
+    comercio_servico: 87.05
+  limite_mei_anual: 81000.00
+  limite_simples_anual: 4800000.00
+  sublimite_icms_iss: 3600000.00
+
+transicao_reforma:
+  2026: "Inicio dos testes IBS/CBS. MEI/Simples dispensados de campos novos na NF-e"
+  2027: "Obrigatoriedade de campos IBS/CBS na NF-e para todos"
+  2028: "Reducao gradual PIS/COFINS, inicio CBS"
+  2029: "Continuacao da transicao PIS/COFINS → CBS"
+  2030: "Inicio reducao ICMS/ISS, implantacao IBS"
+  2031: "Continuacao transicao ICMS/ISS → IBS"
+  2032: "Fase final de transicao"
+  2033: "Extincao completa PIS/COFINS/ICMS/ISS/IPI"

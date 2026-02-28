@@ -1,0 +1,559 @@
+# Workflow: Growth Campaign (Growth-Ops)
+# Otimização e Performance de Campanhas
+# Recebe handoff de storYOURtelling/Content-Ops → Otimiza e escala
+
+name: wf-growth-campaign
+description: |
+  Workflow para gestão, otimização e escala de campanhas de growth.
+  Utiliza frameworks de economia comportamental e jornada do cliente
+  para maximizar conversões e ROI.
+
+version: "1.0"
+squad: growth-ops
+command: "*run-growth-campaign"
+duracao_estimada: "Contínuo (ciclos de 2 semanas)"
+formato_final: "Campanhas otimizadas + Relatórios de performance"
+
+# ═══════════════════════════════════════════════════════════════════
+# FRAMEWORKS CURADOS UTILIZADOS
+# ═══════════════════════════════════════════════════════════════════
+frameworks_curados:
+  marketing_journey_kotler:
+    arquivo: "marketing-journey-kotler.yaml"
+    aplicacao: "Otimizar campanhas para cada fase 5As"
+    fases:
+      aware: "Campanhas de alcance e descoberta"
+      appeal: "Campanhas de interesse e consideração"
+      ask: "Campanhas de educação e comparação"
+      act: "Campanhas de conversão"
+      advocate: "Campanhas de referral e comunidade"
+    usado_por:
+      - growth-director
+      - funnel-architect
+      - analytics-reader
+
+  hook_model_eyal:
+    arquivo: "hook-model-eyal.yaml"
+    aplicacao: "Criar loops de retenção e recompra"
+    fases:
+      trigger: "Retargeting e notificações"
+      action: "Simplificar conversão"
+      variable_reward: "Ofertas personalizadas"
+      investment: "Programas de fidelidade"
+    usado_por:
+      - funnel-architect
+      - growth-director
+
+  behavioral_economics_branding:
+    arquivo: "behavioral-economics-branding.yaml"
+    aplicacao: "Vieses para otimização de conversão"
+    vieses:
+      decoy_effect: "Opção isca para direcionar escolha"
+      anchoring: "Âncora de preço/valor"
+      free_power: "Poder do grátis (frete, trial)"
+      loss_aversion: "Aversão à perda (urgência, escassez)"
+      social_proof: "Prova social (reviews, números)"
+      scarcity: "Escassez (tempo limitado, estoque)"
+    usado_por:
+      - campaign-optimizer
+      - traffic-manager
+      - growth-director
+
+  kahneman_dual_systems:
+    arquivo: "kahneman-dual-systems.yaml"
+    aplicacao: "Otimizar para decisões Sistema 1 vs Sistema 2"
+    aplicacoes:
+      sistema_1:
+        - "CTAs claros e simples"
+        - "Cores e contrastes"
+        - "Urgência visual"
+      sistema_2:
+        - "Comparativos detalhados"
+        - "ROI calculators"
+        - "Conteúdo educativo"
+    usado_por:
+      - analytics-reader
+      - campaign-optimizer
+      - traffic-manager
+
+# ═══════════════════════════════════════════════════════════════════
+# PRÉ-REQUISITOS
+# ═══════════════════════════════════════════════════════════════════
+prerequisites:
+  obrigatorios:
+    - "Creative Brief (storYOURtelling)"
+    - "Campaign Assets (Content-Ops)"
+    - "Budget definido"
+    - "KPIs e metas estabelecidos"
+
+  recomendados:
+    - "Histórico de campanhas anteriores"
+    - "Pixel/tracking configurado"
+    - "Audiências definidas"
+    - "Landing pages prontas"
+
+# ═══════════════════════════════════════════════════════════════════
+# FASES DO WORKFLOW
+# ═══════════════════════════════════════════════════════════════════
+phases:
+
+  # FASE 1: ESTRATÉGIA DE FUNIL
+  - phase: 1
+    name: "Funnel Strategy"
+    duracao: "1 dia"
+    agente_principal: funnel-architect
+
+    frameworks_aplicados:
+      - marketing-journey-kotler.yaml
+      - hook-model-eyal.yaml
+
+    tasks:
+      - task: design-funnel-structure
+        description: "Desenhar estrutura do funil"
+        framework: "Kotler 5As + AARRR"
+        estrutura:
+          topo:
+            fase_5as: "Aware + Appeal"
+            objetivo: "Alcance e interesse"
+            metricas: ["Impressões", "CPM", "CTR"]
+          meio:
+            fase_5as: "Ask"
+            objetivo: "Educação e consideração"
+            metricas: ["Engajamento", "Tempo na página", "Leads"]
+          fundo:
+            fase_5as: "Act"
+            objetivo: "Conversão"
+            metricas: ["Conversões", "CPA", "ROAS"]
+          retencao:
+            fase_5as: "Advocate"
+            objetivo: "Recompra e referral"
+            metricas: ["LTV", "NPS", "Referrals"]
+        output: "Funnel Blueprint"
+
+      - task: map-hook-loops
+        description: "Mapear loops de engajamento"
+        framework: "Nir Eyal - Hook Model"
+        loops:
+          aquisicao:
+            trigger: "Anúncio/conteúdo orgânico"
+            action: "Clique"
+            reward: "Conteúdo de valor"
+            investment: "Email/follow"
+          ativacao:
+            trigger: "Email/retargeting"
+            action: "Trial/demo"
+            reward: "Experiência do produto"
+            investment: "Dados/preferências"
+          retencao:
+            trigger: "Notificação/email"
+            action: "Uso recorrente"
+            reward: "Valor contínuo"
+            investment: "Histórico/customização"
+        output: "Hook Loop Map"
+
+      - task: define-audiences
+        description: "Definir audiências por fase"
+        tipos:
+          cold: "Nunca interagiram"
+          warm: "Engajaram mas não converteram"
+          hot: "Demonstraram intenção"
+          customers: "Já compraram"
+          advocates: "Promotores ativos"
+        output: "Audience Segments"
+
+    checkpoint:
+      question: "Funil estruturado?"
+      criteria:
+        - "Fases definidas com métricas"
+        - "Loops de engajamento mapeados"
+        - "Audiências segmentadas"
+
+  # FASE 2: SETUP DE CAMPANHAS
+  - phase: 2
+    name: "Campaign Setup"
+    duracao: "1-2 dias"
+    agente_principal: traffic-manager
+    depende_de: [phase_1]
+
+    frameworks_aplicados:
+      - behavioral-economics-branding.yaml
+      - kahneman-dual-systems.yaml
+
+    tasks:
+      - task: structure-campaigns
+        description: "Estruturar campanhas por objetivo"
+        plataformas:
+          meta:
+            awareness: "Alcance, Video Views"
+            consideration: "Tráfego, Engajamento"
+            conversion: "Conversões, Catalog Sales"
+          google:
+            search: "Intenção de compra"
+            display: "Retargeting, awareness"
+            youtube: "Awareness, consideração"
+            pmax: "Full funnel automatizado"
+          tiktok:
+            spark_ads: "Awareness orgânico pago"
+            conversion: "Catalog, App installs"
+          linkedin:
+            awareness: "Brand awareness"
+            consideration: "Website visits, Engagement"
+            conversion: "Lead gen, Conversions"
+        output: "Campaign Structure"
+
+      - task: apply-behavioral-triggers
+        description: "Aplicar gatilhos comportamentais"
+        framework: "Ariely - Behavioral Economics"
+        por_tipo_campanha:
+          awareness:
+            - "Social proof (números, logos)"
+            - "Curiosity gap"
+          consideration:
+            - "Anchoring (preço riscado)"
+            - "Decoy effect (3 opções)"
+          conversion:
+            - "Scarcity (tempo limitado)"
+            - "Loss aversion (não perca)"
+            - "FREE! power (frete grátis)"
+          retencao:
+            - "Sunk cost (pontos acumulados)"
+            - "Endowment effect (já é seu)"
+        output: "Behavioral Triggers Applied"
+
+      - task: setup-tracking
+        description: "Configurar tracking e eventos"
+        eventos:
+          - "PageView"
+          - "ViewContent"
+          - "AddToCart"
+          - "InitiateCheckout"
+          - "Purchase"
+          - "Lead"
+        output: "Tracking Setup"
+
+      - task: create-ad-sets
+        description: "Criar conjuntos de anúncios"
+        por_audiencia:
+          - "Segmentação por interesse"
+          - "Lookalikes"
+          - "Retargeting por ação"
+          - "Custom audiences"
+        output: "Ad Sets Created"
+
+    checkpoint:
+      question: "Campanhas configuradas?"
+      criteria:
+        - "Estrutura por objetivo"
+        - "Gatilhos comportamentais aplicados"
+        - "Tracking funcionando"
+        - "Ad sets criados"
+
+  # FASE 3: LANÇAMENTO E MONITORAMENTO
+  - phase: 3
+    name: "Launch & Monitor"
+    duracao: "Primeiros 3-7 dias"
+    agente_principal: traffic-manager
+    depende_de: [phase_2]
+
+    tasks:
+      - task: launch-campaigns
+        description: "Lançar campanhas"
+        checklist_pre_lancamento:
+          - "Budget alocado corretamente"
+          - "Públicos configurados"
+          - "Criativos aprovados"
+          - "Tracking testado"
+          - "Landing pages funcionando"
+        output: "Campaigns Live"
+
+      - task: monitor-learning-phase
+        description: "Monitorar fase de aprendizado"
+        acoes:
+          - "Não fazer alterações nos primeiros 3-7 dias"
+          - "Monitorar entrega"
+          - "Verificar frequência"
+          - "Checar custos"
+        output: "Learning Phase Report"
+
+      - task: daily-check
+        description: "Checagem diária"
+        metricas:
+          - "Spend vs. budget"
+          - "CPM/CPC/CPA"
+          - "CTR"
+          - "Frequência"
+          - "Relevance score"
+        output: "Daily Reports"
+
+    checkpoint:
+      question: "Campanhas rodando saudáveis?"
+      criteria:
+        - "Entrega estável"
+        - "Custos dentro do esperado"
+        - "Sem erros de tracking"
+
+  # FASE 4: OTIMIZAÇÃO
+  - phase: 4
+    name: "Optimization"
+    duracao: "Contínuo (ciclos semanais)"
+    agente_principal: campaign-optimizer
+    depende_de: [phase_3]
+
+    frameworks_aplicados:
+      - behavioral-economics-branding.yaml
+      - kahneman-dual-systems.yaml
+
+    tasks:
+      - task: analyze-performance
+        description: "Analisar performance por dimensão"
+        dimensoes:
+          - "Por criativo"
+          - "Por audiência"
+          - "Por posicionamento"
+          - "Por dispositivo"
+          - "Por horário"
+          - "Por geografia"
+        output: "Performance Analysis"
+
+      - task: run-ab-tests
+        description: "Executar testes A/B"
+        framework: "Kahneman - testar Sistema 1 vs 2"
+        variaveis:
+          criativos:
+            - "Headlines"
+            - "Imagens vs. vídeo"
+            - "CTAs"
+          audiencias:
+            - "Interesse vs. lookalike"
+            - "Broad vs. narrow"
+          landing_pages:
+            - "Long vs. short form"
+            - "Video vs. text"
+        output: "A/B Test Results"
+
+      - task: optimize-bids
+        description: "Otimizar lances e orçamentos"
+        acoes:
+          - "Pausar underperformers"
+          - "Escalar winners"
+          - "Ajustar bids por horário"
+          - "Realocar budget"
+        output: "Bid Optimization"
+
+      - task: refresh-creatives
+        description: "Renovar criativos (evitar fadiga)"
+        frequencia: "A cada 2-3 semanas"
+        sinais_fadiga:
+          - "CTR caindo"
+          - "Frequência > 3"
+          - "CPM subindo"
+        output: "Creative Refresh"
+
+    checkpoint:
+      question: "Campanhas otimizadas?"
+      criteria:
+        - "Testes A/B rodando"
+        - "Winners identificados"
+        - "Underperformers pausados"
+        - "Criativos atualizados"
+
+  # FASE 5: ANÁLISE E INSIGHTS
+  - phase: 5
+    name: "Analysis & Insights"
+    duracao: "Semanal + Mensal"
+    agente_principal: analytics-reader
+    depende_de: [phase_4]
+
+    frameworks_aplicados:
+      - marketing-journey-kotler.yaml
+      - kahneman-dual-systems.yaml
+
+    tasks:
+      - task: analyze-funnel-metrics
+        description: "Analisar métricas do funil"
+        framework: "Kotler 5As metrics"
+        por_fase:
+          aware:
+            metricas: ["Reach", "Impressions", "CPM"]
+            benchmark: "CPM < R$30"
+          appeal:
+            metricas: ["CTR", "Engagement Rate"]
+            benchmark: "CTR > 1%"
+          ask:
+            metricas: ["Time on Site", "Pages/Session", "Bounce Rate"]
+            benchmark: "Bounce < 60%"
+          act:
+            metricas: ["Conversion Rate", "CPA", "ROAS"]
+            benchmark: "ROAS > 3x"
+          advocate:
+            metricas: ["LTV", "Repeat Rate", "Referrals"]
+            benchmark: "LTV/CAC > 3"
+        output: "Funnel Metrics Report"
+
+      - task: identify-insights
+        description: "Identificar insights acionáveis"
+        framework: "Kahneman - o que aprendemos sobre decisões"
+        categorias:
+          - "O que funcionou (escalar)"
+          - "O que não funcionou (pausar)"
+          - "Hipóteses para testar"
+          - "Oportunidades identificadas"
+        output: "Insights Document"
+
+      - task: calculate-attribution
+        description: "Calcular atribuição"
+        modelos:
+          - "Last click"
+          - "First click"
+          - "Linear"
+          - "Data-driven"
+        output: "Attribution Report"
+
+      - task: generate-report
+        description: "Gerar relatório executivo"
+        estrutura:
+          - "KPIs vs. metas"
+          - "Principais wins"
+          - "Principais aprendizados"
+          - "Próximos passos"
+          - "Budget recomendado"
+        output: "Executive Report"
+
+    checkpoint:
+      question: "Insights gerados?"
+      criteria:
+        - "Funil analisado"
+        - "Insights documentados"
+        - "Relatório executivo pronto"
+
+  # FASE 6: ESCALA E ITERAÇÃO
+  - phase: 6
+    name: "Scale & Iterate"
+    duracao: "Contínuo"
+    agente_principal: growth-director
+    depende_de: [phase_5]
+
+    tasks:
+      - task: scale-winners
+        description: "Escalar campanhas vencedoras"
+        estrategias:
+          horizontal: "Duplicar para novos públicos"
+          vertical: "Aumentar budget gradualmente (20%/dia)"
+          creative: "Mais variações do que funciona"
+        output: "Scaling Plan"
+
+      - task: expand-channels
+        description: "Expandir para novos canais"
+        criterios:
+          - "Canal alinhado com audiência"
+          - "Custo de teste aceitável"
+          - "Capacidade de produção"
+        output: "Channel Expansion Plan"
+
+      - task: iterate-strategy
+        description: "Iterar estratégia baseado em dados"
+        ciclo:
+          - "Revisar hipóteses"
+          - "Ajustar funil"
+          - "Refinar audiências"
+          - "Atualizar mensagens"
+        output: "Strategy Iteration"
+
+      - task: report-to-director
+        description: "Reportar para direção"
+        frequencia: "Semanal"
+        conteudo:
+          - "Performance vs. KPIs"
+          - "Investimento vs. retorno"
+          - "Recomendações"
+        output: "Director Report"
+
+    checkpoint:
+      question: "Pronto para próximo ciclo?"
+      criteria:
+        - "Winners escalados"
+        - "Próximos testes definidos"
+        - "Relatório entregue"
+
+# ═══════════════════════════════════════════════════════════════════
+# ENTREGÁVEIS
+# ═══════════════════════════════════════════════════════════════════
+deliverables:
+  estrategia:
+    - "Funnel Blueprint"
+    - "Hook Loop Map"
+    - "Audience Segments"
+
+  setup:
+    - "Campaign Structure"
+    - "Behavioral Triggers Applied"
+    - "Tracking Setup"
+    - "Ad Sets"
+
+  operacao:
+    - "Daily Reports"
+    - "A/B Test Results"
+    - "Bid Optimization"
+    - "Creative Refresh"
+
+  analise:
+    - "Funnel Metrics Report"
+    - "Insights Document"
+    - "Attribution Report"
+    - "Executive Report"
+
+  escala:
+    - "Scaling Plan"
+    - "Channel Expansion Plan"
+    - "Strategy Iteration"
+    - "Director Report"
+
+# ═══════════════════════════════════════════════════════════════════
+# MÉTRICAS E OKRS
+# ═══════════════════════════════════════════════════════════════════
+okrs:
+  objective: "Maximizar ROI de campanhas pagas"
+
+  key_results:
+    aquisicao:
+      - "Reduzir CAC em X%"
+      - "Aumentar volume de leads em Y%"
+      - "Manter ROAS acima de Z"
+
+    conversao:
+      - "Aumentar conversion rate em X%"
+      - "Reduzir custo por conversão em Y%"
+
+    retencao:
+      - "Aumentar LTV em X%"
+      - "Aumentar repeat rate em Y%"
+
+# ═══════════════════════════════════════════════════════════════════
+# HANDOFF
+# ═══════════════════════════════════════════════════════════════════
+handoff:
+  origem:
+    - "storYOURtelling (Creative Brief)"
+    - "Content-Ops (Campaign Assets, Performance Data)"
+
+  destino:
+    - "Direção (Executive Reports)"
+    - "Content-Ops (Insights para novos conteúdos)"
+    - "storYOURtelling (Learnings para próximas campanhas)"
+
+  integracao:
+    - "wf-content-production: recebe assets, envia insights"
+    - "wf-brand-narrative: informa performance de mensagens"
+
+# ═══════════════════════════════════════════════════════════════════
+# DATA FILES REFERENCIADOS
+# ═══════════════════════════════════════════════════════════════════
+data_files:
+  # Frameworks curados (2026-02)
+  - marketing-journey-kotler.yaml
+  - hook-model-eyal.yaml
+  - behavioral-economics-branding.yaml
+  - kahneman-dual-systems.yaml
+  # Frameworks existentes
+  - attention-economy.yaml
+  - taxonomia-diferenciais.yaml

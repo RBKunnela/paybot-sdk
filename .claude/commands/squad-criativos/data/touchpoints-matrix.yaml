@@ -1,0 +1,312 @@
+# Brand Touchpoints Matrix
+# Mapeamento de pontos de contato da marca
+# Usado por: Brand Experience Designer
+
+metadata:
+  name: "Matriz de Touchpoints de Marca"
+  version: "1.0"
+
+conceito:
+  definicao: |
+    Touchpoints são todos os pontos de interação entre a marca e seu público.
+    Cada touchpoint é uma oportunidade de reforçar diferenciação e distintividade.
+
+  principio: |
+    A experiência de marca deve ser consistente e reconhecível
+    em TODOS os touchpoints, não apenas nos principais.
+
+jornada_do_cliente:
+
+  # ═══════════════════════════════════════════════════════════════════
+  # AWARENESS (Consciência)
+  # ═══════════════════════════════════════════════════════════════════
+  awareness:
+    fase: "Consciência"
+    objetivo: "Tornar a marca conhecida e reconhecível"
+    dominios_foco: ["III - Distintividade"]
+
+    touchpoints:
+      publicidade:
+        canais:
+          - TV/Streaming ads
+          - Radio/Podcast ads
+          - OOH (outdoor, busdoor)
+          - Digital display
+          - Social ads
+        assets_aplicados:
+          visuais: ["Logo", "Cores", "Estilo visual"]
+          sonoros: ["Sonic logo", "Jingle"]
+          verbais: ["Tagline"]
+
+      conteudo_organico:
+        canais:
+          - Blog/SEO
+          - Social media posts
+          - YouTube
+          - Podcast próprio
+          - Newsletter
+        assets_aplicados:
+          visuais: ["Estilo visual", "Tipografia"]
+          verbais: ["Tom de voz", "Vocabulário"]
+          comportamentais: ["Cadência", "Formato recorrente"]
+
+      pr_e_midia:
+        canais:
+          - Assessoria de imprensa
+          - Eventos
+          - Patrocínios
+          - Parcerias
+        assets_aplicados:
+          verbais: ["Boilerplate", "Key messages"]
+
+      word_of_mouth:
+        canais:
+          - Recomendações pessoais
+          - Reviews
+          - Social proof
+        assets_aplicados:
+          comportamentais: ["Experiência memorável"]
+
+  # ═══════════════════════════════════════════════════════════════════
+  # CONSIDERATION (Consideração)
+  # ═══════════════════════════════════════════════════════════════════
+  consideration:
+    fase: "Consideração"
+    objetivo: "Converter interesse em intenção"
+    dominios_foco: ["I - Substantiva", "II - Simbólica"]
+
+    touchpoints:
+      website:
+        elementos:
+          - Homepage
+          - Páginas de produto/serviço
+          - About/Sobre
+          - Cases/Portfolio
+          - Blog
+        assets_aplicados:
+          visuais: ["Design System completo"]
+          verbais: ["Tom de voz", "Proposta de valor"]
+          comportamentais: ["UX consistente"]
+
+      social_media:
+        elementos:
+          - Perfis
+          - Feed
+          - Stories
+          - Reels/Shorts
+          - Comunidade
+        assets_aplicados:
+          visuais: ["Estilo visual", "Avatar"]
+          verbais: ["Tom de voz"]
+          comportamentais: ["Estilo de interação", "Cadência"]
+
+      materiais_venda:
+        elementos:
+          - Apresentações
+          - Propostas
+          - One-pagers
+          - Case studies
+        assets_aplicados:
+          visuais: ["Design System"]
+          verbais: ["Messaging framework"]
+
+      demonstracoes:
+        elementos:
+          - Demos de produto
+          - Free trials
+          - Webinars
+          - Consultorias
+        assets_aplicados:
+          comportamentais: ["Estilo de interação"]
+          verbais: ["Tom de voz"]
+
+  # ═══════════════════════════════════════════════════════════════════
+  # PURCHASE (Compra)
+  # ═══════════════════════════════════════════════════════════════════
+  purchase:
+    fase: "Compra"
+    objetivo: "Facilitar conversão e criar experiência positiva"
+    dominios_foco: ["I - Substantiva", "III - Distintividade"]
+
+    touchpoints:
+      ecommerce:
+        elementos:
+          - Carrinho
+          - Checkout
+          - Pagamento
+          - Confirmação
+        assets_aplicados:
+          visuais: ["Design System"]
+          comportamentais: ["UX consistente"]
+
+      loja_fisica:
+        elementos:
+          - Fachada
+          - Vitrine
+          - Interior
+          - Sinalização
+          - Provadores
+        assets_aplicados:
+          visuais: ["Cores", "Tipografia", "Estilo"]
+          sensoriais: ["Aroma", "Música", "Textura"]
+
+      vendedor_atendente:
+        elementos:
+          - Script de vendas
+          - Comportamento
+          - Uniforme
+          - Atitude
+        assets_aplicados:
+          verbais: ["Tom de voz"]
+          comportamentais: ["Estilo de interação"]
+
+      documentacao:
+        elementos:
+          - Contratos
+          - Termos
+          - Notas fiscais
+          - Recibos
+        assets_aplicados:
+          visuais: ["Design System"]
+          verbais: ["Tom de voz"]
+
+  # ═══════════════════════════════════════════════════════════════════
+  # DELIVERY (Entrega)
+  # ═══════════════════════════════════════════════════════════════════
+  delivery:
+    fase: "Entrega"
+    objetivo: "Superar expectativas no momento crítico"
+    dominios_foco: ["I - Substantiva", "III - Distintividade"]
+
+    touchpoints:
+      embalagem:
+        elementos:
+          - Caixa externa
+          - Embalagem interna
+          - Materiais de proteção
+          - Inserts/bilhetes
+        assets_aplicados:
+          visuais: ["Cores", "Logo", "Estilo"]
+          sensoriais: ["Textura", "Aroma", "Formato"]
+          verbais: ["Mensagens"]
+
+      unboxing:
+        elementos:
+          - Sequência de abertura
+          - Surpresas
+          - Apresentação do produto
+        assets_aplicados:
+          sensoriais: ["Experiência tátil"]
+          comportamentais: ["Ritual de unboxing"]
+
+      onboarding:
+        elementos:
+          - Boas-vindas
+          - Tutoriais
+          - Setup
+          - Primeiros passos
+        assets_aplicados:
+          verbais: ["Tom de voz"]
+          comportamentais: ["Estilo de interação"]
+
+  # ═══════════════════════════════════════════════════════════════════
+  # USE (Uso)
+  # ═══════════════════════════════════════════════════════════════════
+  use:
+    fase: "Uso"
+    objetivo: "Garantir satisfação contínua"
+    dominios_foco: ["I - Substantiva"]
+
+    touchpoints:
+      produto_servico:
+        elementos:
+          - Interface/UX
+          - Performance
+          - Features
+          - Atualizações
+        assets_aplicados:
+          visuais: ["Design System"]
+          sensoriais: ["Feedback tátil/sonoro"]
+
+      suporte:
+        elementos:
+          - Chat
+          - Email
+          - Telefone
+          - FAQ
+          - Comunidade
+        assets_aplicados:
+          verbais: ["Tom de voz"]
+          comportamentais: ["Estilo de interação", "Tempo de resposta"]
+
+      comunicacao_ongoing:
+        elementos:
+          - Newsletter
+          - Updates
+          - Notificações
+        assets_aplicados:
+          verbais: ["Tom de voz"]
+          comportamentais: ["Cadência"]
+
+  # ═══════════════════════════════════════════════════════════════════
+  # LOYALTY (Fidelização)
+  # ═══════════════════════════════════════════════════════════════════
+  loyalty:
+    fase: "Fidelização"
+    objetivo: "Transformar cliente em defensor"
+    dominios_foco: ["II - Simbólica", "III - Distintividade"]
+
+    touchpoints:
+      programa_fidelidade:
+        elementos:
+          - Benefícios
+          - Comunicação
+          - Reconhecimento
+        assets_aplicados:
+          visuais: ["Design System"]
+          comportamentais: ["Rituais"]
+
+      comunidade:
+        elementos:
+          - Grupos
+          - Eventos
+          - Conteúdo exclusivo
+        assets_aplicados:
+          comportamentais: ["Rituais", "Estilo de interação"]
+          verbais: ["Vocabulário de tribo"]
+
+      advocacy:
+        elementos:
+          - Programa de indicação
+          - Reviews
+          - User-generated content
+        assets_aplicados:
+          verbais: ["Mensagens compartilháveis"]
+
+template_analise:
+  formato: |
+    Para cada touchpoint, avaliar:
+    1. Consistência com Design System (1-5)
+    2. Aplicação de Distinctive Assets (1-5)
+    3. Alinhamento com Tom de Voz (1-5)
+    4. Experiência do cliente (1-5)
+    5. Oportunidades de melhoria
+
+  priorizacao:
+    alto_impacto:
+      - "Touchpoints de primeira impressão"
+      - "Momentos de verdade (compra, suporte)"
+      - "Alta frequência de contato"
+
+    medio_impacto:
+      - "Touchpoints de reforço"
+      - "Comunicação ongoing"
+
+    baixo_impacto:
+      - "Touchpoints administrativos"
+      - "Baixa frequência"
+
+referencias:
+  - "Pine & Gilmore - Experience Economy"
+  - "Schmitt - Experiential Marketing"
+  - "Romaniuk - Building Distinctive Brand Assets"

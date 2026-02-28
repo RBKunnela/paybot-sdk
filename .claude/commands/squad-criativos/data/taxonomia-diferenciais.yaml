@@ -1,0 +1,395 @@
+# Taxonomia de Diferenciais de Marca
+# Framework Core para UNNIKO v2.1
+# Baseado em: Keller, Kapferer, Aaker, Sharp, Porter
+
+metadata:
+  name: "Taxonomia de Diferenciais de Marca"
+  version: "1.0"
+  source: "taxonomia-diferenciais-marca.md"
+  author: "Edu Garretano"
+  structure: "3 Domínios → 9 Classes → 27 Ordens"
+
+premissa_epistemologica:
+  escola_diferenciacao:
+    autores: ["Kotler", "Keller", "Aaker", "Trout & Ries"]
+    argumento: "Marcas crescem por atributos percebidos como superiores ou únicos (USP)"
+    resultado: "Cria PREFERÊNCIA"
+
+  escola_distintividade:
+    autores: ["Sharp", "Romaniuk", "Ehrenberg-Bass Institute"]
+    argumento: "Consumidores percebem pouca diferenciação real. O que importa é ser facilmente identificável."
+    resultado: "Cria RECONHECIMENTO"
+
+  posicao_integrada:
+    autores: ["Ritson", "Roach", "Kantar BrandZ"]
+    argumento: "Ambos são alavancas complementares"
+    aplicacao:
+      diferenciacao: "Influencia percepção de valor, justifica premium"
+      distintividade: "Garante reconhecimento e recall"
+
+dominios:
+
+  # ═══════════════════════════════════════════════════════════════════
+  # DOMÍNIO I — DIFERENCIAÇÃO SUBSTANTIVA
+  # ═══════════════════════════════════════════════════════════════════
+  I_substantiva:
+    id: "I"
+    nome: "Diferenciação Substantiva"
+    descricao: "O que a marca FAZ, entrega ou oferece de factualmente distinto"
+    keller_mapping: "Brand Performance, Judgments"
+    porter_mapping: "Fontes de vantagem competitiva"
+
+    classes:
+
+      # Classe 1: Produto/Serviço
+      produto_servico:
+        id: 1
+        nome: "Diferenciação por Produto/Serviço"
+        descricao: "Diferenciais no OUTPUT da marca"
+
+        ordens:
+          - id: "1.1"
+            nome: "Funcionalidade"
+            descricao: "Features exclusivas, performance superior, inovação técnica"
+            exemplos_bb: "Dyson (ciclone)"
+            exemplos_pb: "Metodologia proprietária de um consultor"
+
+          - id: "1.2"
+            nome: "Qualidade percebida"
+            descricao: "Durabilidade, confiabilidade, acabamento, consistência"
+            exemplos_bb: "Toyota"
+            exemplos_pb: "Consistência de entregas de um profissional"
+
+          - id: "1.3"
+            nome: "Customização"
+            descricao: "Personalização, modularidade, adaptabilidade"
+            exemplos_bb: "Nike By You"
+            exemplos_pb: "Capacidade de adaptar frameworks ao cliente"
+
+          - id: "1.4"
+            nome: "Escopo"
+            descricao: "Amplitude de oferta, profundidade, integração vertical"
+            exemplos_bb: "Amazon (amplitude)"
+            exemplos_pb: "Full-stack marketer vs. especialista"
+
+          - id: "1.5"
+            nome: "Design"
+            descricao: "Estética funcional, UX/UI, ergonomia"
+            exemplos_bb: "Apple"
+            exemplos_pb: "Qualidade visual de um conteudista"
+
+      # Classe 2: Modelo
+      modelo:
+        id: 2
+        nome: "Diferenciação por Modelo"
+        descricao: "Diferenciais na ESTRUTURA de como opera"
+
+        ordens:
+          - id: "2.1"
+            nome: "Modelo de negócio"
+            descricao: "Estrutura de receita, pricing model"
+            exemplos_bb: "Netflix (subscription)"
+            exemplos_pb: "Retainer vs. projeto"
+
+          - id: "2.2"
+            nome: "Canal/Distribuição"
+            descricao: "Onde e como o cliente acessa"
+            exemplos_bb: "Warby Parker (DTC)"
+            exemplos_pb: "Canal principal (newsletter, podcast)"
+
+          - id: "2.3"
+            nome: "Processo"
+            descricao: "Metodologia de entrega, workflow"
+            exemplos_bb: "Processo ágil da Spotify"
+            exemplos_pb: "Framework documentado de trabalho"
+
+          - id: "2.4"
+            nome: "Velocidade"
+            descricao: "Time-to-value, SLA, responsividade"
+            exemplos_bb: "Amazon Prime (same-day)"
+            exemplos_pb: "Velocidade de turnaround"
+
+      # Classe 3: Evidência
+      evidencia:
+        id: 3
+        nome: "Diferenciação por Evidência"
+        descricao: "Proof points verificáveis"
+
+        ordens:
+          - id: "3.1"
+            nome: "Track record"
+            descricao: "Cases, resultados mensuráveis"
+            exemplos_bb: "Portfolio de clientes"
+            exemplos_pb: "Resultados documentados"
+
+          - id: "3.2"
+            nome: "Propriedade intelectual"
+            descricao: "Patentes, frameworks proprietários, dados exclusivos"
+            exemplos_bb: "Patentes da Qualcomm"
+            exemplos_pb: "Modelo conceitual autoral"
+
+          - id: "3.3"
+            nome: "Credenciais"
+            descricao: "Certificações, prêmios, reconhecimento"
+            exemplos_bb: "ISO, B Corp"
+            exemplos_pb: "Certificações, publicações acadêmicas"
+
+          - id: "3.4"
+            nome: "Social proof"
+            descricao: "Volume de clientes, testemunhos, NPS"
+            exemplos_bb: "Usado por X milhões"
+            exemplos_pb: "Depoimentos, endorsements"
+
+  # ═══════════════════════════════════════════════════════════════════
+  # DOMÍNIO II — DIFERENCIAÇÃO SIMBÓLICA
+  # ═══════════════════════════════════════════════════════════════════
+  II_simbolica:
+    id: "II"
+    nome: "Diferenciação Simbólica"
+    descricao: "O que a marca SIGNIFICA, representa e faz sentir"
+    keller_mapping: "Brand Imagery, Brand Feelings"
+    kapferer_mapping: "Personality, Culture, Self-Image"
+    aaker_mapping: "Brand Associations"
+
+    classes:
+
+      # Classe 4: Identidade Narrativa
+      identidade_narrativa:
+        id: 4
+        nome: "Diferenciação por Identidade Narrativa"
+        descricao: "A HISTÓRIA que a marca conta"
+
+        ordens:
+          - id: "4.1"
+            nome: "Propósito/Tese central"
+            descricao: "Visão de mundo, causa, missão"
+            exemplos_bb: "Patagonia (ativismo ambiental)"
+            exemplos_pb: "Tese de mundo que orienta o conteúdo"
+
+          - id: "4.2"
+            nome: "Narrativa de origem"
+            descricao: "Founder story, mito fundador"
+            exemplos_bb: "Origin story da Airbnb"
+            exemplos_pb: "História pessoal como prova de autoridade"
+
+          - id: "4.3"
+            nome: "Ponto de vista"
+            descricao: "Posição explícita, contrarian takes"
+            exemplos_bb: "Basecamp (anti-complexidade)"
+            exemplos_pb: "Opinião forte e consistente"
+
+          - id: "4.4"
+            nome: "Linguagem/Vocabulário"
+            descricao: "Termos cunhados, conceitos próprios"
+            exemplos_bb: "Think Different (Apple)"
+            exemplos_pb: "Conceitos autorais que audiência adota"
+
+      # Classe 5: Personalidade
+      personalidade:
+        id: 5
+        nome: "Diferenciação por Personalidade"
+        descricao: "O CARÁTER que a marca projeta"
+
+        ordens:
+          - id: "5.1"
+            nome: "Tom de voz"
+            descricao: "Registro comunicacional, humor, provocação"
+            exemplos_bb: "Wendy's (sarcástico)"
+            exemplos_pb: "Estilo de escrita reconhecível"
+
+          - id: "5.2"
+            nome: "Arquétipo dominante"
+            descricao: "Herói, Rebelde, Sábio, etc."
+            exemplos_bb: "Nike (Herói)"
+            exemplos_pb: "Postura arquetípica coerente"
+
+          - id: "5.3"
+            nome: "Postura relacional"
+            descricao: "Como trata o público"
+            exemplos_bb: "Apple (guru) vs Samsung (companheiro)"
+            exemplos_pb: "Dinâmica com a audiência"
+
+      # Classe 6: Cultura e Valores
+      cultura_valores:
+        id: 6
+        nome: "Diferenciação por Cultura e Valores"
+        descricao: "Sistema de CRENÇAS da marca"
+
+        ordens:
+          - id: "6.1"
+            nome: "Valores declarados e praticados"
+            descricao: "Transparência, excelência, rebeldia"
+            exemplos_bb: "Cultura de transparência da Buffer"
+            exemplos_pb: "Valores que filtram decisões públicas"
+
+          - id: "6.2"
+            nome: "Comunidade e pertencimento"
+            descricao: "Tribo, identidade coletiva"
+            exemplos_bb: "Harley-Davidson (H.O.G.)"
+            exemplos_pb: "Comunidade ao redor da marca"
+
+          - id: "6.3"
+            nome: "Posicionamento cultural"
+            descricao: "Alinhamento com movimentos, zeitgeist"
+            exemplos_bb: "Ben & Jerry's"
+            exemplos_pb: "Identificação com uma cena"
+
+  # ═══════════════════════════════════════════════════════════════════
+  # DOMÍNIO III — DISTINTIVIDADE
+  # ═══════════════════════════════════════════════════════════════════
+  III_distintividade:
+    id: "III"
+    nome: "Distintividade"
+    descricao: "Como a marca é RECONHECIDA, lembrada e recuperada"
+    sharp_mapping: "Distinctive Brand Assets, Mental Availability"
+    nota: "Não é o que significa, mas como é RECONHECIDA"
+
+    classes:
+
+      # Classe 7: Ativos Visuais
+      ativos_visuais:
+        id: 7
+        nome: "Ativos Visuais Distintivos"
+        descricao: "Identificação SEM necessidade do nome"
+
+        ordens:
+          - id: "7.1"
+            nome: "Marca gráfica"
+            descricao: "Logo, símbolo, wordmark, monograma"
+            exemplos_bb: "Swoosh da Nike"
+            exemplos_pb: "Logo pessoal, avatar consistente"
+
+          - id: "7.2"
+            nome: "Sistema cromático"
+            descricao: "Paleta proprietária, cor dominante"
+            exemplos_bb: "Vermelho Coca-Cola, roxo Nubank"
+            exemplos_pb: "Paleta visual reconhecível"
+
+          - id: "7.3"
+            nome: "Tipografia"
+            descricao: "Família tipográfica associada"
+            exemplos_bb: "Helvetica da American Apparel"
+            exemplos_pb: "Estilo tipográfico nos conteúdos"
+
+          - id: "7.4"
+            nome: "Estilo visual"
+            descricao: "Fotografia, ilustração, direção de arte"
+            exemplos_bb: "Estética minimal da Muji"
+            exemplos_pb: "Identidade visual das postagens"
+
+          - id: "7.5"
+            nome: "Personagem/Mascote"
+            descricao: "Mascote, figura associada"
+            exemplos_bb: "Michelin Man"
+            exemplos_pb: "A própria imagem do fundador"
+
+      # Classe 8: Ativos Sensoriais Não-Visuais
+      ativos_sensoriais:
+        id: 8
+        nome: "Ativos Sensoriais Não-Visuais"
+        descricao: "Reconhecimento FORA do campo visual"
+
+        ordens:
+          - id: "8.1"
+            nome: "Sonoro/Musical"
+            descricao: "Jingle, sonic logo, trilha"
+            exemplos_bb: "Intel bong, Netflix ta-dum"
+            exemplos_pb: "Vinheta de podcast"
+
+          - id: "8.2"
+            nome: "Verbal/Linguístico"
+            descricao: "Tagline, catchphrase, slogan"
+            exemplos_bb: "Just Do It"
+            exemplos_pb: "Frase-assinatura, bordão"
+
+          - id: "8.3"
+            nome: "Tátil/Material"
+            descricao: "Textura, material, sensação física"
+            exemplos_bb: "Textura do Toblerone"
+            exemplos_pb: "Qualidade do material impresso"
+
+          - id: "8.4"
+            nome: "Formato/Shape"
+            descricao: "Forma física proprietária"
+            exemplos_bb: "Garrafa da Coca-Cola, formato iPhone"
+            exemplos_pb: "Formato recorrente de conteúdo"
+
+      # Classe 9: Ativos Comportamentais
+      ativos_comportamentais:
+        id: 9
+        nome: "Ativos Comportamentais Distintivos"
+        descricao: "Padrões de comportamento consistentes"
+
+        ordens:
+          - id: "9.1"
+            nome: "Rituais de marca"
+            descricao: "Ações recorrentes esperadas"
+            exemplos_bb: "Lançamento anual da Apple"
+            exemplos_pb: "Série semanal, formato recorrente"
+
+          - id: "9.2"
+            nome: "Estilo de interação"
+            descricao: "Padrão de resposta, postura"
+            exemplos_bb: "Zappos (atendimento lendário)"
+            exemplos_pb: "Como responde a críticas"
+
+          - id: "9.3"
+            nome: "Cadência"
+            descricao: "Ritmo de publicação, frequência"
+            exemplos_bb: "Consistência editorial"
+            exemplos_pb: "Frequência previsível"
+
+# ═══════════════════════════════════════════════════════════════════
+# PRINCÍPIOS DE USO
+# ═══════════════════════════════════════════════════════════════════
+principio_uso:
+  nota: "Uma marca forte NÃO precisa competir em todas as 27 ordens"
+
+  dominio_I:
+    regra: "Ter 2-3 ordens com superioridade verificável"
+    foco: "Escolher onde pode PROVAR diferença"
+
+  dominio_II:
+    regra: "Coerência narrativa — ordens devem reforçar mesma tese"
+    foco: "Não competir entre si, complementar"
+
+  dominio_III:
+    regra: "Assets únicos, consistentes no tempo e defensáveis"
+    foco: "Reconhecimento instantâneo"
+
+  resultado:
+    conceito: "Brand Resonance (Keller)"
+    descricao: "Consumidor reconhece, prefere, identifica-se e advoga"
+
+# ═══════════════════════════════════════════════════════════════════
+# MAPEAMENTO PARA FRAMEWORKS ACADÊMICOS
+# ═══════════════════════════════════════════════════════════════════
+mapeamento_frameworks:
+  keller_cbbe:
+    dominio_I: "Performance, Judgments"
+    dominio_II: "Imagery, Feelings"
+    dominio_III: "Salience"
+
+  kapferer_prism:
+    dominio_I: "Physique (parcial)"
+    dominio_II: "Personality, Culture, Self-Image, Reflection"
+    dominio_III: "Physique (parcial), Relationship"
+
+  aaker:
+    dominio_I: "Perceived Quality, Proprietary Assets"
+    dominio_II: "Brand Associations"
+    dominio_III: "Brand Awareness"
+
+  sharp:
+    dominio_I: "Papel secundário"
+    dominio_II: "Papel secundário"
+    dominio_III: "Distinctive Brand Assets, Mental Availability"
+
+referencias:
+  - "Keller, K.L. — Strategic Brand Management / CBBE"
+  - "Kapferer, J.N. — Brand Identity Prism (1986/1996)"
+  - "Aaker, D. — Managing Brand Equity"
+  - "Sharp, B. — How Brands Grow (2010)"
+  - "Porter, M. — Competitive Advantage (1985)"
+  - "Trout, J. — Differentiate or Die (2000)"
+  - "Kantar BrandZ — Análises 2017-2023"

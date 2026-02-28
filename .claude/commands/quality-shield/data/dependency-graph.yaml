@@ -1,0 +1,659 @@
+# Quality Shield - Dependency Graph
+# Generated: 2026-02-11
+# Source: Automated codebase scan of src/
+#
+# Legend:
+#   critical: true = used by 3+ modules (high regression risk)
+#   imported_by lists show direct consumers only
+
+# ============================================================
+# SCREENS
+# ============================================================
+screens:
+  Login:
+    file: src/screens/Auth/Login.tsx
+    imports:
+      contexts: [useSupabase, useAuthContext]
+      components: [Button, OAuthLoadingOverlay, OAuthButton, PasswordInput, ForgotPasswordModal, VerifyEmailModal]
+      hooks: [useOAuthFlow]
+      utils: [safeStorage, logger]
+    imported_by: [App.tsx]
+
+  Register:
+    file: src/screens/Auth/Register.tsx
+    imports:
+      contexts: [useSupabase]
+      components: [Button, OAuthLoadingOverlay, OAuthButton, PasswordInput, PasswordStrengthMeter, RegisterSuccessModal, UsernameField, EmailField]
+      hooks: [useOAuthFlow, useRegistrationValidation, useUsernameAvailability, useEmailAvailability, usePasswordStrength, useGeolocation]
+      utils: [sanitizeUserContent, logger]
+    imported_by: [App.tsx]
+
+  Feed:
+    file: src/screens/Feed/index.tsx
+    imports:
+      contexts: [useAuthContext, useSupabase, useFollowContext, useListsContext, useToast]
+      hooks: [useFeedQuery, useScrollRestoration, usePullToRefresh]
+      components: [PullToRefreshIndicator, RestaurantDetailsModal, Button, ReviewCard]
+      types: [Review, Restaurant]
+      utils: [logger]
+    imported_by: [App.tsx]
+
+  Discover:
+    file: src/screens/Discover/index.tsx
+    imports:
+      contexts: [useAuthContext, useSupabase, useListsContext]
+      hooks: [useRestaurantSearch, useRestaurantAutocomplete, useRecentSearches, useScrollRestoration]
+      components: [RestaurantDetailsModal, BottomSheet, RestaurantPreview, Button, Pressable, RestaurantMap]
+      services: [google-places.service]
+      types: [User, Restaurant, List]
+    imported_by: [App.tsx]
+
+  NewReview:
+    file: src/screens/NewReview/index.tsx
+    imports:
+      contexts: [useAuthContext, useSupabase, useFeedContext, useFollowContext]
+      hooks: [useReviewForm, useDraftManagement, usePhotoUpload, usePostReview]
+      components: [Button]
+      types: [Review]
+      utils: [formatTimeAgo]
+    imported_by: [App.tsx]
+
+  Profile:
+    file: src/screens/Profile/index.tsx
+    imports:
+      contexts: [useAuthContext, useSupabase, useFollowContext, useListsContext, useToast]
+      services: [lists.service]
+      hooks: [useScrollRestoration]
+      components: [Button]
+      types: [User, List, Review]
+    imported_by: [App.tsx]
+
+  Lists:
+    file: src/screens/Lists/index.tsx
+    imports:
+      contexts: [useListsContext, useAuthContext]
+      services: [lists.service]
+      hooks: [useScrollRestoration, useListReorder]
+      components: [Button]
+      types: [List, User]
+    imported_by: [App.tsx]
+
+  ListDetails:
+    file: src/screens/ListDetails/index.tsx
+    imports:
+      contexts: [useAuthContext]
+      hooks: [useListDetails]
+      components: [RestaurantDetailsModal, Button, EmptyState]
+      constants: [DEFAULT_RESTAURANT, DEFAULT_AVATAR]
+      types: [Restaurant]
+    imported_by: [App.tsx]
+
+  Notifications:
+    file: src/screens/Notifications.tsx
+    imports:
+      contexts: [useAuthContext, useSupabase, useFollowContext]
+      components: [Button]
+      constants: [DEFAULT_AVATAR, DEFAULT_RESTAURANT]
+      utils: [formatTimeAgo]
+    imported_by: [App.tsx]
+
+  Onboarding:
+    file: src/screens/Onboarding/index.tsx
+    imports:
+      components: [Button]
+      hooks: [useOnboardingForm]
+    imported_by: [App.tsx]
+
+  ResetPassword:
+    file: src/screens/ResetPassword.tsx
+    imports:
+      contexts: [useSupabase]
+      components: [Button]
+    imported_by: [App.tsx]
+
+  Settings:
+    file: src/screens/Settings/index.tsx
+    imports:
+      contexts: [useAuthContext]
+      components: [Button, ConfirmModal]
+    imported_by: [App.tsx]
+
+  Community:
+    file: src/screens/Community.tsx
+    imports:
+      contexts: [useSupabase, useAuthContext]
+      components: [Button, AvatarWithInitials, FocusTrap, EmptyState]
+      services: [suggestions.service]
+      utils: [formatTimeAgo]
+    imported_by: [App.tsx]
+
+  Recommendations:
+    file: src/screens/Recommendations.tsx
+    imports:
+      contexts: [useAuthContext, useSupabase, useFollowContext]
+      components: [RestaurantDetailsModal, Button]
+      services: [recommendation.service, lists.service]
+      constants: [DEFAULT_RESTAURANT, DEFAULT_AVATAR]
+      types: [Restaurant, ProfileRecommendation, ListRecommendation, RecommendationSection]
+    imported_by: [App.tsx]
+
+  ReviewDetail:
+    file: src/screens/ReviewDetail/index.tsx
+    imports:
+      contexts: [useAuthContext, useSupabase, useFeedContext]
+      hooks: [useReviewData]
+      components: [RestaurantDetailsModal]
+      types: [Review, Restaurant]
+    imported_by: [App.tsx]
+
+# ============================================================
+# HOOKS
+# ============================================================
+hooks:
+  # --- Auth hooks (subdirectory) ---
+  useAuth:
+    file: src/hooks/auth/useAuth.ts
+    imports:
+      contexts: [useSupabase]
+      services: [auth.service]
+      hooks: [useSessionStorage, useUserData, useOAuthHandler, useAuthStateListener, useAppStateRefresh]
+      utils: [logger]
+      types: [auth/types, auth/utils]
+    imported_by:
+      contexts: [AuthContext]
+    critical: true
+
+  useAuthStateListener:
+    file: src/hooks/auth/useAuthStateListener.ts
+    imports:
+      types: [auth/types]
+    imported_by:
+      hooks: [useAuth]
+    critical: true
+
+  useOAuthHandler:
+    file: src/hooks/auth/useOAuthHandler.ts
+    imports:
+      utils: [capacitor-bridge]
+      types: [auth/types, auth/utils]
+    imported_by:
+      hooks: [useAuth]
+
+  useSessionStorage:
+    file: src/hooks/auth/useSessionStorage.ts
+    imports:
+      utils: [capacitor-bridge]
+      types: [auth/types, auth/utils]
+    imported_by:
+      hooks: [useAuth]
+
+  useUserData:
+    file: src/hooks/auth/useUserData.ts
+    imports:
+      services: [auth.service, query-fields]
+      utils: [logger]
+      types: [types, auth/types, auth/utils]
+    imported_by:
+      hooks: [useAuth]
+    critical: true
+
+  useAppStateRefresh:
+    file: src/hooks/auth/useAppStateRefresh.ts
+    imports:
+      utils: [capacitor-bridge]
+    imported_by:
+      hooks: [useAuth]
+
+  auth-utils:
+    file: src/hooks/auth/utils.ts
+    imports:
+      utils: [capacitor-bridge]
+      types: [auth/types]
+    imported_by:
+      hooks: [useAuth, useOAuthHandler, useSessionStorage, useUserData]
+    critical: true
+
+  auth-types:
+    file: src/hooks/auth/types.ts
+    imports:
+      types: [types]
+    imported_by:
+      hooks: [useAuth, useAuthStateListener, useOAuthHandler, useSessionStorage, useUserData, auth-utils]
+    critical: true
+
+  # --- Root hooks ---
+  useAuth-compat:
+    file: src/hooks/useAuth.ts
+    imports:
+      hooks: [auth/useAuth, auth/types]
+    imported_by: []
+    note: "Re-export wrapper for backward compatibility"
+
+  useFeedQuery:
+    file: src/hooks/useFeedQuery.ts
+    imports:
+      contexts: [SupabaseContext]
+      services: [feed.service, storage.service]
+      utils: [logger]
+      types: [types]
+      lib: [queryClient]
+    imported_by:
+      contexts: [FeedContext]
+    critical: true
+
+  useFollowQuery:
+    file: src/hooks/useFollowQuery.ts
+    imports:
+      contexts: [SupabaseContext]
+      services: [follow.service]
+      utils: [logger]
+      types: [types]
+      lib: [queryClient]
+    imported_by:
+      contexts: [FollowContext]
+
+  useListsQuery:
+    file: src/hooks/useListsQuery.ts
+    imports:
+      contexts: [SupabaseContext]
+      services: [lists.service]
+      types: [types]
+      lib: [queryClient]
+    imported_by:
+      contexts: [ListsContext]
+
+  useListDetails:
+    file: src/hooks/useListDetails.ts
+    imports:
+      contexts: [ListsContext, AuthContext, SupabaseContext]
+      services: [lists.service]
+      types: [types]
+    imported_by:
+      screens: [ListDetails]
+
+  useListReorder:
+    file: src/hooks/useListReorder.ts
+    imports:
+      contexts: [ListsContext, AuthContext, SupabaseContext]
+      services: [lists.service]
+      types: [types]
+    imported_by:
+      screens: [Lists]
+
+  useNotificationsQuery:
+    file: src/hooks/useNotificationsQuery.ts
+    imports:
+      contexts: [SupabaseContext]
+      services: [notification.service]
+      lib: [queryClient]
+    imported_by:
+      screens: [Notifications]
+
+  useProfileQuery:
+    file: src/hooks/useProfileQuery.ts
+    imports:
+      contexts: [SupabaseContext]
+      services: [follow.service]
+      utils: [logger]
+      types: [types]
+      lib: [queryClient]
+    imported_by:
+      screens: [Profile]
+
+  useRestaurantAutocomplete:
+    file: src/hooks/useRestaurantAutocomplete.ts
+    imports:
+      services: [google-places.service]
+      utils: [logger]
+    imported_by:
+      screens: [Discover]
+
+  useRestaurantQuery:
+    file: src/hooks/useRestaurantQuery.ts
+    imports:
+      contexts: [SupabaseContext]
+      utils: [logger]
+      types: [types]
+      lib: [queryClient]
+    imported_by: []
+
+  useRestaurantReviews:
+    file: src/hooks/useRestaurantReviews.ts
+    imports:
+      contexts: [SupabaseContext, AuthContext]
+      types: [types]
+    imported_by: []
+
+  useRestaurantSearch:
+    file: src/hooks/useRestaurantSearch.ts
+    imports:
+      contexts: [SupabaseContext]
+      services: [google-places.service, query-fields]
+      utils: [logger]
+      lib: [queryClient]
+    imported_by:
+      screens: [Discover]
+
+  useReviewsQuery:
+    file: src/hooks/useReviewsQuery.ts
+    imports:
+      contexts: [SupabaseContext]
+      services: [feed.service]
+      utils: [logger]
+      types: [types]
+      lib: [queryClient]
+    imported_by: []
+
+  useDraftReview:
+    file: src/hooks/useDraftReview.ts
+    imports:
+      utils: [capacitor-bridge, logger]
+    imported_by:
+      screens: [NewReview]
+
+  usePullToRefresh:
+    file: src/hooks/usePullToRefresh.ts
+    imports: {}
+    imported_by:
+      screens: [Feed]
+
+  usePushNotifications:
+    file: src/hooks/usePushNotifications.ts
+    imports:
+      utils: [capacitor-bridge, logger]
+    imported_by: []
+
+  useRecentSearches:
+    file: src/hooks/useRecentSearches.ts
+    imports: {}
+    imported_by:
+      screens: [Discover]
+
+  useOnlineStatus:
+    file: src/hooks/useOnlineStatus.ts
+    imports: {}
+    imported_by: []
+
+  useScrollRestoration:
+    file: src/hooks/useScrollRestoration.ts
+    imports: {}
+    imported_by:
+      screens: [Feed, Discover, Profile, Lists]
+    critical: true
+
+  useFocusTrap:
+    file: src/hooks/useFocusTrap.ts
+    imports: {}
+    imported_by:
+      components: [FocusTrap]
+
+# ============================================================
+# SERVICES
+# ============================================================
+services:
+  auth.service:
+    file: src/services/auth.service.ts
+    imports:
+      services: [query-fields]
+      utils: [logger, validation]
+      types: [types]
+    imported_by:
+      hooks: [useAuth, useUserData]
+      contexts: [AuthContext]
+    critical: true
+
+  feed.service:
+    file: src/services/feed.service.ts
+    imports:
+      services: [query-fields]
+      utils: [logger, comment-threading]
+      types: [types]
+    imported_by:
+      hooks: [useFeedQuery, useReviewsQuery]
+      contexts: [FeedContext]
+    critical: true
+
+  follow.service:
+    file: src/services/follow.service.ts
+    imports:
+      types: [types]
+    imported_by:
+      hooks: [useFollowQuery, useProfileQuery]
+    critical: true
+
+  lists.service:
+    file: src/services/lists.service.ts
+    imports:
+      services: [query-fields]
+      utils: [logger]
+      types: [types]
+    imported_by:
+      hooks: [useListsQuery, useListDetails, useListReorder]
+      screens: [Profile, Lists, Recommendations]
+    critical: true
+
+  notification.service:
+    file: src/services/notification.service.ts
+    imports:
+      utils: [logger]
+      types: [types]
+    imported_by:
+      hooks: [useNotificationsQuery]
+
+  google-places.service:
+    file: src/services/google-places.service.ts
+    imports:
+      services: [query-fields]
+      types: [types]
+    imported_by:
+      hooks: [useRestaurantAutocomplete, useRestaurantSearch]
+      screens: [Discover]
+      core: [AppContext]
+    critical: true
+
+  storage.service:
+    file: src/services/storage.service.ts
+    imports:
+      utils: [logger, image-compression]
+      types: [types]
+    imported_by:
+      hooks: [useFeedQuery]
+      contexts: [FeedContext]
+
+  recommendation.service:
+    file: src/services/recommendation.service.ts
+    imports:
+      services: [query-fields]
+      utils: [logger, recommendation-scoring]
+      types: [types]
+    imported_by:
+      screens: [Recommendations]
+
+  suggestions.service:
+    file: src/services/suggestions.service.ts
+    imports:
+      types: [types]
+    imported_by:
+      screens: [Community]
+
+  gemini.service:
+    file: src/services/gemini.service.ts
+    imports:
+      utils: [logger]
+      types: [types]
+    imported_by: []
+
+  comment-likes.service:
+    file: src/services/comment-likes.service.ts
+    imports:
+      types: [types]
+    imported_by: []
+
+  query-fields:
+    file: src/services/query-fields.ts
+    imports: {}
+    imported_by:
+      services: [auth.service, feed.service, lists.service, google-places.service, recommendation.service]
+      hooks: [useUserData, useRestaurantSearch]
+    critical: true
+
+# ============================================================
+# CONTEXTS
+# ============================================================
+contexts:
+  AuthContext:
+    file: src/contexts/AuthContext.tsx
+    imports:
+      hooks: [auth/useAuth]
+      types: [types]
+    imported_by:
+      core: [AppContext]
+      screens: [Login, Feed, Discover, NewReview, Profile, Lists, ListDetails, Notifications, Settings, Community, Recommendations, ReviewDetail]
+    critical: true
+    note: "Used by almost every screen"
+
+  FeedContext:
+    file: src/contexts/FeedContext.tsx
+    imports:
+      hooks: [useFeedQuery]
+      contexts: [AuthContext, SupabaseContext]
+      services: [storage.service]
+      utils: [capacitor-bridge]
+      types: [types]
+      lib: [queryClient]
+    imported_by:
+      core: [AppContext]
+      screens: [NewReview, ReviewDetail]
+    critical: true
+
+  FollowContext:
+    file: src/contexts/FollowContext.tsx
+    imports:
+      hooks: [useFollowQuery]
+      contexts: [AuthContext]
+      utils: [capacitor-bridge]
+      types: [types]
+    imported_by:
+      core: [AppContext]
+      screens: [Feed, NewReview, Notifications, Profile, Recommendations]
+    critical: true
+
+  ListsContext:
+    file: src/contexts/ListsContext.tsx
+    imports:
+      hooks: [useListsQuery]
+      contexts: [AuthContext]
+      utils: [capacitor-bridge]
+      types: [types]
+      lib: [queryClient]
+    imported_by:
+      core: [AppContext]
+      hooks: [useListDetails, useListReorder]
+      screens: [Feed, Discover, Profile]
+    critical: true
+
+  SupabaseContext:
+    file: src/contexts/SupabaseContext.tsx
+    imports:
+      utils: [capacitor-bridge]
+    imported_by:
+      core: [AppContext]
+      contexts: [FeedContext]
+      hooks: [useAuth, useFeedQuery, useFollowQuery, useListsQuery, useListDetails, useListReorder, useNotificationsQuery, useProfileQuery, useRestaurantQuery, useRestaurantReviews, useRestaurantSearch, useReviewsQuery]
+      screens: [Login, Register, Feed, Discover, NewReview, Community, Recommendations, ResetPassword]
+    critical: true
+    note: "Foundation - used by ALL hooks and most screens"
+
+  ToastContext:
+    file: src/contexts/ToastContext.tsx
+    imports:
+      components: [Toast]
+    imported_by:
+      core: [App.tsx]
+      screens: [Feed, Profile]
+
+# ============================================================
+# CORE FILES
+# ============================================================
+core:
+  App:
+    file: src/App.tsx
+    imports:
+      core: [AppContext]
+      contexts: [AuthContext, ToastContext]
+      components: [ProtectedRoute, PageLoader, ErrorBoundary, Navigation]
+      utils: [capacitor-bridge, logger]
+      screens: [all screens via lazy import]
+    imported_by: []
+    critical: true
+    note: "Entry point - defines all routes"
+
+  AppContext:
+    file: src/AppContext.tsx
+    imports:
+      contexts: [SupabaseContext, AuthContext, FeedContext, ListsContext, FollowContext]
+      services: [google-places.service]
+      utils: [logger]
+      types: [types]
+    imported_by:
+      core: [App]
+    critical: true
+    note: "Orchestrates all context providers"
+
+  types:
+    file: src/types.ts
+    imports: {}
+    imported_by: "Used by virtually every file in the project"
+    critical: true
+
+  constants:
+    file: src/constants.ts
+    imports: {}
+    imported_by:
+      screens: [ListDetails, Notifications, Recommendations]
+      components: [various]
+    critical: true
+
+  queryClient:
+    file: src/lib/queryClient.ts
+    imports: {}
+    imported_by:
+      hooks: [useFeedQuery, useFollowQuery, useListsQuery, useNotificationsQuery, useProfileQuery, useRestaurantQuery, useRestaurantSearch, useReviewsQuery]
+      contexts: [FeedContext, ListsContext]
+      core: [App]
+    critical: true
+
+# ============================================================
+# SHARED UTILITIES (used by 3+ modules)
+# ============================================================
+shared_utilities:
+  - name: logger
+    file: src/utils/logger.ts
+    used_by_count: 15+
+    critical: true
+
+  - name: capacitor-bridge
+    file: src/utils/capacitor-bridge.ts
+    used_by_count: 8+
+    critical: true
+    note: "Native/web bridge - isNative, storage, deepLink, haptics"
+
+  - name: formatTimeAgo
+    file: src/utils/time.ts
+    used_by_count: 4
+
+  - name: image-compression
+    file: src/utils/image-compression.ts
+    used_by_count: 2
+
+  - name: recommendation-scoring
+    file: src/utils/recommendation-scoring.ts
+    used_by_count: 1
+
+  - name: validation
+    file: src/utils/validation.ts
+    used_by_count: 2
+
+  - name: comment-threading
+    file: src/utils/comment-threading.ts
+    used_by_count: 1

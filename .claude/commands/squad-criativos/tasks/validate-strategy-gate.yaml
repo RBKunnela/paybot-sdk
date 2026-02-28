@@ -1,0 +1,72 @@
+# Task: Validate Strategy Gate
+# Squad: squAId-criaTTivados / directors (CBO)
+# Responsável: cbo
+
+metadata:
+  name: "validate-strategy-gate"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "directors"
+  responsavel: "cbo"
+  tipo: task
+
+descricao: |
+  Gate CBO pós-DEENEA. Valida Brand Strategy Document
+  antes de prosseguir para UNNIKO.
+
+entrada:
+  - campo: brand_strategy_document
+    tipo: string
+    origem: "build-brand-essence"
+    obrigatorio: true
+    descricao: "Brand Strategy Document para aprovação"
+  - campo: positioning_validation_report
+    tipo: string
+    origem: "validate-positioning"
+    obrigatorio: true
+    descricao: "Relatório de validação do posicionamento"
+
+saida:
+  - campo: gate_decision
+    tipo: string
+    destino: "audit-brand (se aprovado) / build-brand-essence (se rejeitado)"
+    persistido: true
+    descricao: "Aprovado/rejeitado + feedback detalhado"
+
+passos:
+  1:
+    nome: "Revisar Propósito"
+    descricao: "Claro e inspirador?"
+    agente: "cbo"
+  2:
+    nome: "Revisar Posicionamento"
+    descricao: "Diferenciado no mercado?"
+    agente: "cbo"
+  3:
+    nome: "Revisar Arquétipos"
+    descricao: "Consistentes com valores e público?"
+    agente: "cbo"
+  4:
+    nome: "Revisar Personas"
+    descricao: "Representam público real (não genérico)?"
+    agente: "cbo"
+  5:
+    nome: "Avaliar acionabilidade"
+    descricao: "Estratégia pode ser implementada?"
+    agente: "cbo"
+  6:
+    nome: "Decidir"
+    descricao: "Aprovar ou rejeitar com feedback detalhado"
+    agente: "cbo"
+
+checklist:
+  - "[ ] Propósito revisado"
+  - "[ ] Posicionamento revisado"
+  - "[ ] Arquétipos revisados"
+  - "[ ] Personas revisadas"
+  - "[ ] Acionabilidade avaliada"
+  - "[ ] Decisão documentada"
+
+criterios_aceitacao:
+  - "Todos os critérios com score >= 3/5"
+  - "Estratégia implementável"

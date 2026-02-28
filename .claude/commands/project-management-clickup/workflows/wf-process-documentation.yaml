@@ -1,0 +1,447 @@
+# ============================================================================
+# WORKFLOW: PROCESS DOCUMENTATION
+# ============================================================================
+# Workflow para documentar e ativar processos não documentados no ClickUp
+# ============================================================================
+
+name: wf-process-documentation
+version: 1.0.0
+description: >
+  Workflow completo para mapear, documentar e implementar processos que
+  existem na prática mas não estão formalizados no ClickUp.
+
+orchestrator: "@pm-orchestrator"
+primary_executor: "@process-diagnostician"
+
+# ============================================================================
+# PHASES
+# ============================================================================
+
+phases:
+  # --------------------------------------------------------------------------
+  # PHASE 1: DISCOVERY
+  # --------------------------------------------------------------------------
+  phase_1:
+    name: "Discovery"
+    description: "Entender o processo atual e definir escopo"
+    duration: "15-30 min"
+    executor: "@process-diagnostician"
+
+    objectives:
+      - "Identificar o processo a ser documentado"
+      - "Entender por que ele é importante"
+      - "Mapear stakeholders envolvidos"
+      - "Definir escopo (início e fim)"
+
+    inputs:
+      required:
+        - name: "process_name"
+          description: "Nome do processo a documentar"
+        - name: "requester"
+          description: "Quem solicitou a documentação"
+      optional:
+        - name: "urgency"
+          description: "Nível de urgência"
+          default: "normal"
+        - name: "existing_docs"
+          description: "Documentação existente, se houver"
+
+    activities:
+      - step: 1
+        action: "Conduzir entrevista de descoberta"
+        questions:
+          - "Qual processo vamos documentar?"
+          - "Por que ele é importante para o negócio?"
+          - "Quem são as pessoas envolvidas?"
+          - "Qual é o resultado esperado desse processo?"
+          - "Com que frequência ele acontece?"
+          - "Onde ele começa e onde termina?"
+
+      - step: 2
+        action: "Validar viabilidade"
+        criteria:
+          - "Processo tem valor claro para documentar"
+          - "Stakeholders disponíveis para entrevista"
+          - "Escopo é gerenciável"
+
+      - step: 3
+        action: "Definir scope document"
+        output: |
+          ## Scope: {process_name}
+
+          **Objetivo:** {objetivo}
+          **Trigger:** {o que inicia}
+          **Output esperado:** {resultado}
+          **Frequência:** {frequência}
+          **Envolvidos:** {lista de pessoas}
+          **Escopo:** {início} até {fim}
+
+    checkpoint:
+      id: "PD_DSC_001"
+      name: "Discovery Complete"
+      validation:
+        - "Escopo definido e aceito"
+        - "Stakeholders identificados"
+        - "Viabilidade confirmada"
+      blocking: true
+
+    outputs:
+      - "scope_document"
+      - "stakeholder_list"
+      - "interview_schedule"
+
+  # --------------------------------------------------------------------------
+  # PHASE 2: MAPPING
+  # --------------------------------------------------------------------------
+  phase_2:
+    name: "Mapping"
+    description: "Mapear todas as etapas do processo"
+    duration: "30-60 min"
+    executor: "@process-diagnostician"
+
+    objectives:
+      - "Documentar cada etapa do processo"
+      - "Identificar responsáveis por etapa"
+      - "Mapear inputs e outputs"
+      - "Capturar exceções e edge cases"
+
+    inputs:
+      from_previous_phase:
+        - "scope_document"
+        - "stakeholder_list"
+
+    activities:
+      - step: 1
+        action: "Mapear etapas sequencialmente"
+        template: |
+          ## Etapa {N}: {Nome}
+
+          **Trigger:** O que dispara essa etapa?
+          **Responsável:** Quem executa?
+          **Input:** O que precisa para começar?
+          **Ação:** O que é feito?
+          **Output:** O que é entregue?
+          **Tempo médio:** Quanto leva?
+          **Próxima etapa:** Para onde vai?
+          **Exceções:** E se algo der errado?
+
+      - step: 2
+        action: "Identificar pontos de decisão"
+        format: |
+          **Decisão:** {pergunta}
+          **Se SIM:** {caminho A}
+          **Se NÃO:** {caminho B}
+
+      - step: 3
+        action: "Mapear handoffs"
+        focus:
+          - "Onde o trabalho passa de uma pessoa para outra?"
+          - "Como a informação é transferida?"
+          - "O que pode se perder no handoff?"
+
+      - step: 4
+        action: "Validar mapeamento com stakeholders"
+        method: "Review do fluxo com envolvidos"
+
+    checkpoint:
+      id: "PD_MAP_001"
+      name: "Mapping Complete"
+      validation:
+        - "Todas as etapas documentadas"
+        - "Responsáveis definidos"
+        - "Fluxo validado por stakeholders"
+      blocking: true
+
+    outputs:
+      - "process_map"
+      - "step_details"
+      - "decision_points"
+      - "handoff_points"
+
+  # --------------------------------------------------------------------------
+  # PHASE 3: ANALYSIS
+  # --------------------------------------------------------------------------
+  phase_3:
+    name: "Analysis"
+    description: "Analisar gaps, gargalos e oportunidades"
+    duration: "15-30 min"
+    executor: "@process-diagnostician"
+
+    objectives:
+      - "Identificar gargalos no processo"
+      - "Encontrar redundâncias e desperdícios"
+      - "Mapear riscos"
+      - "Propor melhorias"
+
+    inputs:
+      from_previous_phase:
+        - "process_map"
+        - "step_details"
+
+    activities:
+      - step: 1
+        action: "Análise de gargalos"
+        checklist:
+          - "Há etapas com tempo de espera excessivo?"
+          - "Há pontos onde o trabalho acumula?"
+          - "Há dependências que causam bloqueio?"
+
+      - step: 2
+        action: "Análise de desperdícios (Lean)"
+        waste_types:
+          - "Espera: etapas aguardando"
+          - "Transporte: handoffs desnecessários"
+          - "Excesso de processamento: etapas sem valor"
+          - "Retrabalho: correções e refações"
+          - "Movimento: ações duplicadas"
+
+      - step: 3
+        action: "Mapeamento de riscos"
+        questions:
+          - "O que pode dar errado?"
+          - "Qual o impacto se falhar?"
+          - "Existe plano B?"
+
+      - step: 4
+        action: "Identificar oportunidades de automação"
+        criteria:
+          - "Etapa repetitiva e previsível"
+          - "Não requer julgamento humano"
+          - "Tem trigger claro"
+
+    checkpoint:
+      id: "PD_ANA_001"
+      name: "Analysis Complete"
+      validation:
+        - "Gargalos identificados"
+        - "Melhorias propostas"
+        - "Riscos mapeados"
+      blocking: false
+
+    outputs:
+      - "bottleneck_list"
+      - "improvement_suggestions"
+      - "risk_map"
+      - "automation_opportunities"
+
+  # --------------------------------------------------------------------------
+  # PHASE 4: DOCUMENTATION
+  # --------------------------------------------------------------------------
+  phase_4:
+    name: "Documentation"
+    description: "Gerar documentação formal do processo"
+    duration: "30-60 min"
+    executor: "@process-diagnostician"
+
+    objectives:
+      - "Criar documento final do processo"
+      - "Gerar fluxograma visual"
+      - "Definir métricas de sucesso"
+      - "Preparar especificação para ClickUp"
+
+    inputs:
+      from_previous_phases:
+        - "scope_document"
+        - "process_map"
+        - "improvement_suggestions"
+
+    activities:
+      - step: 1
+        action: "Compilar documento de processo"
+        template: |
+          # Processo: {Nome}
+
+          **Versão:** 1.0
+          **Data:** {data}
+          **Responsável:** {owner}
+
+          ## Resumo Executivo
+          {objetivo, trigger, output, tempo total, envolvidos}
+
+          ## Fluxo do Processo
+          {diagrama ASCII ou descrição}
+
+          ## Etapas Detalhadas
+          {cada etapa com detalhes}
+
+          ## Métricas de Sucesso
+          {KPIs do processo}
+
+          ## Pontos de Atenção
+          {riscos e cuidados}
+
+          ## Melhorias Sugeridas
+          {lista de melhorias}
+
+      - step: 2
+        action: "Criar especificação para ClickUp"
+        includes:
+          - "Space/Folder/List recomendado"
+          - "Statuses necessários"
+          - "Custom Fields sugeridos"
+          - "Automações recomendadas"
+
+      - step: 3
+        action: "Definir métricas de monitoramento"
+        metrics:
+          - "Tempo total do processo"
+          - "Tempo por etapa"
+          - "Taxa de conclusão"
+          - "Retrabalho/exceções"
+
+    checkpoint:
+      id: "PD_DOC_001"
+      name: "Documentation Complete"
+      validation:
+        - "Documento segue template padrão"
+        - "Especificação ClickUp clara"
+        - "Métricas definidas"
+      blocking: true
+
+    outputs:
+      - "process_document"
+      - "clickup_specification"
+      - "metrics_definition"
+
+  # --------------------------------------------------------------------------
+  # PHASE 5: IMPLEMENTATION
+  # --------------------------------------------------------------------------
+  phase_5:
+    name: "Implementation"
+    description: "Implementar processo no ClickUp"
+    duration: "30-60 min"
+    executor: "@clickup-architect"
+
+    objectives:
+      - "Criar estrutura no ClickUp"
+      - "Configurar automações"
+      - "Criar templates necessários"
+      - "Treinar equipe"
+
+    inputs:
+      from_previous_phase:
+        - "clickup_specification"
+        - "process_document"
+
+    activities:
+      - step: 1
+        action: "Criar estrutura no ClickUp"
+        executor: "@clickup-architect"
+        tasks:
+          - "Criar Space/Folder/List conforme spec"
+          - "Configurar Statuses"
+          - "Adicionar Custom Fields"
+          - "Criar Views necessárias"
+
+      - step: 2
+        action: "Configurar automações"
+        executor: "@automation-engineer"
+        tasks:
+          - "Criar automações de notificação"
+          - "Configurar triggers de status"
+          - "Setup de time tracking se aplicável"
+
+      - step: 3
+        action: "Criar templates"
+        tasks:
+          - "Task templates para itens recorrentes"
+          - "Checklists padrão"
+          - "Description templates"
+
+      - step: 4
+        action: "Documentar no ClickUp Docs"
+        location: "Space Recursos > SOPs"
+
+    checkpoint:
+      id: "PD_IMP_001"
+      name: "Implementation Complete"
+      validation:
+        - "Estrutura criada e funcional"
+        - "Automações testadas"
+        - "Documentação linkada"
+      blocking: true
+
+    outputs:
+      - "clickup_structure_created"
+      - "automations_active"
+      - "templates_ready"
+
+  # --------------------------------------------------------------------------
+  # PHASE 6: HANDOFF
+  # --------------------------------------------------------------------------
+  phase_6:
+    name: "Handoff"
+    description: "Entregar processo ativo e treinar equipe"
+    duration: "15-30 min"
+    executor: "@pm-orchestrator"
+
+    objectives:
+      - "Comunicar nova estrutura"
+      - "Treinar usuários"
+      - "Definir próximos passos"
+
+    activities:
+      - step: 1
+        action: "Comunicar equipe"
+        includes:
+          - "O que foi criado"
+          - "Onde encontrar"
+          - "Como usar"
+
+      - step: 2
+        action: "Quick training"
+        topics:
+          - "Navegação pela estrutura"
+          - "Como criar tarefas"
+          - "Como usar as views"
+
+      - step: 3
+        action: "Definir owner"
+        questions:
+          - "Quem é responsável por manter?"
+          - "Quando revisar o processo?"
+
+    checkpoint:
+      id: "PD_HND_001"
+      name: "Handoff Complete"
+      validation:
+        - "Equipe informada"
+        - "Owner definido"
+        - "Próximo review agendado"
+      blocking: false
+
+    outputs:
+      - "communication_sent"
+      - "process_owner_assigned"
+      - "review_scheduled"
+
+# ============================================================================
+# QUALITY GATES
+# ============================================================================
+
+quality_gates:
+  documentation_quality:
+    - "Documento cobre todas as etapas"
+    - "Responsáveis claros por etapa"
+    - "Métricas de sucesso definidas"
+    - "Riscos identificados"
+
+  implementation_quality:
+    - "Estrutura ClickUp funcional"
+    - "Automações testadas"
+    - "Templates prontos"
+    - "Documentação acessível"
+
+# ============================================================================
+# METRICS
+# ============================================================================
+
+metrics:
+  process:
+    - "Tempo total do workflow"
+    - "Processos documentados/mês"
+    - "Adoção pela equipe"
+
+  quality:
+    - "Processos que precisaram de revisão"
+    - "Feedback da equipe"

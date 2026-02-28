@@ -1,0 +1,195 @@
+id: wf-compare-skills
+name: "Compare Skills"
+version: 1.0.0
+description: >
+  Workflow completo de comparação de skills. Recebe 2+ skills,
+  configura avaliação, executa em cenários controlados, avalia
+  outputs e produz relatório comparativo com veredicto.
+
+metadata:
+  created_at: "2026-02-08"
+  created_by: "squad-creator"
+  squad: skill-tester
+  category: evaluation
+  estimated_time: "5-15 min"
+  output_type: comparison-report
+
+trigger:
+  command: "*compare-skills"
+  aliases:
+    - "*compare"
+    - "*test-skills"
+    - "*skill-battle"
+  description: "Comparar 2+ skills com avaliação completa"
+
+inputs:
+  required:
+    - name: skills
+      type: array
+      description: >
+        2+ skills para comparar. Cada item pode ser:
+        - Texto do prompt/system prompt (inline)
+        - Path para arquivo .md com a skill
+        - Nome de uma slash command (/skill-name)
+  optional:
+    - name: objective
+      type: string
+      description: "Objetivo que as skills devem atingir"
+      default: null
+    - name: criteria
+      type: array
+      description: "Critérios customizados de avaliação"
+      default: "squad defaults"
+    - name: scenarios
+      type: array
+      description: "Cenários de teste customizados"
+      default: "auto-generated"
+
+stages:
+  - stage: 1
+    name: "Setup da Avaliação"
+    description: "Coletar skills, definir critérios e cenários"
+    agent: eval-chief
+    task: setup-evaluation
+
+    actions:
+      - action: collect_skills
+        description: "Coletar e validar skills do usuário"
+      - action: define_criteria
+        description: "Definir critérios de avaliação"
+      - action: create_scenarios
+        description: "Criar cenários de teste"
+      - action: approve_plan
+        description: "Confirmar plano com usuário"
+
+    outputs:
+      - evaluation_plan
+
+    success_criteria:
+      - "Pelo menos 2 skills coletadas"
+      - "Critérios definidos com pesos que somam 100%"
+      - "Pelo menos 1 cenário de teste"
+      - "Plano aprovado pelo usuário"
+
+  - stage: 2
+    name: "Execução das Skills"
+    description: "Executar cada skill em cada cenário"
+    agent: test-runner
+    task: execute-skills
+
+    dependencies:
+      - stage: 1
+        outputs: [evaluation_plan]
+
+    actions:
+      - action: execute_all
+        description: "Executar cada skill × cenário"
+      - action: collect_outputs
+        description: "Coletar outputs brutos"
+      - action: register_metadata
+        description: "Registrar metadata de cada execução"
+
+    outputs:
+      - execution_results
+
+    success_criteria:
+      - "Todas skills executadas em todos cenários"
+      - "Outputs coletados sem modificação"
+      - "Metadata registrada"
+
+  - stage: 3
+    name: "Avaliação dos Outputs"
+    description: "Pontuar cada output por critério"
+    agent: quality-judge
+    task: evaluate-outputs
+
+    dependencies:
+      - stage: 1
+        outputs: [evaluation_plan]
+      - stage: 2
+        outputs: [execution_results]
+
+    actions:
+      - action: blind_evaluation
+        description: "Avaliar cada output individualmente (sem comparar)"
+      - action: score_criteria
+        description: "Pontuar por critério com justificativa"
+      - action: consolidate_scores
+        description: "Consolidar scores por skill"
+
+    outputs:
+      - evaluation_results
+
+    success_criteria:
+      - "Todos outputs avaliados individualmente"
+      - "Scores justificados para cada critério"
+      - "Consolidação calculada por skill"
+
+  - stage: 4
+    name: "Relatório Comparativo"
+    description: "Gerar scorecard + análise + veredicto"
+    agent: eval-chief
+    task: generate-comparison
+
+    dependencies:
+      - stage: 1
+        outputs: [evaluation_plan]
+      - stage: 2
+        outputs: [execution_results]
+      - stage: 3
+        outputs: [evaluation_results]
+
+    actions:
+      - action: build_scorecard
+        description: "Montar tabela comparativa de scores"
+      - action: write_analysis
+        description: "Redigir análise detalhada"
+      - action: declare_verdict
+        description: "Declarar vencedora com justificativa"
+
+    outputs:
+      - comparison_report
+
+    success_criteria:
+      - "Scorecard com ranking completo"
+      - "Análise por skill e head-to-head"
+      - "Veredicto com justificativa"
+
+outputs:
+  primary:
+    - name: comparison_report
+      type: document
+      format: markdown
+      description: "Relatório completo com scorecard, análise detalhada e veredicto"
+
+  secondary:
+    - name: evaluation_plan
+      description: "Plano de avaliação usado (para reprodutibilidade)"
+    - name: execution_results
+      description: "Outputs brutos coletados (para referência)"
+    - name: evaluation_results
+      description: "Scores detalhados (para análise granular)"
+
+# Workflow variante: comparação rápida
+variants:
+  quick-compare:
+    trigger:
+      command: "*quick-compare"
+      aliases: ["*qc"]
+    description: "Comparação rápida: 1 cenário, scorecard apenas, sem relatório detalhado"
+    overrides:
+      stages:
+        - stage: 1
+          actions:
+            - collect_skills
+            - define_criteria  # usa defaults sem perguntar
+          # Apenas 1 cenário, critérios default
+        - stage: 2
+          # Normal
+        - stage: 3
+          # Normal mas sem consolidação multi-cenário
+        - stage: 4
+          actions:
+            - build_scorecard
+            - declare_verdict
+          # Sem análise detalhada

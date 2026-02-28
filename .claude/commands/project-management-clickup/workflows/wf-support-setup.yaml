@@ -1,0 +1,827 @@
+# ============================================================================
+# WORKFLOW: SUPPORT SETUP
+# ============================================================================
+# Workflow para estruturar sistema de suporte no ClickUp
+# Squad: project-management-clickup
+# Created by: squad-creator
+# ============================================================================
+
+name: wf-support-setup
+version: 1.0.0
+description: >
+  Workflow completo para estruturar e implementar sistema de suporte
+  ao cliente no ClickUp. Inclui gestão de tickets, SLAs, knowledge base
+  e métricas de atendimento.
+
+orchestrator: "@pm-orchestrator"
+primary_executor: "@support-operations-specialist"
+
+# ============================================================================
+# METADATA
+# ============================================================================
+
+metadata:
+  created: "2026-02-03"
+  framework: "AIOS Squad Creator v3.0"
+  story_id: "PM-SUPPORT-001"
+  primary_use_case: "Sistema de suporte para infoprodutos e SaaS"
+  key_difference: |
+    Sistema de suporte focado em:
+    - Infoprodutos (dúvidas de conteúdo, acesso)
+    - SaaS (bugs, features, onboarding)
+    - Múltiplos canais (WhatsApp, email, ticket)
+    - Integração com squad comercial
+
+# ============================================================================
+# SUPPORT TIERS
+# ============================================================================
+
+support_tiers:
+  tier_1:
+    name: "Self-Service"
+    description: "Cliente resolve sozinho"
+    channels:
+      - "FAQ"
+      - "Knowledge Base"
+      - "Tutoriais em vídeo"
+    sla: "N/A (instantâneo)"
+    coverage: "60-70% dos casos"
+
+  tier_2:
+    name: "Atendimento Padrão"
+    description: "Suporte responde"
+    channels:
+      - "Email"
+      - "WhatsApp"
+      - "Chat"
+    sla: "4-8 horas"
+    coverage: "25-35% dos casos"
+
+  tier_3:
+    name: "Atendimento Especializado"
+    description: "Casos complexos"
+    channels:
+      - "Call"
+      - "Screen share"
+      - "Ticket escalado"
+    sla: "24-48 horas"
+    coverage: "5-10% dos casos"
+
+# ============================================================================
+# PHASES
+# ============================================================================
+
+phases:
+  # --------------------------------------------------------------------------
+  # PHASE 1: REQUIREMENTS & MAPPING
+  # --------------------------------------------------------------------------
+  phase_1:
+    id: "PHASE-1"
+    name: "Requirements & Mapping"
+    description: "Mapear necessidades e tipos de suporte"
+    duration: "1-2 hours"
+    tier: 0
+    executor: "@support-operations-specialist"
+
+    objectives:
+      - "Identificar tipos de tickets"
+      - "Mapear canais de entrada"
+      - "Definir SLAs"
+      - "Identificar responsáveis"
+
+    inputs:
+      required:
+        - name: "product_types"
+          description: "Tipos de produto (curso, mentoria, SaaS)"
+        - name: "support_channels"
+          description: "Canais de suporte (email, WhatsApp, chat)"
+        - name: "team_size"
+          description: "Tamanho da equipe de suporte"
+      optional:
+        - name: "current_volume"
+          description: "Volume atual de tickets"
+        - name: "common_issues"
+          description: "Problemas mais comuns"
+
+    activities:
+      - step: 1
+        action: "Mapear tipos de ticket"
+        template: |
+          ## Tipos de Ticket
+
+          ### Por Categoria
+          | Categoria | Exemplos | Prioridade | SLA |
+          |-----------|----------|------------|-----|
+          | Acesso | Login, senha, área de membros | Alta | 2h |
+          | Conteúdo | Dúvidas, materiais | Média | 8h |
+          | Financeiro | Pagamento, reembolso | Alta | 4h |
+          | Técnico | Bug, erro, lentidão | Alta | 4h |
+          | Comercial | Upgrade, renovação | Média | 8h |
+          | Sugestão | Feature request, feedback | Baixa | 24h |
+
+      - step: 2
+        action: "Definir SLAs"
+        template: |
+          ## Service Level Agreements
+
+          ### Por Prioridade
+          | Prioridade | Primeira Resposta | Resolução | Escalação |
+          |------------|-------------------|-----------|-----------|
+          | 🔴 Crítica | 30 min | 4h | Imediata |
+          | 🟠 Alta | 2h | 8h | 4h |
+          | 🟡 Média | 4h | 24h | 12h |
+          | 🟢 Baixa | 8h | 48h | 24h |
+
+          ### Por Canal
+          | Canal | Expectativa de Resposta |
+          |-------|-------------------------|
+          | WhatsApp | 30 min - 2h |
+          | Email | 4h - 8h |
+          | Chat | 5 min (online) |
+          | Ticket | 4h - 24h |
+
+      - step: 3
+        action: "Mapear fluxo de atendimento"
+        flow: |
+          1. Ticket entra (qualquer canal)
+          2. Auto-classificação ou triagem manual
+          3. Tentativa de self-service (FAQ/KB)
+          4. Se não resolvido → Atribuição para agente
+          5. Primeira resposta dentro do SLA
+          6. Resolução ou escalação
+          7. Feedback do cliente
+          8. Fechamento do ticket
+
+    checkpoint:
+      id: "SUPPORT_REQ_001"
+      name: "Requirements Complete"
+      criteria:
+        - "Tipos de ticket mapeados"
+        - "SLAs definidos"
+        - "Fluxo documentado"
+        - "Canais identificados"
+      human_review: true
+      message: "Validar requisitos antes de estruturar"
+
+    outputs:
+      - "ticket_types"
+      - "sla_definitions"
+      - "flow_documentation"
+
+  # --------------------------------------------------------------------------
+  # PHASE 2: STRUCTURE SETUP
+  # --------------------------------------------------------------------------
+  phase_2:
+    id: "PHASE-2"
+    name: "Structure Setup"
+    description: "Criar estrutura de suporte no ClickUp"
+    duration: "2-3 hours"
+    tier: 1
+    executor: "@clickup-architect"
+
+    objectives:
+      - "Criar estrutura de folders/lists"
+      - "Configurar pipeline de tickets"
+      - "Definir custom fields"
+      - "Criar views de atendimento"
+
+    activities:
+      - step: 1
+        action: "Criar estrutura ClickUp"
+        template: |
+          ## Estrutura de Suporte - ClickUp
+
+          ```
+          📁 SPACE: Suporte
+          │
+          ├── 📂 FOLDER: 📥 Inbox
+          │   ├── 📋 LIST: Novos Tickets
+          │   ├── 📋 LIST: WhatsApp
+          │   ├── 📋 LIST: Email
+          │   └── 📋 LIST: Chat/Form
+          │
+          ├── 📂 FOLDER: 🎫 Pipeline de Atendimento
+          │   ├── 📋 LIST: Triagem
+          │   ├── 📋 LIST: Em Atendimento
+          │   ├── 📋 LIST: Aguardando Cliente
+          │   ├── 📋 LIST: Escalado
+          │   └── 📋 LIST: Resolvido
+          │
+          ├── 📂 FOLDER: 🔴 Críticos
+          │   ├── 📋 LIST: Bugs Críticos
+          │   ├── 📋 LIST: Acessos Bloqueados
+          │   └── 📋 LIST: Financeiro Urgente
+          │
+          ├── 📂 FOLDER: 📚 Knowledge Base
+          │   ├── 📋 LIST: FAQs
+          │   ├── 📋 LIST: Tutoriais
+          │   ├── 📋 LIST: Troubleshooting
+          │   └── 📋 LIST: Templates de Resposta
+          │
+          ├── 📋 LIST: 📊 Dashboard & Métricas
+          │
+          └── 📋 LIST: ⚙️ Configurações & SLAs
+          ```
+
+      - step: 2
+        action: "Configurar Custom Fields"
+        fields:
+          ticket_info:
+            - name: "Ticket ID"
+              type: "Auto Number"
+              prefix: "TKT-"
+            - name: "Canal de Origem"
+              type: "Dropdown"
+              options: ["WhatsApp", "Email", "Chat", "Form", "Phone"]
+            - name: "Categoria"
+              type: "Dropdown"
+              options: ["Acesso", "Conteúdo", "Financeiro", "Técnico", "Comercial", "Sugestão"]
+            - name: "Prioridade"
+              type: "Dropdown"
+              options: ["🔴 Crítica", "🟠 Alta", "🟡 Média", "🟢 Baixa"]
+
+          customer_info:
+            - name: "Nome do Cliente"
+              type: "Text"
+            - name: "Email"
+              type: "Email"
+            - name: "WhatsApp"
+              type: "Phone"
+            - name: "Produto"
+              type: "Dropdown"
+              options: ["{lista de produtos}"]
+            - name: "Tipo de Cliente"
+              type: "Dropdown"
+              options: ["Aluno", "Lead", "Ex-aluno", "VIP"]
+
+          sla_tracking:
+            - name: "SLA Primeira Resposta"
+              type: "Date/Time"
+            - name: "SLA Resolução"
+              type: "Date/Time"
+            - name: "Tempo para Primeira Resposta"
+              type: "Formula"
+            - name: "Tempo para Resolução"
+              type: "Formula"
+            - name: "SLA Status"
+              type: "Dropdown"
+              options: ["✅ Dentro", "⚠️ Em Risco", "🔴 Violado"]
+
+          resolution:
+            - name: "Agente"
+              type: "People"
+            - name: "Resolução"
+              type: "Long Text"
+            - name: "Satisfação"
+              type: "Rating"
+            - name: "Tags"
+              type: "Labels"
+
+      - step: 3
+        action: "Criar Views"
+        views:
+          - name: "Pipeline de Tickets"
+            type: "Board"
+            group_by: "Status"
+            columns: ["Ticket ID", "Cliente", "Categoria", "Prioridade", "Agente", "SLA Status"]
+
+          - name: "Meus Tickets"
+            type: "List"
+            filter: "Agente = @me"
+            sort: "Prioridade DESC, SLA Primeira Resposta ASC"
+
+          - name: "SLA em Risco"
+            type: "List"
+            filter: "SLA Status = Em Risco OR SLA Status = Violado"
+            sort: "SLA Resolução ASC"
+
+          - name: "Por Canal"
+            type: "Board"
+            group_by: "Canal de Origem"
+
+          - name: "Dashboard de Suporte"
+            type: "Dashboard"
+            widgets:
+              - "Tickets Abertos (Number)"
+              - "Tempo Médio de Resposta (Number)"
+              - "SLA Compliance (Percentage)"
+              - "Tickets por Categoria (Pie)"
+              - "Tickets por Agente (Bar)"
+              - "Satisfação Média (Rating)"
+              - "Tickets por Dia (Line)"
+
+      - step: 4
+        action: "Criar Templates de Resposta"
+        templates:
+          - name: "Primeiro Contato"
+            content: |
+              Olá {nome}! 👋
+
+              Recebemos sua mensagem e já estamos trabalhando nela.
+              Seu ticket é: {ticket_id}
+
+              Vamos te retornar em até {sla_time}.
+
+              Abraços,
+              Equipe de Suporte
+
+          - name: "Solicitação de Informações"
+            content: |
+              Olá {nome}!
+
+              Para dar continuidade ao atendimento, precisamos de algumas informações:
+              - {info_1}
+              - {info_2}
+
+              Assim que tiver, é só responder aqui!
+
+          - name: "Resolução"
+            content: |
+              Olá {nome}!
+
+              Seu chamado foi resolvido! ✅
+
+              {resolução}
+
+              Se precisar de mais alguma coisa, é só chamar.
+
+              Abraços!
+
+    checkpoint:
+      id: "SUPPORT_STR_001"
+      name: "Structure Complete"
+      criteria:
+        - "Folders/lists criados"
+        - "Custom fields configurados"
+        - "Views funcionando"
+        - "Templates prontos"
+      human_review: true
+      message: "Validar estrutura no ClickUp"
+
+    outputs:
+      - "clickup_structure"
+      - "custom_fields"
+      - "views"
+      - "response_templates"
+
+  # --------------------------------------------------------------------------
+  # PHASE 3: AUTOMATIONS & INTEGRATIONS
+  # --------------------------------------------------------------------------
+  phase_3:
+    id: "PHASE-3"
+    name: "Automations & Integrations"
+    description: "Configurar automações e integrações"
+    duration: "2-3 hours"
+    tier: 2
+    executor: "@automation-engineer"
+
+    objectives:
+      - "Criar automações de triagem"
+      - "Configurar SLA tracking"
+      - "Integrar canais de entrada"
+      - "Configurar notificações"
+
+    activities:
+      - step: 1
+        action: "Automações de Triagem"
+        automations:
+          - name: "Auto-Priorização"
+            trigger: "Ticket created"
+            conditions:
+              - if: "Categoria = Acesso"
+                then: "Set Prioridade = Alta"
+              - if: "Categoria = Financeiro"
+                then: "Set Prioridade = Alta"
+              - if: "Contains 'urgente'"
+                then: "Set Prioridade = Alta"
+
+          - name: "Auto-Atribuição"
+            trigger: "Ticket created"
+            conditions:
+              - if: "Categoria = Técnico"
+                then: "Assign to @tech-support"
+              - if: "Categoria = Financeiro"
+                then: "Assign to @finance-team"
+              - default: "Assign to next available"
+
+          - name: "Auto-SLA"
+            trigger: "Ticket created"
+            actions:
+              - "Calculate SLA based on Prioridade"
+              - "Set SLA Primeira Resposta"
+              - "Set SLA Resolução"
+
+      - step: 2
+        action: "SLA Monitoring"
+        automations:
+          - name: "SLA Warning"
+            trigger: "SLA Primeira Resposta in 30 minutes"
+            conditions:
+              - if: "Status != Em Atendimento"
+                then:
+                  - "Change SLA Status = Em Risco"
+                  - "Notify @agente"
+                  - "Notify @supervisor"
+
+          - name: "SLA Violation"
+            trigger: "SLA Primeira Resposta passed"
+            conditions:
+              - if: "Status != Em Atendimento"
+                then:
+                  - "Change SLA Status = Violado"
+                  - "Escalate to @manager"
+                  - "Log SLA violation"
+
+          - name: "SLA Resolution Warning"
+            trigger: "SLA Resolução in 2 hours"
+            conditions:
+              - if: "Status != Resolvido"
+                then:
+                  - "Notify @agente"
+                  - "Add comment: SLA em risco"
+
+      - step: 3
+        action: "Integrações de Canal"
+        integrations:
+          whatsapp:
+            tool: "WAHA / n8n"
+            flow:
+              - "Mensagem recebida"
+              - "Create ticket in ClickUp"
+              - "Extract: nome, telefone, mensagem"
+              - "Set Canal = WhatsApp"
+              - "Send auto-reply with ticket ID"
+
+          email:
+            tool: "Email automation / Zapier"
+            flow:
+              - "Email recebido em suporte@"
+              - "Create ticket in ClickUp"
+              - "Extract: nome, email, assunto, corpo"
+              - "Set Canal = Email"
+              - "Send auto-reply"
+
+          form:
+            tool: "ClickUp Form"
+            flow:
+              - "Form submitted"
+              - "Auto-create ticket"
+              - "Map fields to custom fields"
+
+      - step: 4
+        action: "Notificações"
+        notifications:
+          - name: "New Ticket Alert"
+            trigger: "Ticket created with Prioridade = Crítica"
+            channels: ["Slack", "WhatsApp @manager"]
+
+          - name: "Daily Summary"
+            trigger: "Every day 18:00"
+            content: "Tickets abertos, SLA compliance, pendências"
+
+          - name: "Weekly Report"
+            trigger: "Every Monday 09:00"
+            content: "Métricas da semana, top issues, improvements"
+
+    checkpoint:
+      id: "SUPPORT_AUT_001"
+      name: "Automations Live"
+      criteria:
+        - "Triagem automática funcionando"
+        - "SLA tracking ativo"
+        - "Integrações de canal conectadas"
+        - "Notificações configuradas"
+      human_review: true
+      message: "Testar automações com tickets reais"
+
+    outputs:
+      - "automations_configured"
+      - "sla_tracking"
+      - "channel_integrations"
+      - "notification_rules"
+
+  # --------------------------------------------------------------------------
+  # PHASE 4: KNOWLEDGE BASE
+  # --------------------------------------------------------------------------
+  phase_4:
+    id: "PHASE-4"
+    name: "Knowledge Base"
+    description: "Criar base de conhecimento"
+    duration: "2-3 hours"
+    tier: 2
+    executor: "@support-operations-specialist"
+
+    objectives:
+      - "Estruturar knowledge base"
+      - "Criar FAQs principais"
+      - "Documentar troubleshooting"
+      - "Criar guias de onboarding"
+
+    activities:
+      - step: 1
+        action: "Estruturar categorias"
+        categories:
+          - name: "Acesso & Login"
+            articles:
+              - "Como acessar a área de membros"
+              - "Esqueci minha senha"
+              - "Erro ao fazer login"
+              - "Como trocar de email"
+
+          - name: "Pagamentos"
+            articles:
+              - "Formas de pagamento aceitas"
+              - "Como solicitar reembolso"
+              - "Parcelamento"
+              - "Nota fiscal"
+
+          - name: "Conteúdo"
+            articles:
+              - "Como assistir às aulas"
+              - "Download de materiais"
+              - "Certificado"
+              - "Dúvidas sobre o conteúdo"
+
+          - name: "Técnico"
+            articles:
+              - "Requisitos mínimos"
+              - "Vídeo não carrega"
+              - "App mobile"
+              - "Problemas comuns"
+
+      - step: 2
+        action: "Criar FAQs principais"
+        faq_template: |
+          ## {pergunta}
+
+          **Resposta rápida:**
+          {resposta_curta}
+
+          **Passo a passo:**
+          1. {passo_1}
+          2. {passo_2}
+          3. {passo_3}
+
+          **Ainda com dúvidas?**
+          Entre em contato: {canal}
+
+      - step: 3
+        action: "Documentar troubleshooting"
+        troubleshooting_template: |
+          ## Problema: {problema}
+
+          **Sintomas:**
+          - {sintoma_1}
+          - {sintoma_2}
+
+          **Causa provável:**
+          {causa}
+
+          **Solução:**
+          1. {solução_passo_1}
+          2. {solução_passo_2}
+
+          **Se não resolver:**
+          Escalar para: {tier}
+
+      - step: 4
+        action: "Criar onboarding guides"
+        guides:
+          - name: "Primeiro Acesso"
+            steps:
+              - "Verificar email de boas-vindas"
+              - "Criar senha"
+              - "Acessar área de membros"
+              - "Começar primeiro módulo"
+
+          - name: "Aproveitando ao Máximo"
+            steps:
+              - "Baixar materiais"
+              - "Participar da comunidade"
+              - "Agendar estudos"
+              - "Tirar dúvidas"
+
+    checkpoint:
+      id: "SUPPORT_KB_001"
+      name: "Knowledge Base Ready"
+      criteria:
+        - "Categorias estruturadas"
+        - "FAQs principais criados"
+        - "Troubleshooting documentado"
+        - "Guides de onboarding prontos"
+      human_review: true
+      message: "Validar conteúdo da KB"
+
+    outputs:
+      - "knowledge_base_structure"
+      - "faq_articles"
+      - "troubleshooting_docs"
+      - "onboarding_guides"
+
+  # --------------------------------------------------------------------------
+  # PHASE 5: TRAINING & HANDOFF
+  # --------------------------------------------------------------------------
+  phase_5:
+    id: "PHASE-5"
+    name: "Training & Handoff"
+    description: "Treinar equipe e entregar sistema"
+    duration: "1-2 hours"
+    tier: 3
+    executor: "@pm-orchestrator"
+
+    objectives:
+      - "Documentar processos"
+      - "Treinar equipe de suporte"
+      - "Definir métricas e metas"
+      - "Entregar sistema operacional"
+
+    activities:
+      - step: 1
+        action: "Criar documentação"
+        documents:
+          - "Manual do Atendente"
+          - "Playbook de Escalação"
+          - "Guia de Tom de Voz"
+          - "Métricas e Metas"
+
+      - step: 2
+        action: "Treinar equipe"
+        training_modules:
+          - "Como receber e classificar tickets"
+          - "Como usar a Knowledge Base"
+          - "Como responder com qualidade"
+          - "Quando e como escalar"
+          - "Como medir performance"
+
+      - step: 3
+        action: "Definir métricas"
+        metrics:
+          operational:
+            - name: "Tempo Médio de Primeira Resposta"
+              target: "< 2h"
+            - name: "Tempo Médio de Resolução"
+              target: "< 24h"
+            - name: "SLA Compliance"
+              target: "> 95%"
+            - name: "First Contact Resolution"
+              target: "> 70%"
+
+          quality:
+            - name: "CSAT (Satisfação)"
+              target: "> 4.5/5"
+            - name: "NPS"
+              target: "> 50"
+            - name: "Tickets Reabertos"
+              target: "< 5%"
+
+          efficiency:
+            - name: "Tickets por Agente/Dia"
+              target: "15-25"
+            - name: "Self-Service Rate"
+              target: "> 60%"
+
+      - step: 4
+        action: "Handoff"
+        checklist:
+          - "Sistema funcionando"
+          - "Equipe treinada"
+          - "Métricas definidas"
+          - "KB populada"
+          - "Integrações ativas"
+
+    checkpoint:
+      id: "SUPPORT_HND_001"
+      name: "Support System Live"
+      criteria:
+        - "Documentação completa"
+        - "Equipe treinada"
+        - "Métricas configuradas"
+        - "Sistema em operação"
+      human_review: true
+      message: "Confirmar que suporte está operacional"
+
+    outputs:
+      - "documentation"
+      - "training_complete"
+      - "metrics_dashboard"
+      - "system_operational"
+
+# ============================================================================
+# ERROR HANDLING
+# ============================================================================
+
+error_handling:
+  on_phase_failure:
+    - log_error: true
+    - notify_stakeholders: true
+    - create_remediation_task: true
+    - halt_workflow: false
+
+  on_checkpoint_failure:
+    - log_failure_reason: true
+    - return_to_previous_phase: true
+    - max_retries: 2
+
+# ============================================================================
+# COMPLETION SIGNALS
+# ============================================================================
+
+completion_signal: "<promise>COMPLETE:SUPPORT-SETUP</promise>"
+checkpoint_signal: "<promise>CHECKPOINT:PHASE-X</promise>"
+blocked_signal: "<promise>BLOCKED:SUPPORT-X</promise>"
+
+# ============================================================================
+# AGENT ASSIGNMENTS
+# ============================================================================
+
+agents_by_phase:
+  PHASE-1:
+    primary:
+      - "support-operations-specialist"
+    secondary:
+      - "pm-orchestrator"
+
+  PHASE-2:
+    primary:
+      - "clickup-architect"
+    secondary:
+      - "support-operations-specialist"
+
+  PHASE-3:
+    primary:
+      - "automation-engineer"
+    secondary:
+      - "clickup-architect"
+
+  PHASE-4:
+    primary:
+      - "support-operations-specialist"
+    secondary:
+      - "pm-orchestrator"
+
+  PHASE-5:
+    primary:
+      - "pm-orchestrator"
+    secondary:
+      - "support-operations-specialist"
+
+# ============================================================================
+# QUALITY CHECKLIST
+# ============================================================================
+
+quality_checklist:
+  requirements:
+    - "[ ] Tipos de ticket mapeados"
+    - "[ ] SLAs definidos"
+    - "[ ] Canais identificados"
+    - "[ ] Fluxo documentado"
+
+  structure:
+    - "[ ] Folders/lists criados"
+    - "[ ] Custom fields configurados"
+    - "[ ] Views funcionando"
+    - "[ ] Templates de resposta prontos"
+
+  automations:
+    - "[ ] Triagem automática funcionando"
+    - "[ ] SLA tracking ativo"
+    - "[ ] Integrações de canal conectadas"
+    - "[ ] Notificações configuradas"
+
+  knowledge_base:
+    - "[ ] Categorias estruturadas"
+    - "[ ] FAQs principais criados"
+    - "[ ] Troubleshooting documentado"
+    - "[ ] Guides de onboarding prontos"
+
+  handoff:
+    - "[ ] Documentação completa"
+    - "[ ] Equipe treinada"
+    - "[ ] Métricas definidas"
+    - "[ ] Sistema em operação"
+
+# ============================================================================
+# SQUAD INTEGRATIONS
+# ============================================================================
+
+squad_integrations:
+  comercial-natalia-tanaka:
+    description: "Suporte comercial e vendas"
+    touchpoints:
+      - "Leads com dúvidas pré-venda"
+      - "Upsell/cross-sell oportunidades"
+      - "Feedback de clientes"
+
+  full-stack-dev:
+    description: "Bugs e features"
+    touchpoints:
+      - "Report de bugs"
+      - "Feature requests"
+      - "Escalação técnica"
+
+  saas-operations-specialist:
+    description: "Operações SaaS"
+    touchpoints:
+      - "Issues de produto"
+      - "Onboarding técnico"
+      - "Integrações"

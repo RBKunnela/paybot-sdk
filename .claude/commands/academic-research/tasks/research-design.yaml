@@ -1,0 +1,95 @@
+name: research-design
+description: Design comprehensive research study with methodology, timeline, and ethics approval plan
+category: strategy
+agent: research-chief
+priority: high
+estimated_duration: 5-7 days
+
+inputs:
+  - research_topic:
+      type: string
+      description: Topic or domain of research
+      required: true
+  - research_type:
+      type: enum
+      options: [qualitative, quantitative, mixed_methods, systematic_review]
+      description: Type of research methodology
+      required: true
+  - target_journal:
+      type: string
+      description: Target journal or conference for publication
+      required: false
+
+outputs:
+  - research_design_document:
+      type: file
+      format: markdown
+      description: Complete research design with RQs, methodology, timeline
+  - ethics_application_draft:
+      type: file
+      format: markdown
+      description: Draft IRB/ethics committee application
+
+steps:
+  - step: 1
+    name: literature_gap_analysis
+    description: Review existing literature to identify gaps
+    agent: literature-reviewer
+    estimated_duration: 2 days
+
+  - step: 2
+    name: formulate_research_questions
+    description: Define clear, focused research questions and hypotheses
+    agent: research-chief
+    estimated_duration: 1 day
+
+  - step: 3
+    name: design_methodology
+    description: Design study methodology (participants, procedures, analysis)
+    agent: research-chief
+    estimated_duration: 2 days
+
+  - step: 4
+    name: create_timeline
+    description: Create realistic project timeline with milestones
+    agent: research-chief
+    estimated_duration: 0.5 days
+
+  - step: 5
+    name: ethics_considerations
+    description: Prepare ethics approval documentation
+    agent: research-chief
+    estimated_duration: 1-2 days
+
+success_criteria:
+  - Clear research questions defined
+  - Methodology is sound and replicable
+  - Timeline is realistic with buffer
+  - Ethics considerations addressed
+  - Target journal/conference identified
+
+deliverables:
+  - Research design document (5-10 pages)
+  - Methodology section draft
+  - Timeline with milestones
+  - Ethics application draft (if needed)
+
+best_practices:
+  - Start with broad literature review to identify gaps
+  - Ensure research questions are SMART (Specific, Measurable, Achievable, Relevant, Time-bound)
+  - Consider feasibility (time, resources, access to participants)
+  - Pre-register study protocol when possible (PROSPERO for systematic reviews)
+  - Get IRB/ethics approval BEFORE data collection
+
+common_pitfalls:
+  - Vague research questions that can't be answered
+  - Methodology too ambitious for timeline/resources
+  - Ignoring ethical considerations until too late
+  - Not considering potential limitations upfront
+
+tags:
+  - research
+  - methodology
+  - strategy
+  - ethics
+  - planning

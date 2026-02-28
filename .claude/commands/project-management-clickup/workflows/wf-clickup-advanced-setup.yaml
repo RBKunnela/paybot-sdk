@@ -1,0 +1,368 @@
+# ============================================================================
+# WORKFLOW: CLICKUP ADVANCED SETUP
+# ============================================================================
+# Workflow para configurar ClickUp avançado para uma área do negócio
+# ============================================================================
+
+name: wf-clickup-advanced-setup
+version: 1.0.0
+description: >
+  Workflow completo para estruturar ClickUp de forma avançada, incluindo
+  hierarquia PARA, custom fields, views, automações e dashboards.
+
+orchestrator: "@pm-orchestrator"
+primary_executor: "@clickup-architect"
+
+# ============================================================================
+# PHASES
+# ============================================================================
+
+phases:
+  # --------------------------------------------------------------------------
+  # PHASE 1: ASSESSMENT
+  # --------------------------------------------------------------------------
+  phase_1:
+    name: "Assessment"
+    description: "Avaliar necessidades e situação atual"
+    duration: "15-30 min"
+    executor: "@clickup-architect"
+
+    objectives:
+      - "Entender a área a ser estruturada"
+      - "Avaliar estrutura atual (se existir)"
+      - "Identificar necessidades específicas"
+      - "Definir escopo do setup"
+
+    activities:
+      - step: 1
+        action: "Coletar requisitos"
+        questions:
+          - "Qual área será estruturada?"
+          - "Quantas pessoas vão usar?"
+          - "Já existe algo no ClickUp?"
+          - "Quais são os principais workflows?"
+          - "Que tipo de relatórios precisa?"
+
+      - step: 2
+        action: "Avaliar estrutura existente"
+        checklist:
+          - "Spaces existentes"
+          - "Organização atual"
+          - "O que está funcionando"
+          - "O que precisa melhorar"
+
+      - step: 3
+        action: "Definir scope"
+        output: "Documento de escopo do setup"
+
+    checkpoint:
+      id: "CAS_ASS_001"
+      name: "Assessment Complete"
+      blocking: true
+
+    outputs:
+      - "requirements_document"
+      - "current_state_analysis"
+      - "setup_scope"
+
+  # --------------------------------------------------------------------------
+  # PHASE 2: ARCHITECTURE
+  # --------------------------------------------------------------------------
+  phase_2:
+    name: "Architecture"
+    description: "Desenhar a arquitetura da estrutura"
+    duration: "30-45 min"
+    executor: "@clickup-architect"
+
+    objectives:
+      - "Aplicar método PARA"
+      - "Definir hierarquia completa"
+      - "Planejar custom fields"
+      - "Definir statuses"
+
+    activities:
+      - step: 1
+        action: "Desenhar hierarquia PARA"
+        template: |
+          ## Estrutura Proposta
+
+          📁 WORKSPACE
+          │
+          ├── {Space 1} (Area/Project)
+          │   ├── {Folder 1}
+          │   │   ├── {List 1}
+          │   │   └── {List 2}
+          ...
+
+      - step: 2
+        action: "Definir status workflows"
+        per_list: true
+        template: |
+          List: {nome}
+          Statuses:
+            - {emoji} {status 1}
+            - {emoji} {status 2}
+            ...
+
+      - step: 3
+        action: "Planejar custom fields"
+        categories:
+          - "Campos universais"
+          - "Campos por contexto"
+          - "Campos de tracking"
+
+      - step: 4
+        action: "Definir naming conventions"
+        patterns:
+          - "Spaces: CAPS com emoji"
+          - "Folders: Title Case"
+          - "Lists: Title Case"
+          - "Tasks: Verbo + Objeto"
+
+      - step: 5
+        action: "Validar arquitetura"
+        with: "Stakeholders"
+
+    checkpoint:
+      id: "CAS_ARC_001"
+      name: "Architecture Approved"
+      blocking: true
+
+    outputs:
+      - "structure_diagram"
+      - "status_definitions"
+      - "custom_fields_spec"
+      - "naming_conventions"
+
+  # --------------------------------------------------------------------------
+  # PHASE 3: SETUP
+  # --------------------------------------------------------------------------
+  phase_3:
+    name: "Setup"
+    description: "Criar a estrutura no ClickUp"
+    duration: "45-90 min"
+    executor: "@clickup-architect"
+
+    objectives:
+      - "Criar Spaces e Folders"
+      - "Criar Lists com statuses"
+      - "Configurar custom fields"
+      - "Criar views essenciais"
+
+    activities:
+      - step: 1
+        action: "Criar Spaces"
+        checklist:
+          - "Nome conforme convenção"
+          - "Descrição adicionada"
+          - "Ícone/cor configurado"
+          - "Permissões definidas"
+
+      - step: 2
+        action: "Criar Folders e Lists"
+        checklist:
+          - "Hierarquia conforme arquitetura"
+          - "Statuses configurados por List"
+          - "Descrições adicionadas"
+
+      - step: 3
+        action: "Configurar Custom Fields"
+        levels:
+          - "Workspace level (universais)"
+          - "Space level (área específica)"
+          - "Folder/List level (contexto)"
+
+      - step: 4
+        action: "Criar Views"
+        essential_views:
+          - "List View (padrão)"
+          - "Board View (Kanban)"
+          - "Calendar View"
+          - "Views customizadas por necessidade"
+
+    checkpoint:
+      id: "CAS_SET_001"
+      name: "Setup Complete"
+      blocking: true
+
+    outputs:
+      - "spaces_created"
+      - "lists_configured"
+      - "fields_added"
+      - "views_created"
+
+  # --------------------------------------------------------------------------
+  # PHASE 4: AUTOMATION
+  # --------------------------------------------------------------------------
+  phase_4:
+    name: "Automation"
+    description: "Configurar automações e integrações"
+    duration: "30-60 min"
+    executor: "@automation-engineer"
+
+    objectives:
+      - "Criar automações de workflow"
+      - "Configurar time tracking"
+      - "Setup de dependencies"
+      - "Configurar notificações"
+
+    activities:
+      - step: 1
+        action: "Automações de status"
+        patterns:
+          - "Notificação por mudança de status"
+          - "Auto-assign por tipo"
+          - "Cascata de status"
+
+      - step: 2
+        action: "Automações de prazo"
+        patterns:
+          - "Alerta de deadline"
+          - "Escalonamento de atraso"
+          - "Auto-set due date"
+
+      - step: 3
+        action: "Time Tracking"
+        config:
+          - "Enable por Space"
+          - "Auto-start/stop por status"
+          - "Rollup para parent"
+
+      - step: 4
+        action: "Dependencies"
+        setup:
+          - "Habilitar por Space"
+          - "Automações de desbloqueio"
+
+    checkpoint:
+      id: "CAS_AUT_001"
+      name: "Automation Complete"
+      blocking: false
+
+    outputs:
+      - "automations_created"
+      - "time_tracking_configured"
+      - "dependencies_enabled"
+
+  # --------------------------------------------------------------------------
+  # PHASE 5: TEMPLATES & DOCS
+  # --------------------------------------------------------------------------
+  phase_5:
+    name: "Templates & Documentation"
+    description: "Criar templates e documentação"
+    duration: "20-40 min"
+    executor: "@clickup-architect"
+
+    objectives:
+      - "Criar task templates"
+      - "Criar checklists padrão"
+      - "Documentar estrutura"
+      - "Criar guia de uso"
+
+    activities:
+      - step: 1
+        action: "Criar Task Templates"
+        for: "Tipos de tarefa recorrentes"
+        includes:
+          - "Título padrão"
+          - "Description template"
+          - "Checklists"
+          - "Custom fields preenchidos"
+
+      - step: 2
+        action: "Criar Checklists"
+        for: "Processos padronizados"
+
+      - step: 3
+        action: "Documentar no ClickUp Docs"
+        content:
+          - "Visão geral da estrutura"
+          - "Quando usar cada List"
+          - "Como criar tarefas"
+          - "Convenções de uso"
+
+    checkpoint:
+      id: "CAS_TPL_001"
+      name: "Templates Complete"
+      blocking: false
+
+    outputs:
+      - "task_templates"
+      - "checklists"
+      - "documentation"
+
+  # --------------------------------------------------------------------------
+  # PHASE 6: TRAINING & HANDOFF
+  # --------------------------------------------------------------------------
+  phase_6:
+    name: "Training & Handoff"
+    description: "Treinar usuários e entregar"
+    duration: "20-30 min"
+    executor: "@pm-orchestrator"
+
+    objectives:
+      - "Apresentar estrutura"
+      - "Treinar usuários"
+      - "Coletar feedback inicial"
+      - "Definir próximos passos"
+
+    activities:
+      - step: 1
+        action: "Apresentação da estrutura"
+        topics:
+          - "O que foi criado"
+          - "Onde encontrar o quê"
+          - "Principais views"
+
+      - step: 2
+        action: "Quick training"
+        hands_on:
+          - "Criar uma tarefa"
+          - "Usar as views"
+          - "Encontrar informações"
+
+      - step: 3
+        action: "Coletar feedback"
+        questions:
+          - "Faz sentido a organização?"
+          - "Falta alguma coisa?"
+          - "Alguma dúvida?"
+
+      - step: 4
+        action: "Definir owner"
+        responsibility:
+          - "Manutenção da estrutura"
+          - "Onboarding de novos usuários"
+          - "Ajustes necessários"
+
+    checkpoint:
+      id: "CAS_HND_001"
+      name: "Handoff Complete"
+      blocking: false
+
+    outputs:
+      - "training_completed"
+      - "feedback_collected"
+      - "owner_assigned"
+
+# ============================================================================
+# QUALITY CHECKLIST
+# ============================================================================
+
+quality_checklist:
+  structure:
+    - "Segue método PARA"
+    - "Naming conventions consistentes"
+    - "Hierarquia lógica e escalável"
+    - "Não tem duplicação"
+
+  configuration:
+    - "Statuses adequados para cada workflow"
+    - "Custom fields cobrem necessidades"
+    - "Views úteis criadas"
+    - "Automações funcionando"
+
+  documentation:
+    - "Estrutura documentada"
+    - "Templates criados"
+    - "Usuários treinados"

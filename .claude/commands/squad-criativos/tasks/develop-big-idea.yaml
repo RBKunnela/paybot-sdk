@@ -1,0 +1,81 @@
+# Task: Develop Big Idea
+# Squad: squAId-criaTTivados / storytelling
+# Responsável: big-idea-architect
+
+metadata:
+  name: "develop-big-idea"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "storytelling"
+  responsavel: "big-idea-architect"
+  tipo: task
+
+descricao: |
+  Desenvolvimento da Big Idea criativa através de divergência e validação
+  contra os 3 Domínios. Deve dramatizar o diferencial (I), expressar
+  significado (II) e gerar assets reconhecíveis (III).
+
+entrada:
+  - campo: brand_strategy_document
+    tipo: string
+    origem: "build-brand-essence"
+    obrigatorio: true
+    descricao: "Estratégia de marca"
+  - campo: differentiation_strategy
+    tipo: string
+    origem: "map-differentiators"
+    obrigatorio: true
+    descricao: "Diferenciais e Brand Promise"
+
+saida:
+  - campo: big_idea
+    tipo: string
+    destino: "select-narrative-framework / produce-creative-brief"
+    persistido: true
+    descricao: "Big Idea aprovada com validação 3 domínios"
+
+passos:
+  1:
+    nome: "Analisar Conector de Marca"
+    descricao: "Definir eixo: institucional, mercadológica, empregadora, pessoal ou sintética"
+    agente: "creative-brief-analyst"
+  2:
+    nome: "Mapear emoções-alvo"
+    descricao: "Emoções primárias e secundárias (Panksepp/Plutchik)"
+    agente: "narrative-designer"
+  3:
+    nome: "Gerar conceitos divergentes"
+    descricao: "Brainstorm de 5-10 conceitos criativos"
+    agente: "big-idea-architect"
+  4:
+    nome: "Filtrar Domínio I"
+    descricao: "O conceito dramatiza o diferencial substantivo?"
+    agente: "big-idea-architect"
+  5:
+    nome: "Filtrar Domínio II"
+    descricao: "O conceito expressa significado simbólico?"
+    agente: "big-idea-architect"
+  6:
+    nome: "Filtrar Domínio III"
+    descricao: "O conceito gera assets reconhecíveis?"
+    agente: "big-idea-architect"
+  7:
+    nome: "Selecionar Big Idea"
+    descricao: "Escolher conceito que passa nos 3 filtros"
+    agente: "creative-director"
+  8:
+    nome: "Articular em uma frase"
+    descricao: "Sintetizar Big Idea em uma frase poderosa"
+    agente: "concept-writer"
+
+checklist:
+  - "[ ] Emoções-alvo mapeadas"
+  - "[ ] 5+ conceitos gerados"
+  - "[ ] Validação 3 domínios feita"
+  - "[ ] Big Idea articulada em 1 frase"
+  - "[ ] Conceito memorável e acionável"
+
+criterios_aceitacao:
+  - "Big Idea passa nos 3 filtros de domínio"
+  - "Articulável em uma frase"
+  - "Expansível para múltiplos formatos"

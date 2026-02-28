@@ -1,0 +1,561 @@
+# Fontes de Pesquisa & Referência — Search & Insights
+# Catálogo curado de fontes autorizadas para pesquisa de marca
+# Curadoria: Edu Garretano
+
+id: fontes-pesquisa-referencia
+name: "Fontes de Pesquisa & Referência"
+version: "1.0"
+autor: "Edu Garretano"
+
+descricao: |
+  Catálogo curado de relatórios, publicações e fontes de dados
+  autorizadas para uso pela squad Search & Insights.
+  Todas as fontes são públicas ou de acesso aberto.
+  Servem para alimentar trend-analyst, data-miner e insight-synthesizer
+  com dados reais, atualizados e de alta credibilidade.
+
+# ═══════════════════════════════════════════════════════════════════
+# PARTE 1: RELATÓRIOS ANUAIS DE REFERÊNCIA
+# ═══════════════════════════════════════════════════════════════════
+relatorios_anuais:
+  descricao: |
+    Relatórios de publicação periódica que devem ser consultados
+    sempre que disponíveis. São fontes primárias de tendências
+    e comportamento para o ano vigente.
+
+  lista:
+    - nome: "The Future 100"
+      publicador: "VML (ex-Wunderman Thompson)"
+      tipo: "Tendências globais"
+      frequencia: "Anual"
+      conteudo: "100 tendências organizadas por categorias (cultura, tech, saúde, beleza, food, retail, luxo, etc.)"
+      uso: "Alimentar trend-analyst com macrotendências globais"
+      buscar_via: "EXA"
+
+    - nome: "Future 100 LATAM"
+      publicador: "VML"
+      tipo: "Tendências América Latina"
+      frequencia: "Anual"
+      conteudo: "Adaptação regional do Future 100 com foco em mercados latino-americanos"
+      uso: "Contextualizar tendências para marcas brasileiras e latinas"
+      buscar_via: "EXA"
+
+    - nome: "AI at Work"
+      publicador: "VML"
+      tipo: "IA e trabalho"
+      frequencia: "Anual"
+      conteudo: "Impacto da IA no trabalho, criatividade e marketing"
+      uso: "Entender como IA está mudando o mercado e comportamento profissional"
+      buscar_via: "EXA"
+
+    - nome: "Outboxers Reports"
+      publicador: "Outboxers"
+      tipo: "Tendências e comportamento"
+      frequencia: "Periódico"
+      reports:
+        - "Macrotendências"
+        - "Comportamento"
+        - "Marketing Trends"
+        - "Social & Digital Trends"
+      uso: "Tendências de comportamento, marketing digital e social media"
+      buscar_via: "EXA"
+
+    - nome: "Little Book of Trends"
+      publicador: "Momentum Worldwide"
+      tipo: "Tendências de experiência"
+      frequencia: "Anual"
+      conteudo: "Tendências em experiências de marca e consumer engagement"
+      uso: "Inspirar experiências e touchpoints de marca"
+      buscar_via: "EXA"
+
+    - nome: "Culture & Trends Report"
+      publicador: "YouTube"
+      tipo: "Cultura digital e vídeo"
+      frequencia: "Anual"
+      conteudo: "Tendências de consumo de vídeo, criadores, formatos emergentes"
+      uso: "Entender cultura digital e comportamento de audiência"
+      buscar_via: "EXA"
+
+    - nome: "The Performance Playbook"
+      publicador: "Meta"
+      tipo: "Performance e mídia social"
+      frequencia: "Periódico"
+      conteudo: "Melhores práticas de performance em Meta Ads, formatos que funcionam"
+      uso: "Alimentar growth-ops com dados de performance"
+      buscar_via: "EXA"
+
+    - nome: "Solving the Consumer Equation 2030"
+      publicador: "The Future Laboratory"
+      tipo: "Futurismo e consumo"
+      frequencia: "Estudo especial"
+      conteudo: "Projeções de comportamento do consumidor até 2030"
+      uso: "Visão de longo prazo para posicionamento estratégico"
+      buscar_via: "EXA"
+
+# ═══════════════════════════════════════════════════════════════════
+# PARTE 2: FONTES ABERTAS AUTORIZADAS
+# ═══════════════════════════════════════════════════════════════════
+fontes_abertas:
+  descricao: |
+    Fontes de acesso público organizadas por área de conhecimento.
+    Cada fonte deve ser buscada via EXA ou acessada diretamente.
+    Priorizar fontes mais recentes (últimos 12 meses).
+
+  # ─────────────────────────────────────────────────────────────────
+  tendencias_comportamento:
+    nome: "Tendências e Comportamento"
+    relevancia: "trend-analyst, insight-synthesizer"
+    fontes:
+      - nome: "TrendWatching"
+        url_base: "trendwatching.com"
+        tipo: "Tendências de inovação e consumo"
+      - nome: "WGSN (conteúdo público + Generational Insights)"
+        url_base: "wgsn.com"
+        tipo: "Trend forecasting, generational insights (Gen Z, Millennials, Alpha)"
+        nota: "Lente geracional essencial para audience-mapper (DEENEA)"
+      - nome: "PSFK"
+        url_base: "psfk.com"
+        tipo: "Inovação e retail trends"
+      - nome: "Springwise"
+        url_base: "springwise.com"
+        tipo: "Inovações e startups"
+      - nome: "JWT Intelligence"
+        url_base: "jwtintelligence.com"
+        tipo: "Consumer intelligence"
+      - nome: "VML Intelligence"
+        url_base: "vml.com"
+        tipo: "Marketing e creative intelligence"
+      - nome: "The Future Laboratory (público)"
+        url_base: "thefuturelaboratory.com"
+        tipo: "Futurismo e tendências culturais"
+      - nome: "Canvas8"
+        url_base: "canvas8.com"
+        tipo: "Behavioral insights"
+      - nome: "Stylus"
+        url_base: "stylus.com"
+        tipo: "Trend advisory"
+      - nome: "Outboxers"
+        url_base: "outboxers.com.br"
+        tipo: "Tendências e comportamento (BR)"
+      - nome: "Cool Hunting"
+        url_base: "coolhunting.com"
+        tipo: "Design, cultura e tendências"
+      - nome: "GWI (GlobalWebIndex)"
+        url_base: "gwi.com"
+        tipo: "Dados de audiência digital: comportamento online, uso de plataformas, perfis"
+        nota: "Essencial para audience-mapper (DEENEA) — entender QUEM é o público"
+      - nome: "SXSW (South by Southwest)"
+        url_base: "sxsw.com"
+        tipo: "Cobertura de conferências: tech + cultura + criatividade. Sinais fracos de inovação"
+
+  # ─────────────────────────────────────────────────────────────────
+  midia_cultura:
+    nome: "Mídia e Cultura"
+    relevancia: "trend-analyst, social-listener, content-ops"
+    fontes:
+      - nome: "Pinterest Predicts"
+        url_base: "business.pinterest.com/pinterest-predicts"
+        tipo: "Previsão de tendências visuais e comportamentais"
+      - nome: "YouTube Culture & Trends"
+        url_base: "youtube.com/trends"
+        tipo: "Tendências de vídeo e cultura digital"
+      - nome: "Meta — The Performance Playbook"
+        url_base: "facebook.com/business"
+        tipo: "Performance e formatos de mídia social"
+      - nome: "Spotify Culture Next"
+        url_base: "ads.spotify.com/culture-next"
+        tipo: "Tendências de áudio e cultura jovem"
+      - nome: "TikTok What's Next Report"
+        url_base: "tiktok.com/business/whats-next"
+        tipo: "Tendências de short video e creators"
+      - nome: "Snapchat Trends"
+        url_base: "forbusiness.snapchat.com"
+        tipo: "Tendências de AR e Gen Z"
+      - nome: "Reddit Insights"
+        url_base: "redditforbusiness.com"
+        tipo: "Conversas e comunidades online"
+
+  # ─────────────────────────────────────────────────────────────────
+  negocios_inovacao:
+    nome: "Negócios e Inovação"
+    relevancia: "research-director, data-miner, trend-analyst"
+    fontes:
+      - nome: "McKinsey & Company"
+        url_base: "mckinsey.com"
+        tipo: "Estratégia, consumer e industry insights"
+      - nome: "MIT Technology Review"
+        url_base: "technologyreview.com"
+        tipo: "Tecnologia e inovação"
+      - nome: "Harvard Business Review"
+        url_base: "hbr.org"
+        tipo: "Management, estratégia, liderança"
+      - nome: "Accenture Life Trends"
+        url_base: "accenture.com/life-trends"
+        tipo: "Tendências de vida e consumo"
+      - nome: "Deloitte Insights"
+        url_base: "deloitte.com/insights"
+        tipo: "Indústria, tecnologia, economia"
+      - nome: "PwC Global Consumer Insights"
+        url_base: "pwc.com/consumerinsights"
+        tipo: "Comportamento global do consumidor"
+      - nome: "EY Future Consumer Index"
+        url_base: "ey.com/futureconsumerindex"
+        tipo: "Índice de comportamento do consumidor"
+
+  # ─────────────────────────────────────────────────────────────────
+  moda_luxo_lifestyle:
+    nome: "Moda, Luxo e Lifestyle"
+    relevancia: "trend-analyst, data-miner (setores específicos)"
+    fontes:
+      - nome: "Vogue Business"
+        url_base: "voguebusiness.com"
+        tipo: "Negócios de moda e luxo"
+      - nome: "Luxury Society"
+        url_base: "luxurysociety.com"
+        tipo: "Indústria de luxo"
+      - nome: "Business of Fashion (BoF)"
+        url_base: "businessoffashion.com"
+        tipo: "Indústria da moda"
+      - nome: "Skift"
+        url_base: "skift.com"
+        tipo: "Travel e hospitality"
+      - nome: "Jing Daily"
+        url_base: "jingdaily.com"
+        tipo: "Luxo e consumo na China/Ásia"
+      - nome: "Highsnobiety"
+        url_base: "highsnobiety.com"
+        tipo: "Streetwear, cultura e tendências"
+      - nome: "Lyst Index"
+        url_base: "lyst.com/data"
+        tipo: "Ranking de marcas e produtos de moda"
+      - nome: "Dazed"
+        url_base: "dazeddigital.com"
+        tipo: "Cultura jovem e arte"
+      - nome: "i-D Magazine"
+        url_base: "i-d.vice.com"
+        tipo: "Leitura estética, sensibilidade jovem, moda e cultura visual"
+        nota: "Referência para storYOURtelling (art-director) — aesthetic reading"
+      - nome: "Nowness"
+        url_base: "nowness.com"
+        tipo: "Arte, cultura e lifestyle premium"
+      - nome: "The Impression"
+        url_base: "theimpression.com"
+        tipo: "Fashion e design contemporâneo"
+
+  # ─────────────────────────────────────────────────────────────────
+  comunicacao_branding:
+    nome: "Comunicação e Branding"
+    relevancia: "insight-synthesizer, creative-director, brand-director"
+    fontes:
+      - nome: "Fast Company"
+        url_base: "fastcompany.com"
+        tipo: "Inovação, design e business"
+      - nome: "Forbes"
+        url_base: "forbes.com"
+        tipo: "Negócios, branding e empreendedorismo"
+      - nome: "The Drum"
+        url_base: "thedrum.com"
+        tipo: "Marketing, advertising e media"
+      - nome: "Adweek"
+        url_base: "adweek.com"
+        tipo: "Publicidade e marketing"
+      - nome: "Campaign"
+        url_base: "campaignlive.co.uk"
+        tipo: "Campanhas e criatividade global"
+      - nome: "Contagious"
+        url_base: "contagious.com"
+        tipo: "Campanhas inovadoras e estratégia"
+      - nome: "Trendland"
+        url_base: "trendland.com"
+        tipo: "Design, arte e tendências visuais"
+      - nome: "AIGA Eye on Design"
+        url_base: "eyeondesign.aiga.org"
+        tipo: "Design, identidade visual, tipografia e tendências visuais"
+        nota: "Referência para UNNIKO (design-system-architect, identity-architect)"
+
+  # ─────────────────────────────────────────────────────────────────
+  instituicoes_think_tanks:
+    nome: "Instituições e Think Tanks Globais"
+    relevancia: "trend-analyst (STEEP analysis), research-director"
+    fontes:
+      - nome: "World Economic Forum (WEF)"
+        url_base: "weforum.org"
+        tipo: "Economia global, futuro do trabalho, tecnologia"
+      - nome: "OECD"
+        url_base: "oecd.org"
+        tipo: "Dados econômicos e sociais globais"
+      - nome: "UNESCO"
+        url_base: "unesco.org"
+        tipo: "Cultura, educação e patrimônio"
+      - nome: "Ipsos Global Trends"
+        url_base: "ipsos.com"
+        tipo: "Pesquisa de opinião e tendências globais"
+      - nome: "Pew Research Center"
+        url_base: "pewresearch.org"
+        tipo: "Dados demográficos, opinião pública, mídia"
+      - nome: "Euromonitor International"
+        url_base: "euromonitor.com"
+        tipo: "Market intelligence e consumer trends"
+
+  # ─────────────────────────────────────────────────────────────────
+  fontes_brasileiras:
+    nome: "Fontes Brasileiras (Essenciais)"
+    relevancia: "TODOS os agentes de Search & Insights"
+    prioridade: "ALTA — essenciais para marcas brasileiras"
+    fontes:
+      - nome: "Consumoteca"
+        url_base: "consumoteca.com.br"
+        tipo: "Comportamento do consumidor brasileiro"
+      - nome: "Box1824"
+        url_base: "box1824.com.br"
+        tipo: "Tendências, comportamento e juventude"
+      - nome: "Think Eva"
+        url_base: "thinkeva.com.br"
+        tipo: "Diversidade, gênero e inclusão"
+      - nome: "AlmapBBDO Trends"
+        url_base: "almapbbdo.com.br"
+        tipo: "Tendências de comunicação e criatividade"
+      - nome: "Globo Insights"
+        url_base: "gente.globo.com"
+        tipo: "Dados de audiência e comportamento brasileiro"
+      - nome: "Meio & Mensagem"
+        url_base: "meioemensagem.com.br"
+        tipo: "Marketing, mídia e comunicação (BR)"
+      - nome: "YouPix"
+        url_base: "youpix.com.br"
+        tipo: "Creators economy e influência digital"
+      - nome: "Grupo Consumidor Moderno"
+        url_base: "consumidormoderno.com.br"
+        tipo: "CX, atendimento e experiência do consumidor"
+      - nome: "Opinion Box"
+        url_base: "opinionbox.com"
+        tipo: "Pesquisa de mercado e consumer insights"
+      - nome: "Exame Trends"
+        url_base: "exame.com"
+        tipo: "Negócios e tendências econômicas"
+      - nome: "Troiano Branding"
+        url_base: "troiano.com.br"
+        tipo: "Branding, estratégia e valor de marca"
+      - nome: "HSR Specialist Researchers"
+        url_base: "hsrspecialist.com.br"
+        tipo: "Pesquisa especializada de mercado"
+      - nome: "The Shift"
+        url_base: "theshift.info"
+        tipo: "Sustentabilidade e ESG"
+      - nome: "Estadão Summit"
+        url_base: "estadao.com.br"
+        tipo: "Dados e análises de mercado brasileiro"
+      - nome: "Propmark"
+        url_base: "propmark.com.br"
+        tipo: "Publicidade e propaganda (BR)"
+      - nome: "Brain (Grupo Boticário)"
+        url_base: "grupoboticario.com.br"
+        tipo: "Inovação em beleza e consumer insights"
+      - nome: "O Futuro das Coisas"
+        url_base: "ofuturodascoisas.com"
+        tipo: "Futurismo e inovação (BR)"
+
+  # ─────────────────────────────────────────────────────────────────
+  dados_instituicoes_publicas_br:
+    nome: "Dados e Instituições Públicas Brasileiras"
+    relevancia: "data-miner, trend-analyst (STEEP — dimensão econômica e social)"
+    prioridade: "ALTA — dados factuais para fundamentar análises"
+    fontes:
+      - nome: "IBGE"
+        url_base: "ibge.gov.br"
+        tipo: "Dados demográficos, econômicos e sociais"
+      - nome: "Sebrae"
+        url_base: "sebrae.com.br"
+        tipo: "Pequenas empresas, empreendedorismo, setores"
+      - nome: "FGV"
+        url_base: "fgv.br"
+        tipo: "Índices econômicos, confiança, conjuntura"
+      - nome: "Ipea"
+        url_base: "ipea.gov.br"
+        tipo: "Pesquisa econômica aplicada"
+      - nome: "Datafolha"
+        url_base: "datafolha.folha.uol.com.br"
+        tipo: "Pesquisa de opinião e comportamento"
+      - nome: "CNI"
+        url_base: "portaldaindustria.com.br"
+        tipo: "Indústria, competitividade, conjuntura"
+      - nome: "SPC Brasil"
+        url_base: "spcbrasil.org.br"
+        tipo: "Crédito, consumo e inadimplência"
+      - nome: "NielsenIQ Brasil"
+        url_base: "nielseniq.com"
+        tipo: "Dados de varejo e consumo (BR)"
+      - nome: "NielsenIQ Global Reports"
+        url_base: "nielseniq.com"
+        tipo: "Dados globais de varejo, consumo e tendências de compra"
+        nota: "Relatórios públicos e análises globais — complemento à versão BR"
+      - nome: "Kantar Brasil"
+        url_base: "kantar.com"
+        tipo: "Mídia, consumer e brand equity"
+      - nome: "Kantar Global Reports"
+        url_base: "kantar.com"
+        tipo: "BrandZ, Media Reactions, Sustainability Sector Index — dados globais"
+        nota: "Relatórios públicos globais — complemento à versão BR"
+      - nome: "Serasa Experian"
+        url_base: "serasaexperian.com.br"
+        tipo: "Dados de crédito, economia e consumo"
+
+# ═══════════════════════════════════════════════════════════════════
+# PARTE 3: REGRAS DE USO
+# ═══════════════════════════════════════════════════════════════════
+regras_uso:
+  prioridade_busca:
+    1: "Relatórios anuais de referência (mais atuais disponíveis)"
+    2: "Fontes brasileiras (quando marca é brasileira ou atua no Brasil)"
+    3: "Fontes por categoria relevante ao segmento do cliente"
+    4: "Instituições e think tanks para STEEP analysis"
+    5: "Dados e instituições públicas para fundamentação"
+
+  como_acessar:
+    metodo_primario: "EXA Web Search (mcp__docker-gateway__web_search_exa)"
+    metodo_secundario: "Apify RAG Browser (mcp__docker-gateway__apify-slash-rag-web-browser)"
+    metodo_terciario: "Acesso direto ao site (desk research)"
+
+  citacao:
+    regra: "Toda informação usada deve citar fonte, URL e data de acesso"
+    formato: "Fonte: {nome} ({url}) — Acessado em {data}"
+
+  atualizacao:
+    regra: "Sempre buscar a edição mais recente dos relatórios anuais"
+    periodo: "Priorizar dados dos últimos 12 meses"
+
+# ═══════════════════════════════════════════════════════════════════
+# MAPEAMENTO: FONTE → AGENTE
+# ═══════════════════════════════════════════════════════════════════
+mapeamento_agentes:
+  trend_analyst:
+    primarias:
+      - "Relatórios anuais (todos)"
+      - "Tendências e comportamento (todos)"
+      - "Mídia e cultura (todos)"
+      - "Instituições e think tanks (STEEP)"
+    uso: "STEEP analysis, trend scoring, convention mapping"
+
+  data_miner:
+    primarias:
+      - "Negócios e inovação (dados de mercado)"
+      - "Dados e instituições públicas BR (fundamentação)"
+      - "Fontes brasileiras (market data)"
+      - "Moda, luxo e lifestyle (se segmento aplicável)"
+    uso: "Market data, competitive intelligence, desk research"
+
+  social_listener:
+    primarias:
+      - "Mídia e cultura (plataformas)"
+      - "Fontes brasileiras (YouPix, Consumoteca)"
+    uso: "Contextualizar dados de social listening"
+
+  insight_synthesizer:
+    primarias:
+      - "Comunicação e branding (referências criativas)"
+      - "Fontes brasileiras (Troiano, Consumoteca)"
+    uso: "Enriquecer insights com referências e benchmarks"
+
+  research_director:
+    todas: true
+    uso: "Definir quais fontes priorizar para cada projeto"
+
+# ═══════════════════════════════════════════════════════════════════
+# ESTATÍSTICAS
+# ═══════════════════════════════════════════════════════════════════
+# ═══════════════════════════════════════════════════════════════════
+# PARTE 4: LENTES DE PESQUISA (Cross-Squad)
+# ═══════════════════════════════════════════════════════════════════
+lentes_pesquisa:
+  descricao: |
+    Lentes de pesquisa são TIPOS DE INFORMAÇÃO que os agentes devem
+    saber buscar nas fontes acima. Não são fontes, mas sim filtros
+    e ângulos de análise que cruzam múltiplas sub-squads.
+
+  geracional:
+    nome: "Lente Geracional"
+    descricao: "Analisar dados pela ótica de Gen Z, Millennials, Gen Alpha"
+    agentes:
+      - "audience-mapper (DEENEA) — segmentação de personas por geração"
+      - "trend-analyst (Search & Insights) — tendências por faixa geracional"
+    fontes_prioritarias: ["WGSN Generational", "GWI", "Spotify Culture Next", "TikTok Trends"]
+    o_que_buscar:
+      - "Diferenças de comportamento entre gerações"
+      - "Plataformas e canais preferidos por geração"
+      - "Valores e prioridades que mudam por faixa etária"
+      - "Linguagem e códigos culturais geracionais"
+
+  emocional:
+    nome: "Lente de Padrões Emocionais Emergentes"
+    descricao: "Detectar mudanças nos padrões emocionais e afetivos do público"
+    agentes:
+      - "brand-personality-architect (DEENEA) — arquétipos e personalidade"
+      - "insight-synthesizer (Search & Insights) — insights emocionais"
+      - "audience-mapper (DEENEA) — tension points"
+    fontes_prioritarias: ["GWI", "Consumoteca", "Box1824", "Pew Research"]
+    o_que_buscar:
+      - "Mudanças em ansiedades, aspirações e medos coletivos"
+      - "Novos códigos afetivos em comunicação"
+      - "Shifting de emoções associadas a categorias"
+      - "Tensões culturais emergentes"
+
+  cultural:
+    nome: "Lente de Trending Topics e Shifts Culturais"
+    descricao: "Identificar temas emergentes, códigos afetivos e mudanças culturais"
+    agentes:
+      - "trend-analyst (Search & Insights) — STEEP social dimension"
+      - "social-listener (Search & Insights) — trending topics"
+    fontes_prioritarias: ["Reddit", "TikTok Trends", "YouTube Culture", "SXSW"]
+    o_que_buscar:
+      - "Trending topics com crescimento acelerado"
+      - "Movimentos meméticos e virais"
+      - "Shifts culturais (ex: quiet luxury, deinfluencing)"
+      - "Códigos visuais e estéticos emergentes"
+
+  linguistica:
+    nome: "Lente Linguística"
+    descricao: "Detectar mudanças na linguagem que revelam comportamento"
+    agentes:
+      - "verbal-identity-specialist (UNNIKO) — vocabulário e naming"
+      - "copywriter (storYOURtelling) — tom e linguagem"
+      - "social-listener (Search & Insights) — linguagem natural do público"
+    fontes_prioritarias: ["Reddit", "TikTok", "Twitter/X", "Consumoteca"]
+    o_que_buscar:
+      - "Gírias e termos novos que revelam mudanças comportamentais"
+      - "Como diferentes gerações se expressam"
+      - "Linguagem natural vs linguagem de marca"
+      - "Termos que estão surgindo ou morrendo na categoria"
+
+# ═══════════════════════════════════════════════════════════════════
+# MAPEAMENTO CROSS-SQUAD
+# ═══════════════════════════════════════════════════════════════════
+cross_squad:
+  descricao: |
+    Algumas fontes e lentes servem sub-squads além de Search & Insights.
+    Este mapeamento garante que os agentes certos acessem os dados certos.
+
+  deenea:
+    audience_mapper: ["GWI", "WGSN Generational", "Consumoteca", "Box1824"]
+    brand_personality_architect: ["Lente emocional"]
+    lentes: ["geracional", "emocional"]
+
+  unniko:
+    design_system_architect: ["AIGA Eye on Design", "Dazed", "Trendland"]
+    verbal_identity_specialist: ["Lente linguística"]
+    lentes: ["linguistica"]
+
+  storytelling:
+    art_director: ["i-D Magazine", "Dazed", "AIGA Eye on Design", "Nowness"]
+    copywriter: ["Lente linguística"]
+    lentes: ["linguistica", "cultural"]
+
+# ═══════════════════════════════════════════════════════════════════
+# ESTATÍSTICAS
+# ═══════════════════════════════════════════════════════════════════
+stats:
+  relatorios_anuais: 8
+  categorias_fontes: 8
+  lentes_pesquisa: 4
+  total_fontes_abertas: 81
+  fontes_brasileiras: 29
+  fontes_globais: 52

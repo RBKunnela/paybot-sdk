@@ -1,0 +1,101 @@
+# Checklist: Checkpoint 2 - Posicionamento
+# Squad: squAId-criaTTivados / deenea
+
+metadata:
+  name: "checkpoint-2-posicionamento"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  tipo: checkpoint
+  responsavel: "strategy-director"
+
+descricao: |
+  Valida construção do Domínio II (Essência Simbólica)
+  antes de prosseguir para diferenciação visual/verbal.
+
+entregavel: "Brand Strategy Document"
+
+itens:
+  publico:
+    nome: "Público"
+    items:
+      - id: 1
+        descricao: "JTBD mapeado (Big/Medium/Small Jobs)"
+        obrigatorio: true
+        criterio: "3 níveis de jobs identificados com evidências"
+      - id: 2
+        descricao: "2-4 Personas definidas com profundidade"
+        obrigatorio: true
+        criterio: "Nome, contexto, JTBD, dores, aspirações"
+      - id: 3
+        descricao: "Empathy Maps completos"
+        obrigatorio: true
+        criterio: "Pensa, sente, faz, diz para cada persona"
+      - id: 4
+        descricao: "Tension Points identificados"
+        obrigatorio: true
+        criterio: "Conflitos internos que a marca pode resolver"
+
+  essencia:
+    nome: "Essência"
+    items:
+      - id: 5
+        descricao: "Ikigai da marca completo"
+        obrigatorio: true
+        criterio: "4 círculos preenchidos com interseções"
+      - id: 6
+        descricao: "Purpose/Mission/Vision definidos"
+        obrigatorio: true
+        criterio: "Cada um articulado em 1-2 frases"
+      - id: 7
+        descricao: "Propósito claro e inspirador"
+        obrigatorio: true
+        criterio: "Diferente de missão, vai além do lucro"
+
+  personalidade:
+    nome: "Personalidade"
+    items:
+      - id: 8
+        descricao: "Arquétipos selecionados e justificados"
+        obrigatorio: true
+        criterio: "Principal + secundário com justificativa"
+      - id: 9
+        descricao: "5 dimensões Aaker definidas"
+        obrigatorio: true
+        criterio: "Score para cada dimensão de personalidade"
+      - id: 10
+        descricao: "Postura Relacional definida"
+        obrigatorio: true
+        criterio: "Como a marca se relaciona com o público"
+
+  cultura:
+    nome: "Cultura"
+    items:
+      - id: 11
+        descricao: "Valores codificados com evidências"
+        obrigatorio: true
+        criterio: "Cada valor tem comportamento observável"
+      - id: 12
+        descricao: "Crenças fundamentais documentadas"
+        obrigatorio: false
+        criterio: "O que a marca acredita profundamente"
+
+  posicionamento:
+    nome: "Posicionamento"
+    items:
+      - id: 13
+        descricao: "Positioning Statement formulado"
+        obrigatorio: true
+        criterio: "Formato: Para X, Y é Z porque..."
+      - id: 14
+        descricao: "Score de validação >= 3.5/5"
+        obrigatorio: true
+        criterio: "Autenticidade, Diferenciação, Relevância, Coerência, Acionabilidade"
+      - id: 15
+        descricao: "Nenhum critério individual abaixo de 3"
+        obrigatorio: true
+        criterio: "Todos os 5 critérios >= 3"
+
+aprovacao:
+  score_minimo: 85
+  criterio: "85% obrigatórios + Positioning >= 3.5"
+  acao_rejeicao: "Retornar para DEENEA com critérios abaixo do threshold"

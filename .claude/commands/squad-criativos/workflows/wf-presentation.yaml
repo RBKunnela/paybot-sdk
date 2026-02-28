@@ -1,0 +1,352 @@
+# Workflow: Apresentação / Pitch
+# Caminho Criativo: PRESENTATION
+# Framework Central: Story Circle + Sparkline
+
+name: wf-presentation
+description: |
+  Workflow para criação de apresentações e pitch decks que
+  conectam e convencem. Ideal para pitches, keynotes, webinars.
+
+version: "1.0"
+caminho_criativo: "Presentation"
+duracao_estimada: "3-5 dias úteis"
+formato_final: "Deck + Roteiro de fala"
+
+# ═══════════════════════════════════════════════════════════════════
+# PRÉ-REQUISITOS
+# ═══════════════════════════════════════════════════════════════════
+prerequisites:
+  obrigatorios:
+    - "Objetivo da apresentação"
+    - "Audiência definida"
+    - "Tempo disponível"
+    - "Contexto (evento, reunião, pitch)"
+
+  recomendados:
+    - "Brand Guidelines"
+    - "Dados/números relevantes"
+    - "Histórias/cases"
+
+# ═══════════════════════════════════════════════════════════════════
+# TIPOS DE APRESENTAÇÃO
+# ═══════════════════════════════════════════════════════════════════
+tipos:
+  pitch_investidor:
+    duracao: "5-15 minutos"
+    foco: "Problema, solução, tração, ask"
+    estrutura: "Problem-Solution-Market-Team-Ask"
+
+  keynote:
+    duracao: "15-45 minutos"
+    foco: "Inspirar e educar"
+    estrutura: "Story Circle + 3 pontos principais"
+
+  webinar:
+    duracao: "30-60 minutos"
+    foco: "Educar e converter"
+    estrutura: "Hook-Content-CTA"
+
+  pitch_vendas:
+    duracao: "15-30 minutos"
+    foco: "Demonstrar valor e fechar"
+    estrutura: "Diagnóstico-Solução-Prova-Proposta"
+
+# ═══════════════════════════════════════════════════════════════════
+# FASES DO WORKFLOW
+# ═══════════════════════════════════════════════════════════════════
+phases:
+
+  # FASE 1: BRIEFING E ESTRATÉGIA
+  - phase: 1
+    name: "Briefing e Estratégia"
+    duracao: "0.5 dia"
+    agente_principal: creative-brief-analyst
+
+    tasks:
+      - task: analyze-presentation-brief
+        description: "Analisar briefing"
+        perguntas:
+          - "Qual é o objetivo (informar/persuadir/inspirar)?"
+          - "Quem é a audiência?"
+          - "Quanto tempo?"
+          - "Qual é o contexto?"
+          - "Qual é o CTA?"
+        output: "Briefing analisado"
+
+      - task: define-type
+        description: "Definir tipo de apresentação"
+        output: "Tipo definido"
+
+      - task: define-one-thing
+        description: "Definir A ÚNICA coisa que audiência deve lembrar"
+        criterio: "Se lembrarem só uma coisa, qual seria?"
+        output: "One Thing"
+
+    checkpoint:
+      question: "Estratégia clara?"
+      criteria:
+        - "Objetivo único"
+        - "One Thing definido"
+        - "Audiência entendida"
+
+  # FASE 2: ESTRUTURA NARRATIVA
+  - phase: 2
+    name: "Estrutura Narrativa"
+    duracao: "0.5-1 dia"
+    agente_principal: narrative-designer
+
+    tasks:
+      - task: select-framework
+        description: "Selecionar framework narrativo"
+        opcoes:
+          story_circle:
+            quando: "Transformação, jornada"
+            estrutura: "8 passos"
+
+          sparkline:
+            quando: "Convencer, mudar perspectiva"
+            estrutura: "What Is ↔ What Could Be"
+
+          problem_solution:
+            quando: "Pitch de produto/startup"
+            estrutura: "Problema → Agitação → Solução"
+
+          three_acts:
+            quando: "Keynote, TED-style"
+            estrutura: "Setup → Conflito → Resolução"
+
+        output: "Framework selecionado"
+
+      - task: create-outline
+        description: "Criar outline da apresentação"
+        formato:
+          abertura: "Hook + Promessa (2-3 min)"
+          desenvolvimento: "3-5 pontos principais"
+          fechamento: "Resumo + CTA (2-3 min)"
+        output: "Outline"
+
+      - task: map-emotions
+        description: "Mapear arco emocional"
+        principio: "Variar energia a cada 10 minutos"
+        output: "Emotion Map"
+
+    checkpoint:
+      question: "Estrutura sólida?"
+      criteria:
+        - "Outline completo"
+        - "3-5 pontos máximo"
+        - "Arco emocional planejado"
+
+  # FASE 3: BIG IDEA E CONCEITO
+  - phase: 3
+    name: "Big Idea e Conceito"
+    duracao: "0.5 dia"
+    agente_principal: big-idea-architect
+
+    tasks:
+      - task: develop-big-idea
+        description: "Desenvolver Big Idea da apresentação"
+        criterio: "Uma frase que resume a mensagem central"
+        output: "Big Idea"
+
+      - task: create-through-line
+        description: "Criar linha narrativa que conecta tudo"
+        output: "Through Line"
+
+    checkpoint:
+      question: "Big Idea clara?"
+      criteria:
+        - "Cabe em uma frase"
+        - "Conecta com One Thing"
+
+  # FASE 4: ROTEIRO E CONTEÚDO
+  - phase: 4
+    name: "Roteiro e Conteúdo"
+    duracao: "1-2 dias"
+    agente_principal: copywriter
+    validador: brand-voice-director
+
+    tasks:
+      - task: write-opening
+        description: "Escrever abertura"
+        regra: "NÃO comece com 'obrigado' ou 'é um prazer'"
+        recomendado: "Comece com história, dado chocante, ou pergunta"
+        tempo: "2-3 minutos"
+        output: "Abertura"
+
+      - task: write-main-content
+        description: "Desenvolver conteúdo principal"
+        para_cada_ponto:
+          - "Afirmação clara"
+          - "História/exemplo"
+          - "Dados (se aplicável)"
+          - "Transição"
+        output: "Conteúdo"
+
+      - task: write-stories
+        description: "Desenvolver 2-3 histórias"
+        tipos:
+          - "História pessoal (abertura ou fechamento)"
+          - "Case/exemplo (prova)"
+          - "Metáfora (explicação)"
+        output: "Histórias"
+
+      - task: write-closing
+        description: "Escrever fechamento"
+        regra: "NÃO termine com 'obrigado'"
+        recomendado: "Call to action + Frase memorável"
+        output: "Fechamento"
+
+      - task: validate-voice
+        agente: brand-voice-director
+        description: "Validar voz e tom"
+        output: "Aprovação"
+
+    checkpoint:
+      question: "Roteiro completo?"
+      criteria:
+        - "Abertura impactante"
+        - "2-3 histórias"
+        - "Fechamento com CTA"
+
+  # FASE 5: DESIGN DO DECK
+  - phase: 5
+    name: "Design do Deck"
+    duracao: "1 dia"
+    agente_principal: art-director
+
+    tasks:
+      - task: define-visual-style
+        description: "Definir estilo visual"
+        principios:
+          - "Menos texto, mais visual"
+          - "1 ideia por slide"
+          - "Imagens de alta qualidade"
+          - "Consistência com brand"
+        output: "Visual Style"
+
+      - task: create-slides
+        description: "Criar slides"
+        tipos_slide:
+          titulo: "Grande, impactante"
+          conteudo: "Bullet points mínimos"
+          citacao: "Uma frase"
+          dados: "Um gráfico ou número"
+          imagem: "Full bleed"
+          divisoria: "Transição entre seções"
+        output: "Deck"
+
+      - task: create-speaker-notes
+        description: "Criar notas do apresentador"
+        conteudo:
+          - "Texto expandido"
+          - "Timing sugerido"
+          - "Transições"
+        output: "Speaker Notes"
+
+    checkpoint:
+      question: "Deck pronto?"
+      criteria:
+        - "Visual consistente"
+        - "1 ideia por slide"
+        - "Notes completas"
+
+  # FASE 6: VALIDAÇÃO
+  - phase: 6
+    name: "Validação Final"
+    duracao: "0.5 dia"
+    agente_principal: brand-voice-director
+
+    tasks:
+      - task: dry-run
+        description: "Simular apresentação"
+        verificar:
+          - "Timing total"
+          - "Fluxo narrativo"
+          - "Transições"
+        output: "Ajustes"
+
+      - task: final-review
+        description: "Revisão final"
+        output: "Aprovação"
+
+  # FASE 7: ENTREGA
+  - phase: 7
+    name: "Entrega"
+    duracao: "2 horas"
+    agente_principal: creative-brief-analyst
+
+    tasks:
+      - task: compile-package
+        description: "Compilar pacote final"
+        entregaveis:
+          - "Deck (PPT/Keynote/Google Slides)"
+          - "Speaker Notes"
+          - "Roteiro completo"
+          - "One-pager (resumo)"
+        output: "Presentation Package"
+
+    handoff:
+      destino: "Apresentador / Cliente"
+      dicas:
+        - "Ensaiar 3x mínimo"
+        - "Gravar e assistir"
+        - "Testar equipamento"
+
+# ═══════════════════════════════════════════════════════════════════
+# ENTREGÁVEIS
+# ═══════════════════════════════════════════════════════════════════
+deliverables:
+  - "Outline estruturado"
+  - "Big Idea"
+  - "Roteiro completo"
+  - "Deck visual"
+  - "Speaker Notes"
+  - "One-pager"
+
+# ═══════════════════════════════════════════════════════════════════
+# REGRAS DE OURO
+# ═══════════════════════════════════════════════════════════════════
+regras_ouro:
+  abertura:
+    fazer:
+      - "Começar com história"
+      - "Começar com pergunta"
+      - "Começar com dado chocante"
+    evitar:
+      - "Obrigado por estar aqui"
+      - "É um prazer"
+      - "Vou falar sobre..."
+
+  durante:
+    fazer:
+      - "Uma ideia por slide"
+      - "História a cada 10 minutos"
+      - "Variar energia"
+    evitar:
+      - "Ler os slides"
+      - "Muitos bullet points"
+      - "Monotonia"
+
+  fechamento:
+    fazer:
+      - "CTA claro"
+      - "Frase memorável"
+      - "Callback para abertura"
+    evitar:
+      - "Terminar com 'obrigado'"
+      - "Terminar com Q&A"
+      - "Arrastar o final"
+
+# ═══════════════════════════════════════════════════════════════════
+# DATA FILES
+# ═══════════════════════════════════════════════════════════════════
+data_files:
+  - data/storytelling-frameworks.yaml
+  - data/maslow-hierarchy.yaml
+  - data/attention-economy.yaml
+  - data/golden-sentence.yaml
+  # Frameworks curados (2026-02)
+  - data/virality-frameworks.yaml       # STEPPS para apresentações memoráveis
+  - data/hook-model-eyal.yaml           # Engajamento da audiência
+  - data/kahneman-dual-systems.yaml     # Sistema 1/2 para persuasão
