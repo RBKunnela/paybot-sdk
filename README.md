@@ -16,7 +16,7 @@ import { PayBotClient } from 'paybot-sdk';
 const client = new PayBotClient({
   apiKey: 'pb_test_...',
   botId: 'my-bot',
-  facilitatorUrl: 'https://facilitator.paybot.dev',
+  facilitatorUrl: 'https://api.paybotcore.com',
 });
 
 // Register your bot
@@ -137,8 +137,8 @@ For AI agent frameworks, use [paybot-mcp](https://github.com/RBKunnela/paybot-mc
 Run your own PayBot facilitator:
 
 ```bash
-git clone https://github.com/RBKunnela/paybot-app.git
-cd paybot-app
+git clone https://github.com/RBKunnela/paybot.git
+cd paybot
 npm install && npm run build && npm start
 ```
 
