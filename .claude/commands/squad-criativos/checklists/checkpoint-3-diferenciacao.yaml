@@ -1,0 +1,109 @@
+# Checklist: Checkpoint 3 - Diferenciação
+# Squad: squAId-criaTTivados / unniko
+
+metadata:
+  name: "checkpoint-3-diferenciacao"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  tipo: checkpoint
+  responsavel: "brand-director"
+
+descricao: |
+  Valida tradução da estratégia em identidade tangível
+  com diferenciais reais e assets distintivos.
+
+entregavel: "Brand Identity Document"
+
+itens:
+  auditoria:
+    nome: "Auditoria"
+    items:
+      - id: 1
+        descricao: "Diagnóstico nos 3 domínios completo"
+        obrigatorio: true
+        criterio: "Score 1-5 para cada domínio com justificativa"
+      - id: 2
+        descricao: "Gaps identificados e priorizados"
+        obrigatorio: true
+        criterio: "Gaps ordenados por impacto"
+      - id: 3
+        descricao: "Comparação competitiva feita"
+        obrigatorio: true
+        criterio: "Posicionamento relativo documentado"
+
+  diferenciais:
+    nome: "Diferenciais"
+    items:
+      - id: 4
+        descricao: "27 ordens da Taxonomia mapeadas"
+        obrigatorio: true
+        criterio: "Cada ordem avaliada com posição da marca"
+      - id: 5
+        descricao: "2-3 diferenciais por domínio selecionados"
+        obrigatorio: true
+        criterio: "Diferenciais específicos e concretos"
+      - id: 6
+        descricao: "Teste VURS passado"
+        obrigatorio: true
+        criterio: "Verdadeiro, Único, Relevante, Sustentável"
+      - id: 7
+        descricao: "Brand Promise definida e cumprível"
+        obrigatorio: true
+        criterio: "Promessa verificável com proof points"
+      - id: 8
+        descricao: "Proof Points documentados"
+        obrigatorio: true
+        criterio: "Evidências concretas para cada diferencial"
+
+  identidade_visual:
+    nome: "Identidade Visual"
+    items:
+      - id: 9
+        descricao: "Logo criado + variações"
+        obrigatorio: true
+        criterio: "Principal, reduzido, mono, negativo"
+      - id: 10
+        descricao: "Paleta de cores com justificativa"
+        obrigatorio: true
+        criterio: "Primárias, secundárias, neutras + psicologia"
+      - id: 11
+        descricao: "Tipografia selecionada"
+        obrigatorio: true
+        criterio: "Título, corpo, destaque"
+      - id: 12
+        descricao: "Elementos gráficos criados"
+        obrigatorio: false
+        criterio: "Ícones, patterns, texturas"
+
+  identidade_verbal:
+    nome: "Identidade Verbal"
+    items:
+      - id: 13
+        descricao: "Tom de Voz codificado (4 dimensões)"
+        obrigatorio: true
+        criterio: "Formal/casual, sério/engraçado, respeitoso/irreverente, entusiasta/objetivo"
+      - id: 14
+        descricao: "Vocabulário mapeado"
+        obrigatorio: true
+        criterio: "Palavras assinatura + palavras proibidas"
+      - id: 15
+        descricao: "Exemplos contextuais criados"
+        obrigatorio: true
+        criterio: "Mínimo 3 exemplos de aplicação do tom"
+
+  aplicacoes:
+    nome: "Aplicações"
+    items:
+      - id: 16
+        descricao: "Aplicações demonstradas"
+        obrigatorio: true
+        criterio: "Papelaria, digital, ambientação"
+      - id: 17
+        descricao: "Coerência visual-verbal validada"
+        obrigatorio: true
+        criterio: "Visual e verbal se complementam"
+
+aprovacao:
+  score_minimo: 90
+  criterio: "90% dos itens obrigatórios aprovados"
+  acao_rejeicao: "Retornar para UNNIKO especificando domínio com lacunas"

@@ -1,0 +1,102 @@
+# Template: ClickUp Space Structure
+# Used by: clickup-architect
+# Apply with: *apply-template
+
+templates:
+
+  infoprodutos:
+    name: "Estrutura para Negocio de Infoprodutos"
+    spaces:
+      - name: "LANCAMENTOS"
+        icon: "rocket"
+        category: "Projects"
+        folders:
+          - name: "[Template] Lancamento PLF"
+            lists: ["Pre-Pre-Lancamento", "Pre-Lancamento", "Lancamento", "Pos-Lancamento", "Metricas"]
+          - name: "[Template] Lancamento Perpetuo"
+            lists: ["Setup Inicial", "Funil Ativo", "Otimizacoes", "Metricas"]
+          - name: "Arquivo de Lancamentos"
+            lists: []
+        statuses: ["Backlog", "To Do", "Em Andamento", "Review", "Concluido", "Bloqueado"]
+
+      - name: "CONTEUDO"
+        icon: "pencil"
+        category: "Area"
+        folders:
+          - name: "YouTube"
+            lists: ["Ideias & Backlog", "Em Producao", "Publicados", "Calendario Editorial"]
+          - name: "Social Media"
+            lists: ["Feed", "Stories", "Reels", "Calendario"]
+          - name: "Blog/Newsletter"
+            lists: ["Rascunhos", "Publicados"]
+        statuses: ["Ideia", "Rascunho", "Em Producao", "Revisao", "Aprovado", "Publicado"]
+
+      - name: "COMERCIAL"
+        icon: "dollar"
+        category: "Area"
+        lists: ["Leads", "Oportunidades", "Clientes", "Metricas de Vendas"]
+        statuses: ["Novo Lead", "Contato Feito", "Negociando", "Proposta Enviada", "Fechado", "Perdido"]
+
+      - name: "OPERACOES"
+        icon: "gear"
+        category: "Area"
+        folders:
+          - name: "Processos"
+            lists: ["Ativos", "Em Revisao"]
+          - name: "Administrativo"
+            lists: ["Financeiro", "RH", "Juridico"]
+        statuses: ["Backlog", "To Do", "Em Andamento", "Review", "Concluido"]
+
+      - name: "SUPORTE"
+        icon: "headphones"
+        category: "Area"
+        lists: ["Tickets Abertos", "Em Atendimento", "Resolvidos", "FAQ / Knowledge Base"]
+        statuses: ["Novo", "Em Atendimento", "Aguardando Cliente", "Resolvido", "Fechado"]
+
+      - name: "RECURSOS"
+        icon: "book"
+        category: "Resources"
+        folders:
+          - name: "Templates"
+            lists: ["Copy", "Design", "Processos"]
+          - name: "SOPs"
+            lists: []
+          - name: "Brand Guidelines"
+            lists: []
+        statuses: ["Rascunho", "Ativo", "Arquivado"]
+
+      - name: "ARQUIVO"
+        icon: "archive"
+        category: "Archives"
+        folders:
+          - name: "Lancamentos Anteriores"
+            lists: []
+          - name: "Projetos Concluidos"
+            lists: []
+
+  saas:
+    name: "Estrutura para Produto SaaS"
+    spaces:
+      - name: "PRODUTO"
+        icon: "laptop"
+        category: "Area"
+        folders:
+          - name: "Roadmap"
+            lists: ["Backlog", "Proximas Releases", "Em Desenvolvimento"]
+          - name: "Sprints"
+            lists: ["Sprint Atual", "Sprint Review"]
+          - name: "Bugs"
+            lists: ["Triagem", "Em Correcao", "Resolvidos"]
+        statuses: ["Backlog", "Sprint", "Desenvolvendo", "Code Review", "Testing", "Deployed"]
+
+      - name: "CLIENTES"
+        icon: "users"
+        category: "Area"
+        lists: ["Onboarding", "Ativos", "Churn Risk", "Cancelados"]
+        statuses: ["Trial", "Ativo", "Em Risco", "Cancelado"]
+
+  naming_conventions:
+    spaces: "NOME EM CAPS"
+    folders: "Nome em Title Case"
+    lists: "Nome em Title Case"
+    tasks: "Verbo + Objeto (ex: Criar landing page)"

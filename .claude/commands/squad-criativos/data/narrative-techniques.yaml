@@ -1,0 +1,256 @@
+# Narrative Techniques - Técnicas Narrativas Específicas
+# Referência para narrative-designer, concept-writer, copywriter
+
+techniques:
+
+  # 1. In Media Res
+  in_media_res:
+    name: "In Media Res"
+    translation: "No meio das coisas"
+    origin: "Ilíada de Homero"
+
+    description: |
+      Começar a história no meio da ação, não no início cronológico.
+      Captura atenção imediata e cria curiosidade sobre "como chegamos aqui".
+
+    when_to_use:
+      - Quando o início é lento
+      - Para criar gancho imediato
+      - Quando contexto pode vir depois
+      - Em formatos curtos (social, ads)
+
+    examples:
+      - "Breaking Bad - começa com Walter de cueca no deserto"
+      - "Missão Impossível - começa na ação"
+      - "Anúncios que abrem com conflito"
+
+    application:
+      ads: "Comece com o problema/conflito"
+      social: "Primeiro frame = momento de tensão"
+      presentations: "Abra com o resultado surpreendente"
+
+  # 2. A Montanha (The Mountain)
+  the_mountain:
+    name: "A Montanha"
+    also_known_as: "Build-up Structure"
+
+    description: |
+      Construção gradual de tensão até o clímax,
+      seguida de resolução rápida.
+
+    structure:
+      - Estabelecimento do cenário
+      - Série de complicações crescentes
+      - Tensão aumenta progressivamente
+      - Clímax no pico
+      - Resolução breve
+
+    visual: |
+      /\
+      /  \
+      /    |
+      /     |
+      /______|
+
+    when_to_use:
+      - Histórias de superação
+      - Campanhas de lançamento
+      - Contagem regressiva
+
+    application:
+      video: "Build tension até reveal"
+      copy: "Escalar benefícios até CTA"
+
+  # 3. Sobreposição de Narrativas
+  nested_loops:
+    name: "Sobreposição de Narrativas / Nested Loops"
+
+    description: |
+      Múltiplas histórias que se conectam ou convergem.
+      Abre várias loops e fecha na ordem inversa (ou conecta todas no final).
+
+    structure:
+      - Abrir história A
+      - Abrir história B dentro de A
+      - Abrir história C dentro de B
+      - Fechar C
+      - Fechar B
+      - Fechar A (conectando todas)
+
+    when_to_use:
+      - Apresentações com múltiplos pontos
+      - Campanhas multi-personagem
+      - Demonstrar conexões inesperadas
+
+    example: |
+      "Inception usa múltiplas camadas de sonhos"
+      "TED Talks que abrem com anedota, vão para dados, voltam para anedota"
+
+  # 4. Falso Começo (False Start)
+  false_start:
+    name: "Falso Começo"
+    also_known_as: "Plot Twist Opening"
+
+    description: |
+      Começar a contar uma história aparentemente previsível,
+      então subverter expectativas completamente.
+
+    structure:
+      - Estabelecer narrativa familiar
+      - Criar expectativa de direção
+      - Quebrar completamente
+      - Revelar história real
+
+    when_to_use:
+      - Para surpreender audiência
+      - Questionar suposições
+      - Destacar diferencial inesperado
+      - Campanhas "não somos o que você pensa"
+
+    caution: "Use com moderação - pode frustrar se mal executado"
+
+  # 5. Show Don't Tell
+  show_dont_tell:
+    name: "Mostrar, Não Contar"
+
+    description: |
+      Demonstrar através de ação, diálogo e detalhe
+      em vez de explicar diretamente.
+
+    principle: |
+      ❌ "Ela estava com raiva"
+      ✅ "Ela bateu a porta com força suficiente para derrubar os quadros"
+
+    applications:
+      video:
+        - Mostre benefício em ação
+        - Use expressões faciais
+        - Detalhe visual que comunica
+
+      copy:
+        - Use verbos de ação
+        - Detalhes sensoriais
+        - Diálogos em vez de descrições
+
+      social:
+        - Antes/depois
+        - Demonstrações
+        - User-generated content
+
+    when_to_use: "Sempre que possível"
+
+  # 6. Loop Narrativo
+  narrative_loop:
+    name: "Loop Narrativo"
+
+    description: |
+      Criar perguntas ou tensões que mantêm audiência
+      engajada até a resolução.
+
+    types:
+      curiosity_gap:
+        description: "Criar pergunta que demanda resposta"
+        example: "O que aconteceu quando ele abriu a porta?"
+
+      open_loop:
+        description: "Iniciar história e pausar antes do fim"
+        example: "Antes de contar o resultado, preciso explicar..."
+
+      cliffhanger:
+        description: "Terminar em momento de tensão"
+        example: "E então, a ligação caiu..."
+
+    psychology: "O cérebro busca fechamento (Zeigarnik Effect)"
+
+    application:
+      series: "Cada episódio termina com loop aberto"
+      copy: "Headline abre loop, body fecha"
+      carousel: "Cada slide abre próximo"
+
+  # 7. Circularidade
+  circular_narrative:
+    name: "Narrativa Circular"
+
+    description: |
+      A história termina onde começou, mas com novo significado.
+      Mesma cena, nova perspectiva.
+
+    structure:
+      - Cena de abertura
+      - Jornada completa
+      - Retorno à mesma cena (transformada)
+
+    effect: |
+      Cria sensação de completude e demonstra transformação
+      através de contraste.
+
+    examples:
+      - "Forrest Gump - pena flutuando"
+      - "Inception - topo girando"
+      - "Comerciais que abrem e fecham no mesmo local"
+
+    when_to_use:
+      - Histórias de transformação
+      - Demonstrar "antes e depois"
+      - Criar sensação de completude
+
+  # 8. Ganchos de Curiosidade
+  curiosity_hooks:
+    name: "Ganchos de Curiosidade"
+
+    types:
+      question_hook:
+        description: "Abrir com pergunta provocativa"
+        example: "E se você pudesse voltar no tempo?"
+
+      bold_statement:
+        description: "Afirmação surpreendente ou controversa"
+        example: "Tudo que você sabe sobre marketing está errado"
+
+      story_hook:
+        description: "Início de história intrigante"
+        example: "Era 3 da manhã quando recebi a ligação"
+
+      number_hook:
+        description: "Estatística surpreendente"
+        example: "73% das empresas falham nos primeiros 5 anos"
+
+      contrast_hook:
+        description: "Justaposição inesperada"
+        example: "Ele era bilionário e infeliz"
+
+    application:
+      headlines: "Primeiro contato = gancho"
+      videos: "Primeiros 3 segundos"
+      emails: "Subject line"
+      social: "Primeira linha do caption"
+
+  # 9. Técnicas Complementares
+  additional_techniques:
+
+    rule_of_three:
+      description: "Apresentar em grupos de três"
+      application: "Três benefícios, três exemplos, três passos"
+      psychology: "Padrão satisfatório, memorável"
+
+    contrast:
+      description: "Justaposição de opostos"
+      application: "Antes/Depois, Problema/Solução"
+
+    repetition:
+      description: "Repetir elemento chave para ênfase"
+      application: "Frases marcantes, slogans"
+      example: "Yes we can. Yes we can. Yes we can."
+
+    sensory_detail:
+      description: "Ativar sentidos com descrição vívida"
+      application: "Copy que faz visualizar/sentir"
+
+    pacing:
+      description: "Controle do ritmo narrativo"
+      fast: "Frases curtas. Ação. Tensão."
+      slow: "Descrições elaboradas criam contemplação"
+
+    dialogue:
+      description: "Uso de falas diretas"
+      effect: "Traz intimidade e autenticidade"

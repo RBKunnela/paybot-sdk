@@ -1,0 +1,294 @@
+# Workflow: Vídeo Curto (Reels/TikTok/Shorts)
+# Caminho Criativo: ADVERTISING / DESIGN
+# Framework Central: 5BEATS
+
+name: wf-short-video
+description: |
+  Workflow otimizado para criação de vídeos curtos (15-60 segundos)
+  usando o framework 5BEATS. Ideal para Reels, TikTok, Shorts.
+
+version: "1.0"
+caminho_criativo: "Advertising + Design"
+duracao_estimada: "2-3 dias úteis"
+formato_final: "Vídeo vertical (9:16) 15-60 segundos"
+
+# ═══════════════════════════════════════════════════════════════════
+# PRÉ-REQUISITOS
+# ═══════════════════════════════════════════════════════════════════
+prerequisites:
+  obrigatorios:
+    - "Tema/Mensagem a comunicar"
+    - "Público-alvo"
+    - "Canal de destino (Reels/TikTok/Shorts)"
+
+  recomendados:
+    - "Brand Guidelines"
+    - "Golden Sentence da marca"
+    - "Referências de vídeos que funcionam"
+
+# ═══════════════════════════════════════════════════════════════════
+# FRAMEWORK CENTRAL: 5BEATS
+# ═══════════════════════════════════════════════════════════════════
+framework_5beats:
+  ordem_video_curto:
+    beat_1: "TRIGGER (Gancho) - 0-3s"
+    beat_2: "SETUP (Contexto) - 3-8s"
+    beat_3: "STRUGGLE (Tensão) - 8-15s"
+    beat_4: "BREAKTHROUGH (Virada) - 15-22s"
+    beat_5: "RESOLUTION (Fechamento) - 22-30s"
+
+  principio: |
+    Em vídeo curto, o TRIGGER vem primeiro.
+    Você tem 1-3 segundos para prender atenção.
+
+# ═══════════════════════════════════════════════════════════════════
+# FASES DO WORKFLOW
+# ═══════════════════════════════════════════════════════════════════
+phases:
+
+  # FASE 1: BRIEFING RÁPIDO
+  - phase: 1
+    name: "Briefing Rápido"
+    duracao: "2-4 horas"
+    agente_principal: creative-brief-analyst
+
+    tasks:
+      - task: quick-brief
+        description: "Analisar briefing do vídeo"
+        perguntas_essenciais:
+          - "Qual é a mensagem central?"
+          - "Quem é o público?"
+          - "Qual é o CTA desejado?"
+          - "Qual canal? (timing diferente)"
+        output: "Mini-briefing"
+
+      - task: define-axis
+        description: "Identificar eixo de marca"
+        mais_comum: "Marca Pessoal ou Mercadológica"
+        output: "Eixo definido"
+
+    checkpoint:
+      question: "Objetivo claro?"
+      criteria:
+        - "Mensagem em 1 frase"
+        - "Público definido"
+        - "Duração definida"
+
+  # FASE 2: ESTRUTURA 5BEATS
+  - phase: 2
+    name: "Estrutura 5BEATS"
+    duracao: "2-4 horas"
+    agente_principal: narrative-designer
+
+    tasks:
+      - task: write-5beats
+        description: "Escrever os 5 beats"
+        output:
+          trigger:
+            descricao: "Frase/cena que para o scroll"
+            tempo: "0-3 segundos"
+            criterio: "Impossível ignorar"
+
+          setup:
+            descricao: "Contexto mínimo"
+            tempo: "3-8 segundos"
+            criterio: "Situar rapidamente"
+
+          struggle:
+            descricao: "Tensão/problema"
+            tempo: "8-15 segundos"
+            criterio: "Gerar identificação"
+
+          breakthrough:
+            descricao: "Virada/solução"
+            tempo: "15-22 segundos"
+            criterio: "Momento 'aha'"
+
+          resolution:
+            descricao: "Fechamento + CTA"
+            tempo: "22-30 segundos"
+            criterio: "Memorável"
+
+      - task: map-emotion
+        description: "Definir arco emocional"
+        arco_tipico:
+          - "Curiosidade (SEEKING)"
+          - "Identificação (CARE)"
+          - "Tensão (FEAR/RAGE)"
+          - "Alívio (JOY)"
+          - "Ação (SEEKING)"
+        output: "Emotion Arc"
+
+    checkpoint:
+      question: "5BEATS completos?"
+      criteria:
+        - "Todos os 5 beats escritos"
+        - "Timing adequado"
+        - "Trigger forte"
+
+  # FASE 3: ROTEIRO
+  - phase: 3
+    name: "Roteiro"
+    duracao: "2-4 horas"
+    agente_principal: copywriter
+
+    tasks:
+      - task: write-script
+        description: "Escrever roteiro completo"
+        formato:
+          - "Texto falado (se houver)"
+          - "Texto em tela"
+          - "Indicações visuais"
+          - "Timing por beat"
+        output: "Roteiro"
+
+      - task: write-hook-variations
+        description: "3-5 variações de hook"
+        motivo: "Testar qual performa melhor"
+        output: "Hook variations"
+
+      - task: write-cta
+        description: "CTA claro"
+        tipos:
+          - "Seguir"
+          - "Comentar"
+          - "Salvar"
+          - "Link na bio"
+        output: "CTA"
+
+    checkpoint:
+      question: "Roteiro pronto para produção?"
+      criteria:
+        - "Texto cabe no tempo"
+        - "Hook testável"
+        - "CTA claro"
+
+  # FASE 4: DIREÇÃO VISUAL
+  - phase: 4
+    name: "Direção Visual"
+    duracao: "2-4 horas"
+    agente_principal: art-director
+
+    tasks:
+      - task: visual-direction
+        description: "Definir direção visual"
+        elementos:
+          - "Enquadramento (vertical)"
+          - "Cortes (a cada 2-3s)"
+          - "Texto em tela (posição, fonte)"
+          - "Cores e filtros"
+        output: "Visual Direction"
+
+      - task: storyboard
+        description: "Storyboard simplificado"
+        formato: "5 frames (1 por beat)"
+        output: "Mini-storyboard"
+
+    checkpoint:
+      question: "Direção visual definida?"
+      criteria:
+        - "Estilo visual claro"
+        - "Storyboard básico"
+
+  # FASE 5: VALIDAÇÃO
+  - phase: 5
+    name: "Validação"
+    duracao: "1-2 horas"
+    agente_principal: brand-voice-director
+
+    tasks:
+      - task: validate-voice
+        description: "Validar voz e tom"
+        output: "Aprovação"
+
+      - task: validate-timing
+        description: "Validar timing total"
+        maximo: "60 segundos"
+        ideal: "30 segundos"
+        output: "Timing aprovado"
+
+    checkpoint:
+      question: "Pronto para produção?"
+      criteria:
+        - "Voz consistente"
+        - "Timing OK"
+
+  # FASE 6: ENTREGA
+  - phase: 6
+    name: "Entrega para Produção"
+    duracao: "1 hora"
+    agente_principal: creative-brief-analyst
+
+    tasks:
+      - task: compile-production-brief
+        description: "Compilar briefing de produção"
+        conteudo:
+          - "Roteiro final"
+          - "Hook variations"
+          - "Visual direction"
+          - "Storyboard"
+          - "Especificações técnicas"
+        output: "Production Brief"
+
+    handoff:
+      destino: "Content Ops / Visual Creator"
+      especificacoes:
+        formato: "9:16 (vertical)"
+        resolucao: "1080x1920"
+        duracao: "15-60s"
+        audio: "Com ou sem música"
+
+# ═══════════════════════════════════════════════════════════════════
+# ENTREGÁVEIS
+# ═══════════════════════════════════════════════════════════════════
+deliverables:
+  - "Mini-briefing"
+  - "Estrutura 5BEATS"
+  - "Roteiro completo"
+  - "Hook variations (3-5)"
+  - "Visual Direction"
+  - "Mini-storyboard"
+  - "Production Brief"
+
+# ═══════════════════════════════════════════════════════════════════
+# EXEMPLOS DE 5BEATS
+# ═══════════════════════════════════════════════════════════════════
+exemplos:
+
+  exemplo_workshop:
+    tema: "Promover workshop de storytelling"
+    trigger: "Todo mundo carrega histórias que nunca contou."
+    setup: "Em algum momento, a vida começa a cobrar que você se expresse."
+    struggle: "E é doloroso perceber que a sua voz parece pequena."
+    breakthrough: "Só que contar histórias não é dom. É método."
+    resolution: "Se você sente que sua história merece mais, link na bio."
+
+  exemplo_produto:
+    tema: "Lançamento de produto"
+    trigger: "Você está fazendo isso errado."
+    setup: "Todo mundo acha que [problema comum]."
+    struggle: "E gasta tempo, dinheiro, energia..."
+    breakthrough: "Até descobrir [solução/produto]."
+    resolution: "Link na bio para [CTA]."
+
+# ═══════════════════════════════════════════════════════════════════
+# CHECKLIST RÁPIDO
+# ═══════════════════════════════════════════════════════════════════
+checklist:
+  antes_produzir:
+    - "[ ] Hook impossível de ignorar?"
+    - "[ ] Cabe em 30-60 segundos?"
+    - "[ ] CTA claro?"
+    - "[ ] Voz da marca?"
+    - "[ ] Testável (hook variations)?"
+
+# ═══════════════════════════════════════════════════════════════════
+# DATA FILES
+# ═══════════════════════════════════════════════════════════════════
+data_files:
+  - data/5beats-framework.yaml
+  - data/attention-economy.yaml
+  - data/golden-sentence.yaml
+  # Frameworks curados (2026-02)
+  - data/virality-frameworks.yaml       # STEPPS para vídeos virais
+  - data/hook-model-eyal.yaml           # Triggers e loops

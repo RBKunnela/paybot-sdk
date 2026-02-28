@@ -1,0 +1,90 @@
+# Task: Build Brand Essence
+# Squad: squAId-criaTTivados / deenea
+# Responsável: strategy-director
+
+metadata:
+  name: "build-brand-essence"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "deenea"
+  responsavel: "strategy-director"
+  tipo: task
+
+descricao: |
+  Construção da essência estratégica da marca (Domínio II).
+  Inclui Propósito (Ikigai), Arquétipos, Personalidade, Valores
+  e Positioning Statement.
+
+entrada:
+  - campo: audience_map
+    tipo: string
+    origem: "map-audience"
+    obrigatorio: true
+    descricao: "Mapeamento completo do público"
+  - campo: insights_document
+    tipo: string
+    origem: "synthesize-insights"
+    obrigatorio: true
+    descricao: "Insights de pesquisa"
+  - campo: briefing_brandesire
+    tipo: string
+    origem: "collect-briefing"
+    obrigatorio: true
+    descricao: "Briefing completo"
+
+saida:
+  - campo: brand_strategy_document
+    tipo: string
+    destino: "validate-positioning / validate-strategy-gate"
+    persistido: true
+    descricao: "Brand Strategy Document (Domínio II completo)"
+
+passos:
+  1:
+    nome: "Construir Ikigai"
+    descricao: "Mapear o que ama, bom nisso, pode ser pago, mundo precisa"
+    agente: "narrative-identity-architect"
+  2:
+    nome: "Definir Purpose/Mission/Vision"
+    descricao: "Articular propósito, missão e visão da marca"
+    agente: "narrative-identity-architect"
+  3:
+    nome: "Selecionar Arquétipos"
+    descricao: "Definir arquétipo principal + secundário (Vogler/Jung)"
+    agente: "brand-personality-architect"
+  4:
+    nome: "Definir Personalidade"
+    descricao: "Mapear 5 dimensões Aaker + Tom de Voz base"
+    agente: "brand-personality-architect"
+  5:
+    nome: "Codificar Valores"
+    descricao: "Definir valores + crenças com evidências comportamentais"
+    agente: "culture-community-architect"
+  6:
+    nome: "Definir Postura Relacional"
+    descricao: "Como a marca se relaciona com o público"
+    agente: "brand-personality-architect"
+  7:
+    nome: "Formular Positioning Statement"
+    descricao: "Formato: Para X, Y é Z porque..."
+    agente: "strategic-synthesizer"
+  8:
+    nome: "Validar coerência Domínio II"
+    descricao: "Verificar que todas as partes se conectam"
+    agente: "strategy-director"
+  9:
+    nome: "Compilar Brand Strategy Document"
+    descricao: "Consolidar tudo no documento final"
+    agente: "strategy-director"
+
+checklist:
+  - "[ ] Ikigai completo"
+  - "[ ] Purpose/Mission/Vision definidos"
+  - "[ ] Arquétipos selecionados e justificados"
+  - "[ ] Personalidade definida (5 dimensões Aaker)"
+  - "[ ] Valores codificados com evidências"
+  - "[ ] Positioning Statement formulado"
+
+criterios_aceitacao:
+  - "Domínio II internamente coerente"
+  - "Positioning Statement no formato Para X, Y é Z porque..."

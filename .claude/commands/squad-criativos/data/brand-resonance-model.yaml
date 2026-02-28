@@ -1,0 +1,301 @@
+# Brand Resonance Model (Keller CBBE)
+# Customer-Based Brand Equity
+# Usado por: Brand Director, Differentiation Strategist
+
+metadata:
+  name: "Modelo de Ressonância de Marca (Keller CBBE)"
+  version: "1.0"
+  source: "Strategic Brand Management (Kevin Lane Keller)"
+
+conceito:
+  definicao: |
+    O modelo CBBE (Customer-Based Brand Equity) de Keller define
+    brand equity como o efeito diferencial que o conhecimento da marca
+    tem na resposta do consumidor ao marketing da marca.
+
+  piramide: |
+    A construção de marca segue uma pirâmide de 4 níveis,
+    da base (identidade) ao topo (ressonância).
+
+piramide_cbbe:
+
+  # ═══════════════════════════════════════════════════════════════════
+  # NÍVEL 1: IDENTIDADE (Base)
+  # ═══════════════════════════════════════════════════════════════════
+  nivel_1_identidade:
+    nome: "Identity"
+    pergunta: "Quem é você?"
+    bloco: "Salience"
+    objetivo: "Garantir identificação e associação com categoria"
+
+    salience:
+      descricao: |
+        Profundidade e amplitude da consciência de marca.
+        O quanto e quão facilmente a marca vem à mente.
+
+      dimensoes:
+        profundidade:
+          descricao: "Facilidade de recall e reconhecimento"
+          indicadores:
+            - "Recall espontâneo"
+            - "Reconhecimento assistido"
+            - "Top of mind"
+
+        amplitude:
+          descricao: "Variedade de situações de compra/uso"
+          indicadores:
+            - "Associação com múltiplas ocasiões"
+            - "Consideração em diferentes contextos"
+
+      mapeamento_taxonomia:
+        dominio: "III - Distintividade"
+        classes: [7, 8, 9]
+        funcao: "Distinctive Assets criam salience"
+
+      metricas:
+        - "Brand awareness (aided/unaided)"
+        - "Top of mind"
+        - "Share of mind"
+
+  # ═══════════════════════════════════════════════════════════════════
+  # NÍVEL 2: SIGNIFICADO
+  # ═══════════════════════════════════════════════════════════════════
+  nivel_2_significado:
+    nome: "Meaning"
+    pergunta: "O que é você?"
+    blocos: ["Performance", "Imagery"]
+    objetivo: "Criar associações de marca fortes, favoráveis e únicas"
+
+    performance:
+      descricao: |
+        Como o produto/serviço atende às necessidades funcionais.
+        O que a marca FAZ.
+
+      dimensoes:
+        ingredientes_primarios:
+          descricao: "Componentes básicos do produto/serviço"
+
+        features_secundarios:
+          descricao: "Características que complementam"
+
+        confiabilidade_durabilidade:
+          descricao: "Consistência de performance ao longo do tempo"
+
+        efetividade_eficiencia:
+          descricao: "Quão bem resolve o problema"
+
+        empatia:
+          descricao: "Atendimento às necessidades do cliente"
+
+        estilo_design:
+          descricao: "Aspectos estéticos e sensoriais"
+
+        preco:
+          descricao: "Percepção de valor"
+
+      mapeamento_taxonomia:
+        dominio: "I - Diferenciação Substantiva"
+        classes: [1, 2, 3]
+        funcao: "Diferenciais substantivos criam performance"
+
+    imagery:
+      descricao: |
+        Propriedades extrínsecas - o que a marca SIGNIFICA.
+        Associações intangíveis.
+
+      dimensoes:
+        perfil_usuario:
+          descricao: "Quem usa a marca (demográfico, psicográfico)"
+
+        situacoes_uso:
+          descricao: "Onde e quando a marca é usada"
+
+        personalidade_valores:
+          descricao: "Traços de personalidade da marca"
+
+        historia_heranca:
+          descricao: "Tradição e experiências da marca"
+
+      mapeamento_taxonomia:
+        dominio: "II - Diferenciação Simbólica"
+        classes: [4, 5, 6]
+        funcao: "Diferenciais simbólicos criam imagery"
+
+  # ═══════════════════════════════════════════════════════════════════
+  # NÍVEL 3: RESPOSTA
+  # ═══════════════════════════════════════════════════════════════════
+  nivel_3_resposta:
+    nome: "Response"
+    pergunta: "O que eu penso/sinto sobre você?"
+    blocos: ["Judgments", "Feelings"]
+    objetivo: "Provocar respostas positivas"
+
+    judgments:
+      descricao: "Opiniões e avaliações pessoais sobre a marca"
+
+      dimensoes:
+        qualidade:
+          descricao: "Percepção de qualidade geral"
+          indicadores:
+            - "Valor percebido"
+            - "Satisfação"
+
+        credibilidade:
+          descricao: "Quão crível é a marca"
+          componentes:
+            expertise: "Competência"
+            trustworthiness: "Confiabilidade"
+            likability: "Simpatia"
+
+        consideracao:
+          descricao: "Probabilidade de considerar na compra"
+
+        superioridade:
+          descricao: "Quão única e melhor que alternativas"
+
+    feelings:
+      descricao: "Reações emocionais à marca"
+
+      tipos:
+        warmth: "Calma, afeto, paz"
+        fun: "Diversão, alegria"
+        excitement: "Energia, experiência"
+        security: "Segurança, conforto"
+        social_approval: "Aprovação social"
+        self_respect: "Auto-estima"
+
+      mapeamento_panksepp:
+        warmth: ["CARE"]
+        fun: ["PLAY"]
+        excitement: ["SEEKING"]
+        security: ["CARE", resolução de "FEAR"]
+        social_approval: ["CARE", resolução de "PANIC"]
+        self_respect: ["SEEKING"]
+
+  # ═══════════════════════════════════════════════════════════════════
+  # NÍVEL 4: RESSONÂNCIA (Topo)
+  # ═══════════════════════════════════════════════════════════════════
+  nivel_4_ressonancia:
+    nome: "Resonance"
+    pergunta: "Qual conexão tenho com você?"
+    bloco: "Resonance"
+    objetivo: "Criar relacionamento profundo e ativo"
+
+    resonance:
+      descricao: |
+        A natureza do relacionamento do cliente com a marca.
+        O quanto o cliente se sente "em sincronia" com a marca.
+
+      dimensoes:
+        lealdade_comportamental:
+          descricao: "Compras repetidas"
+          indicadores:
+            - "Frequência de compra"
+            - "Share of wallet"
+
+        apego_atitudinal:
+          descricao: "Amor e conexão emocional"
+          indicadores:
+            - "Brand love"
+            - "Disposição a pagar premium"
+            - "Resistência a alternativas"
+
+        senso_de_comunidade:
+          descricao: "Conexão com outros usuários"
+          indicadores:
+            - "Participação em comunidades"
+            - "Identificação com outros usuários"
+
+        engajamento_ativo:
+          descricao: "Investimento além da compra"
+          indicadores:
+            - "Advocacy/NPS"
+            - "Participação em eventos"
+            - "Co-criação"
+            - "Seguir nas redes"
+
+integracao_taxonomia:
+
+  fluxo:
+    distintividade_III: "Cria SALIENCE (ser lembrado)"
+    substantiva_I: "Cria PERFORMANCE (entregar valor)"
+    simbolica_II: "Cria IMAGERY (significar algo)"
+    todos: "Geram JUDGMENTS + FEELINGS"
+    resultado: "RESONANCE (conexão profunda)"
+
+  tabela:
+    nivel_1_salience:
+      taxonomia: "Domínio III - Distintividade"
+      classes: "7, 8, 9"
+
+    nivel_2_performance:
+      taxonomia: "Domínio I - Substantiva"
+      classes: "1, 2, 3"
+
+    nivel_2_imagery:
+      taxonomia: "Domínio II - Simbólica"
+      classes: "4, 5, 6"
+
+    nivel_3_4:
+      taxonomia: "Resultado da integração dos 3 domínios"
+
+construcao_de_marca:
+  sequencia:
+    1_identidade:
+      acao: "Estabelecer awareness profundo e amplo"
+      ferramentas: "Distinctive Assets"
+
+    2_significado:
+      acao: "Criar associações fortes (Performance + Imagery)"
+      ferramentas: "Diferenciais Substantivos + Simbólicos"
+
+    3_resposta:
+      acao: "Provocar julgamentos e sentimentos positivos"
+      ferramentas: "Consistência + Experiência"
+
+    4_ressonancia:
+      acao: "Transformar resposta em lealdade ativa"
+      ferramentas: "Comunidade + Engajamento + Valor contínuo"
+
+  principio: |
+    Não se pode pular níveis. Cada nível depende do anterior.
+    Não há ressonância sem significado.
+    Não há significado sem identidade.
+
+auditoria_cbbe:
+  template:
+    salience:
+      awareness_unaided: null  # %
+      awareness_aided: null    # %
+      top_of_mind: null       # %
+
+    performance:
+      score: null  # 1-5
+      pontos_fortes: []
+      gaps: []
+
+    imagery:
+      score: null
+      associacoes_positivas: []
+      associacoes_negativas: []
+
+    judgments:
+      qualidade: null  # 1-5
+      credibilidade: null
+      consideracao: null
+      superioridade: null
+
+    feelings:
+      dominantes: []
+      score_emocional: null
+
+    resonance:
+      lealdade: null
+      apego: null
+      comunidade: null
+      engajamento: null
+      nps: null
+
+referencias:
+  - "Keller, K.L. - Strategic Brand Management"
+  - "Keller, K.L. - Conceptualizing, Measuring, and Managing CBBE (1993)"

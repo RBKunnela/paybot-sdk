@@ -1,0 +1,459 @@
+# Domain Decoder: Full Extraction Workflow
+# Workflow ID: wf-full-extraction
+# Version: 1.0
+# Description: Complete 7-phase pipeline for extracting business rules, domain models,
+#              and business logic from brownfield/legacy codebases.
+
+workflow:
+  id: wf-full-extraction
+  name: "Full Codebase Extraction Pipeline"
+  version: "1.0"
+  description: |
+    The complete Domain Decoder extraction pipeline. Takes any brownfield or legacy
+    codebase as input and produces a structured business intelligence package:
+    business rules catalog, domain model, business model, tech debt report,
+    and executive summary — validated through the Roundtable protocol.
+  entry_task: "tasks/full-decode.md"
+  output_dir: "outputs/{repo-name}/"
+  model_routing:
+    orchestration: "sonnet"
+    surface_extraction: "haiku"
+    deep_extraction: "opus"
+    validation_debate: "opus"
+    documentation: "sonnet"
+
+# ============================================================
+# PIPELINE PHASES
+# ============================================================
+phases:
+
+  - id: phase_0
+    name: "Triage"
+    description: "Initial codebase assessment — viability check, scope determination, effort estimation"
+    task: "tasks/phase-0-triage.md"
+    agent: "domain-decoder-chief"
+    model: "haiku"
+    depends_on: []
+    checkpoint:
+      id: DD_GAP_001
+      name: "Triage Gate Passed"
+      blocking: true
+      veto_on_fail: true
+    inputs:
+      - "repo_url OR local_path (user provided)"
+      - "scope (user provided)"
+      - "focus_areas (user provided, optional)"
+    outputs:
+      - "outputs/{repo-name}/triage-report.yaml"
+    veto_conditions:
+      - id: DD_T_001
+        condition: "total_loc < 500"
+        type: "HARD_VETO"
+      - id: DD_T_002
+        condition: "total_loc > 500000 AND scope == 'full'"
+        type: "HARD_VETO"
+      - id: DD_T_003
+        condition: "codebase_is_obfuscated == true"
+        type: "HARD_VETO"
+      - id: DD_T_004
+        condition: "no_executable_code_found == true"
+        type: "HARD_VETO"
+    time_estimate:
+      small_codebase: "5 min"
+      medium_codebase: "15 min"
+      large_codebase: "30 min"
+
+  - id: phase_1
+    name: "Structural Inventory"
+    description: "Build complete structural map — file taxonomy, dependency graph, tech stack, entry points"
+    task: "tasks/phase-1-inventory.md"
+    agent: "code-cartographer"
+    model: "haiku"
+    depends_on: [phase_0]
+    checkpoint:
+      id: DD_INV_001
+      name: "Inventory Gate Passed"
+      blocking: true
+      veto_on_fail: true
+    inputs:
+      - "outputs/{repo-name}/triage-report.yaml"
+    outputs:
+      - "outputs/{repo-name}/phase-1/inventory.yaml"
+      - "outputs/{repo-name}/phase-1/dependency-graph.mermaid"
+      - "outputs/{repo-name}/phase-1/dependency-graph.yaml"
+      - "outputs/{repo-name}/phase-1/tech-stack.yaml"
+      - "outputs/{repo-name}/phase-1/entry-points.yaml"
+      - "outputs/{repo-name}/phase-1/bounded-context-hypotheses.yaml"
+    veto_conditions:
+      - id: DD_INV_001
+        condition: "parse_success_rate < 80%"
+        type: "HARD_VETO"
+    skills_reused:
+      - "quality-shield:tasks:build-dependency-graph"
+      - "design:tasks:audit-system"
+    time_estimate:
+      small_codebase: "10 min"
+      medium_codebase: "30 min"
+      large_codebase: "90 min"
+
+  - id: phase_2
+    name: "Slice Selection"
+    description: "Rank and select high-value extraction targets using behavioral + structural scoring"
+    task: "tasks/phase-2-slice.md"
+    agents:
+      primary: "code-cartographer"
+      reviewer: "domain-decoder-chief"
+    model: "sonnet"
+    depends_on: [phase_1]
+    checkpoint:
+      id: DD_SLC_001
+      name: "Slice Selection Gate Passed"
+      blocking: true
+      veto_on_fail: true
+    inputs:
+      - "outputs/{repo-name}/phase-1/inventory.yaml"
+      - "outputs/{repo-name}/phase-1/dependency-graph.yaml"
+      - "outputs/{repo-name}/phase-1/entry-points.yaml"
+      - "outputs/{repo-name}/phase-1/bounded-context-hypotheses.yaml"
+    outputs:
+      - "outputs/{repo-name}/phase-2/slice-selection.yaml"
+      - "outputs/{repo-name}/phase-2/hotspot-map.yaml"
+      - "outputs/{repo-name}/phase-2/entry-point-coverage.yaml"
+    scoring_formula: "(change_frequency × 0.40) + (complexity × 0.30) + (domain_naming × 0.20) + (entry_point × 0.10)"
+    veto_conditions:
+      - id: DD_SLC_001
+        condition: "entry_point_coverage < 60%"
+        type: "HARD_VETO"
+    skills_reused:
+      - "quality-shield:tasks:analyze-impact"
+    time_estimate:
+      small_codebase: "5 min"
+      medium_codebase: "15 min"
+      large_codebase: "30 min"
+
+  - id: phase_3
+    name: "Deep Extraction"
+    description: "Multi-pass extraction of business rules (L5) and domain entities (L6) from selected slices"
+    task: "tasks/phase-3-extract.md"
+    agents:
+      - name: "rule-archaeologist"
+        responsibility: "L5 business rule extraction (IEEE 5-step BRE)"
+        model: "opus"
+      - name: "domain-modeler"
+        responsibility: "L6 domain entity extraction (Eric Evans DDD 4-pass)"
+        model: "opus"
+    parallel: true
+    synchronization: "merge after both agents complete their final pass"
+    depends_on: [phase_2]
+    checkpoint:
+      id: DD_SUM_001
+      name: "Deep Extraction Gate Passed"
+      blocking: true
+      veto_on_fail: true
+    inputs:
+      - "outputs/{repo-name}/phase-2/slice-selection.yaml"
+      - "outputs/{repo-name}/phase-1/inventory.yaml"
+      - "outputs/{repo-name}/phase-1/dependency-graph.yaml"
+      - "outputs/{repo-name}/phase-1/entry-points.yaml"
+      - "outputs/{repo-name}/phase-1/tech-stack.yaml"
+    outputs:
+      - "outputs/{repo-name}/phase-3/business-rules.yaml"
+      - "outputs/{repo-name}/phase-3/domain-entities.yaml"
+      - "outputs/{repo-name}/phase-3/domain-events.yaml"
+      - "outputs/{repo-name}/phase-3/ubiquitous-language-draft.yaml"
+      - "outputs/{repo-name}/phase-3/extraction-summary.yaml"
+    rule_format: "IF {condition} THEN {action} BECAUSE {rationale}"
+    extraction_methodology: "IEEE 5-step BRE: Program Slicing → Domain Variable ID → Data Analysis → Rule Presentation → Business Validation"
+    max_passes:
+      rule_extraction: 3
+      entity_extraction: 4
+    veto_conditions:
+      - id: DD_SUM_001
+        condition: "business_rules_count < 50 AND total_loc > 100000"
+        type: "HARD_VETO"
+    skills_reused:
+      - "squad-creator:agents:sop-extractor (IF/THEN/BECAUSE format)"
+      - "clone-engineering:tasks:mind-mapper-triangulate"
+      - "quality-shield:tasks:deep-trace"
+      - "quality-shield:tasks:map-feature-flow"
+    tools_used:
+      - tool: "Semgrep"
+        purpose: "Pattern-based business rule detection"
+      - tool: "ast-grep"
+        purpose: "Structural pattern matching across AST"
+      - tool: "Repomix"
+        purpose: "Full slice context bundling for Claude"
+      - tool: "Serena"
+        purpose: "LSP navigation for cross-file symbol resolution"
+    time_estimate:
+      small_codebase: "30 min"
+      medium_codebase: "3 hours"
+      large_codebase: "10 hours"
+
+  - id: phase_4
+    name: "Model Recovery"
+    description: "Recover domain model (L6) and business model (L7) from Phase 3 extraction outputs"
+    task: "tasks/phase-4-model.md"
+    agents:
+      - name: "domain-modeler"
+        responsibility: "L6 full domain model — bounded contexts, aggregates, ubiquitous language"
+        model: "opus"
+        methodology: "Eric Evans DDD Strategic Design + Nick Tune Core Domain Charts"
+      - name: "business-model-analyst"
+        responsibility: "L7 business model — revenue flows, pricing logic, user lifecycle"
+        model: "opus"
+        methodology: "Revenue surface discovery → flow tracing → model synthesis"
+    parallel: true
+    synchronization: "merge and cross-reference after both agents complete"
+    depends_on: [phase_3]
+    checkpoint:
+      id: DD_DDD_001
+      name: "Model Recovery Gate Passed"
+      blocking: true
+      veto_on_fail: true
+    inputs:
+      - "outputs/{repo-name}/phase-3/business-rules.yaml"
+      - "outputs/{repo-name}/phase-3/domain-entities.yaml"
+      - "outputs/{repo-name}/phase-3/domain-events.yaml"
+      - "outputs/{repo-name}/phase-3/ubiquitous-language-draft.yaml"
+      - "outputs/{repo-name}/phase-1/inventory.yaml"
+      - "outputs/{repo-name}/phase-1/dependency-graph.yaml"
+    outputs:
+      - "outputs/{repo-name}/phase-4/context-map.mermaid"
+      - "outputs/{repo-name}/phase-4/aggregate-map.yaml"
+      - "outputs/{repo-name}/phase-4/ubiquitous-language.yaml"
+      - "outputs/{repo-name}/phase-4/state-machines.mermaid"
+      - "outputs/{repo-name}/phase-4/business-model-canvas.yaml"
+      - "outputs/{repo-name}/phase-4/pricing-matrix.yaml"
+      - "outputs/{repo-name}/phase-4/user-lifecycle.mermaid"
+      - "outputs/{repo-name}/phase-4/model-recovery-summary.yaml"
+    veto_conditions:
+      - id: DD_DDD_001
+        condition: "bounded_contexts_count < 3 AND total_loc > 100000"
+        type: "HARD_VETO"
+    skills_reused:
+      - "design:tasks:shared-vocabulary (domain glossary)"
+      - "design:tasks:orca-process (entity-first modeling)"
+      - "design:tasks:relationship-map (entity relationships)"
+      - "clone-engineering:tasks:mind-mapper-generate-cognitive-spec"
+    time_estimate:
+      small_codebase: "20 min"
+      medium_codebase: "1.5 hours"
+      large_codebase: "4 hours"
+
+  - id: phase_5
+    name: "Validation"
+    description: "Validate all L5–L7 findings via Roundtable Protocol and coverage metrics. BLOCKING gate."
+    task: "tasks/phase-5-validate.md"
+    agent: "validation-arbiter"
+    model: "opus"
+    parallel: false
+    depends_on: [phase_3, phase_4]
+    checkpoint:
+      id: DD_VAL_001
+      name: "Validation Gate Passed"
+      blocking: true
+      veto_on_fail: true
+    inputs:
+      - "outputs/{repo-name}/phase-3/business-rules.yaml"
+      - "outputs/{repo-name}/phase-3/domain-entities.yaml"
+      - "outputs/{repo-name}/phase-3/domain-events.yaml"
+      - "outputs/{repo-name}/phase-4/aggregate-map.yaml"
+      - "outputs/{repo-name}/phase-4/context-map.mermaid"
+      - "outputs/{repo-name}/phase-4/ubiquitous-language.yaml"
+      - "outputs/{repo-name}/phase-4/business-model-canvas.yaml"
+      - "outputs/{repo-name}/phase-1/entry-points.yaml"
+    outputs:
+      - "outputs/{repo-name}/phase-5/validation-report.yaml"
+      - "outputs/{repo-name}/phase-5/coverage-metrics.yaml"
+      - "outputs/{repo-name}/phase-5/disputed-findings.yaml"
+      - "outputs/{repo-name}/phase-5/validated-business-rules.yaml"
+      - "outputs/{repo-name}/phase-5/validated-domain-model.yaml"
+    roundtable_protocol:
+      roles: ["Propositor", "Devil's Advocate", "Arbiter"]
+      max_rounds_per_batch: 3
+      max_batch_size: 10
+      fast_track_threshold: 5  # findings with 5+ sources skip roundtable
+    coverage_dimensions:
+      entry_point_coverage:
+        target: ">= 85%"
+        weight: 0.35
+      test_implied_coverage:
+        target: ">= 70%"
+        weight: 0.25
+      entity_coverage:
+        target: ">= 80%"
+        weight: 0.25
+      conditional_coverage:
+        target: ">= 75%"
+        weight: 0.15
+    composite_score_formula: "(entry_point × 0.35) + (test_implied × 0.25) + (entity × 0.25) + (conditional × 0.15)"
+    veto_conditions:
+      - id: DD_VAL_001
+        condition: "composite_coverage_score < 0.70"
+        type: "HARD_VETO"
+        description: "Blocking — must re-extract before proceeding to Phase 6"
+    confidence_scoring:
+      completeness: 0.30
+      accuracy: 0.25
+      clarity: 0.20
+      traceability: 0.15
+      confidence_label: 0.10
+    triangulation_thresholds:
+      high: ">= 3 independent source types"
+      medium: "2 independent source types"
+      low: "1 source type only"
+    skills_reused:
+      - "clone-engineering:tasks:mind-mapper-triangulate"
+      - "clone-engineering:tasks:fidelity-tester-run-scenarios (adapted dimensions)"
+      - "quality-shield:tasks:regression-check"
+    time_estimate:
+      small_codebase: "20 min"
+      medium_codebase: "1 hour"
+      large_codebase: "2.5 hours"
+
+  - id: phase_6
+    name: "Documentation"
+    description: "Generate final publication-ready documentation package in three audience views"
+    task: "tasks/phase-6-document.md"
+    agents:
+      - name: "documentation-scribe"
+        responsibility: "Architecture diagrams, business rule catalog, domain glossary, executive summary"
+        model: "sonnet"
+      - name: "tech-debt-geologist"
+        responsibility: "L8 tech debt scan, hotspot analysis, test gap analysis, tech debt report"
+        model: "sonnet"
+    parallel: true
+    synchronization: "merge all outputs into final/ directory"
+    depends_on: [phase_5]
+    checkpoint:
+      id: DD_DOC_001
+      name: "Documentation Gate Passed"
+      blocking: true
+      veto_on_fail: true
+    inputs:
+      - "outputs/{repo-name}/phase-5/validated-business-rules.yaml"
+      - "outputs/{repo-name}/phase-5/validated-domain-model.yaml"
+      - "outputs/{repo-name}/phase-5/coverage-metrics.yaml"
+      - "outputs/{repo-name}/phase-5/disputed-findings.yaml"
+      - "outputs/{repo-name}/phase-4/context-map.mermaid"
+      - "outputs/{repo-name}/phase-4/aggregate-map.yaml"
+      - "outputs/{repo-name}/phase-4/ubiquitous-language.yaml"
+      - "outputs/{repo-name}/phase-4/business-model-canvas.yaml"
+      - "outputs/{repo-name}/phase-4/pricing-matrix.yaml"
+      - "outputs/{repo-name}/phase-4/user-lifecycle.mermaid"
+      - "outputs/{repo-name}/phase-4/state-machines.mermaid"
+      - "outputs/{repo-name}/triage-report.yaml"
+      - "outputs/{repo-name}/phase-1/dependency-graph.mermaid"
+    outputs:
+      - "outputs/{repo-name}/final/architecture-deck/01-context-map.mermaid"
+      - "outputs/{repo-name}/final/architecture-deck/02-dependency-graph.mermaid"
+      - "outputs/{repo-name}/final/architecture-deck/03-data-flow.mermaid"
+      - "outputs/{repo-name}/final/architecture-deck/04-state-machines.mermaid"
+      - "outputs/{repo-name}/final/architecture-deck/05-user-lifecycle.mermaid"
+      - "outputs/{repo-name}/final/business-rule-catalog.md"
+      - "outputs/{repo-name}/final/domain-glossary.md"
+      - "outputs/{repo-name}/final/tech-debt-report.md"
+      - "outputs/{repo-name}/final/executive-summary.md"
+    documentation_views:
+      - "Technical (developers and architects)"
+      - "Business (analysts and product managers)"
+      - "Executive (non-technical stakeholders)"
+    veto_conditions:
+      - id: DD_DOC_001
+        condition: "any_output_section_is_empty == true"
+        type: "HARD_VETO"
+        note: "Empty means no content — 'No X detected' is valid non-empty content"
+    skills_reused:
+      - "design:tasks:naming-convention (identifier analysis)"
+      - "design:tasks:token-naming (domain term taxonomy)"
+    tools_used:
+      - tool: "Grep"
+        purpose: "TODO/FIXME/HACK debt pattern scan (geologist)"
+      - tool: "Mermaid CLI (mmdc)"
+        purpose: "Diagram validation (if available)"
+    time_estimate:
+      small_codebase: "20 min"
+      medium_codebase: "1 hour"
+      large_codebase: "2 hours"
+
+# ============================================================
+# WORKFLOW-LEVEL CONFIGURATION
+# ============================================================
+
+guardrails:
+  loop_prevention:
+    max_passes_phase_3: 3
+    max_retries_per_veto: 1
+    max_roundtable_rounds: 3
+
+  idempotency:
+    policy: "Re-running any phase with the same inputs produces the same outputs"
+    implementation: "Outputs are written to versioned phase directories — never overwritten"
+
+  audit_trail:
+    policy: "Every finding has a source reference. Every decision has a rationale."
+    location: "outputs/{repo-name}/phase-{N}/ directories"
+
+  read_only:
+    policy: "Domain Decoder NEVER modifies the target codebase"
+    enforcement: "No Edit tool calls allowed on source files — only outputs/ directory"
+
+  manual_escape:
+    command: "*pause"
+    effect: "Stops pipeline, saves pipeline-log.yaml, surfaces current state"
+
+  unidirectional_flow:
+    policy: "Phases go forward only. No phase modifies a previous phase's output."
+    correction_mechanism: "Later phases add CORRECTION entries — they never edit previous outputs"
+
+pipeline_state_file: "outputs/{repo-name}/pipeline-log.yaml"
+final_output_location: "outputs/{repo-name}/final/"
+
+# ============================================================
+# CHECKPOINT REGISTRY
+# ============================================================
+
+checkpoints:
+  DD_GAP_001:
+    name: "Triage Gate"
+    phase: 0
+    blocking: true
+    criteria: ["triage_report_exists", "no_hard_veto_fired", "scope_confirmed"]
+
+  DD_INV_001:
+    name: "Inventory Gate"
+    phase: 1
+    blocking: true
+    criteria: ["all_output_files_exist", "parse_success_rate >= 80%"]
+
+  DD_SLC_001:
+    name: "Slice Selection Gate"
+    phase: 2
+    blocking: true
+    criteria: ["slice_selection_exists", "entry_point_coverage >= 60%"]
+
+  DD_SUM_001:
+    name: "Deep Extraction Gate"
+    phase: 3
+    blocking: true
+    criteria: ["business_rules_count >= 10", "bounded_contexts_count >= 1"]
+
+  DD_DDD_001:
+    name: "Model Recovery Gate"
+    phase: 4
+    blocking: true
+    criteria: ["context_map_exists", "aggregate_map_exists", "business_model_canvas_exists"]
+
+  DD_VAL_001:
+    name: "Validation Gate (HARD BLOCKING)"
+    phase: 5
+    blocking: true
+    criteria: ["composite_coverage_score >= 0.70"]
+    note: "This is the only gate that cannot be overridden — quality is non-negotiable"
+
+  DD_DOC_001:
+    name: "Documentation Gate"
+    phase: 6
+    blocking: true
+    criteria: ["all_output_files_exist", "no_empty_sections"]

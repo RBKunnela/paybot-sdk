@@ -1,0 +1,120 @@
+name: layer-extraction
+description: "Extract a single DNA Mental layer with full triangulation"
+version: "1.1.0"
+trigger: "*extract-layer"
+agent: mind-mapper
+type: sequential
+
+inputs:
+  - name: layer_number
+    type: number
+    required: true
+    description: "Layer to extract (1-8)"
+  - name: source_files
+    type: array
+    required: false
+    description: "Specific source files to analyze"
+
+outputs:
+  - name: layer_artifact
+    type: file
+    description: "Generated layer YAML (e.g., layer-5-mental-models.yaml)"
+  - name: confidence_score
+    type: number
+    description: "Extraction confidence score (0-100)"
+  - name: gap_report
+    type: object
+    description: "Missing data points and recommended elicitation questions"
+
+resources:
+  checklists:
+    - triangulation-checklist.md
+  templates:
+    - layer-template.yaml
+  data:
+    - dna-mental-layers.md
+
+steps:
+  - id: identify-sources
+    name: "Identify relevant sources"
+    action: "Read sources_master.yaml, filter by layer relevance"
+
+  - id: analyze-sources
+    name: "Analyze source content"
+    action: "Read and analyze each source for layer-specific patterns"
+
+  - id: extract-patterns
+    name: "Extract layer data"
+    task: mind-mapper-extract-layer.md
+    action: "Extract patterns, values, models (varies by layer)"
+
+  - id: triangulate
+    name: "Triangulate (layers 5-8 only)"
+    condition: "layer_number >= 5"
+    task: mind-mapper-triangulate.md
+    checklist: triangulation-checklist.md
+    action: "Cross-validate with 3+ independent sources"
+
+  - id: generate-artifact
+    name: "Generate layer YAML"
+    action: "Create layer artifact using layer-template.yaml"
+    template: layer-template.yaml
+
+  - id: calculate-confidence
+    name: "Calculate confidence"
+    action: "Score extraction confidence (0-100) based on source coverage and triangulation"
+
+  - id: flag-gaps
+    name: "Flag gaps"
+    task: mind-mapper-gap-analysis.md
+    action: "Document missing data, recommend elicitation questions"
+
+  - id: checkpoint
+    name: "Human checkpoint (layers 6-8)"
+    condition: "layer_number >= 6"
+    action: "Request human review before finalizing"
+    type: human
+
+error_handling:
+  low_confidence:
+    threshold: 60
+    action: "Flag layer as incomplete, generate elicitation questions, do not proceed without human review."
+  missing_sources:
+    action: "Report missing source types for this layer, suggest alternative source collection strategies."
+  triangulation_failure:
+    action: "Document conflicting data points, escalate to human for resolution before finalizing layer."
+  template_error:
+    action: "Validate layer-template.yaml structure, fallback to manual YAML construction if template fails."
+
+flow_diagram: |
+  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+  │ 1. Identify  │───▶│ 2. Analyze   │───▶│ 3. Extract   │
+  │    Sources   │    │    Sources   │    │    Patterns  │
+  └──────────────┘    └──────────────┘    └──────┬───────┘
+                                                 │
+                                          ┌──────┴───────┐
+                                          │ layer >= 5?  │
+                                          └──┬───────┬───┘
+                                         YES │       │ NO
+                                             ▼       │
+                                     ┌────────────┐  │
+                                     │4.Triangulte│  │
+                                     │ (3+ srcs)  │  │
+                                     └──────┬─────┘  │
+                                            │        │
+                                            ▼        ▼
+  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+  │ 7. Flag Gaps │◀───│ 6. Calculate │◀───│ 5. Generate  │
+  │              │    │  Confidence  │    │   Artifact   │
+  └──────┬───────┘    └──────────────┘    └──────────────┘
+         │
+         ▼
+  ┌──────────────┐
+  │ layer >= 6?  │
+  └──┬───────┬───┘
+  YES│       │ NO
+     ▼       ▼
+  ┌────────┐
+  │8.Human │──▶ DONE
+  │Review  │
+  └────────┘

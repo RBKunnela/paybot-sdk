@@ -1,0 +1,394 @@
+# Workflow: Cinema / Vídeo Longo
+# Caminho Criativo: CINEMA
+# Framework Central: Story Circle + Hero's Journey
+
+name: wf-cinema
+description: |
+  Workflow para produção de vídeos cinematográficos de marca:
+  filmes institucionais, documentários, comerciais premium.
+
+version: "1.0"
+caminho_criativo: "Cinema"
+duracao_estimada: "15-30 dias úteis"
+formato_final: "Roteiro + Tratamento + Storyboard"
+
+# ═══════════════════════════════════════════════════════════════════
+# PRÉ-REQUISITOS
+# ═══════════════════════════════════════════════════════════════════
+prerequisites:
+  obrigatorios:
+    - "Brand Foundation (DEENEA)"
+    - "Objetivo do filme"
+    - "Budget indicativo"
+    - "Prazo de entrega"
+
+  recomendados:
+    - "Referências de filmes"
+    - "Acesso a protagonistas/personagens"
+    - "Locações em mente"
+
+# ═══════════════════════════════════════════════════════════════════
+# TIPOS DE VÍDEO
+# ═══════════════════════════════════════════════════════════════════
+tipos:
+  filme_institucional:
+    descricao: "Apresenta a empresa, propósito, cultura"
+    duracao: "2-5 minutos"
+    estrutura: "Origin Story + Visão de futuro"
+    eixo_comum: "Marca Institucional"
+
+  documentario_marca:
+    descricao: "Conta história profunda da marca/pessoas"
+    duracao: "5-15 minutos"
+    estrutura: "Story Circle / Hero's Journey"
+    eixo_comum: "Marca Institucional ou Pessoal"
+
+  comercial_premium:
+    descricao: "Comercial cinematográfico de alto impacto"
+    duracao: "30-90 segundos"
+    estrutura: "Story Circle compacto"
+    eixo_comum: "Marca Mercadológica"
+
+  video_manifesto:
+    descricao: "Manifesto visual da marca"
+    duracao: "1-3 minutos"
+    estrutura: "Sparkline (What Is ↔ What Could Be)"
+    eixo_comum: "Marca Institucional"
+
+  serie_conteudo:
+    descricao: "Episódios de branded content"
+    duracao: "3-10 minutos por episódio"
+    estrutura: "Story Circle por episódio"
+    eixo_comum: "Variável"
+
+# ═══════════════════════════════════════════════════════════════════
+# FASES DO WORKFLOW
+# ═══════════════════════════════════════════════════════════════════
+phases:
+
+  # FASE 1: BRIEFING E IMERSÃO
+  - phase: 1
+    name: "Briefing e Imersão"
+    duracao: "2-3 dias"
+    agente_principal: creative-brief-analyst
+
+    tasks:
+      - task: deep-brief
+        description: "Briefing profundo"
+        perguntas:
+          - "Qual é a história que queremos contar?"
+          - "Quem são os protagonistas?"
+          - "Qual emoção queremos provocar?"
+          - "Onde será exibido?"
+          - "Qual é o budget?"
+        output: "Briefing Completo"
+
+      - task: define-axis
+        description: "Definir eixo de marca"
+        output: "Eixo definido"
+
+      - task: reference-research
+        description: "Pesquisa de referências"
+        tipos:
+          - "Filmes similares"
+          - "Técnicas visuais"
+          - "Tratamentos de cor"
+          - "Trilhas sonoras"
+        output: "Reference Board"
+
+    checkpoint:
+      question: "Imersão completa?"
+      criteria:
+        - "História clara"
+        - "Protagonistas definidos"
+        - "Referências coletadas"
+
+  # FASE 2: CONCEITO E BIG IDEA
+  - phase: 2
+    name: "Conceito e Big Idea"
+    duracao: "2-3 dias"
+    agente_principal: big-idea-architect
+
+    tasks:
+      - task: develop-concept
+        description: "Desenvolver conceito do filme"
+        output: "Film Concept"
+
+      - task: develop-logline
+        description: "Criar logline"
+        formato: "[Protagonista] precisa [objetivo] mas [obstáculo] então [jornada]"
+        output: "Logline"
+
+      - task: define-controlling-idea
+        description: "Definir ideia controladora"
+        framework: "Robert McKee"
+        output: "Controlling Idea"
+
+    checkpoint:
+      question: "Conceito aprovado?"
+      criteria:
+        - "Logline em 1-2 frases"
+        - "Conceito único"
+
+  # FASE 3: ESTRUTURA NARRATIVA
+  - phase: 3
+    name: "Estrutura Narrativa"
+    duracao: "3-5 dias"
+    agente_principal: narrative-designer
+
+    tasks:
+      - task: select-framework
+        description: "Selecionar framework narrativo"
+        opcoes:
+          story_circle:
+            quando: "Transformação do protagonista"
+            passos: 8
+            recomendado_para: "Documentários, institucionais"
+
+          heros_journey:
+            quando: "Jornada épica"
+            passos: 12
+            recomendado_para: "Branded content longo"
+
+          three_acts:
+            quando: "Estrutura clássica"
+            passos: 3
+            recomendado_para: "Comerciais premium"
+
+          sparkline:
+            quando: "Convencer/inspirar"
+            recomendado_para: "Manifestos"
+
+        output: "Framework selecionado"
+
+      - task: create-beat-sheet
+        description: "Criar beat sheet"
+        formato:
+          - "Cada beat com descrição"
+          - "Duração estimada"
+          - "Emoção alvo"
+        output: "Beat Sheet"
+
+      - task: map-emotion-arc
+        description: "Mapear arco emocional"
+        frameworks:
+          - "Panksepp (sistemas emocionais)"
+          - "Maslow (níveis de necessidade)"
+        output: "Emotion Arc"
+
+    checkpoint:
+      question: "Estrutura sólida?"
+      criteria:
+        - "Beat sheet completo"
+        - "Arco emocional claro"
+        - "Timing realista"
+
+  # FASE 4: ROTEIRO
+  - phase: 4
+    name: "Roteiro"
+    duracao: "3-5 dias"
+    agente_principal: copywriter
+    validador: brand-voice-director
+
+    tasks:
+      - task: write-treatment
+        description: "Escrever tratamento"
+        formato:
+          - "Narrativa em prosa"
+          - "Descrição visual"
+          - "Tom e atmosfera"
+        output: "Treatment"
+
+      - task: write-script
+        description: "Escrever roteiro"
+        formato:
+          - "Formato de roteiro padrão"
+          - "Diálogos (se houver)"
+          - "Narração (se houver)"
+          - "Descrições de cena"
+        output: "Script"
+
+      - task: write-narration
+        description: "Escrever narração (se aplicável)"
+        consideracoes:
+          - "Tom de voz da marca"
+          - "Ritmo e respiração"
+          - "Timing com visual"
+        output: "Narration Script"
+
+      - task: validate-voice
+        agente: brand-voice-director
+        description: "Validar voz"
+        output: "Voice Approval"
+
+    checkpoint:
+      question: "Roteiro aprovado?"
+      criteria:
+        - "Treatment aprovado"
+        - "Script completo"
+        - "Voz consistente"
+
+  # FASE 5: DIREÇÃO VISUAL
+  - phase: 5
+    name: "Direção Visual"
+    duracao: "2-3 dias"
+    agente_principal: art-director
+
+    tasks:
+      - task: create-mood-board
+        description: "Criar mood board"
+        elementos:
+          - "Referências visuais"
+          - "Paleta de cores"
+          - "Estilo fotográfico"
+          - "Atmosfera"
+        output: "Mood Board"
+
+      - task: create-storyboard
+        description: "Criar storyboard"
+        formato:
+          - "Key frames"
+          - "Movimentos de câmera"
+          - "Transições"
+        output: "Storyboard"
+
+      - task: define-visual-treatment
+        description: "Definir tratamento visual"
+        elementos:
+          - "Look (cor, contraste)"
+          - "Câmera (lentes, movimento)"
+          - "Iluminação"
+          - "Cenografia/locação"
+        output: "Visual Treatment"
+
+      - task: sound-design-brief
+        description: "Briefing de som"
+        elementos:
+          - "Trilha sonora"
+          - "Sound design"
+          - "Locutor (se aplicável)"
+        output: "Sound Brief"
+
+    checkpoint:
+      question: "Direção visual completa?"
+      criteria:
+        - "Mood board aprovado"
+        - "Storyboard completo"
+        - "Tratamento definido"
+
+  # FASE 6: VALIDAÇÃO
+  - phase: 6
+    name: "Validação Final"
+    duracao: "1-2 dias"
+    agente_principal: creative-director
+
+    tasks:
+      - task: creative-review
+        description: "Revisão criativa completa"
+        verificar:
+          - "Conceito forte"
+          - "Narrativa coerente"
+          - "Visual premiável"
+          - "Voz da marca"
+        output: "Creative Approval"
+
+      - task: budget-alignment
+        description: "Alinhamento com budget"
+        output: "Budget Check"
+
+    checkpoint:
+      question: "Pronto para produção?"
+      criteria:
+        - "Aprovação criativa"
+        - "Viável no budget"
+
+  # FASE 7: ENTREGA
+  - phase: 7
+    name: "Entrega para Produção"
+    duracao: "1 dia"
+    agente_principal: creative-brief-analyst
+
+    tasks:
+      - task: compile-production-package
+        description: "Compilar pacote de produção"
+        entregaveis:
+          - "Briefing de Criação"
+          - "Treatment"
+          - "Script/Roteiro"
+          - "Storyboard"
+          - "Mood Board"
+          - "Visual Treatment"
+          - "Sound Brief"
+          - "Reference Board"
+        output: "Production Package"
+
+    handoff:
+      destino: "Produtora / Direção"
+      proximos_passos:
+        - "Orçamento detalhado"
+        - "Casting (se necessário)"
+        - "Locações"
+        - "Cronograma de produção"
+
+# ═══════════════════════════════════════════════════════════════════
+# ENTREGÁVEIS
+# ═══════════════════════════════════════════════════════════════════
+deliverables:
+  conceito:
+    - "Briefing Completo"
+    - "Film Concept"
+    - "Logline"
+    - "Controlling Idea"
+
+  narrativa:
+    - "Framework selecionado"
+    - "Beat Sheet"
+    - "Emotion Arc"
+
+  roteiro:
+    - "Treatment"
+    - "Script"
+    - "Narration Script"
+
+  visual:
+    - "Mood Board"
+    - "Storyboard"
+    - "Visual Treatment"
+    - "Sound Brief"
+    - "Reference Board"
+
+  producao:
+    - "Production Package completo"
+
+# ═══════════════════════════════════════════════════════════════════
+# MÉTRICAS DE QUALIDADE
+# ═══════════════════════════════════════════════════════════════════
+quality_criteria:
+  narrativa:
+    - "Arco emocional claro"
+    - "Protagonista com jornada"
+    - "Conflito definido"
+    - "Resolução satisfatória"
+
+  execucao:
+    - "Visual premiável"
+    - "Consistente com marca"
+    - "Viável no budget"
+    - "Timing adequado"
+
+# ═══════════════════════════════════════════════════════════════════
+# DATA FILES
+# ═══════════════════════════════════════════════════════════════════
+data_files:
+  - data/storytelling-frameworks.yaml
+  - data/story-structures-matrix.yaml
+  - data/character-archetypes-vogler.yaml
+  - data/panksepp-systems.yaml
+  - data/plutchik-emotions.yaml
+  - data/maslow-hierarchy.yaml
+  - data/brand-axes.yaml
+  - data/origin-story-framework.yaml
+  # Frameworks curados (2026-02)
+  - data/hook-model-eyal.yaml           # Engajamento narrativo
+  - data/sensory-branding.yaml          # Experiência sensorial cinematográfica
+  - data/kahneman-dual-systems.yaml     # Decisões emocionais da audiência

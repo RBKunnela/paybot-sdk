@@ -1,0 +1,432 @@
+# Workflow: Brand Identity (UNNIKO)
+# Construção de Identidade com Frameworks Curados
+# Tríade: DEENEA → UNNIKO (Identidade) → storYOURtelling
+
+name: wf-brand-identity
+description: |
+  Workflow completo para construção da identidade distintiva da marca.
+  Utiliza frameworks curados de processo de identidade, branding sensorial
+  e economia comportamental para criar diferenciação tangível.
+
+version: "2.0"
+squad: unniko
+command: "*build-brand-identity"
+duracao_estimada: "8-12 dias úteis"
+formato_final: "Brand Identity Document + Design System"
+
+# ═══════════════════════════════════════════════════════════════════
+# FRAMEWORKS CURADOS UTILIZADOS
+# ═══════════════════════════════════════════════════════════════════
+frameworks_curados:
+  wheeler_brand_process:
+    arquivo: "wheeler-brand-process.yaml"
+    aplicacao: "5 fases do processo de identidade de marca"
+    fases:
+      - "1. Conducting Research"
+      - "2. Clarifying Strategy"
+      - "3. Designing Identity"
+      - "4. Creating Touchpoints"
+      - "5. Managing Assets"
+    usado_por:
+      - brand-director
+      - identity-architect
+      - design-system-architect
+      - brand-auditor
+
+  sensory_branding:
+    arquivo: "sensory-branding.yaml"
+    aplicacao: "Smashing Your Brand, Sensograma, HSP"
+    conceitos:
+      smash_your_brand: "Marca reconhecível sem logo"
+      sensograma: "Mapeamento dos 5 sentidos"
+      hsp: "Holistic Selling Proposition (vs USP)"
+    usado_por:
+      - identity-architect
+      - brand-experience-designer
+      - design-system-architect
+      - brand-auditor
+      - art-director
+
+  behavioral_economics_branding:
+    arquivo: "behavioral-economics-branding.yaml"
+    aplicacao: "Vieses cognitivos para branding (Ariely)"
+    vieses:
+      - "Decoy Effect (opção isca)"
+      - "Anchoring (âncora de preço/valor)"
+      - "FREE! Power (poder do grátis)"
+      - "Loss Aversion (aversão à perda)"
+      - "Social Proof (prova social)"
+    usado_por:
+      - differentiation-strategist
+      - brand-experience-designer
+      - competitive-analyst
+
+# ═══════════════════════════════════════════════════════════════════
+# PRÉ-REQUISITOS
+# ═══════════════════════════════════════════════════════════════════
+prerequisites:
+  obrigatorios:
+    - "Brand Strategy Document (DEENEA)"
+    - "Positioning Statement"
+    - "Archetype Profile"
+    - "Values & Culture Code"
+
+  recomendados:
+    - "Insights Document (Search & Insights)"
+    - "Competitive Gap Analysis"
+    - "Marca existente para auditoria (se evolução)"
+
+# ═══════════════════════════════════════════════════════════════════
+# FASES DO WORKFLOW (Wheeler 5 Phases)
+# ═══════════════════════════════════════════════════════════════════
+phases:
+
+  # FASE 1: CONDUCTING RESEARCH (Wheeler Phase 1)
+  - phase: 1
+    name: "Conducting Research"
+    duracao: "1-2 dias"
+    wheeler_phase: 1
+    agentes:
+      - brand-auditor
+      - competitive-analyst
+
+    frameworks_aplicados:
+      - wheeler-brand-process.yaml
+      - sensory-branding.yaml
+      - behavioral-economics-branding.yaml
+
+    tasks:
+      - task: audit-existing-brand
+        description: "Auditar marca existente nos 3 domínios"
+        agente: brand-auditor
+        framework: "Wheeler Phase 1 + Sensory Branding"
+        analise:
+          dominio_I: "O que FAZ diferente"
+          dominio_II: "O que SIGNIFICA"
+          dominio_III: "Como é RECONHECIDA"
+        smash_test: "Marca sobrevive sem logo?"
+        output: "Brand Audit Report"
+
+      - task: analyze-competitive-gaps
+        description: "Mapear gaps competitivos por domínio"
+        agente: competitive-analyst
+        framework: "Behavioral Economics - vieses dos concorrentes"
+        output: "Competitive Gap Analysis"
+
+      - task: map-sensory-landscape
+        description: "Mapear paisagem sensorial da categoria"
+        agente: brand-auditor
+        framework: "Sensory Branding - Sensograma"
+        sentidos:
+          visual: "Cores, formas, estilos dominantes"
+          auditivo: "Sons, jingles, vozes"
+          verbal: "Taglines, vocabulário"
+          tatil: "Texturas, materiais"
+          olfativo: "Cheiros associados (se aplicável)"
+        output: "Category Sensory Map"
+
+    checkpoint:
+      question: "Pesquisa completa para decisões?"
+      criteria:
+        - "Auditoria de marca completa"
+        - "Gaps competitivos identificados"
+        - "Paisagem sensorial mapeada"
+
+  # FASE 2: CLARIFYING STRATEGY (Wheeler Phase 2)
+  - phase: 2
+    name: "Clarifying Strategy"
+    duracao: "1-2 dias"
+    wheeler_phase: 2
+    agente_principal: differentiation-strategist
+    depende_de: [phase_1]
+
+    frameworks_aplicados:
+      - wheeler-brand-process.yaml
+      - behavioral-economics-branding.yaml
+      - taxonomia-diferenciais.yaml
+
+    tasks:
+      - task: define-brand-promise
+        description: "Definir promessa de marca"
+        framework: "Wheeler - Brand Promise"
+        criterios:
+          - "Credível (pode entregar)"
+          - "Relevante (importa para público)"
+          - "Diferenciadora (única no mercado)"
+        output: "Brand Promise"
+
+      - task: map-differentiation-strategy
+        description: "Mapear estratégia de diferenciação nos 3 domínios"
+        framework: "Taxonomia de Diferenciais"
+        dominios:
+          I_substantiva: "O que entregar de diferente"
+          II_simbolica: "O que significar de diferente"
+          III_distintividade: "Como ser reconhecida"
+        output: "Differentiation Map"
+
+      - task: select-behavioral-triggers
+        description: "Selecionar gatilhos comportamentais"
+        framework: "Ariely - Behavioral Economics"
+        triggers:
+          - "Qual viés usar para aquisição?"
+          - "Qual viés usar para conversão?"
+          - "Qual viés usar para retenção?"
+        output: "Behavioral Triggers Selection"
+
+      - task: define-hsp
+        description: "Definir Holistic Selling Proposition"
+        framework: "Lindstrom - HSP vs USP"
+        descricao: |
+          HSP vai além do USP: não só o que vende,
+          mas toda a experiência sensorial e emocional.
+        output: "HSP Statement"
+
+    checkpoint:
+      question: "Estratégia de diferenciação clara?"
+      criteria:
+        - "Promessa definida e validada"
+        - "Diferenciação mapeada nos 3 domínios"
+        - "Gatilhos comportamentais selecionados"
+        - "HSP articulado"
+
+  # FASE 3: DESIGNING IDENTITY (Wheeler Phase 3)
+  - phase: 3
+    name: "Designing Identity"
+    duracao: "3-4 dias"
+    wheeler_phase: 3
+    agentes:
+      - identity-architect
+      - design-system-architect
+      - verbal-identity-specialist
+    depende_de: [phase_2]
+
+    frameworks_aplicados:
+      - wheeler-brand-process.yaml
+      - sensory-branding.yaml
+
+    tasks:
+      - task: design-visual-identity
+        description: "Criar sistema visual distintivo"
+        agente: design-system-architect
+        framework: "Wheeler + Sensory Branding"
+        componentes:
+          marca_grafica: "Logo, símbolo, wordmark"
+          sistema_cromatico: "Paleta de cores ownable"
+          tipografia: "Hierarquia tipográfica"
+          estilo_visual: "Fotografia, ilustração, iconografia"
+        smash_test: "Cada elemento é reconhecível sozinho?"
+        output: "Visual Identity System"
+
+      - task: design-verbal-identity
+        description: "Criar sistema verbal distintivo"
+        agente: verbal-identity-specialist
+        framework: "Wheeler - Verbal Identity"
+        componentes:
+          naming: "Arquitetura de naming"
+          tagline: "Tagline principal"
+          vocabulary: "Vocabulário de marca"
+          messaging: "Framework de mensagens"
+        output: "Verbal Identity System"
+
+      - task: design-sensory-identity
+        description: "Criar identidade sensorial completa"
+        agente: identity-architect
+        framework: "Sensory Branding - Sensograma"
+        sentidos:
+          visual: "Já coberto acima"
+          auditivo: "Som de marca, voz, música"
+          verbal: "Tom, ritmo, vocabulário"
+          tatil: "Texturas, materiais, peso"
+          olfativo: "Cheiro de marca (se aplicável)"
+        output: "Sensory Identity Map"
+
+      - task: build-design-system
+        description: "Compilar Design System completo"
+        agente: design-system-architect
+        formato: "YAML + Assets"
+        componentes:
+          foundations: "Cores, tipografia, spacing, motion"
+          tokens: "Design tokens semânticos"
+          components: "Buttons, cards, forms, etc."
+          patterns: "Layouts, fluxos, breakpoints"
+        output: "Design System Guidelines"
+
+    checkpoint:
+      question: "Identidade distintiva e aplicável?"
+      criteria:
+        - "Visual identity completa"
+        - "Verbal identity definida"
+        - "Sensograma mapeado"
+        - "Design System documentado"
+
+  # FASE 4: CREATING TOUCHPOINTS (Wheeler Phase 4)
+  - phase: 4
+    name: "Creating Touchpoints"
+    duracao: "2-3 dias"
+    wheeler_phase: 4
+    agente_principal: brand-experience-designer
+    depende_de: [phase_3]
+
+    frameworks_aplicados:
+      - wheeler-brand-process.yaml
+      - sensory-branding.yaml
+      - behavioral-economics-branding.yaml
+
+    tasks:
+      - task: map-brand-touchpoints
+        description: "Mapear todos os touchpoints da marca"
+        categorias:
+          pre_compra: "Descoberta, consideração"
+          compra: "Conversão, checkout"
+          pos_compra: "Uso, suporte, advocacy"
+        output: "Touchpoint Map"
+
+      - task: design-touchpoint-experiences
+        description: "Desenhar experiência por touchpoint"
+        framework: "Sensory Branding + Behavioral Economics"
+        por_touchpoint:
+          sensorial: "Que sentidos ativar?"
+          emocional: "Que emoção gerar?"
+          comportamental: "Que viés aplicar?"
+        output: "Touchpoint Experience Design"
+
+      - task: create-brand-applications
+        description: "Criar aplicações de marca"
+        categorias:
+          digital: "Site, app, social media"
+          impresso: "Papelaria, embalagem"
+          ambiental: "Sinalização, PDV"
+          experiencial: "Eventos, rituais"
+        output: "Brand Applications"
+
+      - task: design-brand-rituals
+        description: "Desenhar rituais de marca"
+        framework: "Sensory Branding - rituais distintivos"
+        exemplos:
+          - "Ritual de unboxing"
+          - "Ritual de uso"
+          - "Ritual de celebração"
+        output: "Brand Rituals"
+
+    checkpoint:
+      question: "Touchpoints projetados?"
+      criteria:
+        - "Mapa de touchpoints completo"
+        - "Experiências desenhadas"
+        - "Aplicações criadas"
+        - "Rituais definidos"
+
+  # FASE 5: MANAGING ASSETS (Wheeler Phase 5)
+  - phase: 5
+    name: "Managing Assets"
+    duracao: "1-2 dias"
+    wheeler_phase: 5
+    agente_principal: brand-director
+    depende_de: [phase_4]
+
+    frameworks_aplicados:
+      - wheeler-brand-process.yaml
+
+    tasks:
+      - task: create-brand-book
+        description: "Criar Brand Book completo"
+        estrutura:
+          - "Introdução e manifesto"
+          - "Estratégia e posicionamento"
+          - "Identidade visual"
+          - "Identidade verbal"
+          - "Identidade sensorial"
+          - "Touchpoints e aplicações"
+          - "Do's and Don'ts"
+        output: "Brand Book"
+
+      - task: create-brand-guidelines
+        description: "Criar guidelines de uso"
+        niveis:
+          essencial: "Regras inegociáveis"
+          recomendado: "Best practices"
+          flexivel: "Adaptações permitidas"
+        output: "Brand Guidelines"
+
+      - task: organize-asset-library
+        description: "Organizar biblioteca de assets"
+        formatos:
+          vetores: "AI, EPS, SVG"
+          raster: "PNG, JPG, WebP"
+          fontes: "OTF, TTF, WOFF"
+          templates: "Figma, Canva, PPT"
+        output: "Asset Library"
+
+      - task: prepare-storytelling-handoff
+        description: "Preparar handoff para storYOURtelling"
+        output: "storYOURtelling Handoff Package"
+
+    checkpoint:
+      question: "Assets organizados e documentados?"
+      criteria:
+        - "Brand Book completo"
+        - "Guidelines claras"
+        - "Asset Library organizada"
+        - "Handoff preparado"
+
+# ═══════════════════════════════════════════════════════════════════
+# ENTREGÁVEIS
+# ═══════════════════════════════════════════════════════════════════
+deliverables:
+  principal:
+    - "Brand Identity Document"
+    - "Design System Guidelines"
+    - "Brand Book"
+
+  componentes:
+    research:
+      - "Brand Audit Report"
+      - "Competitive Gap Analysis"
+      - "Category Sensory Map"
+
+    strategy:
+      - "Brand Promise"
+      - "Differentiation Map"
+      - "Behavioral Triggers Selection"
+      - "HSP Statement"
+
+    identity:
+      - "Visual Identity System"
+      - "Verbal Identity System"
+      - "Sensory Identity Map"
+      - "Design System Guidelines"
+
+    touchpoints:
+      - "Touchpoint Map"
+      - "Touchpoint Experience Design"
+      - "Brand Applications"
+      - "Brand Rituals"
+
+    documentation:
+      - "Brand Book"
+      - "Brand Guidelines"
+      - "Asset Library"
+
+# ═══════════════════════════════════════════════════════════════════
+# HANDOFF
+# ═══════════════════════════════════════════════════════════════════
+handoff:
+  destino: "storYOURtelling (Creative Director)"
+  entrega: "Brand Identity Document + Design System + Handoff Package"
+  checkpoint: 4
+  proximo_workflow: "wf-brand-narrative"
+
+# ═══════════════════════════════════════════════════════════════════
+# DATA FILES REFERENCIADOS
+# ═══════════════════════════════════════════════════════════════════
+data_files:
+  # Frameworks curados (2026-02)
+  - wheeler-brand-process.yaml
+  - sensory-branding.yaml
+  - behavioral-economics-branding.yaml
+  # Frameworks existentes
+  - taxonomia-diferenciais.yaml
+  - distinctive-assets-framework.yaml
+  - color-psychology.yaml
+  - typography-personality.yaml
+  - naming-frameworks.yaml

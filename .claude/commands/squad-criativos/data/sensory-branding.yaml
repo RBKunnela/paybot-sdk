@@ -1,0 +1,652 @@
+# Sensory Branding Framework - EXPANDED
+# Baseado em Martin Lindstrom (Brand Sense)
+# Squad: UNNIKO (Identidade/Diferenciação)
+# Usado por: brand-director, identity-architect, brand-experience-designer
+
+metadata:
+  name: "Framework de Sensory Branding (Expandido)"
+  version: "2.0"
+  source: "Brand Sense (Martin Lindstrom)"
+  atualizacao: "Inclui Smashing Your Brand, Sensograma, Evolução USP→HSP"
+
+conceito:
+  definicao: |
+    Sensory Branding é a estratégia de engajar múltiplos sentidos
+    para criar conexões emocionais mais profundas e memoráveis.
+
+  principio_lindstrom: |
+    "Quanto mais pontos de contato sensoriais uma marca ativa,
+    mais forte será a conexão emocional e a lembrança."
+
+  estatistica: |
+    Marcas que engajam múltiplos sentidos têm até 70% mais
+    probabilidade de serem lembradas.
+
+cinco_sentidos:
+
+  # ═══════════════════════════════════════════════════════════════════
+  # VISÃO (dominante)
+  # ═══════════════════════════════════════════════════════════════════
+  visao:
+    peso_no_branding: "83% das informações processadas"
+    dominancia: "Sentido mais trabalhado em branding"
+
+    elementos:
+      cor:
+        impacto: "Reconhecimento 80% maior"
+        aplicacao: "Paleta proprietária"
+        exemplo: "Vermelho Coca-Cola, Azul Tiffany"
+
+      forma:
+        impacto: "Silhueta reconhecível"
+        aplicacao: "Logo, embalagem, produto"
+        exemplo: "Garrafa Coca-Cola, iPhone"
+
+      movimento:
+        impacto: "Atrai atenção"
+        aplicacao: "Animações, transições"
+        exemplo: "Loading do Google, animações Apple"
+
+      luz:
+        impacto: "Define atmosfera"
+        aplicacao: "Ambientes de varejo, packaging"
+        exemplo: "Apple Store, Abercrombie"
+
+    perguntas_estrategicas:
+      - "Quais elementos visuais são únicos da marca?"
+      - "A marca é reconhecível mesmo borrada ou de longe?"
+      - "Há consistência visual em todos os touchpoints?"
+
+  # ═══════════════════════════════════════════════════════════════════
+  # AUDIÇÃO
+  # ═══════════════════════════════════════════════════════════════════
+  audicao:
+    peso_no_branding: "11% das informações"
+    sub_explorado: "Maioria das marcas ignora"
+
+    elementos:
+      sonic_logo:
+        descricao: "Som de 3-5 segundos que identifica"
+        duracao: "Idealmente < 5 segundos"
+        exemplos:
+          - marca: "Intel"
+            descricao: "5 notas icônicas"
+          - marca: "Netflix"
+            descricao: "Ta-dum"
+          - marca: "McDonald's"
+            descricao: "I'm Lovin' It (melodia)"
+
+      jingle:
+        descricao: "Melodia cantarolável"
+        duracao: "15-30 segundos"
+        elementos:
+          - Melodia memorável
+          - Letra conectada ao benefício
+          - Fácil de reproduzir
+
+      soundscape:
+        descricao: "Ambiente sonoro da marca"
+        aplicacao:
+          - Lojas físicas
+          - Ambientes digitais
+          - Eventos
+
+      voz:
+        descricao: "Voz institucional"
+        elementos:
+          - Tom (grave/agudo)
+          - Ritmo (rápido/lento)
+          - Sotaque (se relevante)
+          - Gênero
+
+      som_produto:
+        descricao: "Som característico do uso"
+        exemplos:
+          - "Click do Zippo"
+          - "Pop da Snapple"
+          - "Startup do Mac"
+
+    perguntas_estrategicas:
+      - "A marca tem um som proprietário?"
+      - "O som reforça a personalidade?"
+      - "É reconhecível sem visual?"
+
+  # ═══════════════════════════════════════════════════════════════════
+  # OLFATO
+  # ═══════════════════════════════════════════════════════════════════
+  olfato:
+    peso_no_branding: "3.5% das informações"
+    poder: "Sentido mais conectado à memória e emoção"
+    conexao_limbica: "Direto ao sistema límbico (emocional)"
+
+    elementos:
+      aroma_ambiente:
+        descricao: "Cheiro característico do espaço"
+        exemplos:
+          - marca: "Abercrombie & Fitch"
+            aroma: "Fierce (colônia)"
+          - marca: "Singapore Airlines"
+            aroma: "Stefan Floridian Waters"
+          - marca: "Cinnabon"
+            aroma: "Canela estrategicamente ventilada"
+
+      aroma_produto:
+        descricao: "Cheiro do próprio produto"
+        exemplos:
+          - "Carro novo"
+          - "Play-Doh"
+          - "Livro novo"
+
+      aroma_embalagem:
+        descricao: "Fragrância na abertura"
+        exemplos:
+          - "Apple (embalagem)"
+
+    categorias_aromaticas:
+      fresco: ["Citrus", "Menta", "Verde"]
+      floral: ["Rosa", "Lavanda", "Jasmin"]
+      amadeirado: ["Cedro", "Sândalo", "Pinho"]
+      especiado: ["Canela", "Baunilha", "Cravo"]
+      gourmand: ["Café", "Chocolate", "Caramelo"]
+
+    perguntas_estrategicas:
+      - "É possível criar um aroma proprietário?"
+      - "O aroma reforça a experiência desejada?"
+      - "Há consistência olfativa nos touchpoints físicos?"
+
+  # ═══════════════════════════════════════════════════════════════════
+  # TATO
+  # ═══════════════════════════════════════════════════════════════════
+  tato:
+    peso_no_branding: "1.5% das informações"
+    importancia: "Crucial para produtos físicos"
+
+    elementos:
+      textura:
+        descricao: "Sensação da superfície"
+        exemplos:
+          - "Soft-touch em embalagens premium"
+          - "Textura do Toblerone"
+          - "Veludo em caixas de jóias"
+
+      peso:
+        descricao: "Sensação de substância"
+        exemplos:
+          - "Peso do iPhone (preciso)"
+          - "Pesado = premium (perfumes)"
+
+      temperatura:
+        descricao: "Sensação térmica"
+        exemplos:
+          - "Metal frio = tecnologia"
+          - "Madeira = calor, natureza"
+
+      forma_tatil:
+        descricao: "Ergonomia e manuseio"
+        exemplos:
+          - "Grip do controle Xbox"
+          - "Curvas da garrafa Coca-Cola"
+
+      material:
+        descricao: "Tipo de material"
+        associacoes:
+          vidro: "Premium, transparência"
+          metal: "Durabilidade, tecnologia"
+          madeira: "Natural, artesanal"
+          tecido: "Conforto, calor"
+          papel: "Tradicional, sustentável"
+
+    perguntas_estrategicas:
+      - "Qual sensação tátil reforça o posicionamento?"
+      - "Os materiais comunicam o valor da marca?"
+      - "A embalagem cria experiência tátil memorável?"
+
+  # ═══════════════════════════════════════════════════════════════════
+  # PALADAR
+  # ═══════════════════════════════════════════════════════════════════
+  paladar:
+    peso_no_branding: "1% das informações"
+    aplicabilidade: "Limitado a marcas de alimentos/bebidas"
+
+    elementos:
+      sabor_produto:
+        descricao: "Sabor distintivo do produto"
+        exemplos:
+          - "Coca-Cola (fórmula secreta)"
+          - "Nutella"
+          - "Oreo"
+
+      sabor_experiencia:
+        descricao: "Oferta de degustação como experiência"
+        exemplos:
+          - "Cafés em lojas (Nespresso)"
+          - "Champagne na compra de luxo"
+
+    perguntas_estrategicas:
+      - "Há oportunidade de incluir paladar na experiência?"
+      - "O sabor é distintivo e proprietário?"
+      - "Mesmo não sendo food, há momento de degustação?"
+
+integracao_multissensorial:
+  principio: |
+    O poder do sensory branding está na INTEGRAÇÃO dos sentidos.
+    Sentidos que trabalham juntos reforçam a memória exponencialmente.
+
+  congruencia:
+    descricao: "Sentidos devem contar a mesma história"
+    exemplo_positivo: |
+      Loja de spa: visual clean (branco/azul) + música calma +
+      aroma lavanda + textura suave = congruente
+    exemplo_negativo: |
+      Loja de spa: visual clean + heavy metal + cheiro de comida
+      = incongruente (confunde cérebro)
+
+  framework_aplicacao:
+    passo_1: "Definir a emoção/experiência central"
+    passo_2: "Mapear como cada sentido pode reforçar"
+    passo_3: "Verificar congruência entre sentidos"
+    passo_4: "Implementar nos touchpoints relevantes"
+    passo_5: "Medir e ajustar"
+
+auditoria_sensorial:
+  template:
+    visao:
+      score: null  # 1-5
+      elementos_ativos: []
+      oportunidades: []
+
+    audicao:
+      score: null
+      elementos_ativos: []
+      oportunidades: []
+
+    olfato:
+      score: null
+      elementos_ativos: []
+      oportunidades: []
+
+    tato:
+      score: null
+      elementos_ativos: []
+      oportunidades: []
+
+    paladar:
+      score: null
+      elementos_ativos: []
+      oportunidades: []
+
+    total_sentidos_ativos: null  # 1-5
+    congruencia: null  # 1-5
+    recomendacoes: []
+
+# ═══════════════════════════════════════════════════════════════════
+# SMASHING YOUR BRAND - 12 COMPONENTES
+# ═══════════════════════════════════════════════════════════════════
+# Metodologia para testar força da marca fragmentando-a
+
+smashing_your_brand:
+
+  conceito: |
+    "Quebre" sua marca em componentes independentes.
+    Cada componente deve ser reconhecível SEM o logo.
+    Se não for, há trabalho a fazer.
+
+  filosofia: |
+    Branding tradicional depende demais do logo 2D.
+    Smashing cria plataforma multissensorial "quebrável".
+    Cada elemento funciona solo E reforça o todo.
+
+  os_12_componentes:
+
+    # Componentes Visuais
+    imagem:
+      descricao: "Estilo visual geral"
+      pergunta: "A estética é reconhecível?"
+      exemplo: "Minimalismo Apple"
+
+    cor:
+      descricao: "Paleta proprietária"
+      pergunta: "A cor identifica sem logo?"
+      exemplo: "Azul Tiffany, Vermelho Coca-Cola"
+
+    forma:
+      descricao: "Silhuetas e formatos"
+      pergunta: "A forma é única?"
+      exemplo: "Garrafa Coca-Cola em pedaços"
+
+    icone:
+      descricao: "Símbolos além do logo"
+      pergunta: "Há ícones secundários reconhecíveis?"
+      exemplo: "Orelhas Mickey, Maçã mordida"
+
+    # Componentes Verbais/Sonoros
+    nome:
+      descricao: "O nome da marca"
+      pergunta: "Nome é memorável e único?"
+      exemplo: "Google, Xerox, Kodak"
+
+    linguagem:
+      descricao: "Vocabulário e expressões próprias"
+      pergunta: "Há termos que só a marca usa?"
+      exemplo: "Genius Bar, McMeal, Frappuccino"
+
+    som:
+      descricao: "Identidade sonora"
+      pergunta: "Há som proprietário?"
+      exemplo: "Intel Inside, Netflix Ta-dum"
+
+    # Componentes Comportamentais
+    navegacao:
+      descricao: "Como se interage com a marca"
+      pergunta: "A experiência de uso é distintiva?"
+      exemplo: "Scroll do iPhone, gesto de swipe"
+
+    comportamento:
+      descricao: "Como a marca age"
+      pergunta: "A atitude é reconhecível?"
+      exemplo: "Atendimento Zappos, Nordstrom"
+
+    servico:
+      descricao: "Como entrega valor"
+      pergunta: "O serviço é distinctivo?"
+      exemplo: "Genius Bar Apple, test drive Tesla"
+
+    # Componentes Culturais
+    tradicao:
+      descricao: "História e herança"
+      pergunta: "Há história que diferencia?"
+      exemplo: "Família Coca-Cola, Harley riders"
+
+    rituais:
+      descricao: "Comportamentos ritualizados"
+      pergunta: "Há rituais associados?"
+      exemplo: "Limão na Corona, dunk do Oreo"
+
+  teste_smashability:
+    instrucoes:
+      1: "Liste cada componente da sua marca"
+      2: "Remova o logo/nome"
+      3: "Mostre para alguém de fora"
+      4: "Pergunte: que marca é essa?"
+      5: "Meta: 80%+ de reconhecimento"
+
+    template_avaliacao:
+      componente: ""
+      score_reconhecimento: null  # 1-5
+      smashable: false  # true/false
+      oportunidade: ""
+
+# ═══════════════════════════════════════════════════════════════════
+# SENSOGRAMA - FERRAMENTA DE DIAGNÓSTICO
+# ═══════════════════════════════════════════════════════════════════
+
+sensograma:
+
+  descricao: |
+    Ferramenta visual para mapear presença sensorial da marca.
+    Gráfico radar que mostra força em cada sentido.
+    Quanto mais "redondo", mais equilibrada a marca.
+
+  como_usar:
+
+    passo_1_autoavaliacao:
+      descricao: "Equipe interna pontua cada sentido (0-5)"
+      criterios:
+        0: "Inexistente"
+        1: "Mínimo"
+        2: "Básico"
+        3: "Desenvolvido"
+        4: "Forte"
+        5: "Icônico/smashable"
+
+    passo_2_validacao_externa:
+      descricao: "Clientes pontuam percepção real"
+      importancia: |
+        80% dos CEOs acham que entregam "uau".
+        Só 20% dos clientes concordam.
+        Validação externa é essencial.
+
+    passo_3_gap_analysis:
+      descricao: "Compare interno vs externo"
+      acao: "Foque em gaps maiores"
+
+    passo_4_plano_acao:
+      descricao: "Priorize sentidos mais fracos"
+      nota: "Nem toda marca precisa de todos os sentidos"
+
+  template_sensograma:
+    marca: ""
+    data_avaliacao: ""
+
+    scores_internos:
+      visao: null
+      audicao: null
+      olfato: null
+      tato: null
+      paladar: null
+
+    scores_clientes:
+      visao: null
+      audicao: null
+      olfato: null
+      tato: null
+      paladar: null
+
+    gaps:
+      visao: null
+      audicao: null
+      olfato: null
+      tato: null
+      paladar: null
+
+    prioridades: []
+    plano_acao: []
+
+  exemplo_mcdonalds:
+    visao:
+      score: 5
+      elementos: "Arcos dourados, vermelho/amarelo, uniformes"
+
+    audicao:
+      score: 3
+      elementos: "Jingle ba-da-ba-ba, rádio interna"
+
+    olfato:
+      score: 5
+      elementos: "Cheiro de fritas, ambiente"
+
+    tato:
+      score: 2
+      elementos: "Embalagem papel (genérica)"
+
+    paladar:
+      score: 4
+      elementos: "Big Mac crunch, molho especial"
+
+    analise: |
+      Muito forte em visão e olfato.
+      Oportunidade em tato (embalagem mais distinta).
+
+# ═══════════════════════════════════════════════════════════════════
+# EVOLUÇÃO USP → HSP (Proposições de Venda)
+# ═══════════════════════════════════════════════════════════════════
+
+evolucao_proposicoes:
+
+  descricao: |
+    Lindstrom traça evolução das proposições de venda
+    desde os anos 1950 até o futuro.
+    Cada era tem forma diferente de diferenciar.
+
+  eras:
+
+    usp_1950s:
+      nome: "Unique Selling Proposition"
+      traducao: "Proposição Única de Venda"
+      foco: "Atributo funcional único"
+      contexto: "Produtos realmente diferentes"
+      exemplo: "M&Ms: derrete na boca, não na mão"
+      limitacao: "Fácil de copiar atributos"
+
+    esp_1960s:
+      nome: "Emotional Selling Proposition"
+      traducao: "Proposição Emocional"
+      foco: "Conexão emocional"
+      contexto: "Produtos similares, emoções diferentes"
+      exemplo: "Coca-Cola vs Pepsi: mesmo líquido, emoções distintas"
+      limitacao: "Emoções também copiáveis"
+
+    osp_1980s:
+      nome: "Organizational Selling Proposition"
+      traducao: "Proposição Organizacional"
+      foco: "Filosofia da empresa como diferencial"
+      contexto: "Consumidor valoriza cultura"
+      exemplo: "Nike: filosofia de superação"
+      limitacao: "Difícil sustentar autenticidade"
+
+    bsp_1990s:
+      nome: "Brand Selling Proposition"
+      traducao: "Proposição da Marca"
+      foco: "Marca transcende produto"
+      contexto: "Extensões de marca, licensing"
+      exemplo: "Disney, Harry Potter: marca > produto"
+      limitacao: "Diluição possível"
+
+    msp_atual:
+      nome: "Me Selling Proposition"
+      traducao: "Proposição do Eu"
+      foco: "Customização e co-criação"
+      contexto: "Consumidor quer participar"
+      exemplo: "Nike ID, Dell customizado"
+      limitacao: "Escala vs customização"
+
+    hsp_futuro:
+      nome: "Holistic Selling Proposition"
+      traducao: "Proposição Holística"
+      foco: "Experiência sensorial completa"
+      contexto: "Marca como religião/comunidade"
+      exemplo: "Apple stores, Ferrari, Manchester United"
+      elementos:
+        - "Tradição e história"
+        - "Rituais de uso"
+        - "Comunidade de fiéis"
+        - "Experiência multissensorial"
+        - "Senso de pertencimento"
+        - "Devoção e evangelismo"
+
+  diagnostico:
+    perguntas:
+      - "Em que era sua marca está?"
+      - "O que seria necessário para evoluir?"
+      - "Há elementos de HSP presentes?"
+
+# ═══════════════════════════════════════════════════════════════════
+# BRAND RELIGION - 10 ELEMENTOS
+# ═══════════════════════════════════════════════════════════════════
+
+brand_religion:
+
+  conceito: |
+    Lindstrom estudou religiões para entender lealdade extrema.
+    Marcas que criam devoção compartilham elementos religiosos.
+    Não é manipulação - é criar significado genuíno.
+
+  os_10_elementos:
+
+    sense_of_belonging:
+      nome: "Senso de Pertencimento"
+      descricao: "Fazer parte de algo maior"
+      exemplo: "Harley Owners Group, Apple users"
+      pergunta: "Clientes se sentem parte de uma comunidade?"
+
+    clear_vision:
+      nome: "Visão Clara"
+      descricao: "Propósito maior que lucro"
+      exemplo: "Tesla: acelerar energia sustentável"
+      pergunta: "Há propósito que inspira?"
+
+    enemy:
+      nome: "Inimigo Comum"
+      descricao: "Contra quem/o quê lutamos"
+      exemplo: "Apple vs IBM (1984), Dove vs beleza irreal"
+      pergunta: "Há antagonista que une a comunidade?"
+
+    evangelism:
+      nome: "Evangelismo"
+      descricao: "Membros que espalham a mensagem"
+      exemplo: "Apple fanboys, Tesla owners"
+      pergunta: "Clientes promovem ativamente?"
+
+    grandeur:
+      nome: "Grandiosidade"
+      descricao: "Escala que impressiona"
+      exemplo: "Apple stores, flagship stores"
+      pergunta: "Há momentos que impressionam?"
+
+    storytelling:
+      nome: "Narrativas"
+      descricao: "Histórias de origem e heróis"
+      exemplo: "Steve Jobs na garagem, Coco Chanel"
+      pergunta: "Há história de origem poderosa?"
+
+    sensory_appeal:
+      nome: "Apelo Sensorial"
+      descricao: "Engaja múltiplos sentidos"
+      exemplo: "Incenso na igreja = cheiro Apple Store"
+      pergunta: "Quantos sentidos são ativados?"
+
+    rituals:
+      nome: "Rituais"
+      descricao: "Comportamentos repetidos"
+      exemplo: "Unboxing Apple, Dunk do Oreo"
+      pergunta: "Há rituais associados ao uso?"
+
+    symbols:
+      nome: "Símbolos"
+      descricao: "Ícones sagrados"
+      exemplo: "Logo Apple, estrela Mercedes"
+      pergunta: "Símbolos carregam significado?"
+
+    mystery:
+      nome: "Mistério"
+      descricao: "Elementos não totalmente explicados"
+      exemplo: "Fórmula Coca-Cola, algoritmo Google"
+      pergunta: "Há mistério que intriga?"
+
+  avaliacao:
+    template:
+      elemento: ""
+      presente: false
+      forca: null  # 1-5
+      exemplo_na_marca: ""
+      oportunidade: ""
+
+# ═══════════════════════════════════════════════════════════════════
+# MÉTRICAS DE IMPACTO
+# ═══════════════════════════════════════════════════════════════════
+
+metricas_impacto:
+
+  dados_pesquisa_millward_brown:
+    - "75% das emoções humanas são geradas pelo olfato"
+    - "99% das comunicações de marca focam só em visão/audição"
+    - "Marcas multissensoriais têm 70% mais lembrança"
+
+  roi_sensorial:
+    vendas: "Aromas em loja aumentam vendas até 27%"
+    permanencia: "Ambientes sensoriais aumentam tempo em 40%"
+    lealdade: "Estimulação sensorial aumenta lealdade em 25%"
+    preco: "Experiência sensorial justifica premium 10-15%"
+
+  top_marcas_sensoriais:
+    1: "Singapore Airlines"
+    2: "Apple"
+    3: "Disney"
+    nota: "Baseado no estudo Millward Brown"
+
+referencias:
+  - "Lindstrom, M. - Brand Sense (2005, atualizado 2010)"
+  - "Lindstrom, M. - Buyology (2008)"
+  - "Millward Brown - Global Sensory Study"
+  - "Krishna, A. - Sensory Marketing"
+  - "Hultén, B. - Sensory Marketing"

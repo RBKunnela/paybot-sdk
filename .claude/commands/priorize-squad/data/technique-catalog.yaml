@@ -1,0 +1,1211 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# PRIORITIZATION TECHNIQUE CATALOG
+# Complete reference of 20+ documented prioritization frameworks
+# ═══════════════════════════════════════════════════════════════════════════════
+
+catalog:
+  version: "1.0.0"
+  total_techniques: 23
+  last_updated: "2026-02-13"
+  note: "3 techniques (AHP, NGT, QFD) not counted in original 20 were added during catalog finalization"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# TECHNIQUE DEFINITIONS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+techniques:
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # MATRIX-BASED TECHNIQUES
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  eisenhower:
+    id: "PR-T-001"
+    name: "Eisenhower Matrix"
+    aliases: ["Urgent-Important Matrix", "Covey Matrix"]
+    creator: "Dwight D. Eisenhower (popularized by Stephen Covey)"
+    nationality: "American"
+    year: 1950
+    formalized: 1989
+    type: "matrix_2x2"
+    complexity: 1  # 1-5 scale
+    complexity_label: "Low"
+    group_size: "individual"  # individual | small_team | large_team | stakeholders
+    data_required: "none"  # none | minimal | moderate | extensive
+    time_to_execute: "5-15min"
+
+    how_it_works: |
+      2x2 matrix classifying tasks on two axes: Urgency and Importance.
+      Produces 4 quadrants:
+      - Q1 (Urgent + Important): Do now
+      - Q2 (Not Urgent + Important): Schedule
+      - Q3 (Urgent + Not Important): Delegate
+      - Q4 (Not Urgent + Not Important): Eliminate
+
+    steps:
+      - "List all tasks/items to prioritize"
+      - "For each item, ask: Is this URGENT? (deadline pressure, time-sensitive)"
+      - "For each item, ask: Is this IMPORTANT? (contributes to goals, high impact)"
+      - "Place each item in the corresponding quadrant"
+      - "Act: Q1=Do now, Q2=Schedule, Q3=Delegate, Q4=Eliminate"
+
+    best_for:
+      - "Daily task management"
+      - "Personal productivity"
+      - "Leadership decisions"
+      - "Any general-purpose prioritization"
+
+    not_suitable_for:
+      - "Product backlog with many items (>20)"
+      - "Quantitative comparison needed"
+      - "Team-based scoring"
+
+    output_format: "2x2 matrix with items in quadrants"
+
+    tags: ["personal", "daily", "simple", "visual", "general"]
+
+  value_effort:
+    id: "PR-T-002"
+    name: "Value vs. Effort Matrix"
+    aliases: ["Impact-Effort Matrix", "2x2 Prioritization"]
+    creator: "Community (Lean/Agile)"
+    nationality: "N/A"
+    year: 2000
+    type: "matrix_2x2"
+    complexity: 1
+    complexity_label: "Low"
+    group_size: "small_team"
+    data_required: "minimal"
+    time_to_execute: "10-20min"
+
+    how_it_works: |
+      2x2 matrix plotting items on Value (Y-axis) vs. Effort (X-axis):
+      - High Value + Low Effort = Quick Wins (do first)
+      - High Value + High Effort = Big Projects (plan carefully)
+      - Low Value + Low Effort = Fill-ins (if time permits)
+      - Low Value + High Effort = Money Pits (avoid)
+
+    steps:
+      - "List all items to prioritize"
+      - "Rate each item on Value (1-10): business impact, revenue, user satisfaction"
+      - "Rate each item on Effort (1-10): time, cost, complexity"
+      - "Plot on 2x2 matrix"
+      - "Prioritize: Quick Wins first, then Big Projects, Fill-ins last, avoid Money Pits"
+
+    best_for:
+      - "Sprint planning"
+      - "Quick triage sessions"
+      - "Startup feature selection"
+      - "Any team needing fast visual prioritization"
+
+    not_suitable_for:
+      - "Complex multi-criteria decisions"
+      - "When precise scoring is needed"
+
+    output_format: "2x2 matrix with items plotted"
+
+    tags: ["team", "agile", "visual", "quick", "product"]
+
+  pick_chart:
+    id: "PR-T-003"
+    name: "PICK Chart"
+    aliases: ["Possible-Implement-Challenge-Kill"]
+    creator: "Lockheed Martin"
+    nationality: "American"
+    year: 1990
+    type: "matrix_2x2"
+    complexity: 1
+    complexity_label: "Low"
+    group_size: "small_team"
+    data_required: "minimal"
+    time_to_execute: "15-30min"
+
+    how_it_works: |
+      2x2 matrix categorizing ideas into four quadrants:
+      - P (Possible): Easy + Low Impact - maybe later
+      - I (Implement): Easy + High Impact - do it now
+      - C (Challenge): Hard + High Impact - worth the effort
+      - K (Kill): Hard + Low Impact - discard
+
+    steps:
+      - "List all ideas/solutions from brainstorming"
+      - "Evaluate each on Ease of Implementation (easy vs. hard)"
+      - "Evaluate each on Potential Payoff (low vs. high)"
+      - "Place in quadrant: P, I, C, or K"
+      - "Focus on I (Implement) first, then C (Challenge)"
+
+    best_for:
+      - "Lean Six Sigma projects"
+      - "Process improvement"
+      - "Post-brainstorming filtering"
+      - "Team consensus building"
+
+    not_suitable_for:
+      - "Individual task management"
+      - "Quantitative precision needed"
+
+    output_format: "PICK quadrant chart"
+
+    tags: ["lean", "six_sigma", "team", "visual", "process"]
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # SCORING TECHNIQUES
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  rice:
+    id: "PR-T-004"
+    name: "RICE Scoring"
+    aliases: ["RICE Framework"]
+    creator: "Sean McBride & Intercom team"
+    nationality: "American"
+    year: 2016
+    type: "numeric_score"
+    complexity: 2
+    complexity_label: "Medium"
+    group_size: "small_team"
+    data_required: "moderate"
+    time_to_execute: "30-60min"
+
+    how_it_works: |
+      Scores each item with 4 factors to produce a single priority score:
+      RICE Score = (Reach x Impact x Confidence) / Effort
+
+      - Reach: How many people affected per time period (number)
+      - Impact: How much each person is affected (0.25=minimal, 0.5=low, 1=medium, 2=high, 3=massive)
+      - Confidence: How sure you are about estimates (100%=high, 80%=medium, 50%=low)
+      - Effort: Person-months of work (number)
+
+    steps:
+      - "List all features/ideas to score"
+      - "For each, estimate Reach (users per quarter)"
+      - "For each, rate Impact (0.25, 0.5, 1, 2, or 3)"
+      - "For each, assess Confidence (50%, 80%, or 100%)"
+      - "For each, estimate Effort (person-months)"
+      - "Calculate: (Reach x Impact x Confidence) / Effort"
+      - "Rank by RICE score descending"
+
+    best_for:
+      - "Product backlog prioritization"
+      - "Feature roadmap planning"
+      - "Data-driven product teams"
+      - "Growth team experiments"
+
+    not_suitable_for:
+      - "Personal daily tasks"
+      - "When data is completely unavailable"
+      - "Very small lists (<5 items)"
+
+    output_format: "Ranked table with RICE scores"
+
+    tags: ["product", "data_driven", "quantitative", "growth", "backlog"]
+
+  ice:
+    id: "PR-T-005"
+    name: "ICE Scoring"
+    aliases: ["ICE Framework"]
+    creator: "Sean Ellis"
+    nationality: "American"
+    year: 2010
+    type: "numeric_score"
+    complexity: 1
+    complexity_label: "Low"
+    group_size: "individual"
+    data_required: "minimal"
+    time_to_execute: "10-20min"
+
+    how_it_works: |
+      Quick scoring method using 3 criteria (1-10 each):
+      ICE Score = Impact x Confidence x Ease
+
+      - Impact: Potential effect on the business goal (1-10)
+      - Confidence: How confident you are it will work (1-10)
+      - Ease: How easy it is to implement (1-10)
+
+    steps:
+      - "List all experiments/ideas to score"
+      - "Rate each on Impact (1-10)"
+      - "Rate each on Confidence (1-10)"
+      - "Rate each on Ease (1-10)"
+      - "Calculate: Impact x Confidence x Ease"
+      - "Rank by ICE score descending"
+
+    best_for:
+      - "Growth hacking experiments"
+      - "Startup rapid decisions"
+      - "Marketing campaign selection"
+      - "Quick product decisions"
+
+    not_suitable_for:
+      - "Complex multi-stakeholder decisions"
+      - "When precise data is available (use RICE instead)"
+
+    output_format: "Ranked table with ICE scores"
+
+    tags: ["growth", "startup", "quick", "marketing", "experiments"]
+
+  gut:
+    id: "PR-T-006"
+    name: "GUT Matrix"
+    aliases: ["Gravity-Urgency-Tendency"]
+    creator: "Charles H. Kepner & Benjamin B. Tregoe"
+    nationality: "American"
+    year: 1981
+    type: "numeric_score"
+    complexity: 1
+    complexity_label: "Low"
+    group_size: "small_team"
+    data_required: "minimal"
+    time_to_execute: "15-30min"
+
+    how_it_works: |
+      Each problem is rated 1-5 on three criteria:
+      Priority = Gravity x Urgency x Tendency
+
+      - G (Gravity): Impact if problem is not solved (1=minimal, 5=catastrophic)
+      - U (Urgency): Time pressure to resolve (1=can wait, 5=immediate)
+      - T (Tendency): Likelihood of getting worse over time (1=stable, 5=rapid deterioration)
+
+    steps:
+      - "List all problems/issues to prioritize"
+      - "Rate each on Gravity (1-5)"
+      - "Rate each on Urgency (1-5)"
+      - "Rate each on Tendency (1-5)"
+      - "Calculate: G x U x T"
+      - "Rank from highest to lowest"
+
+    best_for:
+      - "Problem resolution in manufacturing"
+      - "Risk assessment"
+      - "Quality management (PDCA)"
+      - "Industrial process issues"
+      - "Strategic planning"
+
+    not_suitable_for:
+      - "Feature prioritization"
+      - "Opportunity evaluation"
+
+    output_format: "Ranked table with GUT scores (max 125)"
+
+    tags: ["quality", "risk", "industrial", "problems", "engineering"]
+
+  wsjf:
+    id: "PR-T-007"
+    name: "WSJF"
+    aliases: ["Weighted Shortest Job First"]
+    creator: "Don Reinertsen (adopted by SAFe/Dean Leffingwell)"
+    nationality: "American"
+    year: 2009
+    type: "numeric_score"
+    complexity: 2
+    complexity_label: "Medium"
+    group_size: "large_team"
+    data_required: "moderate"
+    time_to_execute: "30-60min"
+
+    how_it_works: |
+      Prioritizes by maximum economic return in minimum time:
+      WSJF = Cost of Delay / Job Duration
+
+      Cost of Delay is decomposed into:
+      - User-Business Value (1-21 fibonacci)
+      - Time Criticality (1-21 fibonacci)
+      - Risk Reduction / Opportunity Enablement (1-21 fibonacci)
+
+      Uses relative sizing (fibonacci) with team consensus.
+
+    steps:
+      - "List all features/epics to prioritize"
+      - "Rate User-Business Value (1, 2, 3, 5, 8, 13, 21)"
+      - "Rate Time Criticality (1, 2, 3, 5, 8, 13, 21)"
+      - "Rate Risk Reduction / Opportunity Enablement (1, 2, 3, 5, 8, 13, 21)"
+      - "Sum the three to get Cost of Delay"
+      - "Estimate Job Size/Duration (1, 2, 3, 5, 8, 13, 21)"
+      - "Calculate: WSJF = Cost of Delay / Job Size"
+      - "Rank by WSJF descending"
+
+    best_for:
+      - "SAFe/Lean portfolio management"
+      - "Program Increment (PI) planning"
+      - "Large-scale backlog prioritization"
+      - "Enterprise feature selection"
+
+    not_suitable_for:
+      - "Small teams without SAFe"
+      - "Personal task management"
+      - "Quick decisions"
+
+    output_format: "Ranked table with WSJF scores"
+
+    tags: ["safe", "lean", "enterprise", "portfolio", "economic"]
+
+  weighted_scoring:
+    id: "PR-T-008"
+    name: "Weighted Scoring Model"
+    aliases: ["Decision Matrix", "Weighted Decision Matrix", "Pugh Matrix"]
+    creator: "Generic (Project Management)"
+    nationality: "N/A"
+    year: 1960
+    type: "numeric_score"
+    complexity: 2
+    complexity_label: "Medium"
+    group_size: "small_team"
+    data_required: "moderate"
+    time_to_execute: "30-60min"
+
+    how_it_works: |
+      The most flexible scoring framework:
+      1. Define criteria (columns)
+      2. Assign weights to each criterion (totaling 100%)
+      3. Score each option against each criterion (1-10)
+      4. Multiply scores by weights
+      5. Sum weighted scores per option
+      6. Rank by total weighted score
+
+    steps:
+      - "Define 4-8 evaluation criteria relevant to your context"
+      - "Assign percentage weight to each criterion (must total 100%)"
+      - "List all options to evaluate"
+      - "Score each option on each criterion (1-10)"
+      - "Multiply each score by its weight"
+      - "Sum weighted scores for each option"
+      - "Rank by total weighted score"
+
+    best_for:
+      - "Vendor/tool selection"
+      - "Multi-criteria feature evaluation"
+      - "Project portfolio selection"
+      - "Any decision with custom criteria"
+
+    not_suitable_for:
+      - "Quick daily decisions"
+      - "When criteria are unclear"
+
+    output_format: "Weighted scoring matrix table"
+
+    tags: ["flexible", "quantitative", "vendor", "project", "multi_criteria"]
+
+  cd3:
+    id: "PR-T-009"
+    name: "CD3 (Cost of Delay Divided by Duration)"
+    aliases: ["Cost of Delay"]
+    creator: "Don Reinertsen"
+    nationality: "American"
+    year: 2009
+    type: "numeric_score"
+    complexity: 3
+    complexity_label: "High"
+    group_size: "large_team"
+    data_required: "extensive"
+    time_to_execute: "60-120min"
+
+    how_it_works: |
+      Quantifies the economic impact of delaying a feature/project:
+      CD3 = Cost of Delay / Duration
+
+      Cost of Delay profiles:
+      - Standard: Linear value decay over time
+      - Urgent: Steep early value loss
+      - Fixed Date: Cliff at deadline
+      - Intangible: Hard to quantify but real
+
+      Requires estimating revenue impact, market window, and opportunity cost.
+
+    steps:
+      - "Identify the value stream for each item"
+      - "Estimate weekly/monthly revenue impact of delay"
+      - "Classify the urgency profile (standard, urgent, fixed-date, intangible)"
+      - "Estimate implementation duration"
+      - "Calculate CD3 = Cost of Delay / Duration"
+      - "Rank by CD3 descending"
+
+    best_for:
+      - "Economic decision-making"
+      - "Portfolio prioritization with financial data"
+      - "Lean product development"
+
+    not_suitable_for:
+      - "Teams without financial data"
+      - "Early-stage products"
+      - "Quick decisions"
+
+    output_format: "CD3 ranked table with economic profiles"
+
+    tags: ["economic", "financial", "lean", "advanced", "portfolio"]
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # CATEGORIZATION TECHNIQUES
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  moscow:
+    id: "PR-T-010"
+    name: "MoSCoW"
+    aliases: ["MoSCoW Method"]
+    creator: "Dai Clegg"
+    nationality: "British"
+    year: 1994
+    type: "categorization"
+    complexity: 1
+    complexity_label: "Low"
+    group_size: "small_team"
+    data_required: "none"
+    time_to_execute: "15-30min"
+
+    how_it_works: |
+      Classifies requirements/tasks into 4 categories:
+      - Must have (M): Indispensable; project fails without it
+      - Should have (S): Important but not fatal if missing
+      - Could have (C): Desirable; only if time/resources allow
+      - Won't have (W): Discarded for this cycle (may return later)
+
+      Rule of thumb: Must-haves should be ~60% of effort, Should-haves ~20%.
+
+    steps:
+      - "List all requirements/features"
+      - "For each, ask: Does the project FAIL without this? → Must have"
+      - "If not critical, ask: Is this IMPORTANT for success? → Should have"
+      - "If nice-to-have, ask: Would users APPRECIATE this? → Could have"
+      - "Everything else → Won't have (this cycle)"
+      - "Validate: Must-haves should be ~60% of total effort"
+
+    best_for:
+      - "MVP definition"
+      - "Scope negotiation with stakeholders"
+      - "Release planning"
+      - "Agile/Scrum backlog grooming"
+
+    not_suitable_for:
+      - "Detailed priority ranking within a category"
+      - "Quantitative comparison"
+
+    output_format: "Categorized list (M/S/C/W)"
+
+    tags: ["agile", "scope", "mvp", "requirements", "stakeholders"]
+
+  kano:
+    id: "PR-T-011"
+    name: "Kano Model"
+    aliases: ["Kano Analysis"]
+    creator: "Dr. Noriaki Kano"
+    nationality: "Japanese"
+    year: 1984
+    type: "categorization"
+    complexity: 3
+    complexity_label: "High"
+    group_size: "stakeholders"
+    data_required: "extensive"
+    time_to_execute: "120-240min"
+
+    how_it_works: |
+      Classifies features based on customer satisfaction using paired questionnaires:
+      1. Basic (Must-be): Expected; absence causes dissatisfaction, presence doesn't delight
+      2. Performance (One-dimensional): More = more satisfaction (linear)
+      3. Attractive (Delighters): Surprise positively; absence doesn't bother
+      4. Indifferent: No effect on satisfaction
+      5. Reverse: Presence causes dissatisfaction
+
+      Requires customer surveys with functional/dysfunctional question pairs.
+
+    steps:
+      - "Create feature list to evaluate"
+      - "Design Kano questionnaire (functional + dysfunctional for each feature)"
+      - "Survey customers (minimum 20-30 responses)"
+      - "Map responses to Kano categories using evaluation table"
+      - "Calculate satisfaction/dissatisfaction coefficients"
+      - "Prioritize: Basics first (mandatory), then Performance, then Attractive"
+
+    best_for:
+      - "Customer-driven product design"
+      - "UX feature prioritization"
+      - "Understanding customer expectations"
+      - "Quality engineering"
+
+    not_suitable_for:
+      - "Internal tasks without customer input"
+      - "Quick decisions"
+      - "Small teams without survey capability"
+
+    output_format: "Kano classification table with coefficients"
+
+    tags: ["customer", "ux", "survey", "product", "quality"]
+
+  abcde:
+    id: "PR-T-012"
+    name: "ABCDE Method"
+    aliases: ["Eat That Frog Method"]
+    creator: "Brian Tracy"
+    nationality: "American"
+    year: 2001
+    type: "categorization"
+    complexity: 1
+    complexity_label: "Low"
+    group_size: "individual"
+    data_required: "none"
+    time_to_execute: "5-10min"
+
+    how_it_works: |
+      Categorizes tasks into 5 priority levels:
+      - A: Must do - serious consequences if not done
+      - B: Should do - mild consequences if not done
+      - C: Nice to do - no consequences either way
+      - D: Delegate - can be done by someone else
+      - E: Eliminate - not needed at all
+
+      Within A tasks, sub-rank as A-1, A-2, A-3. Always start with A-1.
+
+    steps:
+      - "List all tasks for the day/week"
+      - "Mark each as A, B, C, D, or E"
+      - "Sub-rank A tasks: A-1 (most important), A-2, A-3..."
+      - "Start with A-1 and don't move to A-2 until A-1 is done"
+      - "Only move to B tasks after all A tasks are complete"
+
+    best_for:
+      - "Personal daily productivity"
+      - "Time management"
+      - "Individual task prioritization"
+      - "Overcoming procrastination"
+
+    not_suitable_for:
+      - "Team/project prioritization"
+      - "Product backlog management"
+
+    output_format: "Categorized and ranked list (A1, A2, B1, B2, C, D, E)"
+
+    tags: ["personal", "daily", "productivity", "simple", "individual"]
+
+  three_feature_buckets:
+    id: "PR-T-013"
+    name: "Three Feature Buckets"
+    aliases: ["Nash Buckets"]
+    creator: "Adam Nash"
+    nationality: "American"
+    year: 2009
+    type: "categorization"
+    complexity: 1
+    complexity_label: "Low"
+    group_size: "small_team"
+    data_required: "minimal"
+    time_to_execute: "15-30min"
+
+    how_it_works: |
+      Divides features into three balanced buckets:
+      - Metrics Movers: Features that drive key business metrics (revenue, growth)
+      - Customer Requests: Features users explicitly ask for (trust, retention)
+      - Delight: Innovative features that inspire loyalty (surprise, differentiation)
+
+      Great products balance all three. Each bucket serves a different purpose.
+
+    steps:
+      - "List all features on the roadmap"
+      - "For each, ask: Does this move a KEY METRIC? → Metrics Movers"
+      - "Ask: Are customers EXPLICITLY requesting this? → Customer Requests"
+      - "Ask: Will this SURPRISE and DELIGHT users? → Delight"
+      - "Ensure healthy balance across all three buckets"
+      - "Prioritize within each bucket separately"
+
+    best_for:
+      - "Product roadmap planning"
+      - "Balancing stakeholder interests"
+      - "Product portfolio diversity"
+      - "PM roadmap reviews"
+
+    not_suitable_for:
+      - "Detailed ordering within a bucket"
+      - "Non-product prioritization"
+
+    output_format: "Three-bucket classification"
+
+    tags: ["product", "roadmap", "balance", "portfolio", "pm"]
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # PRINCIPLE/LENS TECHNIQUES
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  pareto:
+    id: "PR-T-014"
+    name: "Pareto Principle (80/20)"
+    aliases: ["80/20 Rule", "Vital Few"]
+    creator: "Vilfredo Pareto (formalized by Joseph M. Juran)"
+    nationality: "Italian (Pareto) / Romanian-American (Juran)"
+    year: 1896
+    formalized: 1941
+    type: "principle"
+    complexity: 1
+    complexity_label: "Low"
+    group_size: "individual"
+    data_required: "minimal"
+    time_to_execute: "10-20min"
+
+    how_it_works: |
+      Empirical principle: 80% of results come from 20% of causes.
+      Applied to prioritization:
+      1. List all tasks/items
+      2. Identify the 20% that generate 80% of impact
+      3. Focus effort on those 20%
+
+      Not a formula but a decision lens that complements other methods.
+
+    steps:
+      - "List all tasks/problems/opportunities"
+      - "Estimate the impact/value of each"
+      - "Sort by impact descending"
+      - "Identify the top 20% (the vital few)"
+      - "Concentrate effort on these items first"
+      - "Apply to the remaining 80% only if capacity allows"
+
+    best_for:
+      - "Quick focus on what matters"
+      - "Resource allocation"
+      - "Problem analysis"
+      - "Complementing other prioritization methods"
+
+    not_suitable_for:
+      - "Precise ranking"
+      - "When all items have similar impact"
+
+    output_format: "Pareto chart or vital few/trivial many split"
+
+    tags: ["universal", "quick", "principle", "focus", "efficiency"]
+
+  one_three_nine:
+    id: "PR-T-015"
+    name: "1/3/9 Technique"
+    aliases: ["1-3-9 Method"]
+    creator: "Community (productivity)"
+    nationality: "N/A"
+    year: 2010
+    type: "principle"
+    complexity: 1
+    complexity_label: "Low"
+    group_size: "individual"
+    data_required: "none"
+    time_to_execute: "5min"
+
+    how_it_works: |
+      Create a daily list of exactly 13 tasks:
+      - 1 critical task (do first, no exception)
+      - 3 important tasks (do next)
+      - 9 desirable tasks (do if time permits)
+
+      Forces daily focus by limiting the critical items.
+
+    steps:
+      - "Review all pending tasks"
+      - "Select the 1 MOST critical task for today"
+      - "Select 3 important tasks"
+      - "Select 9 desirable tasks"
+      - "Execute in order: critical → important → desirable"
+
+    best_for:
+      - "Daily personal productivity"
+      - "Simple focus management"
+
+    not_suitable_for:
+      - "Team prioritization"
+      - "Project planning"
+
+    output_format: "Structured daily list (1+3+9)"
+
+    tags: ["personal", "daily", "simple", "focus", "productivity"]
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # RESEARCH/CUSTOMER TECHNIQUES
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  opportunity_scoring:
+    id: "PR-T-016"
+    name: "Opportunity Scoring"
+    aliases: ["Opportunity Analysis", "JTBD Scoring"]
+    creator: "Anthony W. Ulwick"
+    nationality: "American"
+    year: 2005
+    type: "research"
+    complexity: 2
+    complexity_label: "Medium"
+    group_size: "stakeholders"
+    data_required: "extensive"
+    time_to_execute: "60-120min"
+
+    how_it_works: |
+      Customer research with two questions per outcome:
+      1. How IMPORTANT is this outcome to you? (1-10)
+      2. How SATISFIED are you with the current solution? (1-10)
+
+      Plot on Importance x Satisfaction graph.
+      Biggest opportunities: HIGH importance + LOW satisfaction.
+
+      Opportunity Score = Importance + max(Importance - Satisfaction, 0)
+
+    steps:
+      - "Define outcomes/jobs-to-be-done for your product"
+      - "Design survey with importance + satisfaction questions"
+      - "Survey customers (minimum 30+ responses)"
+      - "Calculate average importance and satisfaction per outcome"
+      - "Calculate Opportunity Score"
+      - "Rank by Opportunity Score descending"
+      - "Focus on high-importance, low-satisfaction outcomes"
+
+    best_for:
+      - "Product innovation"
+      - "UX research"
+      - "Customer-driven prioritization"
+      - "Jobs-to-be-Done analysis"
+
+    not_suitable_for:
+      - "Internal operational tasks"
+      - "When customer access is limited"
+      - "Quick decisions"
+
+    output_format: "Opportunity landscape chart + ranked table"
+
+    tags: ["customer", "research", "innovation", "jtbd", "product"]
+
+  buy_a_feature:
+    id: "PR-T-017"
+    name: "Buy a Feature"
+    aliases: ["Innovation Game"]
+    creator: "Luke Hohmann"
+    nationality: "American"
+    year: 2006
+    type: "research"
+    complexity: 2
+    complexity_label: "Medium"
+    group_size: "stakeholders"
+    data_required: "minimal"
+    time_to_execute: "60-90min"
+
+    how_it_works: |
+      Collaborative prioritization game:
+      1. List features and assign a fictitious price to each
+      2. Give participants a limited budget (not enough to buy everything)
+      3. Participants "buy" the features they value most
+      4. Most purchased features = highest priority
+
+      Forces trade-off thinking and reveals true customer value.
+
+    steps:
+      - "List 10-20 features with descriptions"
+      - "Assign prices proportional to implementation effort"
+      - "Give each participant a budget (~30-40% of total feature cost)"
+      - "Let participants allocate budget to features"
+      - "Tally purchases per feature"
+      - "Rank by total investment received"
+
+    best_for:
+      - "Customer workshops"
+      - "Stakeholder alignment sessions"
+      - "Product validation"
+      - "Feature prioritization with real users"
+
+    not_suitable_for:
+      - "Solo prioritization"
+      - "Technical debt decisions"
+
+    output_format: "Feature investment ranking table"
+
+    tags: ["workshop", "customer", "collaborative", "validation", "product"]
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # VISUAL/MAPPING TECHNIQUES
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  story_mapping:
+    id: "PR-T-018"
+    name: "Story Mapping"
+    aliases: ["User Story Mapping"]
+    creator: "Jeff Patton"
+    nationality: "American"
+    year: 2005
+    type: "visual_mapping"
+    complexity: 2
+    complexity_label: "Medium"
+    group_size: "small_team"
+    data_required: "moderate"
+    time_to_execute: "60-120min"
+
+    how_it_works: |
+      Bidimensional visual map of user stories:
+      - Horizontal axis: User journey flow (left to right)
+      - Vertical axis: Priority (top to bottom: essential → desirable)
+
+      Draw a horizontal line to define MVP/release cuts.
+      Everything above the line ships; below waits.
+
+    steps:
+      - "Map the user journey as activities (horizontal backbone)"
+      - "Under each activity, list user stories vertically by priority"
+      - "Arrange stories from most essential (top) to nice-to-have (bottom)"
+      - "Draw a release line cutting across the map"
+      - "Everything above = Release 1/MVP"
+      - "Repeat for Release 2, 3, etc."
+
+    best_for:
+      - "Release planning"
+      - "MVP definition"
+      - "Understanding user journey context"
+      - "Agile team alignment"
+
+    not_suitable_for:
+      - "Non-product prioritization"
+      - "Individual task management"
+      - "Items without user journey context"
+
+    output_format: "Visual story map with release lines"
+
+    tags: ["agile", "visual", "product", "release", "mvp"]
+
+  impact_mapping:
+    id: "PR-T-019"
+    name: "Impact Mapping"
+    aliases: ["Goal-Actor-Impact-Deliverable"]
+    creator: "Gojko Adzic"
+    nationality: "Serbian (based in UK)"
+    year: 2012
+    type: "visual_mapping"
+    complexity: 2
+    complexity_label: "Medium"
+    group_size: "small_team"
+    data_required: "moderate"
+    time_to_execute: "45-90min"
+
+    how_it_works: |
+      Hierarchical mind map connecting:
+      WHY (goal) → WHO (actors) → HOW (impacts) → WHAT (deliverables)
+
+      Every feature must trace back to a business goal through
+      a specific actor and expected behavior change.
+
+    steps:
+      - "Define the business GOAL (measurable outcome)"
+      - "Identify WHO can help/hinder this goal (actors/personas)"
+      - "For each actor, define HOW their behavior should change (impacts)"
+      - "For each impact, define WHAT we can deliver (features/activities)"
+      - "Prioritize deliverables by impact on goal"
+      - "Cut anything that doesn't connect to the goal"
+
+    best_for:
+      - "Strategic alignment of features to goals"
+      - "Ensuring every feature has business justification"
+      - "Agile roadmapping"
+      - "Preventing feature bloat"
+
+    not_suitable_for:
+      - "Daily task management"
+      - "Operational prioritization"
+
+    output_format: "Hierarchical impact map (mind map style)"
+
+    tags: ["strategic", "goals", "alignment", "visual", "roadmap"]
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # GROUP TECHNIQUES
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  ahp:
+    id: "PR-T-020"
+    name: "AHP (Analytic Hierarchy Process)"
+    aliases: ["Saaty Method"]
+    creator: "Thomas L. Saaty"
+    nationality: "American"
+    year: 1970
+    type: "group_decision"
+    complexity: 4
+    complexity_label: "High"
+    group_size: "small_team"
+    data_required: "moderate"
+    time_to_execute: "60-120min"
+
+    how_it_works: |
+      Pairwise comparison method for complex multi-criteria decisions:
+      1. Define criteria hierarchy
+      2. Compare each pair of criteria using Saaty's 1-9 scale
+      3. Compare each pair of options under each criterion
+      4. Calculate priority weights using eigenvectors
+      5. Check consistency ratio (must be < 0.1)
+      6. Rank options by final weighted scores
+
+    steps:
+      - "Define the decision goal"
+      - "Identify 3-7 evaluation criteria"
+      - "Compare each pair of criteria: 'How much more important is A vs B?'"
+      - "Use Saaty scale: 1=equal, 3=moderate, 5=strong, 7=very strong, 9=extreme"
+      - "Build comparison matrix and calculate weights"
+      - "Compare options under each criterion (pairwise)"
+      - "Calculate final scores and check consistency"
+
+    best_for:
+      - "Complex strategic decisions"
+      - "Project portfolio selection"
+      - "Multi-criteria vendor evaluation"
+      - "Resource allocation decisions"
+
+    not_suitable_for:
+      - "Quick decisions"
+      - "Large number of options (>9)"
+      - "Teams unfamiliar with the method"
+
+    output_format: "Priority weights matrix + ranked options"
+
+    tags: ["complex", "mathematical", "strategic", "portfolio", "advanced"]
+
+  ngt:
+    id: "PR-T-021"
+    name: "NGT (Nominal Group Technique)"
+    aliases: ["Nominal Group Method"]
+    creator: "Andre Delbecq & Andrew H. Van de Ven"
+    nationality: "American"
+    year: 1968
+    type: "group_decision"
+    complexity: 2
+    complexity_label: "Medium"
+    group_size: "small_team"
+    data_required: "none"
+    time_to_execute: "45-90min"
+
+    how_it_works: |
+      Structured group decision-making in 4 stages:
+      1. Silent Idea Generation: Each person writes ideas independently
+      2. Round-Robin Sharing: Each person shares one idea at a time
+      3. Clarification Discussion: Group discusses and clarifies
+      4. Voting/Ranking: Each person votes on top ideas
+
+      Prevents dominant voices from overshadowing quieter team members.
+
+    steps:
+      - "Present the question/problem to the group"
+      - "Silent generation: 5-10 minutes of individual writing"
+      - "Round-robin: Each person shares one idea per round"
+      - "Record all ideas visibly (whiteboard/screen)"
+      - "Clarification: Brief discussion of each idea (no arguing)"
+      - "Vote: Each person selects their top 5 ideas and ranks them"
+      - "Tally votes and present the ranked list"
+
+    best_for:
+      - "Group prioritization with balanced participation"
+      - "Team brainstorming + prioritization"
+      - "Avoiding groupthink"
+      - "Cross-functional team decisions"
+
+    not_suitable_for:
+      - "Solo decisions"
+      - "Quantitative scoring needed"
+      - "Remote async teams"
+
+    output_format: "Ranked list with vote tallies"
+
+    tags: ["group", "team", "balanced", "workshop", "brainstorming"]
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # VALIDATION/PLANNING TECHNIQUES
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  qfd:
+    id: "PR-T-022"
+    name: "QFD / House of Quality"
+    aliases: ["Quality Function Deployment"]
+    creator: "Yoji Akao & Shigeru Mizuno"
+    nationality: "Japanese"
+    year: 1966
+    type: "research"
+    complexity: 4
+    complexity_label: "High"
+    group_size: "large_team"
+    data_required: "extensive"
+    time_to_execute: "120-240min"
+
+    how_it_works: |
+      Matrix-based method translating "Voice of Customer" into technical requirements:
+      - Rows: Customer needs ("whats") with importance ratings (1-10)
+      - Columns: Technical requirements ("hows")
+      - Body: Relationship strength (1=weak, 3=moderate, 9=strong)
+      - Roof: Correlations between technical requirements
+
+      Calculates priority of technical requirements based on customer importance.
+
+    steps:
+      - "Gather customer needs (VOC research)"
+      - "Rate importance of each need (1-10)"
+      - "Define technical requirements that address needs"
+      - "Fill relationship matrix (1, 3, or 9)"
+      - "Calculate technical importance: sum(importance x relationship)"
+      - "Build correlation roof (positive/negative between techs)"
+      - "Prioritize technical requirements by weighted importance"
+
+    best_for:
+      - "Product development"
+      - "Engineering requirements"
+      - "Customer-to-technical translation"
+      - "Manufacturing quality"
+
+    not_suitable_for:
+      - "Quick decisions"
+      - "Non-technical prioritization"
+      - "Small teams without VOC data"
+
+    output_format: "House of Quality matrix"
+
+    tags: ["engineering", "manufacturing", "customer", "quality", "advanced"]
+
+  walking_skeleton:
+    id: "PR-T-023"
+    name: "Walking Skeleton"
+    aliases: ["Tracer Bullet"]
+    creator: "Alistair Cockburn"
+    nationality: "American"
+    year: 2000
+    type: "validation"
+    complexity: 2
+    complexity_label: "Medium"
+    group_size: "small_team"
+    data_required: "moderate"
+    time_to_execute: "30-60min"
+
+    how_it_works: |
+      Identifies 2-3 core flows vital for testing product hypothesis.
+      Creates a rudimentary but FUNCTIONAL version with minimum effort.
+      Even lighter than an MVP - just enough to validate the architecture.
+
+      Selection criteria for the skeleton:
+      - Touches all architectural layers
+      - Tests the riskiest assumption
+      - Delivers minimal user value end-to-end
+
+    steps:
+      - "List all user flows/features"
+      - "Identify the 2-3 that touch ALL architectural layers"
+      - "Among those, pick the one testing the RISKIEST assumption"
+      - "Strip each to absolute minimum functionality"
+      - "Implement only what's needed for end-to-end flow"
+      - "Validate: Does it prove/disprove the hypothesis?"
+
+    best_for:
+      - "Early-stage product validation"
+      - "Architecture proof of concept"
+      - "MVP planning (even lighter than MVP)"
+      - "Assumption testing"
+
+    not_suitable_for:
+      - "Mature products"
+      - "Non-technical prioritization"
+      - "Large backlogs"
+
+    output_format: "Prioritized skeleton with architectural coverage map"
+
+    tags: ["startup", "validation", "mvp", "architecture", "agile"]
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# SELECTION DECISION TREE
+# Used by select-technique task to guide users
+# ═══════════════════════════════════════════════════════════════════════════════
+
+selection_tree:
+  question_1:
+    text: "What are you prioritizing?"
+    options:
+      personal_tasks:
+        label: "Personal daily tasks"
+        recommended: ["eisenhower", "abcde", "one_three_nine", "pareto"]
+      product_features:
+        label: "Product features/backlog"
+        next: "question_2"
+      project_portfolio:
+        label: "Projects in a portfolio"
+        recommended: ["wsjf", "weighted_scoring", "ahp", "cd3"]
+      problems_risks:
+        label: "Problems or risks"
+        recommended: ["gut", "pareto", "eisenhower"]
+      team_ideas:
+        label: "Team brainstorming results"
+        recommended: ["ngt", "pick_chart", "value_effort"]
+
+  question_2:
+    text: "Do you have customer/user data available?"
+    options:
+      yes_extensive:
+        label: "Yes, extensive data"
+        next: "question_3"
+      yes_some:
+        label: "Some data available"
+        recommended: ["rice", "wsjf", "weighted_scoring"]
+      no_data:
+        label: "No data, need quick decision"
+        recommended: ["ice", "moscow", "value_effort", "three_feature_buckets"]
+
+  question_3:
+    text: "What kind of customer data?"
+    options:
+      satisfaction_surveys:
+        label: "Customer satisfaction surveys"
+        recommended: ["kano", "opportunity_scoring", "qfd"]
+      usage_metrics:
+        label: "Usage/behavior metrics"
+        recommended: ["rice", "opportunity_scoring"]
+      direct_feedback:
+        label: "Direct customer feedback"
+        recommended: ["buy_a_feature", "moscow", "story_mapping"]
+
+  question_4:
+    text: "How much time do you have?"
+    options:
+      under_15min:
+        label: "Under 15 minutes"
+        filter_by: "complexity <= 1"
+      under_1h:
+        label: "Under 1 hour"
+        filter_by: "complexity <= 2"
+      half_day:
+        label: "Half day or more"
+        filter_by: "complexity <= 5"
+
+  question_5:
+    text: "Team size involved in the decision?"
+    options:
+      just_me:
+        label: "Just me"
+        filter_by: "group_size == individual"
+      small_team:
+        label: "2-6 people"
+        filter_by: "group_size in [individual, small_team]"
+      large_team:
+        label: "7+ people or stakeholders"
+        filter_by: "group_size in [small_team, large_team, stakeholders]"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# TAGS INDEX (for quick lookup)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+tag_index:
+  personal: ["eisenhower", "abcde", "one_three_nine", "pareto"]
+  product: ["rice", "ice", "moscow", "kano", "story_mapping", "impact_mapping", "three_feature_buckets", "opportunity_scoring", "buy_a_feature"]
+  agile: ["moscow", "value_effort", "story_mapping", "wsjf"]
+  growth: ["ice", "rice"]
+  engineering: ["gut", "qfd", "pick_chart"]
+  strategic: ["ahp", "weighted_scoring", "cd3", "impact_mapping", "wsjf"]
+  quick: ["eisenhower", "ice", "abcde", "one_three_nine", "value_effort", "pareto"]
+  workshop: ["ngt", "buy_a_feature", "pick_chart"]
+  customer: ["kano", "opportunity_scoring", "buy_a_feature", "qfd", "story_mapping"]
+  visual: ["eisenhower", "value_effort", "pick_chart", "story_mapping", "impact_mapping"]
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# MARKET AREA MAPPING
+# ═══════════════════════════════════════════════════════════════════════════════
+
+market_areas:
+  software_product:
+    name: "Software Development / Product"
+    techniques: ["moscow", "rice", "ice", "wsjf", "kano", "story_mapping", "value_effort", "impact_mapping", "three_feature_buckets", "walking_skeleton"]
+  engineering_industry:
+    name: "Engineering / Industry / Quality"
+    techniques: ["gut", "pareto", "kano", "wsjf", "qfd", "pick_chart"]
+  growth_marketing:
+    name: "Growth / Marketing / Sales"
+    techniques: ["ice", "rice", "opportunity_scoring", "buy_a_feature", "pareto"]
+  management_leadership:
+    name: "Management / Leadership / Daily Tasks"
+    techniques: ["eisenhower", "pareto", "one_three_nine", "value_effort", "gut", "abcde"]
+  startups_innovation:
+    name: "Startups / Innovation"
+    techniques: ["ice", "buy_a_feature", "value_effort", "moscow", "opportunity_scoring", "walking_skeleton"]
+  enterprise_portfolio:
+    name: "Enterprise / Portfolio Management"
+    techniques: ["wsjf", "cd3", "ahp", "weighted_scoring"]

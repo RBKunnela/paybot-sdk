@@ -1,0 +1,84 @@
+# Task: Prepare Handoff
+# Squad: squAId-criaTTivados / atendimento
+# Responsável: account-director
+
+metadata:
+  name: "prepare-handoff"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "atendimento"
+  responsavel: "account-director"
+  tipo: task
+
+descricao: |
+  Compilar pacote de handoff qualificado para Search & Insights e DEENEA.
+  Inclui briefing validado, análise de cliente, pré-mapeamento taxonômico,
+  e routing de pesquisa (nível Ouro/Prata/Bronze + trilha Personal/Business Brand).
+
+entrada:
+  - campo: perfil_onboarding
+    tipo: string
+    origem: "onboard-explore"
+    obrigatorio: true
+    descricao: "Perfil de onboarding (trilha + nível de pesquisa)"
+  - campo: briefing_brandesire
+    tipo: string
+    origem: "collect-briefing"
+    obrigatorio: true
+    descricao: "Briefing BranDesire validado"
+  - campo: client_analysis_report
+    tipo: string
+    origem: "analyze-client"
+    obrigatorio: true
+    descricao: "Client Analysis Report completo"
+
+saida:
+  - campo: handoff_package
+    tipo: string
+    destino: "search-insights / deenea"
+    persistido: true
+    descricao: "Pacote consolidado para próximas squads"
+
+passos:
+  1:
+    nome: "Validar completude do briefing"
+    descricao: "Executar checkpoint de validação dos 16 campos + trilha + nível de pesquisa"
+    agente: "checkpoint-validator"
+  2:
+    nome: "Consolidar Client Analysis"
+    descricao: "Revisar e consolidar análise do cliente"
+    agente: "account-director"
+  3:
+    nome: "Organizar repositório inteligente"
+    descricao: "Catalogar assets, registrar data lineage e validar qualidade"
+    agente: "asset-manager"
+  4:
+    nome: "Montar pacote Search & Insights"
+    descricao: |
+      Preparar dados relevantes para pesquisa de mercado.
+      INCLUIR: nível de pesquisa determinado, template associado,
+      capacidade de respondentes, prazo estimado de coleta.
+    agente: "account-director"
+  5:
+    nome: "Montar pacote DEENEA"
+    descricao: "Preparar dados relevantes para estratégia"
+    agente: "account-director"
+  6:
+    nome: "Documentar alertas"
+    descricao: "Registrar observações, riscos e pontos de atenção"
+    agente: "account-director"
+
+checklist:
+  - "[ ] Trilha definida (Personal Brand / Business Brand)"
+  - "[ ] Nível de pesquisa determinado (Ouro / Prata / Bronze)"
+  - "[ ] Briefing 16/16 campos OK"
+  - "[ ] Client Analysis completo"
+  - "[ ] Repositório inteligente organizado"
+  - "[ ] Pacote Search & Insights com routing de pesquisa"
+  - "[ ] Pacote DEENEA montado"
+  - "[ ] Alertas documentados"
+
+criterios_aceitacao:
+  - "Handoff sem lacunas de informação"
+  - "Search & Insights sabe exatamente qual nível de pesquisa executar"
+  - "Próximas squads conseguem iniciar sem voltar ao cliente"

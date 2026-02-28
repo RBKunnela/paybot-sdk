@@ -1,0 +1,69 @@
+# Task: Select Narrative Framework
+# Squad: squAId-criaTTivados / storytelling
+# Responsável: narrative-designer
+
+metadata:
+  name: "select-narrative-framework"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "storytelling"
+  responsavel: "narrative-designer"
+  tipo: task
+
+descricao: |
+  Seleção do framework narrativo ideal para contar a história da marca.
+  Escolha entre STEPPS, Hero's Journey, Problem-Solution, 5BEATS e outros.
+
+entrada:
+  - campo: big_idea
+    tipo: string
+    origem: "develop-big-idea"
+    obrigatorio: true
+    descricao: "Big Idea aprovada"
+  - campo: brand_strategy_document
+    tipo: string
+    origem: "build-brand-essence"
+    obrigatorio: true
+    descricao: "Estratégia de marca"
+
+saida:
+  - campo: narrative_framework
+    tipo: string
+    destino: "produce-creative-brief"
+    persistido: true
+    descricao: "Framework selecionado + mapa de aplicação"
+
+passos:
+  1:
+    nome: "Analisar natureza da Big Idea"
+    descricao: "Entender o tipo de história que precisa ser contada"
+    agente: "narrative-designer"
+  2:
+    nome: "Avaliar frameworks disponíveis"
+    descricao: "STEPPS, Hero's Journey, Problem-Solution, 5BEATS, Origin Story"
+    agente: "narrative-designer"
+  3:
+    nome: "Mapear fit de cada framework"
+    descricao: "Qual framework melhor serve a Big Idea e o público"
+    agente: "narrative-designer"
+  4:
+    nome: "Selecionar framework principal"
+    descricao: "Escolher e justificar o framework principal"
+    agente: "narrative-designer"
+  5:
+    nome: "Definir framework complementar"
+    descricao: "Framework secundário para enriquecer a narrativa"
+    agente: "narrative-designer"
+  6:
+    nome: "Criar mapa de aplicação"
+    descricao: "Como o framework se aplica à Big Idea específica"
+    agente: "narrative-designer"
+
+checklist:
+  - "[ ] Frameworks avaliados"
+  - "[ ] Framework principal selecionado e justificado"
+  - "[ ] Mapa de aplicação criado"
+
+criterios_aceitacao:
+  - "Framework alinhado com emoções-alvo"
+  - "Aplicação clara à Big Idea"

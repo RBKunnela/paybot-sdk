@@ -1,0 +1,487 @@
+# Employer Branding & EVP Framework
+# Gartner Human Deal + Práticas de Mercado
+# Referência para: UNNIKO (marca empregadora)
+
+metadata:
+  name: "Employer Branding & EVP Framework"
+  version: "1.0"
+  fontes:
+    - "Gartner - Human Deal Framework"
+    - "LinkedIn Talent Insights"
+    - "McKinsey - Future of Work"
+    - "Gallup - State of the Global Workplace"
+  aplicacao: "Construção de marca empregadora e proposta de valor ao colaborador"
+
+# ═══════════════════════════════════════════════════════════════════
+# CONCEITO CENTRAL
+# ═══════════════════════════════════════════════════════════════════
+definicao:
+
+  evp:
+    nome: "Employee Value Proposition (EVP)"
+    conceito: |
+      A proposta de valor ao colaborador é o conjunto de benefícios,
+      experiências e promessas que uma organização oferece em troca
+      do talento, tempo e engajamento do profissional.
+
+    evolucao: |
+      EVP tradicional focava em benefícios tangíveis (salário, plano de saúde).
+      EVP moderno reconhece que pessoas buscam significado, conexão e
+      crescimento - não apenas compensação.
+
+  employer_branding:
+    nome: "Employer Branding"
+    conceito: |
+      A gestão estratégica da reputação da empresa como empregadora.
+      É como a marca é percebida por candidatos, colaboradores e ex-colaboradores.
+
+    principio: |
+      Employer Branding não é marketing para atrair candidatos - é a
+      expressão autêntica da cultura e experiência real de trabalho.
+
+# ═══════════════════════════════════════════════════════════════════
+# GARTNER HUMAN DEAL FRAMEWORK
+# ═══════════════════════════════════════════════════════════════════
+human_deal:
+
+  contexto: |
+    Gartner propôs o "Human Deal" como evolução do EVP tradicional,
+    reconhecendo que colaboradores são pessoas inteiras, não apenas
+    "recursos humanos". O framework tem 5 dimensões.
+
+  dimensoes:
+
+    # 1. CONEXÕES MAIS PROFUNDAS
+    conexoes_profundas:
+      nome: "Conexões Mais Profundas"
+      icone: "🤝"
+      ingles: "Deeper Connections"
+
+      definicao: |
+        Relações autênticas no trabalho. Senso de pertencimento a uma
+        comunidade que se importa genuinamente com cada pessoa.
+
+      elementos:
+        - "Relações de confiança com liderança"
+        - "Conexão com colegas além do trabalho"
+        - "Senso de comunidade"
+        - "Segurança psicológica para ser vulnerável"
+        - "Celebração de momentos pessoais"
+
+      perguntas_diagnostico:
+        - "As pessoas têm amigos no trabalho?"
+        - "Líderes conhecem seus times como pessoas?"
+        - "Há espaço para vulnerabilidade?"
+
+      acoes_praticas:
+        - "Programas de mentoria e buddy system"
+        - "Rituais de conexão (não só trabalho)"
+        - "Espaços para compartilhar vida pessoal"
+        - "Líderes que demonstram cuidado genuíno"
+
+      metricas:
+        - "Perguntas de conexão em pesquisas de clima"
+        - "'Tenho um melhor amigo no trabalho' (Gallup Q12)"
+        - "Participação em eventos sociais"
+
+    # 2. FLEXIBILIDADE RADICAL
+    flexibilidade_radical:
+      nome: "Flexibilidade Radical"
+      icone: "🔄"
+      ingles: "Radical Flexibility"
+
+      definicao: |
+        Autonomia genuína sobre quando, onde e como trabalhar.
+        Não apenas "home office", mas respeito à vida integral da pessoa.
+
+      elementos:
+        - "Flexibilidade de horário real"
+        - "Escolha de local de trabalho"
+        - "Autonomia sobre como realizar o trabalho"
+        - "Respeito a responsabilidades pessoais"
+        - "Foco em resultados, não presença"
+
+      niveis_flexibilidade:
+        basico:
+          descricao: "Horário flexível dentro de janela"
+          exemplo: "Entrar entre 7h-10h"
+
+        intermediario:
+          descricao: "Híbrido estruturado"
+          exemplo: "3 dias remoto, 2 presenciais"
+
+        avancado:
+          descricao: "Autonomia total"
+          exemplo: "Trabalhe quando e onde for melhor para você"
+
+      perguntas_diagnostico:
+        - "Pessoas podem ajustar horário para compromissos pessoais?"
+        - "Resultados importam mais que presença física?"
+        - "Líderes confiam em times remotos?"
+
+      acoes_praticas:
+        - "Políticas claras de trabalho flexível"
+        - "Tecnologia que suporta trabalho distribuído"
+        - "Cultura de foco em outcomes"
+        - "Treinamento de líderes para gestão por resultados"
+
+      metricas:
+        - "Satisfação com flexibilidade em pesquisas"
+        - "Utilização real das políticas flexíveis"
+        - "Retenção por perfil de flexibilidade"
+
+    # 3. CRESCIMENTO PESSOAL
+    crescimento_pessoal:
+      nome: "Crescimento Pessoal"
+      icone: "🌱"
+      ingles: "Personal Growth"
+
+      definicao: |
+        Desenvolvimento da pessoa inteira, não apenas habilidades técnicas.
+        A empresa se importa com quem você está se tornando, não só
+        com o que você produz.
+
+      elementos:
+        - "Desenvolvimento de carreira"
+        - "Aprendizado contínuo"
+        - "Experiências que expandem"
+        - "Mentoria e coaching"
+        - "Crescimento como ser humano"
+
+      dimensoes_crescimento:
+        tecnico:
+          descricao: "Habilidades para o trabalho atual"
+          exemplo: "Cursos, certificações"
+
+        carreira:
+          descricao: "Preparação para próximos passos"
+          exemplo: "Programa de liderança, job rotation"
+
+        pessoal:
+          descricao: "Desenvolvimento humano integral"
+          exemplo: "Inteligência emocional, propósito de vida"
+
+      perguntas_diagnostico:
+        - "Há trilhas claras de desenvolvimento?"
+        - "A empresa investe em crescimento pessoal, não só técnico?"
+        - "Pessoas sentem que estão evoluindo?"
+
+      acoes_praticas:
+        - "Planos de desenvolvimento individual"
+        - "Budget de aprendizado por pessoa"
+        - "Programas de mentoria"
+        - "Job rotation e projetos cross-funcionais"
+        - "Coaching para líderes"
+
+      metricas:
+        - "Investimento em L&D por colaborador"
+        - "Mobilidade interna"
+        - "Satisfação com oportunidades de crescimento"
+
+    # 4. PROPÓSITO COMPARTILHADO
+    proposito_compartilhado:
+      nome: "Propósito Compartilhado"
+      icone: "🎯"
+      ingles: "Shared Purpose"
+
+      definicao: |
+        Conexão clara entre o trabalho individual e um impacto maior.
+        Pessoas querem saber que seu trabalho importa para algo além
+        do lucro.
+
+      elementos:
+        - "Propósito organizacional claro"
+        - "Conexão do trabalho diário com propósito"
+        - "Impacto social/ambiental"
+        - "Valores vividos, não só declarados"
+        - "Orgulho de pertencer"
+
+      niveis_proposito:
+        individual: "Meu trabalho faz diferença"
+        equipe: "Nossa equipe contribui para algo maior"
+        organizacional: "Esta empresa existe para um propósito significativo"
+        social: "Fazemos o mundo melhor"
+
+      perguntas_diagnostico:
+        - "Pessoas conseguem articular o propósito da empresa?"
+        - "Há conexão clara entre tarefas e impacto?"
+        - "Valores são vividos em decisões difíceis?"
+
+      acoes_praticas:
+        - "Comunicar propósito consistentemente"
+        - "Mostrar impacto do trabalho (métricas, histórias)"
+        - "Envolver colaboradores em iniciativas sociais"
+        - "Decisões coerentes com valores declarados"
+
+      metricas:
+        - "Clareza de propósito em pesquisas"
+        - "Orgulho de pertencer"
+        - "Advocacy (recomendaria a empresa)"
+
+    # 5. BEM-ESTAR HOLÍSTICO
+    bem_estar_holistico:
+      nome: "Bem-Estar Holístico"
+      icone: "💚"
+      ingles: "Holistic Well-Being"
+
+      definicao: |
+        Cuidado com a pessoa inteira: físico, mental, emocional,
+        financeiro e social. A empresa se responsabiliza pelo
+        bem-estar integral do colaborador.
+
+      dimensoes_bem_estar:
+        fisico:
+          exemplos:
+            - "Plano de saúde"
+            - "Programas de atividade física"
+            - "Ergonomia"
+            - "Alimentação saudável"
+
+        mental_emocional:
+          exemplos:
+            - "Apoio psicológico"
+            - "Programas de mindfulness"
+            - "Carga de trabalho sustentável"
+            - "Espaço para descanso"
+
+        financeiro:
+          exemplos:
+            - "Salário justo"
+            - "Educação financeira"
+            - "Benefícios de longo prazo"
+
+        social:
+          exemplos:
+            - "Conexões no trabalho"
+            - "Comunidade de pertencimento"
+            - "Work-life integration"
+
+      perguntas_diagnostico:
+        - "Pessoas se sentem cuidadas pela empresa?"
+        - "Há espaço para não estar bem?"
+        - "Líderes modelam bem-estar?"
+
+      acoes_praticas:
+        - "Benefícios que cobrem todas as dimensões"
+        - "Cultura que normaliza cuidado com saúde mental"
+        - "Carga de trabalho realista"
+        - "Líderes treinados para identificar sinais de burnout"
+
+      metricas:
+        - "Absenteísmo por saúde"
+        - "Índice de bem-estar em pesquisas"
+        - "Utilização de benefícios de saúde mental"
+        - "Burnout rates"
+
+# ═══════════════════════════════════════════════════════════════════
+# CONSTRUÇÃO DE EVP
+# ═══════════════════════════════════════════════════════════════════
+construcao_evp:
+
+  principios:
+    - "Autenticidade > Aspiração: EVP deve refletir realidade"
+    - "Diferenciação: O que só nós oferecemos?"
+    - "Relevância: Atende necessidades do público-alvo"
+    - "Consistência: Mesma promessa em todos os touchpoints"
+
+  etapas:
+
+    descoberta:
+      nome: "Descoberta"
+      objetivo: "Entender cultura real e percepção"
+      atividades:
+        - "Entrevistas com colaboradores (novos, antigos, ex)"
+        - "Pesquisa de clima e engajamento"
+        - "Análise de dados de RH (turnover, recrutamento)"
+        - "Benchmark de concorrentes"
+        - "Análise de reviews (Glassdoor, LinkedIn)"
+
+    definicao:
+      nome: "Definição"
+      objetivo: "Articular proposta de valor"
+      atividades:
+        - "Workshop com liderança e RH"
+        - "Identificar diferenciais reais"
+        - "Criar EVP Statement"
+        - "Definir pilares de EVP"
+        - "Testar com grupos de colaboradores"
+
+    ativacao:
+      nome: "Ativação"
+      objetivo: "Comunicar e viver o EVP"
+      atividades:
+        - "Materiais de atração (careers page, job posts)"
+        - "Onboarding alinhado ao EVP"
+        - "Comunicação interna consistente"
+        - "Treinamento de líderes"
+        - "Employee advocacy"
+
+    mensuracao:
+      nome: "Mensuração"
+      objetivo: "Validar e evoluir"
+      atividades:
+        - "Pesquisas de percepção (candidatos, colaboradores)"
+        - "Métricas de atração e retenção"
+        - "NPS de recrutamento"
+        - "Análise de brand awareness"
+
+  evp_statement:
+    estrutura: |
+      Para [PÚBLICO-ALVO], [EMPRESA] é o lugar onde [PROMESSA CENTRAL]
+      porque [RAZÃO PARA ACREDITAR].
+
+    exemplo:
+      publico: "Profissionais que buscam crescimento com propósito"
+      empresa: "TechForGood"
+      promessa: "você constrói tecnologia que muda vidas"
+      razao: "nossos produtos já impactaram 2 milhões de pessoas"
+      evp: |
+        Para profissionais que buscam crescimento com propósito,
+        TechForGood é o lugar onde você constrói tecnologia que muda vidas,
+        porque nossos produtos já impactaram 2 milhões de pessoas.
+
+# ═══════════════════════════════════════════════════════════════════
+# OKRs PARA EMPLOYER BRANDING
+# ═══════════════════════════════════════════════════════════════════
+okrs_employer_branding:
+
+  atração:
+    objective: "Consolidar reputação como empregador de escolha"
+    key_results:
+      - "Aumentar nota no Glassdoor de 3.9 para 4.4"
+      - "Elevar taxa de aceitação de propostas de 75% para 90%"
+      - "Reduzir custo por contratação em 20%"
+      - "Alcançar 50.000 seguidores na página de carreiras"
+
+  engajamento:
+    objective: "Elevar senso de pertencimento e orgulho"
+    key_results:
+      - "Aumentar eNPS de 42 para 65"
+      - "Atingir 85% de taxa de resposta em pesquisas de clima"
+      - "Ter 40% dos colaboradores ativos como employee advocates"
+
+  retencao:
+    objective: "Reduzir turnover voluntário em posições-chave"
+    key_results:
+      - "Reduzir turnover voluntário de 18% para 12%"
+      - "Aumentar permanência média de 2.1 para 3 anos"
+      - "Atingir 90% de retenção nos primeiros 12 meses"
+
+  dei:
+    objective: "Tornar ambiente mais inclusivo e representativo"
+    key_results:
+      - "Aumentar representatividade em liderança de 10% para 20%"
+      - "Implementar 3 grupos de afinidade ativos"
+      - "Treinar 100% dos líderes em vieses inconscientes"
+
+# ═══════════════════════════════════════════════════════════════════
+# DADOS E BENCHMARKS
+# ═══════════════════════════════════════════════════════════════════
+dados_benchmarks:
+
+  impacto_evp:
+    - metrica: "Redução de turnover"
+      impacto: "Até 69% com EVP forte (Gartner)"
+
+    - metrica: "Engajamento"
+      impacto: "+29% de engajamento em empresas com EVP claro (LinkedIn)"
+
+    - metrica: "Atração"
+      impacto: "50% mais candidatos qualificados (LinkedIn)"
+
+  tempo_decisao_candidato:
+    dado: "69% dos recrutadores gastam menos de 7 segundos em cada CV"
+    fonte: "Arquivo Repertório-01 CVs"
+    implicacao: "Employer branding precisa ser instantaneamente reconhecível"
+
+  geracional:
+    gen_z:
+      prioridades: ["Propósito", "Flexibilidade", "Desenvolvimento rápido"]
+      fonte: "WEF Future of Jobs"
+
+    millennials:
+      prioridades: ["Crescimento", "Impacto", "Cultura"]
+
+    gen_x:
+      prioridades: ["Estabilidade", "Work-life balance", "Reconhecimento"]
+
+# ═══════════════════════════════════════════════════════════════════
+# TOUCHPOINTS DE EMPLOYER BRANDING
+# ═══════════════════════════════════════════════════════════════════
+touchpoints:
+
+  pre_candidatura:
+    - "Careers page"
+    - "Redes sociais corporativas"
+    - "Glassdoor e similares"
+    - "LinkedIn da empresa e colaboradores"
+    - "Eventos e feiras de carreira"
+    - "Conteúdo (blog, podcast, vídeos)"
+
+  processo_seletivo:
+    - "Job posting"
+    - "Comunicação do recrutador"
+    - "Entrevistas"
+    - "Feedback (dado ou não)"
+    - "Proposta"
+
+  onboarding:
+    - "Primeiro dia"
+    - "Kit de boas-vindas"
+    - "Integração com time"
+    - "Primeiros 90 dias"
+
+  jornada:
+    - "Comunicação interna"
+    - "Feedback e desenvolvimento"
+    - "Eventos e rituais"
+    - "Benefícios vividos"
+
+  offboarding:
+    - "Entrevista de desligamento"
+    - "Transição"
+    - "Alumni programs"
+
+# ═══════════════════════════════════════════════════════════════════
+# CONEXÕES COM OUTROS FRAMEWORKS
+# ═══════════════════════════════════════════════════════════════════
+conexoes:
+
+  schein:
+    relacao: "EVP autêntico nasce do Nível 3 (pressupostos)"
+    como_usar: "Diagnostique cultura antes de criar EVP"
+
+  cnv:
+    relacao: "Comunicação de EVP com empatia"
+    como_usar: "Fale com necessidades, não com benefícios"
+
+  maslow:
+    relacao: "Pilares de EVP mapeiam para camadas Maslow"
+    como_usar: "Cubra necessidades em múltiplos níveis"
+
+  generational_profiles:
+    relacao: "EVP adaptado por geração"
+    como_usar: "Personalize mensagem por público-alvo"
+
+  panksepp:
+    relacao: "CARE e SEEKING são centrais para EVP"
+    como_usar: "Ative emoções certas na comunicação"
+
+# ═══════════════════════════════════════════════════════════════════
+# USO PELOS AGENTES
+# ═══════════════════════════════════════════════════════════════════
+uso_pelos_agentes:
+  - agente: "Brand-Director (UNNIKO)"
+    aplicacao: "Estratégia de employer branding"
+
+  - agente: "Differentiation-Strategist (UNNIKO)"
+    aplicacao: "Identificar diferenciais de EVP"
+
+  - agente: "Culture-Community-Architect (DEENEA)"
+    aplicacao: "Garantir autenticidade cultural"
+
+  - agente: "Narrative-Designer (storYOURtelling)"
+    aplicacao: "Storytelling de employer branding"
+
+  - agente: "Copywriter (storYOURtelling)"
+    aplicacao: "Copy para materiais de atração"

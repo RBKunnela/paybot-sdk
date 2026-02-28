@@ -1,0 +1,300 @@
+# Pesquisa Qualitativa Framework - Search & Insights
+# Framework de 3 níveis para pesquisa de marca
+# Adaptado à jornada BranDesire
+
+id: pesquisa-qualitativa-framework
+name: "Pesquisa Qualitativa Framework"
+version: "1.0"
+autor: "squAId criaTTivados"
+
+descricao: |
+  Framework que define 3 níveis de pesquisa de marca para a jornada BranDesire.
+  Cada nível produz entregáveis específicos e alimenta a análise da squad
+  com diferentes profundidades de dados primários.
+  A pesquisa externa (EXA + Apify + Social Listening) acontece em TODOS os níveis.
+
+# ═══════════════════════════════════════════════════════════════════
+# LÓGICA DE ROUTING: COMO DECIDIR O NÍVEL
+# ═══════════════════════════════════════════════════════════════════
+routing:
+  descricao: |
+    O research-director determina o nível de pesquisa com base
+    no que o usuário tem disponível. O sistema pergunta e direciona.
+
+  decisao_1:
+    pergunta: "Você tem acesso a um grupo de pessoas (clientes, público, stakeholders) para entrevistas de pesquisa?"
+    sim: "nivel_ouro"
+    nao: "decisao_2"
+
+  decisao_2:
+    pergunta: "Você consegue enviar um questionário online para pelo menos 8-10 pessoas que conhecem sua marca?"
+    sim: "nivel_prata"
+    nao: "nivel_bronze"
+
+  nota: |
+    O sistema deve apresentar os 3 níveis e explicar as diferenças
+    de profundidade, mas também pode sugerir o nível ideal com base
+    nas respostas do onboarding (campo 11 do briefing: Assets/Pesquisas).
+
+# ═══════════════════════════════════════════════════════════════════
+# NÍVEL OURO: PESQUISA QUALITATIVA COMPLETA
+# ═══════════════════════════════════════════════════════════════════
+nivel_ouro:
+  nome: "Pesquisa Qualitativa Completa"
+  icone: "Ouro"
+  quando: "Usuário tem acesso a respondentes para entrevistas"
+
+  formato:
+    tipo: "Entrevistas por videoconferência"
+    duracao: "45min (limite 60min)"
+    clima: "Informal, mas com roteiro estruturado"
+    amostragem_minima: 8
+    amostragem_ideal: 12-15
+
+  template: "roteiro-pesquisa-qualitativa.md"
+
+  categorias_temporais:
+    passado_presente:
+      nome: "Imagem e Reputação"
+      foco: "Como a marca é percebida com base no que o público conhece, usa ou ouviu falar"
+      campos_pesquisa: 2-3
+
+    presente:
+      nome: "Imagem e Experiência"
+      foco: "Experiência atual com produtos/serviços, personalidade percebida"
+      campos_pesquisa: 3-4
+
+    presente_futuro:
+      nome: "Perspectivas e Futuro"
+      foco: "Expectativas, legado desejado, potencial percebido"
+      campos_pesquisa: 2-3
+
+  entregaveis:
+    por_campo:
+      verbatims:
+        quantidade: "10-15 (de acordo com tamanho da amostragem)"
+        formato: "Citação direta do respondente entre aspas, com indicação anônima (Resp. 1, Resp. 2)"
+      insight:
+        titulo: "Formato conceitual e publicitário (headline criativa)"
+        texto: "100-300 palavras de explicação e direcionamento"
+        inclui: ["Diagnóstico", "Implicação estratégica", "Direcionamento"]
+
+    consolidado:
+      nome: "Macro Insights Estratégicos"
+      quantidade: "5-10 insights"
+      formato: "Cada macro insight com título conceitual + texto explicativo"
+      criterio: "Os mais estratégicos e prioritários do resultado geral"
+
+  fontes_complementares:
+    - "Pesquisa externa via EXA (sempre)"
+    - "Social Listening via social-listener (sempre)"
+    - "Trend Analysis via trend-analyst (sempre)"
+
+  confiabilidade: "Máxima — dados primários de primeira mão com profundidade emocional e simbólica"
+
+# ═══════════════════════════════════════════════════════════════════
+# NÍVEL PRATA: QUESTIONÁRIO AUTO-APLICADO
+# ═══════════════════════════════════════════════════════════════════
+nivel_prata:
+  nome: "Questionário Auto-aplicado"
+  icone: "Prata"
+  quando: "Usuário pode enviar formulário para contatos, mas não fazer entrevistas"
+
+  formato:
+    tipo: "Formulário online (Google Forms, Typeform, etc.)"
+    duracao_resposta: "10-15 minutos"
+    amostragem_minima: 8
+    amostragem_ideal: 15-25
+
+  template: "questionario-marca.md"
+
+  adaptacoes:
+    - "Perguntas abertas adaptadas para resposta escrita (mais curtas)"
+    - "Algumas perguntas com escala/múltipla escolha + campo livre"
+    - "Estímulos visuais e exemplos para compensar ausência de entrevistador"
+    - "Perguntas projetivas mantidas (animal, pessoa, personalidade)"
+
+  entregaveis:
+    por_campo:
+      verbatims:
+        quantidade: "8-10 (amostragem tende a ser maior, respostas mais curtas)"
+        formato: "Citação direta da resposta escrita"
+      insight:
+        titulo: "Formato conceitual e publicitário"
+        texto: "100-300 palavras"
+        nota: "Indicar base amostral no insight"
+
+    consolidado:
+      nome: "Macro Insights Estratégicos"
+      quantidade: "5-8 insights"
+      formato: "Mesmo formato do Ouro, com nota de base amostral"
+
+  fontes_complementares:
+    - "Pesquisa externa via EXA (sempre)"
+    - "Social Listening via social-listener (sempre)"
+    - "Trend Analysis via trend-analyst (sempre)"
+
+  confiabilidade: "Alta — dados primários, mas com menor profundidade emocional"
+
+  ressalvas:
+    - "Respostas escritas tendem a ser menos detalhadas que orais"
+    - "Incluir nota de amostragem em todos os entregáveis"
+    - "Perguntas projetivas podem ter menos riqueza sem o facilitador"
+
+# ═══════════════════════════════════════════════════════════════════
+# NÍVEL BRONZE: SELF-ASSESSMENT + PESQUISA EXTERNA
+# ═══════════════════════════════════════════════════════════════════
+nivel_bronze:
+  nome: "Self-Assessment + Pesquisa Externa"
+  icone: "Bronze"
+  quando: "Usuário não tem acesso a respondentes externos"
+
+  formato:
+    tipo: "Questionário respondido pelo próprio dono/gestor da marca"
+    duracao_resposta: "15-20 minutos"
+    complemento: "Pesquisa externa automatizada (EXA + Apify + Social Listening)"
+
+  template: "self-assessment-marca.md"
+
+  abordagem: |
+    O dono/gestor da marca responde perguntas similares ao roteiro de pesquisa,
+    mas a partir da perspectiva INTERNA. A squad então complementa com dados
+    EXTERNOS (pesquisa de mercado, social listening, análise competitiva)
+    para criar um contraponto entre percepção interna vs percepção externa.
+
+  entregaveis:
+    por_campo:
+      verbatims:
+        quantidade: "Não aplicável (sem respondentes externos)"
+        substituto: "Citações do self-assessment do gestor como 'visão interna'"
+      insight:
+        titulo: "Formato conceitual e publicitário"
+        texto: "100-300 palavras"
+        inclui: ["Comparação visão interna vs dados externos", "Gaps identificados"]
+
+    consolidado:
+      nome: "Macro Insights Estratégicos"
+      quantidade: "5-7 insights"
+      formato: "Baseado em dados externos + autopercepção"
+      nota: "Sinalizar 'sem pesquisa primária com público' em todos os entregáveis"
+
+  fontes_complementares:
+    - "Pesquisa externa via EXA (PRIORITÁRIA neste nível)"
+    - "Social Listening via social-listener (PRIORITÁRIA neste nível)"
+    - "Trend Analysis via trend-analyst (sempre)"
+
+  confiabilidade: "Moderada — autopercepção tem viés, compensado por dados externos"
+
+  vantagem: |
+    O cruzamento entre o que o dono ACHA e o que os dados MOSTRAM
+    já é, por si só, um insight valioso. Gaps entre autopercepção
+    e realidade revelam oportunidades estratégicas.
+
+# ═══════════════════════════════════════════════════════════════════
+# FORMATO DOS ENTREGÁVEIS (TODOS OS NÍVEIS)
+# ═══════════════════════════════════════════════════════════════════
+formato_entregaveis:
+  verbatim:
+    descricao: "Citação direta de respondente/gestor"
+    formato: |
+      > "{citação exata}"
+      — Respondente {N}, {perfil resumido}
+
+  insight_campo:
+    descricao: "Insight gerado a partir de um bloco de perguntas"
+    formato:
+      titulo: "Headline conceitual em formato publicitário (impactante, memorável)"
+      texto: "100-300 palavras com: diagnóstico do que foi encontrado, implicação estratégica, e direcionamento de ação"
+      verbatims_suporte: "2-3 verbatims que sustentam o insight"
+      dominio_impactado: "Qual domínio da Taxonomia este insight mais afeta"
+
+  macro_insight:
+    descricao: "Insight estratégico consolidado do resultado geral"
+    formato:
+      titulo: "Headline conceitual macro"
+      texto: "200-400 palavras com visão panorâmica"
+      insights_origem: "Quais insights de campo geraram este macro insight"
+      prioridade: "Alta / Média / Monitorar"
+      dominios_impactados: "Quais domínios da Taxonomia"
+
+# ═══════════════════════════════════════════════════════════════════
+# CATEGORIAS TEMPORAIS DA PESQUISA
+# ═══════════════════════════════════════════════════════════════════
+categorias_temporais:
+  descricao: |
+    A pesquisa é organizada em 3 eixos temporais que cobrem
+    a percepção completa da marca: passado, presente e futuro.
+
+  passado_presente:
+    nome: "Imagem e Reputação"
+    objetivo: "Entender como a marca é percebida e lembrada"
+    temas:
+      - "Reputação construída ao longo do tempo"
+      - "Associações espontâneas com a marca"
+      - "Produtos/serviços mais destacados e por quê"
+      - "Potencial percebido no mercado"
+    taxonomia:
+      dominio_I: "Percepção de performance e evidências"
+      dominio_II: "Narrativa e propósito percebidos"
+
+  presente:
+    nome: "Imagem e Experiência"
+    objetivo: "Entender a experiência atual e personalidade percebida"
+    temas:
+      - "Experiência de consumo/utilização"
+      - "Emoções e sentimentos associados"
+      - "Coerência entre comunicação e realidade"
+      - "Personalidade da marca (projeções humanas, animais, figuras)"
+    taxonomia:
+      dominio_II: "Personalidade e arquétipo percebidos"
+      dominio_III: "Experiência sensorial e comportamental"
+
+  presente_futuro:
+    nome: "Perspectivas e Futuro"
+    objetivo: "Captar expectativas e aspirações para a marca"
+    temas:
+      - "Perspectivas de futuro para a empresa"
+      - "Pelo que deveria ser lembrada"
+      - "Legado que deveria deixar"
+    taxonomia:
+      dominio_II: "Propósito e significado aspiracional"
+
+# ═══════════════════════════════════════════════════════════════════
+# INTEGRAÇÃO COM JORNADA BRANDESIRE
+# ═══════════════════════════════════════════════════════════════════
+integracao_jornada:
+  etapa_anterior: "Explorar (Atendimento/Onboarding)"
+  etapa_atual: "Search & Insights — Pesquisa de Marca"
+  etapa_seguinte: "Search & Insights — Análise + Síntese → DEENEA"
+
+  dados_do_onboarding:
+    descricao: |
+      O Atendimento já coletou dados no briefing (16 campos BranDesire)
+      e documentos do cliente. Estes dados alimentam a pesquisa:
+    usos:
+      - "Campo 11 (Assets) indica se cliente já tem pesquisas existentes"
+      - "Campo 5 (Público) ajuda a definir perfil de respondentes"
+      - "Campo 7 (Concorrentes) orienta análise competitiva"
+      - "Documentos uploadados podem conter dados de pesquisa anteriores"
+
+  banco_de_dados_inteligente:
+    descricao: |
+      Dados coletados no onboarding criam um banco que pode:
+      - Pré-preencher campos da pesquisa com dados existentes
+      - Identificar gaps que a pesquisa precisa cobrir
+      - Sugerir nível de pesquisa baseado nos assets disponíveis
+    exemplo: |
+      Se o cliente uploadou um brand book no onboarding, o sistema
+      já sabe que ele tem identidade visual definida. Na pesquisa,
+      pode usar isso como estímulo visual para perguntas projetivas.
+
+  output_para_deenea:
+    - "Relatório de Pesquisa com verbatims e insights"
+    - "Macro Insights priorizados"
+    - "Indicação de nível de pesquisa (Ouro/Prata/Bronze)"
+    - "Gaps identificados entre percepção e realidade"
+
+  output_para_unniko:
+    - "Percepções sobre assets e identidade atual"
+    - "Convenções de categoria identificadas"
+    - "White spaces visuais/sensoriais"

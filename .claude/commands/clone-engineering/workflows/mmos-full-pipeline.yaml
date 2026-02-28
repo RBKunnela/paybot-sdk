@@ -1,0 +1,171 @@
+name: mmos-full-pipeline
+description: "Full MMOS clone creation pipeline — 7 phases from Viability to Production"
+version: "1.1.0"
+trigger: "*start-pipeline"
+orchestrator: el-clonador
+type: sequential
+
+inputs:
+  - name: subject_name
+    type: string
+    required: true
+    description: "Name of the subject to clone"
+  - name: source_path
+    type: string
+    required: true
+    description: "Path to source materials directory"
+  - name: fidelity_target
+    type: number
+    default: 93
+    description: "Minimum fidelity target (93-97)"
+  - name: deployment_context
+    type: string
+    required: false
+    description: "Where the clone will be deployed"
+
+resources:
+  checklists:
+    - phase-gate-checklist.md
+    - triangulation-checklist.md
+    - fidelity-validation-checklist.md
+  templates:
+    - layer-template.yaml
+    - chunk-template.yaml
+    - system-prompt-template.md
+    - scenario-template.yaml
+    - fidelity-report-template.md
+  data:
+    - dna-mental-layers.md
+    - mmos-pipeline-phases.md
+    - persona-switching-rules.md
+
+phases:
+  - id: viability
+    name: "Phase 1: Viability Assessment"
+    agent: el-clonador
+    task: el-clonador-viability.md
+    gate:
+      criteria: "APEX >= 6.0 AND ICP >= 70%"
+      decision: GO_NOGO
+    checkpoint: human
+    outputs:
+      - PRD.md
+      - TODO.md
+      - metadata.yaml
+
+  - id: research
+    name: "Phase 2: Research Collection"
+    agent: mind-mapper
+    task: mind-mapper-classify-sources.md
+    gate:
+      criteria: "sources_master.yaml complete with tier classification"
+    outputs:
+      - sources_master.yaml
+
+  - id: analysis
+    name: "Phase 3: Cognitive Analysis"
+    agent: mind-mapper
+    task: mind-mapper-extract-all.md
+    gate:
+      criteria: "All 8 layers extracted, identity-core + cognitive-spec generated"
+    checkpoints:
+      - after: layer-6
+        type: human
+        description: "Review values hierarchy before proceeding"
+      - after: layer-7
+        type: human
+        description: "Review core obsessions before proceeding"
+      - after: layer-8
+        type: human
+        description: "Review productive paradoxes before proceeding"
+    outputs:
+      - layers-1-4-observable.yaml
+      - layer-5-mental-models.yaml
+      - layer-6-values-hierarchy.yaml
+      - layer-7-core-obsessions.yaml
+      - layer-8-productive-paradoxes.yaml
+      - identity-core.yaml
+      - cognitive-spec.yaml
+
+  - id: synthesis
+    name: "Phase 4: Knowledge Synthesis"
+    agent: kb-curator
+    task: kb-curator-chunk-batch.md
+    gate:
+      criteria: "800+ chunks indexed, retrieval precision 80%+ in top-5"
+    outputs:
+      - kb/domains/**/*.yaml
+      - kb/index.yaml
+
+  - id: implementation
+    name: "Phase 5: Prompt Engineering"
+    agent: prompt-architect
+    task: prompt-architect-create-generalista.md
+    gate:
+      criteria: "All persona prompts generated, memory system integrated"
+    checkpoint: human
+    outputs:
+      - system_prompts/generalista.md
+      - system_prompts/*.md
+      - tools.md
+      - memory-system.yaml
+
+  - id: testing
+    name: "Phase 6: Fidelity Validation"
+    agent: fidelity-tester
+    task: fidelity-tester-run-scenarios.md
+    gate:
+      criteria: "fidelity >= {fidelity_target}%"
+    max_iterations: 3
+    on_failure: iterate
+    outputs:
+      - validation/test-scenarios.yaml
+      - validation/fidelity-report.md
+
+  - id: production
+    name: "Phase 7: Production Deployment"
+    agent: el-clonador
+    task: el-clonador-deploy.md
+    gate:
+      criteria: "Deployment package complete, documentation ready"
+    outputs:
+      - deployment-package/
+      - user-guide.md
+
+error_handling:
+  gate_failure:
+    viability: "STOP pipeline — subject not viable. Generate viability-report with recommendations."
+    research: "Return to research phase — request additional source materials from user."
+    analysis: "Flag incomplete layers — trigger mind-mapper gap-analysis before proceeding."
+    synthesis: "Re-chunk with adjusted parameters — validate retrieval precision again."
+    implementation: "Review cognitive-spec alignment — adjust prompts and re-validate."
+    testing: "Trigger fidelity-iteration workflow (max 3 cycles before escalation)."
+    production: "Block deployment — return to testing phase for re-validation."
+  agent_failure:
+    action: "Log error context, notify orchestrator, attempt recovery with fallback parameters."
+    fallback: "Checkpoint current progress, allow manual intervention, resume from last checkpoint."
+  timeout:
+    default_per_phase: "30 minutes"
+    action: "Checkpoint progress, notify user, provide resume instructions."
+
+flow_diagram: |
+  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+  │ 1. Viability │───▶│ 2. Research  │───▶│ 3. Analysis  │
+  │ el-clonador  │    │ mind-mapper  │    │ mind-mapper  │
+  │ APEX≥6 gate  │    │ sources gate │    │ 8-layer gate │
+  └──────┬───────┘    └──────────────┘    └──────┬───────┘
+         │ NOGO→STOP                              │
+                                                  ▼
+  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+  │ 4. Synthesis │───▶│ 5. Implement │───▶│ 6. Testing   │◀─┐
+  │ kb-curator   │    │ prompt-arch  │    │ fidelity-tst │  │
+  │ 800+chk gate │    │ prompts gate │    │ ≥target gate │  │
+  └──────────────┘    └──────────────┘    └──────┬───────┘  │
+                                            PASS │ FAIL     │
+                                                 │   └──────┘
+                                                 ▼   iterate(3x)
+                                          ┌──────────────┐
+                                          │ 7. Production│
+                                          │ el-clonador  │
+                                          │ deploy gate  │
+                                          └──────────────┘

@@ -1,0 +1,549 @@
+# Wheeler Brand Process - 5 Fases de Identidade de Marca
+# Baseado em: Designing Brand Identity (Alina Wheeler)
+# Squad: UNNIKO (Identidade/Diferenciação)
+# Usado por: brand-director, identity-architect, brand-auditor
+
+metadata:
+  name: "Processo Wheeler de Identidade de Marca"
+  version: "1.0"
+  source: "Designing Brand Identity (Alina Wheeler, 6ª edição)"
+  aplicacao: "Processo completo de criação/redesign de identidade de marca"
+
+# ═══════════════════════════════════════════════════════════════════
+# VISÃO GERAL DO PROCESSO
+# ═══════════════════════════════════════════════════════════════════
+
+overview:
+
+  descricao: |
+    Processo iterativo de 5 fases para desenvolvimento de identidade de marca.
+    Cada fase tem entregáveis específicos e checklists de validação.
+    O processo é linear mas permite retorno a fases anteriores.
+
+  filosofia: |
+    "Brand identity é tangível e apela aos sentidos.
+    Você pode ver, tocar, segurar, ouvir, ver se mover.
+    Reforça reconhecimento, amplifica diferenciação,
+    torna ideias e significado acessíveis."
+    - Alina Wheeler
+
+  fases:
+    - "1. Conducting Research (Pesquisa)"
+    - "2. Clarifying Strategy (Estratégia)"
+    - "3. Designing Identity (Design)"
+    - "4. Creating Touchpoints (Touchpoints)"
+    - "5. Managing Assets (Gestão)"
+
+# ═══════════════════════════════════════════════════════════════════
+# FASE 1: CONDUCTING RESEARCH (Pesquisa)
+# ═══════════════════════════════════════════════════════════════════
+
+fase_1_research:
+  nome: "Conducting Research"
+  traducao: "Realizar Pesquisa"
+  objetivo: "Compreender marca, mercado, concorrentes e audiência"
+  duracao_tipica: "2-4 semanas"
+
+  atividades:
+
+    stakeholder_interviews:
+      descricao: "Entrevistas com partes interessadas internas"
+      participantes:
+        - "CEO/Fundadores"
+        - "Liderança"
+        - "Colaboradores chave"
+        - "Board (se aplicável)"
+
+      topicos:
+        - "Visão de futuro"
+        - "Valores percebidos"
+        - "Diferenciais percebidos"
+        - "Desafios atuais"
+        - "Expectativas do projeto"
+
+      formato: "Semi-estruturado, 45-60 min cada"
+
+    customer_research:
+      descricao: "Pesquisa com clientes/prospects"
+      metodos:
+        - "Surveys quantitativos"
+        - "Entrevistas qualitativas"
+        - "Focus groups"
+        - "Análise de reviews/feedback"
+
+      topicos:
+        - "Percepção atual da marca"
+        - "Pontos fortes/fracos"
+        - "Razões de escolha/rejeição"
+        - "Comparação com alternativas"
+        - "Necessidades não atendidas"
+
+    competitive_audit:
+      descricao: "Análise competitiva profunda"
+      elementos:
+        - "Identidade visual concorrentes"
+        - "Posicionamento declarado"
+        - "Tom de voz e messaging"
+        - "Touchpoints principais"
+        - "Pontos de diferenciação"
+
+      template_analise:
+        concorrente:
+          nome: ""
+          posicionamento: ""
+          identidade_visual:
+            cores: []
+            tipografia: ""
+            estilo: ""
+          tom_voz: ""
+          diferenciais: []
+          fraquezas: []
+
+    brand_audit:
+      descricao: "Auditoria da marca atual"
+      elementos:
+        - "Inventário de ativos atuais"
+        - "Consistência de aplicação"
+        - "Gaps e inconsistências"
+        - "Equity existente a preservar"
+
+    market_analysis:
+      descricao: "Análise de mercado e tendências"
+      elementos:
+        - "Tendências do setor"
+        - "Mudanças de comportamento"
+        - "Oportunidades emergentes"
+        - "Ameaças no horizonte"
+
+  entregavel: "Relatório de Insights"
+
+  checklist_fase_1:
+    - "[ ] Stakeholders internos entrevistados"
+    - "[ ] Pesquisa com clientes realizada"
+    - "[ ] Concorrentes mapeados e analisados"
+    - "[ ] Ativos atuais inventariados"
+    - "[ ] Tendências de mercado identificadas"
+    - "[ ] Insights sintetizados"
+    - "[ ] Relatório apresentado e aprovado"
+
+# ═══════════════════════════════════════════════════════════════════
+# FASE 2: CLARIFYING STRATEGY (Estratégia)
+# ═══════════════════════════════════════════════════════════════════
+
+fase_2_strategy:
+  nome: "Clarifying Strategy"
+  traducao: "Clarificar Estratégia"
+  objetivo: "Definir posicionamento, essência e direção"
+  duracao_tipica: "2-3 semanas"
+
+  atividades:
+
+    positioning:
+      descricao: "Definir posicionamento único"
+      elementos:
+        target: "Para quem?"
+        category: "Em que categoria/contexto?"
+        benefit: "Qual benefício principal?"
+        reason_to_believe: "Por que acreditar?"
+        differentiation: "O que nos diferencia?"
+
+      template:
+        formato: |
+          Para [TARGET], [MARCA] é a [CATEGORIA] que [BENEFÍCIO]
+          porque [REASON TO BELIEVE], diferente de [ALTERNATIVAS]
+          que [O QUE ELES FAZEM].
+
+    brand_essence:
+      descricao: "Capturar essência em poucas palavras"
+      caracteristicas:
+        - "3-5 palavras máximo"
+        - "Atemporal"
+        - "Único"
+        - "Memorável"
+
+      exemplos:
+        disney: "Magia de entretenimento familiar"
+        nike: "Performance atlética autêntica"
+        apple: "Inovação humanizada"
+
+    brand_values:
+      descricao: "Valores que guiam comportamento"
+      criterios:
+        - "Autênticos (já praticados)"
+        - "Diferenciadores"
+        - "Acionáveis"
+        - "3-5 valores máximo"
+
+    brand_personality:
+      descricao: "Traços de personalidade da marca"
+      modelos_referencia:
+        - "Arquétipos de Jung"
+        - "Dimensões de Aaker"
+        - "Prisma de Kapferer"
+
+    mission_vision:
+      descricao: "Missão e Visão claras"
+      missao: "O que fazemos e para quem (presente)"
+      visao: "Onde queremos chegar (futuro)"
+
+  entregavel: "Brand Brief (1 página)"
+
+  brand_brief_template:
+    secoes:
+      overview:
+        - "Nome da marca"
+        - "Tagline"
+        - "Essência (3-5 palavras)"
+
+      strategy:
+        - "Posicionamento"
+        - "Target principal"
+        - "Proposta de valor"
+
+      personality:
+        - "Arquétipo"
+        - "Traços de personalidade (5)"
+        - "Tom de voz"
+
+      foundation:
+        - "Missão"
+        - "Visão"
+        - "Valores (3-5)"
+
+      differentiation:
+        - "Diferenciais chave (3)"
+        - "Razões para acreditar"
+
+  checklist_fase_2:
+    - "[ ] Posicionamento definido e validado"
+    - "[ ] Essência capturada"
+    - "[ ] Valores articulados"
+    - "[ ] Personalidade definida"
+    - "[ ] Missão e visão claras"
+    - "[ ] Brand Brief aprovado por stakeholders"
+
+# ═══════════════════════════════════════════════════════════════════
+# FASE 3: DESIGNING IDENTITY (Design)
+# ═══════════════════════════════════════════════════════════════════
+
+fase_3_design:
+  nome: "Designing Identity"
+  traducao: "Projetar Identidade"
+  objetivo: "Criar sistema visual e verbal que expressa a estratégia"
+  duracao_tipica: "4-8 semanas"
+
+  atividades:
+
+    logo_design:
+      descricao: "Criação do logo principal"
+      processo:
+        1: "Brainstorm de conceitos"
+        2: "Sketches iniciais (muitos)"
+        3: "Refinamento digital (3-5 direções)"
+        4: "Apresentação de conceitos"
+        5: "Seleção e refinamento"
+        6: "Versões e variações"
+
+      criterios_bom_logo:
+        - "Distintivo e memorável"
+        - "Funciona em P&B"
+        - "Escalável (micro a gigante)"
+        - "Atemporal"
+        - "Versátil"
+        - "Relevante para categoria"
+
+      versoes_necessarias:
+        - "Primário (completo)"
+        - "Secundário (simplificado)"
+        - "Ícone/símbolo"
+        - "Horizontal/vertical"
+        - "Monocromático"
+        - "Reverso (fundo escuro)"
+
+    color_palette:
+      descricao: "Sistema de cores da marca"
+      estrutura:
+        cores_primarias: "1-2 cores core"
+        cores_secundarias: "2-3 cores de suporte"
+        cores_funcionais: "Sucesso, erro, alerta, etc."
+        neutros: "Pretos, brancos, cinzas"
+
+      especificacoes:
+        - "Pantone"
+        - "CMYK"
+        - "RGB"
+        - "HEX"
+
+    typography:
+      descricao: "Sistema tipográfico"
+      elementos:
+        primaria: "Para títulos e destaque"
+        secundaria: "Para corpo de texto"
+        funcional: "Para UI/dados (se necessário)"
+
+      hierarquia:
+        - "H1, H2, H3, H4"
+        - "Body, Small, Caption"
+        - "Espaçamentos"
+        - "Pesos permitidos"
+
+    imagery_style:
+      descricao: "Estilo de imagens e ilustrações"
+      elementos:
+        - "Estilo fotográfico"
+        - "Tratamento de cor"
+        - "Composição"
+        - "Subjects/temas"
+        - "Estilo de ilustração (se aplicável)"
+
+    verbal_identity:
+      descricao: "Identidade verbal"
+      elementos:
+        tom_de_voz:
+          - "Formal vs casual"
+          - "Sério vs bem-humorado"
+          - "Técnico vs acessível"
+          - "Institucional vs pessoal"
+
+        messaging_framework:
+          - "Promessa principal"
+          - "Proof points"
+          - "Taglines/slogans"
+          - "Boilerplate"
+
+  entregavel: "Sistema de Identidade Visual/Verbal"
+
+  checklist_fase_3:
+    - "[ ] Logo principal e variações criadas"
+    - "[ ] Paleta de cores definida com especificações"
+    - "[ ] Sistema tipográfico estabelecido"
+    - "[ ] Estilo de imagens definido"
+    - "[ ] Tom de voz documentado"
+    - "[ ] Messaging framework criado"
+    - "[ ] Sistema aprovado por stakeholders"
+
+# ═══════════════════════════════════════════════════════════════════
+# FASE 4: CREATING TOUCHPOINTS (Touchpoints)
+# ═══════════════════════════════════════════════════════════════════
+
+fase_4_touchpoints:
+  nome: "Creating Touchpoints"
+  traducao: "Criar Pontos de Contato"
+  objetivo: "Aplicar identidade em todos os pontos de contato"
+  duracao_tipica: "4-6 semanas"
+
+  categorias_touchpoints:
+
+    digitais:
+      essenciais:
+        - "Website"
+        - "Email templates"
+        - "Social media profiles"
+        - "App (se aplicável)"
+
+      secundarios:
+        - "Landing pages"
+        - "Banners/ads"
+        - "Presentations"
+        - "Video templates"
+
+    impressos:
+      essenciais:
+        - "Cartão de visita"
+        - "Papel timbrado"
+        - "Envelope"
+        - "Assinatura de email"
+
+      secundarios:
+        - "Folder/brochure"
+        - "Relatórios"
+        - "Sinalização"
+
+    ambientais:
+      se_aplicavel:
+        - "Fachada"
+        - "Interior"
+        - "Sinalização"
+        - "Uniformes"
+        - "Frota"
+
+    embalagem:
+      se_aplicavel:
+        - "Embalagem primária"
+        - "Embalagem secundária"
+        - "Labels"
+        - "Tags"
+
+  processo_aplicacao:
+    1: "Priorizar touchpoints por impacto"
+    2: "Criar aplicações principais"
+    3: "Testar em contextos reais"
+    4: "Refinar baseado em feedback"
+    5: "Produzir versões finais"
+
+  equilibrio_consistencia_flexibilidade:
+    fixo:
+      - "Logo placement"
+      - "Cores primárias"
+      - "Tipografia core"
+      - "Tom de voz"
+
+    flexivel:
+      - "Layouts"
+      - "Cores secundárias"
+      - "Imagery"
+      - "Aplicações específicas"
+
+  entregavel: "Aplicações em Touchpoints"
+
+  checklist_fase_4:
+    - "[ ] Touchpoints prioritários identificados"
+    - "[ ] Website aplicado"
+    - "[ ] Materiais impressos essenciais"
+    - "[ ] Templates digitais criados"
+    - "[ ] Aplicações testadas em contexto"
+    - "[ ] Feedback incorporado"
+
+# ═══════════════════════════════════════════════════════════════════
+# FASE 5: MANAGING ASSETS (Gestão)
+# ═══════════════════════════════════════════════════════════════════
+
+fase_5_management:
+  nome: "Managing Assets"
+  traducao: "Gerenciar Ativos"
+  objetivo: "Lançar, proteger e manter a marca viva"
+  duracao_tipica: "Contínuo"
+
+  atividades:
+
+    launch:
+      interno:
+        descricao: "Lançamento para equipe"
+        elementos:
+          - "Evento de lançamento"
+          - "Treinamento de marca"
+          - "Kit de boas-vindas"
+          - "Champions de marca"
+
+      externo:
+        descricao: "Lançamento para mercado"
+        elementos:
+          - "Campanha de lançamento"
+          - "PR e mídia"
+          - "Social media rollout"
+          - "Atualização de materiais"
+
+    brand_guidelines:
+      descricao: "Manual de marca completo"
+      conteudo:
+        introducao:
+          - "Sobre a marca"
+          - "Missão, visão, valores"
+          - "Tom de voz"
+
+        identidade_visual:
+          - "Logo: uso, versões, espaçamento, tamanhos"
+          - "Cores: paleta, especificações, aplicações"
+          - "Tipografia: fontes, hierarquia, uso"
+          - "Imagery: estilo, do's e don'ts"
+
+        aplicacoes:
+          - "Templates de cada touchpoint"
+          - "Exemplos corretos"
+          - "Erros comuns a evitar"
+
+        governanca:
+          - "Quem aprova o quê"
+          - "Processo de solicitação"
+          - "Contatos"
+
+      formato: "PDF + plataforma digital"
+
+    trademark_protection:
+      descricao: "Proteção legal"
+      elementos:
+        - "Registro de marca"
+        - "Domínios relacionados"
+        - "Handles de social media"
+        - "Monitoramento de uso indevido"
+
+    ongoing_management:
+      descricao: "Gestão contínua"
+      atividades:
+        monitoramento:
+          - "Auditorias periódicas de consistência"
+          - "Feedback de stakeholders"
+          - "Métricas de brand awareness"
+
+        evolucao:
+          - "Atualizações incrementais"
+          - "Expansão para novos touchpoints"
+          - "Refreshes periódicos"
+
+        treinamento:
+          - "Onboarding de novos colaboradores"
+          - "Refreshers para equipe"
+          - "Parceiros e fornecedores"
+
+  entregavel: "Brand Guidelines + Estratégia de Gestão"
+
+  checklist_fase_5:
+    - "[ ] Lançamento interno realizado"
+    - "[ ] Lançamento externo executado"
+    - "[ ] Brand guidelines completas"
+    - "[ ] Proteção legal iniciada"
+    - "[ ] Processo de governança definido"
+    - "[ ] Métricas de acompanhamento"
+    - "[ ] Plano de manutenção contínua"
+
+# ═══════════════════════════════════════════════════════════════════
+# 9 BRAND IDENTITY IDEALS (Princípios)
+# ═══════════════════════════════════════════════════════════════════
+
+ideals:
+
+  descricao: |
+    9 princípios que guiam identidade de marca eficaz.
+    Toda decisão deve ser avaliada contra estes ideais.
+
+  lista:
+
+    vision:
+      nome: "Visão"
+      descricao: "Marca tem visão clara de futuro que inspira"
+
+    meaning:
+      nome: "Significado"
+      descricao: "Marca tem significado que transcende produto"
+
+    authenticity:
+      nome: "Autenticidade"
+      descricao: "Marca é genuína e verdadeira consigo mesma"
+
+    differentiation:
+      nome: "Diferenciação"
+      descricao: "Marca se destaca de forma deliberada"
+
+    durability:
+      nome: "Durabilidade"
+      descricao: "Identidade resiste ao tempo"
+
+    coherence:
+      nome: "Coerência"
+      descricao: "Todos elementos trabalham juntos harmoniosamente"
+
+    flexibility:
+      nome: "Flexibilidade"
+      descricao: "Sistema se adapta a novos contextos"
+
+    commitment:
+      nome: "Compromisso"
+      descricao: "Organização se compromete a manter e evoluir"
+
+    value:
+      nome: "Valor"
+      descricao: "Marca cria valor tangível para stakeholders"
+
+referencias:
+  - "Wheeler, A. - Designing Brand Identity (6th edition, 2024)"
+  - "50+ case studies inclusos no livro"

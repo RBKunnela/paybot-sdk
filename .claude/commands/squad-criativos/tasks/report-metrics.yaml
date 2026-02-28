@@ -1,0 +1,72 @@
+# Task: Report Metrics
+# Squad: squAId-criaTTivados / growth-ops
+# Responsável: growth-director
+
+metadata:
+  name: "report-metrics"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "growth-ops"
+  responsavel: "growth-director"
+  tipo: task
+
+descricao: |
+  Relatório executivo consolidando métricas AARRR, brand health
+  e insights. Inclui feedback loop para squads criativas.
+
+entrada:
+  - campo: performance_data
+    tipo: string
+    origem: "optimize-campaign / schedule-publish"
+    obrigatorio: true
+    descricao: "Dados de performance das campanhas"
+  - campo: optimization_reports
+    tipo: string
+    origem: "optimize-campaign"
+    obrigatorio: false
+    descricao: "Relatórios de otimização"
+
+saida:
+  - campo: executive_report
+    tipo: string
+    destino: "cbo / content-ops / storytelling"
+    persistido: true
+    descricao: "AARRR + brand health + insights + roadmap"
+
+passos:
+  1:
+    nome: "Consolidar AARRR"
+    descricao: "Métricas de cada fase do funil"
+    agente: "analytics-reader"
+  2:
+    nome: "Avaliar brand health"
+    descricao: "Recall, preference, NPS, Share of Voice"
+    agente: "growth-director"
+  3:
+    nome: "Analisar top performers"
+    descricao: "Quais assets, tom e mensagem ressoaram mais"
+    agente: "analytics-reader"
+  4:
+    nome: "Gerar insights"
+    descricao: "Insights acionáveis (não apenas descritivos)"
+    agente: "growth-director"
+  5:
+    nome: "Definir roadmap"
+    descricao: "Próximos testes, escalas, ajustes"
+    agente: "growth-director"
+  6:
+    nome: "Preparar feedback"
+    descricao: "Feedback para Content-Ops e storYOURtelling"
+    agente: "growth-director"
+
+checklist:
+  - "[ ] AARRR consolidado"
+  - "[ ] Brand health avaliado"
+  - "[ ] Top performers identificados"
+  - "[ ] Insights formulados"
+  - "[ ] Feedback para squads preparado"
+  - "[ ] Roadmap definido"
+
+criterios_aceitacao:
+  - "Report com dados concretos e tendências"
+  - "Insights acionáveis (não apenas descritivos)"

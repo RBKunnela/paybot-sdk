@@ -1,0 +1,642 @@
+# Domain Decoder: Code DNA Framework
+# The 8-Layer extraction model for reading code as a business document.
+# Adapted from the MMOS 8-Layer cognitive DNA extraction model.
+# Where MMOS extracts 8 layers of human expert thinking, Code DNA extracts
+# 8 layers of a codebase's business intelligence.
+#
+# Origin: Domain Decoder Brainstorm v1.0, 2026-02-19
+# Author: Aria (Architect)
+# Reference: docs/research/2026-02-19-domain-decoder-brainstorm.md, Section 2
+
+metadata:
+  version: "1.0.0"
+  framework: "Code DNA"
+  origin: "Adapted from MMOS (Mental Model Operating System) 8-Layer cognitive model"
+  execution_order: "L1 -> L2 -> L3,L4 (parallel) -> L5 -> L6 -> L7 -> L8 (can run earlier)"
+  core_insight: >
+    Static analysis identifies THAT a conditional exists.
+    Only LLM reasoning determines WHAT BUSINESS RULE it implements.
+    The gap is semantic, not syntactic.
+
+# ============================================================
+# ZONE DEFINITIONS
+# ============================================================
+zones:
+  surface:
+    name: "Surface Zone (Observable)"
+    description: "Can be extracted automatically with high confidence. No LLM required."
+    layers: ["L1", "L2", "L3", "L4"]
+    confidence_baseline: "HIGH (80-95%)"
+
+  deep:
+    name: "Deep Zone (Semantic)"
+    description: "Requires LLM reasoning. Subject to misinterpretation. Requires triangulation."
+    layers: ["L5", "L6", "L7"]
+    confidence_baseline: "MEDIUM (60-80%)"
+    triangulation_required: true
+
+  contextual:
+    name: "Contextual Zone (Behavioral)"
+    description: "Derived from git history and temporal data. Reveals intent through behavior."
+    layers: ["L8"]
+    confidence_baseline: "MEDIUM-HIGH (75-85%)"
+
+# ============================================================
+# THE 8 LAYERS
+# ============================================================
+layers:
+
+  L1_code_patterns:
+    id: "L1"
+    name: "Code Patterns and Structure"
+    zone: surface
+    description: >
+      File organization, naming conventions, architectural patterns, language/framework
+      detection, entry points, configuration files. The skeleton of the codebase.
+    what_it_reveals: >
+      How the team thinks about code organization. Naming conventions expose domain vocabulary.
+      Architecture pattern (MVC, DDD, hexagonal) constrains where business logic lives.
+    agent: code-cartographer
+    primary_agent_phase: "Phase 1: Foundation Scan"
+
+    extraction_method:
+      approach: "Automated (Glob + Grep + manifest parsing)"
+      steps:
+        - "Map complete directory tree with Glob"
+        - "Identify architecture pattern from folder structure (MVC, DDD, hexagonal, layered)"
+        - "Catalog all languages and frameworks from manifest files (package.json, Gemfile, pom.xml)"
+        - "Extract configuration files (.editorconfig, linter configs, CI configs)"
+        - "Identify entry points (main, index, app, server files)"
+        - "Detect naming convention patterns (camelCase, snake_case, PascalCase across layers)"
+
+    tools:
+      primary: ["Glob (native)", "Grep (native)", "Repomix MCP"]
+      secondary: ["ast-grep MCP", "scc", "Syft"]
+      optional: ["mcp-server-tree-sitter"]
+
+    outputs:
+      - name: "l1-code-patterns.yaml"
+        fields:
+          - "architecture_style: MVC|DDD|hexagonal|layered|unknown"
+          - "primary_language: string"
+          - "secondary_languages: list"
+          - "frameworks: list"
+          - "entry_points: list"
+          - "naming_conventions: object"
+          - "directory_structure: tree"
+          - "config_files: list"
+          - "test_framework: string"
+          - "total_files: integer"
+          - "total_loc: integer"
+
+    confidence: "HIGH (95%+)"
+    confidence_rationale: "Fully automatable; no semantic reasoning required"
+
+    donor_methodology:
+      squad: "@analyst"
+      task: "*analyze-brownfield"
+      gap: "Analyst detects tech stack; Domain Decoder extends to pattern extraction and convention analysis"
+
+  L2_api_contracts:
+    id: "L2"
+    name: "API Contracts and Interfaces"
+    zone: surface
+    description: >
+      REST endpoints, GraphQL schemas, gRPC definitions, WebSocket events, request/response
+      shapes, authentication requirements, rate limits, external API integrations.
+    what_it_reveals: >
+      The contract between the system and the outside world. API naming reveals business
+      concepts. Auth requirements reveal business access control policies. External API
+      integrations reveal implicit business capabilities (Stripe = billing, Camunda = workflow).
+    agent: code-cartographer
+    primary_agent_phase: "Phase 1: Foundation Scan"
+
+    extraction_method:
+      approach: "Semi-automated (Grep for route definitions + LLM for semantic classification)"
+      steps:
+        - "Grep for route definitions: @Get, @Post, app.get, router, @Controller"
+        - "Parse GraphQL schema files (.graphql, .gql)"
+        - "Extract request/response DTOs, interfaces, and Zod/Joi schemas"
+        - "Map authentication middleware chains (@UseGuards, passport, jwt)"
+        - "Identify external API clients (Stripe SDK, Twilio, SendGrid, AWS SDK)"
+        - "Extract rate limiting configurations"
+        - "Classify endpoints by business domain from URL patterns and naming"
+
+    tools:
+      primary: ["Grep (native)", "ast-grep MCP", "Semgrep MCP"]
+      secondary: ["code-graph-mcp", "Repomix MCP", "Context7"]
+
+    outputs:
+      - name: "l2-api-contracts.yaml"
+        fields:
+          - "endpoints: list[{method, path, handler, auth_required, domain_guess}]"
+          - "graphql_types: list"
+          - "request_schemas: list"
+          - "response_schemas: list"
+          - "external_integrations: list[{service, purpose_inferred}]"
+          - "auth_strategies: list"
+          - "api_versioning: string"
+
+    confidence: "HIGH (90%+)"
+    confidence_rationale: "Route definitions are explicit; LLM only needed for domain classification"
+
+    donor_methodology:
+      squad: "@architect"
+      task: "*create-brownfield-architecture (partial)"
+      gap: "Architect creates new architecture; Domain Decoder reverses-engineers the existing one"
+
+  L3_workflows:
+    id: "L3"
+    name: "Control Flow and Workflows"
+    zone: surface
+    description: >
+      Cron jobs, queue processors, state machines, event handlers, sagas, background jobs,
+      pub/sub patterns. The automated business processes running in the system.
+    what_it_reveals: >
+      What the business does without human intervention. Scheduled jobs reveal business
+      rhythms (billing cycles, report generation, cleanup). Event handlers reveal
+      business reactions. State machines reveal business process lifecycles.
+    agent: code-cartographer
+    primary_agent_phase: "Phase 2: Behavior Mapping"
+
+    extraction_method:
+      approach: "Automated detection (Grep patterns) + LLM for semantic naming"
+      steps:
+        - "Grep for cron expressions (@Cron, schedule(), new CronJob)"
+        - "Identify queue/worker patterns (bull, agenda, celery, sidekiq patterns)"
+        - "Find event emitters and handlers (EventEmitter, emit, on, subscribe, @OnEvent)"
+        - "Detect state machine definitions (XState, Redux state/transition, fsm patterns)"
+        - "Map saga files and workflow orchestration definitions"
+        - "Trace webhook handlers and callback processors"
+        - "Reconstruct workflow sequences with trigger-action-outcome triples"
+
+    tools:
+      primary: ["Grep (native)", "code-graph-mcp", "ast-grep MCP"]
+      secondary: ["Serena", "Repomix MCP"]
+
+    outputs:
+      - name: "l3-workflows.yaml"
+        fields:
+          - "cron_jobs: list[{schedule, handler, business_purpose_inferred}]"
+          - "queue_processors: list[{queue, worker, trigger, outcome}]"
+          - "state_machines: list[{entity, states, transitions, guards}]"
+          - "event_handlers: list[{event, handler, reaction}]"
+          - "background_jobs: list"
+          - "workflow_sequences: list[{trigger, steps, outcome}]"
+
+    confidence: "MEDIUM-HIGH (80%+)"
+    confidence_rationale: "Automated detection is reliable; LLM needed for business-semantic naming"
+
+    donor_methodology:
+      squad: "quality-shield"
+      task: "map-feature-flow (partial)"
+      gap: "Quality Shield maps for QA/regression; Domain Decoder extracts for business documentation"
+
+  L4_validation_rules:
+    id: "L4"
+    name: "Validation Rules and Guards"
+    zone: surface
+    description: >
+      Input validators, middleware guards, database constraints, frontend form rules,
+      business assertions. The gatekeeper layer between the outside world and business logic.
+    what_it_reveals: >
+      What the business considers invalid. Each validation rule encodes a business policy:
+      "orders must have at least one item", "email must be unique", "age must be 18+".
+      Guards reveal access control policies. DB constraints reveal data integrity rules.
+    agent: rule-archaeologist
+    primary_agent_phase: "Phase 2: Behavior Mapping"
+
+    extraction_method:
+      approach: "Automated extraction (Grep + Semgrep patterns)"
+      steps:
+        - "Collect all validation schemas (Joi, Zod, Yup, class-validator, Pydantic)"
+        - "Extract middleware chains and guard conditions (IsAuthenticated, Roles, Permissions)"
+        - "Parse database constraints from migration files (unique, check, not-null, FK)"
+        - "Map frontend form validation rules (required, min/max, pattern, custom validators)"
+        - "Catalog business assertion statements (assert, invariant, Guard.against)"
+        - "Cross-reference: which validations guard which API endpoints"
+        - "Identify un-validated entry points (risk signals)"
+
+    tools:
+      primary: ["Semgrep MCP", "Grep (native)", "ast-grep MCP"]
+      secondary: ["Repomix MCP"]
+
+    outputs:
+      - name: "l4-validation-rules.yaml"
+        fields:
+          - "input_validators: list[{schema, fields, rules, endpoint}]"
+          - "middleware_guards: list[{name, condition, scope}]"
+          - "db_constraints: list[{table, column, constraint_type, business_meaning}]"
+          - "form_rules: list[{component, field, rule, message}]"
+          - "assertions: list[{location, condition, business_meaning}]"
+          - "unvalidated_endpoints: list (risk signal)"
+
+    confidence: "MEDIUM-HIGH (80%+)"
+    confidence_rationale: "Automated extraction reliable; grouping by business concept requires LLM"
+
+    donor_methodology:
+      squad: "@qa"
+      task: "code tracing (partial)"
+      gap: "QA traces for testing purposes; Domain Decoder extracts for business rule documentation"
+
+  L5_business_rules:
+    id: "L5"
+    name: "Business Rules"
+    zone: deep
+    description: >
+      Conditional logic, policy enforcement, calculation formulas, threshold values,
+      exception handling, state transition rules. The IF/THEN logic that governs how
+      the business operates. This is the primary value delivery of Domain Decoder.
+    what_it_reveals: >
+      How the business makes decisions. Every if/else in the service/domain layer is a
+      business rule waiting to be named. Calculation formulas reveal pricing and financial
+      logic. Exception names reveal what the business considers exceptional.
+    agent: rule-archaeologist
+    primary_agent_phase: "Phase 3: Business Intelligence Extraction"
+
+    expert_mind: "Michael Feathers — Seam Model, Characterization Tests, Scratch Refactoring"
+    secondary_mind: "Eric Evans — Domain logic isolation, bounded context thinking"
+
+    extraction_method:
+      approach: "Multi-pass: automated scan + LLM deep read + synthesis"
+      passes:
+        pass_1_scan:
+          name: "SCAN — Pattern-based candidate identification"
+          description: "Identify candidate business rule locations without reading them fully"
+          patterns:
+            - "if/else with 3+ branches in service/domain layers (not infrastructure)"
+            - "switch statements with string/enum cases"
+            - "Functions named: calculate*, compute*, check*, validate*, can*, is*, should*, allow*, deny*"
+            - "Constants with business names: MAX_*, MIN_*, TAX_*, RATE_*, LIMIT_*, THRESHOLD_*"
+            - "Exception classes with business names: *NotEligible, *Exceeded, *Forbidden, *Invalid"
+            - "Annotation-driven policies: @PreAuthorize, @RequiresPermission, @FeatureFlag"
+          tools: ["ast-grep MCP", "Semgrep MCP", "Grep (native)"]
+
+        pass_2_read:
+          name: "READ — Deep LLM analysis of each candidate"
+          description: "For each candidate, read the function + surrounding context and classify"
+          questions:
+            - "What business rule does this implement? (plain English)"
+            - "What happens if this rule is violated?"
+            - "What domain entity does this rule belong to?"
+            - "Is this a constraint, calculation, policy, or state transition?"
+            - "What are the inputs and outputs?"
+            - "Are there exceptions to this rule?"
+          tools: ["Read (native)", "Repomix MCP", "Claude Opus"]
+
+        pass_3_synthesize:
+          name: "SYNTHESIZE — Group rules by bounded context"
+          description: "Cluster rules, detect contradictions, map to processes, generate catalog"
+          steps:
+            - "Cluster rules by entity/aggregate"
+            - "Identify contradictions (same rule, different implementations)"
+            - "Map rules to business processes identified in L3"
+            - "Assign confidence scores using triangulation model"
+            - "Generate plain-English catalog entries"
+          tools: ["Claude Opus", "Write (native)"]
+
+    outputs:
+      - name: "l5-business-rules.yaml"
+        schema: "See templates/business-rule-entry.yaml"
+        fields:
+          - "id: BR-{sequence}"
+          - "name: string (plain English)"
+          - "domain: string"
+          - "bounded_context: string"
+          - "description: string"
+          - "type: constraint|calculation|policy|state_transition"
+          - "implementation: {file, function, lines, snippet}"
+          - "triangulation: {code, schema, tests, comments, api, ui, logs, score}"
+          - "confidence: HIGH|MEDIUM|LOW"
+          - "roundtable_required: boolean"
+
+    confidence: "MEDIUM (65-80%)"
+    confidence_rationale: >
+      LLM semantic interpretation subject to ambiguity. Triangulation + Roundtable
+      required to validate findings. Multi-pass design reduces hallucination risk.
+    triangulation_required: true
+
+    donor_methodology:
+      squad: "NONE — entirely new capability in AIOS"
+      gap: "No existing AIOS agent extracts business rules from code. This is Domain Decoder's primary innovation."
+
+  L6_domain_model:
+    id: "L6"
+    name: "Domain Model (DDD)"
+    zone: deep
+    description: >
+      Core domain objects, aggregates, value objects, bounded contexts, ubiquitous language,
+      context map, domain events. The ontological map of the business extracted from code.
+    what_it_reveals: >
+      The conceptual structure of the business domain as it actually exists in the code
+      (which may differ significantly from documentation). Bounded contexts reveal where
+      one team's model ends and another begins. Ubiquitous language reveals the glossary
+      that bridges developers and business stakeholders.
+    agent: domain-modeler
+    primary_agent_phase: "Phase 3: Business Intelligence Extraction"
+
+    expert_mind: "Eric Evans — DDD, Bounded Contexts, Ubiquitous Language, Strategic DDD"
+    secondary_minds:
+      - "Alberto Brandolini — Event Storming reverse-adapted for discovery"
+      - "Sam Newman — Service boundary identification, Strangler Fig"
+      - "Nick Tune — Core Domain Charts, architecture modernization"
+
+    extraction_method:
+      approach: "Multi-pass: entity extraction + boundary detection + language + cross-reference"
+      passes:
+        pass_1_entities:
+          name: "ENTITIES — Data layer extraction"
+          steps:
+            - "Parse all model/schema/migration files"
+            - "Extract entity names, attributes, types"
+            - "Map relationships: 1:1, 1:N, N:M, embedded"
+            - "Identify value objects (immutable, no identity)"
+            - "Classify aggregates (root vs child entities)"
+          tools: ["Repomix MCP", "Grep (native)", "ast-grep MCP"]
+
+        pass_2_boundaries:
+          name: "BOUNDARIES — Dependency graph clustering"
+          steps:
+            - "Use L2 dependency graph: identify modules with high internal cohesion"
+            - "Find seams between clusters (loose coupling points = context boundaries)"
+            - "Apply Feathers Seam Model to find integration points"
+            - "Each cluster = candidate bounded context"
+            - "Classify: Core Domain vs Supporting vs Generic subdomain"
+          tools: ["code-graph-mcp", "Claude Opus"]
+
+        pass_3_language:
+          name: "LANGUAGE — Ubiquitous language extraction"
+          steps:
+            - "Collect all entity names, method names, event names, enum values"
+            - "Group by bounded context"
+            - "Identify synonyms (same concept, different names = translation layer needed)"
+            - "Identify homonyms (same name, different meanings = boundary problem)"
+            - "Generate glossary with code references"
+          tools: ["Grep (native)", "ast-grep MCP", "Claude Opus"]
+
+        pass_4_validate:
+          name: "VALIDATE — Cross-reference with L5 business rules"
+          steps:
+            - "Each business rule should map to exactly one bounded context"
+            - "Rules spanning contexts = integration points (document the ACL/shared kernel)"
+            - "Rules with no clear context = missing domain concepts (flag)"
+            - "Events in L3 should map to domain events (align terminology)"
+          tools: ["Claude Opus"]
+
+    outputs:
+      - name: "l6-domain-taxonomy.yaml"
+        schema: "See templates/domain-taxonomy-entry.yaml"
+        fields:
+          - "bounded_contexts: list"
+          - "entities: list"
+          - "aggregates: list"
+          - "value_objects: list"
+          - "domain_events: list"
+          - "relationships: list"
+          - "ubiquitous_language: glossary"
+          - "context_map: integration_patterns"
+
+    confidence: "MEDIUM (60-75%)"
+    confidence_rationale: >
+      Context boundary identification requires deep reasoning and domain expertise.
+      Machine clustering + LLM interpretation + Roundtable validation needed.
+    triangulation_required: true
+
+    donor_methodology:
+      squad: "design/OOUX (ORCA process partial)"
+      gap: "OOUX models forward; Domain Decoder reverses from code to model. Bounded context concept is entirely new."
+
+  L7_business_model:
+    id: "L7"
+    name: "Business Model"
+    zone: deep
+    description: >
+      Revenue streams, pricing rules, billing cycles, commission structures, free tier
+      limitations, trial logic, monetization events, upgrade/downgrade triggers.
+      The financial logic of how the business creates and captures value.
+    what_it_reveals: >
+      How the system makes money. Payment gateway integrations reveal revenue channels.
+      Feature gates reveal product tiers. Billing logic reveals pricing strategy.
+      Cancellation and refund code reveals business commitments to customers.
+    agent: business-model-analyst
+    primary_agent_phase: "Phase 3: Business Intelligence Extraction"
+
+    expert_mind: "Sam Newman — Service boundary perspective, revenue-driven decomposition"
+    secondary_mind: "Nick Tune — Core Domain identification, strategic DDD classification"
+
+    extraction_method:
+      approach: "Multi-pass: money trail identification + flow reconstruction + synthesis"
+      passes:
+        pass_1_money_trail:
+          name: "MONEY TRAIL — Find all financial touchpoints"
+          patterns:
+            - "Payment gateway: stripe, paypal, braintree, square, paddle, chargebee, recurly"
+            - "Business terms: payment, charge, invoice, subscription, billing, price, discount"
+            - "Revenue terms: coupon, refund, credit, debit, commission, revenue, fee"
+            - "Tier terms: tier, plan, trial, premium, pro, enterprise, free, limit, quota"
+            - "Lifecycle terms: upgrade, downgrade, cancel, churn, convert, expire"
+          tools: ["Grep (native)", "Semgrep MCP"]
+
+        pass_2_flow:
+          name: "FLOW RECONSTRUCTION — Trace money flows"
+          steps:
+            - "From trigger (user action) to charge (payment gateway call)"
+            - "Map every conditional between trigger and charge (each = pricing rule)"
+            - "Identify: one-time vs recurring vs usage-based patterns"
+            - "Trace proration logic, trial period code, grace period handling"
+          tools: ["Read (native)", "code-graph-mcp", "Claude Opus"]
+
+        pass_3_synthesis:
+          name: "MODEL SYNTHESIS — Reconstruct business model"
+          questions:
+            - "What do they charge for?"
+            - "How do they charge (one-time, recurring, usage-based, per-seat)?"
+            - "What are the tiers/plans and their limits?"
+            - "What triggers upgrades and downgrades?"
+            - "Are there commission or referral structures?"
+            - "What are the payment terms (prepaid, NET-30, etc.)?"
+          tools: ["Claude Opus", "Write (native)"]
+
+    outputs:
+      - name: "l7-business-model.yaml"
+        schema: "See templates/business-model-entry.yaml"
+        fields:
+          - "business_model_type: subscription|marketplace|ecommerce|usage-based|hybrid"
+          - "revenue_streams: list"
+          - "pricing_tiers: list"
+          - "billing_cycles: list"
+          - "monetization_rules: list"
+          - "upgrade_triggers: list"
+          - "payment_integrations: list"
+
+    confidence: "LOW-MEDIUM (50-70%)"
+    confidence_rationale: >
+      Most opaque layer. Financial logic is often scattered, implicit, and poorly commented.
+      Expert validation is mandatory. Graceful degradation: "No monetization logic detected"
+      is a valid and common outcome.
+    triangulation_required: true
+
+    graceful_degradation: >
+      If no payment logic is found, document explicitly: "No monetization logic detected.
+      This may be an internal tool, open-source project, or early-stage product."
+
+    donor_methodology:
+      squad: "NONE — entirely new capability in AIOS"
+      gap: "No existing AIOS agent extracts business model logic from code."
+
+  L8_tech_debt:
+    id: "L8"
+    name: "Tech Debt and Trade-offs"
+    zone: contextual
+    description: >
+      TODOs and FIXMEs, deprecated code, workarounds, known limitations, performance hacks,
+      missing tests, hotspots (high complexity + high change frequency), temporal coupling.
+      The archaeological layer revealing decisions made under constraint.
+    what_it_reveals: >
+      Why the code looks the way it does. Workarounds reveal external constraints.
+      Hotspots reveal where the business evolves fastest (and where risk is highest).
+      TODO comments are often the most honest documentation in legacy codebases.
+      Temporal coupling reveals hidden business relationships not visible in structure.
+    agent: tech-debt-geologist
+    primary_agent_phase: "Phase 4: Debt and Trade-off Analysis"
+
+    expert_mind: "Adam Tornhill — Behavioral Code Analysis, Hotspot Detection, Temporal Coupling"
+    secondary_mind: "Marianne Bellotti — System Anthropology, why workarounds exist"
+
+    extraction_method:
+      approach: "Grep-based automated extraction + git history mining + LLM classification"
+      methods:
+        grep_based:
+          patterns:
+            - "TODO, FIXME, HACK, WORKAROUND, XXX, NOTE, TEMP"
+            - "@deprecated, @obsolete, @legacy"
+            - "console.log, print (debug artifacts)"
+            - "// temporary, // quick fix, // tech debt"
+          tools: ["Grep (native)", "Semgrep MCP"]
+
+        git_mining:
+          description: "Tornhill hotspot formula: complexity × change_frequency"
+          steps:
+            - "git log --stat: identify files with highest change frequency"
+            - "scc: calculate cyclomatic complexity per file"
+            - "hotspot_score = complexity × change_frequency"
+            - "hotspot_threshold: files above 75th percentile in both dimensions"
+            - "Temporal coupling: files that always change together (even without imports)"
+          tools: ["Bash (git CLI)", "scc", "CodeScene MCP (optional)"]
+
+        llm_classification:
+          description: "Classify debt by type and business impact"
+          categories:
+            - "duplication: same logic in multiple places"
+            - "workaround: explicit hack around external constraint"
+            - "missing_test: business rule without test evidence"
+            - "deprecated: marked for removal but still in use"
+            - "design_flaw: wrong abstraction, misplaced responsibility"
+            - "security: auth bypass, unvalidated input, hardcoded credentials"
+          tools: ["Claude Sonnet"]
+
+    outputs:
+      - name: "l8-tech-debt.yaml"
+        schema: "See templates/tech-debt-entry.yaml"
+        fields:
+          - "id: TD-{sequence}"
+          - "category: duplication|workaround|missing_test|deprecated|design_flaw|security"
+          - "severity: CRITICAL|HIGH|MEDIUM|LOW"
+          - "description: string"
+          - "affected_business_rules: list[BR-ids]"
+          - "hotspot_score: float"
+          - "is_hotspot: boolean"
+          - "recommended_fix: string"
+          - "effort_estimate: string"
+
+    confidence: "MEDIUM-HIGH (75-85%)"
+    confidence_rationale: >
+      Grep-based extraction is highly reliable. LLM classification of severity requires
+      reasoning but is lower-stakes than L5-L7 (informational, not definitional).
+    triangulation_required: false
+
+    donor_methodology:
+      squad: "quality-shield (health-check, analyze-impact partial)"
+      gap: "Quality Shield assesses health for QA; Domain Decoder extracts debt for business impact context"
+
+# ============================================================
+# LAYER DEPENDENCY GRAPH
+# ============================================================
+layer_dependencies:
+  L1: []                              # Foundation — no dependencies
+  L2: ["L1"]                         # Needs code patterns to understand API structure
+  L3: ["L1", "L2"]                   # Needs patterns + contracts to find workflow patterns
+  L4: ["L1", "L2"]                   # Needs patterns + contracts to find validation layers
+  L5: ["L3", "L4"]                   # Business rules = conditionals in workflow + validation context
+  L6: ["L1", "L2", "L5"]            # Domain model needs structure + APIs + rules for context
+  L7: ["L5", "L6"]                   # Business model = rules + entities + relationships → revenue logic
+  L8: []                             # Can run at any time; enriches all layers contextually
+  # Note: L8 informs all layers but does not block them. Run L8 early for prioritization,
+  # then use L8 findings to annotate L5/L6/L7 outputs.
+
+execution_parallelism:
+  sequential: ["L1", "L2"]
+  parallel_group_1: ["L3", "L4"]    # After L1+L2 complete
+  parallel_group_2: ["L5", "L6", "L7"]  # After L3+L4 complete; L5 informs L6 and L7
+  L8_timing: "Start after L1 completes; continue in background through Phase 4"
+
+# ============================================================
+# TRIANGULATION RULE (adapted from MMOS)
+# ============================================================
+triangulation:
+  applies_to_layers: ["L5", "L6", "L7"]
+  description: >
+    For deep/semantic layers, every finding must be triangulated from 3+ independent
+    source types before HIGH confidence can be assigned. This prevents single-source
+    hallucination and forces multi-perspective validation.
+
+  source_types:
+    code:
+      description: "The actual implementation (if/else, calculations, function bodies)"
+      weight: 1
+    schema:
+      description: "Database constraints, model validations, migration definitions"
+      weight: 1
+    tests:
+      description: "Test assertions that encode business expectations"
+      weight: 1
+    comments:
+      description: "Developer notes explaining 'why' — often most honest documentation"
+      weight: 1
+    api:
+      description: "Endpoint naming, request/response shapes, error messages"
+      weight: 1
+    ui:
+      description: "Frontend labels, form fields, error messages, user-visible text"
+      weight: 1
+    logs:
+      description: "Log messages that describe business events and state transitions"
+      weight: 1
+
+  confidence_thresholds:
+    HIGH:
+      sources_required: 3
+      description: "Include in catalog without caveat"
+      fast_track_threshold: 5  # 5+ sources skips Roundtable automatically
+    MEDIUM:
+      sources_required: 2
+      description: "Include in catalog with explicit confidence annotation"
+    LOW:
+      sources_required: 1
+      description: "Flag for human validation; include with prominent caveat"
+
+  fast_track_rule: >
+    Findings confirmed by 5 or more source types independently skip the Roundtable debate
+    automatically. This prevents the debate mechanism from becoming a bottleneck for
+    high-evidence findings.
+
+# ============================================================
+# OUTPUT STRUCTURE MAPPING
+# ============================================================
+output_structure:
+  phase_1_output: "data/findings/l1-code-patterns.yaml + data/findings/l2-api-contracts.yaml"
+  phase_2_output: "data/findings/l3-workflows.yaml + data/findings/l4-validation-rules.yaml"
+  phase_3_output: "data/findings/l5-business-rules.yaml + data/findings/l6-domain-taxonomy.yaml + data/findings/l7-business-model.yaml"
+  phase_4_output: "data/findings/l8-tech-debt.yaml"
+  phase_5_output: "data/roundtable/resolved-debates.yaml + data/reports/confidence-dashboard.yaml"
+  final_output: "domain-decoder-output/ (8 files per extraction target)"

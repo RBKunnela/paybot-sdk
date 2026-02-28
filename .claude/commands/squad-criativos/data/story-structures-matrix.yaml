@@ -1,0 +1,223 @@
+# Story Structures Matrix - Guia de Seleção
+# Referência para narrative-designer, select-storytelling-framework
+
+purpose: |
+  Matriz de decisão para escolher o framework de storytelling
+  mais adequado para cada tipo de projeto.
+
+# Por Duração/Formato
+by_duration:
+
+  very_short:
+    duration: "< 30 segundos"
+    formats: ["Stories", "Reels", "TikTok", "Bumper ads"]
+    recommended:
+      - name: "AIDA"
+        reason: "Estrutura rápida: Atenção → Interesse → Desejo → Ação"
+      - name: "Hook + Payoff"
+        reason: "Gancho forte + resolução imediata"
+      - name: "Vonnegut Shapes (simplificado)"
+        reason: "Arco emocional claro em poucos segundos"
+
+  short:
+    duration: "30s - 2min"
+    formats: ["Comerciais TV", "Pre-roll", "Carrosséis"]
+    recommended:
+      - name: "Five Beats"
+        reason: "Intro → Problema → Solução → Benefício → CTA"
+      - name: "Story Spine (Pixar simplificado)"
+        reason: "Era uma vez → Todo dia → Um dia → Até que"
+      - name: "Freytag Pyramid"
+        reason: "Exposição → Clímax → Resolução"
+
+  medium:
+    duration: "2-10min"
+    formats: ["Vídeos de marca", "Cases", "Webinars curtos"]
+    recommended:
+      - name: "Story Circle (Dan Harmon)"
+        reason: "8 passos completos mas concisos"
+      - name: "Save the Cat! (comprimido)"
+        reason: "15 beats adaptados para formato médio"
+      - name: "StoryBrand SB7"
+        reason: "Perfeito para conteúdo de vendas"
+
+  long:
+    duration: "10min+"
+    formats: ["Documentários", "Séries", "Brand films"]
+    recommended:
+      - name: "Hero's Journey (Campbell/Vogler)"
+        reason: "Jornada completa para histórias épicas"
+      - name: "22 Building Blocks (Truby)"
+        reason: "Profundidade máxima de personagem"
+      - name: "Three-Act Paradigm (Syd Field)"
+        reason: "Estrutura clássica de roteiro"
+
+# Por Propósito
+by_purpose:
+
+  brand_awareness:
+    goal: "Construir reconhecimento e associação emocional"
+    recommended:
+      - name: "Hero's Journey"
+        reason: "Épico, memorável, jornada de transformação"
+      - name: "Vogler 12 Stages"
+        reason: "Versão mais aplicável da jornada"
+      - name: "Vonnegut Shapes (Cinderella)"
+        reason: "Arco positivo inspiracional"
+    emotion_focus: ["Joy", "Trust", "Anticipation"]
+
+  product_launch:
+    goal: "Gerar desejo e ação de compra"
+    recommended:
+      - name: "Save the Cat!"
+        reason: "Estrutura de engagement comprovada"
+      - name: "StoryBrand SB7"
+        reason: "Cliente como herói, produto como solução"
+      - name: "AIDA + Story"
+        reason: "Atenção → Interesse → Desejo → Ação narrativo"
+    emotion_focus: ["Anticipation", "Surprise", "Joy"]
+
+  thought_leadership:
+    goal: "Estabelecer autoridade e educar"
+    recommended:
+      - name: "Sparkline (Nancy Duarte)"
+        reason: "Contraste entre status quo e possibilidade"
+      - name: "Golden Circle (Sinek)"
+        reason: "Why → How → What"
+      - name: "McKee Controlling Idea"
+        reason: "Tese clara sustentada por narrativa"
+    emotion_focus: ["Trust", "Anticipation"]
+
+  cause_marketing:
+    goal: "Mobilizar para causa social"
+    recommended:
+      - name: "Hero's Journey"
+        reason: "Herói supera adversidade"
+      - name: "Freytag (com clímax forte)"
+        reason: "Tensão que exige resolução/ação"
+      - name: "McKee (tema moral)"
+        reason: "Controlling idea com valor moral"
+    emotion_focus: ["Sadness", "Anger", "Trust", "Joy"]
+
+  recruitment:
+    goal: "Atrair talentos para empresa"
+    recommended:
+      - name: "Story Circle"
+        reason: "Jornada do funcionário na empresa"
+      - name: "Vogler 12 Stages"
+        reason: "Mentor (empresa) guia herói (candidato)"
+      - name: "StoryBrand"
+        reason: "Candidato como herói, empresa como guia"
+    emotion_focus: ["Anticipation", "Trust", "Joy"]
+
+  customer_testimonial:
+    goal: "Prova social através de histórias reais"
+    recommended:
+      - name: "Vonnegut Man in Hole"
+        reason: "Problema → Solução → Sucesso"
+      - name: "Before/After/Bridge"
+        reason: "Estado anterior → Transformação → Estado atual"
+      - name: "Story Circle (simplificado)"
+        reason: "Zona de conforto → Desafio → Transformação"
+    emotion_focus: ["Trust", "Joy"]
+
+# Por Emoção Alvo
+by_emotion:
+
+  inspirational:
+    description: "Elevar, motivar, inspirar ação"
+    frameworks:
+      - "Hero's Journey (Vogler)"
+      - "Cinderella Shape (Vonnegut)"
+      - "Golden Circle + Sparkline"
+    panksepp_systems: ["SEEKING", "CARE", "PLAY"]
+    plutchik: ["Joy", "Anticipation", "Trust"]
+
+  dramatic:
+    description: "Criar tensão, engajamento profundo"
+    frameworks:
+      - "Freytag Pyramid"
+      - "Man in Hole (Vonnegut)"
+      - "McKee Value Shifts"
+    panksepp_systems: ["FEAR", "RAGE", "SEEKING"]
+    plutchik: ["Fear", "Anger", "Anticipation"]
+
+  humorous:
+    description: "Divertir, criar conexão leve"
+    frameworks:
+      - "Story Circle (Dan Harmon)"
+      - "Trickster Arc"
+      - "False Start"
+    panksepp_systems: ["PLAY", "SEEKING"]
+    plutchik: ["Joy", "Surprise"]
+
+  nostalgic:
+    description: "Conectar com memórias, pertencimento"
+    frameworks:
+      - "Circular Narrative"
+      - "Before/After with Return"
+      - "Nested Loops (memórias)"
+    panksepp_systems: ["PANIC/GRIEF", "CARE", "PLAY"]
+    plutchik: ["Sadness", "Joy", "Trust"]
+
+  urgent:
+    description: "Criar senso de urgência, FOMO"
+    frameworks:
+      - "In Media Res"
+      - "Countdown Structure"
+      - "Stakes Escalation"
+    panksepp_systems: ["FEAR", "SEEKING"]
+    plutchik: ["Fear", "Anticipation"]
+
+# Por Canal
+by_channel:
+
+  social_media:
+    instagram:
+      feed: ["Story Spine", "Before/After"]
+      stories: ["Hook + Payoff", "Curiosity Loop"]
+      reels: ["In Media Res", "Surprise Ending"]
+
+    linkedin:
+      posts: ["Sparkline", "Golden Circle"]
+      articles: ["Three-Act", "McKee"]
+
+    tiktok:
+      all: ["Hook + Twist", "False Start", "Story Circle (rápido)"]
+
+  video:
+    youtube_short: ["Story Circle", "Vonnegut Shapes"]
+    youtube_long: ["Hero's Journey", "Documentary Structure"]
+    tv_commercial: ["Save the Cat! (compressed)", "Freytag"]
+
+  presentation:
+    pitch_deck: ["Sparkline", "StoryBrand", "Golden Circle"]
+    keynote: ["Hero's Journey", "Nested Loops"]
+    sales_call: ["StoryBrand SB7", "Problem-Solution-Result"]
+
+# Seleção Rápida
+quick_selection:
+
+  "Quero inspirar":
+    use: "Hero's Journey + Vogler"
+    why: "Jornada de transformação universal"
+
+  "Quero vender":
+    use: "StoryBrand SB7"
+    why: "Cliente é herói, produto é solução"
+
+  "Quero educar":
+    use: "Sparkline + Golden Circle"
+    why: "Contraste entre problema e possibilidade"
+
+  "Quero emocionar":
+    use: "Panksepp Systems + Vonnegut Shapes"
+    why: "Mapeamento emocional científico"
+
+  "Quero engajar rápido":
+    use: "Story Circle + In Media Res"
+    why: "Estrutura eficiente com gancho forte"
+
+  "Quero criar série":
+    use: "Transmedia + Nested Loops"
+    why: "Worldbuilding e múltiplas histórias"

@@ -1,0 +1,502 @@
+## ═══════════════════════════════════════════════════════════════════════════════
+## WORKFLOW: Validate AI Agent Squad Design
+## Purpose: Design and validate multi-agent system orchestration
+## Duration: 4-6 hours
+## Specialists: matthew-skelton, barry-hawkins, yoav-shoham
+## ═══════════════════════════════════════════════════════════════════════════════
+
+workflow:
+  id: validate-ai-agents
+  name: "Validate AI Agent Squad Design"
+  description: "Complete workflow for designing and validating multi-agent systems"
+
+  when_to_use:
+    - "Building a new multi-agent system"
+    - "Scaling single agent to multi-agent orchestration"
+    - "Validating agent protocol before deployment"
+    - "Analyzing agent interactions for conflicts"
+    - "Ensuring safety in agent coordination"
+
+  duration:
+    estimated: "4-6 hours"
+    minimum: "3 hours (parallel mode)"
+    detailed:
+      phase_1: "1 hour (topology assessment)"
+      phase_2: "1.5 hours (orchestration design)"
+      phase_3: "1.5 hours (game-theoretic validation)"
+      synthesis: "1 hour (consolidation + validation)"
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # PRE-WORKFLOW: Inputs & Preparation
+  # ───────────────────────────────────────────────────────────────────────────
+
+  inputs:
+    required:
+      - name: "agent_list"
+        description: "List of agents in the squad (names, roles, responsibilities)"
+        example: |
+          - analyst (gathers requirements)
+          - architect (designs solutions)
+          - dev (implements)
+          - qa (validates)
+          - pm (coordinates)
+
+      - name: "agent_dependencies"
+        description: "How agents need to coordinate (who calls whom, when)"
+        example: |
+          - analyst → architect (designs based on analysis)
+          - architect → dev (dev implements design)
+          - dev → qa (qa validates implementation)
+          - qa ↔ architect (feedback loop)
+          - pm orchestrates all
+
+      - name: "decision_authorities"
+        description: "What decisions each agent can make independently vs needs human approval"
+        example: |
+          - analyst: Can analyze independently
+          - architect: Can propose design, needs approval
+          - dev: Can implement approved designs
+          - qa: Can reject code, final approval by human
+
+    optional:
+      - name: "existing_issues"
+        description: "Problems with current orchestration (if upgrading)"
+
+      - name: "performance_requirements"
+        description: "Speed, throughput, latency requirements"
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # PHASE 1: TOPOLOGY ASSESSMENT (Matthew Skelton)
+  # ───────────────────────────────────────────────────────────────────────────
+
+  phase_1:
+    name: "Apply Team Topologies to Agent Squad"
+    agent: matthew-skelton
+    task: tasks/assess-agent-topology.md
+    duration: "1 hour"
+
+    description: |
+      Matthew analyzes the agent squad through Team Topologies lens:
+      - Classify each agent by type (Stream-Aligned, Platform, Enabling, Complicated)
+      - Assess cognitive load distribution
+      - Identify orchestration patterns
+      - Check for Conway's Law alignment (agent structure ↔ data flow)
+
+    inputs:
+      - agent_list
+      - agent_responsibilities
+      - decision_authorities
+
+    actions:
+      - "Classify agents by type"
+        agent_type_1: "Stream-Aligned Agent (core value delivery)"
+        agent_type_2: "Platform Agent (enables other agents)"
+        agent_type_3: "Enabling Agent (temporary, teaches others)"
+        agent_type_4: "Complicated-Subsystem Agent (handles irreducible complexity)"
+
+      - "Assess cognitive load per agent"
+      - "Identify orchestration pattern implications"
+      - "Check Conway's Law alignment"
+      - "Evaluate independence vs coupling"
+
+    outputs:
+      - "Agent type classification"
+      - "Cognitive load assessment"
+      - "Orchestration pattern recommendation (sequential/parallel/hierarchical/peer)"
+      - "Conway's Law analysis"
+      - "Independence vs coupling evaluation"
+
+    template_output: |
+      ```
+      AGENT TOPOLOGY ANALYSIS:
+
+      Agent Classifications:
+      - analyst: Stream-Aligned (core analysis value)
+      - architect: Stream-Aligned (core design value)
+      - dev: Stream-Aligned (core implementation value)
+      - qa: Complicated-Subsystem (handles validation complexity)
+      - pm: Orchestrator (coordinates others)
+
+      Cognitive Load Assessment:
+      - analyst: 2 core tasks, 1 external dependency → Low ✓
+      - architect: 3 core tasks, 2 dependencies → Medium ✓
+      - dev: 4 core tasks, 2 dependencies → Medium ✓
+      - qa: 3 core tasks, 1 dependency → Low ✓
+      - pm: Coordination only → Light ✓
+
+      Recommended Orchestration Pattern:
+      - Sequential: analyst → architect → dev → qa
+      - Plus feedback: qa → architect (iteration loop)
+      - Plus oversight: pm monitors whole flow
+      - Result: Staged pipeline with feedback
+
+      Conway's Law Check:
+      ✓ Agent structure matches information flow
+      ✓ Each agent can work independently on its phase
+      ✓ Data flows sequentially between agents
+      ✓ Minimal back-and-forth (good design)
+      ```
+
+    checkpoints:
+      - checkpoint_1:
+          name: "Is agent type classification clear?"
+          validation: "Each agent has explicit type and role"
+          veto_condition: "Unclear roles will cause ambiguity. Re-define."
+
+      - checkpoint_2:
+          name: "Are agents appropriately specialized?"
+          validation: "No agent doing 10+ different things"
+          veto_condition: "Agent is overloaded. Split into multiple agents."
+
+      - checkpoint_3:
+          name: "Does topology match desired data flow?"
+          validation: "System architecture will emerge naturally"
+          veto_condition: "Design will create wrong agent interactions. Redesign."
+
+    handoff_to:
+      agent: barry-hawkins
+      with_context: "Agent topology, types, cognitive load, orchestration pattern"
+      message: "Ready to design orchestration with safety constraints"
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # PHASE 2: ORCHESTRATION DESIGN (Barry Hawkins)
+  # ───────────────────────────────────────────────────────────────────────────
+
+  phase_2:
+    name: "Agent Orchestration & Safety Design"
+    agent: barry-hawkins
+    task: tasks/design-agent-orchestration.md
+    duration: "1.5 hours"
+
+    description: |
+      Barry designs the orchestration pattern with explicit safety:
+      - Define agent boundaries (decision authority limits)
+      - Design orchestration pattern (sequential, parallel, hierarchical)
+      - Establish safety constraints and veto conditions
+      - Implement human-in-the-loop controls
+      - Identify failure modes and mitigations
+
+    inputs:
+      - matthew_skelton_topology
+      - agent_dependencies
+      - decision_authorities
+
+    actions:
+      - "Define explicit agent boundaries"
+        boundary_1: "What can this agent decide independently?"
+        boundary_2: "What decisions require human approval?"
+        boundary_3: "What decisions are forbidden to this agent?"
+
+      - "Design orchestration pattern"
+        pattern_1: "Sequential (agent A → B → C linear)"
+        pattern_2: "Parallel (A ║ B ║ C concurrent)"
+        pattern_3: "Hierarchical (Chief → Specialists)"
+        pattern_4: "Conditional (if X then agent Y else Z)"
+
+      - "Establish safety constraints"
+      - "Define human-in-the-loop gates"
+      - "Analyze failure modes (FMEA)"
+      - "Design mitigation strategies"
+
+    outputs:
+      - "Agent boundary definitions"
+      - "Orchestration diagram with explicit pattern"
+      - "Safety constraint matrix"
+      - "Human approval gates (where needed)"
+      - "Failure mode analysis with mitigations"
+      - "Cascade risk assessment"
+
+    template_output: |
+      ```
+      ORCHESTRATION DESIGN:
+
+      Agent Boundaries:
+
+      analyst:
+      ├─ Can: Gather info, analyze independently
+      ├─ Cannot: Make architectural decisions
+      └─ Requires: No human approval (analysis is exploratory)
+
+      architect:
+      ├─ Can: Design solutions, propose architecture
+      ├─ Cannot: Implement without validation
+      └─ Requires: PO/PM approval before dev starts
+
+      dev:
+      ├─ Can: Implement approved designs, write tests
+      ├─ Cannot: Change architecture without architect
+      └─ Requires: Architect approval on design changes
+
+      qa:
+      ├─ Can: Test, validate, reject bad code
+      ├─ Cannot: Force fixes (recommends only)
+      └─ Requires: Dev must fix or escalate to architect
+
+      Orchestration Pattern: Sequential with Feedback Loops
+
+      analyst → architect → dev → qa → if_fail → architect (feedback)
+                                      → if_pass → PM (success)
+
+      Human-in-the-Loop Gates:
+      1. PM approves story before analyst starts
+      2. Architect approval required before dev starts
+      3. QA rejection → Escalation to architect if dev disagrees
+      4. PM releases when qa approves
+
+      Safety Constraints:
+      ├─ No agent can bypass another agent's work
+      ├─ No agent can make decisions outside boundary
+      ├─ All decisions logged for audit
+      ├─ Human can halt any phase
+      └─ Rollback procedure defined
+
+      Failure Modes & Mitigations:
+
+      Failure: Dev implements wrong architecture
+      └─ Mitigation: Architect reviews before coding; gate = approval
+
+      Failure: QA too strict, blocks good code
+      └─ Mitigation: Escalation to architect for final decision
+
+      Failure: Agent loop (qa → dev → qa infinite loop)
+      └─ Mitigation: Max 3 iterations, then architect decides
+
+      Failure: Agent crashes during execution
+      └─ Mitigation: State saved; can resume from checkpoint
+      ```
+
+    checkpoints:
+      - checkpoint_1:
+          name: "Are agent boundaries explicit?"
+          validation: "Can-do / Cannot-do lists are clear"
+          veto_condition: "Ambiguous boundaries cause failures. Define explicitly."
+
+      - checkpoint_2:
+          name: "Are there sufficient human-in-the-loop gates?"
+          validation: "Risk decisions have human approval"
+          veto_condition: "Too much automation risk. Add human gates."
+
+      - checkpoint_3:
+          name: "Are failure modes identified?"
+          validation: "FMEA completed with mitigations"
+          veto_condition: "Unidentified failure modes will surprise you. Find them first."
+
+      - checkpoint_4:
+          name: "Can the system recover from failures?"
+          validation: "Rollback procedures exist"
+          veto_condition: "No recovery plan. Design one."
+
+    handoff_to:
+      agent: yoav-shoham
+      with_context: "Orchestration design, agent interactions, coordination protocol"
+      message: "Ready for game-theoretic validation"
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # PHASE 3: GAME-THEORETIC VALIDATION (Yoav Shoham)
+  # ───────────────────────────────────────────────────────────────────────────
+
+  phase_3:
+    name: "Game-Theoretic Validation of Agent Coordination"
+    agent: yoav-shoham
+    task: tasks/validate-agent-protocols.md
+    duration: "1.5 hours"
+
+    description: |
+      Yoav validates the orchestration protocol using game theory:
+      - Analyze agent interactions as strategic games
+      - Verify agents will cooperate (coordination game)
+      - Detect conflicts (competition or conflicting interests)
+      - Find pathological equilibria (deadlocks, mutual failure)
+      - Validate protocol stability
+
+    inputs:
+      - barry_hawkins_orchestration
+      - agent_boundaries
+      - agent_incentives
+
+    actions:
+      - "Model each agent interaction as game"
+      - "Identify game type (coordination, conflict, cooperation)"
+      - "Analyze equilibrium"
+      - "Detect pathological equilibria (deadlocks)"
+      - "Validate protocol is stable"
+      - "Recommend protocol improvements if needed"
+
+    outputs:
+      - "Game-theoretic analysis of each interaction"
+      - "Equilibrium analysis"
+      - "Pathological equilibria detection"
+      - "Protocol stability validation"
+      - "Conflict resolution mechanisms"
+
+    template_output: |
+      ```
+      GAME-THEORETIC VALIDATION:
+
+      Interaction 1: analyst → architect
+      Game Type: Coordination (both benefit from working together)
+      Analysis:
+      ├─ Analyst provides good analysis
+      ├─ Architect provides good design
+      └─ Equilibrium: Cooperation (stable) ✓
+      Risk: None - natural cooperation
+      Validation: ✓ STABLE
+
+      Interaction 2: dev ↔ qa (validation loop)
+      Game Type: Potential Conflict
+      Analysis:
+      ├─ Dev wants code merged quickly
+      ├─ QA wants high quality
+      ├─ Misaligned incentives → conflict possible
+      └─ Equilibrium: Could be deadlock if qa too strict
+      Risk: Infinite loop (dev → qa → dev → qa)
+      Mitigation: Max 3 iterations, architect decides
+      Validation: ✓ STABLE (with iteration limit)
+
+      Interaction 3: architect ↔ pm (approval gate)
+      Game Type: Cooperation (both benefit)
+      Analysis:
+      ├─ Architect wants good design
+      ├─ PM wants fast delivery
+      ├─ Slight tension but aligned overall
+      └─ Equilibrium: Cooperation (stable) ✓
+      Risk: None - natural cooperation
+      Validation: ✓ STABLE
+
+      Pathological Equilibria Detected: None ✓
+
+      Protocol Stability: VALIDATED
+      ├─ All agent interactions lead to cooperation
+      ├─ No deadlocks or mutual failures
+      ├─ Safe to deploy
+      └─ Ready for production
+
+      Recommendations:
+      1. Monitor dev ↔ qa interaction (highest risk)
+      2. Escalation protocol if iteration > 3 is good (use it)
+      3. Consider incentive alignment (speed + quality metrics)
+      ```
+
+    checkpoints:
+      - checkpoint_1:
+          name: "Are all interactions cooperation games or managed?"
+          validation: "No unmanaged conflict or deadlock risk"
+          veto_condition: "Unresolved conflicts will surface at runtime. Fix now."
+
+      - checkpoint_2:
+          name: "Are equilibria stable?"
+          validation: "All interactions converge to stable states"
+          veto_condition: "Unstable equilibrium = system chaos. Redesign."
+
+      - checkpoint_3:
+          name: "Are pathological equilibria absent?"
+          validation: "No deadlocks, infinite loops, or mutual failures"
+          veto_condition: "Pathological equilibrium will crash system. Fix protocol."
+
+      - checkpoint_4:
+          name: "Is the protocol mathematically sound?"
+          validation: "Coordination theory confirms design"
+          veto_condition: "Unsound protocol = unpredictable behavior. Redesign."
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # SYNTHESIS: Combine All Validations
+  # ───────────────────────────────────────────────────────────────────────────
+
+  synthesis:
+    name: "Integrated Validation Report"
+    task: tasks/synthesize-report.md
+    checklist: checklists/agent-validation-checklist.md
+    duration: "1 hour"
+
+    inputs:
+      - matthew_skelton_topology
+      - barry_hawkins_orchestration
+      - yoav_shoham_validation
+
+    actions:
+      - "Verify consistency across all 3 analyses"
+      - "Check for contradictions"
+      - "Consolidate into single design document"
+      - "Generate implementation checklist"
+      - "Create monitoring/health-check plan"
+
+    outputs:
+      - "Integrated agent squad design document"
+      - "Implementation checklist"
+      - "Health monitoring plan"
+      - "Risk summary and mitigations"
+      - "Go/No-Go decision"
+
+    go_decision: |
+      ✓ GO if:
+      - All agents clearly classified and scoped
+      - Orchestration pattern is sound
+      - All failure modes identified with mitigations
+      - Game-theoretic validation passed
+      - Human-in-the-loop gates are sufficient
+      - Safety constraints are explicit
+
+      ✗ NO-GO if:
+      - Unresolved conflicts between agents
+      - Pathological equilibria exist
+      - Safety constraints are insufficient
+      - Failure modes without mitigations
+      - Orchestration pattern is unstable
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # POST-WORKFLOW: Implementation & Monitoring
+  # ───────────────────────────────────────────────────────────────────────────
+
+  outcomes:
+    deliverables:
+      - "Agent squad design document"
+      - "Orchestration diagram (with pattern)"
+      - "Agent boundary definitions"
+      - "Safety constraint matrix"
+      - "Failure mode analysis (FMEA)"
+      - "Game-theoretic validation report"
+      - "Implementation checklist"
+      - "Health monitoring plan"
+
+  next_steps:
+    - step_1: "Share design with team for implementation planning"
+    - step_2: "Implement agents according to boundaries"
+    - step_3: "Implement orchestration pattern with safety gates"
+    - step_4: "Test failure modes in staging"
+    - step_5: "Deploy to production with monitoring"
+    - step_6: "Monitor health metrics and adjust"
+
+  health_check_frequency:
+    immediate: "First week post-launch (daily checks)"
+    short_term: "Month 1 (3x per week)"
+    ongoing: "Quarterly health checks"
+
+  monitoring_metrics:
+    - "Agent cooperation success rate"
+    - "Iteration count (dev ↔ qa loops)"
+    - "Human intervention frequency"
+    - "Failure mode occurrence"
+    - "System throughput and latency"
+    - "Agent error rates"
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # SUCCESS CRITERIA
+  # ───────────────────────────────────────────────────────────────────────────
+
+  success_criteria:
+    - "Agent boundaries are explicit and understood"
+    - "Orchestration pattern matches team topology"
+    - "All failure modes identified with mitigations"
+    - "Safety constraints are sufficient"
+    - "Human-in-the-loop gates are appropriate"
+    - "Game-theoretic validation passed"
+    - "No pathological equilibria"
+    - "Protocol is stable and predictable"
+    - "Implementation checklist is clear"
+    - "Team is confident in design"
+
+---
+
+# END WORKFLOW: Validate AI Agents
+# This workflow is validated and ready for use
+# Last updated: 2025-02-05

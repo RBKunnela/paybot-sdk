@@ -1,0 +1,89 @@
+# Checklist: CBO Gate - Creative
+# Squad: squAId-criaTTivados / directors
+
+metadata:
+  name: "cbo-gate-creative"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  tipo: cbo-gate
+  responsavel: "cbo"
+
+descricao: |
+  Gate CBO pós-storYOURtelling. Validação executiva do Creative Brief
+  antes da produção de conteúdo e campanhas.
+
+entregavel: "Creative Brief aprovado"
+
+itens:
+  big_idea:
+    nome: "Big Idea"
+    items:
+      - id: 1
+        descricao: "Poderosa e memorável"
+        obrigatorio: true
+        criterio: "Fica na cabeça, gera conversa"
+      - id: 2
+        descricao: "Passou nos 3 filtros de domínio"
+        obrigatorio: true
+        criterio: "Dramatiza (I), expressa (II), gera assets (III)"
+      - id: 3
+        descricao: "Expansível para múltiplos canais"
+        obrigatorio: true
+        criterio: "Funciona em social, OOH, digital, evento"
+      - id: 4
+        descricao: "Não é clichê ou genérica"
+        obrigatorio: true
+        criterio: "Nenhum concorrente poderia usar esta ideia"
+
+  narrativa:
+    nome: "Narrativa"
+    items:
+      - id: 5
+        descricao: "Conecta emocionalmente"
+        obrigatorio: true
+        criterio: "Gera reação emocional genuína"
+      - id: 6
+        descricao: "Framework narrativo bem aplicado"
+        obrigatorio: true
+        criterio: "O framework escolhido serve a história"
+      - id: 7
+        descricao: "Story arc completo"
+        obrigatorio: true
+        criterio: "Tem começo, desenvolvimento, resolução"
+
+  execucao:
+    nome: "Execução"
+    items:
+      - id: 8
+        descricao: "Tom de voz consistente"
+        obrigatorio: true
+        criterio: "Mesmo tom em todos os exemplos"
+      - id: 9
+        descricao: "Copy examples de alta qualidade"
+        obrigatorio: true
+        criterio: "Headlines que param o scroll, copy que engaja"
+      - id: 10
+        descricao: "Direção visual inspiradora"
+        obrigatorio: true
+        criterio: "Visual creator consegue executar sem dúvidas"
+
+  alinhamento:
+    nome: "Alinhamento"
+    items:
+      - id: 11
+        descricao: "100% alinhado com Brand Strategy"
+        obrigatorio: true
+        criterio: "Propósito, valores e arquétipo presentes"
+      - id: 12
+        descricao: "100% alinhado com Brand Identity"
+        obrigatorio: true
+        criterio: "Respeita Design System e verbal identity"
+      - id: 13
+        descricao: "Reforça diferenciais da marca"
+        obrigatorio: true
+        criterio: "Diferenciais são comunicados naturalmente"
+
+aprovacao:
+  score_minimo: 100
+  criterio: "Todos os itens obrigatórios aprovados"
+  acao_rejeicao: "Feedback detalhado ao creative-director + direcionamento"

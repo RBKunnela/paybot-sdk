@@ -1,0 +1,517 @@
+# Pirâmide de Maslow para Storytelling e Branding
+# Hierarquia das Necessidades aplicada a narrativas de marca
+# Baseado em Abraham Maslow (1943) - "A Theory of Human Motivation"
+
+metadata:
+  name: "Maslow Hierarchy for Brand Storytelling"
+  version: "1.0"
+  teoria_base: "Hierarchy of Needs - Abraham Maslow"
+  aplicacao: "Criar narrativas conectadas ao sensorial, cognitivo, emocional e afetivo"
+
+# ═══════════════════════════════════════════════════════════════════
+# PRINCÍPIO DE USO
+# ═══════════════════════════════════════════════════════════════════
+principio:
+  descricao: |
+    A Pirâmide de Maslow organiza as necessidades humanas em 5 níveis.
+    Narrativas de marca que conectam com esses níveis criam ressonância
+    profunda porque falam de motivações universais.
+
+  regra_ouro: |
+    Necessidades de níveis inferiores precisam estar minimamente satisfeitas
+    para que níveis superiores se tornem motivadores. Conheça sua audiência
+    para saber em qual nível a narrativa deve focar.
+
+  conexao_com_dominios:
+    dominio_I: "Níveis 1-2 (Funcional → Segurança)"
+    dominio_II: "Níveis 3-5 (Pertencimento → Autorrealização)"
+    dominio_III: "Todos os níveis (Assets que evocam cada necessidade)"
+
+# ═══════════════════════════════════════════════════════════════════
+# OS 5 NÍVEIS DA PIRÂMIDE
+# ═══════════════════════════════════════════════════════════════════
+niveis:
+
+  # ─────────────────────────────────────────────────────────────────
+  # NÍVEL 1: FISIOLÓGICAS (Base)
+  # ─────────────────────────────────────────────────────────────────
+  nivel_1:
+    nome: "Necessidades Fisiológicas"
+    nome_en: "Physiological Needs"
+    posicao: "Base da pirâmide"
+    tipo_necessidade: "Deficiência (D-needs)"
+
+    necessidades:
+      - Comida e água
+      - Abrigo e moradia
+      - Sono e descanso
+      - Ar e respiração
+      - Vestuário básico
+      - Reprodução/sexo
+
+    dimensao_humana:
+      sensorial: "Alta - experiências físicas diretas"
+      cognitivo: "Baixa - instintivo, não racional"
+      emocional: "Urgência, alívio, satisfação básica"
+      afetivo: "Baixa - foco em sobrevivência"
+
+    em_storytelling:
+      quando_usar:
+        - "Produtos de necessidade básica (alimentos, bebidas, moradia)"
+        - "Situações de escassez ou crise"
+        - "Narrativas de sobrevivência"
+        - "Apelos sensoriais diretos"
+
+      gatilhos_narrativos:
+        - "Fome/sede → Satisfação"
+        - "Desconforto → Conforto"
+        - "Privação → Abundância"
+        - "Cansaço → Descanso"
+
+      tom_adequado:
+        - "Sensorial e visceral"
+        - "Imediato e urgente"
+        - "Físico e tangível"
+
+      exemplos_marcas:
+        - marca: "Snickers"
+          narrativa: "You're not you when you're hungry"
+          nivel_apelado: "Fome → satisfação"
+
+        - marca: "Gatorade"
+          narrativa: "Is it in you?"
+          nivel_apelado: "Sede/performance física"
+
+        - marca: "IKEA"
+          narrativa: "Home is the most important place"
+          nivel_apelado: "Abrigo → lar"
+
+    perguntas_estrategicas:
+      - "Nosso produto resolve uma necessidade física básica?"
+      - "Podemos dramatizar a sensação de satisfação?"
+      - "A audiência está em contexto de escassez?"
+
+  # ─────────────────────────────────────────────────────────────────
+  # NÍVEL 2: SEGURANÇA
+  # ─────────────────────────────────────────────────────────────────
+  nivel_2:
+    nome: "Necessidades de Segurança"
+    nome_en: "Safety Needs"
+    posicao: "Segundo nível"
+    tipo_necessidade: "Deficiência (D-needs)"
+
+    necessidades:
+      - Segurança física
+      - Segurança financeira
+      - Saúde e bem-estar
+      - Estabilidade
+      - Proteção contra ameaças
+      - Ordem e previsibilidade
+
+    dimensao_humana:
+      sensorial: "Média - conforto, proteção física"
+      cognitivo: "Alta - planejamento, prevenção"
+      emocional: "Medo → tranquilidade, ansiedade → paz"
+      afetivo: "Média - proteção dos que amamos"
+
+    em_storytelling:
+      quando_usar:
+        - "Seguros, bancos, saúde"
+        - "Produtos de proteção"
+        - "Tecnologia de segurança"
+        - "Momentos de incerteza (economia, saúde)"
+
+      gatilhos_narrativos:
+        - "Medo → Proteção"
+        - "Incerteza → Estabilidade"
+        - "Risco → Segurança"
+        - "Caos → Ordem"
+        - "Vulnerabilidade → Proteção"
+
+      tom_adequado:
+        - "Confiável e sólido"
+        - "Protetor e cuidadoso"
+        - "Racional com empatia"
+
+      exemplos_marcas:
+        - marca: "Volvo"
+          narrativa: "For life"
+          nivel_apelado: "Segurança física da família"
+
+        - marca: "Allstate"
+          narrativa: "You're in good hands"
+          nivel_apelado: "Proteção e confiança"
+
+        - marca: "ADT"
+          narrativa: "Always there"
+          nivel_apelado: "Proteção do lar"
+
+    perguntas_estrategicas:
+      - "Nosso produto protege contra algum risco?"
+      - "Qual medo podemos aliviar?"
+      - "Como transmitir confiabilidade?"
+
+  # ─────────────────────────────────────────────────────────────────
+  # NÍVEL 3: PERTENCIMENTO (Social)
+  # ─────────────────────────────────────────────────────────────────
+  nivel_3:
+    nome: "Necessidades Sociais / Pertencimento"
+    nome_en: "Love and Belonging"
+    posicao: "Terceiro nível (meio)"
+    tipo_necessidade: "Deficiência (D-needs)"
+
+    necessidades:
+      - Amor e afeto
+      - Amizade
+      - Família
+      - Intimidade
+      - Comunidade
+      - Aceitação social
+      - Fazer parte de algo
+
+    dimensao_humana:
+      sensorial: "Média - toque, proximidade, presença"
+      cognitivo: "Média - identidade social, pertencimento"
+      emocional: "Alta - amor, solidão, conexão"
+      afetivo: "Muito alta - vínculos profundos"
+
+    em_storytelling:
+      quando_usar:
+        - "Redes sociais, telecomunicações"
+        - "Produtos compartilhados (comida, bebida)"
+        - "Marcas de lifestyle/comunidade"
+        - "Momentos de celebração e união"
+
+      gatilhos_narrativos:
+        - "Solidão → Conexão"
+        - "Exclusão → Pertencimento"
+        - "Distância → Proximidade"
+        - "Estranhos → Amigos"
+        - "Isolamento → Comunidade"
+
+      tom_adequado:
+        - "Acolhedor e inclusivo"
+        - "Emocional e empático"
+        - "Comunitário"
+
+      exemplos_marcas:
+        - marca: "Coca-Cola"
+          narrativa: "Open Happiness / Real Magic"
+          nivel_apelado: "Momentos de conexão"
+
+        - marca: "Facebook (Meta)"
+          narrativa: "Connect with friends and the world"
+          nivel_apelado: "Pertencimento global"
+
+        - marca: "Airbnb"
+          narrativa: "Belong Anywhere"
+          nivel_apelado: "Pertencimento universal"
+
+        - marca: "Harley-Davidson"
+          narrativa: "Brotherhood of riders"
+          nivel_apelado: "Comunidade/tribo"
+
+    perguntas_estrategicas:
+      - "Nosso produto conecta pessoas?"
+      - "Existe uma comunidade em torno da marca?"
+      - "Como combatemos a solidão da audiência?"
+
+  # ─────────────────────────────────────────────────────────────────
+  # NÍVEL 4: ESTIMA
+  # ─────────────────────────────────────────────────────────────────
+  nivel_4:
+    nome: "Necessidades de Estima"
+    nome_en: "Esteem Needs"
+    posicao: "Quarto nível"
+    tipo_necessidade: "Deficiência (D-needs)"
+
+    necessidades:
+      estima_inferior:
+        descricao: "Dos outros"
+        exemplos:
+          - Reconhecimento
+          - Status
+          - Fama
+          - Prestígio
+          - Atenção
+          - Respeito dos outros
+
+      estima_superior:
+        descricao: "De si mesmo"
+        exemplos:
+          - Autoestima
+          - Confiança
+          - Competência
+          - Maestria
+          - Independência
+          - Liberdade
+
+    dimensao_humana:
+      sensorial: "Baixa - mais simbólico que físico"
+      cognitivo: "Alta - autoconceito, comparação social"
+      emocional: "Alta - orgulho, vergonha, confiança"
+      afetivo: "Média - reconhecimento dos outros"
+
+    em_storytelling:
+      quando_usar:
+        - "Luxo e premium"
+        - "Educação e desenvolvimento"
+        - "Carreira e negócios"
+        - "Competição e conquistas"
+
+      gatilhos_narrativos:
+        - "Dúvida → Confiança"
+        - "Anonimato → Reconhecimento"
+        - "Fracasso → Conquista"
+        - "Inadequação → Maestria"
+        - "Comum → Especial"
+
+      tom_adequado:
+        - "Aspiracional"
+        - "Empoderador"
+        - "Sofisticado (luxo)"
+        - "Motivacional (conquista)"
+
+      exemplos_marcas:
+        - marca: "Rolex"
+          narrativa: "A Crown for Every Achievement"
+          nivel_apelado: "Status e conquista"
+
+        - marca: "L'Oréal"
+          narrativa: "Because You're Worth It"
+          nivel_apelado: "Autoestima"
+
+        - marca: "Nike"
+          narrativa: "Just Do It"
+          nivel_apelado: "Confiança e superação"
+
+        - marca: "American Express"
+          narrativa: "Membership has its privileges"
+          nivel_apelado: "Status e exclusividade"
+
+    perguntas_estrategicas:
+      - "Nosso produto eleva o status do consumidor?"
+      - "Como aumentamos a autoestima da audiência?"
+      - "Qual conquista celebramos?"
+
+  # ─────────────────────────────────────────────────────────────────
+  # NÍVEL 5: AUTORREALIZAÇÃO (Topo)
+  # ─────────────────────────────────────────────────────────────────
+  nivel_5:
+    nome: "Autorrealização"
+    nome_en: "Self-Actualization"
+    posicao: "Topo da pirâmide"
+    tipo_necessidade: "Crescimento (B-needs)"
+
+    necessidades:
+      - Realização do potencial
+      - Crescimento pessoal
+      - Criatividade
+      - Propósito de vida
+      - Transcendência
+      - Deixar legado
+      - Experiências de pico
+      - Autenticidade
+
+    dimensao_humana:
+      sensorial: "Baixa - experiências internas"
+      cognitivo: "Muito alta - reflexão, significado"
+      emocional: "Profunda - fulfillment, paz, êxtase"
+      afetivo: "Alta - conexão com algo maior"
+
+    em_storytelling:
+      quando_usar:
+        - "Marcas com propósito forte"
+        - "Causas e movimentos"
+        - "Experiências transformadoras"
+        - "Educação e desenvolvimento pessoal"
+        - "Audiências com necessidades básicas satisfeitas"
+
+      gatilhos_narrativos:
+        - "Potencial → Realização"
+        - "Conformidade → Autenticidade"
+        - "Existir → Viver plenamente"
+        - "Eu → Nós/Mundo"
+        - "Presente → Legado"
+
+      tom_adequado:
+        - "Inspiracional e transcendente"
+        - "Filosófico e profundo"
+        - "Autêntico e vulnerável"
+
+      exemplos_marcas:
+        - marca: "Apple"
+          narrativa: "Think Different"
+          nivel_apelado: "Criatividade, ser único"
+
+        - marca: "Patagonia"
+          narrativa: "We're in business to save our home planet"
+          nivel_apelado: "Propósito maior, legado"
+
+        - marca: "TED"
+          narrativa: "Ideas worth spreading"
+          nivel_apelado: "Conhecimento, crescimento"
+
+        - marca: "Dove"
+          narrativa: "Real Beauty"
+          nivel_apelado: "Autenticidade"
+
+    perguntas_estrategicas:
+      - "Qual transformação oferecemos?"
+      - "Como ajudamos pessoas a serem sua melhor versão?"
+      - "Qual é o propósito maior da marca?"
+
+# ═══════════════════════════════════════════════════════════════════
+# APLICAÇÃO ESTRATÉGICA
+# ═══════════════════════════════════════════════════════════════════
+aplicacao_estrategica:
+
+  mapeamento_audiencia:
+    descricao: |
+      Diferentes audiências estão em diferentes níveis da pirâmide.
+      Conhecer onde sua audiência está permite criar narrativas
+      que ressoam com suas motivações atuais.
+
+    fatores_que_influenciam:
+      - "Contexto econômico (crise vs. prosperidade)"
+      - "Fase da vida (jovem vs. maduro)"
+      - "Cultura (coletivista vs. individualista)"
+      - "Situação imediata (estável vs. em transição)"
+
+  multiplos_niveis:
+    descricao: |
+      Marcas fortes frequentemente operam em múltiplos níveis,
+      com um nível principal e níveis de suporte.
+
+    exemplo:
+      marca: "Apple"
+      nivel_primario: "5 - Autorrealização (criatividade)"
+      nivel_secundario: "4 - Estima (status, design premium)"
+      nivel_terciario: "2 - Segurança (ecossistema confiável)"
+
+  progressao_narrativa:
+    descricao: |
+      Narrativas podem guiar a audiência através dos níveis,
+      começando onde ela está e elevando para níveis superiores.
+
+    exemplo:
+      inicio: "Você está cansado de X (Nível 1-2)"
+      meio: "Com nossa comunidade (Nível 3)"
+      fim: "Torne-se quem você nasceu para ser (Nível 5)"
+
+# ═══════════════════════════════════════════════════════════════════
+# CONEXÃO COM ARQUÉTIPOS
+# ═══════════════════════════════════════════════════════════════════
+conexao_arquetipos:
+  descricao: |
+    Cada arquétipo de marca tende a ressoar mais fortemente
+    com determinados níveis da pirâmide.
+
+  mapeamento:
+    nivel_1_2:
+      arquetipos: ["Caregiver", "Everyman"]
+      foco: "Proteção, cuidado, necessidades básicas"
+
+    nivel_3:
+      arquetipos: ["Lover", "Jester", "Everyman"]
+      foco: "Conexão, pertencimento, alegria compartilhada"
+
+    nivel_4:
+      arquetipos: ["Hero", "Ruler", "Magician"]
+      foco: "Conquista, poder, transformação"
+
+    nivel_5:
+      arquetipos: ["Sage", "Creator", "Explorer", "Innocent"]
+      foco: "Conhecimento, criação, liberdade, pureza"
+
+# ═══════════════════════════════════════════════════════════════════
+# CONEXÃO COM EMOÇÕES (PANKSEPP + PLUTCHIK)
+# ═══════════════════════════════════════════════════════════════════
+conexao_emocoes:
+
+  por_nivel:
+    nivel_1:
+      panksepp: ["LUST", "SEEKING"]
+      plutchik: ["Anticipation", "Joy (satisfação)"]
+
+    nivel_2:
+      panksepp: ["FEAR", "PANIC"]
+      plutchik: ["Fear", "Trust"]
+
+    nivel_3:
+      panksepp: ["CARE", "PANIC/GRIEF", "PLAY"]
+      plutchik: ["Love", "Joy", "Sadness (quando ausente)"]
+
+    nivel_4:
+      panksepp: ["SEEKING", "RAGE (quando frustrado)"]
+      plutchik: ["Pride", "Contempt", "Admiration"]
+
+    nivel_5:
+      panksepp: ["SEEKING", "PLAY"]
+      plutchik: ["Awe", "Serenity", "Ecstasy"]
+
+# ═══════════════════════════════════════════════════════════════════
+# FRAMEWORK DE DIAGNÓSTICO
+# ═══════════════════════════════════════════════════════════════════
+diagnostico:
+  perguntas:
+    - pergunta: "Em qual nível nossa audiência está AGORA?"
+      objetivo: "Identificar ponto de partida"
+
+    - pergunta: "Para qual nível queremos ELEVAR a audiência?"
+      objetivo: "Definir direção da narrativa"
+
+    - pergunta: "Qual necessidade nosso produto/serviço REALMENTE atende?"
+      objetivo: "Alinhar promessa com realidade"
+
+    - pergunta: "Estamos falando a linguagem do nível certo?"
+      objetivo: "Validar tom e mensagem"
+
+  matriz_decisao:
+    se_nivel_baixo:
+      acao: "Foque em benefícios tangíveis e imediatos"
+      tom: "Prático, sensorial, urgente"
+
+    se_nivel_medio:
+      acao: "Foque em conexão e pertencimento"
+      tom: "Emocional, comunitário, acolhedor"
+
+    se_nivel_alto:
+      acao: "Foque em propósito e transformação"
+      tom: "Inspiracional, filosófico, autêntico"
+
+# ═══════════════════════════════════════════════════════════════════
+# REFERÊNCIAS
+# ═══════════════════════════════════════════════════════════════════
+referencias:
+  - autor: "Abraham Maslow"
+    obra: "A Theory of Human Motivation (1943)"
+    contribuicao: "Hierarquia original das necessidades"
+
+  - autor: "Abraham Maslow"
+    obra: "Motivation and Personality (1954)"
+    contribuicao: "Expansão da teoria"
+
+  - autor: "Abraham Maslow"
+    obra: "Toward a Psychology of Being (1962)"
+    contribuicao: "B-needs vs D-needs"
+
+  - autor: "Mark Conner & Christopher Armitage"
+    obra: "Extending the Theory of Planned Behavior"
+    contribuicao: "Aplicação em comportamento do consumidor"
+
+  - autor: "Douglas Holt"
+    obra: "How Brands Become Icons"
+    contribuicao: "Marcas como resolvedoras de tensões culturais"
+
+uso_no_storytelling:
+  agentes_que_usam:
+    - "Narrative Designer (mapear motivações da audiência)"
+    - "Big Idea Architect (validar em qual nível a Big Idea opera)"
+    - "Concept Writer (ajustar tom para o nível)"
+
+  quando_consultar:
+    - "Ao definir a audiência e suas motivações"
+    - "Ao criar o Emotion Map"
+    - "Ao validar se a narrativa conecta com motivações reais"
+    - "Ao ajustar tom de voz para o contexto"

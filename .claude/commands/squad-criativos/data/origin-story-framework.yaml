@@ -1,0 +1,303 @@
+# Origin Story Framework
+# Framework para construir narrativa de origem
+# Usado por: Narrative Identity Architect
+
+metadata:
+  name: "Framework de Narrativa de Origem"
+  version: "1.0"
+  source: "Joseph Campbell, Christopher Vogler, Brand Storytelling"
+
+conceito:
+  definicao: |
+    A Origin Story é a narrativa fundacional da marca - como e por que
+    ela nasceu. É uma ferramenta poderosa de diferenciação simbólica
+    que humaniza a marca e cria conexão emocional.
+
+  importancia:
+    - Humaniza a marca
+    - Cria conexão emocional
+    - Diferencia de concorrentes
+    - Estabelece credibilidade
+    - Explica o "porquê"
+
+  mapeamento_taxonomia:
+    dominio: "II - Diferenciação Simbólica"
+    classe: 4
+    ordem: "4.2"
+
+# ═══════════════════════════════════════════════════════════════════
+# A JORNADA DO HERÓI (CAMPBELL/VOGLER)
+# ═══════════════════════════════════════════════════════════════════
+heros_journey:
+  descricao: |
+    A estrutura narrativa universal identificada por Joseph Campbell
+    e adaptada por Christopher Vogler pode ser aplicada à história
+    do fundador/marca.
+
+  estrutura:
+    # ATO 1: SEPARAÇÃO
+    mundo_comum:
+      descricao: "O contexto antes da marca existir"
+      pergunta: "Como era o mundo/vida do fundador?"
+      elementos:
+        - Contexto pessoal/profissional
+        - Status quo do mercado
+        - Problema ainda não resolvido
+
+    chamado_aventura:
+      descricao: "O momento de insight ou necessidade"
+      pergunta: "O que despertou a ideia?"
+      elementos:
+        - Problema pessoal enfrentado
+        - Oportunidade identificada
+        - Frustração com status quo
+
+    recusa_do_chamado:
+      descricao: "Hesitações e dúvidas iniciais"
+      pergunta: "O que quase impediu de começar?"
+      elementos:
+        - Medos e inseguranças
+        - Obstáculos iniciais
+        - Vozes contra
+      opcional: true
+
+    encontro_com_mentor:
+      descricao: "Quem ou o que ajudou a dar o primeiro passo"
+      pergunta: "Quem/o que apoiou no início?"
+      elementos:
+        - Pessoa inspiradora
+        - Aprendizado crucial
+        - Recurso importante
+      opcional: true
+
+    # ATO 2: INICIAÇÃO
+    travessia_limiar:
+      descricao: "O momento decisivo de começar"
+      pergunta: "Quando/como decidiu de fato criar?"
+      elementos:
+        - Decisão crucial
+        - Primeiro passo concreto
+        - Ponto de não-retorno
+
+    provas_aliados_inimigos:
+      descricao: "Desafios enfrentados e ajudas encontradas"
+      pergunta: "Quais obstáculos superou?"
+      elementos:
+        - Desafios principais
+        - Pessoas que ajudaram
+        - Competidores/céticos
+
+    aproximacao_caverna:
+      descricao: "O momento mais difícil"
+      pergunta: "Qual foi a crise mais séria?"
+      elementos:
+        - Maior desafio
+        - Momento de dúvida
+        - Quase-desistência
+      opcional: true
+
+    provacao_suprema:
+      descricao: "O teste definitivo"
+      pergunta: "Qual foi a prova de fogo?"
+      elementos:
+        - Crise definitiva
+        - Escolha difícil
+        - Transformação
+
+    # ATO 3: RETORNO
+    recompensa:
+      descricao: "O que conquistou/aprendeu"
+      pergunta: "O que ganhou com a jornada?"
+      elementos:
+        - Aprendizados-chave
+        - Conquistas
+        - Transformação pessoal
+
+    caminho_de_volta:
+      descricao: "Como isso se tornou uma oferta"
+      pergunta: "Como decidiu compartilhar isso?"
+      elementos:
+        - Decisão de escalar
+        - Formalização
+        - Missão
+
+    retorno_com_elixir:
+      descricao: "O que oferece ao mundo hoje"
+      pergunta: "Qual a transformação que proporciona?"
+      elementos:
+        - Valor entregue
+        - Transformação do cliente
+        - Impacto no mundo
+
+# ═══════════════════════════════════════════════════════════════════
+# VERSÃO SIMPLIFICADA (5 BEATS)
+# ═══════════════════════════════════════════════════════════════════
+versao_simplificada:
+  descricao: "Para marcas que precisam de uma narrativa mais concisa"
+
+  beats:
+    1_contexto:
+      pergunta: "O que existia antes?"
+      exemplo: "Trabalhava em uma grande empresa de marketing..."
+
+    2_problema:
+      pergunta: "O que estava errado?"
+      exemplo: "...mas via clientes frustrados com resultados genéricos."
+
+    3_insight:
+      pergunta: "O que você percebeu?"
+      exemplo: "Percebi que o problema não era falta de criatividade..."
+
+    4_acao:
+      pergunta: "O que você fez?"
+      exemplo: "Então decidi criar uma metodologia diferente..."
+
+    5_resultado:
+      pergunta: "O que isso muda para o cliente?"
+      exemplo: "Hoje ajudamos marcas a serem genuinamente únicas."
+
+# ═══════════════════════════════════════════════════════════════════
+# ELEMENTOS-CHAVE
+# ═══════════════════════════════════════════════════════════════════
+elementos_chave:
+
+  protagonista:
+    opcoes:
+      - fundador: "História pessoal do fundador"
+      - equipe: "História coletiva da equipe fundadora"
+      - marca: "A marca como protagonista (personificada)"
+
+  conflito:
+    tipos:
+      pessoa_vs_pessoa: "Contra concorrentes, céticos"
+      pessoa_vs_natureza: "Contra circunstâncias, mercado"
+      pessoa_vs_sociedade: "Contra status quo, convenções"
+      pessoa_vs_self: "Contra medos, limitações próprias"
+
+  transformacao:
+    descricao: "A mudança que ocorreu"
+    tipos:
+      - "De empregado para empreendedor"
+      - "De frustrado para solucionador"
+      - "De inexperiente para expert"
+      - "De outsider para referência"
+
+  aprendizado:
+    descricao: "O insight que fundamenta a marca"
+    caracteristicas:
+      - Universal (ressoa com outros)
+      - Verificável (baseado em experiência real)
+      - Aplicável (se traduz em valor para cliente)
+
+# ═══════════════════════════════════════════════════════════════════
+# CRITÉRIOS DE QUALIDADE
+# ═══════════════════════════════════════════════════════════════════
+criterios:
+  autenticidade:
+    descricao: "Fatos verificáveis, não ficção"
+    peso: 5
+    teste: "Isso realmente aconteceu?"
+
+  relevancia:
+    descricao: "Conecta com o propósito atual"
+    peso: 4
+    teste: "Explica por que fazemos o que fazemos?"
+
+  emocao:
+    descricao: "Gera conexão emocional"
+    peso: 4
+    teste: "O público se identifica?"
+
+  memorabilidade:
+    descricao: "Fácil de recontar"
+    peso: 3
+    teste: "Alguém conseguiria recontar?"
+
+  unicidade:
+    descricao: "Diferencia de concorrentes"
+    peso: 3
+    teste: "Só essa marca poderia contar essa história?"
+
+# ═══════════════════════════════════════════════════════════════════
+# TEMPLATE DE CONSTRUÇÃO
+# ═══════════════════════════════════════════════════════════════════
+template:
+  coleta:
+    perguntas_fundador:
+      - "O que você fazia antes de criar a marca?"
+      - "Qual problema pessoal ou observação te levou a criar?"
+      - "Qual foi o momento decisivo?"
+      - "Quais foram os maiores desafios?"
+      - "O que você aprendeu que ninguém te ensinou?"
+      - "Por que isso importa para você?"
+
+  construcao:
+    passo_1: "Mapear eventos-chave na jornada do herói"
+    passo_2: "Identificar conflito central"
+    passo_3: "Destacar transformação"
+    passo_4: "Conectar com propósito atual"
+    passo_5: "Redigir versões (longa, média, curta)"
+
+  versoes:
+    longa:
+      tamanho: "500-1000 palavras"
+      uso: "Página About, documentos internos"
+
+    media:
+      tamanho: "150-300 palavras"
+      uso: "Bio em redes, apresentações"
+
+    curta:
+      tamanho: "50-100 palavras"
+      uso: "Elevator pitch, introduções"
+
+    tagline:
+      tamanho: "1 frase"
+      uso: "Essência da origem em uma linha"
+
+# ═══════════════════════════════════════════════════════════════════
+# EXEMPLOS DE REFERÊNCIA
+# ═══════════════════════════════════════════════════════════════════
+exemplos:
+  airbnb:
+    resumo: |
+      Brian e Joe não conseguiam pagar o aluguel em São Francisco.
+      Com uma conferência de design na cidade e hotéis lotados,
+      decidiram alugar colchões de ar no apartamento.
+      Perceberam que pessoas queriam experiências locais, não hotéis.
+      Nasceu o Airbnb.
+
+    elementos:
+      problema_pessoal: "Não conseguiam pagar aluguel"
+      insight: "Pessoas querem experiências locais"
+      transformacao: "De desempregados para bilionários"
+
+  patagonia:
+    resumo: |
+      Yvon Chouinard era escalador e forjava seu próprio equipamento.
+      Quando viu que seus pitons estavam destruindo as rochas,
+      inventou equipamentos que não deixavam marcas.
+      A paixão pelo ar livre virou responsabilidade ambiental.
+
+    elementos:
+      problema_pessoal: "Via seu esporte destruindo a natureza"
+      insight: "Negócios podem regenerar, não só destruir"
+      transformacao: "De artesão para ativista empresarial"
+
+  basecamp:
+    resumo: |
+      Jason e DHH estavam frustrados com a complexidade de
+      ferramentas de gestão de projetos. Criaram algo simples
+      para uso interno e perceberam que outros também queriam.
+      Nasceu o Basecamp: anti-complexidade.
+
+    elementos:
+      problema_pessoal: "Ferramentas complexas demais"
+      insight: "Menos é mais em software"
+      transformacao: "De agência para produto"
+
+referencias:
+  - "Campbell, J. - The Hero with a Thousand Faces"
+  - "Vogler, C. - The Writer's Journey"
+  - "Miller, D. - Building a StoryBrand"
+  - "Sachs, J. - Winning the Story Wars"

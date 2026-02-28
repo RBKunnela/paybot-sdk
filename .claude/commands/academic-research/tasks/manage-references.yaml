@@ -1,0 +1,91 @@
+name: manage-references
+description: Organize and maintain reference library (Zotero, Mendeley, EndNote)
+category: citations
+agent: citation-manager
+priority: low
+estimated_duration: 0.5 day
+
+inputs:
+  - references:
+      type: files
+      description: Papers, articles, books to add to library
+      required: true
+  - reference_manager:
+      type: enum
+      options: [Zotero, Mendeley, EndNote, BibTeX]
+      description: Reference management tool
+      required: true
+
+outputs:
+  - organized_library:
+      type: file
+      description: Organized reference library file
+  - library_structure:
+      type: document
+      description: Folder/tag organization structure
+
+steps:
+  - step: 1
+    name: import_references
+    description: Import new references into library
+    agent: citation-manager
+    estimated_duration: 0.25 days
+
+  - step: 2
+    name: organize_by_topic
+    description: Create folders/tags by research topic
+    agent: citation-manager
+    estimated_duration: 0.25 days
+
+  - step: 3
+    name: clean_metadata
+    description: Verify and clean reference metadata
+    agent: citation-manager
+    estimated_duration: 0.25 days
+
+  - step: 4
+    name: backup_library
+    description: Create backup of reference library
+    agent: citation-manager
+    estimated_duration: 0.1 days
+
+success_criteria:
+  - All references imported successfully
+  - Metadata complete and accurate
+  - Organized by topic/project
+  - Library backed up
+
+deliverables:
+  - Organized reference library
+  - Backup file
+
+organization_strategies:
+  by_project:
+    - "PhD Dissertation"
+    - "Journal Article 1"
+    - "Journal Article 2"
+
+  by_topic:
+    - "AI in Education"
+    - "Machine Learning"
+    - "Personalized Learning"
+
+  by_status:
+    - "To Read"
+    - "Read"
+    - "Cited in Paper"
+
+best_practices:
+  - Import references immediately when found
+  - Add notes/annotations to references
+  - Use consistent tags/folders
+  - Clean metadata upon import
+  - Backup library regularly (weekly)
+  - Sync across devices (cloud storage)
+
+tags:
+  - reference-management
+  - zotero
+  - mendeley
+  - organization
+  - library

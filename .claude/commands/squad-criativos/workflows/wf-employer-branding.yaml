@@ -1,0 +1,542 @@
+# Workflow: Employer Branding Strategy
+# Construção de marca empregadora e EVP
+# Squad: UNNIKO (Identidade) + DEENEA (Essência) + storYOURtelling (Narrativa)
+
+name: employer-branding-strategy
+description: |
+  Construção de marca empregadora e EVP (Employee Value Proposition).
+  Workflow cross-squad envolvendo UNNIKO, DEENEA e storYOURtelling.
+
+metadata:
+  name: "Employer Branding Strategy"
+  version: "1.0"
+  squad_primario: "UNNIKO"
+  squads_colaboradores: ["DEENEA", "storYOURtelling"]
+  duracao_estimada: "4-8 semanas"
+  entregaveis:
+    - "Diagnóstico de cultura e percepção"
+    - "EVP Statement e pilares"
+    - "Plano de ativação multicanal"
+    - "Kit de comunicação de employer branding"
+    - "Métricas e OKRs"
+
+# ═══════════════════════════════════════════════════════════════════
+# VISÃO GERAL DO WORKFLOW
+# ═══════════════════════════════════════════════════════════════════
+visao_geral:
+  objetivo: |
+    Construir uma marca empregadora autêntica que atraia, engaje e
+    retenha os talentos certos, baseada na cultura real da organização.
+
+  principios:
+    - "Autenticidade sobre aspiração"
+    - "Cultura real antes de comunicação"
+    - "Diferenciação genuína"
+    - "Consistência em todos os touchpoints"
+
+  frameworks_utilizados:
+    - "employer-branding-evp.yaml (Gartner Human Deal)"
+    - "organizational-culture-schein.yaml (3 níveis)"
+    - "cnv-framework.yaml (comunicação empática)"
+    - "generational-profiles.yaml (segmentação)"
+    - "panksepp-systems.yaml (gatilhos emocionais)"
+
+# ═══════════════════════════════════════════════════════════════════
+# FASES DO WORKFLOW
+# ═══════════════════════════════════════════════════════════════════
+fases:
+
+  # ─────────────────────────────────────────────────────────────────
+  # FASE 1: DIAGNÓSTICO
+  # ─────────────────────────────────────────────────────────────────
+  fase_1_diagnostico:
+    nome: "Diagnóstico de Cultura e Percepção"
+    duracao: "1-2 semanas"
+    icone: "🔍"
+
+    objetivo: |
+      Entender a cultura real (não apenas declarada) e como a empresa
+      é percebida como empregadora interna e externamente.
+
+    agentes_envolvidos:
+      - agente: "Culture-Community-Architect (DEENEA)"
+        papel: "Diagnóstico cultural via Schein"
+
+      - agente: "Brand-Auditor (UNNIKO)"
+        papel: "Auditoria de percepção externa"
+
+      - agente: "Research-Director (Search-Insights)"
+        papel: "Pesquisa de mercado e benchmark"
+
+    atividades:
+
+      diagnostico_schein:
+        descricao: "Análise dos 3 níveis de cultura organizacional"
+        framework: "organizational-culture-schein.yaml"
+        outputs:
+          - "Mapa de artefatos visíveis"
+          - "Valores declarados vs. vividos"
+          - "Pressupostos básicos identificados"
+          - "Gaps de coerência"
+
+      pesquisa_interna:
+        descricao: "Ouvir colaboradores atuais"
+        metodos:
+          - "Entrevistas com diferentes níveis e áreas"
+          - "Pesquisa de clima/engajamento"
+          - "Focus groups por tempo de casa"
+          - "Análise de dados de RH (turnover, tempo de casa)"
+        perguntas_chave:
+          - "Por que você veio trabalhar aqui?"
+          - "Por que você fica?"
+          - "O que contaria para um amigo sobre trabalhar aqui?"
+          - "O que faria você sair?"
+
+      pesquisa_externa:
+        descricao: "Entender percepção do mercado"
+        metodos:
+          - "Análise de Glassdoor, LinkedIn, Indeed"
+          - "Entrevistas com candidatos (aceitos e recusados)"
+          - "Benchmark de concorrentes"
+          - "Pesquisa de marca empregadora (se disponível)"
+        fontes:
+          - "Reviews públicos"
+          - "Menções em redes sociais"
+          - "NPS de recrutamento"
+
+      mapa_jornada_colaborador:
+        descricao: "Entender experiência em cada etapa"
+        touchpoints:
+          - "Descoberta (como conheceu a empresa)"
+          - "Processo seletivo"
+          - "Onboarding"
+          - "Dia a dia"
+          - "Desenvolvimento"
+          - "Offboarding"
+
+    entregaveis_fase:
+      - "Relatório de diagnóstico cultural (Schein)"
+      - "Mapa de percepção interna vs. externa"
+      - "Jornada do colaborador atual"
+      - "Benchmark de concorrentes"
+      - "Gaps e oportunidades identificados"
+
+  # ─────────────────────────────────────────────────────────────────
+  # FASE 2: DEFINIÇÃO DE EVP
+  # ─────────────────────────────────────────────────────────────────
+  fase_2_evp:
+    nome: "Definição de EVP e Pilares"
+    duracao: "1-2 semanas"
+    icone: "🎯"
+
+    objetivo: |
+      Articular a proposta de valor ao colaborador de forma autêntica,
+      diferenciada e relevante para os públicos-alvo.
+
+    agentes_envolvidos:
+      - agente: "Brand-Director (UNNIKO)"
+        papel: "Estratégia de marca empregadora"
+
+      - agente: "Differentiation-Strategist (UNNIKO)"
+        papel: "Identificar diferenciais únicos"
+
+      - agente: "Strategy-Director (DEENEA)"
+        papel: "Conexão com essência de marca"
+
+      - agente: "Audience-Mapper (DEENEA)"
+        papel: "Segmentação de públicos"
+
+    atividades:
+
+      workshop_evp:
+        descricao: "Sessão colaborativa para definir EVP"
+        participantes:
+          - "Liderança executiva"
+          - "RH/People"
+          - "Comunicação/Marketing"
+          - "Colaboradores representativos"
+        agenda:
+          - "Apresentação do diagnóstico"
+          - "Identificação de diferenciais reais"
+          - "Definição de públicos prioritários"
+          - "Co-criação de pilares de EVP"
+          - "Draft de EVP Statement"
+
+      definicao_pilares:
+        descricao: "Pilares baseados no Human Deal (Gartner)"
+        framework: "employer-branding-evp.yaml"
+        dimensoes:
+          - "Conexões Profundas"
+          - "Flexibilidade Radical"
+          - "Crescimento Pessoal"
+          - "Propósito Compartilhado"
+          - "Bem-Estar Holístico"
+        output: "3-5 pilares priorizados com evidências"
+
+      segmentacao_publico:
+        descricao: "Adaptar mensagem por perfil"
+        framework: "generational-profiles.yaml"
+        segmentos:
+          - "Por geração (Boomers, X, Y, Z)"
+          - "Por perfil (tech, comercial, operacional)"
+          - "Por momento (candidato, novo, veterano)"
+
+      evp_statement:
+        descricao: "Articular promessa central"
+        estrutura: |
+          Para [PÚBLICO], [EMPRESA] é o lugar onde [PROMESSA]
+          porque [RAZÃO PARA ACREDITAR].
+        validacao:
+          - "É verdadeiro (baseado em evidências)?"
+          - "É diferenciado (só nós podemos dizer isso)?"
+          - "É relevante (importa para o público)?"
+          - "É inspirador (motiva ação)?"
+
+    entregaveis_fase:
+      - "EVP Statement"
+      - "3-5 pilares de EVP com evidências"
+      - "Mensagens-chave por público"
+      - "Validação com colaboradores"
+
+  # ─────────────────────────────────────────────────────────────────
+  # FASE 3: NARRATIVA E CONTEÚDO
+  # ─────────────────────────────────────────────────────────────────
+  fase_3_narrativa:
+    nome: "Narrativa e Conteúdo"
+    duracao: "1-2 semanas"
+    icone: "✍️"
+
+    objetivo: |
+      Traduzir o EVP em narrativas, histórias e conteúdos que
+      comunicam a proposta de forma autêntica e engajante.
+
+    agentes_envolvidos:
+      - agente: "Brand-Voice-Director (storYOURtelling)"
+        papel: "Definir tom de voz employer branding"
+
+      - agente: "Narrative-Designer (storYOURtelling)"
+        papel: "Criar narrativa central"
+
+      - agente: "Copywriter (storYOURtelling)"
+        papel: "Desenvolver copy para materiais"
+
+      - agente: "Content-Producer (Content-Ops)"
+        papel: "Produzir conteúdos"
+
+    atividades:
+
+      tom_de_voz_employer:
+        descricao: "Adaptar voz de marca para employer branding"
+        consideracoes:
+          - "Autenticidade (funcionários reconhecem)"
+          - "Caloroso mas não piegas"
+          - "Profissional mas humano"
+          - "Adaptado por canal e público"
+        framework: "cnv-framework.yaml"
+        output: "Guidelines de tom de voz employer"
+
+      narrativa_central:
+        descricao: "História que encapsula o EVP"
+        elementos:
+          - "Por que existimos como empregador"
+          - "O que nos torna únicos"
+          - "Que tipo de pessoas florescem aqui"
+          - "Qual transformação oferecemos"
+        frameworks:
+          - "origin-story-framework.yaml"
+          - "storytelling-frameworks.yaml"
+
+      historias_colaboradores:
+        descricao: "Coletar e estruturar histórias reais"
+        framework: "star-method.yaml"
+        tipos:
+          - "Histórias de crescimento"
+          - "Histórias de impacto"
+          - "Histórias de pertencimento"
+          - "Histórias de superação"
+        metodo:
+          - "Entrevistar colaboradores"
+          - "Estruturar no formato STAR"
+          - "Adaptar para diferentes formatos"
+
+      biblioteca_conteudo:
+        descricao: "Criar kit de conteúdos"
+        formatos:
+          - "Copy para careers page"
+          - "Descrições de vagas"
+          - "Posts para LinkedIn"
+          - "Vídeos de depoimentos"
+          - "Materiais de onboarding"
+          - "Email templates de recrutamento"
+
+    entregaveis_fase:
+      - "Guidelines de tom de voz employer"
+      - "Narrativa central documentada"
+      - "5-10 histórias de colaboradores (STAR)"
+      - "Kit de conteúdos por canal"
+
+  # ─────────────────────────────────────────────────────────────────
+  # FASE 4: ATIVAÇÃO E TOUCHPOINTS
+  # ─────────────────────────────────────────────────────────────────
+  fase_4_ativacao:
+    nome: "Ativação e Touchpoints"
+    duracao: "1-2 semanas"
+    icone: "🚀"
+
+    objetivo: |
+      Implementar o EVP em todos os pontos de contato da jornada
+      do colaborador, garantindo consistência.
+
+    agentes_envolvidos:
+      - agente: "Brand-Experience-Designer (UNNIKO)"
+        papel: "Design de experiência em touchpoints"
+
+      - agente: "Social-Media-Strategist (Content-Ops)"
+        papel: "Estratégia de canais digitais"
+
+      - agente: "Visual-Creator (Content-Ops)"
+        papel: "Materiais visuais"
+
+    atividades:
+
+      mapa_touchpoints:
+        descricao: "Aplicar EVP em cada ponto de contato"
+        framework: "employer-branding-evp.yaml (touchpoints)"
+        touchpoints:
+          pre_candidatura:
+            - item: "Careers page"
+              acao: "Redesign com EVP e histórias"
+            - item: "LinkedIn da empresa"
+              acao: "Conteúdo regular de employer branding"
+            - item: "Job postings"
+              acao: "Templates alinhados ao EVP"
+
+          processo_seletivo:
+            - item: "Emails de recrutamento"
+              acao: "Tom de voz e mensagens-chave"
+            - item: "Entrevistas"
+              acao: "Treinamento de recrutadores"
+            - item: "Feedback"
+              acao: "Mesmo para quem não passou"
+
+          onboarding:
+            - item: "Primeiro dia"
+              acao: "Experiência memorável"
+            - item: "Kit de boas-vindas"
+              acao: "Materializar EVP"
+            - item: "Primeiros 90 dias"
+              acao: "Acompanhamento estruturado"
+
+          jornada:
+            - item: "Comunicação interna"
+              acao: "Reforçar pilares do EVP"
+            - item: "Eventos e rituais"
+              acao: "Celebrar cultura"
+
+      employee_advocacy:
+        descricao: "Colaboradores como embaixadores"
+        programa:
+          - "Identificar porta-vozes naturais"
+          - "Treinar em storytelling pessoal"
+          - "Criar conteúdo colaborativo"
+          - "Incentivar compartilhamento"
+        metricas:
+          - "Número de embaixadores ativos"
+          - "Alcance orgânico"
+          - "Candidaturas por indicação"
+
+      calendario_conteudo:
+        descricao: "Plano de publicações"
+        frequencia:
+          linkedin: "2-3x por semana"
+          instagram: "3-4x por semana (se aplicável)"
+          careers_blog: "2x por mês"
+        temas:
+          - "Histórias de colaboradores"
+          - "Bastidores da cultura"
+          - "Vagas e oportunidades"
+          - "Eventos e conquistas"
+          - "Dicas de carreira"
+
+    entregaveis_fase:
+      - "Mapa de touchpoints com ações"
+      - "Programa de employee advocacy"
+      - "Calendário de conteúdo (3 meses)"
+      - "Materiais implementados"
+
+  # ─────────────────────────────────────────────────────────────────
+  # FASE 5: MENSURAÇÃO E EVOLUÇÃO
+  # ─────────────────────────────────────────────────────────────────
+  fase_5_mensuracao:
+    nome: "Mensuração e Evolução"
+    duracao: "Contínuo"
+    icone: "📊"
+
+    objetivo: |
+      Medir impacto do employer branding e evoluir continuamente
+      baseado em dados.
+
+    agentes_envolvidos:
+      - agente: "Analytics-Reader (Growth-Ops)"
+        papel: "Análise de métricas"
+
+      - agente: "Brand-Auditor (UNNIKO)"
+        papel: "Auditorias periódicas"
+
+    atividades:
+
+      okrs_employer_branding:
+        descricao: "Definir objetivos e métricas"
+        framework: "employer-branding-evp.yaml (okrs)"
+        exemplos:
+          atracao:
+            objective: "Consolidar reputação como empregador de escolha"
+            key_results:
+              - "Aumentar nota Glassdoor de X para Y"
+              - "Elevar taxa de aceitação de propostas para 90%"
+              - "Reduzir custo por contratação em 20%"
+
+          engajamento:
+            objective: "Elevar senso de pertencimento"
+            key_results:
+              - "Aumentar eNPS de X para Y"
+              - "Atingir 85% de resposta em pesquisas"
+              - "40% de colaboradores como advocates"
+
+          retencao:
+            objective: "Reduzir turnover voluntário"
+            key_results:
+              - "Reduzir turnover de X% para Y%"
+              - "Aumentar permanência média para Z anos"
+
+      dashboard_metricas:
+        descricao: "Acompanhamento contínuo"
+        metricas:
+          marca:
+            - "Nota Glassdoor/LinkedIn"
+            - "Menções positivas vs. negativas"
+            - "Brand awareness como empregador"
+
+          atracao:
+            - "Volume de candidaturas qualificadas"
+            - "Taxa de aceitação de propostas"
+            - "Tempo de fechamento de vagas"
+            - "Custo por contratação"
+            - "Candidaturas por indicação"
+
+          engajamento:
+            - "eNPS (Employee Net Promoter Score)"
+            - "Engajamento em pesquisas"
+            - "Participação em eventos internos"
+
+          retencao:
+            - "Turnover voluntário"
+            - "Tempo médio de permanência"
+            - "Retenção nos primeiros 12 meses"
+
+      ciclo_evolucao:
+        descricao: "Revisar e ajustar"
+        frequencia: "Trimestral"
+        atividades:
+          - "Revisar métricas vs. OKRs"
+          - "Coletar feedback de colaboradores"
+          - "Ajustar mensagens e canais"
+          - "Atualizar histórias e conteúdos"
+          - "Re-validar pilares de EVP"
+
+    entregaveis_fase:
+      - "Dashboard de métricas"
+      - "Relatório trimestral de performance"
+      - "Recomendações de ajustes"
+
+# ═══════════════════════════════════════════════════════════════════
+# CHECKLIST DE QUALIDADE
+# ═══════════════════════════════════════════════════════════════════
+checklist_qualidade:
+
+  autenticidade:
+    - "O EVP reflete a cultura real (validado com colaboradores)?"
+    - "Há evidências para cada afirmação?"
+    - "Novos funcionários confirmam a promessa após 6 meses?"
+
+  diferenciacao:
+    - "O que dizemos, só nós podemos dizer?"
+    - "Concorrentes não podem copiar facilmente?"
+    - "Há clareza sobre o que nos torna únicos?"
+
+  relevancia:
+    - "Atende necessidades reais do público-alvo?"
+    - "Está adaptado por perfil/geração?"
+    - "Ressoa emocionalmente?"
+
+  consistencia:
+    - "Mesma mensagem em todos os touchpoints?"
+    - "Experiência real corresponde à promessa?"
+    - "Líderes comunicam de forma alinhada?"
+
+# ═══════════════════════════════════════════════════════════════════
+# ANTI-PADRÕES
+# ═══════════════════════════════════════════════════════════════════
+anti_padroes:
+  - nome: "Employer branding desconectado da cultura"
+    problema: "Vender uma cultura que não existe"
+    consequencia: "Turnover alto, cinismo, dano à reputação"
+
+  - nome: "EVP genérico"
+    problema: "'Pessoas são nosso maior ativo' - todo mundo diz"
+    consequencia: "Não diferencia, não atrai"
+
+  - nome: "Foco só em atração"
+    problema: "Ignorar experiência de quem já está"
+    consequencia: "Porta giratória, promessa não cumprida"
+
+  - nome: "Comunicação unidirecional"
+    problema: "Só a empresa fala, não ouve"
+    consequencia: "Desconexão com realidade"
+
+  - nome: "Métricas de vaidade"
+    problema: "Focar em seguidores, não em resultados"
+    consequencia: "Esforço sem impacto real"
+
+# ═══════════════════════════════════════════════════════════════════
+# TEMPLATES E RECURSOS
+# ═══════════════════════════════════════════════════════════════════
+templates:
+
+  evp_canvas:
+    descricao: "Canvas para definição de EVP"
+    blocos:
+      - "Público-alvo (quem queremos atrair)"
+      - "Proposta central (o que oferecemos)"
+      - "Diferenciais (por que somos únicos)"
+      - "Evidências (provas de que é verdade)"
+      - "Tom de voz (como comunicamos)"
+
+  roteiro_entrevista_colaborador:
+    descricao: "Perguntas para coletar histórias"
+    perguntas:
+      - "Por que você escolheu trabalhar aqui?"
+      - "Conte uma história que exemplifica nossa cultura"
+      - "O que você diria para um amigo sobre trabalhar aqui?"
+      - "Qual foi seu momento mais significativo?"
+      - "O que faria você recomendar a empresa?"
+
+  checklist_job_posting:
+    descricao: "Verificação de anúncio de vaga"
+    itens:
+      - "Título claro e atraente"
+      - "Contexto da empresa (não só o que faz, mas por que)"
+      - "Propósito da posição"
+      - "Responsabilidades (não lista infinita)"
+      - "O que oferecemos (EVP resumido)"
+      - "Perfil desejado (não requisitos impossíveis)"
+      - "Call to action claro"
+
+# ═══════════════════════════════════════════════════════════════════
+# FRAMEWORKS CURADOS (2026-02)
+# ═══════════════════════════════════════════════════════════════════
+frameworks_curados:
+  - culture-values-framework.yaml       # Valores autênticos e cultura
+  - kahneman-dual-systems.yaml          # Decisões de candidatos
+  - jtbd-framework.yaml                 # Jobs To Be Done de colaboradores
+  - brand-mythology-harari.yaml         # Ficções que unem culturas

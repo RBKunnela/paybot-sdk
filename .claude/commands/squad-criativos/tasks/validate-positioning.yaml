@@ -1,0 +1,69 @@
+# Task: Validate Positioning
+# Squad: squAId-criaTTivados / deenea
+# Responsável: strategic-synthesizer
+
+metadata:
+  name: "validate-positioning"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "deenea"
+  responsavel: "strategic-synthesizer"
+  tipo: task
+
+descricao: |
+  Validação do posicionamento estratégico contra 5 critérios:
+  Autenticidade, Diferenciação, Relevância, Coerência e Acionabilidade.
+
+entrada:
+  - campo: brand_strategy_document
+    tipo: string
+    origem: "build-brand-essence"
+    obrigatorio: true
+    descricao: "Brand Strategy Document para validar"
+
+saida:
+  - campo: positioning_validation_report
+    tipo: string
+    destino: "validate-strategy-gate"
+    persistido: true
+    descricao: "Scores + recomendações de ajuste"
+
+passos:
+  1:
+    nome: "Avaliar Autenticidade"
+    descricao: "O posicionamento é alinhado com o DNA real da marca? (score 1-5)"
+    agente: "strategic-synthesizer"
+  2:
+    nome: "Avaliar Diferenciação"
+    descricao: "O posicionamento é distinto dos concorrentes? (score 1-5)"
+    agente: "strategic-synthesizer"
+  3:
+    nome: "Avaliar Relevância"
+    descricao: "O posicionamento importa para o público? (score 1-5)"
+    agente: "strategic-synthesizer"
+  4:
+    nome: "Avaliar Coerência"
+    descricao: "As partes da estratégia se conectam? (score 1-5)"
+    agente: "strategic-synthesizer"
+  5:
+    nome: "Avaliar Acionabilidade"
+    descricao: "A estratégia pode ser implementada? (score 1-5)"
+    agente: "strategic-synthesizer"
+  6:
+    nome: "Calcular score total"
+    descricao: "Média ponderada dos 5 critérios"
+    agente: "strategic-synthesizer"
+  7:
+    nome: "Documentar recomendações"
+    descricao: "Se score < 3.5, detalhar ajustes necessários"
+    agente: "strategic-synthesizer"
+
+checklist:
+  - "[ ] 5 critérios avaliados"
+  - "[ ] Scores 1-5 com justificativa"
+  - "[ ] Score total calculado"
+  - "[ ] Recomendações documentadas"
+
+criterios_aceitacao:
+  - "Score mínimo 3.5/5 para aprovação"
+  - "Nenhum critério individual abaixo de 3"

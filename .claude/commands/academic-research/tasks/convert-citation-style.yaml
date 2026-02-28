@@ -1,0 +1,84 @@
+name: convert-citation-style
+description: Convert manuscript from one citation style to another
+category: citations
+agent: citation-manager
+priority: low
+estimated_duration: 0.5 day
+
+inputs:
+  - manuscript:
+      type: file
+      description: Manuscript with existing citations
+      required: true
+  - from_style:
+      type: enum
+      options: [APA7, MLA9, Chicago, Harvard, Vancouver, IEEE]
+      description: Current citation style
+      required: true
+  - to_style:
+      type: enum
+      options: [APA7, MLA9, Chicago, Harvard, Vancouver, IEEE]
+      description: Target citation style
+      required: true
+
+outputs:
+  - converted_manuscript:
+      type: file
+      description: Manuscript with new citation style
+
+steps:
+  - step: 1
+    name: verify_current_format
+    description: Verify manuscript uses stated citation style
+    agent: citation-manager
+    estimated_duration: 0.1 days
+
+  - step: 2
+    name: convert_citations
+    description: Convert all in-text citations to new style
+    agent: citation-manager
+    estimated_duration: 0.25 days
+
+  - step: 3
+    name: convert_reference_list
+    description: Regenerate reference list in new style
+    agent: citation-manager
+    estimated_duration: 0.25 days
+
+  - step: 4
+    name: verify_accuracy
+    description: Spot-check conversion accuracy
+    agent: citation-manager
+    estimated_duration: 0.1 days
+
+success_criteria:
+  - All citations converted correctly
+  - Reference list reformatted
+  - No missing or broken citations
+  - Consistent formatting throughout
+
+deliverables:
+  - Converted manuscript
+  - New reference list
+
+conversion_examples:
+  APA_to_MLA:
+    before: "Smith (2024) found..."
+    after: "(Smith 45)"
+
+  Vancouver_to_APA:
+    before: "[1]"
+    after: "(Smith, 2024)"
+
+best_practices:
+  - Use reference manager for conversion (don't do manually)
+  - Verify a sample of conversions manually
+  - Check journal requirements for target style
+  - Backup original before converting
+
+tags:
+  - citation-style
+  - conversion
+  - formatting
+  - apa
+  - mla

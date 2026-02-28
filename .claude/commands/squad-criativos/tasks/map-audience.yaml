@@ -1,0 +1,71 @@
+# Task: Map Audience
+# Squad: squAId-criaTTivados / deenea
+# Responsável: audience-mapper
+
+metadata:
+  name: "map-audience"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "deenea"
+  responsavel: "audience-mapper"
+  tipo: task
+
+descricao: |
+  Mapeamento profundo do público usando JTBD (Jobs To Be Done),
+  Empathy Maps e construção de Personas. Inclui Tension Points.
+
+entrada:
+  - campo: briefing_campos_5_6
+    tipo: string
+    origem: "briefing BranDesire"
+    obrigatorio: true
+    descricao: "Campos 5-6 do briefing (público-alvo e diferenciais percebidos)"
+  - campo: insights_document
+    tipo: string
+    origem: "synthesize-insights"
+    obrigatorio: true
+    descricao: "Insights Document com dados de mercado"
+
+saida:
+  - campo: audience_map
+    tipo: string
+    destino: "build-brand-essence"
+    persistido: true
+    descricao: "Personas + JTBD + Empathy Maps + Tension Points"
+
+passos:
+  1:
+    nome: "Analisar dados do público"
+    descricao: "Extrair informações de público do briefing e insights"
+    agente: "audience-mapper"
+  2:
+    nome: "Mapear JTBD"
+    descricao: "Identificar Big Jobs, Medium Jobs e Small Jobs"
+    agente: "audience-mapper"
+  3:
+    nome: "Construir Empathy Maps"
+    descricao: "Mapear o que o público pensa, sente, faz e diz"
+    agente: "audience-mapper"
+  4:
+    nome: "Definir Personas"
+    descricao: "Criar 2-4 Personas detalhadas com nome, contexto, dores, aspirações"
+    agente: "audience-mapper"
+  5:
+    nome: "Identificar Tension Points"
+    descricao: "Mapear conflitos internos do público que a marca pode resolver"
+    agente: "audience-mapper"
+  6:
+    nome: "Validar coerência"
+    descricao: "Verificar alinhamento com dados de mercado"
+    agente: "audience-mapper"
+
+checklist:
+  - "[ ] JTBD mapeado (3 níveis)"
+  - "[ ] Empathy Maps completos"
+  - "[ ] 2-4 Personas definidas com profundidade"
+  - "[ ] Tension Points identificados"
+  - "[ ] Coerência com briefing validada"
+
+criterios_aceitacao:
+  - "Personas com profundidade (nome, contexto, JTBD, dores, aspirações)"
+  - "Tension Points ligados a oportunidades de marca"

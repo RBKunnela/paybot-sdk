@@ -1,0 +1,334 @@
+# Kahneman Dual Systems - Sistema 1/2 e Vieses Cognitivos
+# Baseado em: Thinking, Fast and Slow (Daniel Kahneman)
+# Squad: DEENEA (Essência/Estratégia)
+# Usado por: strategy-director, audience-mapper, brand-personality-architect
+
+metadata:
+  name: "Modelo Dual de Processamento Cognitivo"
+  version: "1.0"
+  source: "Thinking, Fast and Slow (Daniel Kahneman, 2011)"
+  aplicacao: "Compreender como audiências processam mensagens e tomam decisões"
+
+# ═══════════════════════════════════════════════════════════════════
+# OS DOIS SISTEMAS
+# ═══════════════════════════════════════════════════════════════════
+
+sistemas:
+
+  sistema_1:
+    nome: "Sistema 1 - Rápido"
+    alternativo: "Pensamento Intuitivo"
+
+    caracteristicas:
+      - "Automático e involuntário"
+      - "Rápido (milissegundos)"
+      - "Emocional e intuitivo"
+      - "Opera por associações"
+      - "Sem esforço consciente"
+      - "Sempre ativo"
+
+    exemplos_cotidianos:
+      - "Reconhecer um rosto"
+      - "Completar '2 + 2 = ?'"
+      - "Detectar hostilidade em uma voz"
+      - "Dirigir em estrada vazia"
+      - "Ler um outdoor"
+
+    implicacoes_branding:
+      cores: "Associações instantâneas (vermelho = urgência, azul = confiança)"
+      logos: "Reconhecimento em frações de segundo"
+      jingles: "Ativam memória automática"
+      embalagens: "Julgamentos instantâneos de qualidade"
+      primeiras_impressoes: "Formadas em 50ms, difíceis de mudar"
+
+    vulnerabilidades:
+      - "Susceptível a vieses"
+      - "Não faz estatística bem"
+      - "Influenciado por disponibilidade"
+      - "Prefere coerência a verdade"
+
+  sistema_2:
+    nome: "Sistema 2 - Lento"
+    alternativo: "Pensamento Deliberado"
+
+    caracteristicas:
+      - "Deliberado e voluntário"
+      - "Lento (segundos a minutos)"
+      - "Lógico e analítico"
+      - "Sequencial e focado"
+      - "Requer esforço consciente"
+      - "Preguiçoso (evita ativação)"
+
+    exemplos_cotidianos:
+      - "Calcular 17 x 24"
+      - "Comparar características de produtos"
+      - "Planejar uma viagem"
+      - "Verificar a validade de um argumento"
+      - "Preencher formulário de impostos"
+
+    implicacoes_branding:
+      comparativos: "Tabelas de features só ativam S2"
+      preco_alto: "Força deliberação, precisa justificativa"
+      b2b: "Mais ativação de S2 (múltiplos stakeholders)"
+      consideracao_longa: "Imóveis, carros, investimentos"
+
+    limitacoes:
+      - "Cansa rapidamente (ego depletion)"
+      - "Só processa uma coisa por vez"
+      - "Frequentemente valida conclusões do S1"
+
+  interacao:
+    principio: |
+      Sistema 1 propõe impressões, intuições e intenções.
+      Sistema 2 pode endossar, rejeitar ou modificar.
+      Na maioria das vezes, S2 simplesmente ENDOSSA o que S1 sugeriu.
+
+    implicacao_marketing: |
+      Se S1 formar impressão negativa, S2 raramente a corrige.
+      Primeira impressão + emoção > argumentos racionais.
+      Conquiste S1 primeiro, depois forneça justificativas para S2.
+
+# ═══════════════════════════════════════════════════════════════════
+# HEURÍSTICAS (Atalhos Mentais do S1)
+# ═══════════════════════════════════════════════════════════════════
+
+heuristicas:
+
+  disponibilidade:
+    nome: "Heurística da Disponibilidade"
+    definicao: |
+      Julgamos frequência/probabilidade pela facilidade com que
+      exemplos vêm à mente.
+
+    mecanismo: "Mais fácil de lembrar = mais frequente (percebido)"
+
+    exemplos:
+      - "Medo de avião > medo de carro (acidentes de avião são memoráveis)"
+      - "Crimes violentos parecem mais comuns após assistir noticiário"
+      - "Marcas com mais exposição parecem mais populares"
+
+    aplicacao_branding:
+      - "Exposição repetida aumenta percepção de liderança"
+      - "Testemunhos memoráveis > estatísticas"
+      - "Histórias impactantes > dados abstratos"
+      - "Top of mind advertising funciona por disponibilidade"
+
+    taticas:
+      - "Criar momentos memoráveis (não apenas frequentes)"
+      - "Associar marca a eventos emocionais"
+      - "Usar casos concretos, não abstrações"
+
+  ancoragem:
+    nome: "Heurística da Ancoragem"
+    definicao: |
+      Número/informação inicial influencia estimativas subsequentes,
+      mesmo quando irrelevante.
+
+    mecanismo: "Ajustamos a partir da âncora, mas insuficientemente"
+
+    exemplos:
+      - "Preço riscado de R$199 faz R$99 parecer barato"
+      - "Casa de 2M vista primeiro faz casa de 500K parecer acessível"
+      - "Número aleatório influencia estimativas não relacionadas"
+
+    aplicacao_branding:
+      precificacao:
+        - "Mostrar preço 'de' antes do preço 'por'"
+        - "Começar negociação com âncora alta"
+        - "Versão premium estabelece âncora"
+
+      posicionamento:
+        - "Comparar com alternativa mais cara"
+        - "Mencionar concorrente premium primeiro"
+        - "Estabelecer expectativa de valor alto"
+
+      numeros:
+        - "Primeiro número apresentado define referência"
+        - "Mesmo números arbitrários ancoram julgamentos"
+
+  representatividade:
+    nome: "Heurística da Representatividade"
+    definicao: |
+      Julgamos probabilidade pela semelhança com protótipo/estereótipo,
+      ignorando probabilidades base.
+
+    mecanismo: "Parece com X, então provavelmente é X"
+
+    exemplos:
+      - "Linda parece ativista, então é ativista (falácia da conjunção)"
+      - "Startup em garagem parece a próxima Apple"
+      - "Pessoa de terno parece confiável para investimentos"
+
+    aplicacao_branding:
+      parecer_a_categoria:
+        - "Embalagem de luxo = percepção de qualidade premium"
+        - "Códigos visuais do setor criam expectativa"
+        - "Não parecer com a categoria gera desconfiança"
+
+      arquetipo_visual:
+        - "Médico de jaleco = autoridade médica"
+        - "Startup = visual moderno, minimalista"
+        - "Artesanal = imperfeições, textura, handmade"
+
+      cuidado:
+        - "Subverter demais confunde S1"
+        - "Inovação visual precisa de outros sinais de qualidade"
+
+  afeto:
+    nome: "Heurística do Afeto"
+    definicao: |
+      Emoções influenciam julgamentos de risco e benefício.
+      Se gostamos, vemos menos riscos e mais benefícios.
+
+    mecanismo: "Gosto = seguro + benéfico | Não gosto = arriscado + problemático"
+
+    exemplos:
+      - "Gosto de carros esportivos, então ignoro riscos de velocidade"
+      - "Marca simpática parece ter produtos melhores"
+      - "Expert antipático é menos persuasivo"
+
+    aplicacao_branding:
+      simpatia_primeiro:
+        - "Criar conexão emocional antes de argumentar"
+        - "Marca amável = benefício do dúvida"
+        - "Persona de marca acessível e empática"
+
+      primeiras_impressoes:
+        - "Primeira emoção colore todos os julgamentos"
+        - "Experiência negativa inicial difícil de reverter"
+        - "Onboarding deve ser emocionalmente positivo"
+
+# ═══════════════════════════════════════════════════════════════════
+# VIESES COGNITIVOS CRÍTICOS PARA BRANDING
+# ═══════════════════════════════════════════════════════════════════
+
+vieses:
+
+  aversao_perda:
+    nome: "Aversão à Perda (Loss Aversion)"
+    definicao: "Perdas pesam ~2x mais que ganhos equivalentes"
+
+    implicacao: |
+      Medo de perder R$100 é mais intenso que desejo de ganhar R$100.
+      Enquadramento de perda > enquadramento de ganho.
+
+    aplicacao_branding:
+      mensagens:
+        ganho: "Ganhe 20% de eficiência"
+        perda: "Pare de perder 20% de eficiência" # Mais forte
+
+      taticas:
+        - "Enfatize o que cliente PERDE ao não agir"
+        - "Trials que expiram (medo de perder acesso)"
+        - "Ofertas por tempo limitado (perder oportunidade)"
+        - "Mostre custo de oportunidade de não escolher"
+
+    cautela: "Não exagere ou cria desconfiança"
+
+  efeito_enquadramento:
+    nome: "Efeito Enquadramento (Framing Effect)"
+    definicao: "Mesma informação gera decisões diferentes dependendo de como é apresentada"
+
+    exemplos:
+      positivo: "90% de taxa de sucesso"
+      negativo: "10% de taxa de fracasso"
+      resultado: "Mesma estatística, percepções opostas"
+
+    aplicacao_branding:
+      - "Enquadre benefícios positivamente, riscos de não-ação negativamente"
+      - "95% de satisfação > 5% de insatisfação"
+      - "Economize R$50 > Não pague R$50 a mais"
+
+  efeito_dotacao:
+    nome: "Efeito Dotação (Endowment Effect)"
+    definicao: "Valorizamos mais o que já possuímos"
+
+    aplicacao_branding:
+      - "Trials criam posse psicológica"
+      - "Personalização aumenta senso de propriedade"
+      - "Upgrading é mais fácil que aquisição inicial"
+      - "'Seu plano', 'Sua conta' - linguagem de posse"
+
+  viés_status_quo:
+    nome: "Viés do Status Quo"
+    definicao: "Preferência por estado atual, resistência a mudança"
+
+    aplicacao_branding:
+      - "Mudança precisa justificativa forte"
+      - "Default options são poderosas"
+      - "Facilite ao máximo a transição"
+      - "Minimize fricção de mudança"
+
+  efeito_halo:
+    nome: "Efeito Halo"
+    definicao: "Uma característica positiva contamina julgamento de outras"
+
+    exemplos:
+      - "Pessoa bonita parece mais inteligente e confiável"
+      - "Marca com bom design parece ter melhor qualidade"
+      - "CEO carismático = empresa bem gerida"
+
+    aplicacao_branding:
+      - "Invista em primeira impressão impecável"
+      - "Design premium eleva percepção de qualidade"
+      - "Um produto excelente beneficia toda a linha"
+      - "Colaborações com marcas admiradas"
+
+# ═══════════════════════════════════════════════════════════════════
+# FRAMEWORK DE APLICAÇÃO PARA DEENEA
+# ═══════════════════════════════════════════════════════════════════
+
+framework_aplicacao:
+
+  diagnostico_audiencia:
+    perguntas:
+      - "Essa decisão é mais S1 ou S2 para nossa audiência?"
+      - "Qual heurística mais influencia a percepção da categoria?"
+      - "Quais vieses podemos usar eticamente?"
+      - "Onde nossa marca ativa S1 positivamente?"
+
+  estrategia_por_tipo_decisao:
+
+    decisao_s1_dominante:
+      contexto: "Compras de baixo envolvimento, impulso"
+      estrategia:
+        - "Foque em gatilhos emocionais"
+        - "Maximize disponibilidade mental"
+        - "Crie associações fortes e simples"
+        - "Distintivos visuais memoráveis"
+
+    decisao_s2_dominante:
+      contexto: "Compras de alto valor, B2B, consideração longa"
+      estrategia:
+        - "Conquiste S1 primeiro, depois forneça justificativas"
+        - "Simplifique informações complexas"
+        - "Use âncoras favoráveis"
+        - "Forneça argumentos para justificar escolha emocional"
+
+    decisao_mista:
+      contexto: "Maioria das decisões de consumo"
+      estrategia:
+        - "Lidere com emoção (S1)"
+        - "Suporte com razão (S2)"
+        - "Crie coerência entre os dois níveis"
+
+  checklist_deenea:
+    posicionamento:
+      - "[ ] Nossa essência ativa S1 positivamente?"
+      - "[ ] Os valores são simples o suficiente para S1 processar?"
+      - "[ ] Há coerência entre imagem e realidade?"
+
+    mensagem:
+      - "[ ] Enquadramento otimizado (ganho vs perda)?"
+      - "[ ] Âncoras estabelecidas corretamente?"
+      - "[ ] Apelo emocional antes de racional?"
+
+    audiencia:
+      - "[ ] Entendemos o processo decisório da persona?"
+      - "[ ] Identificamos vieses relevantes?"
+      - "[ ] Estratégia ajustada para S1/S2 mix?"
+
+referencias:
+  - "Kahneman, D. - Thinking, Fast and Slow (2011)"
+  - "Tversky, A. & Kahneman, D. - Prospect Theory (1979)"
+  - "Thaler, R. - Nudge (2008)"

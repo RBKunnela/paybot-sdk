@@ -1,0 +1,137 @@
+name: coordinate-publication
+description: Manage publication submission process from start to acceptance
+category: strategy
+agent: research-chief
+priority: high
+estimated_duration: 2-3 days
+
+inputs:
+  - manuscript:
+      type: file
+      description: Final manuscript ready for submission
+      required: true
+  - target_journals:
+      type: array
+      description: List of target journals (prioritized)
+      required: true
+
+outputs:
+  - submission_package:
+      type: files
+      description: All files needed for submission
+  - cover_letter:
+      type: file
+      description: Cover letter to editor
+  - submission_confirmation:
+      type: document
+      description: Confirmation of submission
+
+steps:
+  - step: 1
+    name: select_journal
+    description: Finalize journal selection based on fit and criteria
+    agent: research-chief
+    estimated_duration: 0.5 days
+
+  - step: 2
+    name: prepare_submission_package
+    description: Prepare all required files (manuscript, figures, supplementary)
+    agent: research-chief
+    estimated_duration: 0.5 days
+
+  - step: 3
+    name: write_cover_letter
+    description: Write cover letter highlighting significance
+    agent: academic-writer
+    estimated_duration: 0.5 days
+
+  - step: 4
+    name: submit_manuscript
+    description: Submit through journal submission system
+    agent: research-chief
+    estimated_duration: 0.5 days
+
+  - step: 5
+    name: track_progress
+    description: Monitor submission status and respond to editor queries
+    agent: research-chief
+    estimated_duration: ongoing
+
+success_criteria:
+  - Manuscript submitted to appropriate journal
+  - All required files included
+  - Cover letter highlights significance
+  - Submission guidelines followed exactly
+
+deliverables:
+  - Submission package (all files)
+  - Cover letter
+  - Submission confirmation/tracking number
+
+journal_selection_criteria:
+  - Impact factor (appropriate for study quality)
+  - Scope and fit with research topic
+  - Acceptance rate (realistic chance)
+  - Turnaround time (review speed)
+  - Open access availability/cost
+  - Readership (target audience)
+
+submission_package_checklist:
+  - Manuscript (formatted per journal guidelines)
+  - Figures (separate high-resolution files)
+  - Tables (separate files or embedded)
+  - Supplementary materials
+  - Cover letter
+  - Author information form
+  - Conflicts of interest statement
+  - Copyright transfer agreement (if required)
+  - Suggested reviewers (if requested)
+  - ORCID iDs for all authors
+
+cover_letter_template: |
+  Dear Dr. [Editor Name],
+
+  We are pleased to submit our manuscript titled "[Title]" for consideration as an [article type] in [Journal Name].
+
+  This study addresses [research gap] by [brief description of approach]. Our key findings show that [main finding]. These results contribute to the field by [significance statement].
+
+  We believe this manuscript is appropriate for [Journal Name] because [fit with journal scope and audience]. Our work aligns with your recent publications on [cite 1-2 relevant papers from journal].
+
+  All authors have approved the manuscript and agree with submission to [Journal Name]. This work has not been published previously and is not under consideration elsewhere.
+
+  We suggest the following potential reviewers: [names and contact info].
+
+  Thank you for considering our manuscript.
+
+  Sincerely,
+  [Corresponding Author]
+
+post_submission_actions:
+  - Save submission confirmation email
+  - Note manuscript tracking number
+  - Set reminder to follow up if no response (4-6 weeks)
+  - Continue other projects (don't wait idle)
+  - Respond promptly to any editor queries
+
+best_practices:
+  - Read journal guidelines carefully before submitting
+  - Format manuscript exactly as required
+  - Write compelling cover letter (editors decide desk reject)
+  - Suggest qualified reviewers (helps speed up process)
+  - Triple-check all files before submission
+  - Keep backup of all submission files
+
+common_pitfalls:
+  - Submitting to wrong journal (poor fit)
+  - Not following formatting guidelines
+  - Weak or generic cover letter
+  - Missing required documents
+  - Submitting before manuscript is truly ready
+  - Simultaneous submission to multiple journals (unethical)
+
+tags:
+  - publication
+  - submission
+  - journal
+  - cover-letter
+  - manuscript-tracking

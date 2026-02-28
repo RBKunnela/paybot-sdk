@@ -1,0 +1,610 @@
+# ============================================================================
+# WORKFLOW: CRM IMPLEMENTATION
+# ============================================================================
+# Workflow para implementar CRM completo no ClickUp
+# Squad: project-management-clickup
+# Created by: squad-creator
+# ============================================================================
+
+name: wf-crm-implementation
+version: 1.0.0
+description: >
+  Workflow completo para implementar um sistema de CRM no ClickUp.
+  Inclui estruturação de pipeline de vendas, lead scoring, automações
+  de follow-up e integração com outros squads comerciais.
+
+orchestrator: "@pm-orchestrator"
+primary_executor: "@crm-builder"
+
+# ============================================================================
+# METADATA
+# ============================================================================
+
+metadata:
+  created: "2026-02-03"
+  framework: "AIOS Squad Creator v3.0"
+  story_id: "PM-CRM-001"
+  primary_use_case: "Implementação de CRM para infoprodutos"
+  key_difference: |
+    CRM especializado para negócios de infoprodutos com:
+    - Pipeline multi-ticket (R$ 29,97 - R$ 10.997)
+    - Integração com squads de vendas e comercial
+    - Lead scoring baseado em engajamento
+
+# ============================================================================
+# PHASES
+# ============================================================================
+
+phases:
+  # --------------------------------------------------------------------------
+  # PHASE 1: DISCOVERY & REQUIREMENTS
+  # --------------------------------------------------------------------------
+  phase_1:
+    id: "PHASE-1"
+    name: "Discovery & Requirements"
+    description: "Mapear necessidades de CRM e definir estrutura"
+    duration: "1-2 hours"
+    tier: 0
+    executor: "@crm-builder"
+
+    objectives:
+      - "Entender o processo de vendas atual"
+      - "Mapear tipos de leads e tickets"
+      - "Identificar pontos de contato"
+      - "Definir métricas de conversão"
+
+    inputs:
+      required:
+        - name: "business_model"
+          description: "Modelo de negócio (lançamento, perpétuo, high ticket)"
+        - name: "ticket_range"
+          description: "Faixa de preços dos produtos"
+        - name: "sales_team"
+          description: "Quem faz as vendas (closer, SDR, automático)"
+      optional:
+        - name: "current_crm"
+          description: "Sistema atual de gestão de leads"
+        - name: "integrations"
+          description: "Integrações necessárias (WhatsApp, email, etc.)"
+
+    activities:
+      - step: 1
+        action: "Entrevista de descoberta"
+        questions:
+          - "Como vocês captam leads hoje?"
+          - "Quais são os tipos de produto/ticket?"
+          - "Quem é responsável por cada etapa da venda?"
+          - "Como funciona o follow-up atualmente?"
+          - "Quais métricas vocês acompanham?"
+          - "Quais são os principais gargalos?"
+
+      - step: 2
+        action: "Mapear funil atual"
+        output: |
+          ## Funil Atual
+
+          **Origem → Lead → Qualificação → Oferta → Venda**
+
+          | Etapa | Volume | Conversão | Responsável |
+          |-------|--------|-----------|-------------|
+          | {etapa} | {volume} | {%} | {quem} |
+
+      - step: 3
+        action: "Definir requisitos do CRM"
+        deliverable: "requirements_document"
+
+    checkpoint:
+      id: "CRM_DSC_001"
+      name: "Discovery Complete"
+      criteria:
+        - "Processo de vendas mapeado"
+        - "Tipos de ticket identificados"
+        - "Requisitos documentados"
+        - "Stakeholders validaram"
+      human_review: true
+      message: "Validar requisitos antes de estruturar o CRM"
+
+    outputs:
+      - "requirements_document"
+      - "current_funnel_map"
+      - "stakeholder_list"
+
+  # --------------------------------------------------------------------------
+  # PHASE 2: STRUCTURE DESIGN
+  # --------------------------------------------------------------------------
+  phase_2:
+    id: "PHASE-2"
+    name: "Structure Design"
+    description: "Projetar estrutura do CRM no ClickUp"
+    duration: "2-3 hours"
+    tier: 1
+    executor: "@clickup-architect"
+
+    objectives:
+      - "Definir estrutura de Spaces/Folders/Lists"
+      - "Projetar Custom Fields"
+      - "Criar pipeline de deals"
+      - "Definir views necessárias"
+
+    activities:
+      - step: 1
+        action: "Estruturar hierarquia"
+        template: |
+          ## Estrutura CRM - ClickUp
+
+          ```
+          📁 SPACE: Comercial
+          ├── 📂 FOLDER: CRM
+          │   ├── 📋 LIST: Pipeline de Vendas
+          │   ├── 📋 LIST: Leads Qualificados
+          │   ├── 📋 LIST: Deals em Negociação
+          │   ├── 📋 LIST: Won (Fechados)
+          │   └── 📋 LIST: Lost (Perdidos)
+          │
+          ├── 📂 FOLDER: High Ticket
+          │   ├── 📋 LIST: Aplicações
+          │   ├── 📋 LIST: Calls Agendadas
+          │   ├── 📋 LIST: Propostas Enviadas
+          │   └── 📋 LIST: Contratos
+          │
+          └── 📂 FOLDER: Suporte Comercial
+              ├── 📋 LIST: Objeções Comuns
+              └── 📋 LIST: Scripts de Venda
+          ```
+
+      - step: 2
+        action: "Definir Custom Fields"
+        template: |
+          ## Custom Fields - CRM
+
+          ### Lead Info
+          | Field | Type | Options | Required |
+          |-------|------|---------|----------|
+          | Nome | Text | - | ✅ |
+          | Email | Email | - | ✅ |
+          | WhatsApp | Phone | - | ✅ |
+          | Origem | Dropdown | Orgânico, Ads, Indicação, Evento | ✅ |
+
+          ### Deal Info
+          | Field | Type | Options | Required |
+          |-------|------|---------|----------|
+          | Ticket | Currency | R$ | ✅ |
+          | Produto | Dropdown | {lista de produtos} | ✅ |
+          | Stage | Status | Lead, MQL, SQL, Proposal, Negotiation, Won, Lost | ✅ |
+          | Lead Score | Number | 0-100 | Auto |
+          | Temperature | Dropdown | Hot, Warm, Cold | Auto |
+
+          ### Tracking
+          | Field | Type | Options | Required |
+          |-------|------|---------|----------|
+          | First Contact | Date | - | Auto |
+          | Last Contact | Date | - | Auto |
+          | Days in Stage | Formula | - | Auto |
+          | Total Touches | Number | - | Auto |
+          | Closer | People | - | ✅ |
+
+      - step: 3
+        action: "Projetar Lead Scoring"
+        template: |
+          ## Lead Scoring Model
+
+          ### Engagement Score (0-50)
+          | Action | Points |
+          |--------|--------|
+          | Opened email | +2 |
+          | Clicked link | +5 |
+          | Replied | +10 |
+          | Attended webinar | +15 |
+          | Downloaded material | +8 |
+          | Visited sales page | +10 |
+
+          ### Profile Score (0-50)
+          | Criteria | Points |
+          |----------|--------|
+          | Has budget | +20 |
+          | Decision maker | +15 |
+          | Right timing | +10 |
+          | Ideal profile fit | +5 |
+
+          ### Temperature Classification
+          | Score | Temperature | Action |
+          |-------|-------------|--------|
+          | 80-100 | 🔥 Hot | Immediate call |
+          | 50-79 | 🟡 Warm | Nurture + qualify |
+          | 0-49 | 🔵 Cold | Automated nurture |
+
+    checkpoint:
+      id: "CRM_STR_001"
+      name: "Structure Approved"
+      criteria:
+        - "Estrutura de folders/lists definida"
+        - "Custom fields especificados"
+        - "Lead scoring projetado"
+        - "Views planejadas"
+      human_review: true
+      message: "Aprovar estrutura antes de implementar"
+
+    outputs:
+      - "structure_document"
+      - "custom_fields_spec"
+      - "lead_scoring_model"
+      - "views_plan"
+
+  # --------------------------------------------------------------------------
+  # PHASE 3: IMPLEMENTATION
+  # --------------------------------------------------------------------------
+  phase_3:
+    id: "PHASE-3"
+    name: "Implementation"
+    description: "Implementar estrutura no ClickUp"
+    duration: "3-4 hours"
+    tier: 1
+    executor: "@clickup-architect"
+
+    objectives:
+      - "Criar estrutura de folders/lists"
+      - "Configurar custom fields"
+      - "Criar views (Board, List, Calendar)"
+      - "Configurar statuses"
+
+    activities:
+      - step: 1
+        action: "Criar estrutura base"
+        tasks:
+          - "Criar Space 'Comercial'"
+          - "Criar Folders conforme spec"
+          - "Criar Lists conforme spec"
+          - "Configurar permissões"
+
+      - step: 2
+        action: "Configurar Custom Fields"
+        tasks:
+          - "Criar cada custom field"
+          - "Configurar opções de dropdowns"
+          - "Definir campos required"
+          - "Configurar fórmulas"
+
+      - step: 3
+        action: "Criar Views"
+        views:
+          - name: "Pipeline Board"
+            type: "Board"
+            group_by: "Stage"
+            columns: "Nome, Ticket, Temperature, Closer, Last Contact"
+
+          - name: "Hot Leads"
+            type: "List"
+            filter: "Temperature = Hot"
+            sort: "Lead Score DESC"
+
+          - name: "Follow-up Calendar"
+            type: "Calendar"
+            date_field: "Next Follow-up"
+            color_by: "Temperature"
+
+          - name: "Sales Dashboard"
+            type: "Dashboard"
+            widgets:
+              - "Pipeline by Stage (Bar)"
+              - "Conversion Rate (Number)"
+              - "Deals Won This Month (Number)"
+              - "Revenue Forecast (Number)"
+
+      - step: 4
+        action: "Criar Templates"
+        templates:
+          - "New Lead Template"
+          - "High Ticket Application"
+          - "Deal Won Checklist"
+
+    checkpoint:
+      id: "CRM_IMP_001"
+      name: "Implementation Complete"
+      criteria:
+        - "Estrutura criada e funcional"
+        - "Custom fields configurados"
+        - "Views criadas e testadas"
+        - "Templates disponíveis"
+      human_review: true
+      message: "Testar estrutura antes de configurar automações"
+
+    outputs:
+      - "clickup_structure_live"
+      - "views_configured"
+      - "templates_created"
+
+  # --------------------------------------------------------------------------
+  # PHASE 4: AUTOMATIONS
+  # --------------------------------------------------------------------------
+  phase_4:
+    id: "PHASE-4"
+    name: "Automations"
+    description: "Configurar automações do CRM"
+    duration: "2-3 hours"
+    tier: 2
+    executor: "@automation-engineer"
+
+    objectives:
+      - "Configurar automações de stage change"
+      - "Criar automações de follow-up"
+      - "Integrar com outras ferramentas"
+      - "Configurar notificações"
+
+    activities:
+      - step: 1
+        action: "Automações de Pipeline"
+        automations:
+          - name: "Lead → MQL"
+            trigger: "Lead Score >= 50"
+            actions:
+              - "Change status to MQL"
+              - "Notify @closer"
+              - "Create follow-up task"
+
+          - name: "MQL → SQL"
+            trigger: "Meeting scheduled"
+            actions:
+              - "Change status to SQL"
+              - "Update temperature to Warm"
+
+          - name: "Stale Lead Alert"
+            trigger: "Days in Stage > 7"
+            actions:
+              - "Add comment: Lead sem atividade"
+              - "Notify @closer"
+
+          - name: "Deal Won"
+            trigger: "Status changed to Won"
+            actions:
+              - "Create task in Onboarding list"
+              - "Notify @success-team"
+              - "Update revenue tracking"
+
+      - step: 2
+        action: "Automações de Follow-up"
+        automations:
+          - name: "Auto Follow-up Reminder"
+            trigger: "Last Contact > 3 days AND Temperature != Cold"
+            actions:
+              - "Create follow-up task"
+              - "Set due date: Tomorrow"
+
+          - name: "Weekly Digest"
+            trigger: "Every Monday 9am"
+            actions:
+              - "Send digest to @closer"
+              - "Include: Hot leads, Overdue follow-ups"
+
+      - step: 3
+        action: "Integração com WAHA/WhatsApp"
+        integration:
+          trigger: "New lead created"
+          actions:
+            - "Send welcome message via WAHA"
+            - "Log message in ClickUp"
+
+    checkpoint:
+      id: "CRM_AUT_001"
+      name: "Automations Live"
+      criteria:
+        - "Automações de pipeline funcionando"
+        - "Follow-up automations testadas"
+        - "Integrações configuradas"
+        - "Notificações chegando"
+      human_review: true
+      message: "Testar todas as automações com dados reais"
+
+    outputs:
+      - "automations_configured"
+      - "integrations_live"
+      - "notification_rules"
+
+  # --------------------------------------------------------------------------
+  # PHASE 5: TRAINING & HANDOFF
+  # --------------------------------------------------------------------------
+  phase_5:
+    id: "PHASE-5"
+    name: "Training & Handoff"
+    description: "Treinar equipe e entregar CRM operacional"
+    duration: "1-2 hours"
+    tier: 3
+    executor: "@pm-orchestrator"
+
+    objectives:
+      - "Documentar uso do CRM"
+      - "Treinar equipe comercial"
+      - "Definir processos de manutenção"
+      - "Entregar CRM operacional"
+
+    activities:
+      - step: 1
+        action: "Criar documentação"
+        deliverables:
+          - "Guia de uso do CRM"
+          - "FAQ com problemas comuns"
+          - "Vídeo walkthrough"
+
+      - step: 2
+        action: "Treinar equipe"
+        training_topics:
+          - "Como adicionar novos leads"
+          - "Como mover deals no pipeline"
+          - "Como usar lead scoring"
+          - "Como agendar follow-ups"
+          - "Como ler o dashboard"
+
+      - step: 3
+        action: "Definir processos"
+        processes:
+          - "Daily: Review hot leads"
+          - "Weekly: Pipeline review"
+          - "Monthly: Conversion analysis"
+
+      - step: 4
+        action: "Handoff formal"
+        checklist:
+          - "Documentação entregue"
+          - "Equipe treinada"
+          - "Dúvidas respondidas"
+          - "Suporte definido"
+
+    checkpoint:
+      id: "CRM_HND_001"
+      name: "CRM Operational"
+      criteria:
+        - "Documentação completa"
+        - "Equipe treinada"
+        - "Processos definidos"
+        - "CRM em uso"
+      human_review: true
+      message: "Confirmar que CRM está operacional"
+
+    outputs:
+      - "documentation"
+      - "training_complete"
+      - "processes_defined"
+      - "crm_operational"
+
+# ============================================================================
+# ERROR HANDLING
+# ============================================================================
+
+error_handling:
+  on_phase_failure:
+    - log_error: true
+    - notify_stakeholders: true
+    - create_remediation_task: true
+    - halt_workflow: false
+
+  on_checkpoint_failure:
+    - log_failure_reason: true
+    - return_to_previous_phase: true
+    - max_retries: 2
+
+# ============================================================================
+# COMPLETION SIGNALS
+# ============================================================================
+
+completion_signal: "<promise>COMPLETE:CRM-IMPLEMENTATION</promise>"
+checkpoint_signal: "<promise>CHECKPOINT:PHASE-X</promise>"
+blocked_signal: "<promise>BLOCKED:CRM-X</promise>"
+
+# ============================================================================
+# OUTPUT ARTIFACTS
+# ============================================================================
+
+outputs:
+  documentation:
+    - "requirements_document"
+    - "structure_document"
+    - "custom_fields_spec"
+    - "lead_scoring_model"
+    - "crm_user_guide"
+
+  clickup_assets:
+    - "crm_space_structure"
+    - "custom_fields_configured"
+    - "views_created"
+    - "templates_created"
+    - "automations_configured"
+
+  training:
+    - "training_materials"
+    - "video_walkthrough"
+    - "faq_document"
+
+# ============================================================================
+# AGENT ASSIGNMENTS
+# ============================================================================
+
+agents_by_phase:
+  PHASE-1:
+    primary:
+      - "crm-builder"
+    secondary:
+      - "pm-orchestrator"
+
+  PHASE-2:
+    primary:
+      - "clickup-architect"
+    secondary:
+      - "crm-builder"
+
+  PHASE-3:
+    primary:
+      - "clickup-architect"
+    secondary:
+      - "automation-engineer"
+
+  PHASE-4:
+    primary:
+      - "automation-engineer"
+    secondary:
+      - "clickup-architect"
+
+  PHASE-5:
+    primary:
+      - "pm-orchestrator"
+    secondary:
+      - "crm-builder"
+
+# ============================================================================
+# QUALITY CHECKLIST
+# ============================================================================
+
+quality_checklist:
+  discovery:
+    - "[ ] Processo de vendas mapeado"
+    - "[ ] Tipos de ticket identificados"
+    - "[ ] Stakeholders consultados"
+    - "[ ] Requisitos documentados"
+
+  structure:
+    - "[ ] Hierarquia folders/lists definida"
+    - "[ ] Custom fields especificados"
+    - "[ ] Lead scoring projetado"
+    - "[ ] Views planejadas"
+
+  implementation:
+    - "[ ] Estrutura criada no ClickUp"
+    - "[ ] Custom fields funcionando"
+    - "[ ] Views testadas"
+    - "[ ] Templates disponíveis"
+
+  automations:
+    - "[ ] Automações de pipeline testadas"
+    - "[ ] Follow-up automations funcionando"
+    - "[ ] Integrações conectadas"
+    - "[ ] Notificações chegando"
+
+  handoff:
+    - "[ ] Documentação completa"
+    - "[ ] Equipe treinada"
+    - "[ ] Processos definidos"
+    - "[ ] CRM em uso ativo"
+
+# ============================================================================
+# INTEGRATION WITH OTHER SQUADS
+# ============================================================================
+
+squad_integrations:
+  comercial-natalia-tanaka:
+    description: "Sincronizar pipeline com operações comerciais"
+    touchpoints:
+      - "Novos leads da Natália"
+      - "Status de negociações"
+      - "Feedback de closers"
+
+  copywriting:
+    description: "Scripts e templates de vendas"
+    touchpoints:
+      - "Emails de follow-up"
+      - "Scripts de ligação"
+      - "Templates de proposta"
+
+  media-buy:
+    description: "Origem de leads por campanha"
+    touchpoints:
+      - "UTM tracking"
+      - "Custo por lead"
+      - "ROI por campanha"

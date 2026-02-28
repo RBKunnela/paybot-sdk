@@ -1,0 +1,719 @@
+# ============================================================================
+# WORKFLOW: LAUNCH OPERATIONS
+# ============================================================================
+# Workflow para estruturar operações de lançamento no ClickUp
+# Squad: project-management-clickup
+# Created by: squad-creator
+# ============================================================================
+
+name: wf-launch-operations
+version: 1.0.0
+description: >
+  Workflow completo para estruturar e gerenciar operações de lançamento
+  no ClickUp. Baseado na Fórmula de Lançamento (PLF) com adaptações para
+  diferentes modelos (clássico, semente, interno, relâmpago).
+
+orchestrator: "@pm-orchestrator"
+primary_executor: "@launch-operations-manager"
+
+# ============================================================================
+# METADATA
+# ============================================================================
+
+metadata:
+  created: "2026-02-03"
+  framework: "AIOS Squad Creator v3.0"
+  story_id: "PM-LAUNCH-001"
+  primary_use_case: "Gestão de lançamentos de infoprodutos"
+  methodology_source: "Jeff Walker - Product Launch Formula"
+  key_difference: |
+    Operações de lançamento integradas com:
+    - Squads de conteúdo (youtube-content, youtube-lives)
+    - Squad de copywriting
+    - Squad de media-buy
+    - CRM para gestão de leads
+
+# ============================================================================
+# LAUNCH TYPES
+# ============================================================================
+
+launch_types:
+  classic:
+    name: "Lançamento Clássico"
+    duration: "21-30 days"
+    phases: ["PPL", "PL", "Launch", "Post"]
+    best_for: "Produtos validados, lista aquecida"
+
+  seed:
+    name: "Lançamento Semente"
+    duration: "7-14 days"
+    phases: ["Validation", "Seed", "Launch"]
+    best_for: "Novos produtos, validação de mercado"
+
+  internal:
+    name: "Lançamento Interno"
+    duration: "14-21 days"
+    phases: ["Warm-up", "Launch", "Post"]
+    best_for: "Lista existente, upsell/cross-sell"
+
+  flash:
+    name: "Lançamento Relâmpago"
+    duration: "3-7 days"
+    phases: ["Hype", "Launch"]
+    best_for: "Ofertas especiais, escassez real"
+
+# ============================================================================
+# PHASES
+# ============================================================================
+
+phases:
+  # --------------------------------------------------------------------------
+  # PHASE 1: PLANNING & SETUP
+  # --------------------------------------------------------------------------
+  phase_1:
+    id: "PHASE-1"
+    name: "Planning & Setup"
+    description: "Planejar lançamento e criar estrutura no ClickUp"
+    duration: "2-4 hours"
+    tier: 0
+    executor: "@launch-operations-manager"
+
+    objectives:
+      - "Definir tipo e cronograma do lançamento"
+      - "Criar estrutura de workspace"
+      - "Definir equipe e responsáveis"
+      - "Configurar tracking de métricas"
+
+    inputs:
+      required:
+        - name: "product_name"
+          description: "Nome do produto a ser lançado"
+        - name: "launch_type"
+          description: "Tipo de lançamento (classic, seed, internal, flash)"
+        - name: "launch_date"
+          description: "Data de abertura do carrinho"
+        - name: "ticket_price"
+          description: "Preço do produto"
+      optional:
+        - name: "goal_revenue"
+          description: "Meta de faturamento"
+        - name: "goal_units"
+          description: "Meta de vendas"
+        - name: "previous_launch_data"
+          description: "Dados de lançamentos anteriores"
+
+    activities:
+      - step: 1
+        action: "Definir cronograma macro"
+        template: |
+          ## Cronograma de Lançamento: {product_name}
+
+          **Tipo:** {launch_type}
+          **Data de Abertura:** {launch_date}
+          **Data de Fechamento:** {close_date}
+
+          ### Fases
+          | Fase | Início | Fim | Duração |
+          |------|--------|-----|---------|
+          | PPL | {date} | {date} | {days} dias |
+          | PL | {date} | {date} | {days} dias |
+          | Launch | {date} | {date} | {days} dias |
+          | Post | {date} | {date} | {days} dias |
+
+      - step: 2
+        action: "Criar estrutura ClickUp"
+        template: |
+          ## Estrutura de Workspace
+
+          ```
+          📁 SPACE: Lançamentos
+          └── 📂 FOLDER: {product_name} - {month/year}
+              │
+              ├── 📋 LIST: 📊 Overview & Métricas
+              │
+              ├── 📂 FOLDER: PPL (Pre-Pre-Launch)
+              │   ├── 📋 LIST: Conteúdo PPL
+              │   ├── 📋 LIST: Tráfego PPL
+              │   └── 📋 LIST: Captação
+              │
+              ├── 📂 FOLDER: PL (Pre-Launch)
+              │   ├── 📋 LIST: CPLs (Conteúdos de Pré-Lançamento)
+              │   ├── 📋 LIST: Emails PL
+              │   └── 📋 LIST: Lives/Eventos
+              │
+              ├── 📂 FOLDER: LAUNCH
+              │   ├── 📋 LIST: Abertura
+              │   ├── 📋 LIST: Emails de Venda
+              │   ├── 📋 LIST: Objeções & FAQ
+              │   └── 📋 LIST: Fechamento
+              │
+              ├── 📂 FOLDER: POST-LAUNCH
+              │   ├── 📋 LIST: Onboarding
+              │   ├── 📋 LIST: Retrospectiva
+              │   └── 📋 LIST: Métricas Finais
+              │
+              └── 📋 LIST: ⚙️ Operações & Checklists
+          ```
+
+      - step: 3
+        action: "Configurar Custom Fields"
+        fields:
+          - name: "Launch Phase"
+            type: "Dropdown"
+            options: ["PPL", "PL", "Launch", "Post"]
+          - name: "Content Type"
+            type: "Dropdown"
+            options: ["Email", "CPL", "Live", "Ads", "Landing Page", "VSL"]
+          - name: "Status de Produção"
+            type: "Status"
+            options: ["Briefed", "In Progress", "Review", "Approved", "Published"]
+          - name: "Deadline"
+            type: "Date"
+          - name: "Responsável Squad"
+            type: "Dropdown"
+            options: ["Copywriting", "Design", "Media-Buy", "Dev", "Conteúdo"]
+
+      - step: 4
+        action: "Criar Dashboard de Métricas"
+        widgets:
+          - type: "Number"
+            name: "Leads Captados"
+            source: "Custom Field: Leads"
+          - type: "Number"
+            name: "Taxa de Abertura CPL"
+            formula: "opens/delivered * 100"
+          - type: "Bar Chart"
+            name: "Leads por Dia"
+          - type: "Number"
+            name: "Vendas"
+          - type: "Number"
+            name: "Faturamento"
+          - type: "Progress"
+            name: "% da Meta"
+
+    checkpoint:
+      id: "LAUNCH_PLN_001"
+      name: "Planning Complete"
+      criteria:
+        - "Cronograma definido"
+        - "Workspace criado"
+        - "Custom fields configurados"
+        - "Dashboard de métricas pronto"
+      human_review: true
+      message: "Validar estrutura antes de popular tasks"
+
+    outputs:
+      - "launch_calendar"
+      - "workspace_structure"
+      - "metrics_dashboard"
+
+  # --------------------------------------------------------------------------
+  # PHASE 2: PPL SETUP (Pre-Pre-Launch)
+  # --------------------------------------------------------------------------
+  phase_2:
+    id: "PHASE-2"
+    name: "PPL Setup"
+    description: "Configurar operações de Pre-Pre-Launch"
+    duration: "2-3 hours"
+    tier: 1
+    executor: "@launch-operations-manager"
+
+    objectives:
+      - "Criar checklist de PPL"
+      - "Configurar tasks de captação"
+      - "Integrar com squads de conteúdo e tráfego"
+      - "Definir métricas de PPL"
+
+    ppl_structure:
+      duration: "7-14 days before PL"
+      goals:
+        - "Aquecer lista"
+        - "Captar leads"
+        - "Gerar curiosidade"
+        - "Validar interesse"
+
+      content_types:
+        - name: "Conteúdos de Autoridade"
+          quantity: "3-5"
+          squad: "youtube-content"
+        - name: "Posts de Engajamento"
+          quantity: "5-10"
+          squad: "copywriting"
+        - name: "Ads de Captação"
+          quantity: "3-5 variações"
+          squad: "media-buy"
+
+      deliverables:
+        - "Landing page de captação"
+        - "Sequência de emails de aquecimento"
+        - "Campanhas de tráfego"
+        - "Conteúdos orgânicos"
+
+    activities:
+      - step: 1
+        action: "Criar tasks de PPL"
+        tasks:
+          - "Briefar landing page de captação"
+          - "Criar copy da landing page"
+          - "Desenvolver landing page"
+          - "Criar sequência de emails PPL (3-5)"
+          - "Briefar criativos de ads"
+          - "Criar criativos de ads"
+          - "Subir campanhas de captação"
+          - "Criar conteúdos orgânicos (3-5)"
+
+      - step: 2
+        action: "Configurar integrações"
+        integrations:
+          - squad: "copywriting"
+            tasks: ["copy landing page", "emails PPL"]
+          - squad: "media-buy"
+            tasks: ["criativos", "campanhas"]
+          - squad: "youtube-content"
+            tasks: ["vídeos orgânicos"]
+          - squad: "full-stack-dev"
+            tasks: ["landing page", "integrações"]
+
+      - step: 3
+        action: "Definir métricas PPL"
+        metrics:
+          - name: "Leads captados"
+            target: "{goal_leads}"
+          - name: "CPL (Custo por Lead)"
+            target: "< R$ {cpl_target}"
+          - name: "Taxa de conversão LP"
+            target: "> 30%"
+
+    checkpoint:
+      id: "LAUNCH_PPL_001"
+      name: "PPL Ready"
+      criteria:
+        - "Tasks de PPL criadas"
+        - "Integrações com squads configuradas"
+        - "Métricas definidas"
+        - "Timeline aprovada"
+      human_review: true
+      message: "Validar setup de PPL"
+
+    outputs:
+      - "ppl_tasks_created"
+      - "squad_integrations"
+      - "ppl_metrics_defined"
+
+  # --------------------------------------------------------------------------
+  # PHASE 3: PL SETUP (Pre-Launch)
+  # --------------------------------------------------------------------------
+  phase_3:
+    id: "PHASE-3"
+    name: "PL Setup"
+    description: "Configurar operações de Pre-Launch"
+    duration: "2-3 hours"
+    tier: 1
+    executor: "@launch-operations-manager"
+
+    objectives:
+      - "Criar estrutura de CPLs"
+      - "Configurar sequência de emails PL"
+      - "Planejar evento/lives"
+      - "Definir gatilhos de escassez"
+
+    pl_structure:
+      duration: "7-14 days"
+      goals:
+        - "Entregar valor massivo"
+        - "Construir relacionamento"
+        - "Criar antecipação"
+        - "Qualificar leads"
+
+      cpl_framework:
+        cpl_1:
+          name: "A Oportunidade"
+          theme: "Por que agora? O que mudou?"
+          duration: "Day 1-3"
+        cpl_2:
+          name: "A Transformação"
+          theme: "O que é possível? Prova social"
+          duration: "Day 4-6"
+        cpl_3:
+          name: "A Experiência"
+          theme: "Como funciona? Bastidores"
+          duration: "Day 7-9"
+        cpl_4:
+          name: "A Oferta"
+          theme: "O que você recebe? Bônus"
+          duration: "Day 10-12"
+
+    activities:
+      - step: 1
+        action: "Criar estrutura de CPLs"
+        tasks:
+          - "Briefar CPL 1 - A Oportunidade"
+          - "Briefar CPL 2 - A Transformação"
+          - "Briefar CPL 3 - A Experiência"
+          - "Briefar CPL 4 - A Oferta"
+          - "Gravar CPLs (se vídeo)"
+          - "Criar pages de CPL"
+          - "Configurar automações de entrega"
+
+      - step: 2
+        action: "Criar sequência de emails PL"
+        email_sequence:
+          - "Email 1: CPL 1 disponível"
+          - "Email 2: Lembrete CPL 1"
+          - "Email 3: CPL 2 disponível"
+          - "Email 4: Insight extra"
+          - "Email 5: CPL 3 disponível"
+          - "Email 6: Preparação para oferta"
+          - "Email 7: CPL 4 + Oferta preview"
+
+      - step: 3
+        action: "Planejar evento/lives"
+        events:
+          - type: "Live de Q&A"
+            timing: "Mid PL"
+            squad: "youtube-lives"
+          - type: "Masterclass"
+            timing: "Pre-abertura"
+            squad: "youtube-lives"
+
+      - step: 4
+        action: "Configurar gatilhos"
+        triggers:
+          - type: "Antecipação"
+            mechanism: "Countdown para abertura"
+          - type: "Prova Social"
+            mechanism: "Depoimentos nos CPLs"
+          - type: "Autoridade"
+            mechanism: "Conteúdo de valor"
+
+    checkpoint:
+      id: "LAUNCH_PL_001"
+      name: "PL Ready"
+      criteria:
+        - "CPLs estruturados"
+        - "Sequência de emails criada"
+        - "Eventos agendados"
+        - "Gatilhos configurados"
+      human_review: true
+      message: "Validar setup de PL"
+
+    outputs:
+      - "cpl_structure"
+      - "email_sequence_pl"
+      - "events_scheduled"
+
+  # --------------------------------------------------------------------------
+  # PHASE 4: LAUNCH SETUP
+  # --------------------------------------------------------------------------
+  phase_4:
+    id: "PHASE-4"
+    name: "Launch Setup"
+    description: "Configurar operações de abertura e venda"
+    duration: "2-3 hours"
+    tier: 1
+    executor: "@launch-operations-manager"
+
+    objectives:
+      - "Criar sequência de emails de venda"
+      - "Configurar página de vendas"
+      - "Preparar tratamento de objeções"
+      - "Definir estratégia de fechamento"
+
+    launch_structure:
+      duration: "5-7 days"
+      goals:
+        - "Converter leads em clientes"
+        - "Tratar objeções"
+        - "Criar urgência real"
+        - "Fechar com escassez"
+
+    activities:
+      - step: 1
+        action: "Criar sequência de vendas"
+        email_sequence:
+          - "Email 1: Abertura do carrinho"
+          - "Email 2: Por que funciona"
+          - "Email 3: Objeção #1 (preço)"
+          - "Email 4: Case de sucesso"
+          - "Email 5: Objeção #2 (tempo)"
+          - "Email 6: Bônus especial"
+          - "Email 7: 24h para fechar"
+          - "Email 8: Últimas horas"
+          - "Email 9: Fechou!"
+
+      - step: 2
+        action: "Preparar FAQ/Objeções"
+        objecoes_comuns:
+          - question: "Funciona pra mim?"
+            response: "Template de resposta"
+          - question: "Não tenho tempo"
+            response: "Template de resposta"
+          - question: "É caro"
+            response: "Template de resposta"
+          - question: "Posso parcelar?"
+            response: "Template de resposta"
+
+      - step: 3
+        action: "Configurar escassez"
+        scarcity_elements:
+          - type: "Tempo"
+            mechanism: "Carrinho fecha em X dias"
+          - type: "Bônus"
+            mechanism: "Bônus some em 48h"
+          - type: "Preço"
+            mechanism: "Valor sobe após lançamento"
+
+      - step: 4
+        action: "Integrar com CRM"
+        crm_integration:
+          - "Novos compradores → Pipeline Won"
+          - "Carrinho abandonado → Follow-up"
+          - "Não comprou → Nurture sequence"
+
+    checkpoint:
+      id: "LAUNCH_LCH_001"
+      name: "Launch Ready"
+      criteria:
+        - "Emails de venda criados"
+        - "FAQ preparado"
+        - "Escassez configurada"
+        - "CRM integrado"
+      human_review: true
+      message: "Validar setup de Launch"
+
+    outputs:
+      - "sales_email_sequence"
+      - "faq_document"
+      - "scarcity_config"
+      - "crm_integration"
+
+  # --------------------------------------------------------------------------
+  # PHASE 5: POST-LAUNCH SETUP
+  # --------------------------------------------------------------------------
+  phase_5:
+    id: "PHASE-5"
+    name: "Post-Launch Setup"
+    description: "Configurar operações pós-lançamento"
+    duration: "1-2 hours"
+    tier: 2
+    executor: "@launch-operations-manager"
+
+    objectives:
+      - "Criar checklist de onboarding"
+      - "Configurar análise de métricas"
+      - "Preparar retrospectiva"
+      - "Planejar nurture para não-compradores"
+
+    activities:
+      - step: 1
+        action: "Criar onboarding checklist"
+        onboarding:
+          - "Email de boas-vindas"
+          - "Acesso à área de membros"
+          - "Orientações iniciais"
+          - "Grupo de suporte"
+          - "Primeiro conteúdo/aula"
+
+      - step: 2
+        action: "Configurar análise de métricas"
+        metrics_template: |
+          ## Métricas do Lançamento: {product_name}
+
+          ### Captação (PPL)
+          - Leads captados: {total}
+          - CPL médio: R$ {value}
+          - Taxa de conversão LP: {%}
+
+          ### Engajamento (PL)
+          - Abertura CPL 1: {%}
+          - Abertura CPL 2: {%}
+          - Abertura CPL 3: {%}
+          - Abertura CPL 4: {%}
+          - Participação live: {number}
+
+          ### Vendas (Launch)
+          - Total de vendas: {number}
+          - Faturamento bruto: R$ {value}
+          - Ticket médio: R$ {value}
+          - Taxa de conversão: {%}
+          - ROI de tráfego: {x}
+
+          ### Comparativo
+          - vs. Meta: {%}
+          - vs. Lançamento anterior: {%}
+
+      - step: 3
+        action: "Preparar retrospectiva"
+        retrospective_template:
+          - section: "O que funcionou bem"
+            questions:
+              - "Quais táticas tiveram melhor resultado?"
+              - "O que devemos repetir?"
+          - section: "O que pode melhorar"
+            questions:
+              - "Onde perdemos conversão?"
+              - "O que causou atrito?"
+          - section: "Aprendizados"
+            questions:
+              - "O que aprendemos sobre a audiência?"
+              - "O que testar no próximo?"
+
+      - step: 4
+        action: "Configurar nurture"
+        nurture_sequence:
+          - "Email 1: Obrigado por participar"
+          - "Email 2: Conteúdo de valor"
+          - "Email 3: Próximos passos"
+
+    checkpoint:
+      id: "LAUNCH_PST_001"
+      name: "Post-Launch Ready"
+      criteria:
+        - "Onboarding configurado"
+        - "Template de métricas pronto"
+        - "Retrospectiva agendada"
+        - "Nurture sequence criada"
+      human_review: true
+      message: "Validar setup de Post-Launch"
+
+    outputs:
+      - "onboarding_checklist"
+      - "metrics_template"
+      - "retrospective_template"
+      - "nurture_sequence"
+
+# ============================================================================
+# ERROR HANDLING
+# ============================================================================
+
+error_handling:
+  on_phase_failure:
+    - log_error: true
+    - notify_stakeholders: true
+    - create_remediation_task: true
+    - halt_workflow: false
+
+  on_checkpoint_failure:
+    - log_failure_reason: true
+    - return_to_previous_phase: true
+    - max_retries: 2
+
+# ============================================================================
+# COMPLETION SIGNALS
+# ============================================================================
+
+completion_signal: "<promise>COMPLETE:LAUNCH-OPERATIONS</promise>"
+checkpoint_signal: "<promise>CHECKPOINT:PHASE-X</promise>"
+blocked_signal: "<promise>BLOCKED:LAUNCH-X</promise>"
+
+# ============================================================================
+# AGENT ASSIGNMENTS
+# ============================================================================
+
+agents_by_phase:
+  PHASE-1:
+    primary:
+      - "launch-operations-manager"
+    secondary:
+      - "pm-orchestrator"
+      - "clickup-architect"
+
+  PHASE-2:
+    primary:
+      - "launch-operations-manager"
+    secondary:
+      - "content-operations-manager"
+
+  PHASE-3:
+    primary:
+      - "launch-operations-manager"
+    secondary:
+      - "content-operations-manager"
+
+  PHASE-4:
+    primary:
+      - "launch-operations-manager"
+    secondary:
+      - "crm-builder"
+
+  PHASE-5:
+    primary:
+      - "launch-operations-manager"
+    secondary:
+      - "pm-orchestrator"
+
+# ============================================================================
+# QUALITY CHECKLIST
+# ============================================================================
+
+quality_checklist:
+  planning:
+    - "[ ] Cronograma definido e aprovado"
+    - "[ ] Workspace criado no ClickUp"
+    - "[ ] Dashboard de métricas configurado"
+    - "[ ] Equipe definida"
+
+  ppl:
+    - "[ ] Tasks de PPL criadas"
+    - "[ ] Integrações com squads configuradas"
+    - "[ ] Landing page de captação pronta"
+    - "[ ] Campanhas de tráfego prontas"
+
+  pl:
+    - "[ ] CPLs estruturados e briefados"
+    - "[ ] Sequência de emails PL criada"
+    - "[ ] Eventos/lives agendados"
+    - "[ ] Automações configuradas"
+
+  launch:
+    - "[ ] Emails de venda criados"
+    - "[ ] FAQ de objeções pronto"
+    - "[ ] Escassez configurada"
+    - "[ ] Checkout testado"
+
+  post:
+    - "[ ] Onboarding configurado"
+    - "[ ] Template de métricas pronto"
+    - "[ ] Retrospectiva agendada"
+    - "[ ] Nurture sequence criada"
+
+# ============================================================================
+# SQUAD INTEGRATIONS
+# ============================================================================
+
+squad_integrations:
+  youtube-content:
+    touchpoints:
+      - "Conteúdos orgânicos PPL"
+      - "Vídeos de CPL"
+      - "Conteúdo de autoridade"
+
+  youtube-lives:
+    touchpoints:
+      - "Lives de Q&A"
+      - "Masterclasses"
+      - "Abertura ao vivo"
+
+  copywriting:
+    touchpoints:
+      - "Copy de landing pages"
+      - "Sequências de email"
+      - "Scripts de vídeo"
+
+  media-buy:
+    touchpoints:
+      - "Campanhas de captação"
+      - "Retargeting"
+      - "Scaling"
+
+  full-stack-dev:
+    touchpoints:
+      - "Landing pages"
+      - "Checkout"
+      - "Área de membros"
+
+  comercial-natalia-tanaka:
+    touchpoints:
+      - "Leads high ticket"
+      - "Calls de venda"
+      - "Follow-up manual"

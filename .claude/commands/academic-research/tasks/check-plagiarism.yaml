@@ -1,0 +1,123 @@
+name: check-plagiarism
+description: Run plagiarism check and address any detected issues
+category: quality-assurance
+agent: citation-manager
+priority: high
+estimated_duration: 1 day
+
+inputs:
+  - manuscript:
+      type: file
+      description: Complete manuscript to check
+      required: true
+  - plagiarism_tool:
+      type: enum
+      options: [Turnitin, iThenticate, Grammarly, Copyscape]
+      description: Plagiarism detection tool to use
+      required: false
+      default: Turnitin
+
+outputs:
+  - plagiarism_report:
+      type: file
+      format: pdf
+      description: Plagiarism detection report
+  - corrected_manuscript:
+      type: file
+      description: Manuscript with plagiarism issues resolved
+  - similarity_score:
+      type: number
+      description: Overall similarity percentage
+
+steps:
+  - step: 1
+    name: run_plagiarism_check
+    description: Submit manuscript to plagiarism detection tool
+    agent: citation-manager
+    estimated_duration: 0.5 days
+
+  - step: 2
+    name: review_report
+    description: Review report and identify genuine plagiarism vs. common phrases
+    agent: citation-manager
+    estimated_duration: 0.5 days
+
+  - step: 3
+    name: fix_issues
+    description: Paraphrase and add citations where needed
+    agent: citation-manager
+    estimated_duration: 0.5 days
+
+  - step: 4
+    name: recheck
+    description: Run check again to verify issues resolved
+    agent: citation-manager
+    estimated_duration: 0.5 days
+
+success_criteria:
+  - Similarity score < 15% (excluding references)
+  - No unattributed quotes or passages
+  - All sources properly cited
+  - Self-plagiarism checked and cited
+
+deliverables:
+  - Plagiarism report (initial and final)
+  - Corrected manuscript
+  - Documentation of changes made
+
+acceptable_similarity_thresholds:
+  excellent: "< 10%"
+  acceptable: "10-15%"
+  review_needed: "15-25%"
+  high_risk: "> 25%"
+
+what_to_check:
+  - Exact matches (word-for-word copying)
+  - Paraphrased passages without citation
+  - Self-plagiarism (your own prior work)
+  - Common phrases (often false positives)
+  - Reference list (exclude from similarity score)
+
+how_to_fix:
+  paraphrase:
+    - Rewrite in your own words
+    - Add citation even if paraphrased
+    - Example: "AI improves learning" → "Artificial intelligence enhances educational outcomes (Smith, 2024)"
+
+  add_quotes:
+    - Use direct quotes with quotation marks
+    - Include page number in citation
+    - Example: Smith (2024) stated, "AI improves learning outcomes" (p. 45).
+
+  cite_properly:
+    - Add missing citations
+    - Verify citation format
+    - Include in reference list
+
+best_practices:
+  - Run plagiarism check BEFORE submission
+  - Exclude reference list from similarity score
+  - Cite your own prior work (avoid self-plagiarism)
+  - Use quotes sparingly (prefer paraphrasing)
+  - Keep detailed notes of sources while writing
+  - Use reference manager to track sources
+
+common_false_positives:
+  - Common phrases ("according to" "it is important to note")
+  - Standard terminology ("t-test" "p < 0.05")
+  - Method descriptions (standard procedures)
+  - Reference list matches
+  - Author's own previously published work (if cited)
+
+self_plagiarism_rules:
+  - Cite your own prior publications
+  - Don't submit same work to multiple journals simultaneously
+  - Get copyright permission to reuse your own published work
+  - Disclose previous related publications
+
+tags:
+  - plagiarism
+  - turnitin
+  - ithenticate
+  - citations
+  - academic-integrity

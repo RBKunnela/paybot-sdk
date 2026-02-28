@@ -1,0 +1,110 @@
+# Task: Conduct Brand Research
+# Squad: squAId-criaTTivados / search-insights
+# Responsável: research-director
+
+metadata:
+  name: "conduct-brand-research"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "search-insights"
+  responsavel: "research-director"
+  tipo: task
+
+descricao: |
+  Conduzir pesquisa de marca com routing automático entre 3 níveis:
+  Ouro (entrevistas qualitativas), Prata (questionário auto-aplicado),
+  Bronze (self-assessment + pesquisa externa).
+  Em todos os níveis, pesquisa externa e social listening são executados.
+
+entrada:
+  - campo: handoff_package
+    tipo: string
+    origem: "prepare-handoff"
+    obrigatorio: true
+    descricao: "Handoff Package do Atendimento com briefing e assets"
+  - campo: assets_cliente
+    tipo: list
+    origem: "onboarding"
+    obrigatorio: false
+    descricao: "Documentos, brand books, links enviados pelo cliente"
+  - campo: nivel_pesquisa
+    tipo: string
+    origem: "routing / escolha do usuário"
+    obrigatorio: false
+    descricao: "Ouro / Prata / Bronze (se não informado, o sistema determina)"
+
+saida:
+  - campo: research_data
+    tipo: string
+    destino: "generate-research-report"
+    persistido: true
+    descricao: "Dados brutos da pesquisa (respostas, verbatims, dados externos)"
+
+framework: "pesquisa-qualitativa-framework.yaml"
+
+passos:
+  1:
+    nome: "Determinar nível de pesquisa"
+    descricao: |
+      Avaliar capacidade do cliente para pesquisa:
+      1. Tem acesso a respondentes para entrevistas? → Ouro
+      2. Pode enviar questionário para 8+ pessoas? → Prata
+      3. Nenhum dos anteriores → Bronze
+      Usar dados do briefing (campo 11: Assets/Pesquisas) como indicador.
+      Apresentar opções ao usuário e deixar ele decidir.
+    agente: "research-director"
+  2:
+    nome: "Preparar instrumentos de pesquisa"
+    descricao: |
+      Conforme o nível:
+      - Ouro: Adaptar roteiro-pesquisa-qualitativa.md para a marca
+      - Prata: Adaptar questionario-marca.md para a marca
+      - Bronze: Adaptar self-assessment-marca.md para a marca
+      Personalizar com nome da marca, produtos/serviços, segmento.
+    agente: "research-director"
+  3:
+    nome: "Conduzir coleta de dados primários"
+    descricao: |
+      - Ouro: Disponibilizar roteiro para entrevistador, orientar sobre condução
+      - Prata: Gerar formulário e disponibilizar para o cliente enviar
+      - Bronze: Disponibilizar self-assessment para o gestor responder
+      Aguardar retorno dos dados.
+    agente: "research-director"
+  4:
+    nome: "Processar respostas recebidas"
+    descricao: |
+      - Extrair e catalogar verbatims por campo de pesquisa
+      - Identificar padrões e recorrências nas respostas
+      - Classificar dados por categoria temporal (passado-presente / presente / futuro)
+      - Mapear dados por domínio da Taxonomia
+    agente: "insight-synthesizer"
+  5:
+    nome: "Executar pesquisa externa (paralelo)"
+    descricao: |
+      Independente do nível, executar em paralelo:
+      - web-research (data-miner via EXA)
+      - scrape-competitors (data-miner via Apify)
+      - social-listening (social-listener via Apify)
+      - analyze-trends (trend-analyst via STEEP + Scoring)
+    agentes: ["data-miner", "social-listener", "trend-analyst"]
+  6:
+    nome: "Consolidar dados para relatório"
+    descricao: |
+      Reunir todos os dados (primários + externos) em pacote
+      estruturado para geração do relatório final.
+      Para Bronze: cruzar self-assessment com dados externos (Gap Analysis).
+    agente: "insight-synthesizer"
+
+checklist:
+  - "[ ] Nível de pesquisa determinado e aprovado pelo usuário"
+  - "[ ] Instrumento de pesquisa adaptado para a marca"
+  - "[ ] Dados primários coletados (respostas/entrevistas)"
+  - "[ ] Verbatims extraídos e catalogados"
+  - "[ ] Pesquisa externa executada (EXA + Apify + Social Listening)"
+  - "[ ] Dados consolidados e prontos para relatório"
+
+criterios_aceitacao:
+  - "Nível de pesquisa documentado no output"
+  - "Dados primários processados e organizados por categoria temporal"
+  - "Pesquisa externa executada em todos os níveis"
+  - "Para Bronze: Gap Analysis entre visão interna e dados externos"

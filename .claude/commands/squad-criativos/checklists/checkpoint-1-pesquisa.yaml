@@ -1,0 +1,93 @@
+# Checklist: Checkpoint 1 - Pesquisa
+# Squad: squAId-criaTTivados / search-insights
+
+metadata:
+  name: "checkpoint-1-pesquisa"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  tipo: checkpoint
+  responsavel: "research-director"
+
+descricao: |
+  Valida completude e qualidade dos dados de pesquisa
+  antes de alimentar squads estratégicas (DEENEA e UNNIKO).
+
+entregavel: "Relatório de Insights"
+
+itens:
+  dados_mercado:
+    nome: "Dados de Mercado"
+    items:
+      - id: 1
+        descricao: "Market share documentado"
+        obrigatorio: true
+        criterio: "Dados quantitativos com fonte citada"
+      - id: 2
+        descricao: "Tamanho do mercado identificado"
+        obrigatorio: true
+        criterio: "Volume e valor com período de referência"
+      - id: 3
+        descricao: "Tendências de crescimento mapeadas"
+        obrigatorio: true
+        criterio: "Mínimo 3 tendências com direção (alta/baixa/estável)"
+      - id: 4
+        descricao: "Fontes citadas e verificáveis"
+        obrigatorio: true
+        criterio: "Cada dado tem fonte identificada"
+
+  analise_competitiva:
+    nome: "Análise Competitiva"
+    items:
+      - id: 5
+        descricao: "Mínimo 3 concorrentes analisados"
+        obrigatorio: true
+        criterio: "3+ concorrentes com análise nos 3 domínios"
+      - id: 6
+        descricao: "Posição nos 3 Domínios mapeada"
+        obrigatorio: true
+        criterio: "Cada concorrente avaliado em I, II e III"
+      - id: 7
+        descricao: "Espaços em branco identificados"
+        obrigatorio: true
+        criterio: "Pelo menos 1 espaço em branco por domínio"
+      - id: 8
+        descricao: "Forças e fraquezas documentadas"
+        obrigatorio: false
+        criterio: "SWOT simplificado por concorrente"
+
+  comportamento:
+    nome: "Comportamento do Consumidor"
+    items:
+      - id: 9
+        descricao: "Dados comportamentais coletados"
+        obrigatorio: true
+        criterio: "Dados sobre hábitos, preferências, jornada"
+      - id: 10
+        descricao: "Jornada de compra mapeada"
+        obrigatorio: false
+        criterio: "Touchpoints identificados da descoberta à compra"
+      - id: 11
+        descricao: "Motivações e barreiras identificadas"
+        obrigatorio: true
+        criterio: "Mínimo 3 motivações e 3 barreiras"
+
+  sintese:
+    nome: "Síntese"
+    items:
+      - id: 12
+        descricao: "Mínimo 5 insights acionáveis"
+        obrigatorio: true
+        criterio: "Insights são acionáveis (não descritivos)"
+      - id: 13
+        descricao: "Implicação por domínio definida"
+        obrigatorio: true
+        criterio: "Cada insight liga a pelo menos 1 domínio"
+      - id: 14
+        descricao: "Priorização por impacto feita"
+        obrigatorio: true
+        criterio: "Insights ordenados por impacto estratégico"
+
+aprovacao:
+  score_minimo: 80
+  criterio: "80% dos itens obrigatórios aprovados"
+  acao_rejeicao: "Retornar para data-miner com gaps específicos"

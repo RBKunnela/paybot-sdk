@@ -1,0 +1,130 @@
+name: write-literature-review
+description: Write comprehensive literature review section for paper
+category: writing
+agent: academic-writer
+priority: high
+estimated_duration: 5-7 days
+
+inputs:
+  - synthesis_document:
+      type: file
+      description: Synthesized findings from literature
+      required: true
+  - research_questions:
+      type: array
+      description: Research questions to address
+      required: true
+  - review_type:
+      type: enum
+      options: [narrative, thematic, chronological, methodological]
+      description: Organization approach
+      required: false
+      default: thematic
+
+outputs:
+  - literature_review_section:
+      type: file
+      format: docx
+      description: Complete literature review section
+
+steps:
+  - step: 1
+    name: create_outline
+    description: Create outline with themes/sections
+    agent: academic-writer
+    estimated_duration: 1 day
+
+  - step: 2
+    name: write_introduction
+    description: Write intro with scope and organization
+    agent: academic-writer
+    estimated_duration: 1 day
+
+  - step: 3
+    name: write_body
+    description: Write main body organized by themes
+    agent: academic-writer
+    estimated_duration: 2-3 days
+
+  - step: 4
+    name: write_gap_identification
+    description: Clearly identify research gaps
+    agent: academic-writer
+    estimated_duration: 1 day
+
+  - step: 5
+    name: revise_and_polish
+    description: Revise for coherence and flow
+    agent: academic-writer
+    estimated_duration: 1 day
+
+success_criteria:
+  - Comprehensive coverage of relevant literature
+  - Clear organization (themes, chronology, or methods)
+  - Critical analysis (not just summary)
+  - Research gap clearly identified
+  - Connects to research questions
+
+deliverables:
+  - Literature review section (3,000-5,000 words)
+
+organization_approaches:
+  thematic:
+    - Group by themes/topics
+    - Most common approach
+    - Example: Theme 1: AI for personalized learning, Theme 2: Teacher attitudes
+
+  chronological:
+    - Group by time period
+    - Show evolution of field
+    - Example: Early research (2000-2010), Recent research (2015-2025)
+
+  methodological:
+    - Group by research method
+    - Useful when methods vary significantly
+    - Example: Quantitative studies, Qualitative studies
+
+structure_template: |
+  # Literature Review
+
+  ## Introduction
+  [Scope, organization, search strategy]
+
+  ## Theme 1: [First major theme]
+  [Review of studies on this theme]
+  [Critical analysis, patterns, contradictions]
+
+  ## Theme 2: [Second major theme]
+  [Review of studies on this theme]
+  [Critical analysis, patterns, contradictions]
+
+  ## Research Gaps
+  [What is NOT known or under-researched]
+  [How your study addresses these gaps]
+
+  ## Summary
+  [Brief recap connecting to your research questions]
+
+best_practices:
+  - Integrate sources (don't just list studies)
+  - Use transition phrases to show relationships
+  - Be critical (analyze, don't just summarize)
+  - Identify contradictions and explain why
+  - Show how literature connects to your RQs
+  - Use recent sources (< 5 years when possible)
+  - Include seminal/classic works when relevant
+
+common_pitfalls:
+  - Just summarizing each paper sequentially
+  - No critical analysis or synthesis
+  - Missing key papers in the field
+  - Not identifying research gaps
+  - Poor organization (hard to follow)
+  - Too much detail on peripheral topics
+
+tags:
+  - literature-review
+  - writing
+  - synthesis
+  - critical-analysis
+  - research-gaps

@@ -1,0 +1,353 @@
+# Workflow: Brand Essence (DEENEA)
+# Construção da Essência Simbólica com Frameworks Curados
+# Tríade: DEENEA (Essência) → UNNIKO → storYOURtelling
+
+name: wf-brand-essence
+description: |
+  Workflow completo para construção da essência simbólica da marca.
+  Utiliza frameworks curados de psicologia cognitiva, mitologia e cultura
+  para criar uma fundação estratégica sólida e diferenciada.
+
+version: "2.0"
+squad: deenea
+command: "*build-brand-essence"
+duracao_estimada: "5-8 dias úteis"
+formato_final: "Brand Strategy Document"
+
+# ═══════════════════════════════════════════════════════════════════
+# FRAMEWORKS CURADOS UTILIZADOS
+# ═══════════════════════════════════════════════════════════════════
+frameworks_curados:
+  kahneman_dual_systems:
+    arquivo: "kahneman-dual-systems.yaml"
+    aplicacao: "Entender como audiência decide (Sistema 1 vs 2)"
+    usado_por:
+      - audience-mapper
+      - brand-personality-architect
+      - strategic-synthesizer
+
+  brand_mythology_harari:
+    arquivo: "brand-mythology-harari.yaml"
+    aplicacao: "Construir ficções intersubjetivas e mitologia de marca"
+    usado_por:
+      - narrative-identity-architect
+      - culture-community-architect
+      - strategic-synthesizer
+
+  jtbd_framework:
+    arquivo: "jtbd-framework.yaml"
+    aplicacao: "Mapear Jobs To Be Done funcionais, emocionais e sociais"
+    usado_por:
+      - audience-mapper
+
+  culture_values_framework:
+    arquivo: "culture-values-framework.yaml"
+    aplicacao: "Definir valores autênticos e construir cultura de marca"
+    usado_por:
+      - culture-community-architect
+
+# ═══════════════════════════════════════════════════════════════════
+# PRÉ-REQUISITOS
+# ═══════════════════════════════════════════════════════════════════
+prerequisites:
+  obrigatorios:
+    - "Briefing BranDesire completo (Atendimento)"
+    - "Insights Document (Search & Insights)"
+    - "Pre-Domain Analysis"
+
+  recomendados:
+    - "Dados de mercado (Nielsen, LCA)"
+    - "Análise de tendências"
+    - "Entrevistas com stakeholders"
+
+# ═══════════════════════════════════════════════════════════════════
+# FASES DO WORKFLOW
+# ═══════════════════════════════════════════════════════════════════
+phases:
+
+  # FASE 1: MAPEAMENTO DE AUDIÊNCIA (primeira fase, alimenta todas as demais)
+  - phase: 1
+    name: "Audience Deep Dive"
+    duracao: "1-2 dias"
+    agente_principal: audience-mapper
+
+    frameworks_aplicados:
+      - kahneman-dual-systems.yaml
+      - jtbd-framework.yaml
+
+    tasks:
+      - task: build-personas
+        description: "Construir personas com profundidade psicográfica"
+        framework: "Kahneman - entender decisões Sistema 1 vs 2"
+        output: "Persona Documents"
+
+      - task: map-jtbd
+        description: "Mapear Jobs To Be Done em 3 níveis"
+        framework: "JTBD - Big/Medium/Small Jobs"
+        niveis:
+          big_job: "Transformação de vida desejada"
+          medium_job: "Objetivo específico"
+          small_job: "Tarefa imediata"
+        output: "JTBD Maps"
+
+      - task: create-empathy-maps
+        description: "Mapas de empatia por persona"
+        output: "Empathy Maps"
+
+      - task: identify-tensions
+        description: "Identificar pontos de tensão (quer X mas Y)"
+        output: "Tension Points"
+
+    checkpoint:
+      question: "Audiência profundamente mapeada?"
+      criteria:
+        - "Personas com JTBD definidos"
+        - "Decisões Sistema 1/2 identificadas"
+        - "Tensões mapeadas"
+
+  # FASE 2: IDENTIDADE NARRATIVA (depende da audiência para propósito autêntico)
+  - phase: 2
+    name: "Narrative Identity"
+    duracao: "1-2 dias"
+    agente_principal: narrative-identity-architect
+    depende_de: [phase_1]
+
+    frameworks_aplicados:
+      - brand-mythology-harari.yaml
+      - origin-story-framework.yaml
+
+    tasks:
+      - task: build-ikigai
+        description: "Encontrar interseção de propósito"
+        output: "Ikigai Diagram"
+
+      - task: define-golden-circle
+        description: "Definir Why, How, What (Sinek)"
+        output: "Golden Circle"
+
+      - task: craft-origin-story
+        description: "Criar narrativa de origem usando Jornada do Herói"
+        framework: "Origin Story Framework + Harari (mitologia)"
+        output: "Origin Story Document"
+
+      - task: establish-pov
+        description: "Estabelecer ponto de vista diferenciador"
+        framework: "Harari - Ficções Intersubjetivas"
+        componentes:
+          - "Core Beliefs (3-5)"
+          - "Contrarian Takes"
+          - "Inimigo comum"
+          - "Visão de mundo ideal"
+        output: "Brand POV Manifesto"
+
+    checkpoint:
+      question: "Identidade narrativa autêntica?"
+      criteria:
+        - "Propósito inspirador (não genérico)"
+        - "Origin Story memorável"
+        - "POV diferenciador"
+
+  # FASE 3: PERSONALIDADE DE MARCA
+  - phase: 3
+    name: "Brand Personality"
+    duracao: "1 dia"
+    agente_principal: brand-personality-architect
+    depende_de: [phase_2]
+
+    frameworks_aplicados:
+      - kahneman-dual-systems.yaml
+      - brand-personality-aaker.yaml
+
+    tasks:
+      - task: map-primary-archetype
+        description: "Mapear arquétipo dominante"
+        framework: "12 Arquétipos de Jung"
+        output: "Archetype Profile"
+
+      - task: define-voice-personality
+        description: "Definir personalidade de voz"
+        framework: "Kahneman - tom que ativa Sistema 1"
+        dimensoes:
+          - "Formalidade: formal ↔ casual"
+          - "Energia: calmo ↔ energético"
+          - "Humor: sério ↔ bem-humorado"
+          - "Posição: neutro ↔ opinativo"
+        output: "Voice Personality Definition"
+
+      - task: establish-relational-posture
+        description: "Estabelecer postura relacional"
+        opcoes:
+          - "Guru (ensina)"
+          - "Companheiro (acompanha)"
+          - "Provocador (desafia)"
+          - "Facilitador (capacita)"
+          - "Mentor (guia)"
+        output: "Relational Posture Guide"
+
+    checkpoint:
+      question: "Personalidade coerente e diferenciada?"
+      criteria:
+        - "Arquétipo alinhado com propósito"
+        - "Tom de voz claro"
+        - "Postura definida"
+
+  # FASE 4: CULTURA E COMUNIDADE
+  - phase: 4
+    name: "Culture & Community"
+    duracao: "1 dia"
+    agente_principal: culture-community-architect
+    depende_de: [phase_3]
+
+    frameworks_aplicados:
+      - culture-values-framework.yaml
+      - brand-mythology-harari.yaml
+
+    tasks:
+      - task: define-core-values
+        description: "Definir 3-5 valores core (não aspiracionais)"
+        framework: "Lencioni - valores autênticos vs genéricos"
+        criterios:
+          - "Já praticados (não aspiracionais)"
+          - "Diferenciadores (não genéricos)"
+          - "Acionáveis (guiam decisões)"
+        output: "Values & Culture Code"
+
+      - task: design-community-blueprint
+        description: "Desenhar blueprint de comunidade"
+        framework: "Atkin/Godin - tribos e pertencimento"
+        elementos:
+          - "Shared Identity (quem somos)"
+          - "Shared Rituals (o que fazemos)"
+          - "Shared Language (como falamos)"
+          - "Shared Enemies (contra quem)"
+        output: "Community Blueprint"
+
+      - task: establish-cultural-position
+        description: "Estabelecer posição cultural"
+        framework: "Harari - ficções que unem grupos"
+        espectro:
+          conservador: "Mantém tradições"
+          neutro: "Evita posições"
+          progressista: "Abraça mudanças"
+          ativista: "Lidera mudanças"
+        output: "Cultural Position"
+
+    checkpoint:
+      question: "Cultura autêntica e inspiradora?"
+      criteria:
+        - "Valores praticados (não só declarados)"
+        - "Comunidade bem definida"
+        - "Posição cultural clara"
+
+  # FASE 5: SÍNTESE ESTRATÉGICA
+  - phase: 5
+    name: "Strategic Synthesis"
+    duracao: "1 dia"
+    agente_principal: strategic-synthesizer
+    depende_de: [phase_4]
+
+    frameworks_aplicados:
+      - kahneman-dual-systems.yaml
+      - brand-mythology-harari.yaml
+
+    tasks:
+      - task: verify-coherence
+        description: "Verificar coerência entre todos os elementos"
+        matriz:
+          - "Propósito × Arquétipo"
+          - "Arquétipo × Tom"
+          - "Tom × Valores"
+          - "Valores × Público"
+        output: "Coherence Matrix"
+
+      - task: craft-positioning-statement
+        description: "Criar Positioning Statement"
+        formato: |
+          Para [público-alvo],
+          [marca] é a [categoria]
+          que [benefício diferenciador]
+          porque [razões para crer].
+        output: "Positioning Statement"
+
+      - task: build-strategy-document
+        description: "Compilar Brand Strategy Document"
+        secoes:
+          - "Executive Summary"
+          - "Audience Insights (JTBD, Kahneman)"
+          - "Purpose & Mission"
+          - "Origin Story (Harari)"
+          - "Brand POV"
+          - "Personality Profile"
+          - "Values & Culture"
+          - "Positioning Statement"
+        output: "Brand Strategy Document"
+
+      - task: prepare-unniko-handoff
+        description: "Preparar handoff para UNNIKO"
+        output: "UNNIKO Handoff Package"
+
+    checkpoint:
+      question: "Estratégia sólida para handoff?"
+      criteria:
+        - "Todos os elementos coerentes"
+        - "Positioning Statement claro"
+        - "Documento completo"
+
+# ═══════════════════════════════════════════════════════════════════
+# ENTREGÁVEIS
+# ═══════════════════════════════════════════════════════════════════
+deliverables:
+  principal:
+    - "Brand Strategy Document"
+
+  componentes:
+    audience:
+      - "Persona Documents"
+      - "JTBD Maps"
+      - "Empathy Maps"
+      - "Tension Points"
+
+    narrative:
+      - "Ikigai Diagram"
+      - "Golden Circle"
+      - "Origin Story Document"
+      - "Brand POV Manifesto"
+
+    personality:
+      - "Archetype Profile"
+      - "Voice Personality Definition"
+      - "Relational Posture Guide"
+
+    culture:
+      - "Values & Culture Code"
+      - "Community Blueprint"
+      - "Cultural Position"
+
+    synthesis:
+      - "Coherence Matrix"
+      - "Positioning Statement"
+      - "UNNIKO Handoff Package"
+
+# ═══════════════════════════════════════════════════════════════════
+# HANDOFF
+# ═══════════════════════════════════════════════════════════════════
+handoff:
+  destino: "UNNIKO (Brand Director)"
+  entrega: "Brand Strategy Document + Handoff Package"
+  checkpoint: 2
+  proximo_workflow: "wf-brand-identity"
+
+# ═══════════════════════════════════════════════════════════════════
+# DATA FILES REFERENCIADOS
+# ═══════════════════════════════════════════════════════════════════
+data_files:
+  # Frameworks curados (2026-02)
+  - kahneman-dual-systems.yaml
+  - brand-mythology-harari.yaml
+  - jtbd-framework.yaml
+  - culture-values-framework.yaml
+  # Frameworks existentes
+  - taxonomia-diferenciais.yaml
+  - kapferer-prism.yaml
+  - brand-personality-aaker.yaml
+  - origin-story-framework.yaml

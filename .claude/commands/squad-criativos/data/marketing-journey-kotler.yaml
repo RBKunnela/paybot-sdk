@@ -1,0 +1,461 @@
+# Marketing Journey - Kotler 5As e Evolução do Marketing
+# Baseado em: Marketing 3.0, 4.0, 5.0 (Philip Kotler et al.)
+# Squad: storYOURtelling + Growth Ops
+# Usado por: funnel-architect, campaign-optimizer, social-media-strategist
+
+metadata:
+  name: "Jornada de Marketing e Modelo 5As"
+  version: "1.0"
+  sources:
+    - "Marketing 3.0 (Kotler, Kartajaya, Setiawan, 2010)"
+    - "Marketing 4.0 (2017)"
+    - "Marketing 5.0 (2021)"
+  aplicacao: "Jornada do cliente, funis, estratégia de conteúdo"
+
+# ═══════════════════════════════════════════════════════════════════
+# EVOLUÇÃO DO MARKETING (1.0 → 5.0)
+# ═══════════════════════════════════════════════════════════════════
+
+evolucao:
+
+  marketing_1_0:
+    era: "Industrial"
+    foco: "Produto"
+    objetivo: "Vender produtos"
+    visao_consumidor: "Comprador com necessidades físicas"
+    proposta: "Funcional"
+    mantra: "Produto bom se vende sozinho"
+
+  marketing_2_0:
+    era: "Informação"
+    foco: "Cliente"
+    objetivo: "Satisfazer e reter clientes"
+    visao_consumidor: "Consumidor inteligente com mente e coração"
+    proposta: "Funcional + Emocional"
+    mantra: "O cliente tem sempre razão"
+
+  marketing_3_0:
+    era: "Valores"
+    foco: "Ser Humano"
+    objetivo: "Fazer do mundo um lugar melhor"
+    visao_consumidor: "Ser humano completo com mente, coração e espírito"
+    proposta: "Funcional + Emocional + Espiritual"
+    mantra: "Marcas com propósito"
+
+    modelo_3i:
+      descricao: "Três componentes de marca bem-sucedida"
+      componentes:
+        brand_identity:
+          nome: "Identidade de Marca"
+          pergunta: "O que é a marca?"
+          posicionamento: "Mente do consumidor"
+
+        brand_integrity:
+          nome: "Integridade de Marca"
+          pergunta: "A marca entrega o que promete?"
+          posicionamento: "Espírito do consumidor"
+
+        brand_image:
+          nome: "Imagem de Marca"
+          pergunta: "Como a marca é percebida?"
+          posicionamento: "Coração do consumidor"
+
+      equilibrio: "Marcas fortes equilibram os 3"
+
+  marketing_4_0:
+    era: "Digital"
+    foco: "Combinação Online-Offline"
+    objetivo: "Engajar e converter na era conectada"
+    visao_consumidor: "Conectado, influenciado por comunidades"
+    proposta: "Integração multicanal"
+    mantra: "O poder está nas comunidades"
+
+    mudancas_chave:
+      de_exclusivo_para_inclusivo: "Marcas = plataformas para comunidades"
+      de_vertical_para_horizontal: "Peer influence > brand influence"
+      de_individual_para_social: "Decisões são coletivas"
+
+  marketing_5_0:
+    era: "Tecnologia para Humanidade"
+    foco: "Tech that empowers humanity"
+    objetivo: "Usar tecnologia para criar valor humano"
+    visao_consumidor: "Humano em mundo tecnológico"
+    proposta: "Tecnologia a serviço da humanidade"
+    mantra: "AI + Human = Melhor experiência"
+
+    cinco_elementos:
+      data_driven_marketing: "Decisões baseadas em dados"
+      predictive_marketing: "Antecipar necessidades"
+      contextual_marketing: "Mensagem certa, momento certo"
+      augmented_marketing: "AI + humanos trabalhando juntos"
+      agile_marketing: "Experimentação rápida"
+
+# ═══════════════════════════════════════════════════════════════════
+# MODELO 5As - JORNADA DO CLIENTE
+# ═══════════════════════════════════════════════════════════════════
+
+modelo_5as:
+
+  descricao: |
+    Evolução do funil AIDA para a era conectada.
+    Reconhece que jornada não é linear e comunidades influenciam.
+
+  comparacao_aida:
+    aida_tradicional:
+      fases:
+        - "Attention (Atenção)"
+        - "Interest (Interesse)"
+        - "Desire (Desejo)"
+        - "Action (Ação)"
+      problema: "Linear, individual, termina na compra"
+
+    5as_kotler:
+      fases:
+        - "Aware (Consciência)"
+        - "Appeal (Apelo)"
+        - "Ask (Busca)"
+        - "Act (Ação)"
+        - "Advocate (Advocacia)"
+      vantagem: "Não-linear, social, continua pós-compra"
+
+  as_cinco_fases:
+
+    # 1. AWARE (Consciência)
+    aware:
+      nome: "Aware (Consciência)"
+      descricao: "Cliente toma conhecimento da marca"
+      pergunta_cliente: "Eu conheço?"
+
+      fontes_awareness:
+        passiva:
+          - "Publicidade"
+          - "Boca a boca"
+          - "Experiência passada"
+          - "Conteúdo orgânico"
+
+        ativa:
+          - "Pesquisa intencional"
+          - "Comparação de opções"
+
+      metricas:
+        - "Brand awareness (aided/unaided)"
+        - "Reach"
+        - "Impressões"
+        - "SOV (Share of Voice)"
+
+      taticas:
+        - "Mídia de massa (quando cabe)"
+        - "Content marketing para discovery"
+        - "SEO para termos de categoria"
+        - "Parcerias para exposição"
+        - "PR e earned media"
+
+    # 2. APPEAL (Apelo)
+    appeal:
+      nome: "Appeal (Apelo)"
+      descricao: "Marca entra no conjunto de consideração"
+      pergunta_cliente: "Eu gosto?"
+
+      filtro: |
+        De todas as marcas conhecidas (Aware),
+        quais criam atração suficiente para considerar?
+
+      drivers_de_apelo:
+        racional:
+          - "Features relevantes"
+          - "Preço adequado"
+          - "Disponibilidade"
+
+        emocional:
+          - "Identificação"
+          - "Status/aspiração"
+          - "Confiança"
+
+        social:
+          - "O que outros pensam"
+          - "Popularidade percebida"
+
+      metricas:
+        - "Brand consideration"
+        - "Preference"
+        - "CTR (Click-through rate)"
+        - "Engagement rate"
+
+      taticas:
+        - "Storytelling emocional"
+        - "Prova social visível"
+        - "Diferenciação clara"
+        - "Conteúdo de valor"
+
+    # 3. ASK (Busca)
+    ask:
+      nome: "Ask (Busca)"
+      descricao: "Cliente busca mais informações"
+      pergunta_cliente: "Estou convencido?"
+
+      comportamento:
+        o_momento: "Pesquisa antes de decidir"
+        canais:
+          - "Google/busca"
+          - "Reviews e avaliações"
+          - "Perguntar a amigos"
+          - "Redes sociais da marca"
+          - "Site/landing page"
+
+      f_factors:
+        friends: "Amigos e família"
+        families: "Comunidade/tribos"
+        fans: "Fãs da marca"
+        followers: "Seguidores/influencers"
+
+      metricas:
+        - "Search volume"
+        - "Review sentiment"
+        - "Time on site"
+        - "Pages per session"
+        - "FAQ engagement"
+
+      taticas:
+        - "SEO para dúvidas específicas"
+        - "Conteúdo educacional"
+        - "Reviews e casos de sucesso"
+        - "Comparativos honestos"
+        - "FAQ robusto"
+        - "Social proof abundante"
+
+    # 4. ACT (Ação)
+    act:
+      nome: "Act (Ação)"
+      descricao: "Cliente realiza a ação desejada"
+      pergunta_cliente: "Estou comprando?"
+
+      acoes_possiveis:
+        compra: "Aquisição do produto/serviço"
+        uso: "Utilização efetiva"
+        servico: "Interação pós-venda"
+        recompra: "Compra repetida"
+
+      barreira_comum: |
+        Muitas marcas têm bom Awareness e Appeal
+        mas perdem na conversão.
+        Fricção e medo são inimigos.
+
+      metricas:
+        - "Conversion rate"
+        - "Sales/Revenue"
+        - "Average order value"
+        - "Time to purchase"
+        - "Cart abandonment"
+
+      taticas:
+        - "Checkout otimizado"
+        - "Remoção de fricção"
+        - "Garantias (risk reversal)"
+        - "Ofertas de entrada"
+        - "Retargeting"
+        - "Follow-up de carrinho abandonado"
+
+    # 5. ADVOCATE (Advocacia)
+    advocate:
+      nome: "Advocate (Advocacia)"
+      descricao: "Cliente se torna promotor"
+      pergunta_cliente: "Eu recomendaria?"
+
+      niveis:
+        satisfeito: "Compra de novo, mas não fala"
+        leal: "Prefere a marca, fala se perguntado"
+        advocate: "Recomenda ativamente, defende"
+        embaixador: "Promove sem ser pedido"
+
+      poder_da_advocacia: |
+        Na era conectada, advocacia é o novo marketing.
+        Um advocate influencia dezenas a centenas.
+        WOM (word-of-mouth) > publicidade em credibilidade.
+
+      metricas:
+        - "NPS (Net Promoter Score)"
+        - "Referral rate"
+        - "User-generated content"
+        - "Share of voice orgânico"
+        - "Reviews/ratings"
+
+      taticas:
+        - "Experiência excepcional"
+        - "Programas de referral"
+        - "Comunidade de marca"
+        - "Reconhecimento de advocates"
+        - "Facilitar compartilhamento"
+        - "Surpreender positivamente"
+
+# ═══════════════════════════════════════════════════════════════════
+# PADRÕES DE JORNADA (ARQUÉTIPOS)
+# ═══════════════════════════════════════════════════════════════════
+
+arquetipos_jornada:
+
+  descricao: |
+    Diferentes categorias têm padrões de jornada típicos.
+    Entender o padrão ajuda a otimizar investimento.
+
+  door_knob:
+    nome: "Maçaneta de Porta"
+    forma: "Funil largo → estreito → largo"
+    padrao: "Alto Aware → Baixo Ask → Alto Act"
+    exemplo: "Produtos de conveniência (Coca-Cola, chiclete)"
+    implicacao: "Invista em awareness e disponibilidade"
+
+  goldfish:
+    nome: "Peixe Dourado"
+    forma: "Funil consistente"
+    padrao: "Aware ≈ Appeal ≈ Ask ≈ Act (poucos advocates)"
+    exemplo: "B2B commodities"
+    implicacao: "Trabalhe advocacia - diferencial possível"
+
+  trumpet:
+    nome: "Trompete"
+    forma: "Estreito → largo"
+    padrao: "Baixo Aware → Alto Advocate"
+    exemplo: "Marcas de luxo, nichos"
+    implicacao: "Foque em experiência excepcional"
+
+  funnel:
+    nome: "Funil Tradicional"
+    forma: "Largo → estreito progressivo"
+    padrao: "Alto Aware → Queda em cada fase"
+    exemplo: "Compras consideradas (carros, eletrônicos)"
+    implicacao: "Otimize cada fase, reduza vazamento"
+
+  bow_tie:
+    nome: "Gravata Borboleta"
+    forma: "Largo → estreito → largo"
+    padrao: "Alto Aware → Baixo Act → Alto Advocate"
+    exemplo: "Marcas amadas (Apple, Tesla)"
+    implicacao: "Continue investindo pós-venda"
+
+# ═══════════════════════════════════════════════════════════════════
+# MÉTRICAS BAR E PAR
+# ═══════════════════════════════════════════════════════════════════
+
+metricas_avancadas:
+
+  bar:
+    nome: "Brand Awareness Ratio"
+    formula: "Aware / Total Market"
+    interpretacao: "Quão conhecida é a marca?"
+    benchmark: "Varia por categoria"
+
+  par:
+    nome: "Purchase Action Ratio"
+    formula: "Act / Aware"
+    interpretacao: "Taxa de conversão de awareness"
+    uso: "Eficiência do funil"
+
+  car:
+    nome: "Customer Advocacy Ratio"
+    formula: "Advocate / Act"
+    interpretacao: "Taxa de clientes que advogam"
+    benchmark: ">50% é excelente"
+
+  diagnostico:
+    baixo_bar: "Problema de awareness - invista em reach"
+    baixo_par: "Problema de conversão - trabalhe Ask e Act"
+    baixo_car: "Problema de experiência - melhore produto/serviço"
+
+# ═══════════════════════════════════════════════════════════════════
+# APLICAÇÃO POR FASE
+# ═══════════════════════════════════════════════════════════════════
+
+aplicacao_por_fase:
+
+  aware:
+    objetivo: "Maximizar alcance relevante"
+    canais:
+      - "Social media (alcance)"
+      - "SEO (termos de categoria)"
+      - "PR e mídia"
+      - "Influencers de alcance"
+    conteudo:
+      - "Brand awareness"
+      - "Educational/categoria"
+      - "Entretenimento"
+
+  appeal:
+    objetivo: "Criar conexão e preferência"
+    canais:
+      - "Social media (engajamento)"
+      - "Content marketing"
+      - "Email (nurturing)"
+    conteudo:
+      - "Storytelling"
+      - "Diferenciação"
+      - "Casos de sucesso"
+      - "Behind the scenes"
+
+  ask:
+    objetivo: "Responder dúvidas e construir confiança"
+    canais:
+      - "SEO (long tail)"
+      - "Site/landing pages"
+      - "Reviews platforms"
+      - "Chat/suporte"
+    conteudo:
+      - "Comparativos"
+      - "FAQ detalhado"
+      - "Testemunhos"
+      - "Demonstrações"
+
+  act:
+    objetivo: "Facilitar conversão"
+    canais:
+      - "E-commerce"
+      - "Landing pages"
+      - "Retargeting"
+      - "Email (ação)"
+    taticas:
+      - "Checkout simplificado"
+      - "Ofertas limitadas"
+      - "Risk reversal"
+      - "Upsell/cross-sell"
+
+  advocate:
+    objetivo: "Transformar clientes em promotores"
+    canais:
+      - "Comunidade"
+      - "Email (relacionamento)"
+      - "Programas de referral"
+    taticas:
+      - "Surpresa e encantamento"
+      - "Reconhecimento"
+      - "Facilitar compartilhamento"
+      - "UGC incentivado"
+
+checklist_5as:
+  aware:
+    - "[ ] Brand awareness medido?"
+    - "[ ] Canais de discovery mapeados?"
+    - "[ ] SOV competitivo?"
+
+  appeal:
+    - "[ ] Diferenciação clara?"
+    - "[ ] Storytelling emocional?"
+    - "[ ] Prova social visível?"
+
+  ask:
+    - "[ ] FAQ robusto?"
+    - "[ ] Reviews gerenciados?"
+    - "[ ] Comparativos honestos?"
+
+  act:
+    - "[ ] Fricção minimizada?"
+    - "[ ] Risco removido (garantia)?"
+    - "[ ] Follow-up de abandono?"
+
+  advocate:
+    - "[ ] NPS monitorado?"
+    - "[ ] Programa de referral?"
+    - "[ ] Comunidade ativa?"
+
+referencias:
+  - "Kotler, P. et al. - Marketing 3.0 (2010)"
+  - "Kotler, P. et al. - Marketing 4.0: Moving from Traditional to Digital (2017)"
+  - "Kotler, P. et al. - Marketing 5.0: Technology for Humanity (2021)"

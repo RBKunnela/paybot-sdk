@@ -1,0 +1,76 @@
+# Task: Produce Content
+# Squad: squAId-criaTTivados / content-ops
+# Responsável: content-producer
+
+metadata:
+  name: "produce-content"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "content-ops"
+  responsavel: "content-producer"
+  tipo: task
+
+descricao: |
+  Produção de conteúdo em múltiplos formatos seguindo o Creative Brief.
+  Adaptação de copy, legendas e assets visuais por plataforma.
+
+entrada:
+  - campo: content_strategy_document
+    tipo: string
+    origem: "plan-content-strategy"
+    obrigatorio: true
+    descricao: "Estratégia de conteúdo com formatos e plataformas"
+  - campo: creative_brief
+    tipo: string
+    origem: "produce-creative-brief"
+    obrigatorio: true
+    descricao: "Creative Brief com Big Idea e Tom de Voz"
+
+saida:
+  - campo: content_package
+    tipo: string
+    destino: "schedule-publish"
+    persistido: true
+    descricao: "Copy + legendas + assets por plataforma"
+
+passos:
+  1:
+    nome: "Adaptar copy por plataforma"
+    descricao: "3 hooks + 2 CTAs por post para cada plataforma"
+    agente: "content-producer"
+  2:
+    nome: "Criar legendas"
+    descricao: "Estrutura: Hook, Body, CTA, Hashtags"
+    agente: "content-producer"
+  3:
+    nome: "Criar assets visuais"
+    descricao: "Formatos: 1:1 (Feed), 9:16 (Stories/Reels), 16:9 (YouTube)"
+    agente: "visual-creator"
+  4:
+    nome: "Otimizar hooks"
+    descricao: "Curiosity gap, Contrarian, Specific number, Direct address"
+    agente: "content-producer"
+  5:
+    nome: "Definir engagement triggers"
+    descricao: "Perguntas, polls, FOMO, CTAs estratégicos"
+    agente: "content-producer"
+  6:
+    nome: "Aplicar checklist STEPPS"
+    descricao: "Social Currency, Triggers, Emotion, Public, Practical, Stories"
+    agente: "content-producer"
+  7:
+    nome: "Revisar qualidade"
+    descricao: "Ortografia, links, menções, hashtags, alinhamento com marca"
+    agente: "content-director"
+
+checklist:
+  - "[ ] Copy adaptado por plataforma"
+  - "[ ] Legendas com estrutura Hook/Body/CTA"
+  - "[ ] Assets nos formatos corretos"
+  - "[ ] Hooks otimizados"
+  - "[ ] STEPPS checklist aplicado"
+  - "[ ] Revisão de qualidade feita"
+
+criterios_aceitacao:
+  - "Conteúdo alinhado com Tom de Voz"
+  - "Formatos nativos de cada plataforma respeitados"

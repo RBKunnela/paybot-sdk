@@ -1,0 +1,466 @@
+# Método STAR - Storytelling para Carreiras
+# Framework de narrativa para entrevistas, CVs e marca pessoal
+# Referência para: storYOURtelling (marca pessoal, narrativas de carreira)
+
+metadata:
+  name: "Método STAR - Storytelling de Carreira"
+  version: "1.0"
+  origem: "Práticas de RH e desenvolvimento de carreira"
+  aplicacao: "Entrevistas, CVs, marca pessoal, cases profissionais"
+
+# ═══════════════════════════════════════════════════════════════════
+# CONCEITO CENTRAL
+# ═══════════════════════════════════════════════════════════════════
+definicao:
+  conceito: |
+    O Método STAR é um framework para estruturar respostas comportamentais
+    de forma clara e impactante. Transforma experiências profissionais
+    em narrativas memoráveis com começo, meio e fim.
+
+  principio: |
+    Recrutadores buscam evidências de comportamento passado para
+    prever comportamento futuro. STAR fornece a estrutura para
+    apresentar essas evidências de forma convincente.
+
+  dado_chave: |
+    69% dos recrutadores gastam menos de 7 segundos em cada CV.
+    Candidatos com resultados quantificados têm 47% mais chance
+    de serem chamados.
+
+# ═══════════════════════════════════════════════════════════════════
+# OS 4 ELEMENTOS DO STAR
+# ═══════════════════════════════════════════════════════════════════
+elementos:
+
+  # S - SITUAÇÃO
+  situacao:
+    nome: "Situação"
+    letra: "S"
+    icone: "🎬"
+
+    definicao: |
+      Contexto onde a história aconteceu. Estabelece o cenário
+      para que o ouvinte entenda o desafio.
+
+    perguntas_guia:
+      - "Onde você trabalhava?"
+      - "Qual era seu cargo/função?"
+      - "Qual era o contexto da empresa/time?"
+      - "O que estava acontecendo naquele momento?"
+
+    dicas:
+      - "Seja específico, mas conciso"
+      - "Inclua detalhes relevantes para o impacto"
+      - "Não se alongue - máximo 20% do tempo"
+      - "Estabeleça stakes (o que estava em jogo)"
+
+    exemplo:
+      fraco: "Eu trabalhava em uma empresa de tecnologia"
+      forte: |
+        Em 2023, como coordenador de marketing da TechCorp (startup B2B
+        com 50 funcionários), enfrentávamos queda de 30% nos leads
+        qualificados em um momento crítico de captação de investimento.
+
+    conexao_storytelling: |
+      Equivale ao "Mundo Comum" da Jornada do Herói - estabelece
+      o status quo antes da transformação.
+
+  # T - TAREFA
+  tarefa:
+    nome: "Tarefa"
+    letra: "T"
+    icone: "🎯"
+
+    definicao: |
+      Seu papel específico e o desafio que precisava resolver.
+      O que era esperado de você naquela situação.
+
+    perguntas_guia:
+      - "Qual era sua responsabilidade?"
+      - "O que você precisava entregar?"
+      - "Qual era o prazo?"
+      - "Quem dependia de você?"
+
+    dicas:
+      - "Seja claro sobre SEU papel (não do time)"
+      - "Inclua métricas quando possível"
+      - "Mostre a complexidade do desafio"
+      - "Conecte com expectativa/objetivo"
+
+    exemplo:
+      fraco: "Eu precisava melhorar o marketing"
+      forte: |
+        Minha missão era reverter a queda de leads em 60 dias,
+        com orçamento 40% menor que o trimestre anterior,
+        mantendo o time de 3 pessoas motivado durante a crise.
+
+    conexao_storytelling: |
+      Equivale ao "Chamado à Aventura" - o desafio que precisa
+      ser enfrentado.
+
+  # A - AÇÃO
+  acao:
+    nome: "Ação"
+    letra: "A"
+    icone: "⚡"
+
+    definicao: |
+      O que você fez especificamente para resolver o problema.
+      Esta é a parte mais importante - mostra seu comportamento real.
+
+    perguntas_guia:
+      - "O que VOCÊ fez (não o time)?"
+      - "Quais passos tomou?"
+      - "Por que escolheu essa abordagem?"
+      - "Que habilidades usou?"
+      - "Como superou obstáculos?"
+
+    dicas:
+      - "Use 'eu', não 'nós' (mostre SUA contribuição)"
+      - "Seja específico nas ações"
+      - "Mostre pensamento estratégico"
+      - "Inclua decisões difíceis"
+      - "Esta seção deve ter ~50% do tempo"
+
+    exemplo:
+      fraco: "Implementei novas estratégias de marketing"
+      forte: |
+        Primeiro, analisei dados dos últimos 12 meses e identifiquei que
+        nosso melhor canal (LinkedIn) estava subinvestido. Então:
+        1. Negociei remanejamento de 60% do budget para LinkedIn Ads
+        2. Criei programa de employee advocacy com 15 porta-vozes internos
+        3. Desenvolvi série de webinars com clientes satisfeitos
+        4. Implementei lead scoring para focar em prospects quentes
+        A resistência inicial da diretoria me levou a propor um piloto
+        de 2 semanas com métricas claras de sucesso.
+
+    conexao_storytelling: |
+      Equivale à "Jornada/Provação" - os desafios enfrentados
+      e as escolhas feitas pelo herói.
+
+  # R - RESULTADO
+  resultado:
+    nome: "Resultado"
+    letra: "R"
+    icone: "🏆"
+
+    definicao: |
+      O impacto mensurável das suas ações. Sempre que possível,
+      use números, percentuais, valores.
+
+    perguntas_guia:
+      - "Qual foi o resultado quantitativo?"
+      - "Como isso impactou o negócio?"
+      - "O que você aprendeu?"
+      - "O que faria diferente?"
+
+    dicas:
+      - "Números são obrigatórios quando possível"
+      - "Compare antes/depois"
+      - "Inclua impacto no negócio"
+      - "Mostre aprendizado (humildade)"
+      - "Conecte com benefício para empregador"
+
+    exemplo:
+      fraco: "Os resultados foram muito bons"
+      forte: |
+        Em 45 dias (antes do prazo), aumentamos leads qualificados em 85%,
+        com CAC 30% menor. O programa de advocacy gerou 12 oportunidades
+        orgânicas. A startup fechou a rodada de investimento, e minha
+        estratégia virou template para outros times. Aprendi que em crise,
+        foco supera volume.
+
+    conexao_storytelling: |
+      Equivale ao "Retorno com Elixir" - a transformação completa
+      e o aprendizado adquirido.
+
+# ═══════════════════════════════════════════════════════════════════
+# VARIAÇÕES DO MÉTODO
+# ═══════════════════════════════════════════════════════════════════
+variacoes:
+
+  star_l:
+    nome: "STAR-L (com Learning)"
+    estrutura: "Situação → Tarefa → Ação → Resultado → Learning"
+    quando_usar: "Quando quer demonstrar crescimento e autocrítica"
+    adicao: |
+      Após o resultado, inclua reflexão:
+      "O que eu faria diferente hoje..."
+      "Isso me ensinou que..."
+
+  star_ar:
+    nome: "STAR-AR (Action-Result intercalados)"
+    estrutura: "S → T → A1 → R1 → A2 → R2 → A3 → R3"
+    quando_usar: "Histórias longas com múltiplas etapas"
+    beneficio: "Mantém engajamento com vitórias parciais"
+
+  car:
+    nome: "CAR (Challenge-Action-Result)"
+    estrutura: "Desafio → Ação → Resultado"
+    quando_usar: "Respostas mais curtas, CVs"
+    diferenca: "Une Situação e Tarefa em 'Desafio'"
+
+  par:
+    nome: "PAR (Problem-Action-Result)"
+    estrutura: "Problema → Ação → Resultado"
+    quando_usar: "Foco em resolução de problemas"
+    diferenca: "Enfatiza o problema a ser resolvido"
+
+# ═══════════════════════════════════════════════════════════════════
+# APLICAÇÃO POR CONTEXTO
+# ═══════════════════════════════════════════════════════════════════
+aplicacao_contexto:
+
+  # ENTREVISTAS
+  entrevistas:
+    contexto: "Entrevistas por competência"
+
+    perguntas_tipicas:
+      - "Conte sobre uma vez que você..."
+      - "Descreva uma situação em que..."
+      - "Dê um exemplo de quando..."
+      - "Como você lidou com..."
+
+    tempo_ideal: "2-3 minutos por resposta"
+
+    dicas:
+      - "Prepare 5-8 histórias STAR versáteis"
+      - "Adapte mesma história para diferentes perguntas"
+      - "Pratique em voz alta"
+      - "Termine conectando com a vaga"
+
+    framework_preparacao:
+      passo_1: "Liste competências da vaga"
+      passo_2: "Para cada competência, prepare 1-2 histórias"
+      passo_3: "Estruture no formato STAR"
+      passo_4: "Pratique até fluir naturalmente"
+      passo_5: "Prepare versão curta (1 min) e longa (3 min)"
+
+  # CV / CURRÍCULO
+  cv:
+    contexto: "Descrição de experiências no CV"
+
+    estrutura_bullet: |
+      [AÇÃO] + [CONTEXTO] que resultou em [RESULTADO QUANTIFICADO]
+
+    exemplos:
+      fraco: "Responsável pelo marketing digital"
+      forte: "Liderei reestruturação de marketing digital que aumentou leads em 85% com 30% menos investimento"
+
+    dicas:
+      - "Comece com verbo de ação forte"
+      - "Inclua números sempre que possível"
+      - "Foque em resultados, não responsabilidades"
+      - "Máximo 2 linhas por bullet"
+
+    verbos_acao_fortes:
+      lideranca: ["Liderei", "Orquestrei", "Direcionei", "Coordenei"]
+      criacao: ["Desenvolvi", "Criei", "Implementei", "Lancei"]
+      melhoria: ["Otimizei", "Aumentei", "Reduzi", "Transformei"]
+      analise: ["Identifiquei", "Diagnostiquei", "Analisei", "Mapeei"]
+
+  # LINKEDIN
+  linkedin:
+    contexto: "Posts e resumo profissional"
+
+    estrutura_post:
+      hook: "Resultado impactante ou pergunta provocativa"
+      situacao: "1-2 linhas de contexto"
+      acao: "O que você fez (foco em insight)"
+      resultado: "Números + aprendizado"
+      cta: "Pergunta ou reflexão para engajamento"
+
+    exemplo: |
+      Aumentei leads em 85% com 40% menos orçamento.
+
+      Em 2023, nossa startup enfrentava crise de captação.
+
+      O que fiz: Apostei tudo em um canal subestimado (LinkedIn)
+      e criei programa de employee advocacy.
+
+      Resultado: Em 45 dias, viramos o jogo. A startup fechou
+      a rodada de investimento.
+
+      Lição: Em crise, foco > volume.
+
+      Qual foi sua maior virada profissional?
+
+  # MARCA PESSOAL
+  marca_pessoal:
+    contexto: "Construção de narrativa de carreira"
+
+    principio: |
+      Sua marca pessoal é a soma das histórias STAR que você conta.
+      Escolha histórias que reforcem seu posicionamento desejado.
+
+    framework:
+      passo_1: "Defina como quer ser percebido"
+      passo_2: "Selecione 3-5 histórias que evidenciam isso"
+      passo_3: "Pratique contá-las em diferentes formatos"
+      passo_4: "Use consistentemente em todos os canais"
+
+    arquetipos_carreira:
+      solucionador: "Histórias de resolver problemas complexos"
+      inovador: "Histórias de criar algo novo"
+      lider: "Histórias de inspirar e guiar times"
+      especialista: "Histórias de domínio técnico profundo"
+      conector: "Histórias de unir pessoas e ideias"
+
+# ═══════════════════════════════════════════════════════════════════
+# BANCO DE COMPETÊNCIAS + HISTÓRIAS
+# ═══════════════════════════════════════════════════════════════════
+banco_competencias:
+  descricao: |
+    Para cada competência comum em processos seletivos, prepare
+    pelo menos uma história STAR. Use este guia como base.
+
+  competencias:
+    lideranca:
+      perguntas_tipicas:
+        - "Conte sobre quando você liderou um projeto"
+        - "Descreva uma situação de conflito no time"
+      elementos_buscar:
+        - "Visão e direcionamento"
+        - "Desenvolvimento de pessoas"
+        - "Tomada de decisão sob pressão"
+        - "Gestão de conflitos"
+
+    resolucao_problemas:
+      perguntas_tipicas:
+        - "Conte sobre um problema complexo que resolveu"
+        - "Descreva uma situação sem solução óbvia"
+      elementos_buscar:
+        - "Análise estruturada"
+        - "Criatividade na solução"
+        - "Persistência"
+        - "Resultados mensuráveis"
+
+    trabalho_em_equipe:
+      perguntas_tipicas:
+        - "Conte sobre um sucesso coletivo"
+        - "Descreva colaboração com área diferente"
+      elementos_buscar:
+        - "Contribuição individual clara"
+        - "Habilidade de colaborar"
+        - "Gestão de diferentes perspectivas"
+
+    adaptabilidade:
+      perguntas_tipicas:
+        - "Conte sobre mudança inesperada"
+        - "Descreva situação fora da zona de conforto"
+      elementos_buscar:
+        - "Flexibilidade"
+        - "Aprendizado rápido"
+        - "Resiliência"
+
+    comunicacao:
+      perguntas_tipicas:
+        - "Conte sobre apresentação importante"
+        - "Descreva convencer stakeholder difícil"
+      elementos_buscar:
+        - "Clareza"
+        - "Adaptação ao público"
+        - "Influência"
+
+# ═══════════════════════════════════════════════════════════════════
+# CHECKLIST DE QUALIDADE STAR
+# ═══════════════════════════════════════════════════════════════════
+checklist:
+  situacao:
+    - "Contexto está claro?"
+    - "Stakes estão evidentes?"
+    - "É específico (não genérico)?"
+    - "Ocupa máximo 20% do tempo?"
+
+  tarefa:
+    - "SEU papel está claro?"
+    - "Há métricas/objetivos?"
+    - "Complexidade está evidente?"
+
+  acao:
+    - "Usa 'eu' (não 'nós')?"
+    - "Ações são específicas?"
+    - "Mostra pensamento estratégico?"
+    - "Inclui desafios superados?"
+    - "Ocupa ~50% do tempo?"
+
+  resultado:
+    - "Tem números?"
+    - "Mostra antes/depois?"
+    - "Conecta com impacto no negócio?"
+    - "Inclui aprendizado?"
+
+  geral:
+    - "Responde à pergunta feita?"
+    - "Cabe em 2-3 minutos?"
+    - "Flui naturalmente?"
+    - "Conecta com a vaga/oportunidade?"
+
+# ═══════════════════════════════════════════════════════════════════
+# ANTI-PADRÕES
+# ═══════════════════════════════════════════════════════════════════
+anti_padroes:
+  - nome: "O time fez tudo"
+    problema: "Usa 'nós' o tempo todo, esconde contribuição pessoal"
+    correcao: "Seja claro sobre O QUE VOCÊ fez especificamente"
+
+  - nome: "Vagueza crônica"
+    problema: "'Melhorei os resultados', sem números"
+    correcao: "Sempre inclua métricas, mesmo estimadas"
+
+  - nome: "Monólogo infinito"
+    problema: "5+ minutos de história"
+    correcao: "Pratique versão de 2-3 minutos"
+
+  - nome: "Situação sem fim"
+    problema: "Muito contexto, pouca ação"
+    correcao: "Limite situação a 20% do tempo"
+
+  - nome: "Resultado implícito"
+    problema: "'E deu certo' sem detalhar"
+    correcao: "Quantifique e conecte ao impacto"
+
+  - nome: "Autocrítica zero"
+    problema: "Tudo perfeito, nenhum aprendizado"
+    correcao: "Inclua o que faria diferente"
+
+# ═══════════════════════════════════════════════════════════════════
+# CONEXÕES COM OUTROS FRAMEWORKS
+# ═══════════════════════════════════════════════════════════════════
+conexoes:
+
+  jornada_heroi:
+    relacao: "STAR é jornada do herói comprimida"
+    mapeamento:
+      situacao: "Mundo Comum"
+      tarefa: "Chamado à Aventura"
+      acao: "Provação/Jornada"
+      resultado: "Retorno com Elixir"
+
+  5beats:
+    relacao: "STAR para conteúdo longo, 5BEATS para curto"
+    como_usar: "Use 5BEATS para versão LinkedIn/Reels"
+
+  golden_sentence:
+    relacao: "Golden Sentence é STAR ultra-comprimido"
+    como_usar: "Use para headline de CV ou bio"
+
+  employer_branding:
+    relacao: "Histórias STAR de colaboradores alimentam EVP"
+    como_usar: "Colete STARs para employee advocacy"
+
+# ═══════════════════════════════════════════════════════════════════
+# USO PELOS AGENTES
+# ═══════════════════════════════════════════════════════════════════
+uso_pelos_agentes:
+  - agente: "Narrative-Designer (storYOURtelling)"
+    aplicacao: "Estruturar histórias de carreira"
+
+  - agente: "Copywriter (storYOURtelling)"
+    aplicacao: "CVs e perfis LinkedIn"
+
+  - agente: "Brand-Voice-Director (storYOURtelling)"
+    aplicacao: "Tom para marca pessoal"
+
+  - agente: "Content-Producer (Content-Ops)"
+    aplicacao: "Conteúdo de carreira para redes"

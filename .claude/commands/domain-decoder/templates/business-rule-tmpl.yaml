@@ -1,0 +1,208 @@
+# Business Rule Template
+# Domain Decoder — Individual Rule Entry Format
+# Version: 1.0
+#
+# USAGE INSTRUCTIONS:
+#   Copy this template for each new business rule extracted in Phase 3.
+#   Replace all {placeholder} values with actual extracted content.
+#   Remove all YAML comments before adding to business-rules.yaml.
+#   Required fields are marked [REQUIRED] — these must NEVER be empty.
+#   Optional fields are marked [IF APPLICABLE] — use null if not applicable.
+#
+# RULE FORMAT REFERENCE:
+#   condition: "IF {domain subject} {condition in domain language}"
+#   action:    "THEN {what the system does — in business terms, never code terms}"
+#   rationale: "BECAUSE {why this rule exists — the business reason}"
+#
+# CATEGORY DEFINITIONS:
+#   validation     — Guards that prevent invalid states (IF X THEN reject/error)
+#   calculation    — Formulas that compute a value (IF X THEN compute Y as...)
+#   routing        — Decision trees that route to different paths (IF X THEN route to...)
+#   access_control — Permission and eligibility checks (IF X THEN allow/deny access to...)
+#   transformation — Data transformations with business meaning (IF X THEN transform Y to Z)
+#   workflow       — State transitions and process triggers (IF X THEN transition state to...)
+#
+# CONFIDENCE LABEL RULES (non-negotiable):
+#   HIGH   — 3 or more independent source types confirmed the rule
+#   MEDIUM — 2 independent source types confirmed the rule
+#   LOW    — 1 source type only — always requires human validation
+#
+# SOURCE TYPES (7 total — each counts at most once for triangulation):
+#   code     — The actual if/else/switch implementation
+#   schema   — Database constraints (CHECK, NOT NULL, UNIQUE, FK)
+#   tests    — Test assertions encoding the same business expectation
+#   comments — Developer comments explaining the rule
+#   api      — API response codes, error messages, endpoint naming
+#   ui       — Frontend labels, form validation, disabled states
+#   logs     — Log messages describing the business event
+
+rule:
+  # ──────────────────────────────────────────────────────────────
+  # IDENTITY [REQUIRED]
+  # ──────────────────────────────────────────────────────────────
+  id: "BR-{NNN}"                          # Sequential, zero-padded, globally unique
+  name: "{Short descriptive rule name}"   # 5–10 word human-readable name
+  version: "1.0"                          # Incremented on revision
+  extraction_date: "{YYYY-MM-DD}"         # Date this rule was extracted
+
+  # ──────────────────────────────────────────────────────────────
+  # CLASSIFICATION [REQUIRED]
+  # ──────────────────────────────────────────────────────────────
+  category: "{validation | calculation | routing | access_control | transformation | workflow}"
+  bounded_context: "{Business area name — e.g., 'Order Management'}"
+  domain_entity: "{Primary entity this rule governs — e.g., 'Order'}"
+  subdomain_type: "{Core | Supporting | Generic}"
+
+  # ──────────────────────────────────────────────────────────────
+  # RULE STATEMENT [REQUIRED]
+  # ──────────────────────────────────────────────────────────────
+  condition: "IF {condition in domain language using entity/attribute names}"
+  action: "THEN {what the system does — in business terms, not code terms}"
+  rationale: "BECAUSE {why this rule exists — the business reason}"
+
+  # Set to true ONLY if rationale was inferred from context, not stated in code/comments
+  rationale_inferred: false
+  rationale_inference_basis: null          # [IF APPLICABLE] How rationale was inferred
+
+  # ──────────────────────────────────────────────────────────────
+  # CONFIDENCE [REQUIRED]
+  # ──────────────────────────────────────────────────────────────
+  confidence: "{HIGH | MEDIUM | LOW}"
+  confidence_score: null                  # Computed: completeness(0.3)+accuracy(0.25)+clarity(0.2)+traceability(0.15)+confidence(0.1)
+
+  # ──────────────────────────────────────────────────────────────
+  # EVIDENCE [REQUIRED — at least source_file and source_line]
+  # ──────────────────────────────────────────────────────────────
+  evidence:
+    # Primary evidence — where the rule is implemented in code [REQUIRED]
+    code:
+      source_file: "{relative/path/to/file.ts}"       # Relative to repo root
+      source_line: {N}                                 # Specific line number
+      source_function: "{functionName}"               # Containing function name
+      snippet: |                                       # Relevant code excerpt (max 10 lines)
+        {code_snippet}
+      additional_locations:                           # Other files implementing same rule
+        - file: "{path}"
+          line: {N}
+          note: "{why this location is relevant}"
+
+    # Schema evidence — database constraints enforcing this rule [IF APPLICABLE]
+    schema:
+      source_file: "{path/to/schema.prisma OR migration.sql}"
+      table_or_model: "{TableName}"
+      constraint: "{NOT NULL | CHECK | UNIQUE | FK — description of constraint}"
+      detail: "{What the constraint enforces in business terms}"
+
+    # Test evidence — test assertions encoding the same business expectation [IF APPLICABLE]
+    tests:
+      - source_file: "{path/to/test.spec.ts}"
+        source_line: {N}
+        assertion: "{What the test asserts in plain English}"
+        test_type: "{unit | integration | e2e}"
+
+    # Comment evidence — developer comments explaining the rule [IF APPLICABLE]
+    comments:
+      source_file: "{path}"
+      source_line: {N}
+      text: "{The comment text}"
+
+    # API evidence — API behavior encoding the rule [IF APPLICABLE]
+    api:
+      endpoint: "{METHOD /path}"
+      response_code: "{4XX | 5XX}"
+      error_code: "{ERROR_CODE_NAME}"
+      detail: "{What the API response reveals about the rule}"
+
+    # UI evidence — frontend encoding of the rule [IF APPLICABLE]
+    ui:
+      source_file: "{path/to/component.tsx}"
+      element: "{form field | button | error message | disabled state}"
+      text: "{The UI text that encodes the rule}"
+
+    # Log evidence — log messages describing the business event [IF APPLICABLE]
+    logs:
+      source_file: "{path}"
+      source_line: {N}
+      log_message: "{The log message text}"
+      level: "{info | warn | error}"
+
+    # Triangulation summary [REQUIRED]
+    source_count: {N}                     # Count of independent source TYPES (0–7)
+    sources_confirmed:                    # List only source types that confirmed the rule
+      - code                              # Always include if code was the source
+      # - schema
+      # - tests
+      # - comments
+      # - api
+      # - ui
+      # - logs
+    triangulated: {true | false}          # true if source_count >= 2
+
+  # ──────────────────────────────────────────────────────────────
+  # RELATIONSHIPS [IF APPLICABLE]
+  # ──────────────────────────────────────────────────────────────
+  related_entities:
+    - "{EntityName}"                      # Domain entities involved in this rule
+    - "{EntityName2}"
+
+  related_rules:
+    - rule_id: "BR-{NNN}"
+      relationship: "{depends_on | conflicts_with | extends | specializes}"
+      note: "{Why these rules are related}"
+
+  domain_events_triggered:               # Domain events this rule causes to be emitted
+    - "{EventName}"
+
+  # ──────────────────────────────────────────────────────────────
+  # VALIDATION STATE [REQUIRED]
+  # ──────────────────────────────────────────────────────────────
+  validation:
+    status: "{draft | roundtable_pending | accepted | accepted_revised | rejected | deferred | fast_tracked}"
+    extracted_by: "{agent-name}"          # Agent that extracted this rule
+    validated_by: "{agent-name | pending}" # validation-arbiter or "pending"
+    validation_date: "{YYYY-MM-DD | null}"
+
+    roundtable:
+      required: {true | false}           # Per routing rules in phase-5-validate.md
+      debate_id: "{RT-L5-NNN | null}"    # References the debate transcript
+      propositor_agent: "{agent-name | null}"
+      da_challenge_type: "{type | null}"
+      verdict: "{accepted | accepted_revised | rejected | deferred | null}"
+      revision_applied: "{Description of change if accepted_revised | null}"
+
+    # Set to true if this rule was revised during Roundtable (triggers confidence downgrade)
+    was_revised: false
+    revision_notes: null                 # [IF APPLICABLE] What changed and why
+
+  # ──────────────────────────────────────────────────────────────
+  # TECH DEBT CONTEXT [IF APPLICABLE]
+  # ──────────────────────────────────────────────────────────────
+  tech_debt:
+    in_hotspot_file: {true | false}      # Is the primary source_file a hotspot?
+    hotspot_score: null                  # Tornhill score if available (0.0–1.0)
+    has_test_coverage: {true | false}    # Does a test assertion exist for this rule?
+    test_coverage_risk: "{CRITICAL | HIGH | MEDIUM | LOW | none}"
+    debt_items:                          # References to tech-debt-inventory.yaml
+      - "{TD-NNN}"
+    implementation_quality_notes: null  # [IF APPLICABLE] Known quality concerns
+
+  # ──────────────────────────────────────────────────────────────
+  # BUSINESS IMPACT [IF APPLICABLE]
+  # ──────────────────────────────────────────────────────────────
+  business_impact:
+    summary: "{1-2 sentence business impact of this rule}"
+    stakeholder_concern: "{Who cares most about this rule: operations, compliance, revenue, customer}"
+    exceptions: "{Known exceptions to this rule | null}"
+    edge_cases: "{Known edge cases | null}"
+    last_known_change: "{Date or commit if from git history | null}"
+
+  # ──────────────────────────────────────────────────────────────
+  # FLAGS [REQUIRED — set all that apply to true]
+  # ──────────────────────────────────────────────────────────────
+  flags:
+    requires_human_review: false          # Set true for LOW confidence or deferred findings
+    is_integration_rule: false            # Set true if rule spans 2+ bounded contexts
+    has_magic_numbers: false              # Set true if rule uses hardcoded business values
+    has_no_tests: false                   # Set true if no test coverage found
+    is_deprecated_code: false             # Set true if implementing code is deprecated
+    rationale_unknown: false              # Set true if BECAUSE cannot be determined

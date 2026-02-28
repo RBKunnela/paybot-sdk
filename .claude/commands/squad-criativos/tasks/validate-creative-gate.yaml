@@ -1,0 +1,73 @@
+# Task: Validate Creative Gate
+# Squad: squAId-criaTTivados / directors (CBO)
+# Responsável: cbo
+
+metadata:
+  name: "validate-creative-gate"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "directors"
+  responsavel: "cbo"
+  tipo: task
+
+descricao: |
+  Gate CBO pós-storYOURtelling. Valida Creative Brief
+  antes de prosseguir para Content-Ops e Growth-Ops.
+
+entrada:
+  - campo: creative_brief
+    tipo: string
+    origem: "produce-creative-brief"
+    obrigatorio: true
+    descricao: "Creative Brief para aprovação"
+  - campo: brand_strategy_document
+    tipo: string
+    origem: "build-brand-essence"
+    obrigatorio: true
+    descricao: "Brand Strategy para conferir alinhamento"
+
+saida:
+  - campo: gate_decision
+    tipo: string
+    destino: "plan-content-strategy (se aprovado) / produce-creative-brief (se rejeitado)"
+    persistido: true
+    descricao: "Aprovado/rejeitado + feedback detalhado"
+
+passos:
+  1:
+    nome: "Revisar Big Idea"
+    descricao: "Poderosa, memorável, expansível?"
+    agente: "cbo"
+  2:
+    nome: "Revisar Narrativa"
+    descricao: "Conecta mentes e corações?"
+    agente: "cbo"
+  3:
+    nome: "Revisar Tom de Voz"
+    descricao: "Consistente com marca?"
+    agente: "cbo"
+  4:
+    nome: "Avaliar qualidade"
+    descricao: "Execução de alta qualidade (premiável)?"
+    agente: "cbo"
+  5:
+    nome: "Validar alinhamento"
+    descricao: "100% alinhado com Strategy e Identity?"
+    agente: "cbo"
+  6:
+    nome: "Decidir"
+    descricao: "Aprovar ou rejeitar com feedback detalhado"
+    agente: "cbo"
+
+checklist:
+  - "[ ] Big Idea revisada"
+  - "[ ] Narrativa revisada"
+  - "[ ] Tom de voz revisado"
+  - "[ ] Qualidade avaliada"
+  - "[ ] Alinhamento validado"
+  - "[ ] Decisão documentada"
+
+criterios_aceitacao:
+  - "Big Idea memorável e expansível"
+  - "Execução criativa de alta qualidade"
+  - "Alinhamento total com estratégia"

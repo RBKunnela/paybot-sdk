@@ -1,0 +1,375 @@
+## ═══════════════════════════════════════════════════════════════════════════════
+## WORKFLOW: Design New Team Structure
+## Purpose: Greenfield team structure design from scratch
+## Duration: 1-2 days
+## Specialists: ruth-malan, matthew-skelton, manuel-pais
+## ═══════════════════════════════════════════════════════════════════════════════
+
+workflow:
+  id: design-team-structure
+  name: "Design New Team Structure"
+  description: "Complete workflow for designing organization from scratch"
+
+  duration:
+    estimated: "1-2 days"
+    minimum: "4 hours (parallel mode)"
+    detailed:
+      phase_1: "2-3 hours (diagnosis)"
+      phase_2: "3-4 hours (design)"
+      phase_3: "2-3 hours (interaction patterns)"
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # PRE-WORKFLOW: Inputs & Preparation
+  # ───────────────────────────────────────────────────────────────────────────
+
+  inputs:
+    required:
+      - name: "strategic_direction"
+        description: "What is the business trying to achieve? (product roadmap, market position)"
+        example: "Build a healthcare platform serving 10M+ patients with AI-powered diagnostics"
+
+      - name: "team_size_range"
+        description: "How many people are we planning to organize?"
+        example: "Starting with 8-12 people, expect to grow to 50-100 in 18 months"
+
+      - name: "current_pain_points"
+        description: "What doesn't work with current organization? (if exists)"
+        example: "Teams are siloed by function (frontend/backend/data), collaboration is painful"
+
+    optional:
+      - name: "constraints"
+        description: "Budget, hiring, location, compliance constraints"
+
+      - name: "existing_structure"
+        description: "Current organization (if restructuring vs greenfield)"
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # PHASE 1: DIAGNOSIS & CONTEXT (Ruth Malan)
+  # ───────────────────────────────────────────────────────────────────────────
+
+  phase_1:
+    name: "Diagnosis & Context Assessment"
+    agent: ruth-malan
+    task: tasks/analyze-strategic-context.md
+    duration: "2-3 hours"
+
+    description: |
+      Ruth analyzes the strategic direction and current context to understand:
+      - What problems are we trying to solve organizationally?
+      - What is the socio-technical landscape?
+      - What constraints (business, technical, cultural) matter?
+
+    inputs:
+      - strategic_direction
+      - team_size_range
+      - current_pain_points (if restructuring)
+
+    actions:
+      - "Analyze business strategy and value streams"
+      - "Identify cognitive load points"
+      - "Assess decision-making authority needs"
+      - "Map stakeholder landscape"
+      - "Document constraints and risks"
+
+    outputs:
+      - "Context analysis report"
+      - "Value stream identification"
+      - "Cognitive load assessment"
+      - "Decision-making authority map"
+
+    checkpoints:
+      - checkpoint_1:
+          name: "Are value streams clear?"
+          veto_condition: "If value streams are unclear, cannot proceed. Return to strategy."
+
+      - checkpoint_2:
+          name: "Do we have business alignment?"
+          veto_condition: "If stakeholders haven't agreed on strategy, redesign will fail."
+
+    handoff_to:
+      agent: matthew-skelton
+      with_context: "Value streams, constraints, team size range, decision needs"
+      message: "Ready to design team topology around these value streams"
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # PHASE 2: TEAM TOPOLOGY DESIGN (Matthew Skelton)
+  # ───────────────────────────────────────────────────────────────────────────
+
+  phase_2:
+    name: "Team Topology Design"
+    agent: matthew-skelton
+    task: tasks/design-team-topology.md
+    duration: "3-4 hours"
+
+    description: |
+      Matthew designs the team structure using Team Topologies framework:
+      - Assign teams to value streams (Stream-Aligned Teams)
+      - Identify platform needs (Platform Teams)
+      - Identify capability gaps (Enabling Teams)
+      - Handle irreducible complexity (Complicated Subsystem Teams)
+
+    inputs:
+      - ruth_malan_context_report
+      - value_streams
+      - team_size_constraints
+      - business_constraints
+
+    actions:
+      - "Classify value streams"
+      - "Assign Stream-Aligned teams to value streams"
+      - "Identify platform services needed"
+      - "Design Platform teams"
+      - "Identify Enabling team needs"
+      - "Handle complicated subsystems"
+      - "Verify cognitive load per team"
+      - "Apply Conway's Law inversion"
+
+    outputs:
+      - "Team structure diagram (4 types)"
+      - "Team roster with assignments"
+      - "Cognitive load analysis"
+      - "Team API draft"
+      - "Dependency map"
+
+    template_output: |
+      ```
+      ORGANIZATION DESIGN:
+
+      Stream-Aligned Teams (Value Delivery):
+      - Clinical Data Team (owns patient data pipeline)
+      - Diagnosis AI Team (owns AI model services)
+      - Patient Portal Team (owns patient-facing app)
+
+      Platform Team (Enables others):
+      - Infrastructure & DevOps Team
+
+      Enabling Teams (Temporary):
+      - AI Adoption Team (teaches others AI practices)
+
+      Cognitive Load per Team:
+      - Clinical Data: 8 people, 6 services, 3 dependencies → Green ✓
+      - Diagnosis AI: 6 people, 4 services, 2 dependencies → Green ✓
+      - Patient Portal: 7 people, 5 services, 2 dependencies → Green ✓
+
+      Conway's Law Applied:
+      - Microservice boundary = team boundary
+      - API contracts match team contracts
+      - Service ownership clear
+      ```
+
+    checkpoints:
+      - checkpoint_1:
+          name: "Is cognitive load sustainable?"
+          validation: "Each team should have <10 members, <5 major dependencies"
+          veto_condition: "Teams are overloaded. Must re-distribute work."
+
+      - checkpoint_2:
+          name: "Does structure enable fast flow?"
+          validation: "Stream-aligned teams can move independently"
+          veto_condition: "Too many dependencies between teams. Redesign."
+
+      - checkpoint_3:
+          name: "Is Conway's Law applied?"
+          validation: "Org structure mirrors desired system architecture"
+          veto_condition: "Structure will create wrong system design. Fix first."
+
+    handoff_to:
+      agent: manuel-pais
+      with_context: "Team structure, dependencies, team APIs"
+      message: "Ready to design interactions between these teams"
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # PHASE 3: INTERACTION DESIGN (Manuel Pais)
+  # ───────────────────────────────────────────────────────────────────────────
+
+  phase_3:
+    name: "Team Interaction Design"
+    agent: manuel-pais
+    task: tasks/design-team-interactions.md
+    duration: "2-3 hours"
+
+    description: |
+      Manuel designs how teams interact:
+      - Choose interaction mode for each team pair
+      - Define team contracts (what each team provides)
+      - Reduce unnecessary coupling
+      - Establish governance for coordination
+
+    inputs:
+      - matthew_skelton_team_design
+      - dependency_map
+      - team_structure
+
+    actions:
+      - "Map all team dependencies"
+      - "Choose interaction mode for each dependency"
+        mode_1: "Collaboration (sync, high-touch)"
+        mode_2: "X-as-a-Service (async, platform serves)"
+        mode_3: "Facilitation (enabling team teaches)"
+      - "Define team contracts (APIs)"
+      - "Establish SLAs and response times"
+      - "Create communication protocols"
+      - "Design escalation paths"
+      - "Identify and eliminate unnecessary coupling"
+
+    outputs:
+      - "Team contract matrix"
+      - "Interaction mode diagram"
+      - "Communication protocol document"
+      - "SLA agreements per interaction"
+      - "Escalation procedures"
+
+    template_output: |
+      ```
+      INTERACTION DESIGN:
+
+      Clinical Data Team ↔ Diagnosis AI Team
+      ├─ Mode: X-as-a-Service
+      ├─ Services provided: Patient data API
+      ├─ SLA: 99.9% uptime, <100ms latency
+      ├─ Contract: Structured patient records in JSON
+      └─ Communication: Async (API calls only)
+
+      Diagnosis AI Team ↔ Patient Portal Team
+      ├─ Mode: X-as-a-Service
+      ├─ Services provided: Diagnosis API
+      ├─ SLA: 99.5% uptime, <500ms latency
+      ├─ Contract: AI recommendations + confidence scores
+      └─ Communication: Async (API calls only)
+
+      AI Adoption Team ↔ All Teams
+      ├─ Mode: Facilitation
+      ├─ Services: Training, playbooks, coaching
+      ├─ Duration: 3 months per team
+      ├─ Success metric: Teams are independent
+      └─ Exit criteria: Team can run AI workflows solo
+
+      Platform Team ↔ All Teams
+      ├─ Mode: X-as-a-Service
+      ├─ Services: Infrastructure, CI/CD, monitoring
+      ├─ SLA: Office hours support, <24hr response
+      └─ Contract: Infrastructure as code
+      ```
+
+    checkpoints:
+      - checkpoint_1:
+          name: "Are interactions sustainable?"
+          validation: "No team in constant collaboration. X-as-a-Service preferred."
+          veto_condition: "Too much synchronous collaboration. Design is not scalable."
+
+      - checkpoint_2:
+          name: "Are contracts clear?"
+          validation: "Each interaction has explicit contract"
+          veto_condition: "Unclear contracts will cause failures. Define them now."
+
+      - checkpoint_3:
+          name: "Can teams operate autonomously?"
+          validation: "Each team can make decisions without blocking others"
+          veto_condition: "Teams are too coupled. Re-design interactions."
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # SYNTHESIS: Combine Outputs
+  # ───────────────────────────────────────────────────────────────────────────
+
+  synthesis:
+    task: tasks/synthesize-report.md
+    checklist: checklists/team-design-checklist.md
+    inputs:
+      - ruth_malan_context
+      - matthew_skelton_topology
+      - manuel_pais_interactions
+
+    actions:
+      - "Verify consistency across all phases"
+      - "Create unified organization design document"
+      - "Generate implementation roadmap"
+      - "Identify transition risks"
+
+    outputs:
+      - "Complete organization design"
+      - "Implementation roadmap"
+      - "Risk assessment"
+      - "Success metrics"
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # POST-WORKFLOW: Outcomes & Next Steps
+  # ───────────────────────────────────────────────────────────────────────────
+
+  outcomes:
+    deliverables:
+      - "Organization structure diagram (teams, roles, size)"
+      - "Value stream to team mapping"
+      - "Team API contracts"
+      - "Interaction matrix (who talks to whom, how)"
+      - "Cognitive load assessment per team"
+      - "Implementation roadmap (phases, timeline)"
+      - "Risk assessment and mitigation"
+      - "Success metrics and health checks"
+
+    what_not_included:
+      - "Hiring plan (separate from this workflow)"
+      - "Technology selection (depends on teams)"
+      - "Detailed job descriptions (depends on organizational policy)"
+
+  next_steps:
+    - step_1: "Share design with stakeholders for feedback"
+    - step_2: "Refine based on feedback (iterate with ruth, matthew, manuel)"
+    - step_3: "Create hiring plan for each team"
+    - step_4: "Plan implementation (how to transition from current → new)"
+    - step_5: "Use squad-creator to design agent squads for each team"
+    - step_6: "Execute organizational restructuring"
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # SUCCESS CRITERIA
+  # ───────────────────────────────────────────────────────────────────────────
+
+  success_criteria:
+    - "Value streams are clear and explicitly mapped to teams"
+    - "Each team has <10 members (or justified exception)"
+    - "Cognitive load is sustainable for each team (Ruth confirms)"
+    - "Team structure matches desired system architecture (Conway's Law inverted)"
+    - "Interactions are explicit: mode + contract + SLA defined"
+    - "No team is blocked on another team for decision-making"
+    - "Stakeholders agree this design serves business strategy"
+    - "Implementation roadmap is clear and achievable"
+    - "Success metrics are defined and measurable"
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # RISK MITIGATION
+  # ───────────────────────────────────────────────────────────────────────────
+
+  risks:
+    - risk: "Organizational resistance to change"
+      mitigation: "Involve stakeholders early, explain business rationale"
+
+    - risk: "People don't fit new structure"
+      mitigation: "Transition plan, coaching, enabling team support"
+
+    - risk: "Hidden dependencies not captured"
+      mitigation: "Validate with domain experts, iterate"
+
+    - risk: "Timeline underestimated"
+      mitigation: "Plan for 6-12 month transition, not weeks"
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # FEEDBACK LOOP
+  # ───────────────────────────────────────────────────────────────────────────
+
+  feedback:
+    at_90_days: |
+      - Are teams able to operate autonomously?
+      - Is cognitive load sustainable?
+      - Are interactions working as designed?
+      → If no: Call ruth-malan for health check
+
+    at_6_months: |
+      - Has structure enabled fast value delivery?
+      - Are team boundaries still correct?
+      - Have new dependencies emerged?
+      → If yes to last: Return to phase_2 (adapt design)
+
+---
+
+# END WORKFLOW: Design Team Structure
+# This workflow is validated and ready for use
+# Last updated: 2025-02-05

@@ -1,0 +1,317 @@
+# Color Psychology for Branding
+# Psicologia das cores aplicada a marcas
+# Usado por: Design System Architect
+
+metadata:
+  name: "Psicologia das Cores em Branding"
+  version: "1.0"
+
+principios:
+  contexto_importa: |
+    Cores não têm significado universal. O contexto cultural,
+    categoria e uso específico afetam a percepção.
+
+  consistencia_over_meaning: |
+    A consistência no uso é mais importante que o "significado" da cor.
+    Uma cor se torna "da marca" pelo uso repetido.
+
+  distinctiveness: |
+    Escolha cores que se destaquem no setor, não que sigam tendências.
+
+cores_primarias:
+
+  vermelho:
+    associacoes_positivas:
+      - Energia
+      - Paixão
+      - Urgência
+      - Excitação
+      - Poder
+    associacoes_negativas:
+      - Agressividade
+      - Perigo
+      - Alerta
+    arquetipos_alinhados:
+      - Herói
+      - Amante
+      - Fora da Lei
+    setores_comuns:
+      - Fast food
+      - Varejo (promoções)
+      - Entretenimento
+      - Esportes
+    marcas_exemplo:
+      - Coca-Cola
+      - Netflix
+      - YouTube
+      - Target
+    consideracoes:
+      - "Alta visibilidade"
+      - "Estimula apetite"
+      - "Cria urgência"
+
+  azul:
+    associacoes_positivas:
+      - Confiança
+      - Segurança
+      - Profissionalismo
+      - Calma
+      - Estabilidade
+    associacoes_negativas:
+      - Frieza
+      - Distância
+      - Conservadorismo
+    arquetipos_alinhados:
+      - Sábio
+      - Governante
+      - Cuidador
+    setores_comuns:
+      - Tecnologia
+      - Finanças
+      - Saúde
+      - Corporativo
+    marcas_exemplo:
+      - Facebook
+      - IBM
+      - Samsung
+      - Ford
+    consideracoes:
+      - "Cor mais usada em corporativo"
+      - "Difícil diferenciar no setor tech"
+      - "Transmite confiabilidade"
+
+  amarelo:
+    associacoes_positivas:
+      - Otimismo
+      - Alegria
+      - Criatividade
+      - Atenção
+      - Calor
+    associacoes_negativas:
+      - Ansiedade (excesso)
+      - Cautela
+      - Infantilidade
+    arquetipos_alinhados:
+      - Inocente
+      - Bobo da Corte
+      - Criador
+    setores_comuns:
+      - Fast food
+      - Infantil
+      - Varejo
+      - Energia
+    marcas_exemplo:
+      - McDonald's
+      - IKEA
+      - Ferrari (amarelo)
+      - Snapchat
+    consideracoes:
+      - "Alta visibilidade"
+      - "Difícil de ler em fundo claro"
+      - "Chama atenção rapidamente"
+
+  verde:
+    associacoes_positivas:
+      - Natureza
+      - Crescimento
+      - Saúde
+      - Sustentabilidade
+      - Frescor
+    associacoes_negativas:
+      - Inveja
+      - Inexperiência
+    arquetipos_alinhados:
+      - Inocente
+      - Cuidador
+      - Explorador
+    setores_comuns:
+      - Orgânicos/Natural
+      - Finanças
+      - Saúde
+      - Sustentabilidade
+    marcas_exemplo:
+      - Starbucks
+      - Whole Foods
+      - Spotify
+      - John Deere
+    consideracoes:
+      - "Associação forte com eco/sustentável"
+      - "Versatil em tons"
+
+  laranja:
+    associacoes_positivas:
+      - Energia
+      - Entusiasmo
+      - Criatividade
+      - Acessibilidade
+      - Diversão
+    associacoes_negativas:
+      - Imaturidade
+      - Falta de seriedade
+    arquetipos_alinhados:
+      - Bobo da Corte
+      - Explorador
+      - Cara Comum
+    setores_comuns:
+      - Tecnologia (disruptiva)
+      - Varejo
+      - Alimentação
+      - Esportes
+    marcas_exemplo:
+      - Amazon (seta)
+      - Fanta
+      - Nickelodeon
+      - Home Depot
+    consideracoes:
+      - "Menos usado que outras cores"
+      - "Boa para CTAs"
+      - "Transmite acessibilidade"
+
+  roxo:
+    associacoes_positivas:
+      - Luxo
+      - Criatividade
+      - Sabedoria
+      - Imaginação
+      - Inovação
+    associacoes_negativas:
+      - Extravagância
+      - Imaturidade (tons claros)
+    arquetipos_alinhados:
+      - Mago
+      - Criador
+      - Governante
+    setores_comuns:
+      - Luxo
+      - Beleza
+      - Tecnologia (inovação)
+      - Finanças (fintech)
+    marcas_exemplo:
+      - Nubank
+      - Twitch
+      - Cadbury
+      - Hallmark
+    consideracoes:
+      - "Historicamente associado a realeza"
+      - "Menos comum, mais distintivo"
+
+  preto:
+    associacoes_positivas:
+      - Sofisticação
+      - Elegância
+      - Poder
+      - Modernidade
+      - Premium
+    associacoes_negativas:
+      - Morte
+      - Opressão
+      - Formalidade excessiva
+    arquetipos_alinhados:
+      - Fora da Lei
+      - Governante
+      - Mago
+    setores_comuns:
+      - Luxo
+      - Moda
+      - Tecnologia
+      - Automotivo
+    marcas_exemplo:
+      - Chanel
+      - Nike
+      - Apple (minimalismo)
+      - Prada
+    consideracoes:
+      - "Clássico e versátil"
+      - "Transmite premium"
+
+  branco:
+    associacoes_positivas:
+      - Pureza
+      - Simplicidade
+      - Limpeza
+      - Minimalismo
+      - Modernidade
+    arquetipos_alinhados:
+      - Inocente
+      - Sábio
+    setores_comuns:
+      - Tecnologia
+      - Saúde
+      - Luxo minimalista
+    marcas_exemplo:
+      - Apple
+      - Tesla
+    consideracoes:
+      - "Essencial como espaço negativo"
+      - "Transmite simplicidade"
+
+  rosa:
+    associacoes_positivas:
+      - Feminilidade
+      - Romance
+      - Gentileza
+      - Diversão
+      - Juventude
+    associacoes_negativas:
+      - Estereótipo de gênero
+      - Infantilidade
+    arquetipos_alinhados:
+      - Amante
+      - Inocente
+      - Cuidador
+    setores_comuns:
+      - Beleza
+      - Moda
+      - Infantil
+      - Alimentação (doces)
+    marcas_exemplo:
+      - Barbie
+      - Victoria's Secret
+      - T-Mobile
+    consideracoes:
+      - "Evoluindo para uso mais amplo"
+      - "Millennia pink como tendência"
+
+combinacoes:
+  complementares:
+    descricao: "Cores opostas no círculo cromático"
+    efeito: "Alto contraste, energia"
+    exemplos:
+      - ["Azul", "Laranja"]
+      - ["Vermelho", "Verde"]
+      - ["Amarelo", "Roxo"]
+
+  analogas:
+    descricao: "Cores próximas no círculo cromático"
+    efeito: "Harmonia, coesão"
+    exemplos:
+      - ["Azul", "Verde", "Ciano"]
+      - ["Vermelho", "Laranja", "Amarelo"]
+
+  triadicas:
+    descricao: "Três cores equidistantes"
+    efeito: "Vibrante, equilibrado"
+    exemplos:
+      - ["Vermelho", "Amarelo", "Azul"]
+      - ["Laranja", "Verde", "Roxo"]
+
+aplicacao_branding:
+  paleta_minima:
+    primaria: "1-2 cores principais"
+    secundaria: "2-3 cores de suporte"
+    funcionais: "Sucesso, erro, alerta, info"
+
+  regra_60_30_10:
+    dominante: "60% - Cor principal"
+    secundaria: "30% - Cor de suporte"
+    acento: "10% - Cor de destaque"
+
+  acessibilidade:
+    contraste: "WCAG AA mínimo (4.5:1 para texto)"
+    daltonismo: "Testar com simuladores"
+    contexto: "Não depender só de cor para informação"
+
+referencias:
+  - "Heller, E. - A Psicologia das Cores"
+  - "Eiseman, L. - Pantone Guide to Communicating with Color"
+  - "Adams, S. - Color Design Workbook"

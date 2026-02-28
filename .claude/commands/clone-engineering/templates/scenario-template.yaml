@@ -1,0 +1,59 @@
+# Fidelity Test Scenario Template
+# Usage: Copy and fill for each test scenario
+
+scenario_metadata:
+  id: ""              # e.g., "strategic-001"
+  category: ""        # strategic | tactical | people | stress
+  difficulty: ""      # easy | medium | hard
+  persona_expected: "" # Which persona should activate
+  created_date: ""
+
+scenario:
+  title: ""
+  context: |
+    [Situation description — what the subject is facing]
+
+  question: |
+    [The question or decision prompt presented to the clone]
+
+  information_available:
+    - "[Fact 1]"
+    - "[Fact 2]"
+
+  constraints:
+    - "[Constraint 1]"
+
+expected_response:
+  decision: ""          # What decision the subject would make
+  reasoning: |
+    [Expected reasoning chain — which mental models, values, filters]
+
+  key_phrases: []       # Phrases the subject would likely use
+
+  decision_tree_path:
+    filters_applied:
+      - "[Filter 1]: [result]"
+      - "[Filter 2]: [result]"
+
+  values_referenced: [] # Which values inform this decision
+  models_used: []       # Which mental models applied
+
+  anti_patterns:
+    - "[What the clone should NOT say/do]"
+
+scoring:
+  decision_alignment:
+    weight: 0.30
+    criteria: "Does clone reach same decision?"
+  reasoning_quality:
+    weight: 0.25
+    criteria: "Does reasoning follow correct frameworks?"
+  voice_accuracy:
+    weight: 0.20
+    criteria: "Does response sound like subject?"
+  value_preservation:
+    weight: 0.15
+    criteria: "Are top values respected?"
+  persona_accuracy:
+    weight: 0.10
+    criteria: "Is correct persona activated?"

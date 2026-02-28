@@ -1,0 +1,187 @@
+# Checklist: CBO Gate - Strategy v1.1
+# Squad: squAId-criaTTivados / directors
+# Gate 1 — Validação pós-DEENEA
+
+metadata:
+  name: "cbo-gate-strategy"
+  version: "1.1"
+  squad: "squAId-criaTTivados"
+  tipo: cbo-gate
+  responsavel: "cbo"
+  gate_number: 1
+  fase: "DEENEA → UNNIKO"
+  sla: "30 min"
+  on_fail: "Retornar ao strategy-director com feedback detalhado (máx 2 iterações)"
+
+descricao: |
+  Gate CBO pós-DEENEA. Validação executiva do Brand Strategy Document
+  antes de prosseguir para identidade visual/verbal (UNNIKO).
+  O CBO avalia 12 critérios em 4 dimensões, cada uma com peso específico.
+
+entregavel: "Brand Strategy Document aprovado"
+
+# ═══════════════════════════════════════════════════════════════════
+# SISTEMA DE SCORING
+# ═══════════════════════════════════════════════════════════════════
+scoring:
+  descricao: |
+    Cada item é avaliado de 0 a 3:
+      0 = Ausente ou inadequado
+      1 = Presente mas insuficiente
+      2 = Adequado
+      3 = Excelente
+  score_maximo: 36  # 12 itens × 3 pontos
+  tiers:
+    aprovado:
+      score_minimo: 30  # 83%+
+      acao: "Prosseguir para UNNIKO"
+    condicional:
+      score_minimo: 24  # 67-82%
+      acao: "Aprovar com ressalvas — itens < 2 devem ser revisados em paralelo"
+    reprovado:
+      score_minimo: 0   # < 67%
+      acao: "Retornar ao strategy-director com feedback estruturado"
+
+# ═══════════════════════════════════════════════════════════════════
+# ITENS DE AVALIAÇÃO
+# ═══════════════════════════════════════════════════════════════════
+itens:
+  clareza:
+    nome: "Clareza Estratégica"
+    peso: 35
+    descricao: "Fundamentos estratégicos claros e diferenciados"
+    items:
+      - id: 1
+        descricao: "Propósito claro, inspirador e diferenciado"
+        obrigatorio: true
+        criterio: "Vai além do óbvio, inspira ação"
+        peso: 3
+        exemplo_aprovado: "'Conectar quem bebe com quem planta' — específico, motivador"
+        exemplo_reprovado: "'Oferecer o melhor café' — genérico, não diferencia"
+      - id: 2
+        descricao: "Posicionamento único no mercado"
+        obrigatorio: true
+        criterio: "Não replica nenhum concorrente"
+        peso: 3
+        exemplo_aprovado: "Espaço competitivo claro no mapa perceptual"
+        exemplo_reprovado: "Posicionamento idêntico ao líder de mercado"
+      - id: 3
+        descricao: "Arquétipos consistentes com valores e público"
+        obrigatorio: true
+        criterio: "Arquétipo reflete valores e ressoa com personas"
+        peso: 2
+      - id: 4
+        descricao: "Personas representam público real"
+        obrigatorio: true
+        criterio: "Não são genéricas, têm profundidade (JTBD + Tension Points)"
+        peso: 2
+
+  profundidade:
+    nome: "Profundidade"
+    peso: 25
+    descricao: "Embasamento em dados e autenticidade"
+    items:
+      - id: 5
+        descricao: "Insights de pesquisa incorporados"
+        obrigatorio: true
+        criterio: "Estratégia baseada em dados, não em suposição"
+        peso: 3
+        exemplo_aprovado: "Referência a pesquisa de mercado ou dados do Search & Insights"
+        exemplo_reprovado: "Afirmações sem fonte ou evidência"
+      - id: 6
+        descricao: "Tensões do público endereçadas"
+        obrigatorio: true
+        criterio: "Tension Points conectados à proposta de valor"
+        peso: 2
+      - id: 7
+        descricao: "Narrativa autêntica"
+        obrigatorio: true
+        criterio: "Não fabricada, baseada em DNA real"
+        peso: 2
+
+  acionabilidade:
+    nome: "Acionabilidade"
+    peso: 20
+    descricao: "Capacidade de tradução em identidade e mensuração"
+    items:
+      - id: 8
+        descricao: "Traduzível em identidade visual"
+        obrigatorio: true
+        criterio: "UNNIKO consegue materializar a estratégia"
+        peso: 2
+        exemplo_aprovado: "Arquétipo Explorador sugere paleta terrosa, tipografia humanista"
+        exemplo_reprovado: "Estratégia abstrata sem implicações visuais"
+      - id: 9
+        descricao: "Traduzível em narrativa"
+        obrigatorio: true
+        criterio: "storYOURtelling consegue contar a história"
+        peso: 2
+      - id: 10
+        descricao: "Mensurável (KPIs definíveis)"
+        obrigatorio: true
+        criterio: "É possível medir sucesso da estratégia"
+        peso: 2
+
+  diferenciacao:
+    nome: "Diferenciação"
+    peso: 20
+    descricao: "Unicidade e sustentabilidade competitiva"
+    items:
+      - id: 11
+        descricao: "Não replica concorrentes"
+        obrigatorio: true
+        criterio: "Espaço próprio claramente definido"
+        peso: 3
+        exemplo_aprovado: "Rastreabilidade radical — nenhum concorrente direto nesse espaço"
+        exemplo_reprovado: "Mesmo posicionamento de 'café premium' sem diferencial"
+      - id: 12
+        descricao: "Sustentável no longo prazo"
+        obrigatorio: true
+        criterio: "Não é tendência passageira"
+        peso: 2
+
+# ═══════════════════════════════════════════════════════════════════
+# APROVAÇÃO & FLUXO
+# ═══════════════════════════════════════════════════════════════════
+aprovacao:
+  score_minimo: 30
+  criterio: "Score ≥ 30/36 (83%) com todos os itens obrigatórios ≥ 1"
+  max_iteracoes: 2
+  acao_aprovacao: "Handoff para UNNIKO Brand Director com Brand Strategy Document"
+  acao_condicional: "Aprovar com ressalvas + lista de ajustes para revisão paralela"
+  acao_rejeicao: "Feedback detalhado ao strategy-director + sugestões de ajuste"
+
+# ═══════════════════════════════════════════════════════════════════
+# OUTPUT EXAMPLES
+# ═══════════════════════════════════════════════════════════════════
+output_examples:
+  gate_aprovado:
+    score: 33
+    tier: "aprovado"
+    resumo: |
+      Brand Strategy Document RAWA aprovado.
+      Score: 33/36 (92%) — APROVADO
+      Destaques: Propósito diferenciado (3/3), Posicionamento único (3/3),
+      Diferenciação sustentável (3/3).
+      Ressalva menor: Personas poderiam ter mais profundidade em JTBD (2/3).
+    decisao: "Prosseguir para UNNIKO"
+
+  gate_condicional:
+    score: 27
+    tier: "condicional"
+    resumo: |
+      Brand Strategy Document aprovado COM RESSALVAS.
+      Score: 27/36 (75%) — CONDICIONAL
+      Ajustes necessários: item 5 (insights sem fonte de dados) e
+      item 10 (KPIs vagos, precisam ser SMART).
+    decisao: "Aprovar — strategy-director revisa itens 5 e 10 em paralelo com UNNIKO"
+
+  gate_reprovado:
+    score: 18
+    tier: "reprovado"
+    resumo: |
+      Brand Strategy Document REPROVADO.
+      Score: 18/36 (50%) — REPROVADO
+      Problemas críticos: Posicionamento genérico (1/3),
+      Diferenciação ausente (0/3), Personas superficiais (1/3).
+    decisao: "Retornar ao strategy-director — 2ª iteração obrigatória"

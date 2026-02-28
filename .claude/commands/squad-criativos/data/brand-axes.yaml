@@ -1,0 +1,497 @@
+# 5 Eixos Narrativos de Marca
+# Framework proprietário criaTTivados para storytelling de marca
+# Versão 1.0
+
+metadata:
+  name: "5 Eixos Narrativos de Marca"
+  version: "1.0"
+  origem: "criaTTivados / storYOURtelling"
+  aplicacao: "Definir qual(is) eixo(s) de marca a comunicação deve trabalhar"
+
+# ═══════════════════════════════════════════════════════════════════
+# PRINCÍPIO FUNDAMENTAL
+# ═══════════════════════════════════════════════════════════════════
+principio:
+  descricao: |
+    Toda marca é um organismo narrativo composto por múltiplas histórias.
+    Cada eixo representa uma dimensão diferente da marca que pode (e deve)
+    ser trabalhada com storytelling específico.
+
+  regra_ouro: |
+    Os 5 eixos não são excludentes - eles se sobrepõem e se reforçam.
+    Uma campanha pode trabalhar 1 ou mais eixos simultaneamente.
+    A força de uma marca está na coerência entre todos os eixos.
+
+  mandala: |
+    Os 5 eixos formam uma mandala com a MARCA no centro.
+    Cada eixo é um círculo que se sobrepõe aos outros,
+    criando interseções onde as narrativas se encontram.
+
+# ═══════════════════════════════════════════════════════════════════
+# OS 5 EIXOS
+# ═══════════════════════════════════════════════════════════════════
+eixos:
+
+  # ─────────────────────────────────────────────────────────────────
+  # EIXO 1: MARCA INSTITUCIONAL
+  # ─────────────────────────────────────────────────────────────────
+  eixo_1:
+    nome: "Marca Institucional"
+    nome_en: "Corporate Brand"
+    icone: "🏛️"
+
+    essencia: "A alma da marca"
+    pergunta_central: "Por que existimos?"
+    emocao_dominante: "Inspiração e pertencimento"
+
+    o_que_conta:
+      - Propósito e missão
+      - Visão de mundo
+      - Valores inegociáveis
+      - Legado e impacto
+      - História de origem
+      - Crenças e convicções
+
+    tom_tipico:
+      - Inspiracional
+      - Sólido e confiável
+      - Atemporal
+      - Profundo e significativo
+
+    formatos_comuns:
+      - Manifestos de marca
+      - Filmes institucionais
+      - Campanhas de propósito
+      - Relatórios de sustentabilidade
+      - Comunicação de crise
+      - Posicionamentos públicos
+
+    exemplos:
+      - marca: "Coca-Cola"
+        narrativa: "Open Happiness / Real Magic"
+        o_que_vende: "Felicidade, encontros, celebrações"
+
+      - marca: "Disney"
+        narrativa: "The Most Magical Place on Earth"
+        o_que_vende: "Magia e memórias afetivas"
+
+      - marca: "Patagonia"
+        narrativa: "We're in business to save our home planet"
+        o_que_vende: "Um modo de existir no mundo"
+
+      - marca: "Instituto Ayrton Senna"
+        narrativa: "Educação transforma"
+        o_que_vende: "Esperança e transformação social"
+
+    conexao_taxonomia:
+      dominio_principal: "II - Simbólica"
+      classes: ["4 - Identidade Narrativa", "6 - Cultura e Valores"]
+
+    quando_usar:
+      - "Construir ou reforçar reputação"
+      - "Comunicar propósito e valores"
+      - "Momentos de crise ou transformação"
+      - "Datas comemorativas significativas"
+      - "Campanhas de longo prazo"
+
+    perguntas_estrategicas:
+      - "Qual é o propósito maior da marca?"
+      - "Que mundo queremos construir?"
+      - "Qual é a nossa crença fundamental?"
+      - "Que legado queremos deixar?"
+
+  # ─────────────────────────────────────────────────────────────────
+  # EIXO 2: MARCA MERCADOLÓGICA
+  # ─────────────────────────────────────────────────────────────────
+  eixo_2:
+    nome: "Marca Mercadológica"
+    nome_en: "Commercial Brand"
+    icone: "💰"
+
+    essencia: "O pulso do mercado"
+    pergunta_central: "O que oferecemos e por que escolher?"
+    emocao_dominante: "Desejo e urgência"
+
+    o_que_conta:
+      - Produto e serviço
+      - Proposta de valor
+      - Benefícios e diferenciais
+      - Preço e oferta
+      - Call to action
+      - Provas e evidências
+
+    tom_tipico:
+      - Persuasivo
+      - Direto e claro
+      - Aspiracional
+      - Urgente quando necessário
+
+    formatos_comuns:
+      - Campanhas de produto
+      - Anúncios e ads
+      - Landing pages
+      - E-mail marketing
+      - PDV e embalagem
+      - Promoções e ofertas
+
+    exemplos:
+      - marca: "Apple"
+        narrativa: "MacBook - criação sem limites"
+        o_que_vende: "O que o produto permite viver"
+
+      - marca: "Netflix"
+        narrativa: "Assista onde quiser, quando quiser"
+        o_que_vende: "Liberdade de entretenimento"
+
+      - marca: "Nubank"
+        narrativa: "Conta sem tarifas, cartão sem anuidade"
+        o_que_vende: "Simplicidade e economia"
+
+    conexao_taxonomia:
+      dominio_principal: "I - Substantiva"
+      classes: ["1 - Produto/Serviço", "2 - Modelo de Negócio", "3 - Evidências"]
+
+    quando_usar:
+      - "Lançamento de produto"
+      - "Campanhas de vendas"
+      - "Promoções e ofertas"
+      - "Conversão direta"
+      - "Diferenciação competitiva"
+
+    perguntas_estrategicas:
+      - "O que o produto permite viver/sentir?"
+      - "Qual problema resolvemos?"
+      - "Por que escolher a gente?"
+      - "Qual é a prova de que funciona?"
+
+  # ─────────────────────────────────────────────────────────────────
+  # EIXO 3: MARCA EMPREGADORA
+  # ─────────────────────────────────────────────────────────────────
+  eixo_3:
+    nome: "Marca Empregadora"
+    nome_en: "Employer Brand"
+    icone: "👥"
+
+    essencia: "O espelho interno"
+    pergunta_central: "Como é fazer parte?"
+    emocao_dominante: "Pertencimento e orgulho"
+
+    o_que_conta:
+      - Cultura organizacional
+      - Experiência do colaborador
+      - Valores vividos (não só declarados)
+      - Histórias de pessoas reais
+      - Rituais e tradições internas
+      - Crescimento e desenvolvimento
+
+    tom_tipico:
+      - Humano e acolhedor
+      - Autêntico e vulnerável
+      - Inspirador mas realista
+      - Comunitário
+
+    formatos_comuns:
+      - Campanhas de employer branding
+      - Depoimentos de colaboradores
+      - Behind the scenes
+      - Comunicação interna
+      - Onboarding narrativo
+      - Celebração de conquistas
+
+    exemplos:
+      - marca: "Magazine Luiza"
+        narrativa: "Cultura de inclusão e diversidade"
+        o_que_vende: "Pertencimento e propósito"
+
+      - marca: "Ambev"
+        narrativa: "Sonho grande e cultura de dono"
+        o_que_vende: "Crescimento e meritocracia"
+
+      - marca: "Nubank"
+        narrativa: "Trabalhe com autonomia e impacto"
+        o_que_vende: "Liberdade e protagonismo"
+
+    conexao_taxonomia:
+      dominio_principal: "II - Simbólica"
+      classes: ["5 - Personalidade", "6 - Cultura e Valores"]
+
+    conceito_chave:
+      nome: "StoryCulture"
+      descricao: |
+        Cultura e narrativa são inseparáveis.
+        A cultura é o conjunto de histórias que um grupo escolhe contar e repetir.
+        Employer Branding eficaz é storytelling interno bem feito.
+
+    quando_usar:
+      - "Atração de talentos"
+      - "Engajamento interno"
+      - "Construção de cultura"
+      - "Momentos de transformação organizacional"
+      - "Celebração de pessoas"
+
+    perguntas_estrategicas:
+      - "Que histórias nossos colaboradores contam sobre nós?"
+      - "Como é um dia típico aqui?"
+      - "O que nos torna únicos como lugar para trabalhar?"
+      - "Que tipo de pessoa prospera aqui?"
+
+    alerta: |
+      Toda empresa tem duas reputações: a que o mercado vê e a que o colaborador vive.
+      Se essas duas histórias não se alinham, uma das duas está mentindo.
+
+  # ─────────────────────────────────────────────────────────────────
+  # EIXO 4: MARCA PESSOAL
+  # ─────────────────────────────────────────────────────────────────
+  eixo_4:
+    nome: "Marca Pessoal"
+    nome_en: "Personal Brand"
+    icone: "🧠"
+
+    essencia: "A história viva do indivíduo"
+    pergunta_central: "Quem está por trás da marca?"
+    emocao_dominante: "Conexão e confiança"
+
+    o_que_conta:
+      - Trajetória pessoal
+      - Transformações e aprendizados
+      - Vulnerabilidades e superações
+      - Ponto de vista único
+      - Estilo e presença
+      - Bastidores e autenticidade
+
+    tom_tipico:
+      - Autêntico e pessoal
+      - Vulnerável quando apropriado
+      - Inspirador pelo exemplo
+      - Conversacional
+
+    formatos_comuns:
+      - Conteúdo de bastidores
+      - Histórias pessoais
+      - Posicionamentos públicos
+      - Entrevistas e podcasts
+      - LinkedIn e redes sociais
+      - Palestras e keynotes
+
+    exemplos:
+      - marca: "Steve Jobs"
+        narrativa: "O visionário que mudou o mundo"
+        o_que_vende: "Inovação e pensamento diferente"
+
+      - marca: "Luiza Trajano"
+        narrativa: "Liderança com propósito e inclusão"
+        o_que_vende: "Humanização dos negócios"
+
+      - marca: "Abilio Diniz"
+        narrativa: "Resiliência e reinvenção"
+        o_que_vende: "Longevidade e adaptação"
+
+    conexao_taxonomia:
+      dominio_principal: "II - Simbólica"
+      classes: ["4 - Identidade Narrativa", "5 - Personalidade"]
+
+    conceito_chave:
+      nome: "Autoria Narrativa Pessoal"
+      descricao: |
+        Toda marca pessoal é feita de escolhas narrativas.
+        É o que você fala - mas também o que você NÃO fala.
+        É o que você mostra - e o que você representa sem precisar dizer.
+
+    quando_usar:
+      - "Construir autoridade"
+      - "Humanizar a marca corporativa"
+      - "Posicionamento de liderança"
+      - "Diferenciação pessoal"
+      - "Conexão com audiência"
+
+    perguntas_estrategicas:
+      - "Qual é a minha história de transformação?"
+      - "O que só eu posso contar?"
+      - "Qual é o meu ponto de vista único?"
+      - "Como minha história conecta com a da marca?"
+
+    diferenca_chave: |
+      A diferença entre "Sou designer há 10 anos" e
+      "Eu ajudo marcas a traduzirem quem são em experiências visuais
+      que as pessoas sentem, não só veem."
+      A primeira informa o que você faz. A segunda revela quem você é
+      e por que isso importa.
+
+  # ─────────────────────────────────────────────────────────────────
+  # EIXO 5: MARCA SINTÉTICA
+  # ─────────────────────────────────────────────────────────────────
+  eixo_5:
+    nome: "Marca Sintética"
+    nome_en: "Synthetic Brand"
+    icone: "🤖"
+
+    essencia: "A entidade digital com alma"
+    pergunta_central: "Quem é a entidade que representa a marca no digital?"
+    emocao_dominante: "Inovação e disponibilidade"
+
+    o_que_conta:
+      - Persona/avatar digital
+      - História de origem (simbólica)
+      - Voz e personalidade próprias
+      - Campo de expertise
+      - Valores e princípios
+      - Limites claros (o que faz e não faz)
+
+    tom_tipico:
+      - Consistente e previsível
+      - Especializado no seu domínio
+      - Acessível e disponível
+      - Transparente sobre sua natureza
+
+    tipos:
+      influenciadores_virtuais:
+        descricao: "Personagens digitais que simulam vida de influenciador"
+        exemplo: "Lu do Magalu, Miquela"
+
+      embaixadores_ia:
+        descricao: "Agentes conversacionais que representam a marca"
+        exemplo: "Assistentes virtuais de atendimento"
+
+      alter_egos:
+        descricao: "Personas que complementam a marca pessoal humana"
+        exemplo: "Gêmeos digitais de especialistas"
+
+      mascotes_evoluidos:
+        descricao: "Mascotes com IA que interagem autonomamente"
+        exemplo: "Personagens de marca com conversação"
+
+    exemplos:
+      - marca: "Lu do Magalu"
+        narrativa: "A influenciadora virtual mais seguida do Brasil"
+        o_que_vende: "Proximidade e disponibilidade 24/7"
+
+      - marca: "Miquela (@lilmiquela)"
+        narrativa: "Influenciadora virtual de moda e causas sociais"
+        o_que_vende: "Futuro e experimentação"
+
+      - marca: "Nat (Natura)"
+        narrativa: "Consultora virtual de beleza"
+        o_que_vende: "Atendimento personalizado escalável"
+
+    conexao_taxonomia:
+      dominio_principal: "III - Distintividade"
+      classes: ["9 - Assets Comportamentais"]
+      secundario: "II - Simbólica (Classe 5 - Personalidade)"
+
+    por_que_precisa_storytelling: |
+      Sem storytelling, uma persona sintética é só um chatbot.
+      COM storytelling, ela é uma entidade com alma.
+
+      Toda persona sintética PRECISA de:
+      - História de origem (narrativa simbólica)
+      - Voz e tom definidos
+      - Valores e princípios claros
+      - Campo de expertise delimitado
+      - Limites transparentes
+
+    quando_usar:
+      - "Escalar atendimento com personalidade"
+      - "Produzir conteúdo em volume"
+      - "Testar narrativas ousadas"
+      - "Criar presença 24/7"
+      - "Experimentar novos formatos"
+
+    perguntas_estrategicas:
+      - "Qual é a história de origem dessa persona?"
+      - "Que papel ela desempenha no ecossistema da marca?"
+      - "O que ela faz que o humano não faz (e vice-versa)?"
+      - "Como garantir transparência sobre sua natureza sintética?"
+
+    cuidados:
+      - "Transparência: deixar claro que é entidade sintética"
+      - "Alinhamento: valores devem ser coerentes com a marca"
+      - "Limites: definir claramente o que faz e não faz"
+      - "Supervisão: humano como curador final"
+
+# ═══════════════════════════════════════════════════════════════════
+# INTERSEÇÕES ENTRE EIXOS
+# ═══════════════════════════════════════════════════════════════════
+intersecoes:
+  descricao: |
+    Os eixos se sobrepõem e criam zonas de interseção poderosas.
+    Campanhas memoráveis frequentemente trabalham múltiplos eixos.
+
+  exemplos:
+    institucional_mercadologica:
+      nome: "Natal da Coca-Cola"
+      descricao: "Propósito (felicidade) + Produto (a bebida)"
+      resultado: "Campanha institucional que gera vendas"
+
+    institucional_empregadora:
+      nome: "Cultura Magazine Luiza"
+      descricao: "Propósito + Pessoas reais"
+      resultado: "Atração de talentos alinhados"
+
+    pessoal_institucional:
+      nome: "Jobs apresentando iPhone"
+      descricao: "Visão pessoal + Propósito Apple"
+      resultado: "Líder como encarnação da marca"
+
+    sintetica_mercadologica:
+      nome: "Lu vendendo produtos"
+      descricao: "Persona digital + Ofertas e produtos"
+      resultado: "Escala de atendimento com personalidade"
+
+    todas_juntas:
+      nome: "Campanha 360"
+      descricao: "Todos os eixos alinhados"
+      resultado: "Presença narrativa completa"
+
+# ═══════════════════════════════════════════════════════════════════
+# COMO USAR NO WORKFLOW
+# ═══════════════════════════════════════════════════════════════════
+uso_no_workflow:
+
+  etapa_triagem:
+    agente: "Brand Voice Director"
+    pergunta: "Qual(is) eixo(s) essa comunicação deve trabalhar?"
+    processo:
+      - "Analisar briefing"
+      - "Identificar objetivo da comunicação"
+      - "Selecionar eixo(s) primário(s)"
+      - "Definir tom e linguagem adequados"
+
+  matriz_decisao:
+    se_construir_reputacao: "Eixo 1 - Institucional"
+    se_vender_produto: "Eixo 2 - Mercadológica"
+    se_atrair_talentos: "Eixo 3 - Empregadora"
+    se_humanizar_lideranca: "Eixo 4 - Pessoal"
+    se_escalar_presenca: "Eixo 5 - Sintética"
+    se_campanha_360: "Múltiplos eixos alinhados"
+
+  validacao:
+    pergunta_final: |
+      A narrativa criada está coerente com o(s) eixo(s) definido(s)?
+      O tom está adequado? A mensagem está clara?
+
+# ═══════════════════════════════════════════════════════════════════
+# REFERÊNCIAS
+# ═══════════════════════════════════════════════════════════════════
+referencias:
+  - autor: "criaTTivados"
+    obra: "storYOURtelling - Módulo Embarque"
+    contribuicao: "4 Eixos Narrativos originais"
+
+  - autor: "Pesquisa Perplexity"
+    obra: "Marca Sintética 2025-2026"
+    contribuicao: "5º Eixo - Marca Sintética"
+
+  - autor: "Kevin Lane Keller"
+    obra: "Strategic Brand Management"
+    contribuicao: "Brand Equity e dimensões de marca"
+
+  - autor: "Simon Sinek"
+    obra: "Start With Why"
+    contribuicao: "Golden Circle (propósito)"
+
+uso_pelos_agentes:
+  - "Brand Voice Director (definir eixos)"
+  - "Creative Director (validar coerência)"
+  - "Concept Writer (adaptar tom)"
+  - "Copywriter (escrever para o eixo)"
+  - "Art Director (visual do eixo)"

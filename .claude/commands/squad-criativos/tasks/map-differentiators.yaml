@@ -1,0 +1,80 @@
+# Task: Map Differentiators
+# Squad: squAId-criaTTivados / unniko
+# Responsável: differentiation-strategist
+
+metadata:
+  name: "map-differentiators"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "unniko"
+  responsavel: "differentiation-strategist"
+  tipo: task
+
+descricao: |
+  Mapeamento dos diferenciais da marca nas 27 ordens da Taxonomia.
+  Define Brand Promise e seleciona 2-3 diferenciais por domínio.
+
+entrada:
+  - campo: brand_audit_report
+    tipo: string
+    origem: "audit-brand"
+    obrigatorio: true
+    descricao: "Diagnóstico de marca por domínio"
+  - campo: brand_strategy_document
+    tipo: string
+    origem: "build-brand-essence"
+    obrigatorio: true
+    descricao: "Estratégia de marca"
+  - campo: insights_document
+    tipo: string
+    origem: "synthesize-insights"
+    obrigatorio: true
+    descricao: "Insights de pesquisa"
+
+saida:
+  - campo: differentiation_strategy
+    tipo: string
+    destino: "build-design-system"
+    persistido: true
+    descricao: "Brand Promise + diferenciais + proof points"
+
+passos:
+  1:
+    nome: "Mapear 27 ordens"
+    descricao: "Posicionar marca em cada ordem da Taxonomia de Diferenciais"
+    agente: "differentiation-strategist"
+  2:
+    nome: "Identificar ordens de liderança"
+    descricao: "Onde a marca pode dominar vs concorrência"
+    agente: "differentiation-strategist"
+  3:
+    nome: "Selecionar diferenciais"
+    descricao: "Escolher 2-3 diferenciais por domínio"
+    agente: "differentiation-strategist"
+  4:
+    nome: "Validar VURS"
+    descricao: "Testar cada diferencial: Verdadeiro, Único, Relevante, Sustentável"
+    agente: "differentiation-strategist"
+  5:
+    nome: "Definir Brand Promise"
+    descricao: "Articular promessa cumprível e verificável"
+    agente: "differentiation-strategist"
+  6:
+    nome: "Documentar Proof Points"
+    descricao: "Evidências concretas para cada diferencial"
+    agente: "differentiation-strategist"
+  7:
+    nome: "Definir Brand Experience"
+    descricao: "Como o diferencial se manifesta na experiência"
+    agente: "brand-experience-designer"
+
+checklist:
+  - "[ ] 27 ordens mapeadas"
+  - "[ ] 2-3 diferenciais por domínio selecionados"
+  - "[ ] Critérios VURS validados"
+  - "[ ] Brand Promise definida"
+  - "[ ] Proof Points documentados"
+
+criterios_aceitacao:
+  - "Cada diferencial passa no teste VURS"
+  - "Brand Promise cumprível e verificável"

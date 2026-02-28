@@ -1,0 +1,173 @@
+# Workflow: Onboarding UNNIKO
+# Processo estruturado para novos funcionários entenderem o UNNIKO
+
+name: onboarding-unniko
+description: |
+  Processo de onboarding para novos membros da squad UNNIKO.
+  Capacita o funcionário a entender a squad e seu papel nela.
+
+metadata:
+  name: "Onboarding UNNIKO"
+  version: "1.0"
+  duracao_estimada: "1-2 horas"
+  objetivo: "Capacitar novo funcionário a entender o UNNIKO e seu papel na squad"
+
+# ═══════════════════════════════════════════════════════════════════
+# PRÉ-REQUISITOS
+# ═══════════════════════════════════════════════════════════════════
+prerequisitos:
+  - "Acesso ao repositório AIOS"
+  - "Conhecimento básico de branding (desejável, não obrigatório)"
+
+# ═══════════════════════════════════════════════════════════════════
+# ETAPAS DO ONBOARDING
+# ═══════════════════════════════════════════════════════════════════
+etapas:
+
+  etapa_1:
+    nome: "Visão Geral"
+    duracao: "20 min"
+    objetivo: "Entender o que é o UNNIKO e onde se encaixa na tríade"
+
+    atividades:
+      - acao: "Ler seção 'O que é o UNNIKO?'"
+        arquivo: "docs/onboarding-unniko.md"
+
+      - acao: "Ler seção 'Onde o UNNIKO se encaixa?'"
+        arquivo: "docs/onboarding-unniko.md"
+
+      - acao: "Ler seção 'A Tríade de uma Marca Forte'"
+        arquivo: "docs/onboarding-unniko.md"
+        foco: "Entender UNNIKO como segundo eixo (entre DEENEA e storYOURtelling)"
+
+    checklist:
+      - "Consigo explicar o que o UNNIKO faz em uma frase"
+      - "Entendo a relação DEENEA → UNNIKO"
+      - "Entendo a relação UNNIKO → storYOURtelling"
+      - "Sei o papel do UNNIKO na tríade de marca forte"
+
+  etapa_2:
+    nome: "A Taxonomia de Diferenciais"
+    duracao: "20 min"
+    objetivo: "Entender o framework central do UNNIKO"
+
+    atividades:
+      - acao: "Ler seção 'A Taxonomia de Diferenciais'"
+        arquivo: "docs/onboarding-unniko.md"
+
+      - acao: "Explorar o arquivo completo da taxonomia"
+        arquivo: "data/taxonomia-diferenciais.yaml"
+        foco: "Entender os 3 domínios e 9 classes"
+
+    checklist:
+      - "Sei a diferença entre Diferenciação e Distintividade"
+      - "Consigo nomear os 3 domínios"
+      - "Entendo o que cada domínio cobre"
+
+  etapa_3:
+    nome: "Os 8 Agentes"
+    duracao: "25 min"
+    objetivo: "Conhecer cada agente e seu papel"
+
+    atividades:
+      - acao: "Ler seção 'Os 8 Agentes do UNNIKO'"
+        arquivo: "docs/onboarding-unniko.md"
+
+      - acao: "Explorar 3 agentes em detalhe"
+        arquivos:
+          - "agents/unniko/brand-director.yaml"
+          - "agents/unniko/brand-auditor.yaml"
+          - "agents/unniko/differentiation-strategist.yaml"
+
+    checklist:
+      - "Sei o papel de cada agente"
+      - "Entendo quem faz o quê"
+      - "Sei qual agente procurar para cada tipo de dúvida"
+
+  etapa_4:
+    nome: "Fluxo de Trabalho"
+    duracao: "15 min"
+    objetivo: "Entender como o trabalho flui no UNNIKO"
+
+    atividades:
+      - acao: "Ler seção 'Fluxo de Trabalho do UNNIKO'"
+        arquivo: "docs/onboarding-unniko.md"
+
+      - acao: "Visualizar o workflow completo"
+        arquivo: "workflows/full-brand-journey.yaml"
+        foco: "Seção do UNNIKO"
+
+    checklist:
+      - "Entendo as 5 fases"
+      - "Sei o que acontece em cada fase"
+      - "Entendo as dependências entre fases"
+
+  etapa_5:
+    nome: "Data Files e Referências"
+    duracao: "20 min"
+    objetivo: "Conhecer as ferramentas e referências disponíveis"
+
+    atividades:
+      - acao: "Explorar os data files"
+        arquivos:
+          - "data/distinctive-assets-framework.yaml"
+          - "data/brand-resonance-model.yaml"
+          - "data/sensory-branding.yaml"
+        instrucao: "Não precisa decorar, apenas saber que existem"
+
+    checklist:
+      - "Sei onde encontrar frameworks de referência"
+      - "Explorei pelo menos 2 data files"
+
+  etapa_6:
+    nome: "Verificação Final"
+    duracao: "10 min"
+    objetivo: "Confirmar aprendizado"
+
+    atividades:
+      - acao: "Completar o checklist de onboarding"
+        arquivo: "docs/onboarding-unniko.md"
+        secao: "Checklist de Onboarding"
+
+      - acao: "Responder mentalmente"
+        perguntas:
+          - "O que o UNNIKO faz?"
+          - "Qual a diferença entre Domínio I, II e III?"
+          - "Quem é responsável por criar o tom de voz?"
+          - "Quem faz a auditoria da marca?"
+
+    resultado_esperado: "Funcionário capaz de explicar o UNNIKO para outro colega"
+
+# ═══════════════════════════════════════════════════════════════════
+# RECURSOS ADICIONAIS
+# ═══════════════════════════════════════════════════════════════════
+recursos_adicionais:
+  para_aprofundar:
+    - nome: "Taxonomia completa"
+      arquivo: "data/taxonomia-diferenciais.yaml"
+
+    - nome: "Todos os agentes"
+      pasta: "agents/unniko/"
+
+    - nome: "Templates de entrega"
+      pasta: "templates/"
+
+  leitura_recomendada:
+    - "How Brands Grow - Byron Sharp"
+    - "Strategic Brand Management - Kevin Keller"
+    - "Brand Sense - Martin Lindstrom"
+
+# ═══════════════════════════════════════════════════════════════════
+# SUPORTE
+# ═══════════════════════════════════════════════════════════════════
+suporte:
+  duvidas: "Procure o Brand Director"
+  feedback: "Sugestões de melhoria são bem-vindas"
+
+# ═══════════════════════════════════════════════════════════════════
+# FRAMEWORKS CURADOS (2026-02)
+# ═══════════════════════════════════════════════════════════════════
+frameworks_curados:
+  - wheeler-brand-process.yaml       # 5 fases de identidade de marca
+  - sensory-branding.yaml            # Smashing Your Brand, Sensograma
+  - behavioral-economics-branding.yaml  # Vieses cognitivos para branding

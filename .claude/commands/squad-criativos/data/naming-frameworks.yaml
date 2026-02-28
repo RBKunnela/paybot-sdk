@@ -1,0 +1,238 @@
+# Naming Frameworks
+# Metodologias para criação de nomes de marca
+# Usado por: Verbal Identity Specialist
+
+metadata:
+  name: "Frameworks de Naming"
+  version: "1.0"
+
+tipos_de_nomes:
+
+  descritivo:
+    descricao: "Descreve o que a marca faz"
+    vantagens:
+      - "Clareza imediata"
+      - "Fácil de entender"
+      - "Bom para SEO"
+    desvantagens:
+      - "Difícil de proteger"
+      - "Limita expansão"
+      - "Pouco memorável"
+    exemplos:
+      - "General Motors"
+      - "Banco do Brasil"
+      - "British Airways"
+
+  sugestivo:
+    descricao: "Sugere benefício ou característica sem descrever literalmente"
+    vantagens:
+      - "Mais defensável"
+      - "Evoca associações"
+      - "Flexível para expansão"
+    desvantagens:
+      - "Pode ser ambíguo"
+      - "Requer mais marketing"
+    exemplos:
+      - "Netflix (net + flicks)"
+      - "Pinterest (pin + interest)"
+      - "Airbnb (air + bed & breakfast)"
+
+  abstrato:
+    descricao: "Palavra inventada sem significado prévio"
+    vantagens:
+      - "Totalmente defensável"
+      - "Único"
+      - "Sem bagagem negativa"
+    desvantagens:
+      - "Sem significado inicial"
+      - "Alto investimento em branding"
+    exemplos:
+      - "Kodak"
+      - "Xerox"
+      - "Google"
+      - "Häagen-Dazs"
+
+  acronimo:
+    descricao: "Iniciais de palavras"
+    vantagens:
+      - "Curto"
+      - "Profissional"
+    desvantagens:
+      - "Difícil de memorizar"
+      - "Sem personalidade"
+      - "Muitos já existem"
+    exemplos:
+      - "IBM"
+      - "BMW"
+      - "KFC"
+
+  fundador:
+    descricao: "Nome do fundador ou criador"
+    vantagens:
+      - "Autenticidade"
+      - "História"
+      - "Confiança"
+    desvantagens:
+      - "Difícil se fundador sai"
+      - "Pronúncia pode ser difícil"
+    exemplos:
+      - "Ford"
+      - "Chanel"
+      - "Dell"
+      - "Ferrari"
+
+  metaforico:
+    descricao: "Usa metáfora ou analogia"
+    vantagens:
+      - "Evocativo"
+      - "Memorável"
+      - "Diferenciado"
+    desvantagens:
+      - "Pode confundir"
+      - "Depende de cultura"
+    exemplos:
+      - "Amazon (rio grandioso)"
+      - "Apple (simplicidade)"
+      - "Jaguar (velocidade, elegância)"
+
+  geografico:
+    descricao: "Baseado em lugar"
+    vantagens:
+      - "Associações de origem"
+      - "Autenticidade regional"
+    desvantagens:
+      - "Pode limitar expansão"
+      - "Difícil de proteger"
+    exemplos:
+      - "American Airlines"
+      - "Patagonia"
+      - "Swiss"
+
+criterios_avaliacao:
+
+  smile_and_scratch:
+    fonte: "Alexandra Watkins"
+    smile:
+      S: "Suggestive - Sugere algo sobre a marca"
+      M: "Memorable - Fácil de lembrar"
+      I: "Imagery - Evoca imagem mental"
+      L: "Legs - Pode se estender (produtos, campanhas)"
+      E: "Emotional - Conecta emocionalmente"
+
+    scratch:
+      S: "Spelling challenged - Difícil de soletrar"
+      C1: "Copycat - Parece com outra marca"
+      R: "Restrictive - Limita crescimento"
+      A: "Annoying - Irritante ou forçado"
+      T: "Tame - Sem graça, genérico"
+      C2: "Curse of knowledge - Só insiders entendem"
+      H: "Hard to pronounce - Difícil de falar"
+
+  criterios_legais:
+    trademark:
+      - "Disponível para registro"
+      - "Não infringe marcas existentes"
+      - "Defensável em disputas"
+
+    dominio:
+      - ".com disponível (ideal)"
+      - "Variações disponíveis"
+      - "Handles de social disponíveis"
+
+  criterios_linguisticos:
+    pronuncia:
+      - "Fácil em português"
+      - "Funciona em inglês (se global)"
+      - "Não tem significado negativo em outras línguas"
+
+    escrita:
+      - "Fácil de soletrar"
+      - "Não confunde com outras palavras"
+      - "Funciona em busca por voz"
+
+arquitetura_de_naming:
+
+  branded_house:
+    descricao: "Tudo sob a marca mãe"
+    estrutura: "Marca → Marca Produto"
+    exemplo: "Google → Google Maps, Google Drive"
+    quando_usar:
+      - "Marca mãe é forte"
+      - "Produtos relacionados"
+      - "Quer transferir equity"
+
+  house_of_brands:
+    descricao: "Marcas independentes"
+    estrutura: "Holding (invisível) → Marca A, Marca B"
+    exemplo: "P&G → Tide, Pampers, Gillette"
+    quando_usar:
+      - "Públicos muito diferentes"
+      - "Não quer associação"
+      - "Permite mais risco"
+
+  endorsed:
+    descricao: "Marca mãe endossa sub-marca"
+    estrutura: "Sub-marca by Marca Mãe"
+    exemplo: "Courtyard by Marriott"
+    quando_usar:
+      - "Quer alguma transferência"
+      - "Produtos relacionados mas distintos"
+
+  hybrid:
+    descricao: "Combinação de estratégias"
+    exemplo: "Microsoft → Xbox (house of brands) + Microsoft Office (branded house)"
+    quando_usar:
+      - "Portfolio complexo"
+      - "Diferentes necessidades por categoria"
+
+processo_naming:
+
+  fase_1_briefing:
+    inputs:
+      - "Posicionamento da marca"
+      - "Arquétipos"
+      - "Público-alvo"
+      - "Território verbal"
+      - "Restrições"
+
+  fase_2_exploracao:
+    tecnicas:
+      - "Brainstorm livre"
+      - "Associação de palavras"
+      - "Exploração linguística"
+      - "Metáforas e analogias"
+      - "Combinações e neologismos"
+      - "Referências culturais"
+
+  fase_3_filtro_inicial:
+    criterios:
+      - "Alinhamento com brief"
+      - "SMILE test básico"
+      - "Verificação rápida de domínio"
+
+  fase_4_verificacao_legal:
+    checklist:
+      - "Busca em bases de trademark"
+      - "Verificação de domínios"
+      - "Verificação de handles sociais"
+      - "Verificação linguística (outros idiomas)"
+
+  fase_5_teste:
+    metodos:
+      - "Teste de pronúncia"
+      - "Teste de memorização"
+      - "Teste de associação"
+      - "Teste com público-alvo"
+
+  fase_6_selecao:
+    criterios_finais:
+      - "Score SMILE/SCRATCH"
+      - "Disponibilidade legal"
+      - "Fit estratégico"
+      - "Resultado de testes"
+
+referencias:
+  - "Watkins, A. - Hello, My Name Is Awesome"
+  - "Neumeier, M. - The Brand Gap"
+  - "Wheeler, A. - Designing Brand Identity"
+  - "Aaker, D. - Building Strong Brands"

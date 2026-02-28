@@ -1,0 +1,101 @@
+# Checklist: CBO Gate - Delivery
+# Squad: squAId-criaTTivados / directors
+
+metadata:
+  name: "cbo-gate-delivery"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  tipo: cbo-gate
+  responsavel: "cbo"
+
+descricao: |
+  Gate CBO final antes de entrega ao cliente.
+  Validação completa de todos os outputs operacionais.
+
+entregavel: "Todos os entregáveis finais aprovados"
+
+itens:
+  completude:
+    nome: "Completude"
+    items:
+      - id: 1
+        descricao: "Todos os deliverables produzidos"
+        obrigatorio: true
+        criterio: "Cada item do Creative Brief foi criado"
+      - id: 2
+        descricao: "Formatos corretos por plataforma"
+        obrigatorio: true
+        criterio: "1:1, 9:16, 16:9 conforme especificado"
+      - id: 3
+        descricao: "Calendário editorial finalizado"
+        obrigatorio: true
+        criterio: "Datas, horários, plataformas definidos"
+      - id: 4
+        descricao: "Métricas e funil definidos"
+        obrigatorio: true
+        criterio: "AARRR com targets claros"
+
+  qualidade:
+    nome: "Qualidade"
+    items:
+      - id: 5
+        descricao: "Conteúdo sem erros"
+        obrigatorio: true
+        criterio: "Ortografia, links, menções, hashtags OK"
+      - id: 6
+        descricao: "Assets visuais em alta qualidade"
+        obrigatorio: true
+        criterio: "Resolução, proporção, legibilidade"
+      - id: 7
+        descricao: "Copy alinhado com Tom de Voz"
+        obrigatorio: true
+        criterio: "Tom consistente em todas as peças"
+      - id: 8
+        descricao: "Consistência entre peças"
+        obrigatorio: true
+        criterio: "Todas as peças parecem da mesma campanha"
+
+  alinhamento_estrategico:
+    nome: "Alinhamento Estratégico"
+    items:
+      - id: 9
+        descricao: "Peças reforçam Brand Promise"
+        obrigatorio: true
+        criterio: "A promessa é comunicada consistentemente"
+      - id: 10
+        descricao: "Big Idea presente em todos os canais"
+        obrigatorio: true
+        criterio: "A ideia central é reconhecível em cada peça"
+      - id: 11
+        descricao: "Diferenciais visíveis"
+        obrigatorio: true
+        criterio: "Os diferenciais aparecem nas comunicações"
+      - id: 12
+        descricao: "Identidade visual consistente"
+        obrigatorio: true
+        criterio: "Design System respeitado em tudo"
+
+  prontidao:
+    nome: "Prontidão"
+    items:
+      - id: 13
+        descricao: "Peças prontas para publicação"
+        obrigatorio: true
+        criterio: "Não precisa de ajustes finais"
+      - id: 14
+        descricao: "Protocolo de engajamento definido"
+        obrigatorio: true
+        criterio: "Ações pós-publicação documentadas"
+      - id: 15
+        descricao: "Funil configurado"
+        obrigatorio: true
+        criterio: "AARRR pronto para monitoramento"
+      - id: 16
+        descricao: "Baselines estabelecidas"
+        obrigatorio: true
+        criterio: "Métricas atuais documentadas para comparação"
+
+aprovacao:
+  score_minimo: 100
+  criterio: "100% obrigatórios para entrega ao cliente"
+  acao_rejeicao: "Feedback por squad (Content-Ops ou Growth-Ops) com itens específicos"

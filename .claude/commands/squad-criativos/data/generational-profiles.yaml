@@ -1,0 +1,577 @@
+# Perfis Geracionais - Framework de Comunicação
+# 5 Gerações no Mercado de Trabalho + Adaptação de Mensagens
+# Referência para: TODOS os squads (DEENEA, UNNIKO, storYOURtelling)
+
+metadata:
+  name: "Perfis Geracionais - Framework de Comunicação"
+  version: "1.0"
+  fontes:
+    - "World Economic Forum - Future of Jobs"
+    - "McKinsey - Generational Workforce"
+    - "Gallup - How Generations Work"
+    - "LinkedIn Talent Insights"
+  aplicacao: "Comunicação de marca, employer branding, narrativas segmentadas"
+
+# ═══════════════════════════════════════════════════════════════════
+# CONCEITO CENTRAL
+# ═══════════════════════════════════════════════════════════════════
+definicao:
+  conceito: |
+    Cada geração foi moldada por contextos históricos, tecnológicos
+    e culturais diferentes. Isso cria padrões de valores, expectativas
+    e formas de comunicação que devem ser considerados em branding.
+
+  principio: |
+    Não se trata de estereotipar, mas de entender tendências gerais
+    que ajudam a adaptar mensagens. Dentro de cada geração há enorme
+    diversidade individual.
+
+  aplicacao_branding: |
+    Marcas eficazes adaptam tom, canal e mensagem para ressoar com
+    diferentes gerações sem perder autenticidade ou coerência.
+
+  aviso: |
+    Anos de nascimento são aproximados e variam entre fontes.
+    Use como guia, não como regra rígida.
+
+# ═══════════════════════════════════════════════════════════════════
+# AS 5 GERAÇÕES ATIVAS
+# ═══════════════════════════════════════════════════════════════════
+geracoes:
+
+  # BABY BOOMERS
+  baby_boomers:
+    nome: "Baby Boomers"
+    apelido: "Boomers"
+    nascimento: "1946-1964"
+    idade_2026: "62-80 anos"
+    icone: "👔"
+
+    contexto_formativo:
+      eventos:
+        - "Pós-guerra e prosperidade econômica"
+        - "Movimento hippie e contracultura"
+        - "Chegada do homem à lua"
+        - "Guerra Fria"
+      tecnologia: "TV, telefone fixo"
+      trabalho: "Carreira em uma empresa, lealdade"
+
+    valores_centrais:
+      - "Trabalho duro e dedicação"
+      - "Lealdade institucional"
+      - "Respeito à hierarquia"
+      - "Estabilidade e segurança"
+      - "Reconhecimento por tempo de serviço"
+
+    no_trabalho:
+      motivadores:
+        - "Estabilidade financeira"
+        - "Reconhecimento por experiência"
+        - "Legado e contribuição"
+        - "Título e posição"
+
+      pontos_fortes:
+        - "Experiência e sabedoria acumulada"
+        - "Comprometimento"
+        - "Ética de trabalho"
+        - "Networking extenso"
+
+      expectativas:
+        - "Respeito pela trajetória"
+        - "Comunicação formal"
+        - "Processos claros"
+        - "Reconhecimento por antiguidade"
+
+    comunicacao:
+      canais_preferidos:
+        - "Email"
+        - "Telefone"
+        - "Reuniões presenciais"
+        - "Documentos formais"
+
+      tom:
+        - "Formal e respeitoso"
+        - "Direto e claro"
+        - "Valorizar experiência"
+        - "Evitar gírias"
+
+      anti_padroes:
+        - "Assumir que não entendem tecnologia"
+        - "Desconsiderar opinião"
+        - "Comunicação excessivamente casual"
+
+    employer_branding:
+      mensagens_ressoam:
+        - "Valorização da experiência"
+        - "Programas de mentoria (como mentores)"
+        - "Transição para aposentadoria"
+        - "Legado e contribuição duradoura"
+
+      evp_elementos:
+        - "Estabilidade"
+        - "Reconhecimento"
+        - "Benefícios de saúde"
+        - "Plano de previdência"
+
+    dados:
+      - "Muitos adiando aposentadoria por propósito ou necessidade"
+      - "Valorizam empresas que investem em programas 50+"
+      - "28% mais engajamento quando há programas de mentoria reversa"
+
+  # GERAÇÃO X
+  geracao_x:
+    nome: "Geração X"
+    apelido: "Gen X"
+    nascimento: "1965-1980"
+    idade_2026: "46-61 anos"
+    icone: "🎸"
+
+    contexto_formativo:
+      eventos:
+        - "Queda do Muro de Berlim"
+        - "Crise econômica dos anos 80/90"
+        - "Início da globalização"
+        - "AIDS e consciência social"
+      tecnologia: "Computadores pessoais, início da internet"
+      trabalho: "Viram pais demitidos, ceticismo com empresas"
+
+    valores_centrais:
+      - "Independência e autonomia"
+      - "Equilíbrio vida-trabalho"
+      - "Pragmatismo"
+      - "Ceticismo saudável"
+      - "Adaptabilidade"
+
+    no_trabalho:
+      motivadores:
+        - "Autonomia e flexibilidade"
+        - "Work-life balance"
+        - "Resultados sobre processo"
+        - "Estabilidade financeira"
+
+      pontos_fortes:
+        - "Ponte entre gerações"
+        - "Adaptáveis a mudanças"
+        - "Resolvem problemas"
+        - "Equilibram digital e analógico"
+
+      expectativas:
+        - "Liberdade para trabalhar do seu jeito"
+        - "Meritocracia"
+        - "Respeito ao tempo pessoal"
+        - "Comunicação direta"
+
+    comunicacao:
+      canais_preferidos:
+        - "Email (principal)"
+        - "Telefone quando urgente"
+        - "Reuniões objetivas"
+        - "Mensagens diretas"
+
+      tom:
+        - "Direto e pragmático"
+        - "Sem rodeios"
+        - "Respeito ao tempo"
+        - "Foco em resultados"
+
+      anti_padroes:
+        - "Reuniões desnecessárias"
+        - "Burocracia excessiva"
+        - "Microgerenciamento"
+
+    employer_branding:
+      mensagens_ressoam:
+        - "Flexibilidade real"
+        - "Autonomia para entregar"
+        - "Benefícios para família"
+        - "Desenvolvimento de liderança"
+
+      evp_elementos:
+        - "Flexibilidade"
+        - "Reconhecimento por resultado"
+        - "Benefícios familiares"
+        - "Oportunidades de liderança"
+
+    dados:
+      - "Geração sanduíche: cuidam de pais e filhos"
+      - "45% ocupam cargos de liderança"
+      - "Maior taxa de burnout por acúmulo de responsabilidades"
+
+  # MILLENNIALS / GERAÇÃO Y
+  millennials:
+    nome: "Millennials"
+    apelido: "Geração Y"
+    nascimento: "1981-1996"
+    idade_2026: "30-45 anos"
+    icone: "📱"
+
+    contexto_formativo:
+      eventos:
+        - "11 de setembro"
+        - "Crise de 2008"
+        - "Boom das redes sociais"
+        - "Globalização digital"
+      tecnologia: "Internet, smartphones, redes sociais"
+      trabalho: "Entraram em mercado instável, buscam propósito"
+
+    valores_centrais:
+      - "Propósito e significado"
+      - "Colaboração e comunidade"
+      - "Desenvolvimento contínuo"
+      - "Flexibilidade"
+      - "Autenticidade"
+
+    no_trabalho:
+      motivadores:
+        - "Propósito no trabalho"
+        - "Crescimento e aprendizado"
+        - "Feedback constante"
+        - "Cultura positiva"
+        - "Impacto social"
+
+      pontos_fortes:
+        - "Fluência digital"
+        - "Colaborativos"
+        - "Adaptáveis"
+        - "Multitarefa"
+        - "Questionadores construtivos"
+
+      expectativas:
+        - "Feedback frequente (não só anual)"
+        - "Oportunidades de crescimento"
+        - "Flexibilidade de local/horário"
+        - "Líderes acessíveis"
+        - "Cultura de transparência"
+
+    comunicacao:
+      canais_preferidos:
+        - "Slack/Teams (chat)"
+        - "Email para formalizar"
+        - "Videochamadas"
+        - "Redes sociais"
+
+      tom:
+        - "Casual mas profissional"
+        - "Autêntico e transparente"
+        - "Colaborativo"
+        - "Orientado a feedback"
+
+      anti_padroes:
+        - "Hierarquia rígida"
+        - "Comunicação unidirecional"
+        - "Falta de contexto ('porque sim')"
+
+    employer_branding:
+      mensagens_ressoam:
+        - "Propósito da empresa"
+        - "Cultura de aprendizado"
+        - "Crescimento de carreira"
+        - "Impacto social"
+        - "Flexibilidade"
+
+      evp_elementos:
+        - "Propósito claro"
+        - "Desenvolvimento contínuo"
+        - "Feedback e coaching"
+        - "Cultura colaborativa"
+        - "Benefícios de bem-estar"
+
+    dados:
+      - "Maior força de trabalho ativa hoje"
+      - "60% consideram propósito ao escolher emprego"
+      - "Mudam de emprego a cada 2-3 anos em média"
+      - "87% valorizam desenvolvimento mais que salário"
+
+  # GERAÇÃO Z
+  geracao_z:
+    nome: "Geração Z"
+    apelido: "Gen Z / Centennials"
+    nascimento: "1997-2012"
+    idade_2026: "14-29 anos"
+    icone: "🎮"
+
+    contexto_formativo:
+      eventos:
+        - "Crise climática"
+        - "Pandemia COVID-19"
+        - "Polarização política"
+        - "Movimentos sociais (BLM, feminismo)"
+      tecnologia: "Nativos digitais, smartphones desde infância"
+      trabalho: "Entrando agora, trazem novas expectativas"
+
+    valores_centrais:
+      - "Diversidade e inclusão"
+      - "Autenticidade radical"
+      - "Saúde mental"
+      - "Sustentabilidade"
+      - "Justiça social"
+      - "Pragmatismo financeiro"
+
+    no_trabalho:
+      motivadores:
+        - "Segurança financeira (pós-crise)"
+        - "Saúde mental respeitada"
+        - "Diversidade real"
+        - "Crescimento rápido"
+        - "Flexibilidade total"
+
+      pontos_fortes:
+        - "Nativos digitais"
+        - "Multitarefa extrema"
+        - "Empreendedores"
+        - "Criativos"
+        - "Questionadores"
+
+      expectativas:
+        - "Flexibilidade não negociável"
+        - "Líderes autênticos"
+        - "Empresa com posicionamento social"
+        - "Comunicação transparente"
+        - "Crescimento acelerado"
+
+    comunicacao:
+      canais_preferidos:
+        - "Vídeos curtos (TikTok, Reels)"
+        - "Mensagens instantâneas"
+        - "Stories"
+        - "Áudios/voice notes"
+
+      tom:
+        - "Autêntico e real"
+        - "Visual e dinâmico"
+        - "Sem filtros corporativos"
+        - "Humor e leveza"
+        - "Direto ao ponto"
+
+      anti_padroes:
+        - "Comunicação corporativa tradicional"
+        - "Promessas vazias"
+        - "Falta de diversidade"
+        - "Emails longos"
+
+    employer_branding:
+      mensagens_ressoam:
+        - "Diversidade e inclusão real"
+        - "Posicionamento social"
+        - "Saúde mental é prioridade"
+        - "Crescimento rápido"
+        - "Flexibilidade total"
+        - "Sustentabilidade"
+
+      evp_elementos:
+        - "Salário competitivo (pragmáticos)"
+        - "Flexibilidade total"
+        - "Cultura diversa"
+        - "Desenvolvimento acelerado"
+        - "Benefícios de saúde mental"
+
+    dados:
+      - "70% priorizam saúde mental sobre promoção"
+      - "83% querem trabalhar em empresa com valores alinhados"
+      - "Deixam empregos por falta de propósito"
+      - "Esperam promoção em 1-2 anos"
+
+  # GERAÇÃO ALPHA
+  geracao_alpha:
+    nome: "Geração Alpha"
+    apelido: "Gen Alpha"
+    nascimento: "2013-2025"
+    idade_2026: "1-13 anos"
+    icone: "🤖"
+
+    contexto_formativo:
+      eventos:
+        - "Pandemia na infância"
+        - "Avanço de IA"
+        - "Crise climática aguda"
+        - "Hiperconectividade"
+      tecnologia: "IA, realidade aumentada, assistentes virtuais"
+      trabalho: "Ainda não no mercado, mas moldando futuro"
+
+    caracteristicas_emergentes:
+      - "Nativos de IA"
+      - "Aprendizado não-linear"
+      - "Hiperconectados desde nascimento"
+      - "Consciência ambiental desde cedo"
+      - "Diversidade como padrão (não exceção)"
+
+    implicacoes_futuras:
+      educacao:
+        - "Aprendizado personalizado por IA"
+        - "Habilidades socioemocionais críticas"
+        - "Pensamento crítico sobre informação"
+
+      trabalho:
+        - "Empregos que ainda não existem"
+        - "Colaboração humano-IA"
+        - "Flexibilidade como premissa básica"
+
+    comunicacao_emergente:
+      canais:
+        - "Vídeo-first"
+        - "Interfaces de voz"
+        - "Realidade aumentada"
+        - "Formatos imersivos"
+
+    employer_branding_futuro:
+      - "Empresas sustentáveis (não opcional)"
+      - "IA ética e transparente"
+      - "Trabalho como experiência, não local"
+      - "Propósito como requisito básico"
+
+    nota: |
+      Ainda muito cedo para definir padrões de trabalho.
+      Observar tendências para antecipar.
+
+# ═══════════════════════════════════════════════════════════════════
+# MATRIZ DE ADAPTAÇÃO
+# ═══════════════════════════════════════════════════════════════════
+matriz_adaptacao:
+
+  tom_de_voz:
+    baby_boomers: "Formal, respeitoso, experiente"
+    geracao_x: "Direto, pragmático, sem rodeios"
+    millennials: "Casual profissional, autêntico, colaborativo"
+    geracao_z: "Real, visual, dinâmico, sem filtros"
+
+  formato_preferido:
+    baby_boomers: "Documentos, emails detalhados, reuniões"
+    geracao_x: "Emails concisos, calls objetivas"
+    millennials: "Vídeos, infográficos, chat"
+    geracao_z: "Vídeos curtos, stories, áudios"
+
+  mensagem_evp:
+    baby_boomers: "Sua experiência é valorizada e seu legado importa"
+    geracao_x: "Liberdade para entregar resultados do seu jeito"
+    millennials: "Cresça enquanto faz a diferença no mundo"
+    geracao_z: "Seja você, faça impacto, tenha flexibilidade"
+
+  canal_recrutamento:
+    baby_boomers: "LinkedIn, indicações, headhunters"
+    geracao_x: "LinkedIn, job boards tradicionais"
+    millennials: "LinkedIn, Glassdoor, careers page"
+    geracao_z: "TikTok, Instagram, Discord, influencers"
+
+  rituais_engajamento:
+    baby_boomers: "Reuniões presenciais, eventos formais, reconhecimento público"
+    geracao_x: "Happy hours, offsites, feedback direto"
+    millennials: "Workshops, hackathons, programas de mentoria"
+    geracao_z: "Challenges, gamificação, conteúdo creator"
+
+# ═══════════════════════════════════════════════════════════════════
+# CONFLITOS GERACIONAIS COMUNS
+# ═══════════════════════════════════════════════════════════════════
+conflitos_comuns:
+
+  formalidade_x_casualidade:
+    tensao: "Boomers/X esperam formalidade, Y/Z são mais casuais"
+    mediacao: |
+      Estabelecer código de comunicação situacional:
+      formal para clientes/stakeholders, casual interno.
+
+  presenca_x_flexibilidade:
+    tensao: "Boomers valorizam presença, Z exige flexibilidade"
+    mediacao: |
+      Focar em resultados, não em onde/quando se trabalha.
+      Criar momentos intencionais de conexão.
+
+  hierarquia_x_horizontalidade:
+    tensao: "Boomers respeitam hierarquia, Z questiona tudo"
+    mediacao: |
+      Liderança acessível com clareza de papéis.
+      Canais para feedback de todos os níveis.
+
+  feedback_anual_x_continuo:
+    tensao: "X acostumados a feedback anual, Y/Z querem diário"
+    mediacao: |
+      Implementar check-ins frequentes sem burocratizar.
+      Treinar líderes em feedback contínuo.
+
+  email_x_chat:
+    tensao: "Boomers/X preferem email, Y/Z acham lento"
+    mediacao: |
+      Definir quando usar cada canal.
+      Email para decisões, chat para operacional.
+
+# ═══════════════════════════════════════════════════════════════════
+# TIMES MULTIGERACIONAIS
+# ═══════════════════════════════════════════════════════════════════
+times_multigeracionais:
+
+  beneficios:
+    - "Diversidade de perspectivas"
+    - "Transferência de conhecimento"
+    - "Inovação + experiência"
+    - "Resiliência organizacional"
+
+  praticas_recomendadas:
+
+    mentoria_reversa:
+      descricao: "Jovens mentoram mais velhos em tecnologia/tendências"
+      beneficio: "Valoriza ambos, cria conexão"
+      case: "Microsoft - programas de mentoria reversa com profissionais 50+"
+
+    squads_intergeracionais:
+      descricao: "Times de projeto com mistura intencional de idades"
+      beneficio: "Combina experiência com frescor"
+      case: "AB InBev - squads de inovação intergeracionais"
+
+    comunicacao_multicanal:
+      descricao: "Mesma mensagem em diferentes formatos/canais"
+      beneficio: "Alcança todas as gerações"
+      exemplo: "Anúncio importante: email + video curto + reunião"
+
+    rituais_inclusivos:
+      descricao: "Eventos que funcionam para todas as gerações"
+      beneficio: "Cria conexão entre grupos"
+      dica: "Misturar formatos: parte formal, parte informal"
+
+# ═══════════════════════════════════════════════════════════════════
+# CONEXÕES COM OUTROS FRAMEWORKS
+# ═══════════════════════════════════════════════════════════════════
+conexoes:
+
+  attention_economy:
+    relacao: "Cada geração tem curva de atenção diferente"
+    como_usar: "Adaptar formato de conteúdo por geração"
+
+  employer_branding_evp:
+    relacao: "EVP segmentado por geração"
+    como_usar: "Mensagem core igual, execução adaptada"
+
+  panksepp:
+    relacao: "Gatilhos emocionais variam por geração"
+    como_usar: "Boomers: CARE/legado. Z: SEEKING/novidade"
+
+  cnv:
+    relacao: "Necessidades universais, expressão diferente"
+    como_usar: "Adaptar linguagem, manter empatia"
+
+  star_method:
+    relacao: "Histórias ressoam diferente por geração"
+    como_usar: "Boomers: trajetória longa. Z: impacto rápido"
+
+# ═══════════════════════════════════════════════════════════════════
+# USO PELOS AGENTES
+# ═══════════════════════════════════════════════════════════════════
+uso_pelos_agentes:
+  - agente: "Brand-Voice-Director (storYOURtelling)"
+    aplicacao: "Adaptar tom de voz por público"
+
+  - agente: "Copywriter (storYOURtelling)"
+    aplicacao: "Variações de copy por geração"
+
+  - agente: "Content-Producer (Content-Ops)"
+    aplicacao: "Formatos de conteúdo por geração"
+
+  - agente: "Social-Media-Strategist (Content-Ops)"
+    aplicacao: "Canais e formatos por público"
+
+  - agente: "Brand-Director (UNNIKO)"
+    aplicacao: "Estratégia de employer branding segmentada"
+
+  - agente: "Culture-Community-Architect (DEENEA)"
+    aplicacao: "Cultura que integra gerações"
+
+  - agente: "Audience-Mapper (DEENEA)"
+    aplicacao: "Segmentação de público por geração"

@@ -1,0 +1,70 @@
+# Task: Analyze Client
+# Squad: squAId-criaTTivados / atendimento
+# Responsável: client-analyst
+
+metadata:
+  name: "analyze-client"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "atendimento"
+  responsavel: "client-analyst"
+  tipo: task
+
+descricao: |
+  Análise aprofundada do contexto do cliente: mercado, história, posição atual.
+  Inclui pré-mapeamento taxonômico com hipóteses de força/fraqueza nos 3 Domínios.
+
+entrada:
+  - campo: briefing_brandesire
+    tipo: string
+    origem: "collect-briefing"
+    obrigatorio: true
+    descricao: "Briefing BranDesire completo e validado"
+
+saida:
+  - campo: client_analysis_report
+    tipo: string
+    destino: "prepare-handoff"
+    persistido: true
+    descricao: "Client Analysis Report com Pre-Domain Analysis (scores 1-5)"
+
+passos:
+  1:
+    nome: "Analisar contexto de negócio"
+    descricao: "Mapear modelo de negócio, mercado e posição atual"
+    agente: "client-analyst"
+  2:
+    nome: "Mapear mercado e concorrência"
+    descricao: "Analisar concorrentes mencionados no briefing"
+    agente: "client-analyst"
+  3:
+    nome: "Avaliar trajetória da marca"
+    descricao: "Analisar história, evolução e momento atual"
+    agente: "client-analyst"
+  4:
+    nome: "Gerar hipóteses Domínio I"
+    descricao: "Hipóteses de Diferenciação Substantiva (produto, preço, distribuição)"
+    agente: "client-analyst"
+  5:
+    nome: "Gerar hipóteses Domínio II"
+    descricao: "Hipóteses de Diferenciação Simbólica (narrativa, valores, personalidade)"
+    agente: "client-analyst"
+  6:
+    nome: "Gerar hipóteses Domínio III"
+    descricao: "Hipóteses de Distintividade (visual, verbal, sensorial)"
+    agente: "client-analyst"
+  7:
+    nome: "Compilar Client Analysis Report"
+    descricao: "Consolidar análise com scores 1-5 por domínio"
+    agente: "client-analyst"
+
+checklist:
+  - "[ ] Contexto de negócio mapeado"
+  - "[ ] Mercado analisado"
+  - "[ ] Hipóteses dos 3 domínios geradas"
+  - "[ ] Scores 1-5 atribuídos com justificativa"
+  - "[ ] Report compilado"
+
+criterios_aceitacao:
+  - "Pre-Domain Analysis com scores justificados"
+  - "Hipóteses testáveis para cada domínio"

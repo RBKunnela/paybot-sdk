@@ -1,0 +1,130 @@
+name: synthesize-findings
+description: Synthesize findings from literature to identify themes, patterns, and gaps
+category: research
+agent: literature-reviewer
+priority: medium
+estimated_duration: 2-3 days
+
+inputs:
+  - data_extraction_table:
+      type: file
+      description: Extracted data from all papers
+      required: true
+  - synthesis_type:
+      type: enum
+      options: [narrative, thematic, meta_analysis]
+      description: Type of synthesis to perform
+      required: true
+
+outputs:
+  - synthesis_document:
+      type: file
+      format: markdown
+      description: Synthesized findings with themes and patterns
+  - summary_tables:
+      type: files
+      description: Summary tables of key findings
+  - meta_analysis_results:
+      type: file
+      format: pdf
+      description: Statistical meta-analysis results (if applicable)
+
+steps:
+  - step: 1
+    name: organize_data
+    description: Organize extracted data by themes or categories
+    agent: literature-reviewer
+    estimated_duration: 0.5 days
+
+  - step: 2
+    name: identify_patterns
+    description: Identify patterns, themes, and contradictions
+    agent: literature-reviewer
+    estimated_duration: 1 day
+
+  - step: 3
+    name: analyze_gaps
+    description: Identify research gaps and future directions
+    agent: literature-reviewer
+    estimated_duration: 0.5 days
+
+  - step: 4
+    name: create_synthesis
+    description: Write synthesis narrative with themes and evidence
+    agent: literature-reviewer
+    estimated_duration: 1 day
+
+success_criteria:
+  - Clear themes identified with supporting evidence
+  - Contradictions or conflicts addressed
+  - Research gaps identified
+  - Synthesis is balanced (not cherry-picking)
+  - For meta-analysis: effect sizes calculated
+
+deliverables:
+  - Synthesis document (5-10 pages)
+  - Summary tables of findings
+  - Visual representations (charts, diagrams)
+  - Meta-analysis forest plot (if applicable)
+
+synthesis_approaches:
+  narrative_synthesis:
+    - Group studies by theme or topic
+    - Describe findings in text format
+    - Identify patterns and contradictions
+    - Suitable for mixed study designs
+
+  thematic_synthesis:
+    - Code findings from each study
+    - Group codes into themes
+    - Develop analytical themes
+    - Common in qualitative reviews
+
+  meta_analysis:
+    - Calculate effect sizes from quantitative studies
+    - Pool effect sizes statistically
+    - Assess heterogeneity (I² statistic)
+    - Create forest plots
+    - Only for quantitative studies with comparable outcomes
+
+best_practices:
+  - Read extracted data multiple times before synthesizing
+  - Look for both agreement and disagreement across studies
+  - Consider study quality when interpreting findings
+  - Be transparent about limitations of synthesis
+  - Use tables/figures to summarize complex findings
+  - Cite specific studies when describing findings
+  - Identify research gaps explicitly
+
+synthesis_structure_example:
+  introduction:
+    - Overview of synthesis approach
+    - Number of studies included
+
+  main_findings:
+    - Theme 1: [Description with supporting studies]
+    - Theme 2: [Description with supporting studies]
+    - Theme 3: [Description with supporting studies]
+
+  contradictions:
+    - Conflicting findings and possible explanations
+
+  gaps:
+    - What is NOT known or under-researched
+
+  limitations:
+    - Quality issues, publication bias, heterogeneity
+
+common_pitfalls:
+  - Cherry-picking studies that support your hypothesis
+  - Ignoring contradictory findings
+  - Not considering study quality in synthesis
+  - Over-interpreting findings from limited studies
+  - Not identifying research gaps
+
+tags:
+  - synthesis
+  - themes
+  - patterns
+  - meta-analysis
+  - research-gaps

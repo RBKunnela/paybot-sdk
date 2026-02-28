@@ -1,0 +1,76 @@
+name: squad-prep
+version: 1.0.0
+description: Squad Preparation Architect - guides users through designing AIOS squads from scratch, collecting source materials, and producing complete Squad Preparation Documents (SPD) ready for the Squad Creator agent
+author: AIOS Community
+license: UNLICENSED
+slashPrefix: squad-prep
+
+aios:
+  minVersion: "2.1.0"
+  type: squad
+
+orchestrator: forge
+
+tiers:
+  tier_0:
+    name: Preparation & Architecture
+    agents:
+      - forge
+
+components:
+  agents:
+    - forge.md
+  tasks:
+    - workflow-a-expert-squad.md
+    - workflow-b-pipeline-squad.md
+    - workflow-c-discovery-brainstorm.md
+    - workflow-d-document-driven.md
+    - workflow-e-extension-prep.md
+  workflows: []
+  checklists:
+    - spd-validation-checklist.md
+  templates:
+    - spd-template.md
+  tools: []
+  scripts: []
+
+config:
+  extends: extend
+  knowledge-base: data/squad-prep-kb.md
+
+routing:
+  foundation_first: false
+  entry_point: forge
+  flow: |
+    1. forge classifies the request type (A-E workflow routing)
+    2. forge guides user through the appropriate preparation workflow
+    3. forge validates completeness against SPD checklist (BLOCKING)
+    4. forge generates SPD document ready for Squad Creator
+
+quality_gates:
+  - id: SP_QG_001
+    name: Source Audit
+    description: Validate that source materials meet minimum requirements for expert squads
+    blocking: true
+    minimum_score: 4.0
+    bypass_allowed: false
+  - id: SP_QG_002
+    name: SPD Completeness
+    description: All required SPD sections populated with valid data
+    blocking: true
+  - id: SP_QG_003
+    name: Architecture Validation
+    description: Agent tiers, routing, and quality gates properly defined
+    blocking: true
+
+dependencies:
+  node: []
+  python: []
+  squads: []
+
+tags:
+  - squad-preparation
+  - architecture
+  - spd
+  - design
+  - onboarding

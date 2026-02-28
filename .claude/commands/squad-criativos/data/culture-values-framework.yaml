@@ -1,0 +1,300 @@
+# Culture & Values Framework
+# Baseado em: Lencioni, Godin, Atkin, Heyward
+# Squad: DEENEA (Essência/Estratégia)
+# Usado por: culture-community-architect
+
+metadata:
+  name: "Culture & Values Framework"
+  version: "1.0"
+  sources:
+    - "Patrick Lencioni - The Advantage"
+    - "Seth Godin - Tribes"
+    - "Douglas Atkin - The Culting of Brands"
+    - "Emily Heyward - Obsessed"
+  aplicacao: "Definir valores autênticos e construir cultura de marca"
+
+# ═══════════════════════════════════════════════════════════════════
+# FRAMEWORK DE VALORES
+# ═══════════════════════════════════════════════════════════════════
+
+values_framework:
+
+  tipos_de_valores:
+    core_values:
+      descricao: "Valores inegociáveis, DNA da marca"
+      quantidade: "3-5 máximo"
+      criterio: "Manteria mesmo se custasse dinheiro?"
+
+    aspirational_values:
+      descricao: "Valores que quer desenvolver"
+      cuidado: "Não confundir com core (ainda não praticados)"
+
+    permission_to_play:
+      descricao: "Valores básicos esperados (ética, honestidade)"
+      nota: "Não diferenciam, são pré-requisitos"
+
+    accidental_values:
+      descricao: "Valores que surgiram naturalmente"
+      acao: "Avaliar se manter ou não"
+
+  criterios_validacao:
+    autenticidade:
+      descricao: "Já praticados, não aspiracionais"
+      teste: "Isso acontece hoje, mesmo quando ninguém vê?"
+      peso: 5
+
+    diferenciacao:
+      descricao: "Não são genéricos"
+      teste: "Concorrente poderia ter esse mesmo valor?"
+      peso: 4
+
+    acionabilidade:
+      descricao: "Guiam decisões reais"
+      teste: "Isso muda como tomamos decisões?"
+      peso: 4
+
+    memorabilidade:
+      descricao: "Fáceis de lembrar e citar"
+      teste: "Equipe consegue citar sem consultar?"
+      peso: 3
+
+  estrutura_por_valor:
+    palavra:
+      descricao: "Nome do valor (uma palavra forte)"
+      exemplos: ["Coragem", "Transparência", "Excelência"]
+
+    definicao:
+      descricao: "O que significa para a marca (específico)"
+      template: "Para nós, [valor] significa..."
+
+    comportamentos:
+      descricao: "Como se manifesta no dia-a-dia"
+      template: "Demonstramos [valor] quando..."
+      quantidade: "3-5 exemplos concretos"
+
+    nao_comportamentos:
+      descricao: "O que NÃO é esse valor"
+      template: "[Valor] não significa..."
+      importancia: "Evita interpretações erradas"
+
+    historias:
+      descricao: "Exemplos reais de quando vivemos o valor"
+      importancia: "Histórias > Declarações"
+
+# ═══════════════════════════════════════════════════════════════════
+# ELEMENTOS DE CULTURA
+# ═══════════════════════════════════════════════════════════════════
+
+culture_elements:
+
+  crencas:
+    descricao: "Verdades fundamentais que a marca acredita"
+    formato: "Nós acreditamos que..."
+    exemplos:
+      - "Acreditamos que design muda comportamentos"
+      - "Acreditamos que transparência gera confiança"
+    quantidade: "5-7 crenças centrais"
+
+  rituais:
+    descricao: "Ações recorrentes que reforçam cultura"
+    tipos:
+      internos:
+        - "Reuniões específicas"
+        - "Celebrações"
+        - "Onboarding"
+      externos:
+        - "Eventos para clientes"
+        - "Lançamentos"
+        - "Marcos comemorados"
+    importancia: "Rituais criam memória e pertencimento"
+
+  tradicoes:
+    descricao: "Práticas estabelecidas ao longo do tempo"
+    diferenca_ritual: "Tradições têm história, rituais são recentes"
+    exemplos:
+      - "Evento anual"
+      - "Formato de comunicação específico"
+      - "Maneira de receber novos membros"
+
+  linguagem:
+    descricao: "Vocabulário e expressões próprias"
+    tipos:
+      termos_proprios: "Palavras que só a marca usa"
+      expressoes: "Frases características"
+      insider_language: "O que só membros entendem"
+    importancia: "Linguagem cria senso de tribo"
+
+  simbolos:
+    descricao: "Representações visuais da cultura"
+    tipos:
+      - "Logos e mascotes"
+      - "Cores significativas"
+      - "Objetos totêmicos"
+      - "Gestos ou sinais"
+
+  historias:
+    descricao: "Narrativas que exemplificam valores"
+    tipos:
+      origem: "Como começou"
+      herois: "Pessoas que personificam valores"
+      viradas: "Momentos de decisão difícil"
+      fracassos: "Lições aprendidas"
+    formato: "Contadas e recontadas internamente"
+
+  herois:
+    descricao: "Figuras que personificam a cultura"
+    podem_ser:
+      - "Fundadores"
+      - "Funcionários exemplares"
+      - "Clientes notáveis"
+      - "Figuras inspiradoras externas"
+
+# ═══════════════════════════════════════════════════════════════════
+# FRAMEWORK DE COMUNIDADE
+# ═══════════════════════════════════════════════════════════════════
+
+community_framework:
+
+  niveis_engajamento:
+    nivel_1_transacional:
+      descricao: "Cliente compra, usa, vai embora"
+      engagement: "Baixo"
+      indicadores: ["Compra única", "Sem interação pós"]
+
+    nivel_2_informacional:
+      descricao: "Cliente segue, consome conteúdo"
+      engagement: "Médio-baixo"
+      indicadores: ["Seguidor", "Leitor de newsletter"]
+
+    nivel_3_social:
+      descricao: "Cliente interage com outros clientes"
+      engagement: "Médio"
+      indicadores: ["Comenta", "Participa de grupos"]
+
+    nivel_4_identitario:
+      descricao: "Cliente se identifica com a comunidade"
+      engagement: "Alto"
+      indicadores: ["Se auto-define pelo grupo", "Usa símbolos"]
+
+    nivel_5_advocacy:
+      descricao: "Cliente defende e recruta ativamente"
+      engagement: "Muito alto"
+      indicadores: ["Evangeliza", "Recruta outros", "Defende em público"]
+
+  elementos_comunidade:
+    shared_identity:
+      descricao: "Quem somos como grupo"
+      perguntas:
+        - "Como nos chamamos?"
+        - "O que nos une?"
+        - "O que nos diferencia de 'outsiders'?"
+      exemplos: ["Harley riders", "Apple fans", "Swifties"]
+
+    shared_rituals:
+      descricao: "O que fazemos juntos"
+      tipos:
+        - "Eventos regulares"
+        - "Práticas de uso"
+        - "Celebrações"
+      exemplos: ["Encontros de riders", "Unboxing rituals", "Watch parties"]
+
+    shared_language:
+      descricao: "Como nos comunicamos"
+      elementos:
+        - "Termos próprios"
+        - "Memes internos"
+        - "Referências que só membros entendem"
+
+    shared_enemies:
+      descricao: "Contra quem somos (define identidade por oposição)"
+      nota: "Não precisa ser outra marca - pode ser status quo"
+      exemplos:
+        - "PC vs Mac"
+        - "Ginásio convencional vs CrossFit"
+        - "Fast fashion vs Slow fashion"
+
+# ═══════════════════════════════════════════════════════════════════
+# POSICIONAMENTO CULTURAL
+# ═══════════════════════════════════════════════════════════════════
+
+cultural_positioning:
+
+  espectro:
+    conservador:
+      posicao: "Mantém tradições, evita polêmicas"
+      risco: "Baixo"
+      recompensa: "Segurança, mas pouca diferenciação"
+      exemplo: "Rolex, marcas de luxo tradicionais"
+
+    neutro:
+      posicao: "Evita posições culturais explícitas"
+      risco: "Médio (irrelevância)"
+      recompensa: "Não aliena ninguém, mas não inspira"
+      exemplo: "Maioria das marcas corporativas"
+
+    progressista:
+      posicao: "Abraça mudanças sociais quando mainstream"
+      risco: "Médio-alto"
+      recompensa: "Relevância cultural"
+      exemplo: "Nike (Colin Kaepernick)"
+
+    ativista:
+      posicao: "Lidera mudanças, advocacy ativo"
+      risco: "Alto"
+      recompensa: "Lealdade cult, diferenciação máxima"
+      exemplo: "Patagonia, Ben & Jerry's"
+
+  decisao_posicionamento:
+    perguntas:
+      - "Isso é autêntico ao propósito da marca?"
+      - "O público-alvo apoia essa posição?"
+      - "Podemos sustentar isso consistentemente?"
+      - "Estamos preparados para as consequências?"
+
+    principio: |
+      Só tome posições culturais que você defenderia
+      mesmo perdendo clientes. Caso contrário, é
+      oportunismo e será percebido como tal.
+
+# ═══════════════════════════════════════════════════════════════════
+# TEMPLATE: CULTURE CODE
+# ═══════════════════════════════════════════════════════════════════
+
+culture_code_template:
+
+  secao_1_proposito:
+    titulo: "Por que existimos"
+    conteudo: "[Purpose statement]"
+
+  secao_2_valores:
+    titulo: "No que acreditamos"
+    formato_por_valor:
+      valor: "[Nome]"
+      significado: "[O que significa para nós]"
+      comportamentos: "[Como demonstramos]"
+      nao_significa: "[O que não é]"
+
+  secao_3_crencas:
+    titulo: "Verdades que nos guiam"
+    formato: "Nós acreditamos que..."
+
+  secao_4_rituais:
+    titulo: "O que fazemos juntos"
+    internos: "[Lista de rituais internos]"
+    comunidade: "[Lista de rituais com comunidade]"
+
+  secao_5_linguagem:
+    titulo: "Como falamos"
+    termos: "[Glossário de termos próprios]"
+
+  secao_6_comunidade:
+    titulo: "Quem somos como grupo"
+    identidade: "[Como nos definimos]"
+    pertencimento: "[O que significa pertencer]"
+
+referencias:
+  - "Lencioni, P. - The Advantage (2012)"
+  - "Godin, S. - Tribes: We Need You to Lead Us (2008)"
+  - "Atkin, D. - The Culting of Brands (2004)"
+  - "Heyward, E. - Obsessed: Building a Brand People Love (2020)"
+  - "Sinek, S. - Start With Why (2009)"

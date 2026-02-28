@@ -1,0 +1,104 @@
+# Task: Collect Briefing
+# Squad: squAId-criaTTivados / atendimento
+# Responsável: briefing-collector
+
+metadata:
+  name: "collect-briefing"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "atendimento"
+  responsavel: "briefing-collector"
+  tipo: task
+
+descricao: |
+  Conduzir sessão de briefing com cliente usando metodologia BranDesire (16 campos).
+  Aplica método unniko (Feynman + 5 Whys) para lapidação de respostas.
+  PREREQUISITO: onboard-explore deve ter sido executado (trilha e nível de pesquisa definidos).
+
+entrada:
+  - campo: perfil_onboarding
+    tipo: string
+    origem: "onboard-explore"
+    obrigatorio: true
+    descricao: "Perfil de onboarding com trilha, nível de pesquisa e dados iniciais"
+  - campo: informacoes_brutas_cliente
+    tipo: string
+    origem: "cliente"
+    obrigatorio: true
+    descricao: "Informações brutas fornecidas pelo cliente"
+  - campo: nome_marca
+    tipo: string
+    origem: "cliente / onboard-explore"
+    obrigatorio: true
+    descricao: "Nome da marca do cliente (pode vir pré-preenchido do Explorar)"
+  - campo: segmento
+    tipo: string
+    origem: "cliente / onboard-explore"
+    obrigatorio: true
+    descricao: "Segmento de atuação da marca (pode vir pré-preenchido do Explorar)"
+
+saida:
+  - campo: briefing_brandesire_completo
+    tipo: string
+    destino: "analyze-client"
+    persistido: true
+    descricao: "Briefing BranDesire completo com 16 campos lapidados"
+
+passos:
+  1:
+    nome: "Apresentar metodologia"
+    descricao: "Apresentar BranDesire ao cliente, explicando os 8 blocos e 16 campos"
+    agente: "briefing-collector"
+  2:
+    nome: "Coletar Bloco 1: Identificação"
+    descricao: "Coletar campos 1-2 (nome da marca, segmento)"
+    agente: "briefing-collector"
+  3:
+    nome: "Coletar Bloco 2: Contexto"
+    descricao: "Coletar campos 3-4 (situação atual, objetivo)"
+    agente: "briefing-collector"
+  4:
+    nome: "Coletar Bloco 3: Público"
+    descricao: "Coletar campos 5-6 (público-alvo com JTBD, diferenciais percebidos)"
+    agente: "briefing-collector"
+  5:
+    nome: "Coletar Bloco 4: Competição"
+    descricao: "Coletar campo 7 (concorrentes + forças/fraquezas)"
+    agente: "briefing-collector"
+  6:
+    nome: "Coletar Bloco 5: Essência"
+    descricao: "Coletar campos 8-10 (valores, personalidade, tom de voz)"
+    agente: "briefing-collector"
+  7:
+    nome: "Coletar Bloco 6: Recursos"
+    descricao: "Coletar campos 11-12 (assets existentes, restrições)"
+    agente: "briefing-collector"
+  8:
+    nome: "Coletar Bloco 7: Execução"
+    descricao: "Coletar campos 13-14 (timeline, budget)"
+    agente: "briefing-collector"
+  9:
+    nome: "Coletar Bloco 8: Visão"
+    descricao: "Coletar campos 15-16 (KPIs, visão de futuro)"
+    agente: "briefing-collector"
+  10:
+    nome: "Aplicar lapidação unniko"
+    descricao: "Aplicar Feynman + 5 Whys em cada resposta para extrair profundidade"
+    agente: "briefing-collector"
+  11:
+    nome: "Validar completude e coerência"
+    descricao: "Verificar 16/16 campos preenchidos, sem contradições"
+    agente: "briefing-collector"
+
+checklist:
+  - "[ ] Todos os 16 campos preenchidos"
+  - "[ ] Método unniko aplicado em cada resposta"
+  - "[ ] Sem contradições entre campos"
+  - "[ ] Objetivos mensuráveis definidos"
+  - "[ ] Restrições documentadas"
+  - "[ ] Assets inventariados"
+
+criterios_aceitacao:
+  - "Briefing completo com 16/16 campos"
+  - "Cada resposta lapidada com Feynman + 5 Whys"
+  - "Zero campos vazios ou superficiais"

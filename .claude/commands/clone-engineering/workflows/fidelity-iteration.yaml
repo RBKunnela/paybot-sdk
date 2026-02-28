@@ -1,0 +1,137 @@
+name: fidelity-iteration
+description: "Fidelity iteration cycle — Test, identify failures, fix, retest"
+version: "1.1.0"
+trigger: "*iterate"
+type: cyclical
+max_iterations: 3
+
+agents:
+  - fidelity-tester
+  - prompt-architect
+  - kb-curator
+
+inputs:
+  - name: fidelity_target
+    type: number
+    required: true
+    description: "Minimum fidelity percentage to pass (e.g., 93)"
+  - name: scenario_set
+    type: string
+    required: false
+    description: "Path to existing scenario set (if not provided, uses latest)"
+  - name: focus_dimensions
+    type: array
+    required: false
+    description: "Specific fidelity dimensions to focus on (e.g., [vocabulary, reasoning, values])"
+
+outputs:
+  - name: final_fidelity_report
+    type: file
+    description: "Final fidelity report after all iterations"
+  - name: iteration_log
+    type: file
+    description: "Log of all iterations with scores per cycle"
+  - name: adjusted_prompts
+    type: file
+    description: "Updated system prompts (if modified during iteration)"
+  - name: adjusted_kb
+    type: file
+    description: "Updated KB chunks (if modified during iteration)"
+
+resources:
+  checklists:
+    - fidelity-validation-checklist.md
+  templates:
+    - scenario-template.yaml
+    - fidelity-report-template.md
+  data:
+    - persona-switching-rules.md
+
+steps:
+  - id: run-tests
+    name: "Run fidelity tests"
+    agent: fidelity-tester
+    task: fidelity-tester-run-scenarios.md
+    output: fidelity-report.md
+
+  - id: analyze-failures
+    name: "Analyze failure patterns"
+    agent: fidelity-tester
+    task: fidelity-tester-iterate.md
+    input: fidelity-report.md
+    output: iteration-recommendations.md
+
+  - id: fix-prompts
+    name: "Adjust system prompts"
+    agent: prompt-architect
+    task: prompt-architect-optimize-prompt.md
+    condition: "recommendations include prompt adjustments"
+    input: iteration-recommendations.md
+
+  - id: fix-kb
+    name: "Adjust knowledge base"
+    agent: kb-curator
+    task: kb-curator-index-chunks.md
+    condition: "recommendations include KB adjustments"
+    input: iteration-recommendations.md
+
+  - id: retest
+    name: "Re-run failed scenarios"
+    agent: fidelity-tester
+    task: fidelity-tester-run-scenarios.md
+
+  - id: evaluate
+    name: "Evaluate iteration result"
+    agent: fidelity-tester
+    decision:
+      pass: "fidelity >= target"
+      iterate: "fidelity < target AND iterations < max"
+      escalate: "iterations >= max AND fidelity < target"
+
+error_handling:
+  escalation:
+    trigger: "iterations >= max_iterations AND fidelity < fidelity_target"
+    action: "Generate escalation report with: failure patterns, attempted fixes, recommended manual interventions. Notify orchestrator (el-clonador)."
+  prompt_fix_failure:
+    action: "Revert prompt changes, document what was attempted, try alternative optimization strategy."
+  kb_fix_failure:
+    action: "Revert KB changes, re-validate index integrity, attempt re-chunking of affected domains."
+  no_improvement:
+    trigger: "fidelity_delta < 1% between iterations"
+    action: "Stop iterating early, escalate — diminishing returns detected."
+
+flow_diagram: |
+  ┌───────────────────┐
+  │  1. Run Tests     │
+  │  fidelity-tester  │
+  └─────────┬─────────┘
+            │
+            ▼
+  ┌───────────────────┐
+  │  2. Analyze       │
+  │     Failures      │
+  └─────────┬─────────┘
+            │
+       ┌────┴────┐
+       ▼         ▼
+  ┌─────────┐ ┌─────────┐
+  │ 3. Fix  │ │ 4. Fix  │
+  │ Prompts │ │ KB      │
+  │ (cond.) │ │ (cond.) │
+  └────┬────┘ └────┬────┘
+       └─────┬─────┘
+             │
+             ▼
+  ┌───────────────────┐
+  │  5. Retest        │
+  │  fidelity-tester  │
+  └─────────┬─────────┘
+            │
+            ▼
+  ┌───────────────────┐
+  │  6. Evaluate      │──── PASS ────▶ DONE
+  │                   │
+  │                   │──── ITERATE ─▶ ↑ (back to step 1)
+  │                   │
+  │                   │──── ESCALATE ▶ STOP (notify orchestrator)
+  └───────────────────┘

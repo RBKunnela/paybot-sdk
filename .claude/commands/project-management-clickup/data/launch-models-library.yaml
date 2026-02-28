@@ -1,0 +1,162 @@
+# Launch Models Library - Project Management ClickUp
+# Reference for all launch model structures
+# Used by: launch-operations-manager
+
+version: 1.0.0
+last_updated: "2026-02-10"
+
+models:
+
+  plf:
+    name: "Formula de Lancamento (PLF)"
+    source: "Jeff Walker - Product Launch Formula"
+    duration: "6-8 semanas"
+    phases:
+      pre_pre_launch:
+        name: "Pre-Pre-Lancamento (PPL)"
+        duration: "2-3 semanas"
+        objectives:
+          - "Construir audiencia e gerar curiosidade"
+          - "Pesquisa de mercado e validacao"
+          - "Aquecimento da lista"
+        key_tasks:
+          - "Definir avatar e dor principal"
+          - "Criar conteudo seed (lives, posts, stories)"
+          - "Configurar pixel e tracking"
+          - "Preparar lista de emails"
+          - "Criar grupo VIP (WhatsApp/Telegram)"
+
+      pre_launch:
+        name: "Pre-Lancamento (PL)"
+        duration: "7-10 dias"
+        objectives:
+          - "Entregar valor e construir autoridade"
+          - "Gerar desejo pelo produto"
+          - "Preparar para abertura de carrinho"
+        key_tasks:
+          - "CPL 1: Oportunidade (video/live)"
+          - "CPL 2: Transformacao (video/live)"
+          - "CPL 3: Experiencia de dono (video/live)"
+          - "Email sequence pre-lancamento"
+          - "Remarketing de engajamento"
+
+      launch:
+        name: "Lancamento (Carrinho Aberto)"
+        duration: "5-7 dias"
+        objectives:
+          - "Converter leads em clientes"
+          - "Maximizar vendas no periodo"
+          - "Gerenciar objecoes"
+        key_tasks:
+          - "Email de abertura de carrinho"
+          - "Pagina de vendas ativa"
+          - "Webinar/live de venda"
+          - "Sequencia de emails diarios"
+          - "Bonus de escassez"
+          - "Fechamento com urgencia"
+
+      post_launch:
+        name: "Pos-Lancamento"
+        duration: "1-2 semanas"
+        objectives:
+          - "Onboarding de novos alunos"
+          - "Analise de metricas"
+          - "Documentar aprendizados"
+        key_tasks:
+          - "Email de boas-vindas"
+          - "Acesso ao produto"
+          - "Pesquisa pos-compra"
+          - "Relatorio de metricas"
+          - "Retrospectiva da equipe"
+
+  perpetuo:
+    name: "Lancamento Perpetuo"
+    duration: "Continuo (setup: 2-3 semanas)"
+    phases:
+      setup:
+        name: "Setup Inicial"
+        key_tasks:
+          - "Criar funil evergreen"
+          - "Gravar webinar automatizado"
+          - "Configurar email sequence"
+          - "Setup de trafego pago"
+          - "Configurar tracking"
+      optimization:
+        name: "Otimizacao Continua"
+        cadence: "semanal"
+        key_tasks:
+          - "Analisar metricas do funil"
+          - "A/B test de headlines e CTAs"
+          - "Ajustar audiencias de trafego"
+          - "Otimizar sequencia de emails"
+
+  high_ticket:
+    name: "High Ticket / Aplicacao"
+    duration: "Continuo"
+    phases:
+      attract:
+        name: "Atracao"
+        key_tasks:
+          - "Conteudo de autoridade"
+          - "Evento/workshop gratuito"
+          - "Formulario de aplicacao"
+      qualify:
+        name: "Qualificacao"
+        key_tasks:
+          - "Analise de aplicacao"
+          - "Call de pre-qualificacao"
+          - "Envio de proposta"
+      close:
+        name: "Fechamento"
+        key_tasks:
+          - "Call de venda"
+          - "Follow-up estrategico"
+          - "Onboarding VIP"
+
+  webinario:
+    name: "Webinario de Venda"
+    duration: "1-2 semanas"
+    phases:
+      preparation:
+        name: "Preparacao"
+        key_tasks:
+          - "Criar roteiro do webinario"
+          - "Configurar pagina de inscricao"
+          - "Email sequence pre-webinario"
+          - "Ads para inscricao"
+      execution:
+        name: "Execucao"
+        key_tasks:
+          - "Realizar webinario ao vivo"
+          - "Abrir oferta durante webinario"
+          - "Email de replay"
+      follow_up:
+        name: "Follow-up"
+        key_tasks:
+          - "Sequencia pos-webinario (5-7 emails)"
+          - "Remarketing de inscritos"
+          - "Fechamento de carrinho"
+
+  desafio:
+    name: "Desafio (Challenge Launch)"
+    duration: "2-3 semanas"
+    phases:
+      setup:
+        name: "Setup"
+        key_tasks:
+          - "Definir tema e duracao (3-7 dias)"
+          - "Criar grupo/comunidade"
+          - "Preparar materiais diarios"
+      execution:
+        name: "Execucao do Desafio"
+        key_tasks:
+          - "Conteudo diario (live/video)"
+          - "Exercicios praticos"
+          - "Engajamento no grupo"
+          - "Oferta no ultimo dia"
+      conversion:
+        name: "Conversao"
+        key_tasks:
+          - "Abrir carrinho"
+          - "Bonus para participantes"
+          - "Sequencia de fechamento"

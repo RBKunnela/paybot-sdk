@@ -1,0 +1,74 @@
+# Task: Design Funnel
+# Squad: squAId-criaTTivados / growth-ops
+# Responsável: funnel-architect
+
+metadata:
+  name: "design-funnel"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "growth-ops"
+  responsavel: "funnel-architect"
+  tipo: task
+
+descricao: |
+  Arquitetura de funil AARRR (Acquisition, Activation, Retention,
+  Referral, Revenue) conectado à estratégia de marca e domínios.
+
+entrada:
+  - campo: brand_strategy_document
+    tipo: string
+    origem: "build-brand-essence"
+    obrigatorio: true
+    descricao: "Estratégia de marca"
+  - campo: content_strategy
+    tipo: string
+    origem: "plan-content-strategy"
+    obrigatorio: true
+    descricao: "Estratégia de conteúdo"
+
+saida:
+  - campo: funnel_architecture
+    tipo: string
+    destino: "optimize-campaign"
+    persistido: true
+    descricao: "AARRR completo com métricas por fase e domínio"
+
+passos:
+  1:
+    nome: "Definir Acquisition"
+    descricao: "Canais, CAC, CTR target"
+    agente: "funnel-architect"
+  2:
+    nome: "Definir Activation"
+    descricao: "Aha moment, onboarding, primeiro valor"
+    agente: "funnel-architect"
+  3:
+    nome: "Definir Retention"
+    descricao: "Frequência, engagement, redução de churn"
+    agente: "funnel-architect"
+  4:
+    nome: "Definir Referral"
+    descricao: "NPS, viral coefficient, programas de indicação"
+    agente: "funnel-architect"
+  5:
+    nome: "Definir Revenue"
+    descricao: "LTV, ARPU, monetização"
+    agente: "funnel-architect"
+  6:
+    nome: "Conectar aos Domínios"
+    descricao: "I: conversão/LTV | II: NPS/advocacy | III: recall/SoV"
+    agente: "growth-director"
+  7:
+    nome: "Estabelecer baselines"
+    descricao: "Definir métricas atuais e targets"
+    agente: "analytics-reader"
+
+checklist:
+  - "[ ] 5 fases AARRR definidas"
+  - "[ ] Métricas por fase estabelecidas"
+  - "[ ] Conexão com domínios documentada"
+  - "[ ] Baselines e targets definidos"
+
+criterios_aceitacao:
+  - "Funil coerente com estratégia de marca"
+  - "Métricas mensuráveis com targets realistas"

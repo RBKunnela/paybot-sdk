@@ -1,0 +1,180 @@
+name: ethics-approval
+description: Prepare and submit IRB/ethics committee application
+category: ethics
+agent: research-chief
+priority: high
+estimated_duration: 3-5 days
+
+inputs:
+  - research_design:
+      type: file
+      description: Complete research design document
+      required: true
+  - consent_forms:
+      type: files
+      description: Draft informed consent forms
+      required: true
+
+outputs:
+  - ethics_application:
+      type: file
+      description: Complete IRB/ethics application
+  - approval_certificate:
+      type: file
+      description: Ethics approval certificate (once approved)
+
+steps:
+  - step: 1
+    name: prepare_protocol
+    description: Write detailed research protocol
+    agent: research-chief
+    estimated_duration: 2 days
+
+  - step: 2
+    name: prepare_consent_forms
+    description: Finalize informed consent documents
+    agent: research-chief
+    estimated_duration: 1 day
+
+  - step: 3
+    name: complete_application
+    description: Fill out IRB application forms
+    agent: research-chief
+    estimated_duration: 1 day
+
+  - step: 4
+    name: submit_and_track
+    description: Submit application and track approval
+    agent: research-chief
+    estimated_duration: 1 day + wait time
+
+success_criteria:
+  - Complete application submitted
+  - All required documents included
+  - Ethical risks clearly addressed
+  - Approval received before data collection
+
+deliverables:
+  - Ethics application
+  - Research protocol
+  - Informed consent forms
+  - Ethics approval certificate
+
+ethics_application_components:
+  research_protocol:
+    - Study objectives and research questions
+    - Background and significance
+    - Study design and methodology
+    - Participant recruitment and selection
+    - Data collection procedures
+    - Data analysis plan
+    - Timeline
+
+  risk_assessment:
+    - Potential risks to participants (physical, psychological, social)
+    - Risk mitigation strategies
+    - Benefits to participants and society
+    - Risk-benefit analysis
+
+  informed_consent:
+    - Study purpose and procedures
+    - Voluntary participation
+    - Right to withdraw anytime
+    - Risks and benefits
+    - Confidentiality protections
+    - Contact information for questions
+
+  data_protection:
+    - How data will be collected
+    - How data will be stored (encrypted, password-protected)
+    - Who will have access
+    - How long data will be retained
+    - De-identification procedures
+    - Data disposal plan
+
+common_ethical_issues:
+  vulnerable_populations:
+    - Children (need parental consent + child assent)
+    - Prisoners
+    - Cognitively impaired individuals
+    - Pregnant women
+    - Requires additional safeguards
+
+  privacy_concerns:
+    - Video/audio recording (need explicit consent)
+    - Sensitive topics (mental health, illegal behavior)
+    - De-identification procedures
+    - Secure storage
+
+  deception:
+    - If study involves deception, must justify why necessary
+    - Debriefing required after study
+    - Higher scrutiny from IRB
+
+  incentives:
+    - Must not be coercive
+    - Proportionate to time/effort
+    - Payment does not waive participant rights
+
+informed_consent_template: |
+  # Informed Consent Form
+
+  ## Study Title
+  [Full title]
+
+  ## Researcher
+  [Name, affiliation, contact]
+
+  ## Purpose
+  You are invited to participate in a research study about [topic]. The purpose of this study is to [objective].
+
+  ## Procedures
+  If you agree to participate, you will be asked to [specific activities]. This will take approximately [time].
+
+  ## Risks
+  The risks of participating are minimal and include [list risks].
+
+  ## Benefits
+  You may not directly benefit from this study. However, your participation will contribute to [broader benefit].
+
+  ## Confidentiality
+  Your information will be kept confidential. Data will be stored [storage method] and only accessible to [who]. Your identity will not be revealed in any publications.
+
+  ## Voluntary Participation
+  Your participation is completely voluntary. You may withdraw at any time without penalty.
+
+  ## Questions
+  If you have questions about this study, contact [researcher name] at [email/phone].
+
+  ## Consent
+  I have read and understood the above information. I agree to participate in this study.
+
+  Signature: _____________ Date: _______
+
+timeline:
+  preparation: "1-2 weeks"
+  irb_review: "2-8 weeks (varies by institution)"
+  revisions: "1-2 weeks (if requested)"
+  approval: "Total: 1-3 months"
+
+best_practices:
+  - Apply for ethics approval BEFORE starting data collection
+  - Be thorough and transparent in application
+  - Address all potential risks honestly
+  - Write consent forms in plain language (8th-grade reading level)
+  - Keep detailed records of consent process
+  - Report any adverse events to IRB immediately
+
+common_pitfalls:
+  - Starting data collection before approval (major violation)
+  - Incomplete risk assessment
+  - Consent forms too technical (hard to understand)
+  - Not planning for data storage and retention
+  - Missing procedures for vulnerable populations
+
+tags:
+  - ethics
+  - irb
+  - informed-consent
+  - research-ethics
+  - data-protection

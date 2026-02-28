@@ -1,0 +1,313 @@
+name: systematic-review-protocol
+description: Conduct PRISMA-compliant systematic review from protocol to publication (4-6 months)
+category: review
+priority: high
+estimated_duration: 4-6 months
+
+overview: |
+  Complete systematic review workflow following PRISMA 2020 guidelines.
+  Includes protocol registration, comprehensive search, screening, quality assessment, and synthesis.
+
+inputs:
+  - research_question:
+      type: string
+      description: Clear research question for systematic review
+      required: true
+  - databases:
+      type: array
+      description: Databases to search
+      required: false
+      default: [PubMed, Scopus, Web of Science, Google Scholar]
+  - target_journal:
+      type: string
+      description: Target journal for publication
+      required: true
+
+outputs:
+  - systematic_review_manuscript:
+      type: file
+      description: Complete systematic review paper
+  - prisma_flowchart:
+      type: file
+      description: PRISMA flow diagram
+  - data_extraction_table:
+      type: file
+      description: Extracted data from all included studies
+
+phases:
+  phase_1_protocol:
+    name: Protocol Development & Registration
+    duration: 2-3 weeks
+    steps:
+      - step: 1
+        task: research-design
+        inputs:
+          research_topic: $research_question
+          research_type: systematic_review
+        agent: research-chief
+        estimated_duration: 5-7 days
+
+      - step: 2
+        name: register_protocol
+        description: Register protocol on PROSPERO
+        agent: research-chief
+        estimated_duration: 1 day
+        notes: Go to https://www.crd.york.ac.uk/prospero/ and register protocol
+
+      - step: 3
+        name: define_criteria
+        description: Define detailed inclusion/exclusion criteria
+        agent: literature-reviewer
+        estimated_duration: 1-2 days
+
+  phase_2_search:
+    name: Comprehensive Literature Search
+    duration: 1 week
+    depends_on: [phase_1_protocol]
+    steps:
+      - step: 1
+        task: conduct-literature-search
+        inputs:
+          research_topic: $research_question
+          search_scope: systematic
+          databases: $databases
+        agent: literature-reviewer
+        estimated_duration: 2-3 days
+
+      - step: 2
+        name: document_search
+        description: Document all search strings and results
+        agent: literature-reviewer
+        estimated_duration: 1 day
+
+  phase_3_screening:
+    name: Study Selection & Screening
+    duration: 2-4 weeks
+    depends_on: [phase_2_search]
+    steps:
+      - step: 1
+        task: screen-papers
+        inputs:
+          search_results: $phase_2_search.step_1.output
+          screening_level: title_abstract
+        agent: literature-reviewer
+        estimated_duration: 1 week
+        notes: Dual screening recommended (two independent reviewers)
+
+      - step: 2
+        task: screen-papers
+        inputs:
+          search_results: $phase_3_screening.step_1.output
+          screening_level: full_text
+        agent: literature-reviewer
+        estimated_duration: 1-2 weeks
+        notes: Read full text of remaining papers
+
+      - step: 3
+        name: resolve_conflicts
+        description: Resolve any screening disagreements between reviewers
+        agent: research-chief
+        estimated_duration: 2 days
+        condition: dual_screening == true
+
+  phase_4_extraction:
+    name: Data Extraction & Quality Assessment
+    duration: 3-4 weeks
+    depends_on: [phase_3_screening]
+    steps:
+      - step: 1
+        task: extract-data
+        inputs:
+          included_papers: $phase_3_screening.step_2.output
+        agent: literature-reviewer
+        estimated_duration: 3-5 days
+        notes: Dual extraction recommended for systematic reviews
+
+      - step: 2
+        name: quality_assessment
+        description: Assess risk of bias using appropriate tool (ROBIS, Newcastle-Ottawa, etc.)
+        agent: peer-reviewer
+        estimated_duration: 1 week
+
+      - step: 3
+        name: verify_extraction
+        description: Verify accuracy of extracted data (sample check)
+        agent: peer-reviewer
+        estimated_duration: 2 days
+
+  phase_5_synthesis:
+    name: Evidence Synthesis
+    duration: 2-3 weeks
+    depends_on: [phase_4_extraction]
+    steps:
+      - step: 1
+        task: synthesize-findings
+        inputs:
+          data_extraction_table: $phase_4_extraction.step_1.output
+          synthesis_type: narrative
+        agent: literature-reviewer
+        estimated_duration: 2-3 days
+
+      - step: 2
+        name: meta_analysis
+        description: Conduct meta-analysis if studies are sufficiently homogeneous
+        agent: literature-reviewer
+        estimated_duration: 1 week
+        condition: quantitative_synthesis_possible == true
+
+      - step: 3
+        name: create_summary_tables
+        description: Create tables summarizing study characteristics and findings
+        agent: literature-reviewer
+        estimated_duration: 2 days
+
+  phase_6_writing:
+    name: Manuscript Writing
+    duration: 4-6 weeks
+    depends_on: [phase_5_synthesis]
+    steps:
+      - step: 1
+        task: write-systematic-review
+        inputs:
+          search_results: $phase_2_search.step_1.output
+          data_extraction_table: $phase_4_extraction.step_1.output
+          synthesis_document: $phase_5_synthesis.step_1.output
+          target_journal: $target_journal
+        agent: literature-reviewer
+        estimated_duration: 10-15 days
+
+      - step: 2
+        task: format-citations
+        inputs:
+          manuscript: $phase_6_writing.step_1.output
+          citation_style: APA7
+        agent: citation-manager
+        estimated_duration: 1-2 days
+
+      - step: 3
+        name: create_prisma_flowchart
+        description: Create PRISMA 2020 flow diagram
+        agent: literature-reviewer
+        estimated_duration: 1 day
+
+      - step: 4
+        name: complete_prisma_checklist
+        description: Fill out complete PRISMA 2020 27-item checklist
+        agent: literature-reviewer
+        estimated_duration: 0.5 days
+
+  phase_7_review:
+    name: Internal Review & Revision
+    duration: 1-2 weeks
+    depends_on: [phase_6_writing]
+    steps:
+      - step: 1
+        task: internal-peer-review
+        inputs:
+          manuscript: $phase_6_writing.step_2.output
+        agent: peer-reviewer
+        estimated_duration: 2-3 days
+
+      - step: 2
+        task: revise-manuscript
+        inputs:
+          manuscript: $phase_6_writing.step_2.output
+          feedback: $phase_7_review.step_1.output
+        agent: academic-writer
+        estimated_duration: 3-5 days
+
+      - step: 3
+        task: review-manuscript
+        inputs:
+          manuscript: $phase_7_review.step_2.output
+        agent: research-chief
+        estimated_duration: 1-2 days
+
+  phase_8_submission:
+    name: Submission & Publication
+    duration: 1 week (plus journal review time)
+    depends_on: [phase_7_review]
+    steps:
+      - step: 1
+        task: coordinate-publication
+        inputs:
+          manuscript: $phase_7_review.step_3.output
+          target_journals: [$target_journal]
+        agent: research-chief
+        estimated_duration: 2-3 days
+
+timeline_summary:
+  month_1: "Protocol development and registration"
+  month_2: "Literature search and title/abstract screening"
+  month_3: "Full-text screening and data extraction"
+  month_4: "Quality assessment and synthesis"
+  month_5: "Manuscript writing"
+  month_6: "Review, revision, and submission"
+
+prisma_requirements:
+  - Protocol registered before starting (PROSPERO)
+  - Comprehensive search of multiple databases
+  - Dual screening (title/abstract and full-text)
+  - Dual data extraction
+  - Quality assessment of included studies
+  - PRISMA flow diagram
+  - PRISMA 2020 27-item checklist completed
+  - Transparent reporting of all steps
+
+success_criteria:
+  - Protocol registered on PROSPERO
+  - Comprehensive search documented
+  - All screening decisions documented with reasons
+  - Quality assessment completed for all studies
+  - Synthesis (narrative or meta-analysis) conducted
+  - PRISMA guidelines followed
+  - Manuscript published
+
+deliverables:
+  - Registered protocol (PROSPERO)
+  - Search strategy document with all strings
+  - PRISMA flow diagram
+  - Data extraction table
+  - Quality assessment results
+  - Complete systematic review manuscript
+  - PRISMA 2020 checklist (completed)
+  - Supplementary materials
+
+best_practices:
+  - Register protocol BEFORE starting search
+  - Use at least 3 major databases
+  - Conduct dual screening and extraction
+  - Document all decisions transparently
+  - Use validated quality assessment tools
+  - Follow PRISMA 2020 guidelines strictly
+  - Include grey literature when appropriate
+
+common_pitfalls:
+  - Not registering protocol (appears like p-hacking)
+  - Search too narrow (miss relevant studies)
+  - Single reviewer screening (bias risk)
+  - Poor documentation of search strategy
+  - Not assessing study quality
+  - Cherry-picking studies to include
+  - Incomplete PRISMA reporting
+
+quality_assessment_tools:
+  quantitative_studies:
+    - Cochrane Risk of Bias tool
+    - Newcastle-Ottawa Scale
+    - Jadad Scale
+
+  qualitative_studies:
+    - CASP Qualitative Checklist
+    - COREQ checklist
+
+  systematic_reviews:
+    - AMSTAR 2
+    - ROBIS
+
+tags:
+  - systematic-review
+  - prisma
+  - meta-analysis
+  - evidence-synthesis
+  - methodology

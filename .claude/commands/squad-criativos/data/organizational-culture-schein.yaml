@@ -1,0 +1,442 @@
+# Modelo de Cultura Organizacional - Edgar Schein
+# Framework dos 3 Níveis de Cultura
+# Referência para: DEENEA (essência, valores)
+
+metadata:
+  name: "Modelo de Cultura Organizacional - Edgar Schein"
+  version: "1.0"
+  origem: "Edgar Schein"
+  obra: "Organizational Culture and Leadership (1985, 5ª ed. 2017)"
+  aplicacao: "Diagnóstico e transformação cultural, branding autêntico"
+
+# ═══════════════════════════════════════════════════════════════════
+# CONCEITO CENTRAL
+# ═══════════════════════════════════════════════════════════════════
+definicao:
+  conceito: |
+    A cultura organizacional opera em três níveis de profundidade.
+    Só é possível entender (e mudar) uma cultura quando se compreende
+    os pressupostos básicos que operam no nível mais profundo.
+
+  metafora: |
+    Cultura é como um iceberg: o que vemos (artefatos) é apenas a ponta.
+    Os valores declarados estão abaixo da superfície. E os pressupostos
+    básicos - que realmente governam comportamentos - estão submersos.
+
+  importancia_branding: |
+    Marcas autênticas são aquelas cujos artefatos (logo, comunicação)
+    refletem valores reais, que por sua vez nascem de pressupostos
+    genuínos. Incoerência entre níveis gera desconfiança.
+
+# ═══════════════════════════════════════════════════════════════════
+# OS 3 NÍVEIS DE CULTURA
+# ═══════════════════════════════════════════════════════════════════
+niveis:
+
+  # NÍVEL 1 - ARTEFATOS
+  artefatos:
+    nome: "Artefatos"
+    nivel: 1
+    icone: "👁️"
+    visibilidade: "Alta"
+    decifrabilidade: "Baixa"
+
+    definicao: |
+      Tudo que é visível, audível e tangível na organização.
+      Fácil de observar, difícil de interpretar corretamente.
+
+    exemplos:
+      fisicos:
+        - "Arquitetura e layout do escritório"
+        - "Código de vestimenta"
+        - "Logo e identidade visual"
+        - "Produtos e embalagens"
+
+      comportamentais:
+        - "Rituais e cerimônias"
+        - "Como as reuniões acontecem"
+        - "Como as pessoas se cumprimentam"
+        - "Histórias que são contadas"
+
+      verbais:
+        - "Linguagem e jargões"
+        - "Mitos e lendas da empresa"
+        - "Como os heróis são descritos"
+        - "Tom de comunicação"
+
+      tecnologicos:
+        - "Ferramentas utilizadas"
+        - "Processos formais"
+        - "Políticas documentadas"
+
+    armadilha: |
+      É tentador analisar apenas artefatos e tirar conclusões.
+      Um escritório aberto não significa cultura colaborativa.
+      Valores na parede não significam valores vividos.
+
+    pergunta_chave: "O que vemos aqui?"
+
+    conexao_branding:
+      - "Identidade Visual (UNNIKO)"
+      - "Tom de Voz (storYOURtelling)"
+      - "Touchpoints (UNNIKO)"
+
+  # NÍVEL 2 - VALORES DECLARADOS
+  valores_declarados:
+    nome: "Valores Declarados"
+    nivel: 2
+    icone: "📜"
+    visibilidade: "Média"
+    decifrabilidade: "Média"
+
+    definicao: |
+      O que a organização diz que acredita. Normas, filosofias,
+      estratégias e objetivos que são articulados conscientemente.
+
+    exemplos:
+      - "Missão, visão, valores no site"
+      - "Princípios de liderança"
+      - "Código de conduta"
+      - "Estratégia declarada"
+      - "Políticas de RH"
+
+    teste_de_coerencia: |
+      Valores declarados que não correspondem ao comportamento real
+      geram cinismo. A pergunta é: "Isso realmente guia decisões?"
+
+    tipos_de_valores:
+      aspiracionais:
+        descricao: "O que queremos ser"
+        risco: "Podem parecer hipócritas se muito distantes da realidade"
+
+      operacionais:
+        descricao: "O que realmente guia o dia a dia"
+        teste: "Observar decisões difíceis, não momentos fáceis"
+
+      perifericos:
+        descricao: "Bonitos de declarar, irrelevantes na prática"
+        exemplo: "'Inovação' em empresa que pune erros"
+
+    pergunta_chave: "O que dizemos que acreditamos?"
+
+    conexao_branding:
+      - "Propósito de Marca (DEENEA)"
+      - "Personalidade de Marca (DEENEA)"
+      - "Narrativa de Origem (DEENEA)"
+
+  # NÍVEL 3 - PRESSUPOSTOS BÁSICOS
+  pressupostos_basicos:
+    nome: "Pressupostos Básicos"
+    nivel: 3
+    icone: "🧠"
+    visibilidade: "Baixa"
+    decifrabilidade: "Alta (quando descobertos)"
+
+    definicao: |
+      Crenças tão profundamente enraizadas que são inconscientes.
+      São tratadas como "a realidade" - inquestionáveis.
+      Governam comportamentos sem que as pessoas percebam.
+
+    caracteristicas:
+      - "Inconscientes - 'é assim que as coisas são'"
+      - "Compartilhados implicitamente"
+      - "Resistentes a mudança"
+      - "Formados por história e fundadores"
+      - "Só aparecem em momentos de crise ou conflito"
+
+    dimensoes_schein:
+      natureza_realidade:
+        pergunta: "O que é 'verdade' aqui?"
+        exemplos:
+          - "Dados são mais confiáveis que intuição"
+          - "O cliente sempre tem razão"
+          - "Conflito é saudável vs conflito é perigoso"
+
+      natureza_tempo:
+        pergunta: "Como vemos o tempo?"
+        exemplos:
+          - "Foco no passado (tradição)"
+          - "Foco no presente (resultados imediatos)"
+          - "Foco no futuro (visão de longo prazo)"
+
+      natureza_espaco:
+        pergunta: "Como usamos o espaço?"
+        exemplos:
+          - "Espaço reflete hierarquia"
+          - "Espaço é democrático"
+          - "Privacidade é valorizada"
+
+      natureza_humana:
+        pergunta: "As pessoas são boas ou precisam de controle?"
+        exemplos:
+          - "Teoria X: pessoas precisam ser controladas"
+          - "Teoria Y: pessoas são naturalmente motivadas"
+
+      natureza_atividade:
+        pergunta: "O que significa trabalhar bem?"
+        exemplos:
+          - "Fazer: resultados tangíveis"
+          - "Ser: harmonia e equilíbrio"
+          - "Controlar: dominar o ambiente"
+
+      natureza_relacionamentos:
+        pergunta: "Como nos relacionamos?"
+        exemplos:
+          - "Hierarquia é natural"
+          - "Colaboração horizontal"
+          - "Competição interna"
+
+    pergunta_chave: "O que assumimos como verdade sem questionar?"
+
+    conexao_branding:
+      - "Essência de Marca (DEENEA)"
+      - "Origin Story profunda (DEENEA)"
+      - "Autenticidade da narrativa"
+
+# ═══════════════════════════════════════════════════════════════════
+# DIAGNÓSTICO CULTURAL
+# ═══════════════════════════════════════════════════════════════════
+diagnostico:
+
+  metodologia:
+    descricao: |
+      O diagnóstico cultural de Schein usa observação, entrevistas
+      e análise de "incidentes críticos" para revelar pressupostos.
+
+    etapas:
+      - numero: 1
+        nome: "Mapear Artefatos"
+        metodo: "Observação, fotos, documentos"
+        pergunta: "O que vemos/ouvimos/sentimos aqui?"
+
+      - numero: 2
+        nome: "Levantar Valores Declarados"
+        metodo: "Entrevistas, documentos oficiais"
+        pergunta: "O que a empresa diz que valoriza?"
+
+      - numero: 3
+        nome: "Testar Coerência"
+        metodo: "Comparar valores com comportamentos reais"
+        pergunta: "Os artefatos refletem os valores?"
+
+      - numero: 4
+        nome: "Identificar Pressupostos"
+        metodo: "Análise de decisões difíceis, conflitos, crises"
+        pergunta: "O que estava 'por trás' dessa decisão?"
+
+      - numero: 5
+        nome: "Validar com Insiders"
+        metodo: "Workshop com líderes e colaboradores"
+        pergunta: "Isso ressoa como verdade?"
+
+  perguntas_reveladoras:
+    para_artefatos:
+      - "Como é um dia típico aqui?"
+      - "O que um visitante notaria primeiro?"
+      - "Quais histórias são contadas sobre a empresa?"
+
+    para_valores:
+      - "O que mais importa para liderança?"
+      - "Como vocês definem sucesso?"
+      - "O que faria alguém ser demitido?"
+
+    para_pressupostos:
+      - "Conte sobre uma decisão difícil que a empresa tomou"
+      - "O que acontece quando alguém erra aqui?"
+      - "Por que vocês fazem X dessa forma e não de outra?"
+
+  sinais_de_incoerencia:
+    - "Valores na parede que ninguém menciona"
+    - "Comportamentos que contradizem discurso oficial"
+    - "Cinismo quando valores são mencionados"
+    - "Novos funcionários confusos sobre 'como as coisas funcionam'"
+    - "Gap entre o que líderes dizem e fazem"
+
+# ═══════════════════════════════════════════════════════════════════
+# APLICAÇÃO EM BRANDING
+# ═══════════════════════════════════════════════════════════════════
+aplicacao_branding:
+
+  principio_central: |
+    Uma marca autêntica é aquela onde os 3 níveis estão alinhados.
+    A identidade visual (artefato) reflete valores reais, que por
+    sua vez nascem de pressupostos genuínos dos fundadores/cultura.
+
+  mapeamento_para_squads:
+    artefatos:
+      squad: "UNNIKO (Identidade)"
+      elementos:
+        - "Logo, cores, tipografia"
+        - "Tom de voz"
+        - "Touchpoints"
+        - "Design System"
+
+    valores_declarados:
+      squad: "DEENEA (Essência)"
+      elementos:
+        - "Propósito"
+        - "Valores de marca"
+        - "Personalidade"
+        - "Promessa de marca"
+
+    pressupostos_basicos:
+      squad: "DEENEA (Essência profunda)"
+      elementos:
+        - "Origin Story"
+        - "Crenças fundacionais"
+        - "Verdades inegociáveis"
+        - "DNA cultural"
+
+  employer_branding:
+    insight: |
+      EVP autêntico nasce do Nível 3. Empresas que tentam "vender"
+      uma cultura que não existe são rapidamente desmascaradas.
+
+    checklist:
+      - "O EVP reflete como as coisas realmente funcionam?"
+      - "Novos funcionários confirmam a promessa após 6 meses?"
+      - "Histórias de colaboradores validam os valores?"
+
+# ═══════════════════════════════════════════════════════════════════
+# CASES E EXEMPLOS
+# ═══════════════════════════════════════════════════════════════════
+cases:
+
+  netflix:
+    nome: "Netflix"
+    destaque: "Cultura de autonomia com responsabilidade"
+    artefatos:
+      - "Sem política de férias definida"
+      - "Sem aprovação de despesas"
+      - "Culture Deck público"
+    valores_declarados:
+      - "Freedom & Responsibility"
+      - "Context, not Control"
+    pressupostos_basicos:
+      - "Adultos não precisam de regras"
+      - "Contexto claro permite decisões descentralizadas"
+    coerencia: "Alta - artefatos refletem pressupostos"
+
+  zappos:
+    nome: "Zappos"
+    destaque: "Cultura como diferencial competitivo"
+    artefatos:
+      - "Tour no escritório para visitantes"
+      - "Funcionários decoram suas mesas livremente"
+      - "Atendimento sem script"
+    valores_declarados:
+      - "Deliver WOW Through Service"
+      - "Be Humble"
+    pressupostos_basicos:
+      - "Felicidade no trabalho gera excelência"
+      - "Autenticidade é mais importante que padronização"
+    coerencia: "Alta - cultura vivida é a marca"
+
+  gap_exemplo:
+    nome: "Empresa Fictícia X"
+    problema: "Incoerência entre níveis"
+    artefatos:
+      - "Escritório 'moderno' com ping pong"
+      - "Posts de 'inovação' no LinkedIn"
+    valores_declarados:
+      - "'Valorizamos a criatividade'"
+      - "'Erramos rápido'"
+    pressupostos_reais:
+      - "Erros são punidos"
+      - "Decisões são centralizadas"
+    resultado: "Cinismo interno, turnover alto, marca percebida como falsa"
+
+# ═══════════════════════════════════════════════════════════════════
+# TRANSFORMAÇÃO CULTURAL
+# ═══════════════════════════════════════════════════════════════════
+transformacao:
+
+  principio_schein: |
+    Cultura não muda por decreto. Pressupostos básicos só mudam
+    quando: (1) há crise que invalida pressupostos atuais, ou
+    (2) liderança modela novos comportamentos consistentemente.
+
+  niveis_de_intervencao:
+    artefatos_sozinhos:
+      eficacia: "Baixa"
+      exemplo: "Mudar o escritório não muda a cultura"
+      resultado: "Mudança cosmética, cinismo"
+
+    valores_sem_pressupostos:
+      eficacia: "Média-baixa"
+      exemplo: "Declarar 'inovação' sem mudar como erros são tratados"
+      resultado: "Desconexão, valores viram piada"
+
+    pressupostos_primeiro:
+      eficacia: "Alta"
+      exemplo: "Líderes mudando comportamento em decisões reais"
+      resultado: "Valores novos emergem, artefatos se adaptam"
+
+  roteiro_transformacao:
+    fase_1:
+      nome: "Diagnóstico Profundo"
+      acoes:
+        - "Mapear 3 níveis atuais"
+        - "Identificar gaps de coerência"
+        - "Entender pressupostos reais"
+
+    fase_2:
+      nome: "Definir Cultura Desejada"
+      acoes:
+        - "Quais pressupostos queremos?"
+        - "Que comportamentos refletem isso?"
+        - "Que artefatos apoiam?"
+
+    fase_3:
+      nome: "Modelar pela Liderança"
+      acoes:
+        - "Líderes vivem novos pressupostos"
+        - "Decisões difíceis coerentes"
+        - "Histórias novas são criadas"
+
+    fase_4:
+      nome: "Institucionalizar"
+      acoes:
+        - "Rituais que reforçam"
+        - "Símbolos que lembram"
+        - "Sistemas que apoiam"
+
+# ═══════════════════════════════════════════════════════════════════
+# CONEXÕES COM OUTROS FRAMEWORKS
+# ═══════════════════════════════════════════════════════════════════
+conexoes:
+
+  kapferer_prism:
+    relacao: "Prisma de Kapferer opera no Nível 2 (valores)"
+    como_usar: "Use Schein para garantir que Kapferer seja autêntico"
+
+  origin_story:
+    relacao: "Origin Story revela pressupostos fundacionais"
+    como_usar: "Narrativa de origem conecta Nível 3 com artefatos"
+
+  cnv:
+    relacao: "CNV revela necessidades reais (pressupostos sobre pessoas)"
+    como_usar: "Cultura de CNV reflete pressuposto 'pessoas são boas'"
+
+  evp:
+    relacao: "EVP autêntico nasce do Nível 3"
+    como_usar: "Diagnostique cultura antes de criar EVP"
+
+# ═══════════════════════════════════════════════════════════════════
+# USO PELOS AGENTES
+# ═══════════════════════════════════════════════════════════════════
+uso_pelos_agentes:
+  - agente: "Strategy-Director (DEENEA)"
+    aplicacao: "Diagnóstico de essência real da marca"
+
+  - agente: "Culture-Community-Architect (DEENEA)"
+    aplicacao: "Análise de cultura organizacional"
+
+  - agente: "Narrative-Identity-Architect (DEENEA)"
+    aplicacao: "Garantir autenticidade da narrativa"
+
+  - agente: "Brand-Director (UNNIKO)"
+    aplicacao: "Alinhar identidade com cultura real"
+
+  - agente: "Brand-Auditor (UNNIKO)"
+    aplicacao: "Identificar gaps de coerência"

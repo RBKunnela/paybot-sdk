@@ -1,0 +1,625 @@
+# Domain Decoder: Capability to Tool Mapping
+# Generated from research synthesis (2026-02-19)
+# Sources: 5 deep research reports, 45+ unique sources, 37 tools evaluated
+domain: "brownfield_code_analysis"
+generated: "2026-02-19"
+environment:
+  os: "Windows 11"
+  runtimes: ["Node.js 22", "Python 3.14", "Rust 1.90"]
+  excluded_runtimes: ["Go", "Java"]
+  note: "Java-requiring tools (PlantUML CLI, Context Mapper CLI, Joern native) are deprioritized. Joern is accessible via CodeBadger Docker MCP."
+
+# ============================================================
+# EXISTING AIOS TOOLS (already available)
+# ============================================================
+existing_tools:
+  exa:
+    type: mcp_server
+    covers: ["web_search", "documentation_lookup", "technology_research"]
+    dd_layers: ["L1 (framework identification via web research)", "L6 (domain terminology lookup)"]
+    gaps_filled: []
+    note: "Research tool only — does not analyze actual code"
+
+  context7:
+    type: mcp_server
+    covers: ["library_documentation", "api_reference"]
+    dd_layers: ["L2 (understanding API contracts of known libraries)"]
+    gaps_filled: []
+    note: "Useful for understanding what third-party libraries in a codebase do"
+
+  zread:
+    type: mcp_server
+    covers: ["github_repo_reading", "file_access"]
+    dd_layers: ["L1 (remote repo access)", "All layers (file reading)"]
+    gaps_filled: ["repository_access"]
+    note: "Fills remote repo access; does not provide structural analysis"
+
+  web_reader:
+    type: mcp_server
+    covers: ["url_fetch", "documentation_reading"]
+    dd_layers: ["L1 (reading README, architecture docs)"]
+    gaps_filled: []
+
+  web_search_prime:
+    type: mcp_server
+    covers: ["web_search"]
+    dd_layers: ["L6 (domain terminology)"]
+    gaps_filled: []
+
+  happy_manager:
+    type: mcp_server
+    covers: ["session_management", "multi_agent_coordination"]
+    dd_layers: ["Orchestration (all phases)"]
+    gaps_filled: []
+
+  zai_mcp_server:
+    type: mcp_server
+    covers: ["image_analysis", "diagram_understanding", "screenshot_ocr"]
+    dd_layers: ["L1 (reading architecture diagrams from documentation)", "L6 (analyzing existing domain diagrams)"]
+    gaps_filled: ["diagram_input_reading"]
+    note: "Can read existing UML/architecture diagrams found in legacy repo docs"
+
+# ============================================================
+# CAPABILITY GAPS WITH TOOL RECOMMENDATIONS
+# ============================================================
+capabilities:
+
+  # ---- INPUT CAPABILITIES ----
+
+  repository_access:
+    description: "Access and read files from local or remote repositories"
+    dd_layers: ["All"]
+    priority: 10
+    coverage: "partial"
+    gap: "Local repo access requires native tools; remote access covered by Zread"
+    tools:
+      - name: "Repomix MCP"
+        type: mcp_server
+        install: "claude mcp add repomix -- npx repomix --mcp"
+        windows_compatible: true
+        free: true
+        languages: ["all"]
+        impact: 9
+        status: "production"
+        fills: "Packs entire local or remote GitHub repo into single AI-readable document; 70% token reduction via tree-sitter compression"
+      - name: "Zread"
+        type: mcp_server
+        install: "already installed"
+        windows_compatible: true
+        free: true
+        languages: ["all"]
+        impact: 7
+        status: "production"
+        fills: "Remote GitHub repo file reading"
+
+  file_reading:
+    description: "Read individual files with syntax awareness"
+    dd_layers: ["L1", "L2", "L3", "L4", "L5", "L6", "L7"]
+    priority: 9
+    coverage: "full"
+    gap: "None — Claude Code native Read tool handles this"
+    tools:
+      - name: "Read (native)"
+        type: native_tool
+        install: "built-in"
+        impact: 10
+        status: "production"
+
+  git_history_access:
+    description: "Access commit history, blame data, file change frequency for behavioral analysis (Tornhill methodology)"
+    dd_layers: ["L8 (tech debt)", "L5 (hotspot-informed business rule prioritization)"]
+    priority: 8
+    coverage: "partial"
+    gap: "Git CLI via Bash tool covers basic access; CodeScene MCP adds behavioral analysis visualization and ROI quantification"
+    tools:
+      - name: "git CLI via Bash"
+        type: cli
+        install: "built-in (git)"
+        windows_compatible: true
+        free: true
+        impact: 7
+        status: "production"
+        fills: "git log, git blame, git log --stat for frequency analysis"
+        key_commands:
+          - "git log --follow -p -- <file>  # full history with diffs"
+          - "git log --stat --format='%H' | head -100  # change frequency"
+          - "git log --pretty=format:'%H %an %ad' --date=short  # author/date"
+      - name: "CodeScene MCP"
+        type: mcp_server
+        install: "irm https://raw.githubusercontent.com/codescene-oss/codescene-mcp-server/main/install.ps1 | iex"
+        windows_compatible: true
+        free: false
+        paid: true
+        impact: 8
+        status: "production"
+        fills: "Automated hotspot detection (complexity × change frequency), knowledge silos, technical debt ROI"
+
+  # ---- PROCESSING CAPABILITIES ----
+
+  ast_parsing:
+    description: "Parse source code into Abstract Syntax Trees for structural analysis"
+    dd_layers: ["L1", "L2", "L3", "L4", "L5"]
+    priority: 10
+    coverage: "none"
+    gap: "No AST parsing capability in current AIOS toolset — critical gap"
+    tools:
+      - name: "ast-grep MCP"
+        type: mcp_server
+        github: "https://github.com/ast-grep/ast-grep-mcp"
+        install: "cargo install ast-grep --locked && pip install uv && uvx --from git+https://github.com/ast-grep/ast-grep-mcp ast-grep-server"
+        windows_compatible: true
+        free: true
+        languages: ["JavaScript", "TypeScript", "Python", "Rust", "Go", "Java", "C", "C++", "C#", "and more"]
+        language_count: 20
+        impact: 10
+        status: "experimental"
+        fills: "Structural (AST-aware) pattern search — 'find all if/else blocks touching price variable' without regex"
+        tools_exposed:
+          - dump_syntax_tree
+          - test_match_code_rule
+          - find_code
+          - find_code_by_rule
+      - name: "mcp-server-tree-sitter"
+        type: mcp_server
+        github: "https://github.com/wrale/mcp-server-tree-sitter"
+        install: "pip install mcp-server-tree-sitter"
+        windows_compatible: true
+        free: true
+        languages: ["Python", "JavaScript", "TypeScript", "Go", "Rust", "C", "C++", "Swift", "Java", "Kotlin"]
+        language_count: 11
+        impact: 7
+        status: "partial"
+        fills: "Raw AST access (get_ast), symbol tables (get_symbols), find_usage, complexity analysis per file"
+      - name: "tree-sitter Python library"
+        type: library
+        install: "pip install tree-sitter tree-sitter-language-pack"
+        windows_compatible: true
+        free: true
+        language_count: 40
+        impact: 6
+        status: "production"
+        fills: "Custom AST extractor scripts — lower-level than MCP but more flexible"
+
+  structural_pattern_search:
+    description: "Find code patterns (conditionals, method calls, annotations) across entire codebases without false text-match positives"
+    dd_layers: ["L1", "L4", "L5"]
+    priority: 10
+    coverage: "none"
+    gap: "Native Grep tool is text-based; does not understand code structure (misses pattern variations, matches strings in comments)"
+    tools:
+      - name: "ast-grep MCP"
+        type: mcp_server
+        install: "see ast_parsing above"
+        impact: 10
+        status: "experimental"
+        fills: "Primary structural search — use for all L5 candidate identification"
+      - name: "Semgrep MCP"
+        type: mcp_server
+        github: "https://github.com/semgrep/semgrep"
+        install: "pip install semgrep && claude mcp add semgrep -- semgrep mcp"
+        windows_compatible: true
+        free: true
+        languages_count: 30
+        impact: 9
+        status: "production"
+        fills: "Business rule pattern extraction via declarative YAML rules; 5,000+ community rules; JSON output"
+        tools_exposed:
+          - security_check
+          - semgrep_scan
+          - semgrep_scan_with_custom_rule
+          - get_abstract_syntax_tree
+          - semgrep_findings
+          - supported_languages
+          - semgrep_rule_schema
+
+  dependency_graphing:
+    description: "Build import/require graphs across all modules to identify architectural boundaries and coupling"
+    dd_layers: ["L1", "L6 (bounded context boundary identification)"]
+    priority: 9
+    coverage: "none"
+    gap: "No dependency graph capability in current toolset"
+    tools:
+      - name: "code-graph-mcp"
+        type: mcp_server
+        github: "https://github.com/entrepeneur4lyf/code-graph-mcp"
+        install: "pip install code-graph-mcp ast-grep-py rustworkx && claude mcp add --scope project code-graph-mcp code-graph-mcp"
+        windows_compatible: true
+        free: true
+        languages_count: 25
+        impact: 9
+        status: "near_production"
+        fills: "Call graphs, dependency maps, circular dependency detection, framework recognition, PageRank at 4.9M nodes/second"
+        tools_exposed:
+          - analyze_codebase
+          - find_definition
+          - find_references
+          - find_callers
+          - find_callees
+          - complexity_analysis
+          - dependency_analysis
+          - project_statistics
+      - name: "dependency-cruiser"
+        type: cli
+        install: "npm install -g dependency-cruiser"
+        windows_compatible: true
+        free: true
+        languages: ["JavaScript", "TypeScript", "CoffeeScript"]
+        impact: 8
+        status: "production"
+        fills: "JS/TS dependency graph with Mermaid output — 'npx depcruise src -T mermaid > deps.mmd'"
+      - name: "Serena"
+        type: mcp_server
+        github: "https://github.com/oraios/serena"
+        install: "pip install uv && uvx --from git+https://github.com/oraios/serena serena start-mcp-server"
+        windows_compatible: true
+        free: true
+        languages_count: 30
+        impact: 9
+        status: "active_development"
+        fills: "LSP-level symbol references — 'find all callers of function X across entire codebase'; compiler-level accuracy"
+        key_differentiator: "Uses Language Server Protocol (LSP) — same as VSCode Go-to-Definition. Understands type hierarchies and cross-file references, not just text patterns."
+
+  call_graph_analysis:
+    description: "Trace call chains: who calls what, what data flows where, reverse-call (who calls this function?)"
+    dd_layers: ["L3", "L5", "L6"]
+    priority: 9
+    coverage: "none"
+    gap: "No call graph analysis in current toolset"
+    tools:
+      - name: "code-graph-mcp"
+        type: mcp_server
+        install: "see dependency_graphing above"
+        impact: 9
+        fills: "find_callers, find_callees across 25+ languages"
+      - name: "Serena"
+        type: mcp_server
+        install: "see dependency_graphing above"
+        impact: 9
+        fills: "find_referencing_symbols — LSP-level precision call chain traversal"
+      - name: "Code Pathfinder MCP"
+        type: mcp_server
+        github: "https://codepathfinder.dev/mcp"
+        install: "pip install codepathfinder"
+        windows_compatible: true
+        free: true
+        languages: ["Python"]
+        impact: 6
+        status: "production"
+        fills: "Bidirectional Python call graphs; 5-pass analysis resolves decorators, generators, async functions"
+      - name: "CodeBadger/Joern MCP"
+        type: mcp_server
+        github: "https://github.com/Lekssays/codebadger"
+        install: "docker compose up -d && pip install -r requirements.txt && python main.py"
+        windows_compatible: true
+        requires_docker: true
+        free: true
+        impact: 8
+        status: "beta"
+        fills: "Code Property Graph (AST+CFG+PDG) — deepest data flow analysis, taint tracking"
+
+  llm_summarization:
+    description: "LLM-driven semantic analysis of code — naming business intent, classifying rules, generating plain-English descriptions"
+    dd_layers: ["L5", "L6", "L7"]
+    priority: 9
+    coverage: "full"
+    gap: "None — Claude (current session) handles this natively"
+    tools:
+      - name: "Claude (native)"
+        type: native
+        impact: 10
+        note: "L5-L7 extraction requires Opus for semantic reasoning; L1-L4 and synthesis use Sonnet per model routing protocol"
+
+  code_metrics:
+    description: "Measure file sizes, cyclomatic complexity, DRYness — identify where business logic is densest"
+    dd_layers: ["Phase 0 (Triage)", "L8"]
+    priority: 8
+    coverage: "none"
+    gap: "No code metrics tool in current AIOS setup"
+    tools:
+      - name: "scc"
+        type: cli
+        github: "https://github.com/boyter/scc"
+        install: "scoop install scc"
+        windows_compatible: true
+        free: true
+        languages_count: 200
+        impact: 8
+        status: "production"
+        fills: "Lines of code, cyclomatic complexity, COCOMO cost estimates, DRYness (ULOC/SLOC ratio) per file"
+        key_commands:
+          - "scc src/ -f json > metrics.json"
+          - "scc src/ -f json | jq '[.[] | .Files[]] | sort_by(.Complexity) | reverse | .[0:10]'"
+      - name: "tokei"
+        type: cli
+        github: "https://github.com/XAMPPRocky/tokei"
+        install: "cargo install tokei"
+        windows_compatible: true
+        free: true
+        languages_count: 150
+        impact: 5
+        status: "production"
+        fills: "Language statistics (files, lines, code, comments, blanks); alternative to scc for language breakdowns"
+
+  dependency_inventory:
+    description: "Inventory all third-party packages and their versions (SBOM) to understand implicit business capabilities"
+    dd_layers: ["Phase 0 (Triage)"]
+    priority: 6
+    coverage: "none"
+    gap: "No SBOM generation in current toolset"
+    tools:
+      - name: "Syft"
+        type: cli
+        github: "https://github.com/anchore/syft"
+        install: "scoop install syft"
+        windows_compatible: true
+        free: true
+        languages: ["all (npm, pip, Maven, NuGet, Cargo, Go modules, Ruby gems, etc.)"]
+        impact: 6
+        status: "production"
+        fills: "Generates SBOM revealing implicit capabilities: Stripe = billing, Camunda = workflow, XState = state machines"
+        key_commands:
+          - "syft dir:./src -o cyclonedx-json > sbom.json"
+
+  # ---- OUTPUT CAPABILITIES ----
+
+  mermaid_diagram_generation:
+    description: "Render Mermaid diagrams (flowchart, class, ER, state, sequence) to SVG/PNG for reports"
+    dd_layers: ["Phase 5 (Synthesis)"]
+    priority: 7
+    coverage: "partial"
+    gap: "LLMs generate valid Mermaid text; no CLI renderer installed by default"
+    tools:
+      - name: "Mermaid CLI (mmdc)"
+        type: cli
+        github: "https://github.com/mermaid-js/mermaid-cli"
+        install: "npm install -g @mermaid-js/mermaid-cli"
+        windows_compatible: true
+        free: true
+        impact: 7
+        status: "production"
+        fills: "Renders LLM-generated or dependency-cruiser Mermaid to SVG/PNG/PDF"
+        key_commands:
+          - "mmdc -i diagram.mmd -o output.svg"
+          - "npx depcruise src -T mermaid | mmdc -i /dev/stdin -o architecture.svg"
+      - name: "ZAI MCP Server"
+        type: mcp_server
+        install: "already installed"
+        impact: 5
+        fills: "Can READ and analyze existing Mermaid/UML diagrams found in legacy repos"
+
+  structured_reports:
+    description: "Generate YAML/JSON/Markdown structured extraction reports"
+    dd_layers: ["All — every phase produces structured output"]
+    priority: 8
+    coverage: "full"
+    gap: "None — Write tool handles this natively"
+    tools:
+      - name: "Write (native)"
+        type: native_tool
+        install: "built-in"
+        impact: 10
+
+  domain_glossary_generation:
+    description: "Extract and catalog domain terminology (ubiquitous language) from code"
+    dd_layers: ["L6"]
+    priority: 7
+    coverage: "none"
+    gap: "No automated domain vocabulary extraction; must be done via LLM analysis of code names"
+    tools:
+      - name: "Emerge (emerge-viz)"
+        type: cli
+        github: "https://github.com/glato/emerge"
+        install: "pip install emerge-viz"
+        windows_compatible: true
+        free: true
+        languages: ["C", "C++", "Groovy", "Java", "JavaScript", "TypeScript", "Kotlin", "ObjC", "Ruby", "Swift", "Python", "Go"]
+        impact: 6
+        status: "stable"
+        fills: "TF-IDF keyword extraction — automatically surfaces domain terms from variable/method names and comments"
+      - name: "LLM (native)"
+        type: native
+        impact: 8
+        fills: "Primary approach: LLM reads code and comments to extract ubiquitous language per bounded context"
+
+  # ---- ENHANCEMENT CAPABILITIES ----
+
+  cross_language_analysis:
+    description: "Analyze polyglot codebases where business logic spans multiple programming languages"
+    dd_layers: ["L5", "L6"]
+    priority: 7
+    coverage: "partial"
+    gap: "No single tool handles all languages with equal depth; must combine tools per language"
+    tools:
+      - name: "ast-grep MCP"
+        type: mcp_server
+        install: "see above"
+        languages_count: 20
+        impact: 8
+        fills: "Uniform structural search across 20+ languages"
+      - name: "Repomix MCP"
+        type: mcp_server
+        install: "see above"
+        languages: ["all"]
+        impact: 7
+        fills: "Packs any language combination into single readable context"
+      - name: "code-graph-mcp"
+        type: mcp_server
+        install: "see above"
+        languages_count: 25
+        impact: 7
+        fills: "Cross-language dependency mapping and call graphs"
+    note: "For COBOL/Fortran/Delphi: no open-source tools without Java/Docker. EvolveWare and IBM watsonx are commercial-only options."
+
+  behavioral_analysis:
+    description: "Mine git commit history to find hotspots (files that change frequently AND are complex = business-critical)"
+    dd_layers: ["L8", "L5 (prioritization)"]
+    priority: 8
+    coverage: "none"
+    gap: "Tornhill hotspot methodology requires git mining; no tooling in current AIOS setup"
+    tools:
+      - name: "git CLI via Bash"
+        type: cli
+        install: "built-in"
+        windows_compatible: true
+        free: true
+        impact: 7
+        fills: "Basic frequency analysis via 'git log --stat'; combine with scc complexity for manual hotspot calculation"
+        hotspot_formula: "hotspot_score = complexity (from scc) × change_frequency (from git log)"
+      - name: "CodeScene MCP"
+        type: mcp_server
+        install: "PowerShell: irm .../install.ps1 | iex"
+        windows_compatible: true
+        free: false
+        paid: true
+        impact: 8
+        fills: "Automated hotspot detection, knowledge silos, temporal coupling, Code Health scoring"
+
+  confidence_scoring:
+    description: "Score extraction findings by source count (code + schema + tests + comments + API + UI + logs)"
+    dd_layers: ["L5", "L6", "L7"]
+    priority: 7
+    coverage: "none"
+    gap: "No tool provides confidence scoring for extracted business rules; must be implemented in agent logic"
+    tools:
+      - name: "Custom agent logic (triangulation protocol)"
+        type: agent_methodology
+        impact: 9
+        fills: "Adapted from MMOS triangulation: 3+ sources = HIGH, 2 sources = MEDIUM, 1 source = LOW"
+        note: "This is a methodology gap, not a tool gap. Implement in @synthesizer agent."
+
+  validation:
+    description: "Validate extracted findings against existing tests and schemas"
+    dd_layers: ["L5", "L6"]
+    priority: 7
+    coverage: "none"
+    gap: "No automated cross-validation between extracted rules and test suites"
+    tools:
+      - name: "Semgrep MCP"
+        type: mcp_server
+        install: "see above"
+        impact: 6
+        fills: "Scan test files with custom rules to find assertions encoding business rules; cross-reference with L5 findings"
+      - name: "LLM (native)"
+        type: native
+        impact: 7
+        fills: "LLM cross-reference: for each extracted business rule, search for corresponding test assertions"
+
+# ============================================================
+# COVERAGE SUMMARY
+# ============================================================
+coverage_summary:
+  fully_covered:
+    - "file_reading (native Read tool)"
+    - "llm_summarization (native Claude)"
+    - "structured_reports (native Write tool)"
+    - "web_research (Exa, Context7, Web Search Prime, Web Reader)"
+    - "remote_repo_access (Zread)"
+    - "diagram_reading (ZAI MCP Server)"
+    - "session_management (Happy Manager)"
+
+  partially_covered:
+    - "repository_access (local access requires additional tools)"
+    - "cross_language_analysis (multi-tool combination needed; COBOL/Fortran uncovered)"
+    - "mermaid_diagram_generation (LLMs generate text; CLI renderer not installed)"
+    - "domain_glossary_generation (LLM-based; Emerge adds automated keyword extraction)"
+    - "git_history_access (git CLI works; CodeScene adds automated analysis)"
+
+  not_covered_critical:
+    - "ast_parsing — CRITICAL GAP: install ast-grep MCP + mcp-server-tree-sitter"
+    - "structural_pattern_search — CRITICAL GAP: install ast-grep MCP + Semgrep MCP"
+    - "dependency_graphing — CRITICAL GAP: install code-graph-mcp + dependency-cruiser"
+    - "call_graph_analysis — CRITICAL GAP: install code-graph-mcp + Serena"
+    - "code_metrics — GAP: install scc"
+    - "dependency_inventory — GAP: install Syft"
+
+  not_covered_nice_to_have:
+    - "behavioral_analysis (git log workaround available; CodeScene is better but paid)"
+    - "confidence_scoring (implement in agent logic; no tool covers this)"
+    - "validation (Semgrep custom rules partially cover; LLM handles the rest)"
+    - "code_property_graph (CodeBadger/Joern MCP is beta + Docker; defer to medium-term)"
+
+# ============================================================
+# INSTALLATION PRIORITY ORDER
+# ============================================================
+installation_queue:
+  - priority: 1
+    name: "ast-grep MCP"
+    reason: "Primary AST search; fills largest gap; all L5 extraction depends on it"
+    install: "cargo install ast-grep --locked && uvx --from git+https://github.com/ast-grep/ast-grep-mcp ast-grep-server"
+    time_minutes: 5
+
+  - priority: 2
+    name: "Repomix MCP"
+    reason: "Whole-repo context packing; enables full codebase read for medium/large repos"
+    install: "claude mcp add repomix -- npx repomix --mcp"
+    time_minutes: 2
+
+  - priority: 3
+    name: "code-graph-mcp"
+    reason: "Multi-language call graphs and dependency analysis; fills call_graph + dependency_graphing gaps"
+    install: "pip install code-graph-mcp ast-grep-py rustworkx && claude mcp add --scope project code-graph-mcp code-graph-mcp"
+    time_minutes: 5
+
+  - priority: 4
+    name: "Semgrep MCP"
+    reason: "Business rule pattern extraction via custom YAML rules; 30+ languages; 5,000+ community rules"
+    install: "pip install semgrep && claude mcp add semgrep -- semgrep mcp"
+    time_minutes: 5
+
+  - priority: 5
+    name: "scc"
+    reason: "Code metrics for triage phase; identifies highest-complexity files"
+    install: "scoop install scc"
+    time_minutes: 1
+
+  - priority: 6
+    name: "Serena"
+    reason: "LSP-level semantic navigation; compiler-accuracy symbol resolution across 30+ languages"
+    install: "pip install uv && uvx --from git+https://github.com/oraios/serena serena start-mcp-server"
+    time_minutes: 5
+
+  - priority: 7
+    name: "mcp-server-tree-sitter"
+    reason: "Raw AST access, 22+ tools for deep structural analysis"
+    install: "pip install mcp-server-tree-sitter"
+    time_minutes: 3
+
+  - priority: 8
+    name: "dependency-cruiser"
+    reason: "JS/TS dependency graphs with Mermaid output; critical for JS/TS brownfield codebases"
+    install: "npm install -g dependency-cruiser"
+    time_minutes: 2
+
+  - priority: 9
+    name: "Mermaid CLI (mmdc)"
+    reason: "Renders LLM-generated Mermaid diagrams to SVG/PNG for reports"
+    install: "npm install -g @mermaid-js/mermaid-cli"
+    time_minutes: 2
+
+  - priority: 10
+    name: "Code Pathfinder"
+    reason: "Production-ready Python call graphs (bidirectional)"
+    install: "pip install codepathfinder"
+    time_minutes: 2
+
+  - priority: 11
+    name: "Syft"
+    reason: "SBOM inventory for triage phase; reveals implicit capabilities from dependency list"
+    install: "scoop install syft"
+    time_minutes: 2
+
+  - priority: 12
+    name: "CodeScene MCP"
+    reason: "Automated Tornhill hotspot detection; requires subscription"
+    install: "Requires paid subscription + PowerShell installer"
+    time_minutes: 15
+    requires_account: true
+    deferred: "Evaluate after pilot extraction to confirm value"
+
+  - priority: 13
+    name: "CodeBadger/Joern MCP"
+    reason: "Deepest CPG-level data flow analysis; beta + Docker dependency"
+    install: "Requires Docker Desktop for Windows"
+    time_minutes: 30
+    requires_docker: true
+    deferred: "Install only if standard tools prove insufficient for complex L5 extraction"

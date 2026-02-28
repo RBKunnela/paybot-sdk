@@ -1,0 +1,97 @@
+# Quality Shield - Knowledge Base
+# STATUS: Ativo. 1 bug registrado.
+# Cada bug resolvido e registrado aqui para aprendizado futuro.
+# O Diagnostician (Sage) consulta esta base ANTES de iniciar analise fresca.
+#
+# Formato de cada entrada:
+# - id: BUG-YYYY-MM-DD-NNN
+#   date: YYYY-MM-DD
+#   severity: CRITICO|ALTO|MEDIO|BAIXO
+#   symptom: "O que o usuario reportou"
+#   root_cause: "Causa raiz tecnica"
+#   what_caused_it: "Explicacao detalhada"
+#   files:
+#     - path: "caminho/do/arquivo"
+#       role: "papel no contexto do bug"
+#   flows_affected: [lista-de-fluxos]
+#   fix_applied: "O que foi feito"
+#   fix_files: [arquivos-modificados]
+#   environment:
+#     worked_in_localhost: true|false
+#     prod_difference: "diferenca especifica"
+#   pattern: "nome-do-padrao"
+#   related_bugs: [IDs]
+#   regression:
+#     tested_levels: [1,2,3,4]
+#     result: "APROVADO"
+#     production_verified: true|false
+
+bugs:
+  - id: "BUG-2026-02-11-001"
+    date: "2026-02-11"
+    severity: "CRITICO"
+
+    symptom: "Usuario com conta email/senha tenta login com Google usando o mesmo email e ve 'Ops! Algo deu errado' + 'Erro de conexao' em vez de entrar na conta"
+    root_cause: "PKCE code_verifier perdido durante OAuth redirect quando dominio muda (www vs non-www), causando falha silenciosa no exchange ({session: null, error: null}). Adicionalmente, erros OAuth no hash fragment nao eram detectados pelo parser de URL."
+    what_caused_it: |
+      Tres problemas combinados:
+      1. www.fomibrasil.com.br faz 307 redirect para fomibrasil.com.br. O Supabase SDK armazena
+         o PKCE code_verifier no localStorage ANTES do redirect ao Google. Se o usuario inicia no
+         www, o code_verifier fica no localStorage do www, mas o app recarrega no non-www (origin
+         diferente = localStorage diferente). O SDK tenta exchange, nao encontra code_verifier, e
+         retorna {session: null, error: null} silenciosamente.
+      2. O parser de URL so buscava erros OAuth no query string (?error=), mas o Supabase pode
+         retornar erros no hash fragment (#error=). Erros como "email already registered" passavam
+         despercebidos.
+      3. Quando o PKCE exchange falhava, o app nao setava erro explicito - simplesmente esperava o
+         timeout absoluto de 30s e mostrava "Erro de conexao" generico, sem informar o usuario que
+         o email ja estava cadastrado com outro metodo.
+
+    files:
+      - path: "src/hooks/auth/useAuth.ts"
+        role: "Orquestra o fluxo de autenticacao, faz PKCE exchange manual como fallback"
+      - path: "src/hooks/auth/utils.ts"
+        role: "Funcoes utilitarias de auth: hasOAuthTokensInUrl(), clearOAuthTokensFromUrl()"
+      - path: "src/App.tsx"
+        role: "OAuthRedirectHandler que mostra UI de erro/loading durante redirect"
+      - path: "index.html"
+        role: "Entry point HTML, onde redirect www->non-www precisa acontecer antes do JS"
+
+    flows_affected:
+      - "login-google-oauth"
+      - "login-email"
+
+    fix_applied: |
+      4 correcoes aplicadas:
+      1. index.html: Redirect www->non-www via JS inline antes do React carregar, garantindo que
+         o PKCE code_verifier e o app sempre rodam na mesma origin.
+      2. utils.ts: Nova funcao mapOAuthError() que traduz erros do Supabase para mensagens amigaveis
+         em portugues. Detecta "email ja registrado", "bad_oauth_state", "access_denied", "server_error".
+         Tambem adicionou deteccao de error= no hash fragment em hasOAuthTokensInUrl().
+      3. useAuth.ts: Parser agora busca error/error_description/code tanto no query string quanto no
+         hash fragment. Usa mapOAuthError() para mensagens. Adicionou auto-retry: se PKCE exchange falha,
+         re-inicia OAuth automaticamente 1 vez (com flag em sessionStorage para evitar loop infinito).
+         Se ja retentou ou retry falha, seta erro explicito imediatamente em vez de esperar timeout.
+      4. App.tsx: OAuthRedirectHandler detecta conflito de email e mostra UI especifica com titulo
+         "E-mail ja cadastrado", icone de pessoa, e botao "Ir para login" em vez de erro generico.
+
+    fix_files:
+      - "index.html"
+      - "src/hooks/auth/utils.ts"
+      - "src/hooks/auth/useAuth.ts"
+      - "src/App.tsx"
+
+    environment:
+      worked_in_localhost: false
+      prod_difference: |
+        Em localhost o OAuth redirect volta para localhost:3000 (sem www), entao o code_verifier
+        sempre esta no mesmo localStorage. Em producao, www.fomibrasil.com.br faz 307 para
+        fomibrasil.com.br, causando troca de origin e perda do code_verifier.
+
+    pattern: "pkce-code-verifier-cross-origin"
+    related_bugs: []
+
+    regression:
+      tested_levels: [1]
+      result: "APROVADO"
+      production_verified: false

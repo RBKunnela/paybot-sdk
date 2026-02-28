@@ -1,0 +1,123 @@
+# Task: Generate Research Report
+# Squad: squAId-criaTTivados / search-insights
+# Responsável: insight-synthesizer
+
+metadata:
+  name: "generate-research-report"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "search-insights"
+  responsavel: "insight-synthesizer"
+  tipo: task
+
+descricao: |
+  Gerar Relatório de Pesquisa & Insights com formato padronizado:
+  verbatims, insights com título conceitual/publicitário, e macro insights
+  consolidados. Adapta entregáveis conforme o nível de pesquisa.
+
+entrada:
+  - campo: research_data
+    tipo: string
+    origem: "conduct-brand-research"
+    obrigatorio: true
+    descricao: "Dados consolidados da pesquisa (primários + externos)"
+  - campo: nivel_pesquisa
+    tipo: string
+    origem: "conduct-brand-research"
+    obrigatorio: true
+    descricao: "Ouro / Prata / Bronze"
+
+saida:
+  - campo: relatorio_pesquisa
+    tipo: string
+    destino: "deenea / unniko"
+    persistido: true
+    descricao: "Relatório completo seguindo template relatorio-pesquisa-insights.md"
+
+template: "relatorio-pesquisa-insights.md"
+
+passos:
+  1:
+    nome: "Selecionar e curar verbatims"
+    descricao: |
+      Para cada bloco de pesquisa (Reputação, Experiência, Personalidade, Futuro):
+      - Ouro: selecionar 10-15 verbatims mais representativos
+      - Prata: selecionar 8-10 verbatims das respostas escritas
+      - Bronze: extrair citações do self-assessment como "visão interna"
+      Critérios: representatividade, impacto emocional, recorrência.
+    agente: "insight-synthesizer"
+  2:
+    nome: "Gerar insights por campo"
+    descricao: |
+      Para cada bloco de pesquisa, criar:
+      - Título: headline conceitual em formato publicitário (impactante, memorável)
+      - Texto: 100-300 palavras com diagnóstico + implicação + direcionamento
+      - Verbatims-suporte: 2-3 que sustentam o insight
+      - Domínio da Taxonomia mais impactado
+    agente: "insight-synthesizer"
+  3:
+    nome: "Gerar mapa de projeções"
+    descricao: |
+      Consolidar respostas projetivas (pessoa, animal, figura pública) em:
+      - Padrões identificados por pergunta
+      - Arquétipo dominante sugerido pelos dados
+      - Gap entre personalidade atual e desejada
+    agente: "insight-synthesizer"
+  4:
+    nome: "Integrar dados de pesquisa externa"
+    descricao: |
+      Incorporar ao relatório:
+      - Dados de mercado (data-miner)
+      - Social listening (social-listener)
+      - Tendências (trend-analyst)
+      Para Bronze: construir tabela de Gap Analysis (interno vs externo)
+    agente: "insight-synthesizer"
+  5:
+    nome: "Sintetizar macro insights"
+    descricao: |
+      Cruzar todos os insights de campo para gerar:
+      - 5-10 macro insights estratégicos (Ouro)
+      - 5-8 macro insights (Prata)
+      - 5-7 macro insights (Bronze)
+      Cada um com: título conceitual macro, 200-400 palavras,
+      insights de campo origem, domínios impactados, prioridade.
+    agente: "insight-synthesizer"
+  6:
+    nome: "Mapear implicações por domínio"
+    descricao: |
+      Para cada domínio da Taxonomia:
+      - Forças identificadas pela pesquisa
+      - Fraquezas identificadas
+      - Oportunidades reveladas
+    agente: "insight-synthesizer"
+  7:
+    nome: "Gerar recomendações e routing"
+    descricao: |
+      Criar recomendações específicas para:
+      - DEENEA (posicionamento estratégico)
+      - UNNIKO (diferenciação e design)
+      - storYOURtelling (narrativa)
+      Incluir ficha técnica com método, base amostral, ressalvas.
+    agente: "insight-synthesizer"
+  8:
+    nome: "Compilar relatório final"
+    descricao: "Montar documento seguindo template relatorio-pesquisa-insights.md"
+    agente: "insight-synthesizer"
+
+checklist:
+  - "[ ] Verbatims selecionados e curados por bloco"
+  - "[ ] Insights com título conceitual gerados por campo"
+  - "[ ] Mapa de projeções consolidado"
+  - "[ ] Dados externos integrados ao relatório"
+  - "[ ] Gap Analysis construído (se Bronze)"
+  - "[ ] Macro insights sintetizados (mín. 5)"
+  - "[ ] Implicações mapeadas por domínio"
+  - "[ ] Recomendações geradas por sub-squad destino"
+  - "[ ] Ficha técnica preenchida"
+
+criterios_aceitacao:
+  - "Cada insight com título conceitual/publicitário + texto 100-300 palavras"
+  - "Mínimo 5 macro insights estratégicos com priorização"
+  - "Implicações mapeadas para os 3 domínios da Taxonomia"
+  - "Nível de pesquisa e base amostral documentados"
+  - "Recomendações específicas para DEENEA, UNNIKO e storYOURtelling"

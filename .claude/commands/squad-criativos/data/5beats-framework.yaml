@@ -1,0 +1,285 @@
+# 5BEATS Framework
+# Framework proprietário criaTTivados para micro-narrativas
+# Ideal para vídeos curtos, Reels, TikTok, anúncios
+
+metadata:
+  name: "5BEATS Framework"
+  version: "1.0"
+  origem: "criaTTivados / storYOURtelling"
+  aplicacao: "Narrativas curtas com arco emocional completo"
+  duracao_ideal: "15-60 segundos"
+
+# ═══════════════════════════════════════════════════════════════════
+# O QUE É O 5BEATS
+# ═══════════════════════════════════════════════════════════════════
+definicao:
+  conceito: |
+    O 5BEATS é uma estrutura de micro-storytelling que condensa
+    uma história completa em 5 movimentos (beats), permitindo
+    criar narrativas com arco emocional mesmo em formatos curtos.
+
+  principio: |
+    Toda boa história - longa ou curta - tem a mesma estrutura invisível.
+    O 5BEATS é a versão compacta dessa estrutura, otimizada para
+    a economia da atenção do digital.
+
+  diferencial: |
+    Resolve 80% dos desafios de "contar uma história inteira em pouco tempo".
+    É especialmente poderoso quando você tem pouco tempo, precisa gerar
+    emoção rápido e quer que a pessoa entenda que algo mudou.
+
+# ═══════════════════════════════════════════════════════════════════
+# OS 5 BEATS
+# ═══════════════════════════════════════════════════════════════════
+beats:
+
+  beat_1:
+    nome: "TRIGGER"
+    nome_pt: "Gatilho"
+    funcao: "Gancho"
+    icone: "🎯"
+
+    o_que_e: |
+      Algo que chama atenção, provoca, incomoda ou desperta curiosidade.
+      É a primeira impressão que decide se a pessoa vai continuar ou não.
+
+    caracteristicas:
+      - "Surpreendente ou inesperado"
+      - "Provoca emoção imediata"
+      - "Cria curiosidade ou tensão"
+      - "Faz a pessoa parar de rolar"
+
+    exemplos:
+      - "Todo mundo carrega histórias que nunca contou."
+      - "O erro que destruiu minha carreira."
+      - "Ninguém te contou isso sobre..."
+      - "Essa foi a pior decisão da minha vida."
+
+    tempo_sugerido: "0-3 segundos"
+
+  beat_2:
+    nome: "SETUP"
+    nome_pt: "Contexto"
+    funcao: "Situar rapidamente"
+    icone: "🎬"
+
+    o_que_e: |
+      Em uma frase, você situa a pessoa no contexto.
+      Estabelece o mundo antes da transformação.
+
+    caracteristicas:
+      - "Breve e direto"
+      - "Estabelece o cenário"
+      - "Dá contexto mínimo necessário"
+      - "Conecta com a realidade do público"
+
+    exemplos:
+      - "Em algum momento, a vida cobra que você se expresse."
+      - "Eu tinha 25 anos e achava que sabia tudo."
+      - "Todo empreendedor passa por isso."
+      - "Era meu primeiro dia no novo emprego."
+
+    tempo_sugerido: "3-8 segundos"
+
+  beat_3:
+    nome: "STRUGGLE"
+    nome_pt: "Tensão/Conflito"
+    funcao: "A dor, o problema"
+    icone: "😰"
+
+    o_que_e: |
+      A tensão, o conflito, a dor, a tentativa frustrada.
+      É onde a emoção se intensifica.
+
+    caracteristicas:
+      - "Mostra vulnerabilidade"
+      - "Cria empatia"
+      - "Aumenta a tensão emocional"
+      - "Faz o público se identificar"
+
+    exemplos:
+      - "E é frustrante sentir que sua voz fica pequena."
+      - "Nada do que eu tentava funcionava."
+      - "Eu me sentia completamente perdido."
+      - "As palavras não davam conta do que eu sentia."
+
+    tempo_sugerido: "8-15 segundos"
+
+  beat_4:
+    nome: "BREAKTHROUGH"
+    nome_pt: "Virada"
+    funcao: "A solução, o insight"
+    icone: "💡"
+
+    o_que_e: |
+      A virada, a solução, o click, o momento de transformação.
+      É onde a esperança aparece.
+
+    caracteristicas:
+      - "Momento de descoberta"
+      - "Mudança de perspectiva"
+      - "A solução ou insight"
+      - "Luz no fim do túnel"
+
+    exemplos:
+      - "Até que descobri que existem técnicas e estruturas."
+      - "Foi quando entendi que não era dom, era método."
+      - "Aí tudo mudou."
+      - "Essa única mudança transformou meus resultados."
+
+    tempo_sugerido: "15-22 segundos"
+
+  beat_5:
+    nome: "RESOLUTION"
+    nome_pt: "Fechamento"
+    funcao: "Resultado + CTA"
+    icone: "🎯"
+
+    o_que_e: |
+      O resultado final e um fechamento memorável.
+      Pode ser uma frase forte, um convite, um insight final.
+
+    caracteristicas:
+      - "Conclusão clara"
+      - "Transformação evidente"
+      - "Call to action (se aplicável)"
+      - "Frase memorável"
+
+    exemplos:
+      - "Se você sente que sua história merece mais, esse workshop é pra você."
+      - "Agora eu ensino isso para outros."
+      - "E você, está pronto para dar o próximo passo?"
+      - "Essa é a hora de dar voz ao que vive dentro de você."
+
+    tempo_sugerido: "22-30 segundos"
+
+# ═══════════════════════════════════════════════════════════════════
+# DUAS ORDENS DE USO
+# ═══════════════════════════════════════════════════════════════════
+ordens_de_uso:
+  descricao: |
+    O 5BEATS pode ser usado em duas ordens diferentes,
+    dependendo do objetivo e do formato.
+
+  ordem_dramatica:
+    nome: "Ordem Dramática (Original)"
+    sequencia: ["Setup", "Trigger", "Struggle", "Breakthrough", "Resolution"]
+    uso: "Quando você tem tempo e quer construir a história completa"
+    ideal_para: "Vídeos mais longos, palestras, apresentações"
+
+  ordem_video_curto:
+    nome: "Ordem para Vídeo Curto"
+    sequencia: ["Trigger", "Setup", "Struggle", "Breakthrough", "Resolution"]
+    uso: "Quando precisa prender atenção imediatamente"
+    ideal_para: "Reels, TikTok, Shorts, anúncios curtos"
+    motivo: "Economia da atenção - primeiro o gancho"
+
+  insight: |
+    A história é a MESMA. Só muda a PORTA DE ENTRADA.
+    Na ordem dramática, você constrói contexto primeiro.
+    Na ordem de vídeo curto, você prende atenção primeiro.
+
+# ═══════════════════════════════════════════════════════════════════
+# EXEMPLO COMPLETO
+# ═══════════════════════════════════════════════════════════════════
+exemplo_completo:
+  contexto: "Vídeo de 30 segundos sobre workshop de storytelling"
+
+  ordem_dramatica:
+    setup: "Todo mundo carrega histórias que nunca contou."
+    trigger: "Mas em algum momento, a vida cobra que você se expresse."
+    struggle: "E é frustrante sentir que a sua voz fica pequena, que as palavras não dão conta do que você carrega por dentro."
+    breakthrough: "Até que você descobre que existem técnicas, estruturas, caminhos que organizam tudo isso em narrativa."
+    resolution: "É exatamente isso que este workshop faz: te ajuda a transformar o que você sente em histórias que o mundo entende."
+
+  ordem_video_curto:
+    trigger_gancho: "Todo mundo carrega histórias que nunca contou."
+    setup_contexto: "Em algum momento, a vida começa a cobrar que você se expresse."
+    struggle_tensao: "E é doloroso perceber que a sua voz parece pequena, que nada sai do jeito que você sente."
+    breakthrough_virada: "Só que contar histórias não é dom. É estrutura. É método. É algo que dá pra aprender."
+    resolution_fechamento: "Se você sente que sua história merece mais, esse workshop é pra você. Porque agora, é a hora de dar voz ao que vive dentro de você."
+
+# ═══════════════════════════════════════════════════════════════════
+# QUANDO USAR O 5BEATS
+# ═══════════════════════════════════════════════════════════════════
+quando_usar:
+  ideal_para:
+    - "Vídeos de 15-60 segundos (Reels, TikTok, Shorts)"
+    - "Anúncios rápidos"
+    - "Teasers narrativos"
+    - "Micro-histórias pessoais"
+    - "Conteúdos que precisam de arco emocional curto"
+    - "Campanhas de transformação em poucos segundos"
+
+  menos_adequado_para:
+    - "Narrativas que precisam de desenvolvimento lento"
+    - "Conteúdos puramente informativos"
+    - "Formatos que permitem mais tempo"
+
+  regra: |
+    Quando você sente que precisa contar "uma história inteira
+    em muito pouco tempo", o 5BEATS é um dos melhores caminhos.
+
+# ═══════════════════════════════════════════════════════════════════
+# EXERCÍCIO PRÁTICO
+# ═══════════════════════════════════════════════════════════════════
+exercicio:
+  instrucao: |
+    Escolha um tema simples: pode ser uma história sua, algo de um cliente,
+    uma situação do seu mercado, ou uma dor comum do seu público.
+
+  passo_1:
+    nome: "Escreva na ordem DRAMÁTICA"
+    campos:
+      - "Setup: qual é o mundo antes?"
+      - "Trigger: o que acontece e muda esse cenário?"
+      - "Struggle: qual é a dificuldade, a dor, a tensão?"
+      - "Breakthrough: qual é a virada, o insight, a solução?"
+      - "Resolution: qual é o resultado final, a transformação?"
+
+  passo_2:
+    nome: "Reorganize para VÍDEO CURTO"
+    campos:
+      - "Comece pelo gatilho como Gancho"
+      - "Traga o contexto em uma frase"
+      - "Explore a tensão"
+      - "Mostre a virada"
+      - "Feche com impacto"
+
+  resultado_esperado: |
+    Quando você fizer isso algumas vezes, o 5BEATS vai virar quase um reflexo.
+    Você vai perceber que já começa a pensar suas histórias em cinco movimentos.
+
+# ═══════════════════════════════════════════════════════════════════
+# CONEXÃO COM OUTROS FRAMEWORKS
+# ═══════════════════════════════════════════════════════════════════
+conexoes:
+  story_circle:
+    relacao: "5BEATS é uma versão ultra-compacta do Story Circle"
+    diferenca: "Story Circle tem 8 passos, 5BEATS tem 5"
+
+  heros_journey:
+    relacao: "Contém os elementos essenciais da Jornada do Herói"
+    diferenca: "Condensado para micro-formatos"
+
+  aida:
+    relacao: "Complementar - AIDA foca em conversão, 5BEATS em emoção"
+    uso_conjunto: "5BEATS para criar história, AIDA para estruturar CTA"
+
+  golden_sentence:
+    relacao: "Golden Sentence pode ser o TRIGGER ou a RESOLUTION"
+    uso_conjunto: "Criar Golden Sentence primeiro, depois expandir em 5BEATS"
+
+# ═══════════════════════════════════════════════════════════════════
+# REFERÊNCIAS
+# ═══════════════════════════════════════════════════════════════════
+referencias:
+  - autor: "criaTTivados"
+    obra: "storYOURtelling - Módulo Embarque"
+    contribuicao: "Framework original"
+
+uso_pelos_agentes:
+  - "Big Idea Architect (micro-narrativas da Big Idea)"
+  - "Concept Writer (estruturar conceitos curtos)"
+  - "Copywriter (roteiros de vídeo curto)"
+  - "Content Director (briefar conteúdo)"

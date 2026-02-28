@@ -1,0 +1,312 @@
+# Character Archetypes - Christopher Vogler
+# Referência para narrative-designer
+
+source:
+  author: "Christopher Vogler"
+  work: "The Writer's Journey (1992)"
+  based_on: "Carl Jung + Joseph Campbell"
+
+concept: |
+  8 arquétipos funcionais que representam diferentes aspectos
+  da psique humana e funções narrativas. Personagens podem
+  assumir múltiplos arquétipos ao longo da história.
+
+archetypes:
+
+  # 1. O Herói
+  hero:
+    name: "Herói"
+    psychological_function: "Ego - O Eu em busca de identidade"
+
+    narrative_function:
+      - Protagonista da jornada
+      - Identifica-se com a audiência
+      - Aprende e cresce
+      - Faz sacrifícios
+
+    characteristics:
+      - Determinação
+      - Coragem (pode ter medo, mas age)
+      - Disposição para sacrifício
+      - Crescimento ao longo da história
+
+    dramatic_function:
+      - Oferecer ponto de vista da audiência
+      - Criar identificação
+      - Demonstrar transformação
+
+    in_branding:
+      hero_is: "O cliente/consumidor"
+      not_hero: "A marca NÃO é o herói"
+      brand_role: "Mentor ou Aliado"
+
+    variations:
+      willing_hero: "Aceita o chamado prontamente"
+      unwilling_hero: "Relutante, precisa ser forçado"
+      anti_hero: "Falhas significativas, mas ainda protagonista"
+      group_hero: "Equipe como herói coletivo"
+
+  # 2. O Mentor
+  mentor:
+    name: "Mentor"
+    psychological_function: "Self - Sabedoria do inconsciente"
+
+    narrative_function:
+      - Ensina e treina o herói
+      - Fornece presentes/ferramentas
+      - Motiva e inspira
+      - Representa o que o herói pode se tornar
+
+    characteristics:
+      - Sabedoria
+      - Experiência
+      - Generosidade
+      - Proteção (mas não excessiva)
+
+    dramatic_function:
+      - Preparar herói para jornada
+      - Estabelecer stakes
+      - Criar confiança na audiência
+
+    in_branding:
+      brand_as_mentor: "A marca guia o cliente-herói"
+      mentor_qualities:
+        - Empatia (entende a dor)
+        - Autoridade (tem competência)
+        - Não resolve pelo herói (fornece ferramentas)
+
+    examples:
+      - Gandalf (O Senhor dos Anéis)
+      - Obi-Wan (Star Wars)
+      - Dumbledore (Harry Potter)
+
+  # 3. O Guardião do Limiar
+  threshold_guardian:
+    name: "Guardião do Limiar"
+    psychological_function: "Obstáculos internos e neuroses"
+
+    narrative_function:
+      - Testa comprometimento do herói
+      - Bloqueia entrada em novo mundo
+      - Pode ser convertido em aliado
+      - Representa medos a superar
+
+    characteristics:
+      - Intimidador (inicialmente)
+      - Testador
+      - Pode ser neutro (não necessariamente vilão)
+
+    dramatic_function:
+      - Criar tensão em pontos de transição
+      - Mostrar crescimento do herói
+      - Aumentar stakes
+
+    in_branding:
+      represents:
+        - Objeções do cliente
+        - Medos de compra
+        - Concorrência
+      how_brand_helps: "Equipar herói para superar guardiões"
+
+    examples:
+      - Secretária que bloqueia acesso ao chefe
+      - Exame de admissão
+      - Primeiro obstáculo em qualquer jornada
+
+  # 4. O Arauto
+  herald:
+    name: "Arauto"
+    psychological_function: "Chamado para mudança"
+
+    narrative_function:
+      - Anuncia necessidade de mudança
+      - Traz desafio ou convite
+      - Pode ser pessoa, evento ou informação
+      - Incita a ação
+
+    characteristics:
+      - Catalisador
+      - Portador de notícias
+      - Pode ser positivo ou negativo
+
+    dramatic_function:
+      - Iniciar a jornada
+      - Criar ponto de virada
+      - Motivar ação
+
+    in_branding:
+      brand_as_herald: "Anunciar necessidade de transformação"
+      herald_moments:
+        - Awareness de problema
+        - Descoberta de oportunidade
+        - Chamado para mudança
+
+    examples:
+      - Carta de Hogwarts (Harry Potter)
+      - R2-D2 com mensagem (Star Wars)
+      - Diagnóstico médico
+
+  # 5. O Metamorfo
+  shapeshifter:
+    name: "Metamorfo"
+    psychological_function: "Animus/Anima - Energia do sexo oposto"
+
+    narrative_function:
+      - Muda de aparência ou lealdade
+      - Cria dúvida e suspense
+      - Frequentemente interesse romântico
+      - Testa confiança do herói
+
+    characteristics:
+      - Imprevisível
+      - Ambíguo
+      - Atraente mas perigoso
+      - Desafiador
+
+    dramatic_function:
+      - Manter audiência em dúvida
+      - Criar tensão emocional
+      - Testar herói
+
+    in_branding:
+      represents:
+        - Mercado em mudança
+        - Tendências
+        - Expectativas do cliente
+      brand_response: "Adaptar-se mantendo essência"
+
+    examples:
+      - Femme fatale
+      - Aliado que se revela traidor
+      - Rival que se torna aliado
+
+  # 6. A Sombra
+  shadow:
+    name: "Sombra"
+    psychological_function: "Lados reprimidos do eu"
+
+    narrative_function:
+      - Antagonista principal
+      - Representa o que herói pode se tornar se falhar
+      - Pode ser versão "dark" do herói
+      - Força que deve ser superada
+
+    characteristics:
+      - Poderoso
+      - Representa medo ou desejo reprimido
+      - Humanizado (não unidimensional)
+      - Ameaça real ao herói
+
+    dramatic_function:
+      - Criar conflito central
+      - Personificar tema da história
+      - Elevar stakes
+
+    in_branding:
+      shadow_is:
+        - Problema que cliente enfrenta
+        - Status quo inaceitável
+        - Vilão do mercado (não concorrente específico)
+      example: "A procrastinação é a sombra em app de produtividade"
+
+    examples:
+      - Darth Vader (Star Wars)
+      - Sauron (O Senhor dos Anéis)
+      - Voldemort (Harry Potter)
+
+  # 7. O Trapaceiro
+  trickster:
+    name: "Trapaceiro"
+    psychological_function: "Impulso travesso, necessidade de mudança"
+
+    narrative_function:
+      - Alívio cômico
+      - Questiona status quo
+      - Expõe hipocrisias
+      - Catalisa mudança através de caos
+
+    characteristics:
+      - Esperto
+      - Irreverente
+      - Catalítico
+      - Muitas vezes sidekick cômico
+
+    dramatic_function:
+      - Aliviar tensão
+      - Trazer perspectiva diferente
+      - Humanizar história
+
+    in_branding:
+      trickster_brands:
+        - Marcas irreverentes
+        - Disruptores de mercado
+        - Tom humorístico
+      caution: "Não pode ser ofensivo ou diminuir seriedade do problema"
+
+    examples:
+      - Merry e Pippin (O Senhor dos Anéis)
+      - Mushu (Mulan)
+      - Donkey (Shrek)
+
+  # 8. O Aliado
+  ally:
+    name: "Aliado"
+    psychological_function: "Aspectos não desenvolvidos da personalidade"
+
+    narrative_function:
+      - Acompanha herói na jornada
+      - Complementa habilidades do herói
+      - Oferece suporte emocional
+      - Pode ter sua própria jornada
+
+    characteristics:
+      - Leal
+      - Complementar ao herói
+      - Traz habilidades específicas
+      - Humaniza o herói
+
+    dramatic_function:
+      - Permitir diálogo/exposição
+      - Mostrar diferentes facetas do herói
+      - Criar relacionamentos
+
+    in_branding:
+      brand_as_ally:
+        - Parceiro na jornada
+        - Suporte consistente
+        - Complementa, não substitui o herói
+      community: "Outros clientes também podem ser aliados"
+
+    examples:
+      - Sam (O Senhor dos Anéis)
+      - Ron e Hermione (Harry Potter)
+      - Sidekicks em geral
+
+# Guia de Aplicação em Branding
+branding_guide:
+
+  client_as_hero:
+    description: "O cliente é SEMPRE o herói"
+    implications:
+      - Marca não é protagonista
+      - História é sobre transformação do cliente
+      - Marca facilita, não faz por ele
+
+  brand_roles:
+    primary: "Mentor"
+    secondary: ["Aliado", "Arauto"]
+    avoid: ["Herói", "Sombra"]
+
+  storytelling_formula:
+    - "Cliente (Herói) tem um problema (Sombra)"
+    - "Marca (Mentor) oferece solução"
+    - "Cliente supera obstáculos (Guardiões)"
+    - "Cliente transforma-se (Jornada completa)"
+
+  casting_exercise:
+    questions:
+      - "Quem é o herói da nossa história?"
+      - "Qual é a sombra que eles enfrentam?"
+      - "Como nossa marca serve como mentor?"
+      - "Quais são os guardiões de limiar?"
+      - "Quem são os aliados na jornada?"

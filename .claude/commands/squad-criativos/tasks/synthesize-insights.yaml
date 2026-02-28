@@ -1,0 +1,79 @@
+# Task: Synthesize Insights
+# Squad: squAId-criaTTivados / search-insights
+# Responsável: insight-synthesizer
+
+metadata:
+  name: "synthesize-insights"
+  version: "1.0"
+  squad: "squAId-criaTTivados"
+  sub_squad: "search-insights"
+  responsavel: "insight-synthesizer"
+  tipo: task
+
+descricao: |
+  Consolidar dados e análises em insights acionáveis.
+  Gerar Insights Document estruturado para alimentar DEENEA e UNNIKO.
+
+entrada:
+  - campo: raw_market_data
+    tipo: string
+    origem: "mine-market-data"
+    obrigatorio: true
+    descricao: "Dados brutos de mercado"
+  - campo: competitive_analysis_matrix
+    tipo: string
+    origem: "analyze-competition"
+    obrigatorio: true
+    descricao: "Análise competitiva por domínio"
+
+saida:
+  - campo: insights_document
+    tipo: string
+    destino: "deenea / unniko"
+    persistido: true
+    descricao: "Insights acionáveis + implicações estratégicas por domínio"
+
+passos:
+  1:
+    nome: "Cruzar dados"
+    descricao: "Cruzar dados de mercado com análise competitiva"
+    agente: "insight-synthesizer"
+  2:
+    nome: "Extrair padrões"
+    descricao: "Identificar padrões e anomalias nos dados"
+    agente: "insight-synthesizer"
+  3:
+    nome: "Formular insights"
+    descricao: "Transformar padrões em insights acionáveis (não descritivos)"
+    agente: "insight-synthesizer"
+  4:
+    nome: "Implicações Domínio I"
+    descricao: "Definir implicações para Diferenciação Substantiva"
+    agente: "insight-synthesizer"
+  5:
+    nome: "Implicações Domínio II"
+    descricao: "Definir implicações para Diferenciação Simbólica"
+    agente: "insight-synthesizer"
+  6:
+    nome: "Implicações Domínio III"
+    descricao: "Definir implicações para Distintividade"
+    agente: "insight-synthesizer"
+  7:
+    nome: "Priorizar insights"
+    descricao: "Ordenar por impacto estratégico"
+    agente: "insight-synthesizer"
+  8:
+    nome: "Compilar Insights Document"
+    descricao: "Gerar documento final estruturado"
+    agente: "insight-synthesizer"
+
+checklist:
+  - "[ ] Dados cruzados"
+  - "[ ] Padrões identificados"
+  - "[ ] Mínimo 5 insights acionáveis formulados"
+  - "[ ] Implicações por domínio definidas"
+  - "[ ] Priorização por impacto feita"
+
+criterios_aceitacao:
+  - "Mínimo 5 insights acionáveis"
+  - "Cada insight com implicação para pelo menos 1 domínio"
