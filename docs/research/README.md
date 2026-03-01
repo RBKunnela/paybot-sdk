@@ -1,9 +1,9 @@
 # Crypto & Financial Markets Research Compendium
 
-**Date:** 2026-03-01
-**Scope:** Bitcoin, crypto protocols, financial markets, key figures, tendencies
-**Total experts profiled:** 40+
-**Sources consulted:** 200+
+**Date:** 2026-03-01 (expanded 2026-03-01)
+**Scope:** Bitcoin, crypto protocols, DePIN, MEV/intents, Bitcoin L2, privacy, gaming, financial markets, key figures, tendencies
+**Total experts profiled:** 45+
+**Sources consulted:** 400+
 
 ---
 
@@ -18,11 +18,16 @@ docs/research/
 │   ├── 02-samson-mow-and-key-figures.md  # Samson Mow + 13 key figures
 │   ├── 03-institutional-leaders-saylor-wood-fink-vitalik.md  # 10 institutional leaders
 │   ├── 04-vcs-traders-emerging-voices.md  # 12 VCs, traders, emerging voices
-│   └── 05-raoul-pal-arthur-hayes-analysts-advocates.md  # 12 analysts & advocates
+│   ├── 05-raoul-pal-arthur-hayes-analysts-advocates.md  # 12 analysts & advocates
+│   └── 06-defi-infrastructure-leaders.md  # Sun, Kulechov, Nazarov, Qureshi, Manian
 ├── market/                            # Current market state
-│   └── 01-crypto-market-feb-march-2026.md  # Full market snapshot
+│   ├── 01-crypto-market-feb-march-2026.md  # Full market snapshot
+│   └── 02-privacy-gaming-paybot-implications-2026.md  # Privacy coins, gaming, PayBot strategy
 ├── protocols/                         # Blockchain protocols
-│   └── 01-blockchain-crypto-protocols.md   # How protocols work & how to create them
+│   ├── 01-blockchain-crypto-protocols.md   # How protocols work & how to create them
+│   ├── 02-depin-protocols-2026.md         # DePIN: Helium, Filecoin, Render, Akash, etc.
+│   ├── 03-bitcoin-l2-ordinals-2026.md     # Bitcoin L2, Ordinals, BRC-20, Runes
+│   └── 04-mev-intents-2026.md             # MEV, Flashbots, intents, account abstraction
 └── tendencies/                        # Macro trends & outlook
     └── 01-financial-markets-crypto-tendencies-2026.md  # Financial markets & crypto outlook
 ```
@@ -93,6 +98,48 @@ docs/research/
 - **Max Keiser** -- Ultra-bull ($2.2M long-term), El Salvador advisor
 - **Preston Pysh** -- Macro bull, Lightning Network advocate
 
+### File 06: DeFi & Infrastructure Leaders
+- **Justin Sun** -- TRON/HTX, USDD 2.0, 51% global USDT volume, SEC lawsuit paused, $75M+ Trump-linked investments
+- **Stani Kulechov** -- Aave/Avara, Aave V4 hub-and-spoke, GHO stablecoin (230% growth), Horizon institutional RWA, Lens Chain
+- **Sergey Nazarov** -- Chainlink CCIP, SWIFT pre-production trials, Coinbase/Mastercard adoption, White House Crypto Summit
+- **Haseeb Qureshi** -- Dragonfly Capital $650M Fund IV, "non-financial crypto has failed" thesis, AI agents cautious stance
+- **Zaki Manian** -- Cosmos/IBC appchain thesis, Sommelier Protocol, North Korean developer scandal aftermath
+
+---
+
+## Protocol Research Index
+
+### DePIN Protocols (File 02)
+- **Market:** $19.2B market cap, $72M FY25 revenue, $3.5T projected by 2028
+- **Major protocols:** Helium, Filecoin, Render, Akash, Hivemapper, DIMO, io.net, Grass
+- **Key trend:** AI demand driving explosive growth in compute DePIN
+
+### Bitcoin L2 / Ordinals (File 03)
+- **BTCFi TVL:** $304M to $8.6B growth
+- **Key protocols:** Stacks (Nakamoto upgrade), Lightning (5,606 BTC ATH), Liquid ($5B TVL), Citrea, BOB, BitVM
+- **Ordinals/Runes:** Market cooled significantly, BRC-20 ~$150-240M market cap
+
+### MEV & Intent Architectures (File 04)
+- **Coverage:** Flashbots/SUAVE, UniswapX, CoW Protocol, 1inch Fusion, ERC-4337, cross-chain intents
+- **Key trend:** Intent-based trading replacing traditional DEX routing, account abstraction maturing
+
+---
+
+## Privacy, Gaming & PayBot Implications
+
+### Privacy Coins & Tech
+- Zcash governance crisis, Monero resilience (48% new darknet markets XMR-only), Tornado Cash split verdict
+- Cardano Midnight mainnet March 2026, Aztec Ignition, Railgun proof-of-innocence
+
+### Web3 Gaming & Metaverse
+- $32-39B market, 2.8M global DAUs, Immutable (680+ games), Ronin (29% gaming share)
+- Metaverse pivoting from hype to pragmatic "Metaverse 2.0"
+
+### PayBot SDK Strategic Implications
+- Multi-stablecoin payment rails, x402 as infrastructure layer
+- DePIN micropayments highest-growth vertical, AI agent payments ($30T by 2030)
+- Competitive positioning vs Stripe, Circle, Coinbase Commerce
+
 ---
 
 ## Market Snapshot (Feb-March 2026)
@@ -122,3 +169,9 @@ docs/research/
 8. **Mining profitability crisis** -- Hashprice at multi-year lows, AI pivot
 9. **Dollar weakening** -- DXY down 9.26% YoY, Plaza Accord 2.0 thesis gaining traction
 10. **Geopolitical fragmentation** -- BRICS alternatives, sanctions evasion at $154B scale
+11. **DePIN infrastructure boom** -- $19.2B market cap, AI demand driving compute networks, Solana DePIN ecosystem leading
+12. **Bitcoin programmability renaissance** -- BTCFi $8.6B TVL, Stacks Nakamoto upgrade, Citrea mainnet, OP_CAT debate
+13. **MEV & intent-based trading maturation** -- Flashbots BuilderNet, UniswapX, CoW Protocol, cross-chain intents (ERC-7683)
+14. **Privacy tech at crossroads** -- Regulatory pressure vs. privacy rights, Tornado Cash legal precedent, ZK privacy protocols
+15. **Web3 gaming pragmatic pivot** -- $32-39B market moving from speculation to sustainable economies
+16. **PayBot strategic positioning** -- DePIN micropayments, AI agent payments, x402 protocol as infrastructure layer

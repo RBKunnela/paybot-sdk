@@ -1,7 +1,7 @@
 # Comprehensive Research Synthesis: Crypto & Financial Markets 2026
 
 **Date:** 2026-03-01
-**Synthesized from:** 8 research documents, 40+ expert profiles, 200+ sources
+**Synthesized from:** 13 research documents, 45+ expert profiles, 400+ sources
 **Scope:** Bitcoin, crypto protocols, financial markets, expert consensus, macro trends
 
 ---
@@ -348,6 +348,168 @@ For those looking to build in this space, the research on protocols reveals:
 
 ---
 
+## Part X: DePIN -- Decentralized Physical Infrastructure
+
+DePIN has emerged as a $19.2B market cap sector bridging crypto back to physical-world utility.
+
+### 10.1 Market Overview
+
+| Metric | Value |
+|--------|-------|
+| Total DePIN Market Cap | $19.2B |
+| FY25 Revenue | $72M |
+| Investment (2024-2025) | $740M-$1B |
+| Projected Market (2028) | $3.5T |
+
+### 10.2 Key Protocols
+
+| Protocol | Category | Key Metric |
+|----------|----------|-----------|
+| Helium | Wireless | 1M+ hotspots, Mobile carrier partnerships |
+| Filecoin | Storage | Largest decentralized storage network |
+| Render | GPU Compute | AI rendering demand driving growth |
+| Akash | Cloud Compute | Open marketplace, Congressional testimony by Osuri |
+| io.net | AI Compute | Aggregated GPU supply for ML workloads |
+| Grass | Data/AI | Browser-based data collection network |
+
+### 10.3 Key Insight
+
+The DePIN sector is experiencing a valuation reset from speculative (1000x multiples) to fundamental (10-25x revenue multiples). AI demand for decentralized compute is the primary growth catalyst. The Solana ecosystem dominates DePIN activity.
+
+---
+
+## Part XI: Bitcoin L2 & Ordinals Ecosystem
+
+Bitcoin is experiencing a programmability renaissance, with BTCFi TVL growing from $304M to $8.6B.
+
+### 11.1 Layer 2 Landscape
+
+| Protocol | Type | Key Development |
+|----------|------|----------------|
+| Stacks | Smart contract L2 | Nakamoto upgrade live, sBTC, STX at $0.26 |
+| Lightning | Payment channel | 5,606 BTC capacity ATH, $1.1B monthly volume |
+| Liquid | Sidechain | $5B TVL, Simplicity smart contracts |
+| Citrea | ZK rollup | Mainnet January 2026 |
+| BOB | Hybrid ZK rollup | EVM-compatible Bitcoin L2 |
+| BitVM | Verification | Concept-to-production transition |
+
+### 11.2 Ordinals & Runes
+
+The Ordinals/BRC-20 market has cooled significantly. BRC-20 market cap declined to ~$150-240M. Magic Eden shut down its Bitcoin marketplace. Casey Rodarmor's Runes protocol competes with BRC-20 but faces fee market challenges. The cultural tension between Bitcoin maximalists and programmability advocates continues.
+
+### 11.3 BTCFi Opportunity
+
+Dan Held's thesis that Bitcoin DeFi can capture a share of the $300T global credit market is being tested. Babylon Protocol has attracted 44K+ BTC for staking. Institutional interest is growing via Stacks' institutional partnerships.
+
+---
+
+## Part XII: MEV & Intent-Based Architectures
+
+MEV extraction and mitigation has matured into critical infrastructure affecting every DeFi user.
+
+### 12.1 MEV Landscape
+
+| Entity | Role | Market Share |
+|--------|------|-------------|
+| Flashbots | MEV-Boost, BuilderNet, SUAVE | Dominant relay operator |
+| Titan Builder | Block builder | Top builder by volume |
+| Beaverbuild | Block builder | Major competitor |
+
+MEV-Boost adoption exceeds 90% of Ethereum validators. The Glamsterdam upgrade targets fairness improvements. Solana MEV via Jito has become a significant revenue source.
+
+### 12.2 Intent-Based Trading
+
+| Protocol | Mechanism | Volume |
+|----------|-----------|--------|
+| UniswapX | Dutch auctions, cross-chain | Growing share of Uniswap volume |
+| CoW Protocol | Batch auctions, MEV protection | Consistent top-5 DEX |
+| 1inch Fusion | Resolver network | Major aggregator |
+| Across Protocol | Cross-chain intents | Leading bridge by speed |
+
+### 12.3 Account Abstraction (ERC-4337)
+
+Smart account adoption is accelerating with Safe, Biconomy, and ZeroDev leading the bundler ecosystem. Cross-chain intents via ERC-7683 and the Open Intents Framework are replacing traditional bridge architectures.
+
+---
+
+## Part XIII: Privacy Technology at a Crossroads
+
+### 13.1 Regulatory vs. Privacy
+
+The Tornado Cash case (Roman Storm) has set a precedent for smart contract developer liability. Privacy tokens outperformed 290% in 2025 despite regulatory pressure. Monero maintains resilience with 48% of new darknet markets being XMR-only, despite 73 exchange delistings.
+
+### 13.2 ZK Privacy Protocols
+
+| Protocol | Status | Approach |
+|----------|--------|----------|
+| Cardano Midnight | Mainnet March 2026 | "Rational privacy" for RWA market |
+| Aztec Ignition | Mainnet | Encrypted Ethereum L2 |
+| Railgun | Live | Proof-of-innocence compliance |
+| Penumbra | Live | Cosmos-based private DeFi |
+
+### 13.3 The Core Tension
+
+Privacy technology sits at a crossroads between legitimate privacy rights and regulatory compliance demands. The emerging "selective disclosure" approach (proving compliance without revealing details) may offer a middle path.
+
+---
+
+## Part XIV: Web3 Gaming -- Pragmatic Pivot
+
+### 14.1 Market Data
+
+| Metric | Value |
+|--------|-------|
+| Gaming Token Market Cap | ~$20B |
+| Global Gaming DAUs | 2.8M |
+| Total Market | $32-39B |
+
+### 14.2 Leading Platforms
+
+| Platform | Games | Users | Key Development |
+|----------|-------|-------|----------------|
+| Immutable | 680+ | 5.6M | zkEVM unification |
+| Ronin | Expanding | 29% market share | OP Stack L2 migration |
+| Beam | Growing | -- | Avalanche subnet |
+| Gala Games | Four pillars | -- | China TCC integration |
+
+The metaverse sector (Otherside, Decentraland, Sandbox) has pivoted from speculative hype to pragmatic "Metaverse 2.0" with thin but sustainable engagement metrics.
+
+---
+
+## Part XV: PayBot SDK Strategic Implications
+
+### 15.1 Market Positioning
+
+The research across all 13 documents reveals several strategic implications for PayBot:
+
+| Trend | PayBot Opportunity |
+|-------|-------------------|
+| Stablecoins ($317B, GENIUS Act) | Multi-stablecoin payment rails, B2B focus |
+| x402 Protocol | Infrastructure layer, not competing product |
+| DePIN Micropayments | Highest-growth vertical -- compute, storage, bandwidth payments |
+| AI Agent Payments | $30T projected by 2030, SDK-first architecture ideal |
+| Cross-Chain Routing | CCIP, ERC-7683 intents, chain abstraction |
+| RWA Tokenization | New payment primitives (dividends, fractional settlement) |
+
+### 15.2 Competitive Landscape
+
+| Competitor | Scale | PayBot Differentiation |
+|-----------|-------|----------------------|
+| Stripe Crypto | $1.9T payments, $159B valuation | Crypto-native depth, protocol composability |
+| Circle APIs | $63B post-IPO | Vertical specialization, developer experience |
+| Coinbase Commerce | Large retail base | x402 protocol, automated micropayments |
+| PayPal Crypto | Mass market | DePIN/AI agent focus, technical depth |
+
+### 15.3 Recommended Strategic Focus
+
+1. **DePIN micropayments** -- Build payment rails for compute, storage, and bandwidth services
+2. **AI agent autonomy** -- Position PayBot as the default payment SDK for autonomous AI agents
+3. **x402 as standard** -- Push HTTP 402 protocol adoption as an open standard
+4. **Multi-chain support** -- Prioritize Base, Solana, and Arbitrum alongside current networks
+5. **Stablecoin flexibility** -- Support USDC, USDT, GHO, and emerging compliant stablecoins
+
+---
+
 ## Appendices
 
 ### A. Expert Quick Reference
@@ -374,6 +536,11 @@ For those looking to build in this space, the research on protocols reveals:
 | 18 | Dan Held | Independent | Bitcoin DeFi opportunity |
 | 19 | Erik Voorhees | Venice AI | Privacy AI + crypto |
 | 20 | Mike Novogratz | Galaxy Digital | End of speculation era |
+| 21 | Justin Sun | TRON/HTX | 51% global USDT, USDD 2.0 |
+| 22 | Stani Kulechov | Aave/Avara | Aave V4, GHO, Lens Chain, Horizon |
+| 23 | Sergey Nazarov | Chainlink | CCIP, SWIFT integration, RWA oracle infrastructure |
+| 24 | Haseeb Qureshi | Dragonfly Capital | $650M Fund IV, "non-financial crypto failed" |
+| 25 | Zaki Manian | Cosmos/IBC | Appchain thesis, Sommelier Protocol |
 
 ### B. Source Documents
 
@@ -384,8 +551,13 @@ For those looking to build in this space, the research on protocols reveals:
 | 10 Institutional Leaders | `experts/03-institutional-leaders-saylor-wood-fink-vitalik.md` | 50+ sources |
 | 12 VCs/Traders/Voices | `experts/04-vcs-traders-emerging-voices.md` | 50+ sources |
 | 12 Analysts/Advocates | `experts/05-raoul-pal-arthur-hayes-analysts-advocates.md` | 40+ sources |
+| DeFi & Infra Leaders | `experts/06-defi-infrastructure-leaders.md` | 72 sources |
 | Crypto Market Snapshot | `market/01-crypto-market-feb-march-2026.md` | 40+ sources |
+| Privacy, Gaming & PayBot | `market/02-privacy-gaming-paybot-implications-2026.md` | 44 sources |
 | Blockchain Protocols | `protocols/01-blockchain-crypto-protocols.md` | 90+ sources |
+| DePIN Protocols | `protocols/02-depin-protocols-2026.md` | 35+ sources |
+| Bitcoin L2 & Ordinals | `protocols/03-bitcoin-l2-ordinals-2026.md` | 45+ sources |
+| MEV & Intent Architectures | `protocols/04-mev-intents-2026.md` | 35+ sources |
 | Financial Tendencies | `tendencies/01-financial-markets-crypto-tendencies-2026.md` | 60+ sources |
 
 ### C. Key Dates Ahead
@@ -401,5 +573,5 @@ For those looking to build in this space, the research on protocols reveals:
 
 ---
 
-*Synthesized by Professor (Academic Research Agent) -- 2026-03-01*
-*Total experts profiled: 40+ | Total sources: 200+ | Research documents: 8*
+*Synthesized by Professor (Academic Research Agent) -- 2026-03-01 (expanded 2026-03-01)*
+*Total experts profiled: 45+ | Total sources: 400+ | Research documents: 13*
