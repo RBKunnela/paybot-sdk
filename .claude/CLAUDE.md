@@ -8,6 +8,32 @@ You are working with Synkra AIOS, an AI-Orchestrated System for Full Stack Devel
 Synkra AIOS is a meta-framework that orchestrates AI agents to handle complex development workflows. Always recognize and work within this architecture.
 <!-- AIOS-MANAGED-END: core-framework -->
 
+<!-- AIOS-MANAGED-START: git-exclusion-law -->
+## Git Exclusion Law (NON-NEGOTIABLE)
+
+**FIRST LAW: Only what is necessary for the app to work should be committed to git. Everything else goes in .gitignore.**
+
+The following paths are LOCAL-ONLY and MUST NEVER be committed:
+
+| Path | Reason |
+|------|--------|
+| `squads/` | AIOS squad definitions, mind clones, research -- local framework |
+| `.aios/` | AIOS runtime data, handoffs, logs -- local framework |
+| `.aios-core/` | AIOS core framework files -- local framework |
+| `.claude/skills/` | Claude Code skill definitions -- local tooling |
+| `.claude/commands/` | Claude Code command definitions -- local tooling |
+| `.claude/rules/` | Claude Code rules -- local tooling |
+| `.claude/agents/` | Claude Code agent definitions -- local tooling |
+| `.claude/settings.local.json` | Local Claude settings -- personal config |
+| `docs/research/` | Research artifacts -- goes to Confluence instead |
+| `.env` / `.env.*` | Secrets and environment variables |
+| `dist/` / `build/` | Build output -- regenerable |
+
+**Enforcement:** A pre-commit hook in `.git/hooks/pre-commit` blocks any commit containing these files. This hook MUST NOT be bypassed with `--no-verify`.
+
+**Documentation destination:** All AIOS conversations, plans, TODOs, research, agent outputs, and squad documentation MUST be documented in Confluence under the project's space (normally same name as the project, e.g., "paybot").
+<!-- AIOS-MANAGED-END: git-exclusion-law -->
+
 <!-- AIOS-MANAGED-START: constitution -->
 ## Constitution
 
@@ -145,6 +171,8 @@ O AIOS carrega regras contextuais de `.claude/rules/` automaticamente. Regras co
 | `mcp-usage.md` | MCP server usage rules and tool selection priority |
 | `story-lifecycle.md` | Story status transitions and quality gates |
 | `workflow-execution.md` | 4 primary workflows (SDC, QA Loop, Spec Pipeline, Brownfield) |
+| `session-handoff.md` | Session handoff protocol for context management |
+| `atlassian-auto-document.md` | Auto-documentation in Confluence/Jira/Xray for all agents |
 
 > **Diretório:** `.claude/rules/` — rules são carregadas automaticamente pelo Claude Code quando relevantes.
 <!-- AIOS-MANAGED-END: rules-system -->
