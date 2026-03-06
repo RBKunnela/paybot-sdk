@@ -25,7 +25,7 @@ The following paths are LOCAL-ONLY and MUST NEVER be committed:
 | `.claude/rules/` | Claude Code rules -- local tooling |
 | `.claude/agents/` | Claude Code agent definitions -- local tooling |
 | `.claude/settings.local.json` | Local Claude settings -- personal config |
-| `docs/research/` | Research artifacts -- goes to Confluence instead |
+| `docs/` | All process docs (PRDs, stories, architecture, research) -- goes to Confluence |
 | `.env` / `.env.*` | Secrets and environment variables |
 | `dist/` / `build/` | Build output -- regenerable |
 
