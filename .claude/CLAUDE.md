@@ -167,6 +167,7 @@ O AIOS carrega regras contextuais de `.claude/rules/` automaticamente. Regras co
 | `agent-handoff.md` | Agent switch compaction protocol for context optimization |
 | `agent-memory-imports.md` | Agent memory lifecycle and CLAUDE.md ownership |
 | `coderabbit-integration.md` | Automated code review integration rules |
+| `confluence-jira-xray-workflow.md` | **[PAYBOT] Unified QA workflow: Confluence Plans ↔ Jira Stories ↔ Xray Tests ↔ Rovo AI** — NON-NEGOTIABLE for all stories, sprints, releases |
 | `ids-principles.md` | Incremental Development System principles |
 | `mcp-usage.md` | MCP server usage rules and tool selection priority |
 | `story-lifecycle.md` | Story status transitions and quality gates |
@@ -175,6 +176,8 @@ O AIOS carrega regras contextuais de `.claude/rules/` automaticamente. Regras co
 | `atlassian-auto-document.md` | Auto-documentation in Confluence/Jira/Xray for all agents |
 
 > **Diretório:** `.claude/rules/` — rules são carregadas automaticamente pelo Claude Code quando relevantes.
+
+> **🔴 CRITICAL FOR PAYBOT SDK:** `confluence-jira-xray-workflow.md` is CONSTITUTIONAL. Every agent (@dev, @qa, @architect, @pm, @po, @sm, @analyst, @devops) MUST follow this workflow without exception. Violations block merges and releases.
 <!-- AIOS-MANAGED-END: rules-system -->
 
 <!-- AIOS-MANAGED-START: code-intelligence -->
@@ -217,6 +220,142 @@ aios graph --stats                       # Entity stats e cache metrics
 
 > **Referência:** `.aios-core/core/graph-dashboard/` — CLI, renderers, data sources
 <!-- AIOS-MANAGED-END: graph-dashboard -->
+
+<!-- AIOS-MANAGED-START: paybot-qa-workflow -->
+## Paybot SDK QA Workflow (MANDATORY FOR ALL AGENTS)
+
+**Status:** CONSTITUTIONAL (Non-negotiable) | **Applies to:** ALL stories, sprints, releases
+
+The **Confluence-Jira-Xray workflow** is the unified system for QA planning, test case definition, test execution, and release validation on Paybot SDK.
+
+### The Workflow Loop
+
+```
+Jira Story (PAYBOT-N)
+  ↓ (defines what we're building)
+Confluence Plan (Sprint X QA Plan)
+  ↓ (defines how we test it)
+Xray Test Suite (XR-TS-N)
+  ↓ (executes the tests)
+GitHub Actions (paybot-qe-sprint-sync.yml)
+  ↓ (auto-syncs results back to all systems)
+Confluence Known Issues + Learnings
+  ↓ (informs next sprint planning)
+```
+
+### Key Documents (Created for Paybot SDK)
+
+| Document | Purpose | Location |
+|----------|---------|----------|
+| **Confluence Setup Guide** | How to create and populate Confluence space | `docs/confluence/01-CONFLUENCE-SETUP-GUIDE.md` |
+| **Rovo AI Query Library** | Copy-paste Rovo queries for QA analysis | `docs/confluence/02-ROVO-AI-QUERY-LIBRARY.md` |
+| **Xray Test Suites** | Complete test case definitions (87 tests) | `docs/confluence/03-XRAY-TEST-SUITE-TEMPLATES.md` |
+| **GitHub Actions Workflow** | Auto-sync PR → Jira → Xray → Confluence | `.github/workflows/paybot-qe-sprint-sync.yml` |
+| **Workflow Rule** | Enforcement logic for all agents | `.claude/rules/confluence-jira-xray-workflow.md` |
+
+### Agent Responsibilities
+
+- **@dev:** Link PR to Jira, write tests matching Xray suite, lint/type check passing
+- **@qa:** Create Confluence plans, run Rovo queries, update Xray test results daily
+- **@architect:** Review test approach for risks, verify test coverage before release
+- **@pm:** Monitor Confluence plan, use Rovo to understand blockers
+- **@po:** Ensure AC testable, accept stories only when Xray tests pass
+- **@sm:** Enforce plan creation pre-sprint, run Rovo queries Wed (dependency check)
+- **@analyst:** Deep QA analysis (pre-sprint, mid-sprint, post-sprint)
+- **@devops:** Enforce CI/CD gates, require Xray ≥95% pass rate + npm audit clean before release
+- **@aios-master:** Coordinate across teams, block violators, enforce Constitutional compliance
+
+### Pre-Sprint Setup (Wed–Thu before sprint)
+
+1. [ ] Confluence plan created from template
+2. [ ] Rovo Query 1.1–1.4 executed (coverage, risks, test data, overlaps)
+3. [ ] All Xray test suites created (XR-TS-101 through XR-TS-107, etc.)
+4. [ ] Test data prepared (DB seeds, blockchain fixtures, auth tokens)
+5. [ ] Team briefed on plan + Rovo findings
+
+### During Sprint (Mon–Fri)
+
+- Daily: Rovo Query 2.1 (coverage check, EOD)
+- Daily: Update Confluence with test status
+- Wed 12pm: Rovo Query 2.4 (dependency check, identify blockers)
+- On failure: Rovo Query 2.2 (fix suggestions)
+
+### Post-Sprint (Fri → Mon)
+
+1. Rovo Query 3.1–3.4 executed (summary, gaps, known issues, improvements)
+2. Confluence known issues updated
+3. Confluence retrospective filled in
+4. Plan archived; ready for Sprint N+1
+
+### Release Gates (MANDATORY)
+
+- [ ] Xray test pass rate ≥95%
+- [ ] npm audit clean (no critical vulns)
+- [ ] Code coverage ≥85% (from PAYBOT-8)
+- [ ] Lint + type check passing
+- [ ] All acceptance criteria met
+- [ ] Release notes created (Confluence)
+
+**Release blocked if ANY gate fails.**
+
+### Rovo AI Integration
+
+Use Rovo for intelligent QA analysis:
+- **Pre-sprint:** Find test gaps, overlapping scenarios, risks
+- **Mid-sprint:** Coverage check, failure analysis, blocker identification
+- **Post-sprint:** Gap analysis, learnings extraction, process improvement suggestions
+
+Rovo queries are **mandatory** (not optional):
+- Query 1.1–1.4: Before sprint starts
+- Query 2.1, 2.4: During sprint
+- Query 3.1–3.4: After sprint
+
+See `docs/confluence/02-ROVO-AI-QUERY-LIBRARY.md` for all queries.
+
+### GitHub Actions Automation
+
+The workflow file `.github/workflows/paybot-qe-sprint-sync.yml` automatically:
+- Links PR to Jira story (if title contains PAYBOT-N)
+- Uploads test results to Xray
+- Updates Confluence plan with daily status
+- Enforces release gates (Xray pass rate, npm audit)
+- Blocks merge if requirements not met
+
+### Non-Compliance = Blocked Merge
+
+Violations:
+- PR title missing story ID → Merge blocked
+- Tests not in Xray → Merge blocked
+- Code coverage < 85% → Merge blocked
+- npm audit critical vulns → Merge blocked
+- Rovo queries not run (pre-sprint) → Sprint blocked
+- Confluence plan not created → Sprint blocked
+- Xray pass rate < 95% (release) → Release blocked
+
+**No exceptions without explicit approval from tech lead.**
+
+### Files to Reference
+
+```
+docs/confluence/
+├── WORKFLOW-CONFLUENCE-JIRA-XRAY.md    [Main design doc]
+├── 01-CONFLUENCE-SETUP-GUIDE.md        [Setup instructions]
+├── 02-ROVO-AI-QUERY-LIBRARY.md         [Rovo queries]
+├── 03-XRAY-TEST-SUITE-TEMPLATES.md     [87 test cases]
+
+.github/workflows/
+└── paybot-qe-sprint-sync.yml           [GitHub Actions automation]
+
+.claude/rules/
+└── confluence-jira-xray-workflow.md    [Enforcement rule]
+```
+
+> **Read First:** Start with `docs/confluence/WORKFLOW-CONFLUENCE-JIRA-XRAY.md` for complete overview.
+>
+> **Implementation Guide:** Follow `docs/confluence/01-CONFLUENCE-SETUP-GUIDE.md` to set up Confluence space (30 min).
+>
+> **When in doubt:** Use Rovo Query to ask "What should we test?" — Rovo will find gaps and suggest test cases automatically.
+<!-- AIOS-MANAGED-END: paybot-qa-workflow -->
 
 ## Workflow Execution
 
