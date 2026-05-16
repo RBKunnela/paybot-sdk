@@ -357,6 +357,7 @@ describe('PayBotClient', () => {
       ['version mismatch', validSignedReceipt({ version: '2.0' })],
       ['missing payer botId', validSignedReceipt({ payer: {} })],
       ['missing settlement fields', validSignedReceipt({ settlement: { txHash: '0xTxHash' } })],
+      ['missing signerAddress', validSignedReceipt({ signerAddress: undefined })],
       ['signature without 0x prefix', validSignedReceipt({ signature: 'abcdef' })],
     ])('should ignore malformed signed receipts from settle response: %s', async (_case, signedReceipt) => {
       mockFetch.mockResolvedValueOnce(
@@ -402,6 +403,22 @@ describe('PayBotClient', () => {
       expect(result.errorCode).toBe('TRUST_VIOLATION');
     });
 
+    it('should not retry facilitator 402 responses from verify', async () => {
+      mockFetch.mockResolvedValueOnce(
+        jsonResponse({ error: 'Payment required', code: 'PAYMENT_REQUIRED' }, 402)
+      );
+
+      const result = await client.pay({
+        resource: 'https://api.example.com/data',
+        amount: '0.05',
+        payTo: '0x0000000000000000000000000000000000000001',
+      });
+
+      expect(result.success).toBe(false);
+      expect(result.errorCode).toBe('PAYMENT_REQUIRED');
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+    });
+
     it('should return failure when verify response has no settlement token', async () => {
       mockFetch.mockResolvedValueOnce(
         jsonResponse({ valid: true }) // no settlementToken
@@ -439,6 +456,30 @@ describe('PayBotClient', () => {
       expect(result.error).toBe('Intent mismatch');
     });
 
+    it('should return insufficient balance errors from settle', async () => {
+      mockFetch.mockResolvedValueOnce(
+        jsonResponse({
+          valid: true,
+          settlementToken: 'st_insufficient',
+          commission: { grossAmount: '51250', netAmount: '50000', commissionAmount: '1250', commissionRate: 0.025 },
+        })
+      );
+      mockFetch.mockResolvedValueOnce(
+        jsonResponse({ error: 'Insufficient balance', code: 'INSUFFICIENT_FUNDS' }, 402)
+      );
+
+      const result = await client.pay({
+        resource: 'https://example.com',
+        amount: '0.05',
+        payTo: '0x0000000000000000000000000000000000000001',
+      });
+
+      expect(result.success).toBe(false);
+      expect(result.error).toBe('Insufficient balance');
+      expect(result.errorCode).toBe('INSUFFICIENT_FUNDS');
+      expect(mockFetch).toHaveBeenCalledTimes(2);
+    });
+
     it('should return failure on network error (never throws)', async () => {
       // Mock rejection twice (initial + 1 retry)
       mockFetch.mockRejectedValueOnce(new Error('ECONNREFUSED'));
@@ -452,6 +493,21 @@ describe('PayBotClient', () => {
 
       expect(result.success).toBe(false);
       expect(result.error).toContain('ECONNREFUSED');
+    });
+
+    it('should return failure on repeated timeout errors', async () => {
+      mockFetch.mockRejectedValueOnce(new Error('ETIMEDOUT'));
+      mockFetch.mockRejectedValueOnce(new Error('ETIMEDOUT'));
+
+      const result = await client.pay({
+        resource: 'https://example.com',
+        amount: '0.05',
+        payTo: '0x0000000000000000000000000000000000000001',
+      });
+
+      expect(result.success).toBe(false);
+      expect(result.error).toContain('ETIMEDOUT');
+      expect(mockFetch).toHaveBeenCalledTimes(2);
     });
 
     it('should use mock payload format when no walletPrivateKey', async () => {

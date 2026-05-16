@@ -14,7 +14,7 @@ USDC payments for bots via the [x402 protocol](https://www.x402.org/). One depen
 
 ## Architecture
 
-```
+```text
 PayBotClient → Facilitator (x402) → On-chain USDC (EIP-3009)
 ```
 
