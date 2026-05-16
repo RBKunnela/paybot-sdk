@@ -1,13 +1,14 @@
 # paybot-sdk
 
-USDC payments for bots via the [x402 protocol](https://www.x402.org/). One dependency (`viem`), 7 files, typed everything.
+USDC payments for bots via the [x402 protocol](https://www.x402.org/). One dependency (`viem`), typed everything.
 
 ## Key Features
 
-- **One dependency** (`viem`), 7 files, fully typed
+- **One dependency** (`viem`), fully typed
 - **Simple API** — register your bot and make payments in 2 lines of code
 - **Network support** — Base and Base Sepolia (EIP155)
 - **Mock mode** for testing without real transactions
+- **Signed receipts** — bind settled payments to capability, output artifact, and signer proof
 - **MCP integration** — works with AI agent frameworks via [`paybot-mcp`](https://github.com/RBKunnela/paybot-mcp)
 - **Self-hostable** facilitator service
 
@@ -47,6 +48,33 @@ const result = await client.pay({
 });
 
 console.log(result.success, result.txHash);
+```
+
+## Signed Receipts
+
+Use signed receipts when a payer, facilitator, or reputation layer needs proof of what was bought and what was delivered:
+
+```typescript
+import { signReceipt, verifyReceipt } from 'paybot-sdk';
+
+const receipt = await signReceipt({
+  version: '1.0',
+  receiptId: 'receipt_01',
+  payer: { botId: 'payer-bot', walletAddress: '0x...' },
+  payee: { botId: 'payee-bot', walletAddress: '0x...' },
+  capability: { id: 'text.summarize.v1', requestHash: 'sha256:request' },
+  settlement: {
+    txHash: '0x...',
+    network: 'eip155:8453',
+    grossAmount: '100000',
+    netAmount: '97500',
+    timestamp: new Date().toISOString(),
+  },
+  artifact: { hash: 'sha256:artifact', contentType: 'text/markdown' },
+  signedBy: 'payer',
+}, '0xPRIVATE_KEY');
+
+console.log(await verifyReceipt(receipt)); // true
 ```
 
 ## x402 Auto-Handler

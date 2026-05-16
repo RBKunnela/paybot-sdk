@@ -15,6 +15,7 @@ import type {
   CommissionSummary,
   CommissionLedgerFilter,
   CommissionEntry,
+  SignedReceipt,
 } from './types.js';
 import { getErrorMessage, PayBotApiError } from './errors.js';
 import { generateEIP3009Nonce } from './crypto.js';
@@ -286,6 +287,7 @@ export class PayBotClient {
         commissionAmount: String(commissionData?.commissionAmount ?? '0'),
         commissionRate: Number(commissionData?.commissionRate ?? 0),
         network: settleData.network as string | undefined,
+        signedReceipt: settleData.signedReceipt as SignedReceipt | undefined,
       };
     } catch (error: unknown) {
       return {

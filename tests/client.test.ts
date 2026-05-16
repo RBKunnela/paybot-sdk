@@ -272,6 +272,23 @@ describe('PayBotClient', () => {
 
   describe('pay()', () => {
     it('should return success result after verify + settle', async () => {
+      const signedReceipt = {
+        version: '1.0',
+        receiptId: 'receipt_1',
+        payer: { botId: 'test-bot' },
+        payee: { botId: 'merchant-bot' },
+        capability: { id: 'data.fetch.v1' },
+        settlement: {
+          txHash: '0xTxHash',
+          network: 'eip155:84532',
+          grossAmount: '51250',
+          netAmount: '50000',
+          timestamp: '2026-05-16T21:45:00.000Z',
+        },
+        signedBy: 'facilitator',
+        signerAddress: '0x0000000000000000000000000000000000000002',
+        signature: '0xabcdef',
+      };
       // Verify response
       mockFetch.mockResolvedValueOnce(
         jsonResponse({
@@ -283,7 +300,7 @@ describe('PayBotClient', () => {
       );
       // Settle response
       mockFetch.mockResolvedValueOnce(
-        jsonResponse({ success: true, transaction: '0xTxHash', network: 'eip155:84532' })
+        jsonResponse({ success: true, transaction: '0xTxHash', network: 'eip155:84532', signedReceipt })
       );
 
       const result = await client.pay({
@@ -296,6 +313,7 @@ describe('PayBotClient', () => {
       expect(result.txHash).toBe('0xTxHash');
       expect(result.grossAmount).toBe('51250');
       expect(result.commissionRate).toBe(0.025);
+      expect(result.signedReceipt).toEqual(signedReceipt);
     });
 
     it('should return failure result (not throw) when verify fails', async () => {

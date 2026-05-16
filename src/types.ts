@@ -31,6 +31,8 @@ export interface PaymentRequest {
   tokenContract?: string;
   /** Network CAIP-2 ID (default: eip155:84532 Base Sepolia) */
   network?: string;
+  /** Request a signed receipt from the facilitator when supported */
+  emitReceipt?: boolean;
 }
 
 export interface PaymentResult {
@@ -46,6 +48,8 @@ export interface PaymentResult {
   errorCode?: string;
   /** Additional error context from the server */
   errorDetails?: Record<string, unknown>;
+  /** Optional portable receipt binding settlement to capability and output */
+  signedReceipt?: SignedReceipt;
 }
 
 export interface BalanceResult {
@@ -226,6 +230,68 @@ export interface Receipt {
  * Payment-Intent header value
  */
 export type PaymentIntentHeader = string;
+
+// TODO: add explicit multi-signature receipts before supporting payer+facilitator signatures.
+export type ReceiptSignerRole = 'facilitator' | 'payer';
+
+export type ReceiptAgent = Pick<AgentIdentity, 'botId' | 'walletAddress'> & {
+  serviceCardRef?: string;
+};
+
+export interface ReceiptCapability {
+  id: string;
+  descriptor?: string;
+  requestHash?: string;
+}
+
+export interface ReceiptSettlement {
+  txHash: string;
+  network: string;
+  grossAmount: string;
+  netAmount: string;
+  timestamp: string;
+}
+
+export interface ReceiptArtifact {
+  hash: string;
+  contentType?: string;
+  uri?: string;
+}
+
+export interface ReceiptReputationPointer {
+  registryUri: string;
+  payeeRecordId?: string;
+}
+
+export interface UnsignedReceipt {
+  /** Receipt format version */
+  version: '1.0';
+  /** Unique receipt ID, such as a UUIDv7 or content-addressed ID */
+  receiptId: string;
+  /** Agent that made the payment */
+  payer: ReceiptAgent;
+  /** Agent or service that received payment */
+  payee: ReceiptAgent;
+  /** Capability or service paid for */
+  capability: ReceiptCapability;
+  /** Settlement details observed by the signer */
+  settlement: ReceiptSettlement;
+  /** Optional output artifact binding */
+  artifact?: ReceiptArtifact;
+  /** Optional reputation registry pointer */
+  reputation?: ReceiptReputationPointer;
+  /** Which party signs the receipt payload */
+  signedBy: ReceiptSignerRole;
+  /** Expected signer address for local verification */
+  signerAddress?: string;
+}
+
+export interface SignedReceipt extends UnsignedReceipt {
+  /** Address that generated the signature */
+  signerAddress: string;
+  /** EIP-191 signature over the canonical receipt payload */
+  signature: `0x${string}`;
+}
 
 /**
  * Snapshot of who an agent is. Umbrella type derived from PayBotConfig +

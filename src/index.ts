@@ -4,6 +4,12 @@ export { paybot402 } from './middleware.js';
 export { X402Handler } from './x402-v2.js';
 export { MicropaymentEngine } from './micropayment-engine.js';
 export { PayBotApiError } from './errors.js';
+export {
+  canonicalize,
+  receiptSigningPayload,
+  signReceipt,
+  verifyReceipt,
+} from './receipts.js';
 export type { X402HandlerConfig } from './x402-handler.js';
 export type { Paybot402Config } from './middleware.js';
 export type {
@@ -24,6 +30,14 @@ export type {
   CommissionLedgerFilter,
   CommissionEntry,
   AgentIdentity,
+  ReceiptAgent,
+  ReceiptCapability,
+  ReceiptSettlement,
+  ReceiptArtifact,
+  ReceiptReputationPointer,
+  ReceiptSignerRole,
+  UnsignedReceipt,
+  SignedReceipt,
   // x402 v2 types
   PaymentIntent,
   PaymentPayload,
