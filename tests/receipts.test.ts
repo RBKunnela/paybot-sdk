@@ -56,6 +56,19 @@ describe('receipt signing primitives', () => {
     })).toBe('{"a":{"b":2,"c":[{"x":"ok","y":true}]},"z":1}');
   });
 
+  it('throws for unsupported receipt value types', () => {
+    expect(() => canonicalize({ bad: () => 'nope' })).toThrow('Unsupported receipt value: function');
+    expect(() => canonicalize({ bad: Symbol('nope') })).toThrow('Unsupported receipt value: symbol');
+    expect(() => canonicalize({ bad: 1n })).toThrow('Unsupported receipt value: bigint');
+  });
+
+  it('keeps nested objects deterministic when every field is undefined', () => {
+    expect(canonicalize({
+      z: { b: undefined, a: undefined },
+      a: [{ c: undefined }, { b: 2, a: undefined }],
+    })).toBe('{"a":[{},{"b":2}],"z":{}}');
+  });
+
   it('excludes the signature from the signing payload', () => {
     const unsigned = baseReceipt();
     const signed = {
@@ -104,5 +117,14 @@ describe('receipt signing primitives', () => {
       otherSigned,
       '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'
     )).resolves.toBe(false);
+  });
+
+  it('rejects payer-signed receipts when signerAddress does not match payer.walletAddress', async () => {
+    const signed = await signReceipt({
+      ...baseReceipt(),
+      signerAddress: '0x0000000000000000000000000000000000000001',
+    }, payerPrivateKey);
+
+    await expect(verifyReceipt(signed)).resolves.toBe(false);
   });
 });

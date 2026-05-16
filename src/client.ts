@@ -222,6 +222,7 @@ export class PayBotClient {
       const networkConfig = NETWORKS[network];
       const tokenContract = request.tokenContract ?? networkConfig?.usdcAddress ?? '0x036CbD53842c5426634e7929541eC2318f3dCF7e';
       const amountBaseUnits = this.usdToBaseUnits(request.amount);
+      const emitReceipt = request.emitReceipt === true;
 
       const payloadString = await this.buildPaymentPayload(
         request.payTo,
@@ -295,6 +296,7 @@ export class PayBotClient {
             payload: payloadBody,
             requirements: verifyData.modifiedRequirements ?? requirements,
             commission: verifyData.commission,
+            ...(emitReceipt ? { emitReceipt: true } : {}),
           },
         });
       } catch (error: unknown) {
@@ -323,7 +325,7 @@ export class PayBotClient {
         commissionAmount: String(commissionData?.commissionAmount ?? '0'),
         commissionRate: Number(commissionData?.commissionRate ?? 0),
         network: settleData.network as string | undefined,
-        signedReceipt: isSignedReceipt(settleData.signedReceipt) ? settleData.signedReceipt : undefined,
+        signedReceipt: emitReceipt && isSignedReceipt(settleData.signedReceipt) ? settleData.signedReceipt : undefined,
       };
     } catch (error: unknown) {
       return {

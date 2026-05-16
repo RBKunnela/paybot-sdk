@@ -30,7 +30,7 @@ function normalize(value: unknown): JsonValue {
 }
 
 function unsignedReceipt(receipt: SignedReceipt | UnsignedReceipt): UnsignedReceipt {
-  const payload = { ...receipt } as Partial<SignedReceipt>;
+  const payload = { ...receipt } as UnsignedReceipt & { signature?: SignedReceipt['signature'] };
   delete payload.signature;
   return payload as UnsignedReceipt;
 }
@@ -85,6 +85,13 @@ export async function verifyReceipt(
 ): Promise<boolean> {
   const address = expectedSigner ?? receipt.signerAddress;
   if (!address) return false;
+  if (
+    receipt.signedBy === 'payer' &&
+    receipt.payer.walletAddress !== undefined &&
+    receipt.payer.walletAddress.toLowerCase() !== address.toLowerCase()
+  ) {
+    return false;
+  }
 
   return verifyMessage({
     address: address as `0x${string}`,

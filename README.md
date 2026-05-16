@@ -77,6 +77,23 @@ const receipt = await signReceipt({
 console.log(await verifyReceipt(receipt)); // true
 ```
 
+`signerAddress` is the address expected to verify the embedded EIP-191 signature. For payer-signed receipts, `verifyReceipt()` also checks that `signerAddress` matches `payer.walletAddress` when the payer wallet is present.
+
+To request a facilitator-issued receipt during payment, opt in with `emitReceipt: true`:
+
+```typescript
+const result = await client.pay({
+  resource: 'https://api.example.com/data',
+  amount: '0.01',
+  payTo: '0x1234...abcd',
+  emitReceipt: true,
+});
+
+console.log(result.signedReceipt);
+```
+
+This release adds receipt primitives and the opt-in `client.pay()` receipt response. Receipt lookup helpers such as `client.fetchReceipt()`, `client.fetchReceiptsByBot()`, and `client.verifyReceipt()` are deferred to a follow-up client-method PR.
+
 ## x402 Auto-Handler
 
 Automatically pay for HTTP 402 responses:

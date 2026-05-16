@@ -15,6 +15,27 @@ function jsonResponse(data: unknown, status = 200): Response {
   } as unknown as Response;
 }
 
+function validSignedReceipt(overrides: Record<string, unknown> = {}): Record<string, unknown> {
+  return {
+    version: '1.0',
+    receiptId: 'receipt_1',
+    payer: { botId: 'test-bot' },
+    payee: { botId: 'merchant-bot' },
+    capability: { id: 'data.fetch.v1' },
+    settlement: {
+      txHash: '0xTxHash',
+      network: 'eip155:84532',
+      grossAmount: '51250',
+      netAmount: '50000',
+      timestamp: '2026-05-16T21:45:00.000Z',
+    },
+    signedBy: 'facilitator',
+    signerAddress: '0x0000000000000000000000000000000000000002',
+    signature: '0xabcdef',
+    ...overrides,
+  };
+}
+
 describe('PayBotClient', () => {
   let client: PayBotClient;
 
@@ -272,23 +293,7 @@ describe('PayBotClient', () => {
 
   describe('pay()', () => {
     it('should return success result after verify + settle', async () => {
-      const signedReceipt = {
-        version: '1.0',
-        receiptId: 'receipt_1',
-        payer: { botId: 'test-bot' },
-        payee: { botId: 'merchant-bot' },
-        capability: { id: 'data.fetch.v1' },
-        settlement: {
-          txHash: '0xTxHash',
-          network: 'eip155:84532',
-          grossAmount: '51250',
-          netAmount: '50000',
-          timestamp: '2026-05-16T21:45:00.000Z',
-        },
-        signedBy: 'facilitator',
-        signerAddress: '0x0000000000000000000000000000000000000002',
-        signature: '0xabcdef',
-      };
+      const signedReceipt = validSignedReceipt();
       // Verify response
       mockFetch.mockResolvedValueOnce(
         jsonResponse({
@@ -307,6 +312,7 @@ describe('PayBotClient', () => {
         resource: 'https://api.example.com/data',
         amount: '0.05',
         payTo: '0x0000000000000000000000000000000000000001',
+        emitReceipt: true,
       });
 
       expect(result.success).toBe(true);
@@ -314,9 +320,11 @@ describe('PayBotClient', () => {
       expect(result.grossAmount).toBe('51250');
       expect(result.commissionRate).toBe(0.025);
       expect(result.signedReceipt).toEqual(signedReceipt);
+      const settleCall = JSON.parse(mockFetch.mock.calls[1][1].body as string);
+      expect(settleCall.emitReceipt).toBe(true);
     });
 
-    it('should ignore malformed signed receipts from settle response', async () => {
+    it('should not request or return a signed receipt unless emitReceipt is true', async () => {
       mockFetch.mockResolvedValueOnce(
         jsonResponse({
           valid: true,
@@ -329,7 +337,7 @@ describe('PayBotClient', () => {
           success: true,
           transaction: '0xTxHash',
           network: 'eip155:84532',
-          signedReceipt: { version: '1.0', signature: 'not-hex' },
+          signedReceipt: validSignedReceipt(),
         })
       );
 
@@ -337,6 +345,41 @@ describe('PayBotClient', () => {
         resource: 'https://api.example.com/data',
         amount: '0.05',
         payTo: '0x0000000000000000000000000000000000000001',
+      });
+
+      const settleCall = JSON.parse(mockFetch.mock.calls[1][1].body as string);
+      expect(settleCall.emitReceipt).toBeUndefined();
+      expect(result.success).toBe(true);
+      expect(result.signedReceipt).toBeUndefined();
+    });
+
+    it.each([
+      ['version mismatch', validSignedReceipt({ version: '2.0' })],
+      ['missing payer botId', validSignedReceipt({ payer: {} })],
+      ['missing settlement fields', validSignedReceipt({ settlement: { txHash: '0xTxHash' } })],
+      ['signature without 0x prefix', validSignedReceipt({ signature: 'abcdef' })],
+    ])('should ignore malformed signed receipts from settle response: %s', async (_case, signedReceipt) => {
+      mockFetch.mockResolvedValueOnce(
+        jsonResponse({
+          valid: true,
+          settlementToken: 'st_abc123',
+          commission: { grossAmount: '51250', netAmount: '50000', commissionAmount: '1250', commissionRate: 0.025 },
+        })
+      );
+      mockFetch.mockResolvedValueOnce(
+        jsonResponse({
+          success: true,
+          transaction: '0xTxHash',
+          network: 'eip155:84532',
+          signedReceipt,
+        })
+      );
+
+      const result = await client.pay({
+        resource: 'https://api.example.com/data',
+        amount: '0.05',
+        payTo: '0x0000000000000000000000000000000000000001',
+        emitReceipt: true,
       });
 
       expect(result.success).toBe(true);
