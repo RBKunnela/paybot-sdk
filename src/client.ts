@@ -22,6 +22,42 @@ import { generateEIP3009Nonce } from './crypto.js';
 import { EIP712_DOMAINS, EIP3009_TYPES, NETWORKS } from './networks.js';
 import { privateKeyToAccount } from 'viem/accounts';
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function isReceiptAgent(value: unknown): boolean {
+  return isRecord(value) && typeof value.botId === 'string';
+}
+
+function isSignedReceipt(value: unknown): value is SignedReceipt {
+  if (!isRecord(value) || value.version !== '1.0') {
+    return false;
+  }
+
+  if (
+    typeof value.receiptId !== 'string' ||
+    !isReceiptAgent(value.payer) ||
+    !isReceiptAgent(value.payee) ||
+    !isRecord(value.capability) ||
+    typeof value.capability.id !== 'string' ||
+    !isRecord(value.settlement) ||
+    typeof value.settlement.txHash !== 'string' ||
+    typeof value.settlement.network !== 'string' ||
+    typeof value.settlement.grossAmount !== 'string' ||
+    typeof value.settlement.netAmount !== 'string' ||
+    typeof value.settlement.timestamp !== 'string' ||
+    (value.signedBy !== 'facilitator' && value.signedBy !== 'payer') ||
+    typeof value.signerAddress !== 'string' ||
+    typeof value.signature !== 'string' ||
+    !value.signature.startsWith('0x')
+  ) {
+    return false;
+  }
+
+  return true;
+}
+
 /**
  * PayBotClient — the SDK entry point for bot developers.
  *
@@ -287,7 +323,7 @@ export class PayBotClient {
         commissionAmount: String(commissionData?.commissionAmount ?? '0'),
         commissionRate: Number(commissionData?.commissionRate ?? 0),
         network: settleData.network as string | undefined,
-        signedReceipt: settleData.signedReceipt as SignedReceipt | undefined,
+        signedReceipt: isSignedReceipt(settleData.signedReceipt) ? settleData.signedReceipt : undefined,
       };
     } catch (error: unknown) {
       return {

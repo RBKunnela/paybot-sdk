@@ -316,6 +316,33 @@ describe('PayBotClient', () => {
       expect(result.signedReceipt).toEqual(signedReceipt);
     });
 
+    it('should ignore malformed signed receipts from settle response', async () => {
+      mockFetch.mockResolvedValueOnce(
+        jsonResponse({
+          valid: true,
+          settlementToken: 'st_abc123',
+          commission: { grossAmount: '51250', netAmount: '50000', commissionAmount: '1250', commissionRate: 0.025 },
+        })
+      );
+      mockFetch.mockResolvedValueOnce(
+        jsonResponse({
+          success: true,
+          transaction: '0xTxHash',
+          network: 'eip155:84532',
+          signedReceipt: { version: '1.0', signature: 'not-hex' },
+        })
+      );
+
+      const result = await client.pay({
+        resource: 'https://api.example.com/data',
+        amount: '0.05',
+        payTo: '0x0000000000000000000000000000000000000001',
+      });
+
+      expect(result.success).toBe(true);
+      expect(result.signedReceipt).toBeUndefined();
+    });
+
     it('should return failure result (not throw) when verify fails', async () => {
       mockFetch.mockResolvedValueOnce(
         jsonResponse({ error: 'Trust violation', code: 'TRUST_VIOLATION' }, 403)
