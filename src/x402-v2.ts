@@ -160,7 +160,7 @@ export class X402Handler {
     let signature: string;
     let signedData: Record<string, unknown>;
 
-    if (protocol === 'x402' || protocol === 'dual') {
+    if (protocol === 'x402') {
       // x402 native signing (EIP-3009 TransferWithAuthorization)
       const network = requirements.network || 'eip155:8453';
       const domain = EIP712_DOMAINS[network];
@@ -439,15 +439,15 @@ export class X402Handler {
    */
   static negotiatePaymentIntent(
     requirements: PaymentRequirements,
-    _supportedProtocols: ('x402' | 'mpp' | 'dual')[] = ['x402', 'mpp']
+    supportedProtocols: ('x402' | 'mpp' | 'dual')[] = ['x402', 'mpp']
   ): PaymentIntent {
-    // Select protocol - default to dual-mode for compatibility
-    // TODO: honor `_supportedProtocols` once negotiation policy is finalized.
-    const protocol = 'dual';
+    const protocol = supportedProtocols.includes('dual')
+      ? 'dual'
+      : supportedProtocols[0] ?? 'x402';
 
     return {
       intentId: `intent_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-      protocol: protocol as 'x402' | 'mpp' | 'dual',
+      protocol,
       requirements,
       version: '2.0',
       createdAt: new Date().toISOString(),
