@@ -1,0 +1,4 @@
+# CODEOWNERS for paybot-sdk
+# Solo-founder phase: all paths route to operator.
+# When hiring, partition by file path here.
+* @RBKunnela
