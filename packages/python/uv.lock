@@ -599,6 +599,7 @@ name = "paybot-sdk"
 version = "0.1.0a1"
 source = { editable = "." }
 dependencies = [
+    { name = "eth-account" },
     { name = "httpx" },
 ]
 
@@ -618,6 +619,7 @@ test = [
 
 [package.metadata]
 requires-dist = [
+    { name = "eth-account", specifier = ">=0.13,<1.0" },
     { name = "eth-account", marker = "extra == 'signing'", specifier = ">=0.13,<1.0" },
     { name = "eth-typing", marker = "extra == 'signing'", specifier = ">=4,<6" },
     { name = "httpx", specifier = ">=0.27,<1.0" },
