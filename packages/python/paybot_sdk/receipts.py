@@ -6,11 +6,14 @@ receipt signatures can be verified across SDK runtimes.
 from __future__ import annotations
 
 import json
+from binascii import Error as BinasciiError
 from dataclasses import fields, is_dataclass, replace
 from typing import Any, Dict, Optional, Union
 
 from eth_account import Account
 from eth_account.messages import encode_defunct
+from eth_keys.exceptions import BadSignature
+from eth_utils.exceptions import ValidationError
 
 from .types import SignedReceipt, UnsignedReceipt
 
@@ -108,6 +111,6 @@ def verify_receipt(receipt: SignedReceipt, expected_signer: Optional[str] = None
             encode_defunct(text=receipt_signing_payload(receipt)),
             signature=receipt.signature,
         )
-    except Exception:
+    except (BadSignature, BinasciiError, TypeError, ValidationError):
         return False
     return recovered.lower() == address.lower()

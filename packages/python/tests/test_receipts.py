@@ -148,3 +148,11 @@ def test_rejects_payer_signed_receipts_when_signer_address_mismatches_payer_wall
     signed = sign_receipt(receipt, PAYER_PRIVATE_KEY)
 
     assert verify_receipt(signed) is False
+
+
+@pytest.mark.parametrize("signature", ["0xdeadbeef", "not-hex", None])
+def test_rejects_malformed_receipt_signatures_without_masking_other_errors(signature):
+    signed = sign_receipt(base_receipt(), PAYER_PRIVATE_KEY)
+    malformed = SignedReceipt(**{**signed.__dict__, "signature": signature})
+
+    assert verify_receipt(malformed) is False
