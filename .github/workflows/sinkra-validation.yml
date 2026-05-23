@@ -1,0 +1,45 @@
+name: SINKRA Validation
+
+# Wires RBKunnela/sinkra-action — the 9-agent AIOX council that reviews every PR
+# for architecture, code quality, data, ops, product, and quality concerns.
+#
+# Verdict is delivered as a GitHub check-run named "Sinkra Validation". To make
+# this a required status check on main, add the verbatim check context name to
+# branch protection's required_status_checks.contexts AFTER this workflow has
+# run at least once. The check name is captured from `gh pr checks` post-run.
+#
+# Governance: this is a chore-style CI wiring change; the SINKRA chain still
+# applies (sm/po/dev/qa/devops). Only @devops merges. See:
+#   .claude/rules/automated-pr-merge-authority.md (in AIOX-Enterprise)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+  issues: write
+
+jobs:
+  sinkra-validation:
+    name: 9-agent AIOX council review
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR head
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Sinkra Action (v0.1.3, SHA-pinned)
+        # SHA pin per supply-chain hygiene. To upgrade, bump SHA + comment to the
+        # corresponding tag from https://github.com/RBKunnela/sinkra-action/tags
+        uses: RBKunnela/sinkra-action@af19709550dc6e9355f439a1900984e284bf3e89 # v0.1.3
+        with:
+          zai-api-key: ${{ secrets.ZAI_API_KEY }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # Defaults are used for: zai-base-url, model (glm-4.6), agents (all),
+          # max-diff-tokens (15000). Override here only if a repo has special needs.
