@@ -1,0 +1,46 @@
+name: FriendlyAI Review
+
+# Wires RBKunnela/friendlyai-review — a 9-agent council that reviews every PR
+# for architecture, code quality, data, ops, product, and quality concerns.
+#
+# Verdict is delivered as a GitHub check-run named "friendlyai-review/verdict".
+# To make this a required status check on main, add the verbatim check context
+# name to branch protection's required_status_checks.contexts AFTER this
+# workflow has run at least once. The check name is captured from
+# `gh pr checks` post-run.
+#
+# Governance: this is a chore-style CI wiring change; the full review chain
+# (sm/po/dev/qa/devops) still applies. Only @devops merges. See
+# `.claude/rules/automated-pr-merge-authority.md`.
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+  issues: write
+
+jobs:
+  friendlyai-review:
+    name: 9-agent council review
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR head
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run FriendlyAI Review (v0.1.0, SHA-pinned)
+        # SHA pin per supply-chain hygiene. To upgrade, bump SHA + comment to the
+        # corresponding tag from https://github.com/RBKunnela/friendlyai-review/tags
+        uses: RBKunnela/friendlyai-review@cd694398eef0e9cc645644f83132f03efdb56d01 # v0.1.0
+        with:
+          zai-api-key: ${{ secrets.ZAI_API_KEY }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # Defaults are used for: zai-base-url, model (glm-4.6), agents (all),
+          # max-diff-tokens (15000). Override here only if a repo has special needs.
