@@ -19,7 +19,10 @@ name: Auto-merge Dependabot
 
 on:
   pull_request_target:
-    types: [opened, reopened, ready_for_review, labeled]
+    # Intentionally excludes `labeled` — that would re-run the workflow on any
+    # label change (CodeRabbit, triage, etc.), causing noise. The three events
+    # below cover every legitimate trigger for enabling auto-merge.
+    types: [opened, reopened, ready_for_review]
 
 permissions:
   contents: write
