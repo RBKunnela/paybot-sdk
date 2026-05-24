@@ -25,8 +25,9 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Run FriendlyAI Review
-        uses: RBKunnela/friendlyai-review-action@5b87614232f009b171a988f66acf2d3c8843e3c5 # v1.0.1
+        uses: RBKunnela/friendlyai-review-action@a8997c65c1ea219cfad5c591c9f8bf90a4c7a72c # v1.0.2
         with:
           review-api-key: ${{ secrets.FRIENDLYAI_REVIEW_API_KEY }}
           review-api-url: ${{ secrets.FRIENDLYAI_REVIEW_API_URL }}
           github-token: ${{ github.token }}
+          bypass-label: friendlyai-bypass-ack-by-maintainer
