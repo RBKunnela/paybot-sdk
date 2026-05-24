@@ -1,0 +1,32 @@
+name: FriendlyAI Review
+
+# Public wrapper only. The private validation method stays behind the
+# FRIENDLYAI_REVIEW_API_URL endpoint and returns the friendlyai/review verdict.
+
+on:
+  pull_request:
+    # `labeled` lets the deliberate bypass label re-run the workflow.
+    types: [opened, synchronize, reopened, ready_for_review, labeled]
+
+concurrency:
+  group: friendlyai-review-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: read
+  issues: write
+  checks: write
+
+jobs:
+  review:
+    name: friendlyai-review verdict
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Run FriendlyAI Review
+        uses: RBKunnela/friendlyai-review-action@9f8508147d48ca0b94edcfb929541d831df03aa9 # v1.0.0
+        with:
+          review-api-key: ${{ secrets.FRIENDLYAI_REVIEW_API_KEY }}
+          review-api-url: ${{ secrets.FRIENDLYAI_REVIEW_API_URL }}
+          github-token: ${{ github.token }}
