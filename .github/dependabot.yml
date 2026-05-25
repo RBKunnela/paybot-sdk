@@ -1,0 +1,112 @@
+# Dependabot — automated dependency PRs for paybot-sdk
+#
+# What:    Weekly version-update PRs for npm packages and GitHub Actions.
+#          Security updates (CVE fixes) are auto-enabled separately via the
+#          /repos/{owner}/{repo}/automated-security-fixes API and surface
+#          regardless of the schedule below.
+# Why:     Keep supply chain current; minimize lag between CVE disclosure and patch.
+#          paybot-sdk is published to npm — downstream consumer surface area
+#          makes timely security patching especially load-bearing.
+# Gate:    PRs run through CI + the SINKRA chain. @qa flags risk, @devops merges.
+#
+# Reference:
+#   - https://docs.github.com/en/code-security/dependabot
+#   - Precedent: paybot-core PR #3 (merged 6dc6f5aa, 2026-05-22)
+version: 2
+updates:
+  # ---------- npm ecosystem ----------
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "npm"
+    # Groups: batch alert waves so a solo operator can absorb them.
+    # Without grouping, a typical Monday wave is ~15-20 individual PRs per repo;
+    # grouped it's 3-5. Production patch/minor split keeps risk-tiers separate.
+    # Dev deps batched freely (no runtime exposure). Security updates split by
+    # severity so a critical CVE never gets bundled with a minor upgrade.
+    groups:
+      npm-patch-prod:
+        applies-to: version-updates
+        update-types: ["patch"]
+        dependency-type: "production"
+      npm-minor-prod:
+        applies-to: version-updates
+        update-types: ["minor"]
+        dependency-type: "production"
+      npm-dev-deps:
+        applies-to: version-updates
+        dependency-type: "development"
+      npm-security-patch:
+        applies-to: security-updates
+        update-types: ["patch"]
+      npm-security-minor:
+        applies-to: security-updates
+        update-types: ["minor"]
+
+  # ---------- GitHub Actions ecosystem ----------
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "github-actions"
+
+  # ---------- Python (uv) ecosystem ----------
+  # Targets packages/python/ where pyproject.toml + uv.lock live.
+  # Ecosystem note: Dependabot's `uv` package-manager directly understands
+  # uv.lock and pyproject.toml — confirmed live on this repo by the
+  # pre-existing security update PR #12 (mcp 0.9.1 → 1.23.0) which was
+  # auto-opened by Dependabot under `package-manager=uv`. Using `pip` here
+  # would only cover pyproject.toml manifests and miss lockfile-pinned
+  # transitive deps. The `uv` ecosystem is the correct match for the
+  # lockfile format present.
+  - package-ecosystem: "uv"
+    directory: "/packages/python"
+    schedule:
+      interval: "weekly"
+      day: "tuesday"
+      time: "06:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "python"
+    # Groups: parallel batching to the npm block above. uv does not expose
+    # the `dependency-type: production|development` axis the same way npm
+    # does (uv uses dependency-groups in pyproject.toml), so groups are
+    # split by update-types alone. Security updates split by severity to
+    # keep critical CVEs unbundled.
+    groups:
+      uv-patch:
+        applies-to: version-updates
+        update-types: ["patch"]
+      uv-minor:
+        applies-to: version-updates
+        update-types: ["minor"]
+      uv-security-patch:
+        applies-to: security-updates
+        update-types: ["patch"]
+      uv-security-minor:
+        applies-to: security-updates
+        update-types: ["minor"]
