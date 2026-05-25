@@ -33,7 +33,7 @@ signing = [
     # Kept as a compatibility extra for consumers already installing the
     # signing-ready variant while the remaining EIP-3009 runtime lands.
     "eth-account>=0.13,<1.0",
-    "eth-typing>=4,<6",
+    "eth-typing>=6.0.0,<7",
 ]
 mcp = [
     # Will be required by the MCP integration mirror of paybot-mcp; not used yet.
