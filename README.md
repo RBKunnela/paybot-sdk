@@ -22,13 +22,13 @@ The SDK wraps payment logic for bots, handling registration, payment execution, 
 ## Install
 
 ```bash
-npm install paybot-sdk
+npm install @friendlyai/paybot-sdk
 ```
 
 ## Quick Start
 
 ```typescript
-import { PayBotClient } from 'paybot-sdk';
+import { PayBotClient } from '@friendlyai/paybot-sdk';
 
 const client = new PayBotClient({
   apiKey: 'pb_test_...',
@@ -54,7 +54,7 @@ console.log(result.success, result.txHash);
 Automatically pay for HTTP 402 responses:
 
 ```typescript
-import { createX402Handler } from 'paybot-sdk';
+import { createX402Handler } from '@friendlyai/paybot-sdk';
 
 const handler = createX402Handler({
   apiKey: 'pb_test_...',
@@ -108,7 +108,7 @@ PayBot enforces progressive trust levels that govern what your bot can do:
 Non-`pay()` methods throw `PayBotApiError` on failure:
 
 ```typescript
-import { PayBotApiError } from 'paybot-sdk';
+import { PayBotApiError } from '@friendlyai/paybot-sdk';
 
 try {
   await client.balance();
@@ -135,7 +135,7 @@ if (!result.success) {
 ## Network Configuration
 
 ```typescript
-import { NETWORKS, getNetwork, getSupportedNetworks } from 'paybot-sdk';
+import { NETWORKS, getNetwork, getSupportedNetworks } from '@friendlyai/paybot-sdk';
 
 // Available networks
 console.log(getSupportedNetworks()); // ['eip155:8453', 'eip155:84532']

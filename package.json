@@ -1,5 +1,5 @@
 {
-  "name": "paybot-sdk",
+  "name": "@friendlyai/paybot-sdk",
   "version": "0.3.0",
   "description": "PayBot SDK - USDC payments for bots via x402 protocol",
   "type": "module",
