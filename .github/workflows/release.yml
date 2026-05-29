@@ -7,13 +7,19 @@ name: Release
 # published — so the npm publish step can only run (and only fail) when you
 # intentionally cut a version, never on every commit.
 #
-# Idempotent: a skip-if-already-published guard makes re-runs safe (no E409 on
-# a version that is already live). A tag/version consistency check fails fast
-# if the Release tag (e.g. v0.3.0) does not match package.json.
+# Guards (fail-fast / idempotent):
+#   - main reachability: the released commit must be contained in origin/main,
+#     so a Release cut from any other branch cannot bypass the authoritative,
+#     branch-protected line.
+#   - tag/version match: the Release tag (e.g. v0.3.0) must equal package.json.
+#   - skip-if-already-published: re-runs are safe (no E409 on a live version).
+#   - dist-tag routing: GitHub prereleases publish to the `next` npm dist-tag,
+#     never to `latest`. Only stable Releases move `latest`.
 #
-# Requires repo secret NPM_TOKEN: an npm "Automation" (or granular) token with
-# publish rights to the `paybot-sdk` package. Rotate it if publishes 404 — npm
-# returns 404 (not 403) when the token lacks publish permission.
+# Requires repo secret NPM_TOKEN: an npm "Automation"/granular token with
+# publish rights to `paybot-sdk`. npm returns 404 (not 403) when the token
+# lacks publish permission — rotate it if publishes 404. Tokens default to a
+# 90-day expiry; prefer a long/no expiry.
 #
 # Actions pinned to immutable SHAs per supply-chain hygiene policy (paybot-sdk
 # PR #11). Adjacent version comment marks floating-tag intent for Dependabot.
@@ -24,15 +30,26 @@ on:
 
 permissions:
   contents: read
-  id-token: write  # required for `npm publish --provenance` (OIDC)
+  id-token: write  # required for `npm publish --provenance` (OIDC); independent
+                   # of actions/checkout's persisted git credentials.
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      # NOTE: does NOT set persist-credentials: false — `npm publish --provenance`
-      # needs the OIDC-issued token available for the duration of the publish step.
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+        with:
+          persist-credentials: false  # no git writes here; provenance uses OIDC
+          fetch-depth: 0              # need history to verify reachability from main
+
+      - name: Ensure released commit is contained in main
+        run: |
+          git fetch --no-tags --quiet origin main
+          if ! git merge-base --is-ancestor "$GITHUB_SHA" FETCH_HEAD; then
+            echo "::error::Release commit $GITHUB_SHA is not reachable from origin/main. Releases must be cut from main (the authoritative, branch-protected line)."
+            exit 1
+          fi
+          echo "Release commit is contained in main."
 
       - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e  # v6.4.0
         with:
@@ -65,6 +82,8 @@ jobs:
 
       - name: Publish to npm
         if: steps.guard.outputs.skip == 'false'
-        run: npm publish --provenance --access public
+        # Prereleases go to the `next` dist-tag so they never move `latest`.
+        run: npm publish --provenance --access public --tag "$DIST_TAG"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          DIST_TAG: ${{ github.event.release.prerelease && 'next' || 'latest' }}
