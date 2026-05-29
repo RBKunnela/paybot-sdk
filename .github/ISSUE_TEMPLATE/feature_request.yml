@@ -1,0 +1,34 @@
+name: 💡 Feature request
+description: Propose a new capability or improvement
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: Great ideas move the protocol forward. Tell us the problem first, then the solution. 🚀
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / use case
+      description: What can't you do today? Who is it for (which kind of agent/bot)?
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: What would the API or behavior look like?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: false
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Contribution
+      options:
+        - label: I'd be willing to open a PR for this
+          required: false

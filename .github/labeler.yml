@@ -1,0 +1,20 @@
+# Path-based auto-labeling for PRs (actions/labeler v6 syntax).
+# Keeps the queue self-organizing so maintainers can route at a glance.
+documentation:
+  - changed-files:
+      - any-glob-to-any-file: ['**/*.md', 'docs/**']
+javascript:
+  - changed-files:
+      - any-glob-to-any-file: ['src/**', '*.ts', '*.js']
+python:
+  - changed-files:
+      - any-glob-to-any-file: ['packages/python/**']
+integrations:
+  - changed-files:
+      - any-glob-to-any-file: ['integrations/**']
+ci:
+  - changed-files:
+      - any-glob-to-any-file: ['.github/**']
+tests:
+  - changed-files:
+      - any-glob-to-any-file: ['tests/**', '**/*.test.ts', '**/*.spec.ts', '**/*_test.py']
