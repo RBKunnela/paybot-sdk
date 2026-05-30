@@ -1,16 +1,15 @@
 name: Contributor Welcome
 
-# First-response automation — the silence-killer. Greets every new issue and PR
-# within ~a minute so contributors never hit silence (the #1 reason first-timers
-# don't return). First-time contributors get an extra-warm welcome + pointers.
+# Contributor first-response automation. Posts a clear, helpful reply to every
+# new issue and PR, with extra guidance for first-time contributors (links to
+# CI status, CONTRIBUTING, and good-first-issues).
 #
-# Uses the gh CLI with the built-in GITHUB_TOKEN, which is minted per-run and
-# NEVER EXPIRES — no third-party action, no external credential. This path
-# physically cannot hit the credential bottleneck that froze releases.
+# Uses the gh CLI with the built-in GITHUB_TOKEN (minted per-run) — no
+# third-party action and no external credential to manage.
 #
-# pull_request_target (not pull_request) so the token can comment on FORK PRs.
-# SAFE: this workflow never checks out or executes PR code — it only posts a
-# comment (same safe pattern as auto-merge-dependabot.yml).
+# pull_request_target (not pull_request) so the token can comment on fork PRs.
+# This workflow never checks out or executes PR code — it only posts a comment
+# (same safe pattern as auto-merge-dependabot.yml).
 
 on:
   issues:

@@ -23,9 +23,9 @@ Human contributions are accepted via standard GitHub PRs. All PRs require review
 
 ### What happens after you open a PR
 
-You won't be left guessing — here's the flow:
+Here's what to expect:
 
-1. **A bot greets you within ~a minute** and tells you what to expect (first-timers get extra pointers).
+1. **An automated reply greets your issue/PR** with a quick summary of next steps (first-timers get extra pointers).
 2. **CI runs automatically:** `lint`, `type-check`, `test` (80% coverage gate), `build`, plus **CodeQL** and **OSV** security scans. **CodeRabbit** and **FriendlyAI Review** add automated code review.
 3. **Your PR is auto-labeled** by area (e.g. `javascript`, `python`, `docs`) so maintainers can route it fast.
 4. **If a check fails**, you'll get a comment naming exactly what to fix — no guesswork, no rush. Push a fix and CI re-runs.
