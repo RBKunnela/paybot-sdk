@@ -29,9 +29,9 @@ Here's what to expect:
 2. **CI runs automatically:** `lint`, `type-check`, `test` (80% coverage gate), `build`, plus **CodeQL** and **OSV** security scans. **CodeRabbit** and **FriendlyAI Review** add automated code review.
 3. **Your PR is auto-labeled** by area (e.g. `javascript`, `python`, `docs`) so maintainers can route it fast.
 4. **If a check fails**, you'll get a comment naming exactly what to fix — no guesswork, no rush. Push a fix and CI re-runs.
-5. **When everything's green**, PRs from maintainers/members merge automatically; external PRs get a final human review before merge, with a thank-you.
+5. **When everything's green and the PR has an approving review** (every PR needs one), it's merged with a thank-you. Trusted contributors can use auto-merge so the PR lands the moment its review and checks pass.
 
-### Quick local check (mirrors CI)
+### Quick local pre-check
 
 ```bash
 npm ci

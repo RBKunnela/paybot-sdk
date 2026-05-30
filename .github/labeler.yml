@@ -5,7 +5,7 @@ documentation:
       - any-glob-to-any-file: ['**/*.md', 'docs/**']
 javascript:
   - changed-files:
-      - any-glob-to-any-file: ['src/**', '*.ts', '*.js']
+      - any-glob-to-any-file: ['src/**', '**/*.ts', '**/*.js']
 python:
   - changed-files:
       - any-glob-to-any-file: ['packages/python/**']
