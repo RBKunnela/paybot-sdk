@@ -12,6 +12,17 @@ Closes #
 - [ ] ♻️ Refactor / chore
 - [ ] 🔒 Security
 
+## What "done" looks like
+<!-- 1–3 bullets describing the expected behavior after this change, so a reviewer knows what success is. Skip for docs-only PRs. -->
+-
+
+## Testing
+<!-- How did you verify this? Paste the relevant output. Skip for docs-only PRs. -->
+```bash
+npm run lint && npm run type-check && npm test
+# paste results
+```
+
 ## Checklist
 - [ ] Branched off the latest `main` (rebased if it drifted)
 - [ ] `npm run lint` and `npm run type-check` pass
