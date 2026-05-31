@@ -115,11 +115,23 @@ export interface PaymentIntent {
 }
 
 /**
+ * x402 payment scheme.
+ *
+ * - `exact` — pay a fixed amount (x402 v1/v2 core scheme).
+ * - `max`   — legacy capped scheme (kept for back-compat).
+ * - `range` — legacy min/max scheme (kept for back-compat).
+ * - `upto`  — x402 v2 metered/usage (streaming) billing: the payer signs an
+ *             EIP-3009 authorization for the MAXIMUM amount, authorizing the
+ *             merchant to capture UP TO that max. See {@link X402Handler.signUpto}.
+ */
+export type PaymentScheme = 'exact' | 'max' | 'range' | 'upto';
+
+/**
  * Payment requirements negotiated between agent and merchant
  */
 export interface PaymentRequirements {
-  /** Payment scheme: exact, max, range */
-  scheme: 'exact' | 'max' | 'range';
+  /** Payment scheme: exact, max, range, or upto (x402 v2 metered billing) */
+  scheme: PaymentScheme;
   /** Network CAIP-2 identifier (e.g., eip155:8453) */
   network: string;
   /** Asset identifier (e.g., eip155:8453/erc20:0x...) */
@@ -226,6 +238,22 @@ export interface Receipt {
  * Payment-Intent header value
  */
 export type PaymentIntentHeader = string;
+
+/**
+ * Parsed settlement confirmation read from an x402 v2 `PAYMENT-RESPONSE`
+ * header (base64-encoded JSON). A receipt-ish projection: only the fields a
+ * client needs to correlate the settlement with its submitted payment.
+ *
+ * @see X402Handler.parsePaymentResponseHeader
+ */
+export interface PaymentResponseConfirmation {
+  /** Server-issued receipt identifier. */
+  receiptId: string;
+  /** Settlement status reported by the facilitator. */
+  status: 'pending' | 'confirmed' | 'failed';
+  /** On-chain transaction id, when settled on-chain. */
+  transactionId?: string;
+}
 
 /**
  * Snapshot of who an agent is. Umbrella type derived from PayBotConfig +
