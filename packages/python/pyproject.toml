@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68", "wheel"]
+requires = ["setuptools>=82.0.1", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -25,6 +25,7 @@ classifiers = [
 ]
 dependencies = [
     "httpx>=0.27,<1.0",
+    "eth-account>=0.13,<1.0",
 ]
 
 [project.optional-dependencies]
@@ -35,7 +36,7 @@ signing = [
 ]
 mcp = [
     # Will be required by the MCP integration mirror of paybot-mcp; not used yet.
-    "mcp>=0.5,<1.0",
+    "mcp>=1.27.1,<2.0",
 ]
 test = [
     "pytest>=8",
