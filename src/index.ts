@@ -60,7 +60,7 @@ export type {
   PayBotSpan,
   TelemetryConfig,
 } from './telemetry.js';
-export type { NetworkConfig, Caip2 } from './networks.js';
+export type { NetworkConfig, Caip2, TokenConfig } from './networks.js';
 export {
   NETWORKS,
   USDC_CONFIG,
@@ -70,6 +70,11 @@ export {
   isSupportedCaip2,
   EIP712_DOMAINS,
   EIP3009_TYPES,
+  TOKENS,
+  getToken,
+  getTokenAddress,
+  getSupportedTokens,
+  getEip712Domain,
 } from './networks.js';
 export {
   verifyWebhookSignature,

@@ -24,7 +24,7 @@ import {
   mapHttpError,
 } from './errors.js';
 import { generateEIP3009Nonce } from './crypto.js';
-import { EIP712_DOMAINS, EIP3009_TYPES, NETWORKS } from './networks.js';
+import { EIP3009_TYPES, NETWORKS, getToken, getEip712Domain } from './networks.js';
 import { withSpan, type TelemetryConfig } from './telemetry.js';
 import { privateKeyToAccount } from 'viem/accounts';
 
@@ -291,14 +291,41 @@ export class PayBotClient {
       async (paySpan): Promise<PaymentResult> => {
         try {
           const networkConfig = NETWORKS[network];
-          const tokenContract = request.tokenContract ?? networkConfig?.usdcAddress ?? '0x036CbD53842c5426634e7929541eC2318f3dCF7e';
-          const amountBaseUnits = this.usdToBaseUnits(request.amount);
+          const symbol = request.token ?? 'USDC';
+
+          // Resolve the token from the registry. An unknown symbol short-circuits
+          // to a failure PaymentResult (mirrors the UNSUPPORTED_NETWORK pattern).
+          const token = getToken(symbol);
+          if (!token) {
+            paySpan?.setAttribute('success', false);
+            return {
+              success: false,
+              grossAmount: '0',
+              netAmount: '0',
+              commissionAmount: '0',
+              commissionRate: 0,
+              error: `Unsupported token: ${symbol}`,
+              errorCode: 'UNSUPPORTED_TOKEN',
+            };
+          }
+
+          // Token contract precedence: explicit override > token's address on
+          // this network > legacy USDC fallbacks (network usdcAddress, then the
+          // hardcoded Base Sepolia USDC for parity with prior behavior).
+          const tokenContract =
+            request.tokenContract ??
+            token.addressByNetwork[network] ??
+            networkConfig?.usdcAddress ??
+            '0x036CbD53842c5426634e7929541eC2318f3dCF7e';
+
+          // Convert using the token's decimals (USDC and EURC both use 6).
+          const amountBaseUnits = this.amountToBaseUnits(request.amount, token.decimals);
 
           const payloadString = await withSpan(
             this.telemetry,
             'x402.sign',
             { network },
-            () => this.buildPaymentPayload(request.payTo, amountBaseUnits, network)
+            () => this.buildPaymentPayload(request.payTo, amountBaseUnits, network, symbol)
           );
 
           const payloadBody = {
@@ -445,19 +472,30 @@ export class PayBotClient {
    * Build the payment payload string.
    * If walletPrivateKey is set, signs an EIP-3009 authorization.
    * Otherwise, uses mock format.
+   *
+   * @param payTo - Recipient wallet address.
+   * @param amountBaseUnits - Amount in the token's base units (decimal string).
+   * @param network - CAIP-2 network id (e.g. `'eip155:8453'`).
+   * @param symbol - Token ticker to sign for (default `'USDC'`). Selects the
+   *   token-specific EIP-712 domain (name + verifyingContract). USDC remains
+   *   byte-identical to the legacy `EIP712_DOMAINS[network]` domain.
+   * @returns The payload string: mock `payer:<botId>` when no wallet key is set,
+   *   otherwise a JSON EIP-3009 signed authorization.
+   * @throws {Error} when the token has no EIP-712 domain on the given network.
    */
   private async buildPaymentPayload(
     payTo: string,
     amountBaseUnits: string,
-    network: string
+    network: string,
+    symbol = 'USDC'
   ): Promise<string> {
     if (!this.config.walletPrivateKey) {
       return `payer:${this.config.botId}`;
     }
 
-    const domain = EIP712_DOMAINS[network];
+    const domain = getEip712Domain(network, symbol);
     if (!domain) {
-      throw new Error(`No EIP-712 domain for network: ${network}`);
+      throw new Error(`No EIP-712 domain for network: ${network} / token: ${symbol}`);
     }
 
     const account = privateKeyToAccount(this.config.walletPrivateKey as `0x${string}`);
@@ -568,18 +606,33 @@ export class PayBotClient {
   }
 
   /**
-   * Convert USD amount string to USDC base units (6 decimals).
+   * Convert a human-readable amount string to a token's base units.
+   *
+   * Generalizes the conversion over the token's decimal count (USDC and EURC
+   * both use 6). The fractional part is right-padded then truncated to exactly
+   * `decimals` digits, leading zeros are stripped, and an all-zero result
+   * normalizes to `'0'`.
+   *
+   * @param amount - Human-readable decimal amount (e.g. `'0.05'`, `'10'`).
+   * @param decimals - The token's base-unit decimals (e.g. 6 for USDC/EURC).
+   * @returns The amount in base units as a decimal string (e.g. `'50000'`).
+   * @throws {Error} when `amount` is not a non-empty string or not a valid
+   *   non-negative decimal.
+   *
+   * @example
+   *   amountToBaseUnits('0.05', 6); // '50000'
+   *   amountToBaseUnits('10', 6);   // '10000000'
    */
-  private usdToBaseUnits(usdAmount: string): string {
-    if (!usdAmount || typeof usdAmount !== 'string') {
+  private amountToBaseUnits(amount: string, decimals: number): string {
+    if (!amount || typeof amount !== 'string') {
       throw new Error('Amount must be a non-empty string');
     }
-    if (!/^\d+\.?\d*$/.test(usdAmount)) {
-      throw new Error(`Invalid USD amount: ${usdAmount}`);
+    if (!/^\d+\.?\d*$/.test(amount)) {
+      throw new Error(`Invalid USD amount: ${amount}`);
     }
-    const parts = usdAmount.split('.');
+    const parts = amount.split('.');
     const whole = parts[0] ?? '0';
-    const fraction = (parts[1] ?? '').padEnd(6, '0').slice(0, 6);
+    const fraction = (parts[1] ?? '').padEnd(decimals, '0').slice(0, decimals);
     return `${whole}${fraction}`.replace(/^0+/, '') || '0';
   }
 
