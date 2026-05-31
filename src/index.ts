@@ -46,6 +46,11 @@ export {
   agentIdentityFromConfig,
   agentIdentityFromRegisterResult,
 } from './types.js';
+export type {
+  PayBotTracer,
+  PayBotSpan,
+  TelemetryConfig,
+} from './telemetry.js';
 export type { NetworkConfig, Caip2 } from './networks.js';
 export {
   NETWORKS,

@@ -3,6 +3,8 @@
  * These are the types bot developers interact with.
  */
 
+import type { TelemetryConfig } from './telemetry.js';
+
 export interface PayBotConfig {
   /** PayBot API key for authentication */
   apiKey: string;
@@ -18,6 +20,12 @@ export interface PayBotConfig {
   maxRetries?: number;
   /** Request timeout in milliseconds (default: 30000) */
   timeout?: number;
+  /**
+   * Optional, opt-in OpenTelemetry tracing. Inject your own tracer (e.g.
+   * `trace.getTracer('my-bot')`). When omitted, telemetry is a complete no-op
+   * with zero overhead and the SDK adds no OpenTelemetry runtime dependency.
+   */
+  telemetry?: TelemetryConfig;
 }
 
 export interface PaymentRequest {
