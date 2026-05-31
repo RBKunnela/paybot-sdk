@@ -83,6 +83,23 @@ export {
   getEip712Domain,
 } from './networks.js';
 export {
+  ap2MandateToPaymentRequirements,
+  isAp2Mandate,
+  Ap2Adapter,
+} from './ap2.js';
+export type {
+  Ap2PaymentMandate,
+  Ap2SettleOptions,
+} from './ap2.js';
+export {
+  detectMppCapability,
+  createMppSeam,
+} from './mpp-seam.js';
+export type {
+  MppCapability,
+  MppAdapter,
+} from './mpp-seam.js';
+export {
   verifyWebhookSignature,
   signWebhookPayload,
 } from './webhook.js';
