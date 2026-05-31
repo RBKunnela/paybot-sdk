@@ -57,3 +57,11 @@ export {
   EIP712_DOMAINS,
   EIP3009_TYPES,
 } from './networks.js';
+export {
+  verifyWebhookSignature,
+  signWebhookPayload,
+} from './webhook.js';
+export type {
+  VerifyWebhookSignatureOptions,
+  SignWebhookPayloadOptions,
+} from './webhook.js';
