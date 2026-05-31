@@ -1,4 +1,10 @@
 export { PayBotClient } from './client.js';
+export { PayBotClientPool } from './client-pool.js';
+export type {
+  PayBotClientPoolConfig,
+  PoolBotOptions,
+  PoolBotStats,
+} from './client-pool.js';
 export { createX402Handler } from './x402-handler.js';
 export { paybot402 } from './middleware.js';
 export { X402Handler } from './x402-v2.js';
