@@ -39,6 +39,13 @@ export interface PaymentRequest {
   tokenContract?: string;
   /** Network CAIP-2 ID (default: eip155:84532 Base Sepolia) */
   network?: string;
+  /**
+   * Optional idempotency key. When provided, the SDK sends an
+   * `X-Idempotency-Key` header and caches the successful result per
+   * PayBotClient instance: a repeat pay() with the same key returns the cached
+   * PaymentResult without a second network round-trip.
+   */
+  idempotencyKey?: string;
 }
 
 export interface PaymentResult {
