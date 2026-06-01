@@ -13,6 +13,7 @@
  *          ├─ PayBotAuthError        (401/403)
  *          ├─ PayBotPolicyError      (trust/AML/limit)
  *          ├─ PayBotSignatureError   (EIP-3009/EIP-712 signing)
+ *          │   └─ PayBotUnsupportedSigningMethodError (token can't EIP-3009)
  *          └─ PayBotSettlementError  (chain rejected the tx)
  * ```
  */
@@ -163,6 +164,38 @@ export class PayBotSignatureError extends PayBotApiError {
   ) {
     super(message, code, statusCode, details);
     this.name = 'PayBotSignatureError';
+  }
+}
+
+/**
+ * The resolved token cannot be paid via the SDK's gasless signing path because
+ * it does not support EIP-3009 `transferWithAuthorization` (e.g. permit-only
+ * tokens like RLUSD, or DAI's legacy non-standard permit).
+ *
+ * This is a deliberate, loud config-time rejection raised BEFORE any signature
+ * is produced — never a silent on-chain failure. It is a {@link
+ * PayBotSignatureError} (and therefore `instanceof PayBotApiError`), carrying
+ * the code `UNSUPPORTED_SIGNING_METHOD`. The offending token's `symbol` and its
+ * declared `signingMethod` are attached in {@link PayBotApiError.details}.
+ *
+ * @param symbol - The token ticker that was rejected (e.g. `'RLUSD'`).
+ * @param signingMethod - The token's declared signing method (e.g. `'eip2612'`).
+ *
+ * @example
+ * throw new PayBotUnsupportedSigningMethodError('RLUSD', 'eip2612');
+ * // → code 'UNSUPPORTED_SIGNING_METHOD', instanceof PayBotSignatureError
+ */
+export class PayBotUnsupportedSigningMethodError extends PayBotSignatureError {
+  constructor(symbol: string, signingMethod: string) {
+    super(
+      `Token ${symbol} uses signing method '${signingMethod}', but the SDK only ` +
+        `supports 'eip3009' (transferWithAuthorization). Gasless payment for ${symbol} ` +
+        `is not implemented — it is registered for discoverability only.`,
+      'UNSUPPORTED_SIGNING_METHOD',
+      0,
+      { symbol, signingMethod },
+    );
+    this.name = 'PayBotUnsupportedSigningMethodError';
   }
 }
 

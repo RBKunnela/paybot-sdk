@@ -126,10 +126,25 @@ export const USDC_CONFIG = {
  *
  * When `eip712Name` is omitted, {@link getEip712Domain} falls back to `name`.
  */
+/**
+ * The cryptographic method a token uses to authorize a gasless transfer.
+ *
+ * - `'eip3009'` — EIP-3009 `transferWithAuthorization`. This is the ONLY method
+ *   the SDK's gasless signing path implements (USDC, EURC, PYUSD). A signed
+ *   EIP-3009 authorization can be submitted by a relayer/facilitator with no gas
+ *   from the payer.
+ * - `'eip2612'` — EIP-2612 (or DAI's legacy non-standard) `permit`. The SDK does
+ *   NOT implement a permit-based payment flow. Tokens declared `'eip2612'` are
+ *   registered for discoverability/documentation but are rejected at signing
+ *   time with `UNSUPPORTED_SIGNING_METHOD` — a deliberate, loud config-time
+ *   refusal rather than a silent on-chain failure.
+ */
+export type SigningMethod = 'eip3009' | 'eip2612';
+
 export interface TokenConfig {
   /** Token ticker symbol, used as the registry key (e.g. `'USDC'`, `'EURC'`). */
   readonly symbol: string;
-  /** Number of base-unit decimals (USDC and EURC both use 6). */
+  /** Number of base-unit decimals (USDC, EURC, PYUSD use 6; RLUSD, DAI use 18). */
   readonly decimals: number;
   /** Human-readable token name (e.g. `'USD Coin'`). NOT necessarily the EIP-712 name. */
   readonly name: string;
@@ -139,6 +154,22 @@ export interface TokenConfig {
    * deployed Circle contract's domain name), distinct from the display name.
    */
   readonly eip712Name?: string;
+  /**
+   * The on-chain EIP-712 domain `version` string the token contract signs under.
+   * Defaults to `'2'` when absent (USDC and EURC sign as version `'2'`). PYUSD
+   * signs as version `'1'` (verified against its mainnet `DOMAIN_SEPARATOR`), so
+   * it MUST set this explicitly or every PYUSD signature would be rejected.
+   */
+  readonly eip712Version?: string;
+  /**
+   * How this token authorizes a gasless transfer. Defaults to `'eip3009'` (the
+   * only signing path the SDK implements). Tokens that can only `permit`
+   * (`'eip2612'`) are rejected at signing time with `UNSUPPORTED_SIGNING_METHOD`.
+   *
+   * Defaulting to `'eip3009'` keeps USDC/EURC byte-identical (they omit the
+   * field), so existing signatures are unchanged.
+   */
+  readonly signingMethod?: SigningMethod;
   /**
    * Map of CAIP-2 network id → the token's ERC-20 contract address on that
    * network. This public registry intentionally carries only the addresses that
@@ -180,12 +211,68 @@ export const TOKENS: Record<string, TokenConfig> = {
     decimals: 6,
     name: 'EURC',
     eip712Name: 'EURC',
+    // signingMethod defaults to 'eip3009' (omitted) — keeps signatures unchanged.
     addressByNetwork: {
       // Public open-core registry carries ONLY the Base Sepolia testnet
       // deployment. The EURC mainnet address is operator-private and must be
       // injected at runtime via PayBotConfig.tokenAddressOverrides — it is
       // deliberately NOT hardcoded here.
       'eip155:84532': '0x808456652fdb597867f38412077A9182bf77359F',
+    },
+  },
+
+  // --- Phase A token breadth: PYUSD (working), RLUSD + DAI (documented-but-rejected) ---
+
+  PYUSD: {
+    // PayPal USD. Supports EIP-3009 transferWithAuthorization, so it fits the
+    // SDK's existing gasless signing path verbatim. (No regulatory/compliance
+    // framing is attached to any token here, by design.)
+    symbol: 'PYUSD',
+    decimals: 6,
+    name: 'PayPal USD',
+    // The PYUSD contract's EIP-712 domain `name` is the literal "PayPal USD"
+    // and its `version` is "1" (NOT "2" like USDC/EURC) — both VERIFIED against
+    // the mainnet DOMAIN_SEPARATOR (0xf0d0fba6...). Either being wrong rejects
+    // every signature, so both are pinned explicitly here.
+    eip712Name: 'PayPal USD',
+    eip712Version: '1',
+    signingMethod: 'eip3009',
+    addressByNetwork: {
+      // PYUSD is deployed on Ethereum mainnet (and Solana); it is NOT on Base /
+      // Optimism / Arbitrum / Polygon. The address below is documentation: the
+      // SDK only signs for networks present in NETWORKS, and Ethereum mainnet is
+      // intentionally absent from this SDK's NETWORKS table. To pay PYUSD on a
+      // supported network, supply the contract via PaymentRequest.tokenContract
+      // or PayBotConfig.tokenAddressOverrides. This address is non-forbidden
+      // (verify-open-core-boundary.sh) and safe to ship.
+      'eip155:1': '0x6c3ea9036406852006290770BEdFcAbA0e23A0e8',
+    },
+  },
+  RLUSD: {
+    // Ripple USD. permit-ONLY (ERC-2612) — it does NOT implement EIP-3009.
+    // Registered for discoverability but rejected at signing time with
+    // UNSUPPORTED_SIGNING_METHOD (the SDK has no permit-based payment flow).
+    symbol: 'RLUSD',
+    decimals: 18, // VERIFIED on-chain (decimals() == 18) on mainnet 0x8292Bb45...
+    name: 'Ripple USD',
+    eip712Name: 'RLUSD',
+    signingMethod: 'eip2612',
+    addressByNetwork: {
+      'eip155:1': '0x8292Bb45bf1Ee4d140127049757C2E0fF06317eD',
+    },
+  },
+  DAI: {
+    // MakerDAO DAI. Uses the legacy NON-standard DAI permit (NOT EIP-3009, and
+    // not even standard EIP-2612 shape). Classified 'eip2612' here only to route
+    // it through the same loud UNSUPPORTED_SIGNING_METHOD rejection — the SDK
+    // does not sign permits of any flavor.
+    symbol: 'DAI',
+    decimals: 18,
+    name: 'Dai Stablecoin',
+    eip712Name: 'Dai Stablecoin',
+    signingMethod: 'eip2612',
+    addressByNetwork: {
+      'eip155:1': '0x6B175474E89094C44Da98b954EedeAC495271d0F',
     },
   },
 } as const;
@@ -317,7 +404,8 @@ export function getEip712Domain(
   }
   return {
     name: token.eip712Name ?? token.name,
-    version: '2',
+    // Default '2' (USDC/EURC). PYUSD pins '1'. Wrong version → rejected signature.
+    version: token.eip712Version ?? '2',
     chainId: networkConfig.chainId,
     verifyingContract: verifyingContract as `0x${string}`,
   };

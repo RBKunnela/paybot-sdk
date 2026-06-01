@@ -23,9 +23,13 @@ const USDC_BASE_MAINNET = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913';
 const USDC_BASE_SEPOLIA = '0x036CbD53842c5426634e7929541eC2318f3dCF7e';
 
 describe('TOKENS registry', () => {
-  it('should include USDC and EURC', () => {
-    expect(getSupportedTokens()).toEqual(expect.arrayContaining(['USDC', 'EURC']));
-    expect(getSupportedTokens().length).toBe(2);
+  it('should include USDC, EURC, and the Phase A breadth tokens', () => {
+    // USDC/EURC sign via EIP-3009; PYUSD also EIP-3009 (working); RLUSD/DAI are
+    // permit-only (registered for discoverability, rejected at signing time).
+    expect(getSupportedTokens()).toEqual(
+      expect.arrayContaining(['USDC', 'EURC', 'PYUSD', 'RLUSD', 'DAI']),
+    );
+    expect(getSupportedTokens().length).toBe(5);
   });
 
   it('should keep USDC_CONFIG exported for back-compat', () => {

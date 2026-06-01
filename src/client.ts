@@ -21,6 +21,7 @@ import {
   PayBotApiError,
   PayBotNetworkError,
   PayBotTimeoutError,
+  PayBotUnsupportedSigningMethodError,
   mapHttpError,
 } from './errors.js';
 import { generateEIP3009Nonce } from './crypto.js';
@@ -478,6 +479,21 @@ export class PayBotClient {
           return result;
         } catch (error: unknown) {
           paySpan?.setAttribute('success', false);
+          // Surface a typed PayBotApiError's machine-readable code (e.g.
+          // UNSUPPORTED_SIGNING_METHOD from the EIP-3009 guard) so callers can
+          // branch on it, instead of collapsing every error to a bare message.
+          if (error instanceof PayBotApiError) {
+            return {
+              success: false,
+              grossAmount: '0',
+              netAmount: '0',
+              commissionAmount: '0',
+              commissionRate: 0,
+              error: error.message,
+              errorCode: error.code,
+              errorDetails: error.details,
+            };
+          }
           return {
             success: false,
             grossAmount: '0',
@@ -517,6 +533,16 @@ export class PayBotClient {
     symbol = 'USDC',
     verifyingContract?: string
   ): Promise<string> {
+    // Guard: reject permit-only tokens (signingMethod !== 'eip3009') BEFORE any
+    // signature is produced — and before the mock-mode early return — so an
+    // eip2612 token (RLUSD/DAI) is a loud, deliberate config-time refusal rather
+    // than a silent on-chain failure. Defaults to 'eip3009' (USDC/EURC/PYUSD).
+    const tokenConfig = getToken(symbol);
+    const signingMethod = tokenConfig?.signingMethod ?? 'eip3009';
+    if (signingMethod !== 'eip3009') {
+      throw new PayBotUnsupportedSigningMethodError(symbol, signingMethod);
+    }
+
     if (!this.config.walletPrivateKey) {
       return `payer:${this.config.botId}`;
     }

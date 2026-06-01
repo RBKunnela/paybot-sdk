@@ -21,7 +21,11 @@ import type {
   PaymentRequirements,
   PaymentResponseConfirmation,
 } from './types.js';
-import { getErrorMessage, PayBotApiError } from './errors.js';
+import {
+  getErrorMessage,
+  PayBotApiError,
+  PayBotUnsupportedSigningMethodError,
+} from './errors.js';
 import { privateKeyToAccount } from 'viem/accounts';
 import type { PrivateKeyAccount } from 'viem/accounts';
 import { generateEIP3009Nonce } from './crypto.js';
@@ -253,6 +257,8 @@ export class X402Handler {
    *   - A malformed CAIP-2 string (e.g. `'not-a-network'`, `'solana:foo'`) →
    *     `INVALID_CAIP2` (bubbled from {@link parseCaip2}).
    *   - An unknown token symbol → `UNSUPPORTED_TOKEN` (402).
+   *   - A token whose `signingMethod` is not `'eip3009'` (e.g. RLUSD/DAI, which
+   *     are permit-only) → `UNSUPPORTED_SIGNING_METHOD` (raised BEFORE signing).
    *   - A well-formed `eip155:<chainId>` with no registered domain for the token
    *     (e.g. `'eip155:999999'`) → `UNSUPPORTED_NETWORK` (preserves the
    *     historical behavior the regression tests lock in).
@@ -260,7 +266,7 @@ export class X402Handler {
    * @param requirements - Payment requirements carrying the `network` and optional `token`.
    * @returns The resolved EIP-712 domain.
    * @throws {PayBotApiError} `INVALID_CAIP2` (400), `UNSUPPORTED_TOKEN` (402),
-   *          or `UNSUPPORTED_NETWORK` (402).
+   *          `UNSUPPORTED_SIGNING_METHOD` (0), or `UNSUPPORTED_NETWORK` (402).
    */
   private resolveDomain(
     requirements: PaymentRequirements,
@@ -273,12 +279,22 @@ export class X402Handler {
 
     // Distinguish an unknown token from an unsupported network so callers get a
     // precise error code (mirrors the UNSUPPORTED_NETWORK pattern).
-    if (!getToken(symbol)) {
+    const token = getToken(symbol);
+    if (!token) {
       throw new PayBotApiError(
         `Unsupported token: ${symbol}`,
         'UNSUPPORTED_TOKEN',
         402,
       );
+    }
+
+    // Guard: reject permit-only tokens (signingMethod !== 'eip3009') BEFORE any
+    // signature is produced. RLUSD/DAI surface UNSUPPORTED_SIGNING_METHOD here
+    // — a deliberate config-time refusal, never a silent on-chain failure.
+    // Defaults to 'eip3009' (USDC/EURC/PYUSD), so the common path is unchanged.
+    const signingMethod = token.signingMethod ?? 'eip3009';
+    if (signingMethod !== 'eip3009') {
+      throw new PayBotUnsupportedSigningMethodError(symbol, signingMethod);
     }
 
     const domain = getEip712Domain(network, symbol);

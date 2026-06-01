@@ -17,6 +17,7 @@ export {
   PayBotAuthError,
   PayBotPolicyError,
   PayBotSignatureError,
+  PayBotUnsupportedSigningMethodError,
   PayBotSettlementError,
 } from './errors.js';
 export type { X402HandlerConfig } from './x402-handler.js';
@@ -66,7 +67,7 @@ export type {
   PayBotSpan,
   TelemetryConfig,
 } from './telemetry.js';
-export type { NetworkConfig, Caip2, TokenConfig } from './networks.js';
+export type { NetworkConfig, Caip2, TokenConfig, SigningMethod } from './networks.js';
 export {
   NETWORKS,
   USDC_CONFIG,
