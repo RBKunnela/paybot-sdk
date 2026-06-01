@@ -57,6 +57,13 @@ export type {
   BatchedSettlement,
   SettlementOptions,
   BatchStatistics,
+  // CCTP V2 cross-chain transport types
+  CctpDomainConfig,
+  CctpTransferType,
+  CctpTransferRequest,
+  CctpBurnResult,
+  CctpAttestation,
+  CctpMintResult,
 } from './types.js';
 export {
   agentIdentityFromConfig,
@@ -67,6 +74,23 @@ export type {
   PayBotSpan,
   TelemetryConfig,
 } from './telemetry.js';
+export {
+  CctpBridge,
+  CCTP_DOMAINS,
+  CCTP_EDGE_CONTRACTS,
+  DEFAULT_IRIS_API_URL,
+  getCctpConfig,
+  getCctpSupportedNetworks,
+  addressToBytes32,
+} from './cctp.js';
+export type {
+  CctpBridgeOptions,
+  CctpWalletClient,
+  CctpPublicClient,
+  WalletClientFactory,
+  PublicClientFactory,
+  FetchImpl,
+} from './cctp.js';
 export type { NetworkConfig, Caip2, TokenConfig, SigningMethod } from './networks.js';
 export {
   NETWORKS,
