@@ -1,0 +1,10 @@
+# GitHub "Sponsor" button config — funds full-time open-source development of PayBot.
+# IMPORTANT (Finland): no personal "donate" rail. All support is consideration-based
+# (sponsor tiers with perks) and/or routed through a fiscal host. No personal PayPal.
+# When enabling GitHub Sponsors, choose a FISCAL HOST at signup (Open Source Europe /
+# Open Source Collective) — it cannot be changed easily later.
+github: [RBKunnela]
+open_collective: paybot            # TODO: create on a fiscal host (Open Source Europe / OSC)
+custom:
+  - "https://fund.paybotcore.com"  # TODO: the sponsor page hosted on the VPS
+  # - "https://www.gitcoin.co/grants/..."   # add when the Gitcoin grant is live

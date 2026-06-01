@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sponsor PayBot — open-source payment rails for the AI agent economy</title>
+<meta name="description" content="PayBot is MIT-licensed, non-custodial, self-hostable payment infrastructure for AI agents. Sponsor its development — independent open-source rails the incumbents won't build." />
+<style>
+  :root{
+    --bg:#0e0e16; --panel:#161623; --panel2:#1e1e2e; --ink:#e8e8f0; --muted:#a0a0b8;
+    --accent:#7c5cff; --accent2:#3ad29f; --line:#2a2a3d; --warn:#ffb454;
+    --radius:16px; --maxw:920px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  a{color:var(--accent2);text-decoration:none}
+  a:hover{text-decoration:underline}
+  header{padding:64px 0 32px;text-align:center}
+  .badge{display:inline-block;font-size:13px;color:var(--accent2);border:1px solid var(--line);border-radius:999px;padding:4px 14px;margin-bottom:20px;letter-spacing:.3px}
+  h1{font-size:38px;line-height:1.2;margin:0 0 16px;letter-spacing:-0.5px}
+  h1 .grad{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{font-size:19px;color:var(--muted);max-width:640px;margin:0 auto 28px}
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;font-weight:600;padding:13px 22px;border-radius:12px;border:0;font-size:15px;cursor:pointer}
+  .btn.alt{background:transparent;border:1px solid var(--line);color:var(--ink)}
+  .btn:hover{filter:brightness(1.08);text-decoration:none}
+  section{padding:36px 0;border-top:1px solid var(--line)}
+  h2{font-size:24px;margin:0 0 18px;letter-spacing:-0.3px}
+  .lead{color:var(--muted);max-width:660px}
+  .grid{display:grid;gap:16px}
+  .grid.three{grid-template-columns:1fr 1fr 1fr}
+  @media(max-width:720px){.grid.three{grid-template-columns:1fr}h1{font-size:30px}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+  .card h3{margin:0 0 8px;font-size:17px}
+  .card p{margin:0;color:var(--muted);font-size:15px}
+  .pill{display:inline-block;font-size:12px;color:var(--accent2);border:1px solid var(--line);border-radius:999px;padding:2px 10px;margin:2px 4px 2px 0}
+  /* tiers */
+  .tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:860px){.tiers{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.tiers{grid-template-columns:1fr}}
+  .tier{background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius);padding:20px;display:flex;flex-direction:column}
+  .tier.feature{border-color:var(--accent)}
+  .tier .name{font-size:14px;color:var(--accent2);text-transform:uppercase;letter-spacing:.5px}
+  .tier .price{font-size:26px;font-weight:700;margin:6px 0 2px}
+  .tier .price small{font-size:13px;color:var(--muted);font-weight:400}
+  .tier ul{list-style:none;padding:0;margin:14px 0 18px;flex:1}
+  .tier li{font-size:14px;color:var(--muted);padding:5px 0;border-bottom:1px solid var(--line)}
+  .tier li b{color:var(--ink)}
+  .tier .get{font-size:12px;color:var(--accent2);margin-bottom:6px}
+  ul.clean{list-style:none;padding:0;margin:0}
+  ul.clean li{padding:8px 0;border-bottom:1px solid var(--line);color:var(--muted)}
+  ul.clean li b{color:var(--ink)}
+  .ways{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  @media(max-width:720px){.ways{grid-template-columns:1fr}}
+  .way{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;display:flex;flex-direction:column;gap:8px}
+  .way b{font-size:16px}
+  .way span{color:var(--muted);font-size:14px;flex:1}
+  .budget{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .budget table{width:100%;border-collapse:collapse}
+  .budget td{padding:9px 0;border-bottom:1px solid var(--line);color:var(--muted)}
+  .budget td:last-child{text-align:right;color:var(--ink);font-variant-numeric:tabular-nums}
+  .note{background:rgba(255,180,84,.08);border:1px solid rgba(255,180,84,.3);border-radius:12px;padding:14px 16px;color:var(--warn);font-size:14px}
+  .honest{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;color:var(--muted);font-size:14px}
+  .honest b{color:var(--ink)}
+  footer{padding:40px 0 64px;text-align:center;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="badge">Open source · MIT · non-custodial · built in Finland</div>
+  <h1>Sponsor the <span class="grad">open-source rails</span> for the AI agent economy</h1>
+  <p class="sub">PayBot lets autonomous AI agents pay each other in stablecoins — across chains, without custody, without lock-in. The incumbents are building closed rails. This one stays <b>open</b> — if the people who'll use it sponsor the work.</p>
+  <div class="cta-row">
+    <a class="btn" href="https://github.com/sponsors/RBKunnela">Become a sponsor</a>
+    <a class="btn alt" href="https://opencollective.com/paybot">Back the project</a>
+    <a class="btn alt" href="https://github.com/RBKunnela/paybot-sdk">View the code</a>
+  </div>
+</header>
+
+<section class="wrap">
+  <h2>Why sponsor this</h2>
+  <p class="lead">We hoped banks would back it. They back incumbents. So it's being built independently — and the honest way to keep it open and moving is for the community and the ecosystem to <b>sponsor the work directly</b>. Your sponsorship funds full-time development and an independent security audit, so this can be trusted with real value while staying MIT and self-hostable.</p>
+</section>
+
+<section class="wrap">
+  <h2>What's already built</h2>
+  <div class="grid three">
+    <div class="card"><h3>Multi-chain</h3><p>Base, Optimism, Arbitrum, Polygon — built on Circle-native USDC.</p></div>
+    <div class="card"><h3>CCTP V2 cross-chain</h3><p>Native USDC transport between chains (burn → attest → mint).</p></div>
+    <div class="card"><h3>Gasless &amp; non-custodial</h3><p>EIP-3009 signed authorizations. The SDK never holds your funds.</p></div>
+    <div class="card"><h3>Self-hostable</h3><p>Run your own facilitator. No portal lock-in, no middleman.</p></div>
+    <div class="card"><h3>Tested</h3><p>404 unit tests across the SDK. Open code you can read and audit.</p></div>
+    <div class="card"><h3>Standards-based</h3><p>Built on the x402 protocol (now under the Linux Foundation).</p></div>
+  </div>
+  <p style="color:var(--muted);font-size:14px;margin-top:14px"><span class="pill">honest status</span> Built and unit-tested. The next milestone is a <b>live testnet run with public transaction hashes</b> and a security audit — which is what your sponsorship pays for.</p>
+</section>
+
+<section class="wrap">
+  <h2>Sponsor tiers</h2>
+  <p class="lead" style="margin-bottom:18px">Every tier gives something back — this is sponsorship of open-source work, with perks, not a donation.</p>
+  <div class="tiers">
+    <div class="tier">
+      <div class="name">Supporter</div>
+      <div class="price">€5<small>/mo</small></div>
+      <div class="get">You get</div>
+      <ul>
+        <li>Your name on the <b>Supporters</b> wall</li>
+        <li>Sponsor-only project updates</li>
+        <li>A thank-you in release notes</li>
+      </ul>
+      <a class="btn alt" href="https://github.com/sponsors/RBKunnela">Choose</a>
+    </div>
+    <div class="tier feature">
+      <div class="name">Backer</div>
+      <div class="price">€25<small>/mo</small></div>
+      <div class="get">Everything above, plus</div>
+      <ul>
+        <li>Your <b>name/handle in the README</b> backers section</li>
+        <li>Early access to new releases</li>
+        <li>A vote on roadmap priorities</li>
+      </ul>
+      <a class="btn" href="https://github.com/sponsors/RBKunnela">Choose</a>
+    </div>
+    <div class="tier">
+      <div class="name">Sponsor</div>
+      <div class="price">€100<small>/mo</small></div>
+      <div class="get">Everything above, plus</div>
+      <ul>
+        <li>Your <b>logo on this page + the README</b></li>
+        <li>A direct support channel</li>
+        <li>Priority on issues you file</li>
+      </ul>
+      <a class="btn alt" href="https://github.com/sponsors/RBKunnela">Choose</a>
+    </div>
+    <div class="tier">
+      <div class="name">Partner</div>
+      <div class="price">€500<small>/mo</small></div>
+      <div class="get">Everything above, plus</div>
+      <ul>
+        <li><b>Prominent logo</b> placement</li>
+        <li>Monthly support / consultation hours</li>
+        <li>Integration help for your stack</li>
+      </ul>
+      <a class="btn alt" href="https://github.com/sponsors/RBKunnela">Choose</a>
+    </div>
+  </div>
+  <p class="note" style="margin-top:14px">One-time amounts are welcome too, at the same perk levels — choose any tier and pick "one-time" where available. Tiers and perks are a draft to confirm before this page goes live.</p>
+</section>
+
+<section class="wrap">
+  <h2>What your sponsorship builds</h2>
+  <ul class="clean">
+    <li><b>Full-time development</b> — so the work continues instead of being squeezed between other jobs.</li>
+    <li><b>An independent security audit</b> — review of the settlement &amp; cross-chain logic before it handles real value.</li>
+    <li><b>Mainnet launch</b> — multi-chain go-live, refunds, streaming payments, more chains.</li>
+    <li><b>Docs &amp; examples</b> — so any developer can self-host and integrate in minutes.</li>
+  </ul>
+</section>
+
+<section class="wrap">
+  <h2>The budget</h2>
+  <div class="budget">
+    <table>
+      <tr><td>Full-time development, AI tooling &amp; infrastructure <span style="font-size:12px;color:var(--muted)">(bundled)</span></td><td>€7,500 / mo</td></tr>
+      <tr><td>Security audit <span style="font-size:12px;color:var(--muted)">(one-time milestone)</span></td><td>€20k–€40k</td></tr>
+      <tr><td><b>Monthly goal to sustain the project</b></td><td><b>€7,500 / mo</b></td></tr>
+    </table>
+  </div>
+  <p class="note" style="margin-top:14px">⚠ The monthly goal bundles development time, AI/LLM tooling, and infrastructure into one figure. Figures are a target to confirm before this page goes live.</p>
+</section>
+
+<section class="wrap">
+  <h2>Ways to support</h2>
+  <div class="ways">
+    <div class="way">
+      <b>❤️ GitHub Sponsors</b>
+      <span>Recurring or one-time, with the perks above. Sits right on the repo.</span>
+      <a class="btn" href="https://github.com/sponsors/RBKunnela">Sponsor on GitHub</a>
+    </div>
+    <div class="way">
+      <b>📖 Open Collective</b>
+      <span>Sponsor through a fiscal host with a transparent project budget.</span>
+      <a class="btn alt" href="https://opencollective.com/paybot">Back the collective</a>
+    </div>
+    <div class="way">
+      <b>🟢 Gitcoin Grants</b>
+      <span>Sponsorships here get matched from a pooled public-goods fund. <em>(Live during grant rounds.)</em></span>
+      <a class="btn alt" href="https://github.com/RBKunnela/paybot-sdk">Follow for the round</a>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2>Built by</h2>
+  <div class="card">
+    <h3>Renata Baldissara-Kunnela — FriendlyAI, Finland</h3>
+    <p>An independent developer building open, non-custodial payment infrastructure for the agent economy. PayBot is developed in the open under the MIT license. Sponsorship goes to the work — keeping it free, self-hostable, and independent.</p>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="honest">
+    <b>The honest part.</b> Sponsorships here are support for <b>open-source development, with perks in return</b> — not an investment, not equity, not a token, and they carry no financial return. PayBot is a non-custodial software tool: it holds no customer funds and makes no claim of regulatory or banking compliance. We tell you exactly what's built and what isn't.
+  </div>
+</section>
+
+<footer class="wrap">
+  <p>PayBot · open-source x402 payment infrastructure · <a href="https://github.com/RBKunnela/paybot-sdk">github.com/RBKunnela/paybot-sdk</a></p>
+</footer>
+
+</body>
+</html>
