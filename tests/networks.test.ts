@@ -44,7 +44,19 @@ describe('getSupportedNetworks', () => {
     const networks = getSupportedNetworks();
     expect(networks).toContain('eip155:8453');
     expect(networks).toContain('eip155:84532');
-    expect(networks.length).toBe(2);
+    // Phase A expanded Base-only → 8 networks (Base + OP + Arb + Polygon, each
+    // with a testnet). Kept exact so a half-added/removed chain is caught here.
+    expect(networks.length).toBe(8);
+    expect(networks).toEqual(
+      expect.arrayContaining([
+        'eip155:10',
+        'eip155:11155420',
+        'eip155:42161',
+        'eip155:421614',
+        'eip155:137',
+        'eip155:80002',
+      ]),
+    );
   });
 });
 

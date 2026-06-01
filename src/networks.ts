@@ -34,6 +34,69 @@ export const NETWORKS: Record<string, NetworkConfig> = {
     explorerUrl: 'https://sepolia.basescan.org',
     isTestnet: true,
   },
+
+  // --- Phase A network expansion: Optimism, Arbitrum, Polygon (+ testnets) ---
+  // USDC addresses are Circle-official NATIVE USDC deployments (NOT bridged).
+  // Source: developers.circle.com/stablecoins/usdc-contract-addresses.
+
+  'eip155:10': {
+    name: 'Optimism',
+    chainId: 10,
+    caip2: 'eip155:10',
+    rpcUrl: 'https://mainnet.optimism.io',
+    usdcAddress: '0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85',
+    explorerUrl: 'https://optimistic.etherscan.io',
+    isTestnet: false,
+  },
+  'eip155:11155420': {
+    name: 'OP Sepolia',
+    chainId: 11155420,
+    caip2: 'eip155:11155420',
+    rpcUrl: 'https://sepolia.optimism.io',
+    usdcAddress: '0x5fd84259d66Cd46123540766Be93DFE6D43130D7',
+    explorerUrl: 'https://sepolia-optimism.etherscan.io',
+    isTestnet: true,
+  },
+
+  'eip155:42161': {
+    name: 'Arbitrum One',
+    chainId: 42161,
+    caip2: 'eip155:42161',
+    rpcUrl: 'https://arb1.arbitrum.io/rpc',
+    usdcAddress: '0xaf88d065e77c8cC2239327C5EDb3A432268e5831',
+    explorerUrl: 'https://arbiscan.io',
+    isTestnet: false,
+  },
+  'eip155:421614': {
+    name: 'Arbitrum Sepolia',
+    chainId: 421614,
+    caip2: 'eip155:421614',
+    rpcUrl: 'https://sepolia-rollup.arbitrum.io/rpc',
+    usdcAddress: '0x75faf114eafb1BDbe2F0316DF893fd58CE46AA4d',
+    explorerUrl: 'https://sepolia.arbiscan.io',
+    isTestnet: true,
+  },
+
+  'eip155:137': {
+    name: 'Polygon PoS',
+    chainId: 137,
+    caip2: 'eip155:137',
+    rpcUrl: 'https://polygon-rpc.com',
+    // NATIVE USDC (0x3c49…), NOT bridged USDC.e (0x2791…) — the bridged token
+    // is NOT EIP-3009/x402-compatible. See research trap note.
+    usdcAddress: '0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359',
+    explorerUrl: 'https://polygonscan.com',
+    isTestnet: false,
+  },
+  'eip155:80002': {
+    name: 'Polygon Amoy',
+    chainId: 80002,
+    caip2: 'eip155:80002',
+    rpcUrl: 'https://rpc-amoy.polygon.technology',
+    usdcAddress: '0x41E94Eb019C0762f9Bfcf9Fb1E58725BfB0e7582',
+    explorerUrl: 'https://amoy.polygonscan.com',
+    isTestnet: true,
+  },
 } as const;
 
 /**
@@ -103,6 +166,13 @@ export const TOKENS: Record<string, TokenConfig> = {
       // Reuses NETWORKS[...].usdcAddress — keep identical, do not diverge.
       'eip155:8453': '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913',
       'eip155:84532': '0x036CbD53842c5426634e7929541eC2318f3dCF7e',
+      // Phase A: native USDC on Optimism / Arbitrum / Polygon (+ testnets).
+      'eip155:10': '0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85',
+      'eip155:11155420': '0x5fd84259d66Cd46123540766Be93DFE6D43130D7',
+      'eip155:42161': '0xaf88d065e77c8cC2239327C5EDb3A432268e5831',
+      'eip155:421614': '0x75faf114eafb1BDbe2F0316DF893fd58CE46AA4d',
+      'eip155:137': '0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359',
+      'eip155:80002': '0x41E94Eb019C0762f9Bfcf9Fb1E58725BfB0e7582',
     },
   },
   EURC: {
