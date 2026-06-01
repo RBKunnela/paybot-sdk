@@ -200,24 +200,30 @@ isSupportedCaip2('eip155:8453');  // true
 
 ## Tokens (USDC + EURC)
 
-Pay in USDC (default) or EURC — both MiCA-authorized and EIP-3009-capable on Base + Base Sepolia. The signing domain is resolved per-token, so EURC signs against its own contract.
+Pay in USDC (default) or EURC. The signing domain is resolved per-token, so EURC signs against its own contract.
 
 ```typescript
-import { TOKENS, getToken, getSupportedTokens } from 'paybot-sdk';
+import { TOKENS, getSupportedTokens } from 'paybot-sdk';
 
 getSupportedTokens();          // ['USDC', 'EURC']
-getToken('EURC')?.micaCompliant; // true
 
 await client.pay({
   resource: 'https://api.example.com/data',
   amount: '0.50',
   payTo: '0x....',
   token: 'EURC',               // defaults to 'USDC'; unknown token → UNSUPPORTED_TOKEN
-  network: 'eip155:8453',
+  network: 'eip155:84532',     // testnet ships out of the box
 });
 ```
 
-> EURC addresses ship from Circle's official deployment list — verify against [circle.com/multi-chain-usdc](https://www.circle.com/multi-chain-usdc) before mainnet use.
+**Mainnet token addresses are operator-supplied** (not hardcoded in the SDK). Provide them via `tokenAddressOverrides`; an unconfigured mainnet token returns `TOKEN_ADDRESS_NOT_CONFIGURED` rather than signing against a wrong contract:
+
+```typescript
+const client = new PayBotClient({
+  apiKey: 'pb_...', botId: 'my-bot', walletPrivateKey: '0x...',
+  tokenAddressOverrides: { EURC: { 'eip155:8453': '0x...' } }, // your config
+});
+```
 
 ## Error Taxonomy
 
@@ -327,7 +333,7 @@ For AI agent frameworks, use [paybot-mcp](https://github.com/RBKunnela/paybot-mc
 | ✅ **Error taxonomy** (`PayBotError` + 6 typed subclasses) | T1.4 |
 | ✅ **OpenTelemetry hooks** (opt-in, zero new deps) | T1.5 |
 | ✅ **Multi-bot pool + spend treasury** | T1.6 |
-| ✅ **EURC + token registry** (per-token EIP-712, MiCA flag) | T2.2 |
+| ✅ **EURC + token registry** (per-token EIP-712 domains) | T2.2 |
 | ✅ **AP2 settlement adapter** · 🔭 thin **MPP capability seam** (deferred to GA) | T2.3 |
 | ✅ **Python SDK 0.1.0** (real EIP-3009 signing) | T3.2 (partial) |
 
@@ -338,7 +344,7 @@ For AI agent frameworks, use [paybot-mcp](https://github.com/RBKunnela/paybot-mc
 - ⬜ **Network expansion (T2.1)** — still **Base + Base Sepolia only**; add Optimism / Arbitrum / Polygon.
 - ⬜ **CCTP V2 cross-chain receive** — ⏰ *time-sensitive: Circle CCTP V1 deprecates 2026-07-31.*
 - ⬜ **Refund + reversal helpers (T2.4)** · ⬜ **Streaming subscriptions (T2.5)** · ⬜ **Wallet-connect bridge (T2.6)**
-- 🟡 **Token breadth** — USDC + EURC done; PYUSD / RLUSD / DAI not added (US-only; gate behind MiCA flags).
+- 🟡 **Token breadth** — USDC + EURC done; PYUSD / RLUSD / DAI not added (operator-gated).
 - 🟡 **Language ports (T3.2)** — Python runtime shipped (middleware/x402-handler unported); Go / Rust not started.
 - ⬜ **Framework ports (T3.1)** (Hono/Next/NestJS/FastAPI/Django) · ⬜ **CLI (T3.4)** · ⬜ **Examples + tutorial site (T3.5)** · ⬜ **More MCP tools (T3.3)** · ⬜ **L402 shim (T3.6)**
 - 🔭 **Full MPP (T2.3)** — deliberately deferred; Stripe/Tempo MPP is still preview and shares no signing code with EIP-3009. Detect-only seam ships now.
@@ -351,13 +357,13 @@ Prioritized by internal gap severity × external leverage (EU-bank credibility, 
 1. Network expansion (Optimism + Arbitrum + Polygon) — closes the biggest surface gap vs. Coinbase/Circle/Crossmint.
 2. CCTP V2 cross-chain receive — ⏰ hard deadline (CCTP V1 dies 2026-07-31).
 3. Refund + reversal helpers — table-stakes for real commerce.
-4. Token breadth (PYUSD/RLUSD/DAI behind MiCA flags).
+4. Token breadth (PYUSD/RLUSD/DAI, operator-gated).
 
 **Phase B — Mid-term (agent-economy surface):** streaming subscriptions · CLI · framework ports (Hono/Next/FastAPI first) · examples + tutorial site · wallet-connect bridge.
 
 **Phase C — Strategic / opportunistic:** full MPP (on GA) · more language ports (Go/Rust) · L402/Lightning shim · more MCP tools.
 
-**Strategic posture:** the moat is *self-hosted, non-custodial, MIT, trust-layer-in-the-SDK* — which custodial/portal-locked rivals (Coinbase Agentic Wallets, Circle, Crossmint, Payman) structurally cannot copy. EU-bank credibility = USDC + EURC (both MiCA + EIP-3009, done). Being a clean x402 settlement engine makes paybot AP2-pluggable and AgentCore-compatible today — so MPP can wait for GA.
+**Strategic posture:** the moat is *self-hosted, non-custodial, MIT, trust-layer-in-the-SDK* — which custodial/portal-locked rivals (Coinbase Agentic Wallets, Circle, Crossmint, Payman) structurally cannot copy. Being a clean x402 settlement engine makes paybot AP2-pluggable and AgentCore-compatible today — so MPP can wait for GA.
 
 ## Deployment Options
 
