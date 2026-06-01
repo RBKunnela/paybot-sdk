@@ -32,6 +32,8 @@ export type {
   TrustLevel,
   RegisterResult,
   HealthResult,
+  RefundRequest,
+  RefundResult,
   SignupResult,
   LoginResult,
   ApiKeyResult,

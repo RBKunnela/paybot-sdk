@@ -127,6 +127,61 @@ export interface HealthResult {
 
 export type TrustLevel = 0 | 1 | 2 | 3 | 4 | 5;
 
+// ===== Refund Types =====
+
+/**
+ * Request to refund a previously-settled payment.
+ *
+ * A refund is modeled as a typed wrapper over the facilitator's `POST /refund`
+ * endpoint. The facilitator (core) owns the actual refund logic — the SDK is a
+ * thin typed client and performs NO on-chain work here.
+ */
+export interface RefundRequest {
+  /** Transaction hash of the original payment to refund. */
+  originalTxHash: string;
+  /**
+   * Optional partial refund amount (human-readable, e.g. `'0.05'`). When
+   * omitted, the facilitator refunds the full original amount.
+   */
+  amount?: string;
+  /** Optional human-readable reason for the refund (audit/context). */
+  reason?: string;
+  /**
+   * Optional idempotency key. When provided, the SDK sends an
+   * `X-Idempotency-Key` header and caches the successful result per
+   * PayBotClient instance: a repeat refund() with the same key returns the
+   * cached RefundResult without a second network round-trip.
+   */
+  idempotencyKey?: string;
+}
+
+/**
+ * Result of a {@link RefundRequest}.
+ *
+ * Mirrors {@link PaymentResult}'s never-throws contract: a failure is returned
+ * as `{ success: false, ... }` with an `errorCode`, never thrown.
+ */
+export interface RefundResult {
+  /** `true` when the facilitator accepted the refund. */
+  success: boolean;
+  /** Echo of the original payment's transaction hash. */
+  originalTxHash: string;
+  /** Transaction hash of the refund itself, when the facilitator reports one. */
+  refundTxHash?: string;
+  /** Refund settlement status reported by the facilitator. */
+  status: 'pending' | 'confirmed' | 'failed';
+  /** Refunded amount (as reported by the facilitator), when present. */
+  amount?: string;
+  /** Network the refund settled on, when reported. */
+  network?: string;
+  /** Human-readable error message on failure. */
+  error?: string;
+  /** Machine-readable error code from the server (e.g. 'TRUST_VIOLATION'). */
+  errorCode?: string;
+  /** Additional error context from the server. */
+  errorDetails?: Record<string, unknown>;
+}
+
 // ===== x402 v2 Protocol Types =====
 
 /**
