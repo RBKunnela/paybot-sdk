@@ -17,31 +17,41 @@ from __future__ import annotations
 import asyncio
 import json
 import time
-from typing import Any, Dict, List, Optional
+from collections import OrderedDict
+from typing import Any, Dict, Generic, List, Optional, TypeVar
 from urllib.parse import urlencode, urljoin
 
 import httpx
 
 from .crypto import generate_eip3009_nonce
-from .errors import PayBotApiError, get_error_message
-from .networks import EIP712_DOMAINS, EIP3009_TYPES, NETWORKS
+from .errors import (
+    PayBotApiError,
+    PayBotNetworkError,
+    PayBotTimeoutError,
+    get_error_message,
+    map_http_error,
+)
+from .networks import (
+    EIP3009_TYPES,
+    get_eip712_domain,
+    get_token,
+    resolve_token_address,
+)
+from .telemetry import PayBotSpan, TelemetryConfig, with_span
 from .types import (
     ApiKeyListItem,
     ApiKeyResult,
     BalanceResult,
     CommissionEntry,
     CommissionLedgerFilter,
-    CommissionStatus,
     CommissionSummary,
     HealthResult,
     LimitsConfig,
-    LoginResult,
-    OperatorRef,
     PayBotConfig,
     PaymentRequest,
     PaymentResult,
+    RefundResult,
     RegisterResult,
-    SignupResult,
     TransactionHistoryItem,
     TrustLevel,
 )
@@ -49,6 +59,64 @@ from .types import (
 
 DEFAULT_FACILITATOR_URL = "https://api.paybotcore.com"
 DEFAULT_OPERATOR_ID = "default-operator"
+# Default maximum number of cached idempotent results per client instance.
+IDEMPOTENCY_CACHE_CAP = 256
+
+_V = TypeVar("_V")
+
+
+class _LruCache(Generic[_V]):
+    """Minimal bounded LRU cache. Mirrors the TS ``LruCache`` in client.ts.
+
+    Used per-PayBotClient-instance to dedupe idempotent calls. Not thread-safe,
+    but the SDK runs single-threaded per instance.
+    """
+
+    def __init__(self, capacity: int) -> None:
+        self._capacity = capacity
+        self._store: "OrderedDict[str, _V]" = OrderedDict()
+
+    def get(self, key: str) -> Optional[_V]:
+        """Look up a key, marking it most-recently-used on a hit."""
+        if key not in self._store:
+            return None
+        self._store.move_to_end(key)
+        return self._store[key]
+
+    def set(self, key: str, value: _V) -> None:
+        """Insert/update a key, evicting the LRU entry when at capacity."""
+        if key in self._store:
+            self._store.move_to_end(key)
+        elif len(self._store) >= self._capacity:
+            self._store.popitem(last=False)
+        self._store[key] = value
+
+    @property
+    def size(self) -> int:
+        """Current number of cached entries (primarily for tests)."""
+        return len(self._store)
+
+
+def _fail(
+    error_code: str, error: str, error_details: Optional[Dict[str, Any]] = None
+) -> PaymentResult:
+    """Build a zeroed failure :class:`PaymentResult` with the given code/message."""
+    return PaymentResult(
+        success=False,
+        gross_amount="0",
+        net_amount="0",
+        commission_amount="0",
+        commission_rate=0,
+        error=error,
+        error_code=error_code,
+        error_details=error_details,
+    )
+
+
+def _set_attr(span: Optional[PayBotSpan], key: str, value: Any) -> None:
+    """Set a span attribute when a span is present (no-op on the no-op path)."""
+    if span is not None:
+        span.set_attribute(key, value)
 
 
 def _as_list(data: Any) -> list:
@@ -100,6 +168,15 @@ class PayBotClient:
         self._wallet_private_key = config.wallet_private_key
         self._max_retries = config.max_retries
         self._timeout_ms = config.timeout_ms
+        # Operator-supplied token address overrides (symbol → caip2 → address).
+        self._token_address_overrides = config.token_address_overrides
+        # Opt-in telemetry config; None means tracing is a complete no-op.
+        self._telemetry: Optional[TelemetryConfig] = config.telemetry
+        # Per-instance LRU caches of idempotent results (only success cached).
+        self._pay_idempotency_cache: _LruCache[PaymentResult] = _LruCache(IDEMPOTENCY_CACHE_CAP)
+        self._register_idempotency_cache: _LruCache[RegisterResult] = _LruCache(
+            IDEMPOTENCY_CACHE_CAP
+        )
 
         # Shared httpx client — pooled across requests + retries. Closed when
         # the PayBotClient is GC'd or explicitly via `.close()`.
@@ -138,18 +215,26 @@ class PayBotClient:
                     headers=headers,
                     json=body if body is not None else None,
                 )
-            except (httpx.HTTPError, asyncio.TimeoutError) as e:
+            except (httpx.TimeoutException, asyncio.TimeoutError) as e:
+                # Timeouts are a distinct, typed failure (still retried).
+                last_error = PayBotTimeoutError(
+                    f"Request timed out after {self._timeout_ms}ms"
+                )
+                last_error.__cause__ = e
+                continue
+            except httpx.HTTPError as e:
                 last_error = e
                 continue
 
-            # 4xx: client error, do not retry
+            # 4xx: client error, do not retry. Map to the most specific subclass
+            # (auth/policy) while keeping isinstance(e, PayBotApiError) true.
             if 400 <= response.status_code < 500:
                 err_data: Dict[str, Any] = {}
                 try:
                     err_data = response.json()
                 except Exception:
                     pass
-                raise PayBotApiError(
+                raise map_http_error(
                     err_data.get("error") or f"HTTP {response.status_code}",
                     err_data.get("code") or "HTTP_ERROR",
                     response.status_code,
@@ -172,26 +257,51 @@ class PayBotClient:
                     response.status_code,
                 )
 
+        # All retries exhausted. A PayBotApiError here is already specific
+        # (e.g. PayBotTimeoutError, or a 5xx PayBotApiError).
         if isinstance(last_error, PayBotApiError):
             raise last_error
-        raise PayBotApiError(
-            f"Network error: {get_error_message(last_error)}", "NETWORK_ERROR", 0
-        )
+        raise PayBotNetworkError(f"Network error: {get_error_message(last_error)}")
 
     # ── Bot operations (endpoint paths verified against src/client.ts) ────
 
-    async def register(self, trust_level: Optional[TrustLevel] = None) -> RegisterResult:
-        """Register a new bot. POST /bots — matches client.ts:389."""
+    async def register(
+        self,
+        trust_level: Optional[TrustLevel] = None,
+        idempotency_key: Optional[str] = None,
+    ) -> RegisterResult:
+        """Register a new bot. POST /bots — matches client.ts:389.
+
+        :param trust_level: Initial trust level (default 1).
+        :param idempotency_key: Optional key. When provided, sends
+            ``X-Idempotency-Key`` and caches the successful result per instance so
+            a repeat call with the same key returns the cached result without a
+            second network round-trip.
+        """
+        if idempotency_key is not None:
+            cached = self._register_idempotency_cache.get(idempotency_key)
+            if cached is not None:
+                return cached
+
         body: Dict[str, Any] = {
             "botId": self._bot_id,
             "trustLevel": trust_level if trust_level is not None else 1,
         }
-        data = await self._request("/bots", method="POST", body=body)
-        return RegisterResult(
+        extra_headers = (
+            {"X-Idempotency-Key": idempotency_key} if idempotency_key is not None else None
+        )
+        data = await self._request(
+            "/bots", method="POST", body=body, extra_headers=extra_headers
+        )
+        result = RegisterResult(
             success=bool(data.get("success", True)),
             bot_id=data["botId"],
             trust_level=data["trustLevel"],
         )
+        # Only reached on success (_request raises on non-2xx).
+        if idempotency_key is not None:
+            self._register_idempotency_cache.set(idempotency_key, result)
+        return result
 
     async def balance(self) -> BalanceResult:
         """GET /balance?botId=... — matches client.ts:358."""
@@ -255,128 +365,218 @@ class PayBotClient:
     # ── Payments (two-step verify→settle flow matches client.ts:182) ────
 
     async def pay(self, request: PaymentRequest) -> PaymentResult:
-        """Execute a payment.
+        """Execute a payment. Returns ``success=False`` on failure (never raises).
 
         In mock mode (no wallet_private_key): facilitator simulates success/failure.
         In real mode: signs EIP-3009 TransferWithAuthorization off-chain, posts
-        the payload to `/verify` → receives a `settlementToken` → posts to
-        `/settle` to finalize. Matches the two-step flow in client.ts:182.
+        the payload to ``/verify`` → receives a ``settlementToken`` → posts to
+        ``/settle`` to finalize.
+
+        Multi-token: ``request.token`` (default ``'USDC'``) selects the token; its
+        address resolves through ``request.token_contract`` → operator overrides →
+        the public registry. An unknown token short-circuits to ``UNSUPPORTED_TOKEN``
+        and an unresolvable address to ``TOKEN_ADDRESS_NOT_CONFIGURED``, both with
+        NO network round-trip. Idempotency: a repeat ``pay()`` with the same
+        ``idempotency_key`` returns the cached success without a second round-trip.
+
+        :param request: The payment request.
+        :returns: A :class:`PaymentResult`.
         """
         network_id = request.network or "eip155:84532"
-        network = NETWORKS.get(network_id)
-        if network is None:
-            return PaymentResult(
-                success=False,
-                gross_amount="0",
-                net_amount="0",
-                commission_amount="0",
-                commission_rate=0,
-                error=f"Unsupported network: {network_id}",
-                error_code="UNSUPPORTED_NETWORK",
+        idempotency_key = request.idempotency_key
+
+        # Idempotency: return a previously-cached successful result. Only
+        # success=True is cached, so a hit is always a real prior success.
+        if idempotency_key is not None:
+            cached = self._pay_idempotency_cache.get(idempotency_key)
+            if cached is not None:
+                return cached
+
+        async def _body(pay_span: Optional[PayBotSpan]) -> PaymentResult:
+            symbol = request.token or "USDC"
+
+            token = get_token(symbol)
+            if token is None:
+                _set_attr(pay_span, "success", False)
+                return _fail("UNSUPPORTED_TOKEN", f"Unsupported token: {symbol}")
+
+            # Token contract precedence: explicit → operator override → public
+            # registry. EURC mainnet (operator-private) fails loudly here.
+            token_contract = request.token_contract or resolve_token_address(
+                symbol, network_id, self._token_address_overrides
+            )
+            if not token_contract:
+                _set_attr(pay_span, "success", False)
+                return _fail(
+                    "TOKEN_ADDRESS_NOT_CONFIGURED",
+                    f"No contract address configured for token {symbol} on network "
+                    f"{network_id}. Provide it via "
+                    f"PayBotConfig.token_address_overrides[{symbol}][{network_id}].",
+                )
+
+            amount_base_units = self._to_base_units(request.amount, token.decimals)
+
+            # Mock mode: payer:<botId> placeholder. Real mode: sign EIP-3009.
+            if self._wallet_private_key is None:
+                payload_string: Optional[str] = f"payer:{self._bot_id}"
+            else:
+                async def _sign(_span: Optional[PayBotSpan]) -> str:
+                    return await self._sign_payload(
+                        request=request,
+                        amount_base_units=amount_base_units,
+                        token_contract=token_contract,
+                        network_id=network_id,
+                        symbol=symbol,
+                    )
+
+                payload_string = await with_span(
+                    self._telemetry, "x402.sign", {"network": network_id}, _sign
+                )
+
+            payload_body: Dict[str, Any] = {
+                "x402Version": 1,
+                "resource": request.resource,
+                "accepted": True,
+                "payload": payload_string,
+            }
+            requirements = {
+                "scheme": "exact",
+                "network": network_id,
+                "asset": f"{network_id}/erc20:{token_contract}",
+                "amount": amount_base_units,
+                "payTo": request.pay_to,
+                "maxTimeoutSeconds": 300,
+            }
+
+            extra_headers = (
+                {"X-Idempotency-Key": idempotency_key}
+                if idempotency_key is not None
+                else None
             )
 
-        token_contract = request.token_contract or network.usdc_address
-        amount_base_units = self._to_base_units(request.amount, 6)
+            # Step 1: /verify
+            try:
+                verify_data = await self._request(
+                    "/verify",
+                    method="POST",
+                    body={
+                        "botId": self._bot_id,
+                        "payload": payload_body,
+                        "requirements": requirements,
+                    },
+                    extra_headers=extra_headers,
+                )
+            except PayBotApiError as e:
+                _set_attr(pay_span, "success", False)
+                return _fail(e.code, str(e), e.details)
 
-        # Mock mode (no wallet_private_key): mirror TS buildPaymentPayload's
-        # `payer:<botId>` placeholder. Real mode: sign EIP-3009 off-chain.
-        if self._wallet_private_key is None:
-            payload_string: Optional[str] = f"payer:{self._bot_id}"
-        else:
-            payload_string = await self._sign_payload(
-                request=request,
-                amount_base_units=amount_base_units,
-                token_contract=token_contract,
-                network_id=network_id,
+            settlement_token = verify_data.get("settlementToken")
+            if not settlement_token:
+                _set_attr(pay_span, "success", False)
+                return _fail(
+                    "NO_SETTLEMENT_TOKEN",
+                    "Facilitator did not return a settlementToken",
+                )
+
+            # Step 2: /settle
+            try:
+                settle_data = await self._request(
+                    "/settle",
+                    method="POST",
+                    body={
+                        "botId": self._bot_id,
+                        "settlementToken": settlement_token,
+                        "payload": payload_body,
+                        "requirements": verify_data.get("modifiedRequirements", requirements),
+                        "commission": verify_data.get("commission"),
+                    },
+                )
+            except PayBotApiError as e:
+                _set_attr(pay_span, "success", False)
+                return _fail(e.code, str(e), e.details)
+
+            result = PaymentResult(
+                success=bool(settle_data.get("success", False)),
+                tx_hash=settle_data.get("txHash"),
+                gross_amount=settle_data.get("grossAmount", "0"),
+                net_amount=settle_data.get("netAmount", "0"),
+                commission_amount=settle_data.get("commissionAmount", "0"),
+                commission_rate=settle_data.get("commissionRate", 0),
+                network=settle_data.get("network"),
+                error=settle_data.get("error"),
+                error_code=settle_data.get("errorCode"),
+                error_details=settle_data.get("errorDetails"),
             )
+            _set_attr(pay_span, "success", result.success)
+            if result.tx_hash:
+                _set_attr(pay_span, "tx_hash", result.tx_hash)
 
-        payload_body: Dict[str, Any] = {
-            "x402Version": 1,
-            "resource": request.resource,
-            "accepted": True,
-            "payload": payload_string,
-        }
+            # Cache only successful results so a retry short-circuits.
+            if result.success and idempotency_key is not None:
+                self._pay_idempotency_cache.set(idempotency_key, result)
+            return result
 
-        requirements = {
-            "scheme": "exact",
-            "network": network_id,
-            "asset": f"{network_id}/erc20:{token_contract}",
-            "amount": amount_base_units,
-            "payTo": request.pay_to,
-            "maxTimeoutSeconds": 300,
-        }
+        return await with_span(
+            self._telemetry,
+            "client.pay",
+            {"network": network_id, "amount": request.amount, "bot_id": self._bot_id},
+            _body,
+        )
 
-        # Step 1: /verify
+    async def refund(
+        self,
+        *,
+        tx_hash: str,
+        amount: Optional[str] = None,
+        reason: Optional[str] = None,
+    ) -> RefundResult:
+        """Request a refund for a prior payment. Never raises — failures surface
+        as ``RefundResult(success=False, ...)``.
+
+        POSTs to ``/refund`` with ``{botId, txHash, amount?, reason?}``.
+
+        :param tx_hash: The transaction hash of the payment to refund.
+        :param amount: Optional partial-refund amount (human-readable). When
+            omitted the facilitator refunds the full payment.
+        :param reason: Optional human-readable refund reason.
+        :returns: A :class:`RefundResult`.
+
+        :example:
+            >>> r = await client.refund(tx_hash="0xabc")
+            >>> r.success
+            True
+        """
+        body: Dict[str, Any] = {"botId": self._bot_id, "txHash": tx_hash}
+        if amount is not None:
+            body["amount"] = amount
+        if reason is not None:
+            body["reason"] = reason
+
         try:
-            verify_data = await self._request(
-                "/verify",
-                method="POST",
-                body={
-                    "botId": self._bot_id,
-                    "payload": payload_body,
-                    "requirements": requirements,
-                },
-            )
+            data = await self._request("/refund", method="POST", body=body)
         except PayBotApiError as e:
-            return PaymentResult(
+            return RefundResult(
                 success=False,
-                gross_amount="0",
-                net_amount="0",
-                commission_amount="0",
-                commission_rate=0,
                 error=str(e),
                 error_code=e.code,
                 error_details=e.details,
             )
-
-        settlement_token = verify_data.get("settlementToken")
-        if not settlement_token:
-            return PaymentResult(
+        except Exception as e:  # noqa: BLE001 - refund must never raise
+            return RefundResult(
                 success=False,
-                gross_amount="0",
-                net_amount="0",
-                commission_amount="0",
-                commission_rate=0,
-                error="Facilitator did not return a settlementToken",
-                error_code="NO_SETTLEMENT_TOKEN",
+                error=get_error_message(e),
+                error_code="REFUND_ERROR",
             )
 
-        # Step 2: /settle
-        try:
-            settle_data = await self._request(
-                "/settle",
-                method="POST",
-                body={
-                    "botId": self._bot_id,
-                    "settlementToken": settlement_token,
-                    "payload": payload_body,
-                    "requirements": verify_data.get("modifiedRequirements", requirements),
-                    "commission": verify_data.get("commission"),
-                },
-            )
-        except PayBotApiError as e:
-            return PaymentResult(
-                success=False,
-                gross_amount="0",
-                net_amount="0",
-                commission_amount="0",
-                commission_rate=0,
-                error=str(e),
-                error_code=e.code,
-                error_details=e.details,
-            )
-
-        return PaymentResult(
-            success=bool(settle_data.get("success", False)),
-            tx_hash=settle_data.get("txHash"),
-            gross_amount=settle_data.get("grossAmount", "0"),
-            net_amount=settle_data.get("netAmount", "0"),
-            commission_amount=settle_data.get("commissionAmount", "0"),
-            commission_rate=settle_data.get("commissionRate", 0),
-            network=settle_data.get("network"),
-            error=settle_data.get("error"),
-            error_code=settle_data.get("errorCode"),
-            error_details=settle_data.get("errorDetails"),
+        return RefundResult(
+            success=bool(data.get("success", False)),
+            refund_id=data.get("refundId"),
+            tx_hash=data.get("txHash", tx_hash),
+            amount=data.get("amount"),
+            status=data.get("status"),
+            error=data.get("error"),
+            error_code=data.get("errorCode"),
+            error_details=data.get("errorDetails"),
         )
 
     async def _sign_payload(
@@ -385,31 +585,38 @@ class PayBotClient:
         amount_base_units: str,
         token_contract: str,
         network_id: str,
+        symbol: str = "USDC",
     ) -> str:
         """Sign an EIP-3009 ``TransferWithAuthorization`` for the given payment.
 
-        Builds EIP-712 typed-data from ``EIP712_DOMAINS[network_id]`` +
-        ``EIP3009_TYPES`` and signs it off-chain with the configured wallet
-        private key. The returned string is the JSON ``payload`` blob the
-        facilitator expects — byte-for-byte the same shape produced by the TS
-        SDK's ``client.ts:buildPaymentPayload`` (a JSON object with ``from``,
-        ``to``, ``value``, ``validAfter``, ``validBefore``, ``nonce``,
-        ``signature``; numeric fields serialized as strings).
+        Builds token-specific EIP-712 typed-data via
+        :func:`~paybot_sdk.networks.get_eip712_domain` (``symbol`` selects the
+        domain ``name`` + ``verifyingContract``) and signs it off-chain with the
+        configured wallet private key. For ``symbol == 'USDC'`` the domain is
+        byte-identical to ``EIP712_DOMAINS[network_id]`` (regression guarantee).
+        The resolved ``token_contract`` is passed as the verifying-contract
+        override so an operator-injected address (e.g. EURC mainnet, absent from
+        the public registry) signs against the correct contract.
 
-        :param request: The originating :class:`PaymentRequest` (``pay_to`` is
-            the EIP-3009 ``to`` recipient).
-        :param amount_base_units: USDC amount in base units (6 decimals) as a
-            decimal string; signed as the ``value`` ``uint256``.
-        :param token_contract: USDC contract address for the network (accepted
-            for parity with the TS signature; the verifying contract actually
-            used comes from the registered EIP-712 domain).
+        The returned string is the JSON ``payload`` blob the facilitator expects —
+        byte-for-byte the same shape produced by the TS SDK's
+        ``client.ts:buildPaymentPayload`` (``from``, ``to``, ``value``,
+        ``validAfter``, ``validBefore``, ``nonce``, ``signature``; numeric fields
+        serialized as strings).
+
+        :param request: The originating :class:`PaymentRequest` (``pay_to`` is the
+            EIP-3009 ``to`` recipient).
+        :param amount_base_units: Amount in base units as a decimal string; signed
+            as the ``value`` ``uint256``.
+        :param token_contract: The resolved token contract address; used as the
+            EIP-712 domain ``verifyingContract`` override.
         :param network_id: CAIP-2 network id, e.g. ``"eip155:84532"``.
+        :param symbol: Token ticker (default ``'USDC'``) — selects the domain.
         :returns: JSON string carrying the signed EIP-3009 authorization.
-        :raises ValueError: if ``network_id`` has no registered EIP-712 domain,
-            or if no ``wallet_private_key`` is configured.
+        :raises ValueError: if no EIP-712 domain resolves for ``network_id`` /
+            ``symbol``, or if no ``wallet_private_key`` is configured.
 
         :example:
-            >>> # client configured with wallet_private_key
             >>> payload = await client._sign_payload(req, "50000", usdc, "eip155:84532")
             >>> json.loads(payload)["signature"].startswith("0x")
             True
@@ -417,9 +624,11 @@ class PayBotClient:
         if self._wallet_private_key is None:
             raise ValueError("_sign_payload requires a wallet_private_key")
 
-        domain = EIP712_DOMAINS.get(network_id)
+        domain = get_eip712_domain(network_id, symbol, token_contract)
         if domain is None:
-            raise ValueError(f"No EIP-712 domain for network: {network_id}")
+            raise ValueError(
+                f"No EIP-712 domain for network: {network_id} / token: {symbol}"
+            )
 
         # Lazy import so the SDK is importable without the optional `signing`
         # extra installed; only `pay()` in real mode pulls eth-account in.
