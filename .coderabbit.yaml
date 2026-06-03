@@ -46,6 +46,7 @@ reviews:
 
   auto_review:
     enabled: true
+    ignore_usernames: []
     drafts: true
     base_branches:
       - "main"
