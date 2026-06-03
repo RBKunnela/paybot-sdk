@@ -3,6 +3,8 @@
  * These are the types bot developers interact with.
  */
 
+import type { TelemetryConfig } from './telemetry.js';
+
 export interface PayBotConfig {
   /** PayBot API key for authentication */
   apiKey: string;
@@ -18,6 +20,25 @@ export interface PayBotConfig {
   maxRetries?: number;
   /** Request timeout in milliseconds (default: 30000) */
   timeout?: number;
+  /**
+   * Optional operator-supplied token contract addresses, keyed
+   * `tokenSymbol → caip2Network → address` (e.g.
+   * `{ EURC: { 'eip155:8453': '0x...' } }`).
+   *
+   * The public open-core registry ({@link TOKENS}) ships only addresses that are
+   * safe to distribute (e.g. testnet deployments). Mainnet addresses for
+   * regulated tokens are NOT hardcoded in the public SDK — the operator injects
+   * them here at runtime. During payment, the SDK resolves a token address as:
+   * explicit `PaymentRequest.tokenContract` → this override map → the public
+   * registry → otherwise a `TOKEN_ADDRESS_NOT_CONFIGURED` failure.
+   */
+  tokenAddressOverrides?: Record<string, Record<string, string>>;
+  /**
+   * Optional, opt-in OpenTelemetry tracing. Inject your own tracer (e.g.
+   * `trace.getTracer('my-bot')`). When omitted, telemetry is a complete no-op
+   * with zero overhead and the SDK adds no OpenTelemetry runtime dependency.
+   */
+  telemetry?: TelemetryConfig;
 }
 
 export interface PaymentRequest {
@@ -29,8 +50,24 @@ export interface PaymentRequest {
   payTo: string;
   /** Token contract (defaults to USDC on Base) */
   tokenContract?: string;
+  /**
+   * Token ticker symbol to pay with (e.g. `'USDC'`, `'EURC'`). Default `'USDC'`.
+   * When set, the SDK resolves the token's address-on-network for the `asset`
+   * field, uses its decimals for base-unit conversion, and signs against its
+   * token-specific EIP-712 domain. An explicit {@link PaymentRequest.tokenContract}
+   * still overrides the resolved address. Unknown symbol → PaymentResult
+   * `success:false` with code `UNSUPPORTED_TOKEN`.
+   */
+  token?: string;
   /** Network CAIP-2 ID (default: eip155:84532 Base Sepolia) */
   network?: string;
+  /**
+   * Optional idempotency key. When provided, the SDK sends an
+   * `X-Idempotency-Key` header and caches the successful result per
+   * PayBotClient instance: a repeat pay() with the same key returns the cached
+   * PaymentResult without a second network round-trip.
+   */
+  idempotencyKey?: string;
 }
 
 export interface PaymentResult {
@@ -115,11 +152,23 @@ export interface PaymentIntent {
 }
 
 /**
+ * x402 payment scheme.
+ *
+ * - `exact` — pay a fixed amount (x402 v1/v2 core scheme).
+ * - `max`   — legacy capped scheme (kept for back-compat).
+ * - `range` — legacy min/max scheme (kept for back-compat).
+ * - `upto`  — x402 v2 metered/usage (streaming) billing: the payer signs an
+ *             EIP-3009 authorization for the MAXIMUM amount, authorizing the
+ *             merchant to capture UP TO that max. See {@link X402Handler.signUpto}.
+ */
+export type PaymentScheme = 'exact' | 'max' | 'range' | 'upto';
+
+/**
  * Payment requirements negotiated between agent and merchant
  */
 export interface PaymentRequirements {
-  /** Payment scheme: exact, max, range */
-  scheme: 'exact' | 'max' | 'range';
+  /** Payment scheme: exact, max, range, or upto (x402 v2 metered billing) */
+  scheme: PaymentScheme;
   /** Network CAIP-2 identifier (e.g., eip155:8453) */
   network: string;
   /** Asset identifier (e.g., eip155:8453/erc20:0x...) */
@@ -134,6 +183,12 @@ export interface PaymentRequirements {
   minAmount?: string;
   /** Optional max amount for range scheme */
   maxAmount?: string;
+  /**
+   * Optional token ticker symbol (e.g. `'USDC'`, `'EURC'`). Selects the
+   * token-specific EIP-712 signing domain. Defaults to `'USDC'` when absent,
+   * preserving legacy single-token behavior byte-for-byte.
+   */
+  token?: string;
 }
 
 /**
@@ -226,6 +281,22 @@ export interface Receipt {
  * Payment-Intent header value
  */
 export type PaymentIntentHeader = string;
+
+/**
+ * Parsed settlement confirmation read from an x402 v2 `PAYMENT-RESPONSE`
+ * header (base64-encoded JSON). A receipt-ish projection: only the fields a
+ * client needs to correlate the settlement with its submitted payment.
+ *
+ * @see X402Handler.parsePaymentResponseHeader
+ */
+export interface PaymentResponseConfirmation {
+  /** Server-issued receipt identifier. */
+  receiptId: string;
+  /** Settlement status reported by the facilitator. */
+  status: 'pending' | 'confirmed' | 'failed';
+  /** On-chain transaction id, when settled on-chain. */
+  transactionId?: string;
+}
 
 /**
  * Snapshot of who an agent is. Umbrella type derived from PayBotConfig +
