@@ -1,12 +1,16 @@
 # paybot-sdk
 
-USDC and EURC payments for bots via the [x402 protocol](https://www.x402.org/). One dependency (`viem`), typed everything.
+USDC, EURC and DAI payments for bots via the [x402 protocol](https://www.x402.org/) across Base, Optimism, Arbitrum and Polygon. One dependency (`viem`), typed everything.
 
 ## Key Features
 
 - **One dependency** (`viem`), fully typed
 - **Simple API** — register your bot and make payments in 2 lines of code
 - **Network support** — Base, Optimism, Arbitrum One, Polygon PoS mainnets + Base Sepolia testnet (EIP155)
+- **Multi-token** — USDC (default), EURC and DAI, with per-token signing domains
+- **`paybot` CLI** — `register` / `balance` / `pay` / `health` / `networks` / `tokens` over `npx`
+- **Multi-bot pool + shared spend treasury** (`PayBotClientPool`)
+- **Python SDK** at x402-v2 parity (`packages/python`, PyPI)
 - **Mock mode** for testing without real transactions
 - **MCP integration** — works with AI agent frameworks via [`paybot-mcp`](https://github.com/RBKunnela/paybot-mcp)
 - **Self-hostable** facilitator service
@@ -453,6 +457,10 @@ For AI agent frameworks, use [paybot-mcp](https://github.com/RBKunnela/paybot-mc
 
 ## Roadmap & Status
 
+> **Status:** `paybot-sdk` **0.4.0** is published on npm (`npm i paybot-sdk`, latest). The
+> Python port ships at **0.2.0** (full x402-v2 parity). The capability surface below
+> reflects what is live in this release.
+
 > **Legend:** ✅ shipped · 🟡 partial · 🔭 deferred (intentional) · ⬜ gap
 
 **Capability map** — what the SDK can do today:
@@ -463,45 +471,46 @@ For AI agent frameworks, use [paybot-mcp](https://github.com/RBKunnela/paybot-mc
 
 ![paybot-sdk roadmap](./.github/assets/paybot-sdk-roadmap-timeline.png)
 
-### What we've built
+### What we've built (shipped in 0.4.0)
 
 **Core rail (hardened):** `PayBotClient` (pay/balance/history/setLimits/register/health/commission/API-keys) · x402 auto-handler · EIP-3009 signing · `MicropaymentEngine` · trust levels 0–5 · commission accounting · `paybot402()` middleware · self-hostable facilitator · CI hardening (CodeQL, OSV, 80% coverage gate, SHA-pinned actions).
 
 | Shipped | Gap ID |
 |---------|--------|
+| ✅ **Multi-network** — Base, Optimism, Arbitrum, Polygon (USDC on all) + Base Sepolia | T2.1 |
+| ✅ **Token registry** — USDC everywhere; DAI on the L2s; EURC testnet in the public registry (EURC mainnet via operator `tokenAddressOverrides`) | T2.2 |
+| ✅ **`paybot` CLI** — `register` / `balance` / `pay` / `health` / `networks` / `tokens` | T3.4 |
+| ✅ **7 runnable examples** under `examples/` | T3.5 (partial) |
 | ✅ x402 **v2 conformance** — `upto` scheme, `PAYMENT-*` headers, CAIP-2 helpers | T1.1 + new |
 | ✅ **Webhook signature verification** (TS + Python, byte-identical HMAC) | T1.2 |
 | ✅ **Idempotency keys** (`X-Idempotency-Key` + LRU dedupe) | T1.3 |
-| ✅ **Error taxonomy** (`PayBotError` + 6 typed subclasses) | T1.4 |
+| ✅ **Error taxonomy** (`PayBotError` + 8 typed subclasses) | T1.4 |
 | ✅ **OpenTelemetry hooks** (opt-in, zero new deps) | T1.5 |
-| ✅ **Multi-bot pool + spend treasury** | T1.6 |
-| ✅ **EURC + token registry** (per-token EIP-712 domains) | T2.2 |
-| ✅ **AP2 settlement adapter** · 🔭 thin **MPP capability seam** (deferred to GA) | T2.3 |
-| ✅ **Python SDK 0.1.0** (real EIP-3009 signing) | T3.2 (partial) |
+| ✅ **Multi-bot pool + spend treasury** (`PayBotClientPool`, `TREASURY_EXCEEDED`) | T1.6 |
+| ✅ **AP2 settlement adapter** · 🔭 thin **MPP capability seam** (preview, 501; deferred to GA) | T2.3 |
+| ✅ **Python SDK 0.2.0** — full x402-v2 parity (dual-mode signing, AP2, MPP seam, telemetry, client pool, middleware, error taxonomy) | T3.2 |
 
-**Tier 1 (credibility blockers) is 100% complete** (T1.1–T1.6). Test posture: 331 TS tests / 98.66% coverage · 52 Python tests.
+**Tier 1 (credibility blockers) is 100% complete** (T1.1–T1.6) and **network expansion + CLI shipped** in this release. Test posture is enforced by the 80% coverage gate in CI.
 
 ### Current gaps
 
-- ⬜ **Network expansion (T2.1)** — still **Base + Base Sepolia only**; add Optimism / Arbitrum / Polygon.
 - ⬜ **CCTP V2 cross-chain receive** — ⏰ *time-sensitive: Circle CCTP V1 deprecates 2026-07-31.*
-- ⬜ **Refund + reversal helpers (T2.4)** · ⬜ **Streaming subscriptions (T2.5)** · ⬜ **Wallet-connect bridge (T2.6)**
-- 🟡 **Token breadth** — USDC + EURC done; PYUSD / RLUSD / DAI not added (operator-gated).
-- 🟡 **Language ports (T3.2)** — Python runtime shipped (middleware/x402-handler unported); Go / Rust not started.
-- ⬜ **Framework ports (T3.1)** (Hono/Next/NestJS/FastAPI/Django) · ⬜ **CLI (T3.4)** · ⬜ **Examples + tutorial site (T3.5)** · ⬜ **More MCP tools (T3.3)** · ⬜ **L402 shim (T3.6)**
+- ⬜ **Refund + reversal helpers (T2.4)** · ⬜ **Streaming subscriptions / `subscribe()` (T2.5)** · ⬜ **Wallet-connect bridge (T2.6)**
+- 🟡 **Token breadth** — USDC + DAI + EURC shipped; PYUSD / RLUSD not added (not deployed on supported networks).
+- 🟡 **Language ports (T3.2)** — TypeScript + Python at parity; Go / Rust not started.
+- 🟡 **Framework ports (T3.1)** — example apps cover Express / Hono / Next / FastAPI; first-class middleware packages for NestJS / Django not yet shipped.
+- ⬜ **Tutorial site (T3.5)** · ⬜ **More MCP tools (T3.3)** · ⬜ **L402 shim (T3.6)**
 - 🔭 **Full MPP (T2.3)** — deliberately deferred; Stripe/Tempo MPP is still preview and shares no signing code with EIP-3009. Detect-only seam ships now.
 
 ### Roadmap ahead
 
 Prioritized by internal gap severity × external leverage (EU-bank credibility, live distribution channels, hard deadlines).
 
-**Phase A — Near-term (rail credibility):**
-1. Network expansion (Optimism + Arbitrum + Polygon) — closes the biggest surface gap vs. Coinbase/Circle/Crossmint.
-2. CCTP V2 cross-chain receive — ⏰ hard deadline (CCTP V1 dies 2026-07-31).
-3. Refund + reversal helpers — table-stakes for real commerce.
-4. Token breadth (PYUSD/RLUSD/DAI, operator-gated).
+**Phase A — Near-term (rail credibility):** ✅ network expansion (OP + Arbitrum + Polygon) · ✅ token breadth (DAI shipped; EURC mainnet via operator overrides) · ✅ CLI — **shipped in 0.4.0.** Remaining:
+1. CCTP V2 cross-chain receive — ⏰ hard deadline (CCTP V1 dies 2026-07-31).
+2. Refund + reversal helpers — table-stakes for real commerce.
 
-**Phase B — Mid-term (agent-economy surface):** streaming subscriptions · CLI · framework ports (Hono/Next/FastAPI first) · examples + tutorial site · wallet-connect bridge.
+**Phase B — Mid-term (agent-economy surface):** streaming subscriptions (`subscribe()`) · first-class framework middleware ports (Hono/Next/FastAPI/NestJS/Django) · wallet-connect bridge · examples + tutorial site (examples shipped; site pending).
 
 **Phase C — Strategic / opportunistic:** full MPP (on GA) · more language ports (Go/Rust) · L402/Lightning shim · more MCP tools.
 
