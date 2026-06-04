@@ -7,6 +7,8 @@ import type {
   LimitsConfig,
   RegisterResult,
   HealthResult,
+  RefundRequest,
+  RefundResult,
   TrustLevel,
   SignupResult,
   LoginResult,
@@ -21,6 +23,7 @@ import {
   PayBotApiError,
   PayBotNetworkError,
   PayBotTimeoutError,
+  PayBotUnsupportedSigningMethodError,
   mapHttpError,
 } from './errors.js';
 import { generateEIP3009Nonce } from './crypto.js';
@@ -128,6 +131,8 @@ export class PayBotClient {
   private payIdempotencyCache = new LruCache<PaymentResult>(IDEMPOTENCY_CACHE_CAP);
   /** Per-instance LRU of idempotent register() results. */
   private registerIdempotencyCache = new LruCache<RegisterResult>(IDEMPOTENCY_CACHE_CAP);
+  /** Per-instance LRU of idempotent refund() results (only success:true cached). */
+  private refundIdempotencyCache = new LruCache<RefundResult>(IDEMPOTENCY_CACHE_CAP);
 
   constructor(config: PayBotConfig) {
     if (!config.apiKey || typeof config.apiKey !== 'string') {
@@ -478,12 +483,159 @@ export class PayBotClient {
           return result;
         } catch (error: unknown) {
           paySpan?.setAttribute('success', false);
+          // Surface a typed PayBotApiError's machine-readable code (e.g.
+          // UNSUPPORTED_SIGNING_METHOD from the EIP-3009 guard) so callers can
+          // branch on it, instead of collapsing every error to a bare message.
+          if (error instanceof PayBotApiError) {
+            return {
+              success: false,
+              grossAmount: '0',
+              netAmount: '0',
+              commissionAmount: '0',
+              commissionRate: 0,
+              error: error.message,
+              errorCode: error.code,
+              errorDetails: error.details,
+            };
+          }
           return {
             success: false,
             grossAmount: '0',
             netAmount: '0',
             commissionAmount: '0',
             commissionRate: 0,
+            error: getErrorMessage(error),
+          };
+        }
+      }
+    );
+  }
+
+  /**
+   * Refund a previously-settled payment through the PayBot facilitator.
+   *
+   * A refund is a thin typed wrapper over the facilitator's `POST /refund`
+   * endpoint — the facilitator owns the refund logic; the SDK performs NO
+   * on-chain work here. Mirrors {@link pay}'s contract: it NEVER throws and
+   * returns `{ success: false, status: 'failed', ... }` with an `errorCode` on
+   * any failure (4xx, network, or unexpected error).
+   *
+   * Idempotency mirrors {@link pay}: when {@link RefundRequest.idempotencyKey}
+   * is provided, the SDK sends an `X-Idempotency-Key` header and caches the
+   * successful RefundResult per-instance, so a repeat call with the same key
+   * short-circuits without a second network round-trip. Only successful refunds
+   * are cached (a failure may be retried to recover).
+   *
+   * Telemetry mirrors {@link pay}: the whole body runs in a `client.refund`
+   * span carrying `originalTxHash`, `amount`, and `bot_id`, plus `success` (and
+   * `refund_tx_hash` when present) on completion. A returned failure is an OK
+   * span with `success=false`; only thrown errors mark the span ERROR.
+   *
+   * @param request - The refund request (original tx hash, optional amount/reason/key).
+   * @returns A RefundResult; `success:false` on any failure (never throws).
+   *
+   * @example
+   * const res = await client.refund({ originalTxHash: '0xabc...', reason: 'duplicate charge' });
+   * if (!res.success) console.error(res.errorCode, res.error);
+   */
+  async refund(request: RefundRequest): Promise<RefundResult> {
+    const idempotencyKey = request.idempotencyKey;
+
+    // Idempotency: return a previously-cached successful result for the same
+    // key without a second network round-trip. Only success:true results are
+    // cached, so a cache hit is always a real prior success.
+    if (idempotencyKey !== undefined) {
+      const cached = this.refundIdempotencyCache.get(idempotencyKey);
+      if (cached !== undefined) {
+        return cached;
+      }
+    }
+
+    // Wrap the whole refund() body in the top-level span. A returned failure
+    // RefundResult is reported as an OK span with success=false (nothing was
+    // thrown); only thrown errors mark the span ERROR (handled in withSpan).
+    return withSpan(
+      this.telemetry,
+      'client.refund',
+      {
+        originalTxHash: request.originalTxHash,
+        // Span attributes must be primitives; fall back to '' when no amount.
+        amount: request.amount ?? '',
+        bot_id: this.config.botId,
+      },
+      async (refundSpan): Promise<RefundResult> => {
+        try {
+          let data: Record<string, unknown>;
+          try {
+            data = await this._request<Record<string, unknown>>('/refund', {
+              method: 'POST',
+              body: {
+                botId: this.config.botId,
+                originalTxHash: request.originalTxHash,
+                amount: request.amount,
+                reason: request.reason,
+              },
+              headers: idempotencyKey !== undefined
+                ? { 'X-Idempotency-Key': idempotencyKey }
+                : undefined,
+            });
+          } catch (error: unknown) {
+            // A typed PayBotApiError (e.g. core 4xx) becomes a returned failure
+            // RefundResult — never re-thrown — so callers can branch on the code.
+            if (error instanceof PayBotApiError) {
+              refundSpan?.setAttribute('success', false);
+              return {
+                success: false,
+                originalTxHash: request.originalTxHash,
+                status: 'failed',
+                error: error.message,
+                errorCode: error.code,
+                errorDetails: error.details,
+              };
+            }
+            throw error;
+          }
+
+          const refundTxHash = data.refundTxHash as string | undefined;
+          const status = (data.status as RefundResult['status'] | undefined) ?? 'pending';
+
+          refundSpan?.setAttribute('success', true);
+          if (refundTxHash) {
+            refundSpan?.setAttribute('refund_tx_hash', refundTxHash);
+          }
+
+          const result: RefundResult = {
+            success: true,
+            originalTxHash: request.originalTxHash,
+            refundTxHash,
+            status,
+            amount: (data.amount as string | undefined) ?? request.amount,
+            network: data.network as string | undefined,
+          };
+
+          // Cache only successful results so a retry with the same key short-
+          // circuits; failures are never cached (the caller may retry to recover).
+          if (idempotencyKey !== undefined) {
+            this.refundIdempotencyCache.set(idempotencyKey, result);
+          }
+
+          return result;
+        } catch (error: unknown) {
+          refundSpan?.setAttribute('success', false);
+          if (error instanceof PayBotApiError) {
+            return {
+              success: false,
+              originalTxHash: request.originalTxHash,
+              status: 'failed',
+              error: error.message,
+              errorCode: error.code,
+              errorDetails: error.details,
+            };
+          }
+          return {
+            success: false,
+            originalTxHash: request.originalTxHash,
+            status: 'failed',
             error: getErrorMessage(error),
           };
         }
@@ -517,6 +669,16 @@ export class PayBotClient {
     symbol = 'USDC',
     verifyingContract?: string
   ): Promise<string> {
+    // Guard: reject permit-only tokens (signingMethod !== 'eip3009') BEFORE any
+    // signature is produced — and before the mock-mode early return — so an
+    // eip2612 token (RLUSD/DAI) is a loud, deliberate config-time refusal rather
+    // than a silent on-chain failure. Defaults to 'eip3009' (USDC/EURC/PYUSD).
+    const tokenConfig = getToken(symbol);
+    const signingMethod = tokenConfig?.signingMethod ?? 'eip3009';
+    if (signingMethod !== 'eip3009') {
+      throw new PayBotUnsupportedSigningMethodError(symbol, signingMethod);
+    }
+
     if (!this.config.walletPrivateKey) {
       return `payer:${this.config.botId}`;
     }

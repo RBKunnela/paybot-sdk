@@ -127,6 +127,61 @@ export interface HealthResult {
 
 export type TrustLevel = 0 | 1 | 2 | 3 | 4 | 5;
 
+// ===== Refund Types =====
+
+/**
+ * Request to refund a previously-settled payment.
+ *
+ * A refund is modeled as a typed wrapper over the facilitator's `POST /refund`
+ * endpoint. The facilitator (core) owns the actual refund logic — the SDK is a
+ * thin typed client and performs NO on-chain work here.
+ */
+export interface RefundRequest {
+  /** Transaction hash of the original payment to refund. */
+  originalTxHash: string;
+  /**
+   * Optional partial refund amount (human-readable, e.g. `'0.05'`). When
+   * omitted, the facilitator refunds the full original amount.
+   */
+  amount?: string;
+  /** Optional human-readable reason for the refund (audit/context). */
+  reason?: string;
+  /**
+   * Optional idempotency key. When provided, the SDK sends an
+   * `X-Idempotency-Key` header and caches the successful result per
+   * PayBotClient instance: a repeat refund() with the same key returns the
+   * cached RefundResult without a second network round-trip.
+   */
+  idempotencyKey?: string;
+}
+
+/**
+ * Result of a {@link RefundRequest}.
+ *
+ * Mirrors {@link PaymentResult}'s never-throws contract: a failure is returned
+ * as `{ success: false, ... }` with an `errorCode`, never thrown.
+ */
+export interface RefundResult {
+  /** `true` when the facilitator accepted the refund. */
+  success: boolean;
+  /** Echo of the original payment's transaction hash. */
+  originalTxHash: string;
+  /** Transaction hash of the refund itself, when the facilitator reports one. */
+  refundTxHash?: string;
+  /** Refund settlement status reported by the facilitator. */
+  status: 'pending' | 'confirmed' | 'failed';
+  /** Refunded amount (as reported by the facilitator), when present. */
+  amount?: string;
+  /** Network the refund settled on, when reported. */
+  network?: string;
+  /** Human-readable error message on failure. */
+  error?: string;
+  /** Machine-readable error code from the server (e.g. 'TRUST_VIOLATION'). */
+  errorCode?: string;
+  /** Additional error context from the server. */
+  errorDetails?: Record<string, unknown>;
+}
+
 // ===== x402 v2 Protocol Types =====
 
 /**
@@ -419,6 +474,114 @@ export interface CommissionEntry {
   createdAt: string;
   /** When commission was forwarded (if applicable) */
   forwardedAt?: string;
+}
+
+// ===== CCTP V2 (Circle Cross-Chain Transfer Protocol) Types =====
+//
+// CCTP V2 is a USDC *transport* (burn-on-source → Circle Iris attestation →
+// mint-on-destination). It is ORTHOGONAL to the x402/MPP pay/verify/settle
+// flow — moving USDC across chains, not authorizing a payment. V2-native only:
+// CCTP V1 enters manual phase-out starting 2026-07-31, so this SDK never speaks
+// V1. See {@link CctpBridge}.
+
+/**
+ * Per-network CCTP V2 configuration: the CCTP integer domain id (distinct from
+ * the EVM chainId) plus the V2 contract addresses on that chain.
+ *
+ * CCTP V2 contracts are deployed at the SAME address across standard EVM chains
+ * via CREATE2 (the EDGE domain is the documented exception). The contract
+ * addresses are therefore typically identical per chain, but each network
+ * carries its own entry so an operator can override a single chain without
+ * touching the others.
+ */
+export interface CctpDomainConfig {
+  /**
+   * Circle's CCTP *domain* id for this chain — an integer enumeration Circle
+   * assigns (Ethereum=0, Avalanche=1, OP=2, Arbitrum=3, Base=6, Polygon=7).
+   * This is NOT the EVM chainId; the burn message routes by domain id.
+   */
+  readonly cctpDomain: number;
+  /**
+   * `TokenMessengerV2` contract address on this chain — the contract whose
+   * `depositForBurn` burns USDC on the source chain. `null` when the verified
+   * address is not yet seeded for this chain (operator must supply it; see
+   * {@link CctpBridge} constructor `domainOverrides`).
+   */
+  readonly tokenMessengerV2: string | null;
+  /**
+   * `MessageTransmitterV2` contract address on this chain — the contract whose
+   * `receiveMessage(message, attestation)` mints USDC on the destination chain.
+   * `null` when the verified address is not yet seeded (operator must supply).
+   */
+  readonly messageTransmitterV2: string | null;
+}
+
+/**
+ * Which CCTP V2 transfer speed to request.
+ *
+ * - `'standard'` — wait for source-chain finality before Circle attests
+ *   (cheapest, slowest).
+ * - `'fast'` — CCTP V2 Fast Transfer: Circle attests faster-than-finality for a
+ *   small bps fee. {@link CctpBurnResult.fee} surfaces the fee when the path
+ *   reports one.
+ */
+export type CctpTransferType = 'standard' | 'fast';
+
+/**
+ * Request to move USDC from one chain to another via CCTP V2.
+ */
+export interface CctpTransferRequest {
+  /** Amount in USDC base units (6 decimals), as a decimal string (e.g. `'1000000'` = 1 USDC). */
+  readonly amount: string;
+  /** Source network CAIP-2 id (e.g. `'eip155:8453'`). Must be CCTP-supported. */
+  readonly sourceNetwork: string;
+  /** Destination network CAIP-2 id (e.g. `'eip155:42161'`). Must be CCTP-supported. */
+  readonly destNetwork: string;
+  /** Recipient address on the destination chain that receives the minted USDC. */
+  readonly destAddress: string;
+  /** Transfer speed — `'standard'` (default) or `'fast'` (V2 Fast Transfer). */
+  readonly transferType?: CctpTransferType;
+}
+
+/**
+ * Result of the burn (`depositForBurn`) step on the source chain.
+ */
+export interface CctpBurnResult {
+  /** Transaction hash of the `depositForBurn` call on the source chain. */
+  readonly burnTxHash: string;
+  /**
+   * Keccak-256 hash of the CCTP message emitted by the burn. This is the key
+   * used to poll the Iris attestation service ({@link CctpBridge.getAttestation}).
+   */
+  readonly messageHash: string;
+  /** CCTP nonce of the burn message (unique per source domain). */
+  readonly nonce: string;
+  /**
+   * Fast-Transfer fee in USDC base units, when the `'fast'` path reported one.
+   * Absent for `'standard'` transfers (or when the path surfaced no fee).
+   */
+  readonly fee?: string;
+}
+
+/**
+ * Attestation status returned by Circle's Iris service for a burn message.
+ */
+export interface CctpAttestation {
+  /** `'pending'` while Iris is still attesting, `'complete'` when ready to mint. */
+  readonly status: 'pending' | 'complete';
+  /**
+   * The attestation signature blob (hex). Present only when `status` is
+   * `'complete'`; pass it to {@link CctpBridge.completeTransfer}.
+   */
+  readonly attestation?: string;
+}
+
+/**
+ * Result of the mint (`receiveMessage`) step on the destination chain.
+ */
+export interface CctpMintResult {
+  /** Transaction hash of the `receiveMessage` call on the destination chain. */
+  readonly mintTxHash: string;
 }
 
 // ===== Micropayment Batching Engine Types =====
