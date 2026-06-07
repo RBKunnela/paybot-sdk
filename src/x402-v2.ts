@@ -151,7 +151,10 @@ export class X402Handler {
    * Extract Payment-Intent header from HTTP headers
    */
   private extractPaymentIntentHeader(headers: Record<string, string>): string {
-    const header = headers['Payment-Intent'] || headers['payment-intent'];
+    // Case-insensitive lookup (CodeRabbit #14). The previous two hardcoded
+    // casings ('Payment-Intent' / 'payment-intent') missed valid variants like
+    // 'PAYMENT-INTENT' or 'Payment-intent' that HTTP allows.
+    const header = X402Handler.readHeaderCaseInsensitive(headers, 'Payment-Intent');
 
     if (!header) {
       throw new PayBotApiError(
@@ -707,15 +710,40 @@ export class X402Handler {
         );
       }
 
-      const receipt = (await response.json()) as Record<string, unknown>;
+      // A 2xx response can still carry a malformed/missing body. The non-2xx
+      // branch above already guards response.json(); the success branch must too,
+      // or a bad body raises a bare SyntaxError instead of a typed
+      // PayBotApiError (CodeRabbit #16).
+      let receipt: Record<string, unknown>;
+      try {
+        receipt = (await response.json()) as Record<string, unknown>;
+      } catch (error) {
+        throw new PayBotApiError(
+          `Invalid JSON in payment receipt: ${getErrorMessage(error)}`,
+          'INVALID_RECEIPT',
+          response.status,
+        );
+      }
+      if (
+        typeof receipt !== 'object' ||
+        receipt === null ||
+        typeof receipt.receiptId !== 'string' ||
+        receipt.receiptId.length === 0
+      ) {
+        throw new PayBotApiError(
+          'Payment receipt missing receiptId',
+          'INVALID_RECEIPT',
+          response.status,
+        );
+      }
 
       return {
-        receiptId: receipt.receiptId as string,
+        receiptId: receipt.receiptId,
         transactionId: receipt.transactionId as string | undefined,
-        status: receipt.status as 'pending' | 'confirmed' | 'failed',
+        status: (receipt.status as 'pending' | 'confirmed' | 'failed' | undefined) ?? 'pending',
         confirmedAt: receipt.confirmedAt ? new Date(receipt.confirmedAt as string) : undefined,
-        amount: receipt.amount as string,
-        network: receipt.network as string,
+        amount: (receipt.amount as string | undefined) ?? '0',
+        network: (receipt.network as string | undefined) ?? '',
         blockNumber: receipt.blockNumber as number | undefined,
         gasUsed: receipt.gasUsed as string | undefined,
       };

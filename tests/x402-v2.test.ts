@@ -676,6 +676,32 @@ describe('[UNIT] on402Response', () => {
       /Failed to parse Payment-Intent/,
     );
   });
+
+  // -------------------------------------------------------------------------
+  // CodeRabbit #14: legacy Payment-Intent header lookup must be fully
+  // case-insensitive (the old code checked only 'Payment-Intent' /
+  // 'payment-intent' and missed e.g. the all-caps 'PAYMENT-INTENT').
+  // -------------------------------------------------------------------------
+
+  it('[UNIT] on402Response — should read the legacy Payment-Intent header case-insensitively (CodeRabbit #14)', () => {
+    const handler = new X402Handler();
+    const intent: PaymentIntent = {
+      intentId: 'intent_ci',
+      protocol: 'x402',
+      requirements: buildRequirements(),
+      version: '2.0',
+      createdAt: FIXED_NOW.toISOString(),
+      expiresAt: new Date(FIXED_NOW.getTime() + 300_000).toISOString(),
+    };
+    const encoded = Buffer.from(JSON.stringify(intent)).toString('base64');
+
+    // All-caps header name — must still be found.
+    const response = build402Response({
+      headers: { 'PAYMENT-INTENT': `x402:v2:${encoded}` },
+    });
+    const payload = handler.on402Response(response);
+    expect(payload.paymentIntent.intentId).toBe('intent_ci');
+  });
 });
 
 describe('[UNIT] submitPayment', () => {
@@ -810,6 +836,58 @@ describe('[UNIT] submitPayment', () => {
     await expect(
       handler.submitPayment(signed, 'https://example.com/pay'),
     ).rejects.toThrow(/ECONNREFUSED/);
+
+    vi.unstubAllGlobals();
+  });
+
+  // -------------------------------------------------------------------------
+  // CodeRabbit #16: a 2xx response with a malformed/missing body must surface a
+  // typed PayBotApiError (INVALID_RECEIPT), not a raw SyntaxError or an
+  // undefined-receiptId Receipt.
+  // -------------------------------------------------------------------------
+
+  it('[UNIT] submitPayment — should throw INVALID_RECEIPT when a 2xx response body is not valid JSON (CodeRabbit #16)', async () => {
+    const handler = new X402Handler(TEST_PRIVATE_KEY);
+    const signed = buildSignedPayment();
+
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      json: async () => {
+        throw new SyntaxError('Unexpected token < in JSON');
+      },
+    });
+    vi.stubGlobal('fetch', fetchMock);
+
+    await expect(
+      handler.submitPayment(signed, 'https://example.com/pay'),
+    ).rejects.toMatchObject({
+      name: 'PayBotApiError',
+      code: 'INVALID_RECEIPT',
+      statusCode: 200,
+    });
+
+    vi.unstubAllGlobals();
+  });
+
+  it('[UNIT] submitPayment — should throw INVALID_RECEIPT when a 2xx receipt is missing receiptId (CodeRabbit #16)', async () => {
+    const handler = new X402Handler(TEST_PRIVATE_KEY);
+    const signed = buildSignedPayment();
+
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      json: async () => ({ status: 'confirmed', amount: '1000000' }), // no receiptId
+    });
+    vi.stubGlobal('fetch', fetchMock);
+
+    await expect(
+      handler.submitPayment(signed, 'https://example.com/pay'),
+    ).rejects.toMatchObject({
+      name: 'PayBotApiError',
+      code: 'INVALID_RECEIPT',
+      statusCode: 200,
+    });
 
     vi.unstubAllGlobals();
   });
