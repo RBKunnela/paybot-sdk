@@ -25,14 +25,15 @@ class FakeSpan:
     def __init__(self, name: str) -> None:
         self.name = name
         self.attributes: Dict[str, Any] = {}
-        self.statuses: List[Dict[str, Any]] = []
+        self.statuses: List[Any] = []
         self.exceptions: List[Any] = []
         self.ended = False
 
     def set_attribute(self, key: str, value: Any) -> None:
         self.attributes[key] = value
 
-    def set_status(self, status: Dict[str, Any]) -> None:
+    def set_status(self, status: Any) -> None:
+        # Accepts the dict fallback shape OR a real OTel Status (CodeRabbit #12).
         self.statuses.append(status)
 
     def record_exception(self, err: Any) -> None:
@@ -50,6 +51,25 @@ class FakeTracer:
         span = FakeSpan(name)
         self.spans.append(span)
         return span
+
+
+def _status_code(status: Any) -> int:
+    """Extract the numeric status code from either the dict fallback shape or a
+    real OpenTelemetry ``Status`` (CodeRabbit #12 made with_span emit whichever
+    is appropriate for the environment)."""
+    if isinstance(status, dict):
+        return status["code"]
+    # Real OTel Status: map StatusCode.OK/ERROR back to the numeric constants.
+    from opentelemetry.trace import StatusCode
+
+    return STATUS_OK if status.status_code == StatusCode.OK else STATUS_ERROR
+
+
+def _status_message(status: Any) -> str:
+    """Extract the message from either status shape."""
+    if isinstance(status, dict):
+        return status.get("message", "")
+    return status.description or ""
 
 
 def test_fake_tracer_is_structurally_a_paybot_tracer():
@@ -100,7 +120,7 @@ async def test_success_sets_ok_status_and_ends():
     assert span.name == "paybot.client.pay"  # default prefix applied
     assert span.attributes["network"] == "eip155:8453"
     assert span.attributes["late"] == "yes"
-    assert span.statuses == [{"code": STATUS_OK}]
+    assert [_status_code(s) for s in span.statuses] == [STATUS_OK]
     assert span.exceptions == []
     assert span.ended is True
 
@@ -128,7 +148,7 @@ async def test_failure_object_still_ok_span():
 
     result = await with_span(cfg, "client.pay", {}, body)
     assert result == {"success": False}
-    assert tracer.spans[0].statuses == [{"code": STATUS_OK}]
+    assert [_status_code(s) for s in tracer.spans[0].statuses] == [STATUS_OK]
 
 
 # ── configured path: error ───────────────────────────────────────────────
@@ -148,6 +168,56 @@ async def test_error_records_exception_sets_error_status_and_ends_then_reraises(
     span = tracer.spans[0]
     assert len(span.exceptions) == 1
     assert isinstance(span.exceptions[0], RuntimeError)
-    assert span.statuses[-1]["code"] == STATUS_ERROR
-    assert "kaboom" in span.statuses[-1]["message"]
+    assert _status_code(span.statuses[-1]) == STATUS_ERROR
+    assert "kaboom" in _status_message(span.statuses[-1])
     assert span.ended is True  # ended even on error (finally)
+
+
+# ── OTel status adapter (CodeRabbit #12) ──────────────────────────────────
+
+
+def test_status_helpers_use_dict_shape_without_otel(monkeypatch):
+    # CodeRabbit #12: on the no-OTel path the status helpers emit the dict
+    # fallback shape that the SDK's structural stub spans accept. Forced via
+    # monkeypatch so the test runs deterministically whether or not OTel is
+    # installed in the env (no skip).
+    import paybot_sdk.telemetry as tel
+
+    monkeypatch.setattr(tel, "_OTEL", False)
+    assert tel._ok_status() == {"code": STATUS_OK}
+    err = tel._error_status("nope")
+    assert err["code"] == STATUS_ERROR
+    assert err["message"] == "nope"
+
+
+def test_status_helpers_use_real_otel_status_when_installed():
+    # CodeRabbit #12: with OpenTelemetry installed, the helpers return real
+    # Status objects (not a bare dict) that a real OTel Span.set_status accepts.
+    # opentelemetry-api is a declared test dependency, so this always runs.
+    from opentelemetry.trace import Status, StatusCode
+
+    from paybot_sdk.telemetry import _error_status, _ok_status
+
+    ok = _ok_status()
+    assert isinstance(ok, Status)
+    assert ok.status_code == StatusCode.OK
+    err = _error_status("boom")
+    assert isinstance(err, Status)
+    assert err.status_code == StatusCode.ERROR
+    assert err.description == "boom"
+
+
+@pytest.mark.asyncio
+async def test_with_span_dict_status_reaches_stub_span_without_otel(monkeypatch):
+    # The no-OTel dict status must actually reach the stub span via with_span.
+    import paybot_sdk.telemetry as tel
+
+    monkeypatch.setattr(tel, "_OTEL", False)
+    tracer = FakeTracer()
+    cfg = TelemetryConfig(tracer=tracer)
+
+    async def body(span):
+        return "ok"
+
+    await tel.with_span(cfg, "client.pay", {}, body)
+    assert tracer.spans[0].statuses == [{"code": STATUS_OK}]

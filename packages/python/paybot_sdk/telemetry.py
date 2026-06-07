@@ -2,10 +2,16 @@
 
 Mirrors ``src/telemetry.ts``. The SDK does NOT depend on OpenTelemetry. Instead
 it defines minimal structural :class:`~typing.Protocol` interfaces
-(:class:`PayBotTracer` / :class:`PayBotSpan`) duck-compatible with a real OTel
-``Tracer`` / ``Span``. Callers who want tracing inject their own tracer; callers
-who do not pass a tracer pay zero overhead — :func:`with_span` runs the wrapped
-function directly with no span allocation.
+(:class:`PayBotTracer` / :class:`PayBotSpan`) that a real OTel ``Tracer`` /
+``Span`` satisfies (their surface is a superset). Callers who want tracing inject
+their own tracer; callers who do not pass a tracer pay zero overhead —
+:func:`with_span` runs the wrapped function directly with no span allocation.
+
+Span STATUS is the one place the two worlds differ: a real OTel ``Span.set_status``
+requires a ``Status`` object, NOT a bare dict. When OpenTelemetry is importable
+the SDK sets a real ``Status`` (see :func:`_ok_status` / :func:`_error_status`);
+otherwise it falls back to a ``{'code': int, 'message'?: str}`` dict for the
+structural stub spans used in tests.
 
 Dependencies: none (structural typing only — ``typing.Protocol``).
 Used by: ``paybot_sdk.client`` (``PayBotClient.pay`` instrumentation).
@@ -40,12 +46,43 @@ T = TypeVar("T")
 
 AttrValue = Union[str, int, float, bool]
 
-# OpenTelemetry ``SpanStatusCode`` numeric values.
+# OpenTelemetry ``SpanStatusCode`` numeric values (used by the dict fallback
+# shape when OpenTelemetry is NOT installed).
 STATUS_OK = 1
 STATUS_ERROR = 2
 
 # Default span-name prefix when ``TelemetryConfig.prefix`` is omitted.
 DEFAULT_PREFIX = "paybot."
+
+
+# Real OpenTelemetry Status/StatusCode when available, so spans emitted onto a
+# genuine OTel tracer carry the type OTel expects (CodeRabbit #12). When OTel is
+# absent we fall back to the legacy dict shape, which suits the SDK's structural
+# stub spans. `set_status` on a real OTel Span requires a `Status` object — a
+# bare dict was NOT duck-compatible despite the old docstring's claim.
+try:  # pragma: no cover - import availability is environment-dependent
+    from opentelemetry.trace import Status as _OTelStatus
+    from opentelemetry.trace import StatusCode as _OTelStatusCode
+
+    _OTEL = True
+except Exception:  # noqa: BLE001 - any import failure → dict fallback
+    _OTelStatus = None  # type: ignore[assignment]
+    _OTelStatusCode = None  # type: ignore[assignment]
+    _OTEL = False
+
+
+def _ok_status() -> Any:
+    """OK span status: a real OTel ``Status`` when available, else the dict shape."""
+    if _OTEL:
+        return _OTelStatus(_OTelStatusCode.OK)
+    return {"code": STATUS_OK}
+
+
+def _error_status(message: str) -> Any:
+    """ERROR span status: a real OTel ``Status`` when available, else the dict shape."""
+    if _OTEL:
+        return _OTelStatus(_OTelStatusCode.ERROR, message)
+    return {"code": STATUS_ERROR, "message": message}
 
 
 @runtime_checkable
@@ -59,8 +96,10 @@ class PayBotSpan(Protocol):
     def set_attribute(self, key: str, value: AttrValue) -> None:
         """Attach a single attribute to the span."""
 
-    def set_status(self, status: Dict[str, Any]) -> None:
-        """Set the span status (OTel-style ``{'code': int, 'message'?: str}``)."""
+    def set_status(self, status: Any) -> None:
+        """Set the span status. Accepts a real OpenTelemetry ``Status`` (when OTel
+        is installed) or the dict fallback shape ``{'code': int, 'message'?: str}``
+        used by the SDK's structural stub spans."""
 
     def record_exception(self, err: Any) -> None:
         """Record an exception on the span."""
@@ -145,11 +184,11 @@ async def with_span(
 
     try:
         result = await fn(span)
-        span.set_status({"code": STATUS_OK})
+        span.set_status(_ok_status())
         return result
     except BaseException as error:  # noqa: BLE001 - record then re-raise unchanged
         span.record_exception(error)
-        span.set_status({"code": STATUS_ERROR, "message": _error_message(error)})
+        span.set_status(_error_status(_error_message(error)))
         raise
     finally:
         span.end()
