@@ -33,6 +33,11 @@ from .errors import (
     map_http_error,
 )
 from .micropayment_engine import MicropaymentEngine
+from .middleware import (
+    Paybot402Config,
+    Paybot402Middleware,
+    paybot_402_dependency,
+)
 from .mpp_seam import (
     MppAdapter,
     MppCapability,
@@ -118,6 +123,10 @@ __all__ = [
     # x402 v2 + engines
     "X402Handler",
     "MicropaymentEngine",
+    # framework middleware (from main)
+    "Paybot402Config",
+    "Paybot402Middleware",
+    "paybot_402_dependency",
     # AP2 + MPP
     "Ap2Adapter",
     "Ap2PaymentMandate",

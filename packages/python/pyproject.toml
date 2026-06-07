@@ -36,11 +36,26 @@ signing = [
 ]
 mcp = [
     # Will be required by the MCP integration mirror of paybot-mcp; not used yet.
-    "mcp>=1.27.1,<2.0",
+    "mcp>=1.27.2,<2.0",
+]
+web = [
+    # Required for the FastAPI dependency variant of the x402 payment-wall
+    # middleware (paybot_402_dependency). The raw-ASGI Paybot402Middleware needs
+    # no third-party import. FastAPI is lazy-imported, so it is NOT a hard dep.
+    "fastapi>=0.110",
+]
+dev = [
+    # Convenience aggregate: signing + web + test in one extra for contributors.
+    "eth-account>=0.13,<1.0",
+    "eth-typing>=6.0.0,<7",
+    "fastapi>=0.110",
+    "pytest>=8",
+    "pytest-asyncio>=1.4.0",
+    "respx>=0.21",
 ]
 test = [
     "pytest>=8",
-    "pytest-asyncio>=0.23",
+    "pytest-asyncio>=1.4.0",
     "respx>=0.21",  # httpx mock for the test suite
 ]
 
