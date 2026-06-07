@@ -182,9 +182,26 @@ class PayBotClient:
         # the PayBotClient is GC'd or explicitly via `.close()`.
         self._http = httpx.AsyncClient(timeout=self._timeout_ms / 1000)
 
-    async def close(self) -> None:
-        """Explicitly close the underlying httpx client."""
+    async def aclose(self) -> None:
+        """Explicitly close the underlying httpx client and release its
+        connection pool. Idempotent — safe to call more than once.
+
+        :example:
+            >>> await client.aclose()
+            >>> client.is_closed
+            True
+        """
         await self._http.aclose()
+
+    async def close(self) -> None:
+        """Deprecated alias for :meth:`aclose`. Retained for backward
+        compatibility; prefer ``aclose`` (matches httpx's naming)."""
+        await self.aclose()
+
+    @property
+    def is_closed(self) -> bool:
+        """Whether the underlying httpx client has been closed."""
+        return self._http.is_closed
 
     # ── Shared request helper ────────────────────────────────────────────
 

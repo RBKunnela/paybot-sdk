@@ -78,9 +78,34 @@ def test_get_unknown_raises():
 def test_remove_bot():
     pool = _pool()
     pool.add_bot(PoolBotOptions(bot_id="bot-a"))
-    assert pool.remove_bot("bot-a") is True
-    assert pool.remove_bot("bot-a") is False
+    # CodeRabbit #2: sync remove_bot leaks the client and warns about it.
+    with pytest.warns(ResourceWarning, match="aclose_bot"):
+        assert pool.remove_bot("bot-a") is True
+    assert pool.remove_bot("bot-a") is False  # absent → no warning, False
     assert not pool.has_bot("bot-a")
+
+
+@pytest.mark.asyncio
+async def test_aclose_bot_closes_client_and_removes():
+    # CodeRabbit #2: aclose_bot closes the bot's httpx client (no leak).
+    pool = _pool()
+    client = pool.add_bot(PoolBotOptions(bot_id="bot-a"))
+    assert client.is_closed is False
+    assert await pool.aclose_bot("bot-a") is True
+    assert client.is_closed is True
+    assert not pool.has_bot("bot-a")
+    assert await pool.aclose_bot("bot-a") is False  # already gone
+
+
+@pytest.mark.asyncio
+async def test_aclose_closes_all_clients():
+    pool = _pool()
+    a = pool.add_bot(PoolBotOptions(bot_id="bot-a"))
+    b = pool.add_bot(PoolBotOptions(bot_id="bot-b"))
+    await pool.aclose()
+    assert a.is_closed and b.is_closed
+    assert pool.size == 0
+    await pool.aclose()  # idempotent
 
 
 def test_per_bot_signing_isolation():

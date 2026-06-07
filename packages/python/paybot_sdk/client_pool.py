@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import datetime
 import math
+import warnings
 from dataclasses import dataclass
 from typing import Dict, List, Optional
 
@@ -172,11 +173,51 @@ class PayBotClientPool:
         return entry.client
 
     def remove_bot(self, bot_id: str) -> bool:
-        """Remove a bot from the pool.
+        """Remove a bot from the pool WITHOUT closing its HTTP client.
+
+        Kept synchronous for backward compatibility, but it leaks the bot's
+        ``httpx.AsyncClient`` connection pool (CodeRabbit #2): dropping the last
+        reference does not close the transport. Prefer the async
+        :meth:`aclose_bot`, which closes the client before removing it.
 
         :returns: ``True`` if a bot was removed, ``False`` if it was not present.
         """
-        return self._bots.pop(bot_id, None) is not None
+        entry = self._bots.pop(bot_id, None)
+        if entry is None:
+            return False
+        warnings.warn(
+            "PayBotClientPool.remove_bot does not close the bot's HTTP client and "
+            "leaks its connection pool; use 'await pool.aclose_bot(bot_id)' instead.",
+            ResourceWarning,
+            stacklevel=2,
+        )
+        return True
+
+    async def aclose_bot(self, bot_id: str) -> bool:
+        """Remove a bot AND close its underlying HTTP client.
+
+        The leak-free counterpart to :meth:`remove_bot` (CodeRabbit #2).
+
+        :param bot_id: The bot to remove and close.
+        :returns: ``True`` if a bot was removed (and closed), ``False`` if it was
+            not present.
+        """
+        entry = self._bots.pop(bot_id, None)
+        if entry is None:
+            return False
+        await entry.client.aclose()
+        return True
+
+    async def aclose(self) -> None:
+        """Close every bot's HTTP client and empty the pool.
+
+        Idempotent. Call this when the pool is no longer needed so no bot's
+        ``httpx.AsyncClient`` connection pool is leaked.
+        """
+        entries = list(self._bots.values())
+        self._bots.clear()
+        for entry in entries:
+            await entry.client.aclose()
 
     def has_bot(self, bot_id: str) -> bool:
         """Whether a bot with this id is in the pool."""
