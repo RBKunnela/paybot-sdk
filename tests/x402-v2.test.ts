@@ -278,6 +278,45 @@ describe('[UNIT] signMPP (via signPayment protocol=mpp)', () => {
   });
 
   // -------------------------------------------------------------------------
+  // Test 4b: signMPP — signature MUST recover from the SERIALIZED signedData
+  // (CodeRabbit #15). This is the verifier-on-the-wire check: reconstruct the
+  // EIP-712 message from exactly the fields in `signedData` (not the in-memory
+  // signing inputs) and recover the signer. Pre-fix, signedData.expires was
+  // `now` while the signed message used `now + 3600`, so this recovery yielded
+  // a DIFFERENT (garbage) address — every MPP signature was unverifiable.
+  // -------------------------------------------------------------------------
+
+  it('[UNIT] signMPP — signature must recover the signer from the on-the-wire signedData fields (CodeRabbit #15)', async () => {
+    const handler = new X402Handler(TEST_PRIVATE_KEY);
+    const payload = buildPayload('mpp');
+
+    const signed = await handler.signPayment(payload);
+    const sd = signed.signedData as Record<string, unknown>;
+
+    // Reconstruct the typed-data message PURELY from serialized signedData —
+    // exactly what a relying party receiving the wire payload would do.
+    const recovered = await recoverTypedDataAddress({
+      domain: buildMppDomain(sd.recipient as string),
+      types: MPP_TYPES,
+      primaryType: 'PaymentAuthorization',
+      message: {
+        payer: sd.payer as `0x${string}`,
+        recipient: sd.recipient as `0x${string}`,
+        amount: BigInt(sd.amount as string),
+        nonce: sd.nonce as `0x${string}`,
+        expires: BigInt(sd.expires as string),
+        paymentIntent: sd.paymentIntent as string,
+      },
+      signature: sd.signature as `0x${string}`,
+    });
+
+    expect(recovered.toLowerCase()).toBe(TEST_ACCOUNT_ADDRESS.toLowerCase());
+    // And the serialized expiry is the 1-hour window that was actually signed.
+    const nowSec = BigInt(Math.floor(FIXED_NOW.getTime() / 1000));
+    expect(sd.expires).toBe((nowSec + 3600n).toString());
+  });
+
+  // -------------------------------------------------------------------------
   // Test 5: signMPP — graceful fallback when intentId is missing
   // -------------------------------------------------------------------------
 
@@ -307,6 +346,28 @@ describe('[UNIT] signMPP (via signPayment protocol=mpp)', () => {
       signature: signed.signature as `0x${string}`,
     });
     expect(ok).toBe(true);
+
+    // CodeRabbit #15: the SERIALIZED paymentIntent must also be 'unknown' (not
+    // a raw undefined/empty), so a wire verifier recovers the signer. Pre-fix
+    // signedData.paymentIntent serialized the raw empty/undefined intentId,
+    // diverging from the signed 'unknown'.
+    const sd = signed.signedData as Record<string, unknown>;
+    expect(sd.paymentIntent).toBe('unknown');
+    const recovered = await recoverTypedDataAddress({
+      domain: buildMppDomain(sd.recipient as string),
+      types: MPP_TYPES,
+      primaryType: 'PaymentAuthorization',
+      message: {
+        payer: sd.payer as `0x${string}`,
+        recipient: sd.recipient as `0x${string}`,
+        amount: BigInt(sd.amount as string),
+        nonce: sd.nonce as `0x${string}`,
+        expires: BigInt(sd.expires as string),
+        paymentIntent: sd.paymentIntent as string,
+      },
+      signature: sd.signature as `0x${string}`,
+    });
+    expect(recovered.toLowerCase()).toBe(TEST_ACCOUNT_ADDRESS.toLowerCase());
   });
 
   // -------------------------------------------------------------------------

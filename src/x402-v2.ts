@@ -370,6 +370,15 @@ export class X402Handler {
 
     const nonce = generateEIP3009Nonce();
     const nowSeconds = BigInt(Math.floor(Date.now() / 1000));
+    // Single source of truth for the fields that go into BOTH the signed message
+    // and the serialized signedData (CodeRabbit #15). Previously the signed
+    // message used `nowSeconds + 3600` while signedData serialized `nowSeconds`
+    // (a 3600s divergence), and the signed paymentIntent fell back to 'unknown'
+    // while signedData serialized the raw (possibly undefined) intentId. Either
+    // mismatch makes the EIP-712 signature unrecoverable against the data on the
+    // wire — every MPP signature was effectively unverifiable.
+    const expires = nowSeconds + BigInt(3600);
+    const paymentIntent = intentId || 'unknown';
 
     const signature = await account.signTypedData({
       domain,
@@ -389,8 +398,8 @@ export class X402Handler {
         recipient: requirements.payTo as `0x${string}`,
         amount: BigInt(requirements.amount),
         nonce,
-        expires: nowSeconds + BigInt(3600),
-        paymentIntent: intentId || 'unknown',
+        expires,
+        paymentIntent,
       },
     });
 
@@ -399,8 +408,8 @@ export class X402Handler {
       recipient: requirements.payTo,
       amount: requirements.amount,
       nonce,
-      expires: nowSeconds.toString(),
-      paymentIntent: intentId,
+      expires: expires.toString(),
+      paymentIntent,
       signature,
     };
 
