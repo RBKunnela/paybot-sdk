@@ -47,11 +47,14 @@ from .types import (
     CommissionSummary,
     HealthResult,
     LimitsConfig,
+    LoginResult,
+    OperatorRef,
     PayBotConfig,
     PaymentRequest,
     PaymentResult,
     RefundResult,
     RegisterResult,
+    SignupResult,
     TransactionHistoryItem,
     TrustLevel,
 )
@@ -131,6 +134,36 @@ def _as_list(data: Any) -> list:
             if isinstance(value, list):
                 return value
     return []
+
+
+def _safe_json(response: httpx.Response) -> Dict[str, Any]:
+    """Parse a response body as a dict, returning ``{}`` on any decode failure."""
+    try:
+        data = response.json()
+    except Exception:  # noqa: BLE001
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+def _raise_if_not_ok(
+    response: httpx.Response,
+    data: Dict[str, Any],
+    default_message: str,
+    default_code: str,
+) -> None:
+    """Raise a :class:`PayBotApiError` when ``response`` is not 2xx (auth helpers).
+
+    Preserves the server-provided ``error``/``code``/``details`` when present,
+    else falls back to the supplied defaults.
+    """
+    if 200 <= response.status_code < 300:
+        return
+    raise PayBotApiError(
+        data.get("error") or default_message,
+        data.get("code") or default_code,
+        response.status_code,
+        data.get("details"),
+    )
 
 
 class PayBotClient:
@@ -496,22 +529,24 @@ class PayBotClient:
 
             amount_base_units = self._to_base_units(request.amount, token.decimals)
 
-            # Mock mode: payer:<botId> placeholder. Real mode: sign EIP-3009.
-            if self._wallet_private_key is None:
-                payload_string: Optional[str] = f"payer:{self._bot_id}"
-            else:
-                async def _sign(_span: Optional[PayBotSpan]) -> str:
-                    return await self._sign_payload(
-                        request=request,
-                        amount_base_units=amount_base_units,
-                        token_contract=token_contract,
-                        network_id=network_id,
-                        symbol=symbol,
-                    )
-
-                payload_string = await with_span(
-                    self._telemetry, "x402.sign", {"network": network_id}, _sign
+            # The x402.sign span wraps payload construction in BOTH modes so the
+            # span tree is identical regardless of mock vs real (parity with the
+            # main-released span tree). Mock mode: payer:<botId> placeholder.
+            # Real mode: EIP-3009 sign.
+            async def _sign(_span: Optional[PayBotSpan]) -> str:
+                if self._wallet_private_key is None:
+                    return f"payer:{self._bot_id}"
+                return await self._sign_payload(
+                    request=request,
+                    amount_base_units=amount_base_units,
+                    token_contract=token_contract,
+                    network_id=network_id,
+                    symbol=symbol,
                 )
+
+            payload_string = await with_span(
+                self._telemetry, "x402.sign", {"network": network_id}, _sign
+            )
 
             payload_body: Dict[str, Any] = {
                 "x402Version": 1,
@@ -534,9 +569,11 @@ class PayBotClient:
                 else None
             )
 
-            # Step 1: /verify
-            try:
-                verify_data = await self._request(
+            # Step 1: /verify (challenge) — wrapped in its own span so the pay
+            # span tree mirrors the two-step verify→settle flow (parity with the
+            # main-released span tree: x402.challenge + x402.settle).
+            async def _verify(_span: Optional[PayBotSpan]):
+                return await self._request(
                     "/verify",
                     method="POST",
                     body={
@@ -545,6 +582,11 @@ class PayBotClient:
                         "requirements": requirements,
                     },
                     extra_headers=extra_headers,
+                )
+
+            try:
+                verify_data = await with_span(
+                    self._telemetry, "x402.challenge", {}, _verify
                 )
             except PayBotApiError as e:
                 _set_attr(pay_span, "success", False)
@@ -558,9 +600,9 @@ class PayBotClient:
                     "Facilitator did not return a settlementToken",
                 )
 
-            # Step 2: /settle
-            try:
-                settle_data = await self._request(
+            # Step 2: /settle — own span.
+            async def _settle(_span: Optional[PayBotSpan]):
+                return await self._request(
                     "/settle",
                     method="POST",
                     body={
@@ -570,6 +612,11 @@ class PayBotClient:
                         "requirements": verify_data.get("modifiedRequirements", requirements),
                         "commission": verify_data.get("commission"),
                     },
+                )
+
+            try:
+                settle_data = await with_span(
+                    self._telemetry, "x402.settle", {}, _settle
                 )
             except PayBotApiError as e:
                 _set_attr(pay_span, "success", False)
@@ -878,6 +925,116 @@ class PayBotClient:
             "key_id": data.get("keyId", key_id),
             "active": data.get("active", False),
         }
+
+    # ── Auth: static methods (pre-client-creation; client.ts:670-792) ─────
+
+    @staticmethod
+    async def signup(
+        email: str,
+        password: str,
+        *,
+        facilitator_url: Optional[str] = None,
+        bot_id: Optional[str] = None,
+    ) -> SignupResult:
+        """One-call signup: register → login → create API key → register bot.
+
+        Endpoint sequence: POST ``/auth/register`` → POST ``/auth/login`` → POST
+        ``/api-keys`` (Bearer) → POST ``/bots`` (X-API-Key). Standalone — no
+        client instance needed; uses a throwaway ``httpx.AsyncClient``.
+
+        :returns: A :class:`SignupResult` with the operator id, API key, and bot id.
+        :raises PayBotApiError: with a stage-specific code on any non-2xx response
+            (``REGISTRATION_FAILED``, ``LOGIN_FAILED``, ``KEY_CREATION_FAILED``,
+            ``BOT_REGISTRATION_FAILED``).
+        """
+        base_url = (facilitator_url or DEFAULT_FACILITATOR_URL).rstrip("/")
+        resolved_bot_id = bot_id or "default"
+
+        async with httpx.AsyncClient() as http:
+            # 1. Register operator
+            register_res = await http.post(
+                f"{base_url}/auth/register", json={"email": email, "password": password}
+            )
+            register_data = _safe_json(register_res)
+            _raise_if_not_ok(
+                register_res, register_data, "Registration failed", "REGISTRATION_FAILED"
+            )
+            operator_id = register_data["operatorId"]
+
+            # 2. Login to get JWT
+            login_res = await http.post(
+                f"{base_url}/auth/login", json={"email": email, "password": password}
+            )
+            login_data = _safe_json(login_res)
+            _raise_if_not_ok(login_res, login_data, "Login failed", "LOGIN_FAILED")
+            access_token = login_data["accessToken"]
+
+            # 3. Create API key
+            key_res = await http.post(
+                f"{base_url}/api-keys",
+                json={"operatorId": operator_id, "label": "default", "permissions": "all"},
+                headers={"Authorization": f"Bearer {access_token}"},
+            )
+            key_data = _safe_json(key_res)
+            _raise_if_not_ok(
+                key_res, key_data, "API key creation failed", "KEY_CREATION_FAILED"
+            )
+            api_key = key_data["key"]
+
+            # 4. Register default bot
+            bot_res = await http.post(
+                f"{base_url}/bots",
+                json={"botId": resolved_bot_id, "trustLevel": 1},
+                headers={"X-API-Key": api_key},
+            )
+            if bot_res.status_code < 200 or bot_res.status_code >= 300:
+                bot_data = _safe_json(bot_res)
+                _raise_if_not_ok(
+                    bot_res, bot_data, "Bot registration failed", "BOT_REGISTRATION_FAILED"
+                )
+
+        return SignupResult(
+            operator_id=operator_id,
+            api_key=api_key,
+            bot_id=resolved_bot_id,
+            message=(
+                "Save your API key — it is shown only once. "
+                "Use it to create a PayBotClient."
+            ),
+        )
+
+    @staticmethod
+    async def login(
+        email: str,
+        password: str,
+        *,
+        facilitator_url: Optional[str] = None,
+    ) -> LoginResult:
+        """Login with email + password, returning JWT tokens.
+
+        :returns: A :class:`LoginResult` with access/refresh tokens + operator info.
+        :raises PayBotApiError: code ``LOGIN_FAILED`` on a non-2xx response.
+        """
+        base_url = (facilitator_url or DEFAULT_FACILITATOR_URL).rstrip("/")
+        async with httpx.AsyncClient() as http:
+            res = await http.post(
+                f"{base_url}/auth/login", json={"email": email, "password": password}
+            )
+            data = _safe_json(res)
+            _raise_if_not_ok(res, data, "Login failed", "LOGIN_FAILED")
+
+        operator = data["operator"]
+        return LoginResult(
+            access_token=data["accessToken"],
+            refresh_token=data["refreshToken"],
+            expires_in=data["expiresIn"],
+            operator=OperatorRef(
+                id=operator["id"],
+                email=operator["email"],
+                tier=operator["tier"],
+                display_name=operator.get("displayName"),
+            ),
+        )
 
     # ── Internal helpers ─────────────────────────────────────────────────
 

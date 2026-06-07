@@ -17,6 +17,7 @@ from paybot_sdk.networks import (
     EIP712_DOMAINS,
     NETWORKS,
     USDC_CONFIG,
+    TokenConfig,
     get_eip712_domain,
     get_supported_tokens,
     get_token,
@@ -60,12 +61,17 @@ def test_get_token_unknown_returns_none():
 
 
 def test_registry_carries_signing_method_and_version():
-    # eip3009 tokens
-    assert get_token("PYUSD").signing_method == "eip3009"
-    # eip2612 documented-rejection tokens
-    assert get_token("RLUSD").signing_method == "eip2612"
-    assert get_token("DAI").signing_method == "eip2612"
+    # Phase-4 reconciliation: the registry is TS-faithful (src/networks.ts) =
+    # USDC/EURC/DAI only, no PYUSD/RLUSD, and DAI is signable (eip3009) under its
+    # own "Dai Stablecoin" domain — TS has no eip2612 rejection concept. The
+    # signing_method + eip712_version fields are retained for the #11 guard.
+    assert get_token("PYUSD") is None
+    assert get_token("RLUSD") is None
+    assert get_token("USDC").signing_method == "eip3009"
+    assert get_token("EURC").signing_method == "eip3009"
+    assert get_token("DAI").signing_method == "eip3009"
     assert get_token("DAI").decimals == 18
+    assert get_token("DAI").eip712_name == "Dai Stablecoin"
     assert get_token("USDC").eip712_version == "2"
 
 
@@ -165,16 +171,28 @@ def test_eip712_unknown_token_and_unsupported_network():
     assert get_eip712_domain("eip155:1", "EURC") is None
 
 
-def test_eip712_eip2612_token_raises_unsupported_signing_method():
-    # CodeRabbit #11: get_eip712_domain builds an EIP-3009 domain. eip2612
-    # (permit) tokens must NOT be silently signed as EIP-3009 — they raise the
-    # previously-dead PayBotUnsupportedSigningMethodError. The check precedes
-    # address resolution, so it fires regardless of network.
-    for symbol in ("DAI", "RLUSD"):
-        with pytest.raises(PayBotUnsupportedSigningMethodError) as exc:
-            get_eip712_domain("eip155:8453", symbol)
-        assert exc.value.code == "UNSUPPORTED_SIGNING_METHOD"
-        assert exc.value.details.get("signingMethod") == "eip2612"
+def test_eip712_non_eip3009_token_raises_unsupported_signing_method(monkeypatch):
+    # CodeRabbit #11: get_eip712_domain builds an EIP-3009 domain, so a token
+    # whose signing_method is NOT eip3009 must be rejected (the previously-dead
+    # PayBotUnsupportedSigningMethodError) rather than silently signed as
+    # EIP-3009. The TS-faithful registry has no eip2612 token, so we inject a
+    # synthetic one to exercise the guard; the check precedes address resolution.
+    import paybot_sdk.networks as net
+
+    fake = TokenConfig(
+        symbol="FAKE",
+        decimals=18,
+        name="Permit Token",
+        signing_method="eip2612",
+        eip712_name="Permit Token",
+        eip712_version="1",
+        address_by_network={"eip155:8453": "0x000000000000000000000000000000000000fAkE"},
+    )
+    monkeypatch.setitem(net.TOKENS, "FAKE", fake)
+    with pytest.raises(PayBotUnsupportedSigningMethodError) as exc:
+        get_eip712_domain("eip155:8453", "FAKE")
+    assert exc.value.code == "UNSUPPORTED_SIGNING_METHOD"
+    assert exc.value.details.get("signingMethod") == "eip2612"
 
 
 # ── pay({token}) integration ─────────────────────────────────────────────
