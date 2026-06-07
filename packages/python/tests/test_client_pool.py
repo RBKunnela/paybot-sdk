@@ -251,3 +251,67 @@ async def test_pay_as_unknown_bot_raises():
     pool = _pool()
     with pytest.raises(ValueError, match="unknown bot"):
         await pool.pay_as("nope", _req("1"))
+
+
+# ── treasury concurrency (CodeRabbit #4) ──────────────────────────────────
+
+
+def _ok_result() -> "object":
+    from paybot_sdk.types import PaymentResult
+
+    return PaymentResult(
+        success=True,
+        gross_amount="0",
+        net_amount="0",
+        commission_amount="0",
+        commission_rate=0,
+    )
+
+
+@pytest.mark.asyncio
+async def test_pay_as_concurrent_never_overruns_limit():
+    import asyncio
+
+    # Limit admits exactly 5 of 10 concurrent $10 spends. Each stubbed pay()
+    # yields control (await asyncio.sleep(0)) so all coroutines interleave
+    # between the limit check and the spend record — the exact window the lock
+    # must close. Without reserve-under-lock, every caller would pass can_spend()
+    # and the treasury would overrun.
+    pool = _pool(shared_daily_limit_usd=50.0)
+    client = pool.add_bot(PoolBotOptions(bot_id="bot-a"))
+
+    async def fake_pay(_request):
+        await asyncio.sleep(0)  # yield point inside the "network" call
+        return _ok_result()
+
+    client.pay = fake_pay  # type: ignore[assignment]
+
+    results = await asyncio.gather(*[pool.pay_as("bot-a", _req("10")) for _ in range(10)])
+
+    successes = [r for r in results if r.success]
+    rejections = [r for r in results if not r.success]
+    assert len(successes) == 5
+    assert all(r.error_code == "TREASURY_EXCEEDED" for r in rejections)
+    # Treasury never exceeded the cap.
+    assert pool.remaining_treasury_usd() == 0.0
+    assert pool.bot_stats("bot-a").daily_tx_count == 5
+
+
+@pytest.mark.asyncio
+async def test_pay_as_refunds_reservation_on_exception():
+    import asyncio
+
+    # An exception from pay() must refund the reservation under lock so the
+    # treasury is not permanently debited for a payment that never happened.
+    pool = _pool(shared_daily_limit_usd=100.0)
+    client = pool.add_bot(PoolBotOptions(bot_id="bot-a"))
+
+    async def boom(_request):
+        await asyncio.sleep(0)
+        raise RuntimeError("network exploded")
+
+    client.pay = boom  # type: ignore[assignment]
+
+    with pytest.raises(RuntimeError, match="network exploded"):
+        await pool.pay_as("bot-a", _req("30"))
+    assert pool.remaining_treasury_usd() == 100.0  # reservation refunded

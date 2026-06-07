@@ -11,6 +11,7 @@ only — they do NOT replace the facilitator's authoritative server-side limits.
 """
 from __future__ import annotations
 
+import asyncio
 import datetime
 import math
 import warnings
@@ -123,6 +124,11 @@ class PayBotClientPool:
         self._bots: Dict[str, _PoolEntry] = {}
         self._treasury_spent_usd = 0.0
         self._treasury_day = _utc_day_key()
+        # Serializes treasury reserve/commit/refund so concurrent pay_as() calls
+        # cannot each pass can_spend() and collectively overrun the shared limit
+        # (CodeRabbit #4). The lock is held ONLY around in-memory accounting and
+        # is released before any network I/O (client.pay()).
+        self._treasury_lock = asyncio.Lock()
 
     def _rollover_if_needed(self) -> None:
         """Roll over the treasury + per-bot counters when the UTC day changes."""
@@ -292,53 +298,93 @@ class PayBotClientPool:
     async def pay_as(self, bot_id: str, request: PaymentRequest) -> PaymentResult:
         """Pay on behalf of a bot, gated by the shared treasury.
 
-        When a shared limit is configured, the prospective spend (parsed from
-        ``request.amount``) is checked against the remaining treasury FIRST. If it
-        would exceed the budget, a ``TREASURY_EXCEEDED`` failure is returned
-        immediately and NO network call is made. Otherwise the bot's ``pay()``
-        runs, and on ``success=True`` the spend is recorded.
+        Concurrency-safe (CodeRabbit #4): when a shared limit is configured, the
+        spend is RESERVED against the treasury under an ``asyncio.Lock`` (with a
+        re-check of the limit) BEFORE the network call. The lock is released
+        before ``client.pay()`` so it never spans network I/O. On any failure —
+        exception OR ``result.success=False`` — the reservation is refunded under
+        the lock. This prevents N concurrent callers from each passing the limit
+        check and collectively overrunning the budget.
 
         :param bot_id: The bot to pay as.
         :param request: The payment request.
-        :returns: The bot's :class:`PaymentResult`, or a ``TREASURY_EXCEEDED`` failure.
+        :returns: The bot's :class:`PaymentResult`, or a ``TREASURY_EXCEEDED`` /
+            ``INVALID_AMOUNT`` failure.
         :raises ValueError: when ``bot_id`` is not in the pool.
         """
         client = self.get_bot(bot_id)
 
-        # Reject nan/inf/unparseable amounts BEFORE any treasury math
-        # (CodeRabbit #3). Previously _parse_float coerced these to nan, which
-        # can_spend/record_spend then treated as zero-cost — a non-finite amount
-        # would sail past the treasury limit and never be debited.
+        # Reject nan/inf/unparseable/negative amounts BEFORE any treasury math
+        # (CodeRabbit #3) — they must never be treated as zero-cost.
         amount_usd = _parse_amount_usd(request.amount)
         if amount_usd is None:
-            return PaymentResult(
-                success=False,
-                gross_amount="0",
-                net_amount="0",
-                commission_amount="0",
-                commission_rate=0,
-                error=f"Invalid payment amount: {request.amount!r}",
-                error_code="INVALID_AMOUNT",
+            return _pool_fail(
+                "INVALID_AMOUNT", f"Invalid payment amount: {request.amount!r}"
             )
 
-        if self._config.shared_daily_limit_usd is not None and not self.can_spend(amount_usd):
-            return PaymentResult(
-                success=False,
-                gross_amount="0",
-                net_amount="0",
-                commission_amount="0",
-                commission_rate=0,
-                error=(
-                    f"Shared treasury exceeded: remaining {self.remaining_treasury_usd()} USD, "
-                    f"requested {request.amount} USD"
-                ),
-                error_code="TREASURY_EXCEEDED",
-            )
+        bounded = self._config.shared_daily_limit_usd is not None
 
-        result = await client.pay(request)
+        # Reserve under lock (re-checks the limit atomically). The lock is held
+        # only for in-memory accounting, never across the await on pay().
+        if bounded:
+            async with self._treasury_lock:
+                self._rollover_if_needed()
+                remaining = max(
+                    0.0, self._config.shared_daily_limit_usd - self._treasury_spent_usd
+                )
+                if amount_usd > remaining:
+                    return _pool_fail(
+                        "TREASURY_EXCEEDED",
+                        f"Shared treasury exceeded: remaining {remaining} USD, "
+                        f"requested {request.amount} USD",
+                    )
+                self._treasury_spent_usd += amount_usd  # optimistic reservation
+
+        try:
+            result = await client.pay(request)
+        except BaseException:
+            # Refund the reservation under lock, then re-raise.
+            if bounded:
+                async with self._treasury_lock:
+                    self._treasury_spent_usd = max(
+                        0.0, self._treasury_spent_usd - amount_usd
+                    )
+            raise
+
         if result.success:
-            self.record_spend(bot_id, amount_usd)
+            # Reservation already debited the treasury; only record per-bot stats
+            # (under lock, without double-counting the treasury).
+            if bounded:
+                async with self._treasury_lock:
+                    self._record_bot_stat(bot_id, amount_usd)
+            else:
+                self.record_spend(bot_id, amount_usd)
+        elif bounded:
+            # Refund the reservation for a logical (success=False) failure.
+            async with self._treasury_lock:
+                self._treasury_spent_usd = max(0.0, self._treasury_spent_usd - amount_usd)
         return result
+
+    def _record_bot_stat(self, bot_id: str, amount_usd: float) -> None:
+        """Record a committed spend on a bot's local counters only (treasury was
+        already debited by the reservation). Caller must hold ``_treasury_lock``."""
+        entry = self._bots.get(bot_id)
+        if entry is not None:
+            entry.daily_spent_usd += amount_usd
+            entry.daily_tx_count += 1
+
+
+def _pool_fail(error_code: str, error: str) -> PaymentResult:
+    """Build a zeroed failure :class:`PaymentResult` for pool-level rejections."""
+    return PaymentResult(
+        success=False,
+        gross_amount="0",
+        net_amount="0",
+        commission_amount="0",
+        commission_rate=0,
+        error=error,
+        error_code=error_code,
+    )
 
 
 def _parse_amount_usd(value: str) -> Optional[float]:
