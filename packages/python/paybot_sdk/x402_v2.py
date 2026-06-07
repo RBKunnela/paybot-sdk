@@ -365,14 +365,20 @@ class X402Handler:
         }
         nonce = generate_eip3009_nonce()
         now_seconds = int(time.time())
+        # Single source of truth for the expiry: the value we sign MUST be the
+        # value we put on the wire (see CodeRabbit #15). Previously the signed
+        # message used ``now + 3600`` while ``signed_data`` serialized ``now``,
+        # a 3600s + type divergence that made every MPP signature unverifiable.
+        expires = now_seconds + 3600
+        payment_intent = intent_id or "unknown"
 
         message = {
             "payer": account.address,
             "recipient": requirements.pay_to,
             "amount": int(requirements.amount),
             "nonce": nonce,
-            "expires": now_seconds + 3600,
-            "paymentIntent": intent_id or "unknown",
+            "expires": expires,
+            "paymentIntent": payment_intent,
         }
         signed = Account.sign_typed_data(
             self._wallet_private_key, domain, _MPP_TYPES, message
@@ -384,8 +390,8 @@ class X402Handler:
             "recipient": requirements.pay_to,
             "amount": requirements.amount,
             "nonce": nonce,
-            "expires": str(now_seconds),
-            "paymentIntent": intent_id,
+            "expires": str(expires),
+            "paymentIntent": payment_intent,
             "signature": signature,
         }
         return {"signature": signature, "signed_data": signed_data}

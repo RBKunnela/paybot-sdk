@@ -187,6 +187,53 @@ def test_sign_payment_dual_packs_both():
     assert signed.signed_data["mpp"]["signature"].startswith("0x")
 
 
+def _recover_mpp(signed_data) -> str:
+    """Recover the MPP PaymentAuthorization signer from on-wire signed_data.
+
+    Mirrors :func:`_recover_x402` but for the MPP typed-data structure. This is
+    the regression guard for CodeRabbit #15: it re-derives the signed message
+    purely from what was serialized onto the wire (``signed_data``) and asserts
+    the recovered signer. If the signed ``expires`` and the serialized
+    ``expires`` ever diverge again, recovery yields a different address and the
+    test fails.
+    """
+    from paybot_sdk.x402_v2 import _MPP_TYPES
+
+    domain = {
+        "name": "Machine Payments Protocol",
+        "version": "1.0",
+        "chainId": 1,
+        "verifyingContract": signed_data["recipient"],
+    }
+    message = {
+        "payer": signed_data["payer"],
+        "recipient": signed_data["recipient"],
+        "amount": int(signed_data["amount"]),
+        "nonce": signed_data["nonce"],
+        "expires": int(signed_data["expires"]),
+        "paymentIntent": signed_data["paymentIntent"],
+    }
+    encoded = encode_typed_data(domain, _MPP_TYPES, message)
+    return Account.recover_message(encoded, signature=signed_data["signature"])
+
+
+def test_sign_payment_mpp_recovers_signer():
+    # Regression for CodeRabbit #15: before the fix, _sign_mpp signed
+    # expires=now+3600 but serialized expires=str(now), so recovery from the
+    # wire payload produced a different address and this assertion failed.
+    h = X402Handler(TEST_KEY)
+    signed = h.sign_payment(_payload(protocol="mpp"))
+    assert signed.protocol == "mpp"
+    assert _recover_mpp(signed.signed_data).lower() == TEST_ADDR.lower()
+
+
+def test_sign_payment_dual_mpp_arm_recovers_signer():
+    # The dual-mode MPP arm must also be wire-consistent (same #15 root cause).
+    h = X402Handler(TEST_KEY)
+    signed = h.sign_payment(_payload(protocol="dual"))
+    assert _recover_mpp(signed.signed_data["mpp"]).lower() == TEST_ADDR.lower()
+
+
 def test_sign_payment_missing_wallet_key_raises():
     h = X402Handler()
     with pytest.raises(PayBotApiError) as exc:
