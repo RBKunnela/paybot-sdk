@@ -49,7 +49,11 @@ class PayBotConfig:
 @dataclass
 class PaymentRequest:
     resource: str
-    amount: str  # human-readable USDC, e.g. "0.05"
+    # Human-readable decimal amount in the token's own units, e.g. "0.05".
+    # Token-agnostic: for USDC this is USD, for EURC it is EUR, etc. The token
+    # is selected by `token` (default "USDC") and its decimals drive base-unit
+    # conversion (CodeRabbit #13).
+    amount: str
     pay_to: str
     token_contract: Optional[str] = None
     # Token ticker symbol to pay with (e.g. "USDC", "EURC"). Default "USDC".

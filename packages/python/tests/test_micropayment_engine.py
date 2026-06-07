@@ -57,6 +57,25 @@ async def test_queue_payment_invalid_amount_raises():
 
 
 @pytest.mark.asyncio
+async def test_queue_payment_rejects_sub_base_unit_precision():
+    # CodeRabbit #7: amounts finer than USDC's 6 decimals were silently
+    # truncated (underpay). They must now be rejected.
+    eng = _engine()
+    with pytest.raises(ValueError, match="precision"):
+        await eng.queue_payment(RECIP_A, "0.0000009")  # 7 significant decimals
+
+
+@pytest.mark.asyncio
+async def test_queue_payment_allows_trailing_zero_padding():
+    # Trailing zeros carry no value, so 6+ decimals that are all zeros past the
+    # 6th place are still accepted (not a precision loss).
+    eng = _engine()
+    pid = await eng.queue_payment(RECIP_A, "0.0010000000")
+    item = eng.get_payment_status(pid)
+    assert item.amount_base_units == "1000"
+
+
+@pytest.mark.asyncio
 async def test_queue_payment_unknown_status_is_none():
     eng = _engine()
     assert eng.get_payment_status("mp_missing") is None
@@ -128,9 +147,37 @@ async def test_batch_payments_signs_and_recovers():
 
 @pytest.mark.asyncio
 async def test_batch_payments_unknown_ids_raises():
+    # CodeRabbit #8: unknown ids must fail loudly, naming the missing id, not be
+    # silently dropped.
     eng = _engine()
-    with pytest.raises(ValueError, match="No payments found"):
+    with pytest.raises(ValueError, match="missing: mp_nope"):
         await eng.batch_payments(["mp_nope"])
+
+
+@pytest.mark.asyncio
+async def test_batch_payments_rejects_non_queued_ids():
+    # CodeRabbit #8: an already-batched (pending) payment must not be silently
+    # re-included in a second batch.
+    eng = _engine()
+    pid = await eng.queue_payment(RECIP_A, "0.001")
+    await eng.batch_payments([pid])  # moves pid -> pending
+    with pytest.raises(ValueError, match="not queued"):
+        await eng.batch_payments([pid])
+
+
+@pytest.mark.asyncio
+async def test_batch_payments_gas_priced_from_batch_recipients():
+    # CodeRabbit #9: gas is priced from the batch's own recipients, not the
+    # whole queue. Queue many recipients but batch only one; the batch's
+    # estimate must equal the single-recipient estimate, independent of the
+    # other queued recipients.
+    eng = _engine()
+    target = await eng.queue_payment(RECIP_A, "0.001")
+    for i in range(5):
+        await eng.queue_payment(f"0x{i:040x}", "0.001")
+    batch = await eng.batch_payments([target])
+    expected = f"{eng._estimate_gas_cost(1, 1):.6f}"
+    assert batch.gas_estimate_usd == expected
 
 
 @pytest.mark.asyncio

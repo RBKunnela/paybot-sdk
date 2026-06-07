@@ -66,7 +66,16 @@ def _usd_to_base_units(usd_amount: str) -> str:
         raise ValueError(f"Invalid USD amount: {usd_amount}")
     parts = usd_amount.split(".")
     whole = parts[0] if parts[0] else "0"
-    fraction = (parts[1] if len(parts) > 1 else "").ljust(6, "0")[:6]
+    raw_fraction = parts[1] if len(parts) > 1 else ""
+    # USDC has 6 decimals. Silently truncating extra precision (the old [:6])
+    # made the payer underpay vs. what they asked for (CodeRabbit #7). Reject
+    # any amount finer than 6 decimals — ignoring trailing zeros, which carry
+    # no value (e.g. "0.0010000000" is fine; "0.0000009" is not).
+    if len(raw_fraction.rstrip("0")) > 6:
+        raise ValueError(
+            f"USD amount exceeds USDC precision (6 decimals): {usd_amount}"
+        )
+    fraction = raw_fraction.ljust(6, "0")[:6]
     return f"{whole}{fraction}".lstrip("0") or "0"
 
 
@@ -135,11 +144,34 @@ class MicropaymentEngine:
         :returns: A :class:`BatchedSettlement`.
         :raises ValueError: when no queued payment matches the given ids.
         """
-        payments: List[MicropaymentQueueItem] = []
+        # Index every known item by id, then resolve each requested id exactly
+        # once. Previously this silently dropped unknown ids and happily batched
+        # already-pending/settled items (CodeRabbit #8). We now include ONLY
+        # queued items and fail loudly listing what could not be batched.
+        by_id: Dict[str, MicropaymentQueueItem] = {}
         for items in self._queue.values():
             for item in items:
-                if item.payment_id in payment_ids:
-                    payments.append(item)
+                by_id[item.payment_id] = item
+
+        payments: List[MicropaymentQueueItem] = []
+        missing_ids: List[str] = []
+        non_queued: List[str] = []
+        for pid in payment_ids:
+            item = by_id.get(pid)
+            if item is None:
+                missing_ids.append(pid)
+            elif item.status != "queued":
+                non_queued.append(f"{pid} (status={item.status})")
+            else:
+                payments.append(item)
+
+        if missing_ids or non_queued:
+            problems: List[str] = []
+            if missing_ids:
+                problems.append(f"missing: {', '.join(missing_ids)}")
+            if non_queued:
+                problems.append(f"not queued: {', '.join(non_queued)}")
+            raise ValueError(f"Cannot batch payments - {'; '.join(problems)}")
 
         if not payments:
             raise ValueError("No payments found with given IDs")
@@ -155,7 +187,9 @@ class MicropaymentEngine:
         gas_estimate_usd = (
             0.0
             if (options is not None and options.skip_gas_estimate)
-            else self._estimate_gas_cost(len(payments))
+            # Price gas from THIS batch's recipients, not the whole queue
+            # (CodeRabbit #9).
+            else self._estimate_gas_cost(len(payments), len(recipient_set))
         )
         gas_per_payment_usd = gas_estimate_usd / len(payments)
 
@@ -296,11 +330,22 @@ class MicropaymentEngine:
             ],
         }
 
-    def _estimate_gas_cost(self, payment_count: int) -> float:
-        """Estimate the per-payment gas cost (USD), amortized across unique recipients."""
+    def _estimate_gas_cost(
+        self, payment_count: int, unique_recipients: Optional[int] = None
+    ) -> float:
+        """Estimate the per-payment gas cost (USD), amortized across unique recipients.
+
+        :param payment_count: Number of payments to amortize the cost across.
+        :param unique_recipients: Distinct recipients to price gas for. When
+            ``None`` (the public ``get_gas_estimate`` path), falls back to the
+            whole-queue recipient count. ``batch_payments`` passes the batch's
+            own recipient count so a batch is never charged for unrelated queued
+            recipients (CodeRabbit #9).
+        """
         base_gas = 21_000
         gas_per_recipient = 5_000
-        unique_recipients = self.get_queue_statistics().unique_recipients
+        if unique_recipients is None:
+            unique_recipients = self.get_queue_statistics().unique_recipients
         total_gas = base_gas + unique_recipients * gas_per_recipient
 
         gwei_price = 5

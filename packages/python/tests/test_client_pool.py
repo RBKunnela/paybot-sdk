@@ -146,6 +146,35 @@ async def test_pay_as_treasury_exceeded_blocks_before_network():
     assert not verify.called  # pre-network block
 
 
+@pytest.mark.parametrize("bad_amount", ["nan", "inf", "-inf", "abc", "-5"])
+@pytest.mark.asyncio
+async def test_pay_as_rejects_non_finite_amount_before_treasury(bad_amount):
+    # CodeRabbit #3: nan/inf/unparseable/negative amounts were coerced to
+    # zero-cost and sailed past the treasury without ever being debited. They
+    # must be rejected before any treasury math AND before any network call.
+    pool = _pool(shared_daily_limit_usd=10.0)
+    pool.add_bot(PoolBotOptions(bot_id="bot-a"))
+    with respx.mock:
+        verify = respx.post("https://fac.example/verify")
+        result = await pool.pay_as("bot-a", _req(bad_amount))
+    assert result.success is False
+    assert result.error_code == "INVALID_AMOUNT"
+    assert not verify.called  # rejected pre-network
+    assert pool.remaining_treasury_usd() == 10.0  # treasury untouched
+
+
+@pytest.mark.asyncio
+async def test_pay_as_rejects_non_finite_amount_even_when_unbounded():
+    # Even with no shared limit, a non-finite amount is invalid input.
+    pool = _pool()
+    pool.add_bot(PoolBotOptions(bot_id="bot-a"))
+    with respx.mock:
+        verify = respx.post("https://fac.example/verify")
+        result = await pool.pay_as("bot-a", _req("inf"))
+    assert result.error_code == "INVALID_AMOUNT"
+    assert not verify.called
+
+
 @pytest.mark.asyncio
 async def test_pay_as_records_spend_on_success():
     pool = _pool(shared_daily_limit_usd=100.0)

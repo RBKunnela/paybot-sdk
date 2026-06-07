@@ -76,6 +76,27 @@ def test_translate_derives_timeout_from_future_expiry():
     assert reqs.max_timeout_seconds > 0
 
 
+def test_derive_timeout_sub_second_window_does_not_fall_back():
+    # CodeRabbit #1: a positive-but-sub-second window floored to 0 and then fell
+    # back to the 300s default, silently extending a near-expired mandate.
+    # math.ceil must map any positive remaining time to >= 1, never the default.
+    from paybot_sdk.ap2 import DEFAULT_MAX_TIMEOUT_SECONDS, _derive_max_timeout_seconds
+
+    now_ms = 1_000_000
+    expires_iso = "1970-01-01T00:16:40.500Z"  # now + 500ms
+    secs = _derive_max_timeout_seconds(expires_iso, now_ms=now_ms)
+    assert secs == 1
+    assert secs != DEFAULT_MAX_TIMEOUT_SECONDS
+
+
+def test_derive_timeout_past_expiry_uses_default():
+    from paybot_sdk.ap2 import DEFAULT_MAX_TIMEOUT_SECONDS, _derive_max_timeout_seconds
+
+    now_ms = 1_000_000
+    past_iso = "1970-01-01T00:16:39.000Z"  # now - 1s
+    assert _derive_max_timeout_seconds(past_iso, now_ms=now_ms) == DEFAULT_MAX_TIMEOUT_SECONDS
+
+
 # ── is_ap2_mandate ────────────────────────────────────────────────────────
 
 

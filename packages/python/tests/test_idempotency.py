@@ -125,6 +125,27 @@ async def test_register_caches_success():
 
 
 @pytest.mark.asyncio
+async def test_register_does_not_cache_http200_logical_failure():
+    # CodeRabbit #6: a 200 response with success=False is a logical failure and
+    # must NOT be cached, or a retry with the same idempotency key would forever
+    # return the failure instead of re-attempting.
+    client = _client()
+    with respx.mock:
+        bots = respx.post("https://fac.example/bots").mock(
+            return_value=Response(
+                200, json={"success": False, "botId": "bot-1", "trustLevel": 1}
+            )
+        )
+        first = await client.register(idempotency_key="reg-fail")
+        assert first.success is False
+        second = await client.register(idempotency_key="reg-fail")
+    # Not cached → a second network call was made.
+    assert bots.call_count == 2
+    assert second.success is False
+    await client.close()
+
+
+@pytest.mark.asyncio
 async def test_register_without_key_hits_network_each_time():
     client = _client()
     with respx.mock:

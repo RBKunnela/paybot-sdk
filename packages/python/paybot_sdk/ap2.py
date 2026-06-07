@@ -23,6 +23,7 @@ registry), ``paybot_sdk.errors``.
 """
 from __future__ import annotations
 
+import math
 import time
 from dataclasses import dataclass
 from typing import Dict, List, Optional
@@ -111,7 +112,10 @@ def _derive_max_timeout_seconds(
     exp_ms = _parse_iso_ms(expires_at)
     if exp_ms is None:
         return DEFAULT_MAX_TIMEOUT_SECONDS
-    seconds = (exp_ms - now_ms) // 1000
+    # Round UP so any positive remaining window survives (CodeRabbit #1). Integer
+    # floor division mapped sub-second windows (e.g. 500ms) to 0, which then fell
+    # back to the 300s default — silently extending a near-expired mandate.
+    seconds = math.ceil((exp_ms - now_ms) / 1000)
     return seconds if seconds > 0 else DEFAULT_MAX_TIMEOUT_SECONDS
 
 

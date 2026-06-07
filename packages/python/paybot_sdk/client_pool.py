@@ -263,7 +263,22 @@ class PayBotClientPool:
         :raises ValueError: when ``bot_id`` is not in the pool.
         """
         client = self.get_bot(bot_id)
-        amount_usd = _parse_float(request.amount)
+
+        # Reject nan/inf/unparseable amounts BEFORE any treasury math
+        # (CodeRabbit #3). Previously _parse_float coerced these to nan, which
+        # can_spend/record_spend then treated as zero-cost — a non-finite amount
+        # would sail past the treasury limit and never be debited.
+        amount_usd = _parse_amount_usd(request.amount)
+        if amount_usd is None:
+            return PaymentResult(
+                success=False,
+                gross_amount="0",
+                net_amount="0",
+                commission_amount="0",
+                commission_rate=0,
+                error=f"Invalid payment amount: {request.amount!r}",
+                error_code="INVALID_AMOUNT",
+            )
 
         if self._config.shared_daily_limit_usd is not None and not self.can_spend(amount_usd):
             return PaymentResult(
@@ -285,9 +300,17 @@ class PayBotClientPool:
         return result
 
 
-def _parse_float(value: str) -> float:
-    """Parse ``value`` to float; non-numeric → ``nan`` (treated as zero-cost)."""
+def _parse_amount_usd(value: str) -> Optional[float]:
+    """Parse a payment amount to a finite, non-negative float.
+
+    Returns ``None`` for unparseable, non-finite (nan/inf), or negative values
+    so callers can reject them explicitly instead of silently treating them as
+    zero-cost (CodeRabbit #3).
+    """
     try:
-        return float(value)
+        parsed = float(value)
     except (TypeError, ValueError):
-        return float("nan")
+        return None
+    if not math.isfinite(parsed) or parsed < 0:
+        return None
+    return parsed

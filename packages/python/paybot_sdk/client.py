@@ -298,8 +298,11 @@ class PayBotClient:
             bot_id=data["botId"],
             trust_level=data["trustLevel"],
         )
-        # Only reached on success (_request raises on non-2xx).
-        if idempotency_key is not None:
+        # Cache ONLY on a successful result (CodeRabbit #6). A facilitator can
+        # return HTTP 200 with success=False (a logical failure that _request
+        # does not raise on); caching that would pin the failure and stop a
+        # legitimate retry with the same idempotency key from ever succeeding.
+        if idempotency_key is not None and result.success:
             self._register_idempotency_cache.set(idempotency_key, result)
         return result
 
