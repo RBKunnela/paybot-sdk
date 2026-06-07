@@ -17,7 +17,7 @@ import re
 from dataclasses import dataclass, field
 from typing import Dict, List, Literal, Optional
 
-from .errors import PayBotApiError
+from .errors import PayBotApiError, PayBotUnsupportedSigningMethodError
 
 
 @dataclass(frozen=True)
@@ -308,6 +308,19 @@ def get_eip712_domain(
     token = TOKENS.get(symbol)
     if token is None:
         return None
+    # This domain is only meaningful for EIP-3009 TransferWithAuthorization.
+    # Tokens that authorize via EIP-2612 permit (e.g. RLUSD/DAI) MUST NOT be
+    # silently signed as EIP-3009 — that produces a structurally valid but
+    # semantically wrong signature the chain will reject (CodeRabbit #11).
+    # PayBotUnsupportedSigningMethodError was defined but never raised (dead
+    # code); enforce it here so both client._sign_payload and the x402 handler
+    # reject unsupported methods loudly.
+    if token.signing_method != "eip3009":
+        raise PayBotUnsupportedSigningMethodError(
+            f"Token {symbol} uses unsupported signing method "
+            f"'{token.signing_method}'; only 'eip3009' is implemented",
+            details={"symbol": symbol, "signingMethod": token.signing_method},
+        )
     verifying_contract = (
         verifying_contract_override
         if verifying_contract_override

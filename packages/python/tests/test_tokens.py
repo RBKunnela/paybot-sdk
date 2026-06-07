@@ -165,6 +165,18 @@ def test_eip712_unknown_token_and_unsupported_network():
     assert get_eip712_domain("eip155:1", "EURC") is None
 
 
+def test_eip712_eip2612_token_raises_unsupported_signing_method():
+    # CodeRabbit #11: get_eip712_domain builds an EIP-3009 domain. eip2612
+    # (permit) tokens must NOT be silently signed as EIP-3009 — they raise the
+    # previously-dead PayBotUnsupportedSigningMethodError. The check precedes
+    # address resolution, so it fires regardless of network.
+    for symbol in ("DAI", "RLUSD"):
+        with pytest.raises(PayBotUnsupportedSigningMethodError) as exc:
+            get_eip712_domain("eip155:8453", symbol)
+        assert exc.value.code == "UNSUPPORTED_SIGNING_METHOD"
+        assert exc.value.details.get("signingMethod") == "eip2612"
+
+
 # ── pay({token}) integration ─────────────────────────────────────────────
 
 

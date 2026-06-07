@@ -200,8 +200,13 @@ class X402Handler:
 
     @staticmethod
     def _extract_payment_intent_header(headers: Dict[str, str]) -> str:
-        """Extract the legacy ``Payment-Intent`` header (raises if missing)."""
-        header = headers.get("Payment-Intent") or headers.get("payment-intent")
+        """Extract the legacy ``Payment-Intent`` header (raises if missing).
+
+        Uses :func:`_read_header_ci` for full case-insensitivity instead of the
+        previous two hardcoded casings, which missed e.g. ``PAYMENT-INTENT``
+        (CodeRabbit #14).
+        """
+        header = _read_header_ci(headers, "Payment-Intent")
         if not header:
             raise PayBotApiError(
                 "Payment-Intent header missing from 402 response",
@@ -608,7 +613,24 @@ class X402Handler:
                 err.get("details"),
             )
 
-        receipt = response.json()
+        # A 2xx response can still carry a malformed/missing body. The non-2xx
+        # branch already guards response.json(); the success branch must too, or
+        # a bad body raises a bare ValueError/KeyError instead of a typed
+        # PayBotApiError (CodeRabbit #16).
+        try:
+            receipt = response.json()
+        except Exception as error:  # noqa: BLE001
+            raise PayBotApiError(
+                f"Invalid JSON in payment receipt: {get_error_message(error)}",
+                "INVALID_RECEIPT",
+                response.status_code,
+            )
+        if not isinstance(receipt, dict) or not receipt.get("receiptId"):
+            raise PayBotApiError(
+                "Payment receipt missing receiptId",
+                "INVALID_RECEIPT",
+                response.status_code,
+            )
         return Receipt(
             receipt_id=receipt["receiptId"],
             transaction_id=receipt.get("transactionId"),

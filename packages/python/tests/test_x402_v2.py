@@ -124,6 +124,32 @@ def test_on_402_parses_legacy_payment_intent_header():
     assert payload.requirements.amount == "5000"
 
 
+def test_on_402_legacy_header_is_fully_case_insensitive():
+    # CodeRabbit #14: the legacy Payment-Intent extractor previously checked only
+    # two hardcoded casings ("Payment-Intent"/"payment-intent") and missed e.g.
+    # the fully-uppercase form. It must read the header case-insensitively.
+    h = X402Handler()
+    reqs_dict = {
+        "scheme": "exact",
+        "network": "eip155:84532",
+        "asset": "x",
+        "amount": "6000",
+        "payTo": PAY_TO,
+        "maxTimeoutSeconds": 300,
+    }
+    intent = {"intentId": "i2", "protocol": "x402", "requirements": reqs_dict, "version": "2.0"}
+    encoded = base64.b64encode(json.dumps(intent).encode()).decode()
+    payload = h.on_402_response(
+        PaymentRequiredResponse(
+            status=402,
+            headers={"PAYMENT-INTENT": f"x402:v2:{encoded}"},  # all-caps casing
+            body={"requirements": reqs_dict},
+        )
+    )
+    assert payload.payment_intent.intent_id == "i2"
+    assert payload.requirements.amount == "6000"
+
+
 def test_on_402_missing_header_raises():
     h = X402Handler()
     with pytest.raises(PayBotApiError) as exc:
@@ -376,6 +402,35 @@ async def test_submit_payment_non_2xx_raises():
         with pytest.raises(PayBotApiError) as exc:
             await h.submit_payment(signed, "https://merchant.example/settle")
     assert exc.value.code == "BAD_REQ"
+
+
+@pytest.mark.asyncio
+async def test_submit_payment_malformed_2xx_json_raises_api_error():
+    # CodeRabbit #16: a 2xx with a non-JSON body must surface as a typed
+    # PayBotApiError, not a bare ValueError from response.json().
+    h = X402Handler(TEST_KEY)
+    signed = h.sign_payment(_payload())
+    with respx.mock:
+        respx.post("https://merchant.example/settle").mock(
+            return_value=Response(200, content=b"not json", headers={"content-type": "text/plain"})
+        )
+        with pytest.raises(PayBotApiError) as exc:
+            await h.submit_payment(signed, "https://merchant.example/settle")
+    assert exc.value.code == "INVALID_RECEIPT"
+
+
+@pytest.mark.asyncio
+async def test_submit_payment_2xx_missing_receipt_id_raises_api_error():
+    # CodeRabbit #16: a 2xx JSON body lacking receiptId must not KeyError.
+    h = X402Handler(TEST_KEY)
+    signed = h.sign_payment(_payload())
+    with respx.mock:
+        respx.post("https://merchant.example/settle").mock(
+            return_value=Response(200, json={"status": "confirmed"})
+        )
+        with pytest.raises(PayBotApiError) as exc:
+            await h.submit_payment(signed, "https://merchant.example/settle")
+    assert exc.value.code == "INVALID_RECEIPT"
 
 
 @pytest.mark.asyncio
