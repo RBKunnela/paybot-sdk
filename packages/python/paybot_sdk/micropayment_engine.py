@@ -361,11 +361,36 @@ class MicropaymentEngine:
         return gas_cost_usd / payment_count
 
     async def _check_auto_settle(self, window_key: str) -> None:
-        """Settle the window automatically when statistics say we should."""
-        stats = self.get_queue_statistics()
-        if stats.should_settle:
+        """Auto-settle ``window_key`` when ITS OWN queued items cross a threshold.
+
+        The decision is scoped to the target window's own queued items, NOT the
+        engine-wide aggregate (CodeRabbit #10). Previously ``should_settle`` came
+        from :meth:`get_queue_statistics` (all windows + pending items), so once
+        historical/pending items pushed the engine-wide total over a threshold,
+        queueing a single payment into a fresh window would settle only that new
+        sub-threshold window while the genuinely-full window sat unsettled.
+        """
+        if self._window_should_settle(window_key):
             payment_ids = self._payment_ids_for_window(window_key)
-            await self.batch_payments(payment_ids)
+            if payment_ids:
+                await self.batch_payments(payment_ids)
+
+    def _window_should_settle(self, window_key: str) -> bool:
+        """Whether a window's OWN queued items meet a settlement threshold.
+
+        Mirrors the engine-wide ``should_settle`` rule (count OR total USD) but
+        over only this window's ``queued`` items, so a window settles on its own
+        contents independent of other windows or pending items (CodeRabbit #10).
+        """
+        items = self._queue.get(window_key)
+        if not items:
+            return False
+        queued = [item for item in items if item.status == "queued"]
+        if not queued:
+            return False
+        count = len(queued)
+        total_usd = sum(float(item.amount_usd) for item in queued)
+        return count >= self._min_payment_count or total_usd >= self._min_total_usd
 
     def _batch_window_key(self) -> str:
         """Compute the current batch-window key from the wall clock."""

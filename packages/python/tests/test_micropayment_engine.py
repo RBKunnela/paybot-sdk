@@ -199,6 +199,73 @@ async def test_auto_settle_marks_pending_when_threshold_met():
     assert eng.get_payment_status(pid).status == "pending"
 
 
+def _seed_window(eng, window_key, recipient, amount_usd, n):
+    """White-box helper: place ``n`` queued items into an explicit window."""
+    from paybot_sdk.micropayment_engine import MicropaymentQueueItem, _now_ms, _usd_to_base_units
+
+    items = []
+    for i in range(n):
+        items.append(
+            MicropaymentQueueItem(
+                payment_id=f"{window_key}_{i}",
+                recipient=recipient,
+                amount_usd=amount_usd,
+                amount_base_units=_usd_to_base_units(amount_usd),
+                queued_at=_now_ms(),
+                status="queued",
+                metadata=None,
+            )
+        )
+    eng._queue.setdefault(window_key, []).extend(items)
+    return items
+
+
+@pytest.mark.asyncio
+async def test_auto_settle_scoped_to_target_window_not_engine_wide():
+    # CodeRabbit #10: a fresh sub-threshold window must NOT auto-settle just
+    # because the engine-wide aggregate (other windows) is already over the
+    # threshold. min_payment_count=3: window A holds 3 queued items (engine-wide
+    # total already >= 3), then a single payment is queued into the current
+    # wall-clock window B. B has only 1 item → must stay queued, and A (not the
+    # target) must remain untouched.
+    eng = _engine(min_payment_count=3, min_total_usd=1000.0)
+    _seed_window(eng, "window_old_A", RECIP_B, "0.001", 3)
+
+    pid_b = await eng.queue_payment(RECIP_A, "0.001")
+
+    # The fresh window's lone payment did NOT settle on engine-wide totals.
+    assert eng.get_payment_status(pid_b).status == "queued"
+    # The accumulated window A was not the target → left untouched (still queued).
+    for item in eng._queue["window_old_A"]:
+        assert item.status == "queued"
+
+
+@pytest.mark.asyncio
+async def test_auto_settle_when_target_window_crosses_on_own_count():
+    # CodeRabbit #10: a window DOES settle when ITS OWN queued items cross the
+    # count threshold. min_payment_count=3 → the 3rd payment into the same
+    # wall-clock window settles all three.
+    eng = _engine(min_payment_count=3, min_total_usd=1000.0)
+    p1 = await eng.queue_payment(RECIP_A, "0.001")
+    p2 = await eng.queue_payment(RECIP_A, "0.001")
+    assert eng.get_payment_status(p1).status == "queued"  # below threshold
+    p3 = await eng.queue_payment(RECIP_A, "0.001")  # crosses count threshold
+    for pid in (p1, p2, p3):
+        assert eng.get_payment_status(pid).status == "pending"
+
+
+@pytest.mark.asyncio
+async def test_auto_settle_when_target_window_crosses_on_own_usd():
+    # CodeRabbit #10: a window settles when its own queued USD sum crosses
+    # min_total_usd, independent of count.
+    eng = _engine(min_payment_count=1000, min_total_usd=0.5)
+    p1 = await eng.queue_payment(RECIP_A, "0.3")
+    assert eng.get_payment_status(p1).status == "queued"  # 0.3 < 0.5
+    p2 = await eng.queue_payment(RECIP_A, "0.3")  # 0.6 >= 0.5 → settle window
+    assert eng.get_payment_status(p1).status == "pending"
+    assert eng.get_payment_status(p2).status == "pending"
+
+
 # ── gas estimate + cleanup + window ──────────────────────────────────────
 
 
