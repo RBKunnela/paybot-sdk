@@ -158,6 +158,64 @@ async def test_register_without_key_hits_network_each_time():
     await client.close()
 
 
+# ── in-flight sharing under concurrency (CodeRabbit #5) ───────────────────
+
+
+@pytest.mark.asyncio
+async def test_register_concurrent_same_key_one_network_call():
+    import asyncio
+
+    # M concurrent register() with the SAME key must collapse to exactly ONE
+    # network call (shared in-flight task); all callers get the same result.
+    client = _client()
+    calls = {"n": 0}
+
+    async def counting(_request):
+        calls["n"] += 1
+        await asyncio.sleep(0.02)  # hold the task open so others join it
+        return Response(200, json={"success": True, "botId": "bot-1", "trustLevel": 1})
+
+    with respx.mock:
+        respx.post("https://fac.example/bots").mock(side_effect=counting)
+        results = await asyncio.gather(
+            *[client.register(idempotency_key="shared") for _ in range(8)]
+        )
+    assert calls["n"] == 1  # exactly one network call
+    assert all(r is results[0] for r in results)  # all share the one result
+    await client.close()
+
+
+@pytest.mark.asyncio
+async def test_register_inflight_evicted_on_failure_allows_retry():
+    import asyncio
+
+    # A concurrent batch that resolves to success=False must evict the in-flight
+    # entry so a later call with the same key can retry and succeed.
+    client = _client()
+    calls = {"n": 0}
+
+    async def first_fails_then_succeeds(_request):
+        calls["n"] += 1
+        await asyncio.sleep(0.01)
+        if calls["n"] <= 1:
+            return Response(200, json={"success": False, "botId": "bot-1", "trustLevel": 1})
+        return Response(200, json={"success": True, "botId": "bot-1", "trustLevel": 1})
+
+    with respx.mock:
+        respx.post("https://fac.example/bots").mock(side_effect=first_fails_then_succeeds)
+        # First wave shares one task → one call → success=False, not cached.
+        wave = await asyncio.gather(
+            *[client.register(idempotency_key="k") for _ in range(4)]
+        )
+        assert all(r.success is False for r in wave)
+        assert calls["n"] == 1
+        # Retry with same key now runs again and succeeds.
+        retry = await client.register(idempotency_key="k")
+    assert retry.success is True
+    assert calls["n"] == 2
+    await client.close()
+
+
 # ── LRU cache internals ───────────────────────────────────────────────────
 
 

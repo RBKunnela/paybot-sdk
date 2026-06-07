@@ -177,6 +177,13 @@ class PayBotClient:
         self._register_idempotency_cache: _LruCache[RegisterResult] = _LruCache(
             IDEMPOTENCY_CACHE_CAP
         )
+        # In-flight task maps keyed by idempotency_key (CodeRabbit #5). Concurrent
+        # callers with the same key share the SAME task instead of each firing a
+        # network call, so an idempotent operation runs exactly once even under
+        # concurrency. Entries are evicted on exception and on success=False
+        # (coherent with #6: only a real success is ever cached/shared long-term).
+        self._pay_inflight: Dict[str, "asyncio.Task[PaymentResult]"] = {}
+        self._register_inflight: Dict[str, "asyncio.Task[RegisterResult]"] = {}
 
         # Shared httpx client — pooled across requests + retries. Closed when
         # the PayBotClient is GC'd or explicitly via `.close()`.
@@ -202,6 +209,51 @@ class PayBotClient:
     def is_closed(self) -> bool:
         """Whether the underlying httpx client has been closed."""
         return self._http.is_closed
+
+    async def _run_idempotent(
+        self,
+        idempotency_key: str,
+        inflight: "Dict[str, asyncio.Task]",
+        cache: "_LruCache",
+        factory,
+    ):
+        """Run ``factory()`` at most once per ``idempotency_key`` under concurrency.
+
+        Concurrent callers with the same key share ONE asyncio.Task (CodeRabbit
+        #5): the first caller creates and registers the task; later callers await
+        the same task instead of issuing a duplicate network call. On completion:
+        a successful result is cached and the in-flight entry cleared; an
+        exception or a ``success=False`` result evicts the in-flight entry so a
+        later retry can run again (coherent with #6 — only real successes stick).
+
+        The result type only needs a truthy ``.success`` attribute, so this
+        serves both ``register`` (RegisterResult) and ``pay`` (PaymentResult).
+        """
+        # A late-arriving caller may find a cached success placed by a task that
+        # already finished — re-check before joining the in-flight task.
+        cached = cache.get(idempotency_key)
+        if cached is not None:
+            return cached
+
+        existing = inflight.get(idempotency_key)
+        if existing is not None:
+            return await existing
+
+        task: "asyncio.Task" = asyncio.ensure_future(factory())
+        inflight[idempotency_key] = task
+        try:
+            result = await task
+        except BaseException:
+            # Evict so the failure does not pin subsequent retries.
+            if inflight.get(idempotency_key) is task:
+                del inflight[idempotency_key]
+            raise
+
+        if inflight.get(idempotency_key) is task:
+            del inflight[idempotency_key]
+        if getattr(result, "success", False):
+            cache.set(idempotency_key, result)
+        return result
 
     # ── Shared request helper ────────────────────────────────────────────
 
@@ -300,27 +352,35 @@ class PayBotClient:
             if cached is not None:
                 return cached
 
-        body: Dict[str, Any] = {
-            "botId": self._bot_id,
-            "trustLevel": trust_level if trust_level is not None else 1,
-        }
-        extra_headers = (
-            {"X-Idempotency-Key": idempotency_key} if idempotency_key is not None else None
+        async def _do_register() -> RegisterResult:
+            body: Dict[str, Any] = {
+                "botId": self._bot_id,
+                "trustLevel": trust_level if trust_level is not None else 1,
+            }
+            extra_headers = (
+                {"X-Idempotency-Key": idempotency_key}
+                if idempotency_key is not None
+                else None
+            )
+            data = await self._request(
+                "/bots", method="POST", body=body, extra_headers=extra_headers
+            )
+            return RegisterResult(
+                success=bool(data.get("success", True)),
+                bot_id=data["botId"],
+                trust_level=data["trustLevel"],
+            )
+
+        # No idempotency key → plain one-shot call, no sharing/caching.
+        if idempotency_key is None:
+            return await _do_register()
+
+        result = await self._run_idempotent(
+            idempotency_key,
+            self._register_inflight,
+            self._register_idempotency_cache,
+            _do_register,
         )
-        data = await self._request(
-            "/bots", method="POST", body=body, extra_headers=extra_headers
-        )
-        result = RegisterResult(
-            success=bool(data.get("success", True)),
-            bot_id=data["botId"],
-            trust_level=data["trustLevel"],
-        )
-        # Cache ONLY on a successful result (CodeRabbit #6). A facilitator can
-        # return HTTP 200 with success=False (a logical failure that _request
-        # does not raise on); caching that would pin the failure and stop a
-        # legitimate retry with the same idempotency key from ever succeeding.
-        if idempotency_key is not None and result.success:
-            self._register_idempotency_cache.set(idempotency_key, result)
         return result
 
     async def balance(self) -> BalanceResult:
@@ -530,17 +590,26 @@ class PayBotClient:
             _set_attr(pay_span, "success", result.success)
             if result.tx_hash:
                 _set_attr(pay_span, "tx_hash", result.tx_hash)
-
-            # Cache only successful results so a retry short-circuits.
-            if result.success and idempotency_key is not None:
-                self._pay_idempotency_cache.set(idempotency_key, result)
             return result
 
-        return await with_span(
-            self._telemetry,
-            "client.pay",
-            {"network": network_id, "amount": request.amount, "bot_id": self._bot_id},
-            _body,
+        async def _spanned() -> PaymentResult:
+            return await with_span(
+                self._telemetry,
+                "client.pay",
+                {"network": network_id, "amount": request.amount, "bot_id": self._bot_id},
+                _body,
+            )
+
+        # Without a key → plain one-shot. With a key → concurrent callers share a
+        # single in-flight task and only a real success is cached (CodeRabbit #5;
+        # caching-on-success is the #6 behavior, preserved here coherently).
+        if idempotency_key is None:
+            return await _spanned()
+        return await self._run_idempotent(
+            idempotency_key,
+            self._pay_inflight,
+            self._pay_idempotency_cache,
+            _spanned,
         )
 
     async def refund(
