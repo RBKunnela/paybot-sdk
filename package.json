@@ -59,7 +59,7 @@
     "node": ">=20"
   },
   "dependencies": {
-    "commander": "^12.1.0",
+    "commander": "^15.0.0",
     "viem": "^2.46.2"
   },
   "devDependencies": {
