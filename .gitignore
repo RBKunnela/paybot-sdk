@@ -1,0 +1,141 @@
+# === Dependencies ===
+node_modules/
+__pycache__/
+*.pyc
+
+# === Build output ===
+dist/
+build/
+*.tsbuildinfo
+
+# === Test artifacts ===
+coverage/
+
+# === Environment & secrets ===
+.env
+.env.*
+!.env.example
+!.env.template
+!.env.sample
+*.backup.*
+
+# === OS files ===
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# === AIOS Framework (local-only, not part of app) ===
+.aios/
+!.aios/workflows/
+!.aios/data/
+.aios-core/
+.aiox-core/
+squads/
+
+# === Documentation (all process docs, research, epics, deployments — go to Confluence) ===
+docs/
+AGENTS.md
+DELIVERABLES-VERIFICATION.txt
+DEPLOYMENT-PACKAGE-ALL-PROJECTS.md
+DEPLOY-TO-OTHER-PROJECTS.md
+EPIC-*.md
+FINAL-DEPLOYMENT-SUMMARY.md
+IMPLEMENTATION-COMPLETE.md
+
+# === Claude Code (local agent config, not part of app) ===
+# Blanket ignore: AIOX framework scaffolding (.claude/) is local-only and must
+# not ship in the public SDK. Kept the explicit subdir lines below for clarity.
+.claude/
+.claude/settings.local.json
+.claude/skills/
+.claude/commands/
+.claude/rules/
+.claude/agents/
+
+# === Local IDE & tools ===
+.vscode/
+.idea/
+*.code-workspace
+.agent/
+.antigravity/
+.codex/
+.cursor/
+.gemini/
+.*/
+
+# === EXCEPTION: Keep these dot folders (needed for app) ===
+!.git/
+!.github/
+!.gitignore
+
+# === Local config files (not needed for app) ===
+pro-installed-manifest.yaml
+pro-version.json
+readme-epic-6.md
+AGENTS.md.backup*
+
+# ─────────────────────────────────────────────────────────────
+# AIOX secret-hygiene hardening — added 2026-05-22 by @devops
+# Per operator directive (public-repo exposure prevention).
+# ─────────────────────────────────────────────────────────────
+
+# Environment files (extra)
+.envrc
+.direnv/
+
+# Secret stores — cert + key material
+*.pem
+*.key
+*.p12
+*.pfx
+*.cer
+*.crt
+*.der
+secrets/
+secrets.json
+credentials.json
+credentials/
+.credentials/
+
+# Provider-specific token files
+.npmrc
+.yarnrc
+.yarnrc.yml
+!.yarnrc.example
+.netrc
+.aws/
+.gcp/
+service-account*.json
+gcp-key*.json
+*-sa.json
+firebase-debug.log
+
+# Local config that often holds secrets
+config.local.*
+config.*.local
+local.config.*
+*.local.json
+*.local.yaml
+*.local.yml
+
+# IDE secrets (explicit; .idea/ already broadly ignored)
+.vscode/settings.local.json
+.idea/dataSources.local.xml
+.idea/dataSources.xml
+.idea/sqldialects.xml
+
+# OS / editor temp that can hold pasted secrets
+*.bak
+*.tmp
+
+# AI/agent tool dumps that may include conversation w/ keys
+.aiox/
+.aiox/handoffs/*.yaml
+!.aiox/handoffs/LATEST.md
+
+# Build artifacts that might inline secrets at build time
+.next/cache/**
+dist-local/
+

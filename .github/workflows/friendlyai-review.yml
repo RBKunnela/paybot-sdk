@@ -1,0 +1,97 @@
+name: FriendlyAI Review
+
+# Public wrapper only. The private validation method stays behind the
+# FRIENDLYAI_REVIEW_API_URL endpoint and returns the friendlyai/review verdict.
+
+on:
+  pull_request:
+    # `labeled` lets the deliberate bypass label re-run the workflow.
+    types: [opened, synchronize, reopened, ready_for_review, labeled]
+
+concurrency:
+  group: friendlyai-review-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  # `write` is required so the fork branch below can post a sticky comment.
+  # The same-repo branch only reads PR metadata; the action handles its own writes.
+  pull-requests: write
+  issues: write
+  checks: write
+
+jobs:
+  review:
+    name: friendlyai-review verdict
+    # Same-repo PRs: secrets are passed by GitHub, action runs normally.
+    if: github.event.pull_request.head.repo.full_name == github.event.pull_request.base.repo.full_name
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Run FriendlyAI Review
+        uses: RBKunnela/friendlyai-review-action@4f702099ee953d68aa6cea11645df318d2bfa5bf # v1.0.4
+        with:
+          review-api-key: ${{ secrets.FRIENDLYAI_REVIEW_API_KEY }}
+          review-api-url: ${{ secrets.FRIENDLYAI_REVIEW_API_URL }}
+          github-token: ${{ github.token }}
+          bypass-label: friendlyai-bypass-ack-by-maintainer
+
+  review-fork:
+    name: friendlyai-review verdict
+    # Fork PRs: GitHub Actions hides repository secrets from workflows triggered
+    # by `pull_request` from forks (security policy — prevents secret exfil via
+    # malicious PR payloads). Without the secret, the action cannot call the
+    # private FriendlyAI Review endpoint, so we post a NEUTRAL check-run + a
+    # sticky comment instead. A maintainer can pull the fork branch down to a
+    # maintainer-owned branch (which IS allowed to access secrets) to get the
+    # full 9-agent council verdict.
+    if: github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Post neutral check-run
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            await github.rest.checks.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: 'friendlyai-review verdict',
+              head_sha: context.payload.pull_request.head.sha,
+              status: 'completed',
+              conclusion: 'neutral',
+              output: {
+                title: 'Fork PR — verdict deferred',
+                summary: [
+                  'Secrets are not available to workflows triggered by `pull_request` from forks (GitHub security policy).',
+                  '',
+                  'A maintainer can run the full FriendlyAI Review by checking the PR out to a maintainer-owned branch and pushing it as a same-repo PR, or by re-running this workflow with `workflow_dispatch` once the branch is mirrored.',
+                  '',
+                  'This neutral verdict satisfies the required status check so the PR is not permanently blocked.'
+                ].join('\n')
+              }
+            });
+
+      - name: Post sticky comment (idempotent — find-or-update)
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const marker = '<!-- friendlyai-review:fork-notice -->';
+            const body = [
+              marker,
+              '',
+              '### FriendlyAI Review — fork PR notice',
+              '',
+              'Secrets are not available to workflows triggered by `pull_request` from a fork (GitHub security policy). The `friendlyai-review verdict` check has been posted as **neutral** to keep this PR mergeable.',
+              '',
+              'A maintainer can run the full 9-agent council review by mirroring the branch to a maintainer-owned branch (or pulling the PR locally and pushing a same-repo PR).'
+            ].join('\n');
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            const existing = (await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number, per_page: 100 }))
+              .find(c => c.body && c.body.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({ owner, repo, comment_id: existing.id, body });
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number, body });
+            }
