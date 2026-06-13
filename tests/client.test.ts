@@ -496,6 +496,69 @@ describe('PayBotClient', () => {
       const verifyCall = JSON.parse(mockFetch.mock.calls[0][1].body as string);
       expect(verifyCall.requirements.amount).toBe('1');
     });
+
+    it('should return failure on ETIMEDOUT (both attempts)', async () => {
+      mockFetch.mockRejectedValueOnce(new Error('ETIMEDOUT'));
+      mockFetch.mockRejectedValueOnce(new Error('ETIMEDOUT'));
+
+      const result = await client.pay({
+        resource: 'https://example.com',
+        amount: '0.05',
+        payTo: '0x0000000000000000000000000000000000000001',
+      });
+
+      expect(result.success).toBe(false);
+      expect(result.error).toContain('ETIMEDOUT');
+      expect(mockFetch).toHaveBeenCalledTimes(2);
+    });
+
+    it('should succeed when verify 402 includes embedded settlementToken', async () => {
+      mockFetch.mockResolvedValueOnce(
+        jsonResponse({
+          error: 'Payment required',
+          code: 'PAYMENT_REQUIRED',
+          settlementToken: 'st_from_402',
+          commission: { grossAmount: '51250', netAmount: '50000', commissionAmount: '1250', commissionRate: 0.025 },
+        }, 402)
+      );
+      mockFetch.mockResolvedValueOnce(
+        jsonResponse({ success: true, transaction: '0x402Tx', network: 'eip155:84532' })
+      );
+
+      const result = await client.pay({
+        resource: 'https://example.com',
+        amount: '0.05',
+        payTo: '0x0000000000000000000000000000000000000001',
+      });
+
+      expect(result.success).toBe(true);
+      expect(mockFetch).toHaveBeenCalledTimes(2);
+      expect(mockFetch.mock.calls[0][0]).toContain('/verify');
+      expect(mockFetch.mock.calls[1][0]).toContain('/settle');
+    });
+
+    it('should return failure with INSUFFICIENT_FUNDS when settle returns 402', async () => {
+      mockFetch.mockResolvedValueOnce(
+        jsonResponse({
+          valid: true,
+          settlementToken: 'st_abc',
+          commission: { grossAmount: '51250', netAmount: '50000', commissionAmount: '1250', commissionRate: 0.025 },
+        })
+      );
+      mockFetch.mockResolvedValueOnce(
+        jsonResponse({ error: 'Insufficient balance', code: 'INSUFFICIENT_FUNDS' }, 402)
+      );
+
+      const result = await client.pay({
+        resource: 'https://example.com',
+        amount: '0.05',
+        payTo: '0x0000000000000000000000000000000000000001',
+      });
+
+      expect(result.success).toBe(false);
+      expect(result.errorCode).toBe('INSUFFICIENT_FUNDS');
+      expect(mockFetch).toHaveBeenCalledTimes(2);
+    });
   });
 
   describe('commissionSummary()', () => {
