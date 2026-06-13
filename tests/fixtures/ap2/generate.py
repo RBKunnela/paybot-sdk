@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+# pyright: reportMissingImports=false, reportReturnType=false, reportUnusedImport=false, reportUnusedVariable=false
+# (Imports the external google-agentic-commerce/AP2 reference SDK, present only in
+#  the AC6 interop CI job / a local reference env — not in the default repo
+#  toolchain. The unresolved-import + return-type warnings are expected and
+#  harmless; this script SystemExit(2)s honestly if `ap2` is absent.)
 # Copyright 2026 FriendlyAI / PayBot.
 # SPDX-License-Identifier: Apache-2.0
 #
