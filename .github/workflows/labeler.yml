@@ -1,0 +1,20 @@
+name: Labeler
+
+# Auto-labels PRs by changed path (config in .github/labeler.yml) so the queue
+# stays self-organizing. pull_request_target so it works on fork PRs too; the
+# action only reads the diff and applies labels — it never runs PR code.
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/labeler@f27b608878404679385c85cfa523b85ccb86e213  # v6.1.0

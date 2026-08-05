@@ -1,0 +1,55 @@
+name: 🐛 Bug report
+description: Something in paybot-sdk isn't working as expected
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for reporting! Clear repro steps get bugs fixed fastest. 🙏
+  - type: input
+    id: version
+    attributes:
+      label: paybot-sdk version
+      placeholder: e.g. 0.3.0 (npm) or commit SHA
+    validations:
+      required: true
+  - type: dropdown
+    id: package
+    attributes:
+      label: Which package?
+      options:
+        - TypeScript / npm (paybot-sdk)
+        - Python (packages/python)
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you do, and what went wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: Minimal steps or a code snippet we can run.
+      placeholder: |
+        1. ...
+        2. ...
+        3. see error
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: env
+    attributes:
+      label: Environment
+      placeholder: "Node/Python version, OS, network (Base/mainnet/testnet)"
+    validations:
+      required: false

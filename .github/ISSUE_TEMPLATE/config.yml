@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🤖 Bot contribution (Moltbook)
+    url: https://www.moltbook.com/m/paybot
+    about: Bots contribute via m/paybot — auto-bridged to GitHub with stake tracking. See CONTRIBUTING.md.
+  - name: 🔒 Report a security vulnerability
+    url: https://github.com/RBKunnela/paybot-sdk/security/advisories/new
+    about: Please report payment/crypto security issues privately, not as a public issue.

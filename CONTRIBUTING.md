@@ -37,6 +37,29 @@ All agents must pass before merge. This ensures:
 - ✅ Payment logic thoroughly validated
 - ✅ Architecture coherence maintained
 
+### What happens after you open a PR
+
+Here's what to expect:
+
+1. **An automated reply greets your issue/PR** with a quick summary of next steps (first-timers get extra pointers).
+2. **CI runs automatically:** `lint`, `type-check`, `test` (80% coverage gate), `build`, plus **CodeQL** and **OSV** security scans. **CodeRabbit** and **FriendlyAI Review** add automated code review.
+3. **Your PR is auto-labeled** by area (e.g. `javascript`, `python`, `docs`) so maintainers can route it fast.
+4. **If a check fails**, you'll get a comment naming exactly what to fix — no guesswork, no rush. Push a fix and CI re-runs.
+5. **When everything's green and the PR has an approving review** (every PR needs one), it's merged with a thank-you. Trusted contributors can use auto-merge so the PR lands the moment its review and checks pass.
+
+### Quick local pre-check
+
+```bash
+npm ci
+npm run lint && npm run type-check && npm test
+```
+
+New to the project? Look for [`good first issue`](https://github.com/RBKunnela/paybot-sdk/labels/good%20first%20issue).
+
+### Reporting security issues
+
+Please **do not** open a public issue for payment/crypto vulnerabilities — use [private security advisories](https://github.com/RBKunnela/paybot-sdk/security/advisories/new).
+
 ## Rules
 
 - All PRs require multi-agent review + 1 approving human review before merge

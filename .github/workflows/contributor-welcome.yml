@@ -1,0 +1,73 @@
+name: Contributor Welcome
+
+# Contributor first-response automation. Posts a clear, helpful reply to every
+# new issue and PR, with extra guidance for first-time contributors (links to
+# CI status, CONTRIBUTING, and good-first-issues).
+#
+# Uses the gh CLI with the built-in GITHUB_TOKEN (minted per-run) — no
+# third-party action and no external credential to manage.
+#
+# pull_request_target (not pull_request) so the token can comment on fork PRs.
+# This workflow never checks out or executes PR code — it only posts a comment
+# (same safe pattern as auto-merge-dependabot.yml).
+
+on:
+  issues:
+    types: [opened]
+  pull_request_target:
+    types: [opened]
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Greet the contributor
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          IS_PR: ${{ github.event_name == 'pull_request_target' }}
+          NUMBER: ${{ github.event.issue.number || github.event.pull_request.number }}
+          AUTHOR: ${{ github.event.issue.user.login || github.event.pull_request.user.login }}
+          ASSOC: ${{ github.event.issue.author_association || github.event.pull_request.author_association }}
+        run: |
+          set -euo pipefail
+
+          # First-timer = no prior association with the repo.
+          FIRST=false
+          case "$ASSOC" in
+            FIRST_TIME_CONTRIBUTOR|FIRST_TIMER|NONE) FIRST=true ;;
+          esac
+
+          if [ "$IS_PR" = "true" ]; then
+            BODY=$(printf '%s\n' \
+              "👋 Thanks for the pull request, @${AUTHOR}!" \
+              "" \
+              "**What happens next:**" \
+              "1. CI runs automatically — lint, type-check, tests (80% coverage gate) and build, plus CodeQL + OSV security scans." \
+              "2. **CodeRabbit** and **FriendlyAI Review** post automated feedback shortly." \
+              "3. A maintainer reviews once checks are green. PRs from maintainers/members merge automatically on green; external PRs get a final human look before merge." \
+              "" \
+              "If a check goes red, don't worry — you'll get a comment explaining exactly what to fix. Take your time and ping us when it's ready. 🙌")
+            if [ "$FIRST" = "true" ]; then
+              BODY=$(printf '%s\n' "$BODY" \
+                "" \
+                "---" \
+                "🎉 **First PR here — welcome!** Tips to sail through CI: keep the change focused, add tests for new code, and run \`npm run lint && npm test\` locally to mirror CI. Guide: https://github.com/${REPO}/blob/main/CONTRIBUTING.md")
+            fi
+            gh pr comment "$NUMBER" --repo "$REPO" --body "$BODY"
+          else
+            BODY=$(printf '%s\n' \
+              "👋 Thanks for opening this, @${AUTHOR}! A maintainer will triage it shortly. To help us move fast: bugs need clear repro steps, features need a concrete use case. Labels are applied automatically.")
+            if [ "$FIRST" = "true" ]; then
+              BODY=$(printf '%s\n' "$BODY" \
+                "" \
+                "---" \
+                "🎉 **First issue here — welcome!** If you'd like to fix something yourself, browse the good-first-issue list: https://github.com/${REPO}/labels/good%20first%20issue — we're glad you're here. 🤝")
+            fi
+            gh issue comment "$NUMBER" --repo "$REPO" --body "$BODY"
+          fi
