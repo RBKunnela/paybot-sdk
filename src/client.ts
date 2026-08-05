@@ -225,13 +225,19 @@ export class PayBotClient {
 
       // Don't retry on 4xx (client errors). Map to the most specific subclass
       // (auth/policy) while keeping `instanceof PayBotApiError` true for callers.
+      // For 402 specifically, preserve the full response body in `details` so that
+      // `_payOnce` can extract an embedded `settlementToken` when the facilitator
+      // pre-authorizes a payment inside the 402 response.
       if (response.status >= 400 && response.status < 500) {
         const errorData = await response.json().catch(() => ({})) as Record<string, unknown>;
+        const details = response.status === 402
+          ? errorData
+          : (errorData.details as Record<string, unknown> | undefined);
         throw mapHttpError(
           (errorData.error as string) ?? `HTTP ${response.status}`,
           (errorData.code as string) ?? 'HTTP_ERROR',
           response.status,
-          errorData.details as Record<string, unknown> | undefined
+          details
         );
       }
 
@@ -417,19 +423,33 @@ export class PayBotClient {
             );
           } catch (error: unknown) {
             if (error instanceof PayBotApiError) {
-              paySpan?.setAttribute('success', false);
-              return {
-                success: false,
-                grossAmount: '0',
-                netAmount: '0',
-                commissionAmount: '0',
-                commissionRate: 0,
-                error: error.message,
-                errorCode: error.code,
-                errorDetails: error.details,
-              };
+              // 402 with an embedded settlementToken means the facilitator
+              // pre-authorized the payment in the verify response — proceed to settle.
+              const embeddedToken = error.statusCode === 402
+                ? (error.details?.settlementToken as string | undefined)
+                : undefined;
+              if (embeddedToken) {
+                verifyData = {
+                  settlementToken: embeddedToken,
+                  commission: error.details?.commission,
+                  modifiedRequirements: error.details?.modifiedRequirements,
+                };
+              } else {
+                paySpan?.setAttribute('success', false);
+                return {
+                  success: false,
+                  grossAmount: '0',
+                  netAmount: '0',
+                  commissionAmount: '0',
+                  commissionRate: 0,
+                  error: error.message,
+                  errorCode: error.code,
+                  errorDetails: error.details,
+                };
+              }
+            } else {
+              throw error;
             }
-            throw error;
           }
 
           // A5 HITL: when the server places the payment in the approval band,
